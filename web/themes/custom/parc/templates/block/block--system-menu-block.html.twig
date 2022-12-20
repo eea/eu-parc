@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Parc override for a menu block.
+ */
+#}
+
+{%
+  set classes = [
+    'block',
+    'block-menu',
+    'navigation',
+    'menu--' ~ derivative_plugin_id|clean_class,
+  ]
+%}
+
+{% set heading_id = attributes.id ~ '-menu'|clean_id %}
+
+<nav
+  aria-labelledby="{{ heading_id }}" {{ attributes.addClass(classes)|without('role', 'aria-labelledby') }}>
+  {# Label. If not displayed, we still provide it for screen readers. #}
+  {% if not configuration.label_display %}
+    {% set title_attributes = title_attributes.addClass('visually-hidden') %}
+  {% endif %}
+
+  {{ title_prefix }}
+  <h5{{title_attributes.setAttribute('id',heading_id)}}>
+    {{- configuration.label -}}
+  </h5>
+  {{ title_suffix }}
+
+  {# Menu. #}
+  {% block content %}
+    {{- content -}}
+  {% endblock %}
+</nav>

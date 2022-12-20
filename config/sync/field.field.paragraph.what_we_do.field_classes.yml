@@ -1,0 +1,23 @@
+uuid: e56aa0d0-e0bc-460f-a335-c962ff61ba7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_classes
+    - paragraphs.paragraphs_type.what_we_do
+  module:
+    - options
+id: paragraph.what_we_do.field_classes
+field_name: field_classes
+entity_type: paragraph
+bundle: what_we_do
+label: Classes
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: card-purple
+default_value_callback: ''
+settings: {  }
+field_type: list_string

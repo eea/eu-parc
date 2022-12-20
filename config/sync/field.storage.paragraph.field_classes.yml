@@ -1,0 +1,27 @@
+uuid: 40976b1d-c832-416c-84fd-1ff607504611
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_classes
+field_name: field_classes
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: card-purple
+      label: Purple
+    -
+      value: card-green
+      label: Green
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

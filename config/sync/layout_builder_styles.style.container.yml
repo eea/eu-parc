@@ -1,0 +1,12 @@
+uuid: c45a1933-4d80-48c4-b99c-d23952479d48
+langcode: en
+status: true
+dependencies: {  }
+id: container
+label: Container
+classes: add-container
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 0

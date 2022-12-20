@@ -1,0 +1,29 @@
+uuid: 1c574c65-943f-4b06-b5be-042db58d4b30
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_icons
+    - media.type.vector
+    - paragraphs.paragraphs_type.links_list
+id: paragraph.links_list.field_icons
+field_name: field_icons
+entity_type: paragraph
+bundle: links_list
+label: Icons
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

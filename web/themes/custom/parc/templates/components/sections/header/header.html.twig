@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Parc Component.
+ */
+#}
+
+{{ attach_library('parc/navbar') }}
+{{ attach_library('parc/nav') }}
+{{ attach_library('parc/s--header') }}
+
+{% set header_attribute = create_attribute() %}
+
+{% set header_classes = [
+  'sticky-top',
+  'bg-white',
+] %}
+
+<header{{header_attribute.setAttribute('id','header').addClass(header_classes)}}>
+  <nav class="navbar">
+    <div class="container">
+      {{ page.branding }}
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainSidebar" aria-controls="mainSidebar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse flex-column" id="mainSidebar">
+        {{ page.nav_additional }}
+        {{ page.nav_main }}
+      </div>
+    </div>
+  </nav>
+
+  {{ page.header }}
+</header>

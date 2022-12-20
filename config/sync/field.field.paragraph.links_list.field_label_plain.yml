@@ -1,0 +1,19 @@
+uuid: fa164276-f8e1-455d-b84f-1cfb693b17e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label_plain
+    - paragraphs.paragraphs_type.links_list
+id: paragraph.links_list.field_label_plain
+field_name: field_label_plain
+entity_type: paragraph
+bundle: links_list
+label: Label
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

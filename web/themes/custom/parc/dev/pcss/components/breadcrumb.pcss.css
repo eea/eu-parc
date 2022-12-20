@@ -1,0 +1,35 @@
+.breadcrumb {
+  --breadcrumb-padding-x: 0;
+  --breadcrumb-padding-y: 0;
+  --breadcrumb-margin-bottom: 1rem;
+  --breadcrumb-bg: ;
+  --breadcrumb-border-radius: ;
+  --breadcrumb-divider-color: var(--c-gray);
+  --breadcrumb-item-padding-x: 0.5rem;
+  --breadcrumb-item-active-color: var(--c-gray);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: var(--breadcrumb-padding-y) var(--breadcrumb-padding-x);
+  margin-bottom: var(--breadcrumb-margin-bottom);
+  font-size: var(--breadcrumb-font-size);
+  list-style: none;
+  background-color: var(--breadcrumb-bg);
+  border-radius: var(--breadcrumb-border-radius);
+}
+.breadcrumb-item + .breadcrumb-item {
+  padding-left: var(--breadcrumb-item-padding-x);
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  float: left;
+  padding-right: var(--breadcrumb-item-padding-x);
+  color: var(--breadcrumb-divider-color);
+  content: var(--breadcrumb-divider, "/");
+}
+.breadcrumb-item.active {
+  color: var(--breadcrumb-item-active-color);
+}

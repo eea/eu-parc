@@ -1,0 +1,7 @@
+.layout__region {
+  padding-block: var(--p-parc);
+
+  .block--title {
+    margin-bottom: var(--p-parc);
+  }
+}

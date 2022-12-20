@@ -1,0 +1,93 @@
+/* Headings */
+:where(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6 .h6,) {
+  margin-top: 0;
+  margin-bottom: var(--headings-margin-bottom);
+  font-family: var(--headings-font-family);
+  font-style: var(--headings-font-style);
+  font-weight: var(--headings-font-weight);
+  line-height: var(--headings-line-height);
+  color: var(--headings-color);
+}
+
+:where(h1, .h1) {
+  font-size: var(--h1-font-size);
+}
+
+:where(h2, .h2) {
+  font-size: var(--h2-font-size);
+}
+
+:where(h3, .h3) {
+  font-size: var(--h3-font-size);
+}
+
+:where(h4, .h4) {
+  font-size: var(--h4-font-size);
+}
+
+:where(h5, .h5) {
+  font-size: var(--h5-font-size);
+}
+
+:where(h6, .h6) {
+  font-size: var(--h6-font-size);
+}
+
+.lead {
+  --fs-lead: calc(var(--base-font-size) * .125);
+  --lead-font-weight: 300;
+
+  font-size: var(--fs-lead);
+  font-weight: var(--lead-font-weight);
+}
+
+/* Lists */
+.list-unstyled {
+  @mixin list-unstyled;
+}
+
+/* Inline turns list items into inline-block */
+.list-inline {
+  @mixin list-unstyled;
+}
+
+.list-inline-item {
+  display: inline-block;
+
+  &:not(:last-child) {
+    --list-inline-p: .5rem;
+    margin-right:var(--list-inline-p);
+  }
+}
+
+/* Misc */
+/* Builds on `abbr` */
+.initialism {
+  font-size: var(--initialism-font-size, .875em);
+  text-transform: uppercase;
+}
+
+/* Blockquotesx */
+.blockquote {
+  --blockquote-margin-y: var(--spacer);
+  margin-bottom: var(--blockquote-margin-y);
+  font-size: var(--blockquote-font-size, 1.25);
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.blockquote-footer {
+  --blockquote-footer-font-size: var(--small-font-size);
+  --blockquote-footer-color: var(--c-gray)
+
+  margin-top: calc(var(--blockquote-margin-y) * -1);
+  margin-bottom: var(--blockquote-margin-y);
+  font-size: var(--blockquote-footer-font-size);
+  color: var(--blockquote-footer-color);
+
+  &::before {
+    content: "\2014\00A0";
+  }
+}

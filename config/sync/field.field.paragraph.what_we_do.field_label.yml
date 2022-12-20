@@ -1,0 +1,21 @@
+uuid: d4717d92-f10c-4272-b9aa-a11dcd9c6b36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label
+    - paragraphs.paragraphs_type.what_we_do
+  module:
+    - text
+id: paragraph.what_we_do.field_label
+field_name: field_label
+entity_type: paragraph
+bundle: what_we_do
+label: Label
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Parc theme.
+
+parc.settings:
+  type: theme_settings
+  label: "Parc settings"

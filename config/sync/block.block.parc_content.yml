@@ -1,0 +1,22 @@
+uuid: fb638d0c-1dd8-4237-b061-7e1aa4151c05
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - parc
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: parc_content
+theme: parc
+region: content
+weight: -6
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

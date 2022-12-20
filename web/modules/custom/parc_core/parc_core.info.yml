@@ -1,0 +1,6 @@
+name: Parc Core
+type: module
+description: Parc Core module implementation.
+package: PARC Custom
+core_version_requirement: ^8 || ^9 || ^10
+

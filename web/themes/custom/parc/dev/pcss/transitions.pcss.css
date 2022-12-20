@@ -1,0 +1,45 @@
+.fade {
+  --transition-fade: opacity 0.15s linear;
+  transition: var(--transition-fade);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade {
+    transition: none;
+  }
+}
+
+.fade:not(.show) {
+  opacity: 0;
+}
+
+.collapse:not(.show) {
+  display: none;
+}
+
+.collapsing {
+  --transition-collapse: height 0.35s ease;
+  --transition-collapse-width: width 0.35s ease;
+
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition-collapse);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collapsing {
+    transition: none;
+  }
+}
+
+.collapsing.collapse-horizontal {
+  width: 0;
+  height: auto;
+  transition: var(--transition-collapse-width);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collapsing.collapse-horizontal {
+    transition: none;
+  }
+}

@@ -1,0 +1,8 @@
+uuid: a72372b1-b9a6-402e-8e68-2c0bf41ca5c8
+langcode: en
+status: true
+dependencies: {  }
+id: block_front_page
+label: 'Block front page'
+revision: 0
+description: 'Blocks for front page (probably temp)'

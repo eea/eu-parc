@@ -1,0 +1,20 @@
+uuid: 7b1b2baf-11c6-4743-b242-57cfd7c19b4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - paragraphs
+id: paragraph.field_scroller
+field_name: field_scroller
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

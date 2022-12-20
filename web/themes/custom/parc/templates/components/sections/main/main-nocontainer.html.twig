@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Parc Component.
+ */
+#}
+
+{% set main_content = create_attribute() %}
+{%
+  set main_content_classes = [
+    '',
+  ]
+%}
+
+{{ page.hero }}
+{{ page.highlighted }}
+{{ page.breadcrumb }}
+
+<div{{main_content.addclass(main_content_classes)}}>
+  {{ page.content }}
+</div>

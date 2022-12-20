@@ -1,0 +1,19 @@
+uuid: 10e3f4cd-5dfd-4726-a81f-5f130e335bc5
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.block_front_page
+    - field.storage.block_content.field_before_title
+id: block_content.block_front_page.field_before_title
+field_name: field_before_title
+entity_type: block_content
+bundle: block_front_page
+label: 'Before title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

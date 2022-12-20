@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Parc override to display a menu.
+ */
+#}
+
+{% import _self as menus %}
+
+{{ menus.menu_links(menu_name, items, attributes, 0) }}
+
+{% macro menu_links(menu_name, items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      {%
+        set classes = [
+          'navbar-nav',
+          'nav-' ~ menu_name|clean_class,
+          'mb-0',
+        ]
+      %}
+      <ul{{attributes.addClass(classes)}}>
+      {% else %}
+        <ul>
+        {% endif %}
+        {% for item in items %}
+          {%
+          set classes_link = [
+            'nav-link',
+            item.is_expanded ? 'dropdown-toggle',
+            item.is_collapsed ? 'dropdown-toggle',
+            item.in_active_trail ? 'active',
+            item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
+          ]
+        %}
+          <li{{item.attributes.addClass('nav-item')}}>
+            {{ link(item.title, item.url, { 'class': classes_link }) }}
+            {% if item.below %}
+              {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endmacro %}

@@ -1,0 +1,75 @@
+.toast {
+  --toast-zindex: 1090;
+  --toast-padding-x: 0.75rem;
+  --toast-padding-y: 0.5rem;
+  --toast-spacing: 1.5rem;
+  --toast-max-width: 350px;
+  --toast-font-size: 0.875rem;
+  --toast-color: ;
+  --toast-bg: rgba(255, 255, 255, 0.85);
+  --toast-border-width: 1px;
+  --toast-border-color: var(--border-color-translucent);
+  --toast-border-radius: var(--border-radius);
+  --toast-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --toast-header-color: var(--c-gray);
+  --toast-header-bg: rgba(255, 255, 255, 0.85);
+  --toast-header-border-color: rgba(0, 0, 0, 0.05);
+  width: var(--toast-max-width);
+  max-width: 100%;
+  font-size: var(--toast-font-size);
+  color: var(--toast-color);
+  pointer-events: auto;
+  background-color: var(--toast-bg);
+  background-clip: padding-box;
+  border: var(--toast-border-width) solid var(--toast-border-color);
+  box-shadow: var(--toast-box-shadow);
+  border-radius: var(--toast-border-radius);
+}
+.toast.showing {
+  opacity: 0;
+}
+.toast:not(.show) {
+  display: none;
+}
+.toast-container {
+  --toast-zindex: 1090;
+  position: absolute;
+  z-index: var(--toast-zindex);
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 100%;
+  pointer-events: none;
+}
+.toast-container > :not(:last-child) {
+  margin-bottom: var(--toast-spacing);
+}
+.toast-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: var(--toast-padding-y) var(--toast-padding-x);
+  color: var(--toast-header-color);
+  background-color: var(--toast-header-bg);
+  background-clip: padding-box;
+  border-bottom: solid;
+  border-top-left-radius: calc(
+    var(--toast-border-radius) - var(--toast-border-width)
+  );
+  border-top-right-radius: calc(
+    var(--toast-border-radius) - var(--toast-border-width)
+  );
+}
+.toast-header .btn-close {
+  margin-right: calc(-0.5 * var(--toast-padding-x));
+  margin-left: var(--toast-padding-x);
+}
+.toast-body {
+  padding: var(--toast-padding-x);
+  word-wrap: break-word;
+}

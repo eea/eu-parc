@@ -1,0 +1,47 @@
+uuid: 9fec521f-8886-4483-b212-cb7cabbebc50
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.card.field_label
+    - field.field.paragraph.card.field_link_one
+    - field.field.paragraph.card.field_scroller
+    - paragraphs.paragraphs_type.card
+  module:
+    - link_class
+    - media_library
+    - text
+id: paragraph.card.default
+targetEntityType: paragraph
+bundle: card
+mode: default
+content:
+  field_label:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_link_one:
+    type: link_class_field_widget
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      link_class_mode: force_class
+      link_class_force: 'btn btn-clear btn-arrow btn-arrow-down stretched-link'
+      link_class_select: ''
+    third_party_settings: {  }
+  field_scroller:
+    type: media_library_widget
+    weight: 2
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

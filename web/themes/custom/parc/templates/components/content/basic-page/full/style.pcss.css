@@ -1,0 +1,48 @@
+.node--basic-page--full {
+  .block-field-blocknodebasic-pagefield-banner {
+    height: 320px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .block-field-blocknodebasic-pagefield-svg-title {
+    padding-block: 80px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .node--content-pb {
+    padding-bottom: 108px;
+  }
+}
+
+.layout {
+  .nav-main {
+    .nav-link {
+      --nav-link-padding-y: 0.5rem;
+      font-size: 24px;
+      font-weight: var(--fw-medium);
+      line-height: 1.4em;
+    }
+  }
+}
+
+.layout--twocol-section {
+  .col-menu {
+    top: 116px;
+    flex: 0 0 auto;
+    width: 18.75%;
+  }
+
+  .col-content {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+}

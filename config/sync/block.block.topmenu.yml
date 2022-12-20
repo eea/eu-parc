@@ -1,0 +1,25 @@
+uuid: 79ba0ea0-9ed7-4639-b0b3-d267d3be3630
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.top-menu
+  module:
+    - system
+  theme:
+    - parc
+id: topmenu
+theme: parc
+region: nav_additional
+weight: -5
+provider: null
+plugin: 'system_menu_block:top-menu'
+settings:
+  id: 'system_menu_block:top-menu'
+  label: 'Top menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

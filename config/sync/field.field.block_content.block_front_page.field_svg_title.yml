@@ -1,0 +1,29 @@
+uuid: 9821f9b8-1d85-494b-ba2c-cef9af2305e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.block_front_page
+    - field.storage.block_content.field_svg_title
+    - media.type.vector
+id: block_content.block_front_page.field_svg_title
+field_name: field_svg_title
+entity_type: block_content
+bundle: block_front_page
+label: 'SVG title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

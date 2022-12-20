@@ -1,0 +1,29 @@
+uuid: c0b02a7e-2bb9-40d1-a01e-184f208874ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_svg_title
+    - media.type.vector
+    - node.type.basic_page
+id: node.basic_page.field_svg_title
+field_name: field_svg_title
+entity_type: node
+bundle: basic_page
+label: 'SVG title (temp)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

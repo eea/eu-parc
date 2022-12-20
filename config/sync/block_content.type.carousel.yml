@@ -1,0 +1,8 @@
+uuid: ecc8adcf-ac07-44f4-a0ef-acc3347c7cbe
+langcode: en
+status: true
+dependencies: {  }
+id: carousel
+label: Carousel
+revision: 0
+description: 'Carousel block'

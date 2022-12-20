@@ -1,0 +1,25 @@
+uuid: e7843fd8-c976-48fd-a4db-5a4ca318e1b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.block_front_page
+    - field.storage.block_content.field_paragraphs
+  module:
+    - entity_reference_revisions
+id: block_content.block_front_page.field_paragraphs
+field_name: field_paragraphs
+entity_type: block_content
+bundle: block_front_page
+label: Paragraphs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles: null
+    negate: 0
+field_type: entity_reference_revisions

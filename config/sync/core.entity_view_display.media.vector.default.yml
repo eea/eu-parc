@@ -1,0 +1,35 @@
+uuid: 03ef1bec-c3a3-4878-a825-3e36fae6ba98
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.media.vector.field_media_image_1
+    - image.style.large
+    - media.type.vector
+  module:
+    - svg_image
+id: media.vector.default
+targetEntityType: media
+bundle: vector
+mode: default
+content:
+  field_media_image_1:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: ''
+      image_style: large
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  name: true
+  thumbnail: true
+  uid: true

@@ -1,0 +1,8 @@
+uuid: 9bd0c8ea-e954-47b6-ab60-0f3fe7e47ead
+langcode: en
+status: true
+dependencies: {  }
+id: term-privacy
+label: 'Term & Privacy'
+description: ''
+locked: false

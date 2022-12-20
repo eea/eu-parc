@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Parc Component.
+ */
+#}
+
+{% set main_container = create_attribute() %}
+{%
+  set main_container_classes = [
+    'row',
+  ]
+%}
+
+{% set main_content = create_attribute() %}
+{%
+  set main_content_classes = [
+    not page.sidebar_first and page.sidebar_second ? 'col-md-9',
+    not page.sidebar_second and page.sidebar_first ? 'col-md-9',
+    page.sidebar_first and page.sidebar_second ? 'col-md-6',
+  ]
+%}
+
+{# Begin style #}
+{{ page.hero }}
+{{ page.highlighted }}
+{{ page.breadcrumb }}
+
+<div class="{{ global.container }}">
+  <div{{main_container.addclass(main_container_classes)}}>
+    {% if page.sidebar_first %}
+      <div class="col-md-3">
+        {{ page.sidebar_first }}
+      </div>
+    {% endif %}
+
+    <div{{main_content.addclass(main_content_classes)}}>
+      {{ page.content }}
+    </div>
+
+    {% if page.sidebar_second %}
+      <div class="col-md-3">
+        {{ page.sidebar_second }}
+      </div>
+    {% endif %}
+  </div>
+</div>

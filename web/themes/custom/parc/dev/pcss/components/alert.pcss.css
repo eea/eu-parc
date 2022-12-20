@@ -1,0 +1,117 @@
+.alert {
+  --alert-bg: transparent;
+  --alert-padding-x: 1rem;
+  --alert-padding-y: 1rem;
+  --alert-margin-bottom: 1rem;
+  --alert-color: inherit;
+  --alert-border-color: transparent;
+  --alert-border: 1px solid var(--alert-border-color);
+  --alert-border-radius: var(--border-radius);
+  position: relative;
+  padding: var(--alert-padding-y) var(--alert-padding-x);
+  margin-bottom: var(--alert-margin-bottom);
+  color: var(--alert-color);
+  background-color: var(--alert-bg);
+  border: var(--alert-border);
+  border-radius: var(--alert-border-radius);
+}
+
+.alert-heading {
+  color: inherit;
+}
+
+.alert-link {
+  font-weight: 700;
+}
+
+.alert-dismissible {
+  padding-right: 3rem;
+}
+
+.alert-dismissible .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding: 1.25rem 1rem;
+}
+
+.alert-primary {
+  --alert-color: #084298;
+  --alert-bg: #cfe2ff;
+  --alert-border-color: #b6d4fe;
+}
+
+.alert-primary .alert-link {
+  color: #06357a;
+}
+
+.alert-secondary {
+  --alert-color: #41464b;
+  --alert-bg: #e2e3e5;
+  --alert-border-color: #d3d6d8;
+}
+
+.alert-secondary .alert-link {
+  color: #34383c;
+}
+
+.alert-success {
+  --alert-color: #0f5132;
+  --alert-bg: #d1e7dd;
+  --alert-border-color: #badbcc;
+}
+
+.alert-success .alert-link {
+  color: #0c4128;
+}
+
+.alert-info {
+  --alert-color: #055160;
+  --alert-bg: #cff4fc;
+  --alert-border-color: #b6effb;
+}
+
+.alert-info .alert-link {
+  color: #04414d;
+}
+
+.alert-warning {
+  --alert-color: #664d03;
+  --alert-bg: #fff3cd;
+  --alert-border-color: #ffecb5;
+}
+
+.alert-warning .alert-link {
+  color: #523e02;
+}
+
+.alert-danger {
+  --alert-color: #842029;
+  --alert-bg: #f8d7da;
+  --alert-border-color: #f5c2c7;
+}
+
+.alert-danger .alert-link {
+  color: #6a1a21;
+}
+
+.alert-light {
+  --alert-color: #636464;
+  --alert-bg: #fefefe;
+  --alert-border-color: #fdfdfe;
+}
+
+.alert-light .alert-link {
+  color: #4f5050;
+}
+
+.alert-dark {
+  --alert-color: #141619;
+  --alert-bg: #d3d3d4;
+  --alert-border-color: #bcbebf;
+}
+
+.alert-dark .alert-link {
+  color: #101214;
+}

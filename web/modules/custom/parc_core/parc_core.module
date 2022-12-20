@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Contains hooks and custom functions for Parc Core module.
+ */
+
+use Drupal\node\Entity\Node;
+use Drupal\menu_link_content\MenuLinkContentInterface;
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function parc_core_preprocess_page(&$variables) {
+  $node = $variables['node'] ?? NULL;
+  if ($node instanceof Node) {
+    $variables['#attached']['library'][] = 'parc_core/ajax_links';
+  }
+
+}
+
+/**
+ * Implements template_preprocess_menu().
+ */
+function parc_core_preprocess_menu(&$variables) {
+  $items = $variables['items'];
+  foreach ($items as $item) {
+    /** @var \Drupal\Core\Menu\MenuLinkInterface $menu_link */
+    $menu_link = $item['original_link'] ?? NULL;
+    if (!empty($menu_link)) {
+      $options = ($menu_link instanceof MenuLinkContentInterface) ?
+        $menu_link->link->first()->options : $menu_link->getOptions();
+      if (!empty($options['attributes']['data-enable-ajax']) &&
+        $options['attributes']['data-enable-ajax'] == 'true') {
+        if ('entity.node.canonical' == $menu_link->getRouteName()) {
+          $params = $menu_link->getRouteParameters();
+          $nid = $params['node'];
+        }
+        // Set ajax link attributes.
+        $attributes = [
+          'class' => 'ajax-link',
+          'data-ajax-link-after-execution' => 'false',
+          'data-ajax-link-selector' => '.node--basic-page--compact',
+          'data-ajax-link-history' => 1,
+          'nid' => $nid ?? NULL,
+        ] + $options['attributes'];
+        $item['url']->setOption('attributes', $attributes);
+      }
+    }
+  }
+}

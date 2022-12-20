@@ -1,0 +1,12 @@
+uuid: 64cb14f8-9a3a-408a-8bb1-453c142df54e
+langcode: en
+status: true
+dependencies: {  }
+id: background_grey
+label: 'Background gray'
+classes: bg-gray
+type: section
+group: background
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 0

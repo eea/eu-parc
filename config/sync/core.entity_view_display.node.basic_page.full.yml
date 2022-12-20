@@ -1,0 +1,162 @@
+uuid: 8348ba72-5791-4bfe-af57-4fd4788c16c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_banner
+    - field.field.node.basic_page.field_svg_title
+    - node.type.basic_page
+    - system.menu.main
+  module:
+    - ctools
+    - layout_builder
+    - layout_discovery
+    - media
+    - system
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Header
+          context_mapping: {  }
+          layout_builder_styles_style:
+            background_green: 0
+            background_grey: 0
+            container: 0
+            no_paddings: 0
+        components:
+          1ad73864-177c-46ff-8f9a-46237922177e:
+            uuid: 1ad73864-177c-46ff-8f9a-46237922177e
+            region: content
+            configuration:
+              id: 'field_block:node:basic_page:field_banner'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: ''
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: Title
+          context_mapping: {  }
+          layout_builder_styles_style:
+            background_green: 0
+            background_grey: 0
+            container: container
+            no_paddings: 0
+        components:
+          ab4d2751-d463-42cb-a76c-064342c0b6d6:
+            uuid: ab4d2751-d463-42cb-a76c-064342c0b6d6
+            region: content
+            configuration:
+              id: 'field_block:node:basic_page:field_svg_title'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: media_thumbnail
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: ''
+                  image_loading:
+                    attribute: lazy
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 33-67
+          layout_builder_styles_style:
+            background_green: 0
+            background_grey: 0
+            container: container
+            no_paddings: 0
+        components:
+          c51f71c1-2b91-4e35-a330-cf65caf9e5a0:
+            uuid: c51f71c1-2b91-4e35-a330-cf65caf9e5a0
+            region: second
+            configuration:
+              id: 'entity_view:node'
+              label: 'Entity view (Content)'
+              label_display: '0'
+              provider: ctools
+              view_mode: compact
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 0
+            additional: {  }
+          6624c0ff-072a-43e1-a4df-672af52e312a:
+            uuid: 6624c0ff-072a-43e1-a4df-672af52e312a
+            region: first
+            configuration:
+              id: 'system_menu_block:main'
+              label: 'Main navigation'
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+              level: 2
+              depth: 1
+              expand_all_items: false
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.basic_page.full
+targetEntityType: node
+bundle: basic_page
+mode: full
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_banner:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_svg_title:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  links: true

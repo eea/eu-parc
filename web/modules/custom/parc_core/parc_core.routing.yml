@@ -1,0 +1,7 @@
+parc_core.ajax_link:
+  path: '/parc/ajax_link'
+  defaults:
+    _controller: '\Drupal\parc_core\Controller\ParcAjaxLinkController::ajax'
+    _title: 'Ajax links'
+  requirements:
+    _permission: 'access content'

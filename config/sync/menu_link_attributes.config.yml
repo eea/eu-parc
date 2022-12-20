@@ -1,0 +1,18 @@
+attributes:
+  class:
+    label: ''
+    description: ''
+  target:
+    label: ''
+    description: ''
+    options:
+      _blank: 'New window (_blank)'
+      _self: 'Same window (_self)'
+    default_value: ''
+  data-enable-ajax:
+    label: 'Enable ajax link'
+    description: ''
+    options:
+      'true': 'Yes'
+      'false': 'No'
+    default_value: 'false'

@@ -1,0 +1,22 @@
+uuid: 3013de38-8d10-45ae-90a0-be8376d9186a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - parc
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: parc_primary_local_tasks
+theme: parc
+region: highlighted
+weight: -6
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

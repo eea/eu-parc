@@ -1,0 +1,52 @@
+uuid: e2f1ee7c-d504-4ac6-afce-17fc1d3267bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.what_we_do.field_body
+    - field.field.paragraph.what_we_do.field_classes
+    - field.field.paragraph.what_we_do.field_label
+    - field.field.paragraph.what_we_do.field_scroller
+    - paragraphs.paragraphs_type.what_we_do
+  module:
+    - media
+    - options
+    - text
+id: paragraph.what_we_do.default
+targetEntityType: paragraph
+bundle: what_we_do
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_classes:
+    type: list_key
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_label:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_scroller:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Parc implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+{% extends "form.html.twig" %}
+
+{% block form %}
+  {{ attach_library('edwt/button-group') }}
+
+  <form{{attributes.addClass('input-group')}}>
+    {{ children }}
+  </form>
+{% endblock %}

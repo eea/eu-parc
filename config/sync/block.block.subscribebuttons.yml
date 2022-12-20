@@ -1,0 +1,25 @@
+uuid: a01f19ce-3432-49f3-828b-73bc6c2177c2
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:ea928168-65ae-44ce-bc3a-c76c289abff6'
+  module:
+    - block_content
+  theme:
+    - parc
+id: subscribebuttons
+theme: parc
+region: footer_second
+weight: 0
+provider: null
+plugin: 'block_content:ea928168-65ae-44ce-bc3a-c76c289abff6'
+settings:
+  id: 'block_content:ea928168-65ae-44ce-bc3a-c76c289abff6'
+  label: 'Subscribe buttons'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,18 @@
+.node--basic-page--compact {
+  @media (--lg) {
+    .field--name-body {
+      & > *:not(img) {
+        padding-inline: 8.3333% 16.6666%;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      img + *:not(img) {
+        margin-top: var(--spacer);
+      }
+    }
+  }
+}

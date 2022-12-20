@@ -1,0 +1,29 @@
+uuid: 6cbd74b9-3f3a-43dc-b327-7e04a02c62cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_scroller
+    - media.type.vector
+    - paragraphs.paragraphs_type.card
+id: paragraph.card.field_scroller
+field_name: field_scroller
+entity_type: paragraph
+bundle: card
+label: Scroller
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

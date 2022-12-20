@@ -1,0 +1,25 @@
+uuid: f951f924-fd70-4025-a56f-f2916cb4519d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - parc
+_core:
+  default_config_hash: n_nlgjggHVfQt2H__zvLOKB2YtjPDbQ5tHijF9LE1aM
+id: parc_site_branding
+theme: parc
+region: branding
+weight: -5
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

@@ -1,0 +1,25 @@
+uuid: 36976080-6bcc-4a71-bb72-d5fc16ea7f54
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - edwt
+_core:
+  default_config_hash: jvLWgroKNelacDJ22RPDDH-DzMtfKEVeHoI70SkLZu4
+id: edwt_branding
+theme: edwt
+region: branding
+weight: -6
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

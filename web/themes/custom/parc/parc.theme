@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * @file
+ * Parc theme file.
+ */
+
+use Drupal\block\Entity\Block;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function parc_theme_suggestions_alter(
+  array &$suggestions,
+  array $variables,
+  $hook
+  ) {
+  switch ($hook) {
+    case 'block':
+      if (!empty($variables['elements']['#id'])) {
+        $block = Block::load($variables['elements']['#id']);
+        if (!empty($block) && !empty($block->getRegion())) {
+          array_splice($suggestions, 2, 0, $hook . '__region__' . $block->getRegion());
+        }
+      }
+
+      if (isset($variables['elements']['content']['#block_content'])) {
+        $bundle = $variables['elements']['content']['#block_content']->bundle();
+        array_splice($suggestions, 3, 0, $hook . '__block_content__' . $bundle);
+      }
+      break;
+
+    case 'field':
+      $element = $variables['element'];
+      $suggestions[] = $hook . '__' . $element['#entity_type'] . '__' . $element['#field_name'] . '__' . $element['#bundle'] . '__' . $element['#view_mode'];
+      break;
+
+    case 'taxonomy_term':
+      $term = $variables['elements']['#taxonomy_term'];
+      $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+      array_splice($suggestions, 0, 0, $hook . '__' . $sanitized_view_mode);
+      array_splice($suggestions, 2, 0, $hook . '__' . $term->bundle() . '__' . $sanitized_view_mode);
+      break;
+
+    case 'paragraph':
+      $paragraph = $variables['elements']['#paragraph'];
+      $parent = $paragraph->getParentEntity();
+      if ($parent) {
+        array_splice($suggestions, 1, 0, 'paragraph__' . $parent->bundle() . '__' . $paragraph->bundle());
+        array_splice($suggestions, 2, 0, 'paragraph__' . $parent->bundle() . '__' . $variables['elements']['#view_mode']);
+        $suggestions[] = 'paragraph__' . $parent->bundle() . '__' . $paragraph->bundle() . '__' . $variables['elements']['#view_mode'];
+      }
+      break;
+
+    case 'page':
+      if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' && $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term')) {
+        $term = Term::load($tid);
+        array_splice($suggestions, 1, 0, $hook . '__taxonomy__' . $term->bundle());
+      }
+
+      if ($node = \Drupal::request()->attributes->get('node')) {
+        array_splice($suggestions, 1, 0, $hook . '__node__' . $node->getType());
+      }
+      break;
+
+    case 'form':
+      $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
+      break;
+
+    default:
+      break;
+  }
+}

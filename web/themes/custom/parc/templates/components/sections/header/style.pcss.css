@@ -1,0 +1,134 @@
+.region-nav-additional {
+  align-self: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.navbar-nav {
+  & .nav-link {
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.navbar-nav {
+  &.nav-top-menu {
+    --nav-link-font-weight: 400;
+    font-size: 13px;
+
+    & .nav-link {
+      --nav-link-color: var(--c-gray-600);
+      --navbar-active-color: var(--link-color);
+      --nav-link-hover-color: var(--link-color);
+      --navbar-nav-link-padding-x: 6px;
+
+      &.active {
+        --navbar-active-color: var(--c-dark);
+      }
+    }
+  }
+
+  &.nav-main {
+    font-size: 20px;
+    line-height: 115%;
+
+    & .nav-link {
+      --link-color: var(--c-black);
+      --link-h-color: var(--link-color);
+    }
+
+    &.active {
+      --navbar-active-color: var(--c-dark);
+    }
+
+    @media (--xl) {
+      --navbar-nav-link-padding-x: 20px;
+      --nav-link-padding-y: 0.75rem;
+    }
+  }
+}
+
+.block-social > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.site-logo {
+  svg:hover g:nth-of-type(odd) .line2 {
+    animation-name: dashOutTwo;
+  }
+
+  svg:hover g:nth-of-type(even) .line2 {
+    animation-name: dashOutTwo;
+  }
+
+  circle {
+    opacity: 0;
+    animation-name: slidein;
+    animation-duration: 450ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    transition: stroke 200ms ease-in-out;
+  }
+
+  .line1 {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 200;
+    stroke-width: 3;
+  }
+
+  .line2 {
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-name: dashIn;
+    position: relevant;
+    animation-duration: 100ms;
+  }
+
+  @keyframes slidein {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes dashIn {
+    from {
+      stroke-dashoffset: -20;
+      stroke-dasharray: 200;
+    }
+    to {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 200;
+    }
+  }
+
+  @keyframes dashOut {
+    from {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 200;
+    }
+    to {
+      stroke-dashoffset: -20;
+      stroke-dasharray: 200;
+    }
+  }
+
+  @keyframes dashOutTwo {
+    from {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 4;
+    }
+    to {
+      stroke-dashoffset: -5;
+      stroke-dasharray: 4;
+    }
+  }
+}

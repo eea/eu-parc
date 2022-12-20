@@ -1,0 +1,152 @@
+.node--page--full {
+  & .layout {
+    padding-block: var(--p-parc);
+
+    & .block--title {
+      margin-bottom: var(--p-parc);
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.card-styled-border img {
+  transform: translateY(50%);
+  align-self: flex-start;
+  max-width: 100%;
+  height: auto;
+}
+
+/* What We Do. */
+.block-whatWeDo {
+  .field-description {
+    font-size: 24px;
+    line-height: 1.45em;
+    margin-bottom: var(--p-parc);
+  }
+
+  strong {
+    display: block;
+  }
+
+  @media (--md) {
+    .field-description {
+      font-size: 34px;
+      max-width: 80%;
+    }
+  }
+}
+
+.paragraph--what-we-do {
+  &.card {
+    .card-title,
+    .btn-arrow {
+      color: var(--custom-card-c);
+    }
+  }
+
+  .card-body {
+    min-height: 206px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &.card-purple {
+    --card-bg: rgba(var(--rgb-yellow-l), 0.5);
+    --custom-card-c: var(--purple);
+
+    &:hover {
+      --card-bg: var(--yellow-m);
+    }
+
+    .btn-arrow {
+      --btn-arrow-url: url("data:image/svg+xml,%3Csvg width='6' height='11' viewBox='0 0 6 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath class='arrow-color' d='M1.2417 1.63867L4.77723 5.17421C5.16776 5.56473 5.16776 6.1979 4.77723 6.58842L1.2417 10.124' stroke='%236E009A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+    }
+  }
+
+  &.card-green {
+    --card-bg: var(--c-gray-100);
+    --custom-card-c: var(--green);
+
+    &:hover {
+      --card-bg: var(--c-gray-200);
+    }
+
+    .btn-arrow {
+      --btn-arrow-url: url("data:image/svg+xml,%3Csvg width='6' height='11' viewBox='0 0 6 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath class='arrow-color' d='M1.2417 1.63867L4.77723 5.17421C5.16776 5.56473 5.16776 6.1979 4.77723 6.58842L1.2417 10.124' stroke='%23008475' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+    }
+  }
+}
+/* End What We Do. */
+
+/* Thematic areas. */
+.paragraph--links-list {
+  --pt-color: var(--green);
+
+  .paragraph--top {
+    background-color: var(--c-body-bg);
+    border-radius: var(--border-radius);
+    padding: 29px 20px 1rem;
+    gap: 30px;
+    min-height: 302px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .card-title {
+    color: var(--pt-color);
+  }
+
+  img {
+    max-width: 177px;
+    height: auto;
+    align-self: center;
+  }
+
+  .link-ta {
+    background-color: var(--c-body-bg);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+    min-height: 50px;
+    font-weight: var(--fw-medium);
+    padding-inline: 20px;
+    color: var(--pt-color);
+  }
+}
+/* End Thematic areas. */
+
+.block-parcopedia {
+  .block--b-title {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .field-description {
+    font-size: 27px;
+    letter-spacing: 0.01em;
+    line-height: 140%;
+    max-width: 648px;
+    margin-inline: auto;
+    margin-block: 170px 100px;
+  }
+}
+
+.block-cards {
+  .card {
+    min-height: 260px;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}

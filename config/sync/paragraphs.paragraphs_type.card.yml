@@ -1,0 +1,10 @@
+uuid: 561e3d8a-89d0-459c-9dff-9be69be2ef53
+langcode: en
+status: true
+dependencies: {  }
+id: card
+label: Card
+icon_uuid: null
+icon_default: null
+description: 'Used in Cards region'
+behavior_plugins: {  }

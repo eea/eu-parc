@@ -1,0 +1,58 @@
+{#
+/**
+ * @file
+ * Parc override to display a single page.
+ *
+ * @see page.html.twig
+ */
+#}
+
+{% extends "@edwt/layout/page.html.twig" %}
+
+{% set main_container = create_attribute() %}
+{%
+  set main_content = create_attribute()
+%}
+
+{%
+  set main_container_classes = [
+    'row',
+    'g-0',
+    'min-height',
+  ]
+%}
+
+{%
+  set main_content_classes = [
+    'col-md-4',
+    'p-5',
+    'd-flex',
+    'flex-column',
+    'justify-content-center',
+    'align-items-center',
+  ]
+%}
+
+{% block wrap_header %}{% endblock %}
+
+{% block main %}
+  <div class="container-fluid p-0">
+    <div{{main_container.addclass(main_container_classes)}}>
+      <div class="col-md-8">
+        <div class="img-fit">
+          <img src="https://images.pexels.com/photos/2529973/pexels-photo-2529973.jpeg">
+        </div>
+      </div>
+
+      <div{{main_content.addclass(main_content_classes)}}>
+        <div class="mb-5">
+          {{ page.branding }}
+        </div>
+
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block wrap_footer %}{% endblock %}

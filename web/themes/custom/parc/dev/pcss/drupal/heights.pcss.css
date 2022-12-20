@@ -1,0 +1,19 @@
+.toolbar-fixed {
+  --drupal-body-pt: 0;
+
+  &:not(.toolbar-tray-open) {
+    --drupal-body-pt: 39px;
+  }
+
+  &.toolbar-horizontal.toolbar-tray-open {
+    --drupal-body-pt: 79px;
+  }
+}
+
+.alignTop {
+  top: var(--drupal-body-pt);
+}
+
+.min-height {
+  min-height: calc(100vh - var(--drupal-body-pt));
+}

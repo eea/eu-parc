@@ -1,0 +1,10 @@
+uuid: 0e558612-3cea-4724-9c27-5f5e87d5e80e
+langcode: en
+status: true
+dependencies: {  }
+id: links_list
+label: 'Links list'
+icon_uuid: null
+icon_default: null
+description: 'Used in Thematic areas'
+behavior_plugins: {  }

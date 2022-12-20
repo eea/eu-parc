@@ -1,0 +1,29 @@
+uuid: ea3040b1-8cd0-4d5e-9de8-0b853d832c95
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.term-privacy
+  module:
+    - block_class
+    - system
+  theme:
+    - parc
+third_party_settings:
+  block_class:
+    classes: col-lg-6
+id: termprivacy
+theme: parc
+region: footer_s
+weight: -6
+provider: null
+plugin: 'system_menu_block:term-privacy'
+settings:
+  id: 'system_menu_block:term-privacy'
+  label: 'Term & Privacy'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

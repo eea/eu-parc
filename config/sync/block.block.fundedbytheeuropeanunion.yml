@@ -1,0 +1,29 @@
+uuid: 67a54154-aa47-4367-b787-145a63d8360a
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:9f7977eb-ce60-4a8e-87cc-bfc4998fb0f5'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - parc
+third_party_settings:
+  block_class:
+    classes: 'col-lg-6 d-flex justify-content-end'
+id: fundedbytheeuropeanunion
+theme: parc
+region: footer_s
+weight: 0
+provider: null
+plugin: 'block_content:9f7977eb-ce60-4a8e-87cc-bfc4998fb0f5'
+settings:
+  id: 'block_content:9f7977eb-ce60-4a8e-87cc-bfc4998fb0f5'
+  label: 'Funded by the European Union'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
