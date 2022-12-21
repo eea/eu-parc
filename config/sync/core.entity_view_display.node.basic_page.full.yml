@@ -52,18 +52,6 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-        third_party_settings: {  }
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: Title
-          context_mapping: {  }
-          layout_builder_styles_style:
-            background_green: 0
-            background_grey: 0
-            container: container
-            no_paddings: 0
-        components:
           ab4d2751-d463-42cb-a76c-064342c0b6d6:
             uuid: ab4d2751-d463-42cb-a76c-064342c0b6d6
             region: content
@@ -81,8 +69,24 @@ third_party_settings:
                   image_loading:
                     attribute: lazy
                 third_party_settings: {  }
-            weight: 0
-            additional: {  }
+            weight: 1
+            additional:
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: container
+                  style: ''
+                  data: ''
         third_party_settings: {  }
       -
         layout_id: layout_twocol_section

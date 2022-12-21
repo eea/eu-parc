@@ -9,7 +9,6 @@ dependencies:
     - field.field.paragraph.what_we_do.field_scroller
     - paragraphs.paragraphs_type.what_we_do
   module:
-    - media
     - options
     - text
 id: paragraph.what_we_do.default
@@ -39,13 +38,11 @@ content:
     weight: 0
     region: content
   field_scroller:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: ''
-      image_loading:
-        attribute: lazy
+      view_mode: default
+      link: false
     third_party_settings: {  }
     weight: 2
     region: content

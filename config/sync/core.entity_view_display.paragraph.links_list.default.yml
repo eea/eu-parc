@@ -9,20 +9,17 @@ dependencies:
     - paragraphs.paragraphs_type.links_list
   module:
     - link
-    - media
 id: paragraph.links_list.default
 targetEntityType: paragraph
 bundle: links_list
 mode: default
 content:
   field_icons:
-    type: media_thumbnail
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      image_link: ''
-      image_style: ''
-      image_loading:
-        attribute: lazy
+      view_mode: default
+      link: false
     third_party_settings: {  }
     weight: 0
     region: content

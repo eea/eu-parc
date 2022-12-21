@@ -91,15 +91,16 @@
   .paragraph--top {
     background-color: var(--c-body-bg);
     border-radius: var(--border-radius);
-    padding: 29px 20px 1rem;
-    gap: 30px;
-    min-height: 302px;
+    min-height: 280px;
     display: flex;
     justify-content: space-between;
   }
 
   .card-title {
     color: var(--pt-color);
+    font-weight: var(--fw-bold);
+    padding-inline: 20px;
+    padding-bottom: 1rem;
   }
 
   img {
@@ -111,6 +112,7 @@
   .link-ta {
     background-color: var(--c-body-bg);
     border-radius: var(--border-radius);
+    font-size: 16px;
     display: flex;
     align-items: center;
     margin-top: 4px;

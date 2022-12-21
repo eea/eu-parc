@@ -18,10 +18,10 @@
 
 <header{{header_attribute.setAttribute('id','header').addClass(header_classes)}}>
   <nav class="navbar">
-    <div class="container">
+    <div class="container position-relative">
       {{ page.branding }}
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainSidebar" aria-controls="mainSidebar" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mainSidebar" aria-controls="mainSidebar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -29,6 +29,7 @@
         {{ page.nav_additional }}
         {{ page.nav_main }}
       </div>
+      <div class="nc-bg"></div>
     </div>
   </nav>
 

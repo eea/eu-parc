@@ -12,6 +12,33 @@
   }
 }
 
+@media (max-width: 79.99rem) {
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    inset-inline: 0px;
+
+    &.collapsing,
+    &.show {
+      & + .nc-bg {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.nc-bg {
+  opacity: 0;
+  z-index: -1;
+  background: var(--lichtblauw);
+  box-shadow: 0 0 0 100vw var(--lichtblauw);
+  transition: 0.35s linear box-shadow;
+
+  @media (--xl) {
+    display: none;
+  }
+}
+
 .navbar-nav {
   &.nav-top-menu {
     --nav-link-font-weight: 400;
@@ -49,7 +76,7 @@
   }
 }
 
-.block-social > div {
+.block-social .field--name-body {
   display: flex;
   align-items: center;
   gap: 6px;
