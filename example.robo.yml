@@ -1,0 +1,28 @@
+version: "3.0"
+
+sites:
+  default:
+    sync:
+      username: username
+      password: password
+    sql:
+      dump:
+        location: web/sync/database.sql
+      sync:
+        source: https://devel.eu-parc.eu/sync/database.sql.gz
+    files:
+      dump:
+        location: web/sync/files.tar.gz
+      sync:
+        source: https://devel.eu-parc.eu/sync/files.tar.gz
+    site:
+      update:
+        excluded_commands:
+          - locale:check
+          - locale:update
+        extra_commands:
+          - st
+      develop:
+        admin_username: username
+        modules:
+          - stage_file_proxy

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1a7e1cd9a8825e10315aed96e17f90d4",
+    "content-hash": "a4cdcc5e474133f39ee1c3ad46309b76",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -634,16 +634,16 @@
         },
         {
             "name": "consolidation/robo",
-            "version": "4.0.2",
+            "version": "3.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/robo.git",
-                "reference": "ccf80963abf11bdb8e90659aa99a7449b21e9452"
+                "reference": "820fa0f164f77887e268b7dbfb2283416c7334c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/robo/zipball/ccf80963abf11bdb8e90659aa99a7449b21e9452",
-                "reference": "ccf80963abf11bdb8e90659aa99a7449b21e9452",
+                "url": "https://api.github.com/repos/consolidation/robo/zipball/820fa0f164f77887e268b7dbfb2283416c7334c1",
+                "reference": "820fa0f164f77887e268b7dbfb2283416c7334c1",
                 "shasum": ""
             },
             "require": {
@@ -727,9 +727,9 @@
             "description": "Modern task runner",
             "support": {
                 "issues": "https://github.com/consolidation/robo/issues",
-                "source": "https://github.com/consolidation/robo/tree/4.0.2"
+                "source": "https://github.com/consolidation/robo/tree/3.0.11"
             },
-            "time": "2022-04-21T09:29:58+00:00"
+            "time": "2022-12-07T15:18:26+00:00"
         },
         {
             "name": "consolidation/self-update",
@@ -3296,6 +3296,96 @@
             "time": "2022-12-14T16:02:30+00:00"
         },
         {
+            "name": "eaudeweb/heavy-lifter",
+            "version": "2.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eaudeweb/heavy-lifter.git",
+                "reference": "5e7020035591e7eb3a5a2995192a262c46c72c8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eaudeweb/heavy-lifter/zipball/5e7020035591e7eb3a5a2995192a262c46c72c8a",
+                "reference": "5e7020035591e7eb3a5a2995192a262c46c72c8a",
+                "shasum": ""
+            },
+            "require": {
+                "eaudeweb/robo-curl": "2.0.0-alpha2",
+                "ext-json": "*",
+                "php": ">=7.3",
+                "webflo/drupal-finder": "^1.2"
+            },
+            "suggest": {
+                "eaudeweb/gdpr-dump": "1.0.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EauDeWeb\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Romanescu",
+                    "email": "cristian@romanescu.ro"
+                }
+            ],
+            "description": "Common commands for your Drupal project to get you up to speed",
+            "support": {
+                "issues": "https://github.com/eaudeweb/heavy-lifter/issues",
+                "source": "https://github.com/eaudeweb/heavy-lifter/tree/2.0.0-alpha2"
+            },
+            "time": "2022-01-27T18:42:39+00:00"
+        },
+        {
+            "name": "eaudeweb/robo-curl",
+            "version": "2.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eaudeweb/robo-curl.git",
+                "reference": "134505c64fd3c485be014a11c6db651a5bbc6173"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eaudeweb/robo-curl/zipball/134505c64fd3c485be014a11c6db651a5bbc6173",
+                "reference": "134505c64fd3c485be014a11c6db651a5bbc6173",
+                "shasum": ""
+            },
+            "require": {
+                "consolidation/robo": "^3",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "robo-tasks",
+            "autoload": {
+                "psr-4": {
+                    "EauDeWeb\\Robo\\Task\\Curl\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Romanescu",
+                    "email": "cristian@romanescu.ro"
+                }
+            ],
+            "description": "Robo command wrapper for cURL command line client",
+            "support": {
+                "issues": "https://github.com/eaudeweb/robo-curl/issues",
+                "source": "https://github.com/eaudeweb/robo-curl/tree/2.0.0-alpha2"
+            },
+            "time": "2022-01-27T18:37:54+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "3.2.1",
             "source": {
@@ -4700,20 +4790,20 @@
         },
         {
             "name": "psr/container",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf"
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/8622567409010282b7aeebe4bb841fe98b58dcaf",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
             },
             "type": "library",
             "autoload": {
@@ -4742,9 +4832,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.1"
+                "source": "https://github.com/php-fig/container/tree/1.1.2"
             },
-            "time": "2021-03-05T17:36:06+00:00"
+            "time": "2021-11-05T16:50:12+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -8065,7 +8155,7 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "drupal/viewsreference": 10
     },
