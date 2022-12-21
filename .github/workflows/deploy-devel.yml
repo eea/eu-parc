@@ -15,9 +15,10 @@ jobs:
           fetch-depth: 1
 
       - name: 'Install dependencies'
-        uses: eaudeweb/drupal-install-action@1.x
+        uses: eaudeweb/drupal-install-action@v1.1
         with:
           dev: false
+          php: /usr/bin/php81
 
       - name: 'Create release archive'
         id: artifact
