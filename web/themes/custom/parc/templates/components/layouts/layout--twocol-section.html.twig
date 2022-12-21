@@ -10,21 +10,26 @@
   {% set addClass = TRUE %}
 {% endif %}
 
+{% set classes = [
+  'row',
+  'align-items-start',
+  'position-relative',
+] %}
 
 {% if content %}
   {% if addClass %}
     <div class="container node--content-pb">
     {% endif %}
 
-    <div{{attributes.addClass('row','align-items-start').removeClass('layout--twocol-section--33-67')}}>
+    <div{{attributes.addClass(classes).removeClass('layout--twocol-section--33-67')}}>
       {% if content.first %}
-        <div {{ region_attributes.first.addClass('layout_region', 'col col-menu', 'sticky-top') }}>
+        <div {{ region_attributes.first.addClass('layout_region', 'col-12 col-lg col-menu', 'sticky-top') }}>
           {{ content.first }}
         </div>
       {% endif %}
 
       {% if content.second %}
-        <div {{ region_attributes.second.addClass('layout_region', 'col col-content') }}>
+        <div {{ region_attributes.second.addClass('layout_region', 'col-12 col-lg col-content') }}>
           {{ content.second }}
         </div>
       {% endif %}
