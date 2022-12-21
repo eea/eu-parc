@@ -32,25 +32,25 @@ jobs:
           ssh_key:              ${{ secrets.DEVEL_SSH_KEY }}
           release_id:           ${{ steps.artifact.outputs.base }}
           release_filename:     ${{ steps.artifact.outputs.filename }}
-          project_dir:          /var/www/html/devel.eu-parc.eu
-          artifacts_dir:        /var/www/artifacts/devel.eu-parc.eu
-          settings_file:        /var/www/config/devel.eu-parc.eu/settings.local.php
-          public_files_dir:     /var/www/config/devel.eu-parc.eu/files
-          # env_file:           /var/www/config/devel.eu-parc.eu/.env
-          robo_file:            /var/www/config/devel.eu-parc.eu/robo.yml
-          # database_dump_dir:  /var/www/config/devel.eu-parc.eu/sync
+          project_dir:          /var/www/html/devel.eu-parc.eaudeweb.ro
+          artifacts_dir:        /var/www/artifacts/devel.eu-parc.eaudeweb.ro
+          settings_file:        /var/www/config/devel.eu-parc.eaudeweb.ro/settings.local.php
+          public_files_dir:     /var/www/config/devel.eu-parc.eaudeweb.ro/files
+          # env_file:           /var/www/config/devel.eu-parc.eaudeweb.ro/.env
+          robo_file:            /var/www/config/devel.eu-parc.eaudeweb.ro/robo.yml
+          # database_dump_dir:  /var/www/config/devel.eu-parc.eaudeweb.ro/sync
           artifacts_lifespan: 30
 
       - name: 'Update the Drupal instance'
         id: release
         uses: eaudeweb/drupal-update-action@v1
         with:
-          path: /var/www/html/devel.eu-parc.eu
+          path: /var/www/html/devel.eu-parc.eaudeweb.ro
 
       - name: 'Discord notification on failed deploy'
         if: failure()
         run: >
           curl -X POST -F
-          "content=:octagonal_sign: ${{ github.repository }} failed to deploy release **${{ github.ref_name }}** on https://devel.eu-parc.eu.
+          "content=:octagonal_sign: ${{ github.repository }} failed to deploy release **${{ github.ref_name }}** on https://devel.eu-parc.eaudeweb.ro.
           ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           ${{ secrets.DISCORD_WEBHOOK }}
