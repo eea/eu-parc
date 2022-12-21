@@ -32,12 +32,12 @@ jobs:
           release_id:           ${{ steps.artifact.outputs.base }}
           release_filename:     ${{ steps.artifact.outputs.filename }}
           project_dir:          /var/www/html/devel.eu-parc.eu
-          artifacts_dir:        /data/artifacts/devel.eu-parc.eu
-          settings_file:        /data/config/devel.eu-parc.eu/settings.local.php
-          public_files_dir:     /data/config/devel.eu-parc.eu/files
-          # env_file:           /data/config/devel.eu-parc.eu/.env
-          robo_file:            /data/config/devel.eu-parc.eu/robo.yml
-          # database_dump_dir:  /data/config/devel.eu-parc.eu/sync
+          artifacts_dir:        /var/www/artifacts/devel.eu-parc.eu
+          settings_file:        /var/www/config/devel.eu-parc.eu/settings.local.php
+          public_files_dir:     /var/www/config/devel.eu-parc.eu/files
+          # env_file:           /var/www/config/devel.eu-parc.eu/.env
+          robo_file:            /var/www/config/devel.eu-parc.eu/robo.yml
+          # database_dump_dir:  /var/www/config/devel.eu-parc.eu/sync
           artifacts_lifespan: 30
 
       - name: 'Update the Drupal instance'

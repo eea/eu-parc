@@ -41,11 +41,11 @@ jobs:
           release_id:           'release-${{ github.ref_name }}'
           release_filename:     ${{ steps.artifact.outputs.filename }}
           project_dir:          /var/www/html/eu-parc.eu
-          artifacts_dir:        /data/artifacts/eu-parc.eu
-          settings_file:        /data/config/eu-parc.eu/settings.local.php
-          public_files_dir:     /data/config/eu-parc.eu/files
-          robo_file:            /data/config/eu-parc.eu/robo.yml
-          database_dump_dir:    /data/config/eu-parc.eu/sync
+          artifacts_dir:        /var/www/artifacts/eu-parc.eu
+          settings_file:        /var/www/config/eu-parc.eu/settings.local.php
+          public_files_dir:     /var/www/config/eu-parc.eu/files
+          robo_file:            /var/www/config/eu-parc.eu/robo.yml
+          database_dump_dir:    /var/www/config/eu-parc.eu/sync
           artifacts_lifespan: 30
           check_config:       ${{ inputs.check_config }}
           sql_backup:         ${{ inputs.sql_backup }}
