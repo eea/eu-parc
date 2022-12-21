@@ -1,0 +1,55 @@
+on:
+  push:
+    branches:
+      - 'test'
+
+name: 'Deploy staging instance'
+jobs:
+  deploy:
+    name: 'deployment'
+    runs-on: self-hosted
+    steps:
+      - name: 'Checkout source code'
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: 'Install dependencies'
+        uses: eaudeweb/drupal-install-action@1.x
+        with:
+          dev: false
+
+      - name: 'Create release archive'
+        id: artifact
+        uses: eaudeweb/drupal-artifact-action@1.x
+
+      - name: 'Deploy release on the server'
+        uses: eaudeweb/drupal-deploy-action@v2.1.2
+        with:
+          ssh_user:             ${{ secrets.TEST_SSH_USER }}
+          ssh_host:             ${{ secrets.TEST_SSH_HOST }}
+          ssh_key:              ${{ secrets.TEST_SSH_KEY }}
+          release_id:           ${{ steps.artifact.outputs.base }}
+          release_filename:     ${{ steps.artifact.outputs.filename }}
+          project_dir:          /var/www/html/devel.eu-parc.eu
+          artifacts_dir:        /data/artifacts/devel.eu-parc.eu
+          settings_file:        /data/config/devel.eu-parc.eu/settings.local.php
+          public_files_dir:     /data/config/devel.eu-parc.eu/files
+          # env_file:           /data/config/devel.eu-parc.eu/.env
+          robo_file:            /data/config/devel.eu-parc.eu/robo.yml
+          # database_dump_dir:  /data/config/devel.eu-parc.eu/sync
+          artifacts_lifespan: 30
+
+      - name: 'Update the Drupal instance'
+        id: release
+        uses: eaudeweb/drupal-update-action@v1
+        with:
+          path: /var/www/html/devel.eu-parc.eu
+
+      - name: 'Discord notification on failed deploy'
+        if: failure()
+        run: >
+          curl -X POST -F
+          "content=:octagonal_sign: ${{ github.repository }} failed to deploy release **${{ github.ref_name }}** on https://devel.eu-parc.eu.
+          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          ${{ secrets.DISCORD_WEBHOOK }}
