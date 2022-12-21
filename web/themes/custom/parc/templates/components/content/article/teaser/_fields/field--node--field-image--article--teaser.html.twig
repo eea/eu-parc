@@ -5,8 +5,4 @@
  */
 #}
 
-<div class="card-img svg-line-1">
-  {%- for item in items -%}
-    {{- item.content -}}
-  {%- endfor -%}
-</div>
+<span class="img" style="background-image:url({{ items.0.content }})"></span>

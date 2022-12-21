@@ -18,6 +18,8 @@
   ]
 %}
 
+{% set collpaseID = 'wwd--collapse' ~ paragraph.id() %}
+
 <div class="col-lg-6">
   <div{{attributes.addClass(classes)}}>
     <div class="card-body">
@@ -25,7 +27,21 @@
         {{ content.field_label.0 }}
       </h4>
 
-      <a class="btn btn-clear btn-arrow stretched-link" href="#">Read more</a>
+      {% if content.field_body.0 %}
+        <div class="collapse" id="{{ collpaseID }}">
+          {{ content.field_body }}
+        </div>
+
+        <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target="#{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }}">
+          <span class="more">
+            {{- 'Read more'|t -}}
+          </span>
+
+          <span class="less">
+            {{- 'Read less'|t -}}
+          </span>
+        </button>
+      {% endif %}
     </div>
 
     {{ content.field_scroller }}

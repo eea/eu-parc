@@ -26,7 +26,10 @@
   {{ title_prefix }}
   {{ title_suffix }}
 
-  {{ content.field_image }}
+  <div class="card-img svg-news--effect">
+    {{ content.field_image }}
+    {{ content.field_svg_hover }}
+  </div>
 
   <div class="card-body">
     <div class="meta d-flex justify-content-between fw-bold">

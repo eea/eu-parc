@@ -1,0 +1,29 @@
+uuid: 174a4857-76fa-4589-b805-90bbe8fc1931
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_svg_hover
+    - media.type.vector
+    - node.type.article
+id: node.article.field_svg_hover
+field_name: field_svg_hover
+entity_type: node
+bundle: article
+label: 'SVG Hover'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

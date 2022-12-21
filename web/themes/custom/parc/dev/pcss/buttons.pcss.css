@@ -156,9 +156,27 @@ fieldset:disabled .btn {
   display: inline-flex;
   flex-direction: row-reverse;
 
+  .less {
+    display: none;
+  }
+
   &:before {
     content: var(--btn-arrow-url);
     margin-left: 6px;
+  }
+
+  &[aria-expanded="true"] {
+    .less {
+      display: block;
+    }
+
+    .more {
+      display: none;
+    }
+
+    &:before {
+      transform: rotate(-90deg);
+    }
   }
 }
 
