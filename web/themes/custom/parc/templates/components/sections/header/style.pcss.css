@@ -1,7 +1,7 @@
 .region-nav-additional {
   align-self: flex-end;
   gap: 0.5rem;
-  margin-top: 0.75rem;
+  margin-top: 0; /* was .75rem need to change logo( is not correct) */
 }
 
 .navbar-nav {
