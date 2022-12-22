@@ -33,16 +33,27 @@
 
   <div class="card-body">
     <div class="meta d-flex justify-content-between fw-bold">
-      <div class="field-category text-uppercase">Initiatives, thematic Area</div>
-      <div class="field-date">12.12.2022</div>
+      <div class="field-category text-uppercase">
+        {{- content.field_tags -}}
+      </div>
+
+      <div class="field-date">
+        {{- date -}}
+      </div>
     </div>
 
     <div class="article-content d-flex flex-grow-1 flex-column justify-content-between align-items-start">
       <h4 class="card-title fw-bold">
-        News headline introducing the news item
+        {{- label -}}
       </h4>
 
-      <a class="btn btn-clear btn-arrow stretched-link" href="#">Read more</a>
+      {% if content.body.0 %}
+        <div class="d-none d-lg-block mb-lg-3">
+          {{- content.body -}}
+        </div>
+      {% endif %}
+
+      <a class="btn btn-clear btn-arrow stretched-link" href="{{ url }}">{{ 'Read more'|t }}</a>
     </div>
   </div>
 
