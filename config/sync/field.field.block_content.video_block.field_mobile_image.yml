@@ -1,0 +1,29 @@
+uuid: b9f4b3a2-50f1-48a1-b4d0-1951ab96d788
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.video_block
+    - field.storage.block_content.field_mobile_image
+    - media.type.image
+id: block_content.video_block.field_mobile_image
+field_name: field_mobile_image
+entity_type: block_content
+bundle: video_block
+label: 'Mobile Image'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
