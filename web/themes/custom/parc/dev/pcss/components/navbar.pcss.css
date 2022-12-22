@@ -42,11 +42,14 @@
 }
 
 .navbar-brand {
-  margin-right: var(--navbar-brand-margin-end);
   font-size: var(--navbar-brand-font-size);
   color: var(--navbar-brand-color);
   text-decoration: none;
   white-space: nowrap;
+
+  @media (--lg) {
+    margin-right: var(--navbar-brand-margin-end);
+  }
 }
 
 .navbar-brand:hover,
