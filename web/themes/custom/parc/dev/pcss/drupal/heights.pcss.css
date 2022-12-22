@@ -1,5 +1,9 @@
+.toolbar-vertical {
+  --drupal-body-pt: 39px;
+}
+
 .toolbar-fixed {
-  --drupal-body-pt: 0;
+  --drupal-body-pt: 0px;
 
   &:not(.toolbar-tray-open) {
     --drupal-body-pt: 39px;

@@ -44,4 +44,15 @@
         });
     }
   };
+
+  Drupal.behaviors.mainNav = {
+    attach: function (context, settings) {
+      $('#mainSidebar').on('show.bs.collapse', function () {
+        $('body').addClass('overlay-is-navbar-collapse');
+      });
+      $('#mainSidebar').on('hide.bs.collapse', function () {
+        $('body').removeClass('overlay-is-navbar-collapse');
+      });
+    }
+  };
 })(jQuery, Drupal, once);

@@ -19,7 +19,7 @@
   --nav-link-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
   display: block;
   padding: var(--nav-link-padding-y) var(--nav-link-padding-x);
-  font-size: (var(--nav-link-font-size));
+  font-size: var(--nav-link-font-size);
   font-weight: var(--nav-link-font-weight);
   color: var(--nav-link-color);
   text-decoration: none;
