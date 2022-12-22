@@ -1,3 +1,20 @@
+.overlay-is-navbar-collapse {
+  --c-logo-circle: var(--c-white);
+}
+
+.navbar-toggler {
+  .navbar-toggler-icon {
+    transition: all 0.15s linear;
+    transform: rotate(0deg);
+  }
+
+  &:not(.collapsed) {
+    .navbar-toggler-icon {
+      transform: rotate(90deg);
+    }
+  }
+}
+
 .region-nav-additional {
   align-self: flex-end;
   gap: 0.5rem;
@@ -17,6 +34,62 @@
     position: absolute;
     top: 100%;
     inset-inline: 0px;
+    min-height: calc(100vh - 120px - var(--drupal-body-pt, 0px));
+    color: var(--c-white);
+    display: flex;
+    align-items: stretch;
+    padding-inline: 60px;
+
+    .nav-link {
+      --nav-link-color: var(--c-white);
+      --nav-link-hover-color: var(--c-white);
+      line-height: 1.25em;
+    }
+
+    .nav-main {
+      .nav-link {
+        --nav-link-font-size: 28px;
+      }
+    }
+
+    .nav-top-menu {
+      .nav-link {
+        --nav-link-font-size: 18px;
+      }
+    }
+
+    .region-nav-main {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .region-nav-additional {
+      order: 1;
+      align-self: stretch;
+      flex-direction: column;
+    }
+
+    .menu--top-menu {
+      margin-bottom: 60px;
+    }
+
+    .block-social {
+      .field--name-body {
+        height: 21px;
+        justify-content: space-between;
+      }
+
+      svg {
+        width: auto;
+        height: 100%;
+        max-width: 21px;
+      }
+
+      path {
+        fill: var(--c-white);
+      }
+    }
 
     &.collapsing,
     &.show {
@@ -31,7 +104,7 @@
   opacity: 0;
   z-index: -1;
   background: var(--lichtblauw);
-  box-shadow: 0 0 0 100vw var(--lichtblauw);
+  box-shadow: 0 0 0 max(100vw, 100vh) var(--lichtblauw);
   transition: 0.35s linear box-shadow;
 
   @media (--xl) {
@@ -44,14 +117,16 @@
     --nav-link-font-weight: 400;
     font-size: 13px;
 
-    & .nav-link {
-      --nav-link-color: var(--c-gray-600);
-      --navbar-active-color: var(--link-color);
-      --nav-link-hover-color: var(--link-color);
-      --navbar-nav-link-padding-x: 6px;
+    @media (--xl) {
+      & .nav-link {
+        --nav-link-color: var(--c-gray-600);
+        --navbar-active-color: var(--link-color);
+        --nav-link-hover-color: var(--link-color);
+        --navbar-nav-link-padding-x: 6px;
 
-      &.active {
-        --navbar-active-color: var(--c-dark);
+        &.active {
+          --navbar-active-color: var(--c-dark);
+        }
       }
     }
   }
