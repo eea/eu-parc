@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.article.field_classes
     - field.field.node.article.field_image
     - field.field.node.article.field_scroller
+    - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
   module:
@@ -30,17 +31,10 @@ content:
     weight: 2
     region: content
   field_image:
-    type: image
+    type: image_url
     label: hidden
     settings:
-      image_link: ''
       image_style: ''
-      svg_attributes:
-        width: null
-        height: null
-      svg_render_as_image: true
-      image_loading:
-        attribute: lazy
     third_party_settings: {  }
     weight: 0
     region: content
@@ -52,6 +46,15 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_svg_hover:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_tags:
     type: entity_reference_label

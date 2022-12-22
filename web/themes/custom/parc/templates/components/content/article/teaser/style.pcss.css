@@ -6,16 +6,28 @@
   flex-direction: row;
 
   & .card-img {
-    padding: 8px;
-    max-width: 28%;
-    width: auto;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin: 8px;
+    width: 28%;
     aspect-ratio: 1 / 1;
+    position: relative;
 
-    & img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--border-radius);
+    .img {
+      position: absolute;
+      inset: 0;
+      filter: grayscale(100%);
+      background-size: 110% 110%;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 200ms ease-in-out;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      max-width: 100%;
+      height: auto;
     }
   }
 
@@ -47,19 +59,32 @@
     display: none;
   }
 
+  &:hover {
+    & .card-img {
+      .img {
+        filter: grayscale(0%);
+        background-size: 100% 100%;
+      }
+    }
+  }
+
   @media (--md) {
     --h4-font-size: inherit;
   }
 
   @media (--lg) {
-    --card-spacer-y: 30px;
+    --card-spacer-y: 0;
     --card-spacer-x: 18px;
+
+    .card-body {
+      margin-top: 1rem;
+    }
 
     flex-direction: column;
 
     & .card-img {
-      padding: 6px 6px 0;
-      max-width: 100%;
+      margin: 6px 6px 0;
+      width: calc(100% - 12px);
       aspect-ratio: 16 / 12;
     }
 
@@ -83,4 +108,48 @@
 
 .news-purple {
   --news-c-title: var(--purple);
+}
+
+.node--article--teaser {
+  .svg-news--effect {
+    .line1 {
+      stroke-dashoffset: 30;
+      stroke-dasharray: 100;
+      stroke-width: 15;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      animation-name: newsDashIn !important;
+      animation-duration: 250ms;
+    }
+  }
+
+  &:hover {
+    .svg-news--effect {
+      .line1 {
+        animation-fill-mode: forwards;
+        animation-name: newsDashOut !important;
+      }
+    }
+  }
+
+  @keyframes newsDashIn {
+    0% {
+      stroke-dashoffset: 100;
+    }
+
+    100% {
+      stroke-dashoffset: 30;
+    }
+  }
+
+  @keyframes newsDashOut {
+    0% {
+      stroke-dashoffset: 30;
+    }
+
+    100% {
+      stroke-dashoffset: 100;
+    }
+  }
 }

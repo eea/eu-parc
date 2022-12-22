@@ -56,6 +56,12 @@
     align-items: flex-start;
   }
 
+  .field--name-field-body {
+    line-height: 29px;
+    letter-spacing: 0.001em;
+    padding-block: 20px 80px;
+  }
+
   &.card-purple {
     --card-bg: rgba(var(--rgb-yellow-l), 0.5);
     --custom-card-c: var(--purple);
