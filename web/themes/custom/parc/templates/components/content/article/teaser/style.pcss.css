@@ -49,6 +49,11 @@
 
   & .field-category {
     letter-spacing: 0.1em;
+
+    & a {
+      --link-color: var(--red);
+      --link-h-color: var(--red);
+    }
   }
 
   & .field-date {
