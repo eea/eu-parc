@@ -7,6 +7,7 @@
 
 use Drupal\block\Entity\Block;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\parc\ParcThemeProcess;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -71,4 +72,13 @@ function parc_theme_suggestions_alter(
     default:
       break;
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function parc_preprocess_block(&$variables) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(ParcThemeProcess::class)
+    ->preprocessBlock($variables);
 }
