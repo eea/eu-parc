@@ -22,6 +22,9 @@
   ]
 %}
 
+{% set collpaseID = 'wwd--article-' ~ node.id() %}
+
+
 <article{{attributes.addClass(classes)}}>
   {{ title_prefix }}
   {{ title_suffix }}
@@ -48,12 +51,24 @@
       </h4>
 
       {% if content.body.0 %}
-        <div class="d-none d-lg-block mb-lg-3">
+        <div class="collapse multi-collapse mb-lg-3" id="{{ collpaseID }}">
+          {{ body_full }}
+        </div>
+
+        <div class="collapse multi-collapse show" id="{{ collpaseID }}-second">
           {{- content.body -}}
         </div>
       {% endif %}
 
-      <a class="btn btn-clear btn-arrow stretched-link" href="{{ url }}">{{ 'Read more'|t }}</a>
+      <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
+        <span class="more">
+          {{- 'Read more'|t -}}
+        </span>
+
+        <span class="less">
+          {{- 'Read less'|t -}}
+        </span>
+      </button>
     </div>
   </div>
 
