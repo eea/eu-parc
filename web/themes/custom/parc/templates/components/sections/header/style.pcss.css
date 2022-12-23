@@ -30,6 +30,10 @@
 }
 
 @media (max-width: 79.99rem) {
+  .menu--main {
+    width: 100%;
+  }
+
   .navbar-collapse {
     position: absolute;
     top: 100%;
@@ -153,8 +157,10 @@
       padding-left: 62px;
 
       a {
+        padding: 0;
         font-size: 18px;
         line-height: 30px;
+        font-weight: var(--base-font-weight);
       }
     }
   }

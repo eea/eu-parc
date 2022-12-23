@@ -22,12 +22,15 @@
       %}
       <ul{{attributes.addClass(classes)}}>
       {% else %}
-        <ul class="second-level d-lg-none list-unstyled">
+        <ul class="second-level d-xl-none list-unstyled">
         {% endif %}
         {% for item in items %}
+          {% set linkID = item.title|clean_class %}
+
           {%
           set classes_link = [
             'nav-link',
+            'grow-1',
             item.is_expanded ? 'dropdown-toggle',
             item.is_collapsed ? 'dropdown-toggle',
             item.in_active_trail ? 'active',
@@ -35,10 +38,24 @@
           ]
         %}
           <li{{item.attributes.addClass('nav-item')}}>
-            {{ link(item.title, item.url, { 'class': classes_link }) }}
+            {% if item.is_expanded and menu_level == 0 %}
+              <div class="d-flex justify-content-between">
+                {{ attach_library('parc/collapse') }}
+                {{ link(item.title, item.url, { 'class': classes_link }) }}
+                <button class="btn clear" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
+                  <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            {% else %}
+              {{ link(item.title, item.url, { 'class': classes_link }) }}
+            {% endif %}
 
             {% if item.below %}
-              {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
+              <div class="collapse" id="collapseMainSecond-{{ linkID }}">
+                {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
+              </div>
             {% endif %}
           </li>
         {% endfor %}
