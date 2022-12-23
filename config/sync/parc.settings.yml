@@ -25,7 +25,7 @@ sr__container_header: none
 sr__container_position_header: before
 sr__extra_class_header: ''
 sr__clean_nav_additional: 0
-sr__class_nav_additional: 'd-flex align-items-lg-center'
+sr__class_nav_additional: 'd-flex align-items-xl-center'
 sr__container_nav_additional: none
 sr__container_position_nav_additional: before
 sr__extra_class_nav_additional: ''
