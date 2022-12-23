@@ -19,15 +19,14 @@
   {{ title_suffix }}
 
   {% block content %}
-    <div class="d-block image-mobile d-sm-none">
+    <div class="d-none">
       {{ content.field_mobile_image }}
     </div>
+
     {% if video_url %}
-      <video autoplay muted loop id="video-background" class="d-none d-sm-block">
+      <video autoplay muted loop id="video-background" class="d-block">
         <source src="{{- video_url|render|striptags|trim -}}" type="video/mp4">
       </video>
     {% endif %}
   {% endblock %}
 </div>
-
-

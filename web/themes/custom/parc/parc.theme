@@ -75,6 +75,16 @@ function parc_theme_suggestions_alter(
 }
 
 /**
+ * Implements hook_preprocess_node().
+ */
+function parc_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'article') {
+    $variables['body_full'] = $node->body->view('full');
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for block.html.twig.
  */
 function parc_preprocess_block(&$variables) {

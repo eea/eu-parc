@@ -106,9 +106,9 @@
 
   --bg-opacity: 1;
 
-  --link-color: var(--c-body-color);
+  --link-color: var(--lichtblauw);
   --link-decoration: none;
-  --link-h-color: var(--c-body-color);
+  --link-h-color: var(--lichtblauw);
   --link-h-decoration: underline;
 
   --p-parc: 70px;
