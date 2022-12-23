@@ -163,14 +163,16 @@ main {
 }
 
 .paragraph--links-list {
+  --anim-duration: 1s;
+
   circle {
     opacity: 0;
     animation-name: slidein;
-    animation-duration: 450ms;
+    animation-duration: var(--anim-duration);
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    transition: stroke 200ms ease-in-out;
+    transition: stroke var(--anim-duration) ease-in-out;
   }
 
   circle {
@@ -181,16 +183,16 @@ main {
     stroke-dashoffset: 0;
     stroke-dasharray: 200;
     stroke-width: 20;
+    animation-name: dashIn;
+    animation-duration: calc(var(--anim-duration) * 2);
     animation-iteration-count: 1;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;
-    animation-name: dashIn;
-    position: relevant;
   }
 
   .line2 {
     stroke-width: 20;
-    transition: stroke 200ms ease-in-out;
+    transition: stroke var(--anim-duration) ease-in-out;
   }
 
   svg {
@@ -206,6 +208,7 @@ main {
       }
 
       .line2 {
+        stroke: var(--red);
         stroke-dashoffset: 0;
         stroke-dasharray: 200;
         stroke-width: 20;
@@ -213,87 +216,72 @@ main {
         animation-timing-function: ease-out;
         animation-fill-mode: forwards;
         animation-name: dashHover;
-        animation-duration: 400ms;
-
+        animation-duration: 0.4s;
         position: relevant;
       }
-    }
-  }
 
-  .line1 {
-    animation-duration: 100ms;
-  }
-
-  g {
-    &:nth-child(1) .line1 {
-      animation-duration: 60ms;
-    }
-    &:nth-child(2) .line1 {
-      animation-duration: 110ms;
-    }
-    &:nth-child(3) .line1 {
-      animation-duration: 160ms;
-    }
-    &:nth-child(4) .line1 {
-      animation-duration: 210ms;
-    }
-    &:nth-child(5) .line1 {
-      animation-duration: 260ms;
-    }
-    &:nth-child(6) .line1 {
-      animation-duration: 310ms;
-    }
-    &:nth-child(7) .line1 {
-      animation-duration: 360ms;
-    }
-    &:nth-child(8) .line1 {
-      animation-duration: 410ms;
-    }
-    &:nth-child(9) .line1 {
-      animation-duration: 460ms;
-    }
-    &:nth-child(10) .line1 {
-      animation-duration: 510ms;
-    }
-    &:nth-child(11) .line1 {
-      animation-duration: 560ms;
-    }
-    &:nth-child(12) .line1 {
-      animation-duration: 610ms;
-    }
-    &:nth-child(13) .line1 {
-      animation-duration: 660ms;
-    }
-    &:nth-child(14) .line1 {
-      animation-duration: 710ms;
-    }
-    &:nth-child(15) .line1 {
-      animation-duration: 760ms;
-    }
-    &:nth-child(16) .line1 {
-      animation-duration: 810ms;
-    }
-    &:nth-child(17) .line1 {
-      animation-duration: 860ms;
-    }
-    &:nth-child(18) .line1 {
-      animation-duration: 910ms;
-    }
-    &:nth-child(19) .line1 {
-      animation-duration: 960ms;
-    }
-    &:nth-child(20) .line1 {
-      animation-duration: 1010ms;
-    }
-  }
-
-  @keyframes slidein {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
+      g {
+        &:nth-child(1) .line1 {
+          animation-duration: 60ms;
+        }
+        &:nth-child(2) .line1 {
+          animation-duration: 110ms;
+        }
+        &:nth-child(3) .line1 {
+          animation-duration: 160ms;
+        }
+        &:nth-child(4) .line1 {
+          animation-duration: 210ms;
+        }
+        &:nth-child(5) .line1 {
+          animation-duration: 260ms;
+        }
+        &:nth-child(6) .line1 {
+          animation-duration: 310ms;
+        }
+        &:nth-child(7) .line1 {
+          animation-duration: 360ms;
+        }
+        &:nth-child(8) .line1 {
+          animation-duration: 410ms;
+        }
+        &:nth-child(9) .line1 {
+          animation-duration: 460ms;
+        }
+        &:nth-child(10) .line1 {
+          animation-duration: 510ms;
+        }
+        &:nth-child(11) .line1 {
+          animation-duration: 560ms;
+        }
+        &:nth-child(12) .line1 {
+          animation-duration: 610ms;
+        }
+        &:nth-child(13) .line1 {
+          animation-duration: 660ms;
+        }
+        &:nth-child(14) .line1 {
+          animation-duration: 710ms;
+        }
+        &:nth-child(15) .line1 {
+          animation-duration: 760ms;
+        }
+        &:nth-child(16) .line1 {
+          animation-duration: 810ms;
+        }
+        &:nth-child(17) .line1 {
+          animation-duration: 860ms;
+        }
+        &:nth-child(18) .line1 {
+          animation-duration: 910ms;
+        }
+        &:nth-child(19) .line1 {
+          animation-duration: 960ms;
+        }
+        &:nth-child(20) .line1 {
+          animation-duration: 1010ms;
+        }
+      }
     }
   }
 
@@ -381,15 +369,15 @@ main {
       transform: translateX(0px);
     }
   }
+}
 
-  @keyframes slidein {
-    0% {
-      opacity: 0;
-    }
+@keyframes slidein {
+  0% {
+    opacity: 0;
+  }
 
-    100% {
-      opacity: 1;
-    }
+  100% {
+    opacity: 1;
   }
 }
 
