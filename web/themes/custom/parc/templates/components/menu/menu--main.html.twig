@@ -22,7 +22,7 @@
       %}
       <ul{{attributes.addClass(classes)}}>
       {% else %}
-        <ul class="second-level d-xl-none list-unstyled">
+        <ul class="second-level d-lg-none list-unstyled">
         {% endif %}
         {% for item in items %}
           {% set linkID = item.title|clean_class %}
@@ -42,7 +42,7 @@
               <div class="d-flex justify-content-between">
                 {{ attach_library('parc/collapse') }}
                 {{ link(item.title, item.url, { 'class': classes_link }) }}
-                <button class="btn d-xl-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
+                <button class="btn d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
                   <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
                   </svg>

@@ -52,6 +52,20 @@
   }
 }
 
+.site-logo {
+  display: block;
+  max-width: 160px;
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (--lg) {
+    max-width: fit-content;
+  }
+}
+
 .navbar-brand:hover,
 .navbar-brand:focus {
   color: var(--navbar-brand-hover-color);
@@ -64,11 +78,13 @@
   --nav-link-color: var(--c-black);
   --nav-link-hover-color: var(--nav-link-color);
   --nav-link-disabled-color: var(--navbar-disabled-color);
+
   display: flex;
   flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  letter-spacing: 0;
 }
 
 :where(.navbar-nav) {
@@ -140,7 +156,7 @@
   overflow-y: auto;
 }
 
-@media (--xl) {
+@media (--lg) {
   .navbar {
     flex-wrap: nowrap;
     justify-content: flex-start;

@@ -16,7 +16,6 @@
 
         listArray.each(function( index ) {
           var g = $(this).find('path');
-          console.log('element', g.attr('style'));
 
           if(index%2 ==0) {
             g.attr('style', 'stroke-dashoffset: ' + (randomOffset + (window.scrollY*speedDemping)));
@@ -50,6 +49,7 @@
       $('#mainSidebar').on('show.bs.collapse', function () {
         $('body').addClass('overlay-is-navbar-collapse');
       });
+
       $('#mainSidebar').on('hide.bs.collapse', function () {
         $('body').removeClass('overlay-is-navbar-collapse');
       });

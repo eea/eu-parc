@@ -73,13 +73,16 @@
     }
   }
 
-  @media (--md) {
-    --h4-font-size: inherit;
-  }
-
   @media (--lg) {
+    --h4-font-size: inherit;
     --card-spacer-y: 0;
     --card-spacer-x: 18px;
+
+    min-height: 576px;
+
+    .card-title {
+      min-height: 116px;
+    }
 
     .card-body {
       margin-top: 1rem;

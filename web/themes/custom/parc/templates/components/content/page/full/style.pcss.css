@@ -9,8 +9,14 @@
       svg {
         max-width: 100%;
         height: auto;
+        max-height: var(--svg-height, 30px);
+        width: auto;
       }
     }
+  }
+
+  @media (--lg) {
+    --svg-height: auto;
   }
 }
 
@@ -33,7 +39,7 @@
     display: block;
   }
 
-  @media (--md) {
+  @media (--lg) {
     .field-description {
       font-size: 34px;
       max-width: 80%;

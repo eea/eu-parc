@@ -43,10 +43,10 @@
 .layout {
   .nav-main {
     .nav-link {
-      --nav-link-padding-y: 0.5rem;
+      --nav-link-padding-y: 0.35rem;
       font-size: 24px;
       font-weight: var(--fw-medium);
-      line-height: 1.4em;
+      line-height: 125%;
     }
   }
 }
@@ -81,6 +81,7 @@
         font-size: 16px;
         font-weight: var(--fw-normal);
         line-height: 1.4em;
+        padding-block: 8px;
       }
     }
   }

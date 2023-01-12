@@ -7,6 +7,11 @@ main {
   min-height: 500px;
 }
 
+.collapse a {
+  position: relative;
+  z-index: 2;
+}
+
 .card-styled-border {
   transform: translateY(50%);
   align-self: flex-start;
