@@ -118,6 +118,7 @@ sup {
 a {
   color: var(--link-color);
   text-decoration: var(--link-decoration);
+  text-underline-offset: 0.25em;
 
   &:hover {
     color: var(--link-h-color);
