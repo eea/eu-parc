@@ -9,8 +9,6 @@
   <div class="carousel-indicators">
     {% for item in items %}
       <button type="button" data-bs-target="#mainCarousel" data-bs-interval="false" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-label="Slide {{ loop.index }}"></button>
-
-
     {% endfor %}
   </div>
 

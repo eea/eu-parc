@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Parc theme implementation to display a paragraph.
+#}
+
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+  <div class="{{ content.field_mobile_image.0 ? 'd-none d-lg-block' }}">
+    {{ content.field_desktop_image.0 }}
+  </div>
+
+  <div class="{{ content.field_desktop_image.0 ? 'd-lg-none' }}">
+    {{ content.field_mobile_image.0 }}
+  </div>
+{% endblock %}
