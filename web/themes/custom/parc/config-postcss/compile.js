@@ -54,7 +54,8 @@ module.exports = (filePath, callback) => {
           customMedia: {
             '--sm': '(min-width: 576px)',
             '--md': '(min-width: 768px)',
-            '--lg': '(min-width: 992px)',
+            '--downLg': '(max-width: 1023px)',
+            '--lg': '(min-width: 1024px)',
             '--xl': '(min-width: 1280px)',
             '--xxl': '(min-width: 1500px)',
           }

@@ -20,7 +20,8 @@ body {
   line-height: var(--body-line-height);
   color: var(--body-color);
   text-align: var(--body-text-align);
-  background-color: hsl(var(--c-body-bg));
+  background-color: var(--c-body-bg);
+  letter-spacing: var(--body-letter-spacing);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(var(--color-black), 0);
 }
@@ -117,6 +118,7 @@ sup {
 a {
   color: var(--link-color);
   text-decoration: var(--link-decoration);
+  text-underline-offset: 0.25em;
 
   &:hover {
     color: var(--link-h-color);

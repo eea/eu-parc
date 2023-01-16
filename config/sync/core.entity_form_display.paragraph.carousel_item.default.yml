@@ -1,0 +1,32 @@
+uuid: 11fe49be-819b-4ae5-9e6a-34f4e0c5ae52
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.carousel_item.field_desktop_image
+    - field.field.paragraph.carousel_item.field_mobile_image
+    - paragraphs.paragraphs_type.carousel_item
+  module:
+    - media_library
+id: paragraph.carousel_item.default
+targetEntityType: paragraph
+bundle: carousel_item
+mode: default
+content:
+  field_desktop_image:
+    type: media_library_widget
+    weight: 0
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_mobile_image:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

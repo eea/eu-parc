@@ -5,20 +5,25 @@ dependencies:
   config:
     - block_content.type.carousel
     - field.field.block_content.carousel.body
-    - field.field.block_content.carousel.field_img
+    - field.field.block_content.carousel.field_paragraphs
   module:
-    - media_library
+    - paragraphs
 id: block_content.carousel.default
 targetEntityType: block_content
 bundle: carousel
 mode: default
 content:
-  field_img:
-    type: media_library_widget
-    weight: 1
+  field_paragraphs:
+    type: entity_reference_paragraphs
+    weight: 26
     region: content
     settings:
-      media_types: {  }
+      title: 'Carousel items'
+      title_plural: 'Carousel items'
+      edit_mode: closed
+      add_mode: button
+      form_display_mode: default
+      default_paragraph_type: carousel_item
     third_party_settings: {  }
   info:
     type: string_textfield

@@ -1,17 +1,17 @@
-uuid: 4d75454e-72bc-4229-837c-199586994ea0
+uuid: b5d78d26-0856-42ca-8ee2-88530ae533af
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.carousel
-    - field.storage.block_content.field_img
+    - field.storage.paragraph.field_mobile_image
     - media.type.image
     - media.type.vector
-id: block_content.carousel.field_img
-field_name: field_img
-entity_type: block_content
-bundle: carousel
-label: Image
+    - paragraphs.paragraphs_type.carousel_item
+id: paragraph.carousel_item.field_mobile_image
+field_name: field_mobile_image
+entity_type: paragraph
+bundle: carousel_item
+label: 'Mobile image'
 description: ''
 required: false
 translatable: false

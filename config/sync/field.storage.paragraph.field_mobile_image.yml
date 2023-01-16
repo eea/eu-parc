@@ -1,19 +1,19 @@
-uuid: 02632067-7f33-49d3-89d4-8ac4c87f7b4d
+uuid: adcdfa60-5751-4ff6-bedf-9004d9e3e5d7
 langcode: en
 status: true
 dependencies:
   module:
-    - block_content
     - media
-id: block_content.field_img
-field_name: field_img
-entity_type: block_content
+    - paragraphs
+id: paragraph.field_mobile_image
+field_name: field_mobile_image
+entity_type: paragraph
 type: entity_reference
 settings:
   target_type: media
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

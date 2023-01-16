@@ -51,12 +51,12 @@
       </h4>
 
       {% if content.body.0 %}
-        <div class="collapse multi-collapse-{{ collpaseID }} mb-lg-3" id="{{ collpaseID }}">
-          {{ body_full }}
-        </div>
-
         <div class="collapse multi-collapse-{{ collpaseID }} show" id="{{ collpaseID }}-second">
           {{- content.body -}}
+        </div>
+
+        <div class="collapse multi-collapse-{{ collpaseID }} mb-lg-3" id="{{ collpaseID }}">
+          {{ body_full }}
         </div>
       {% endif %}
 

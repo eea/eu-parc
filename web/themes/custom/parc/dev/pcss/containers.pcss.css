@@ -34,7 +34,7 @@
   .container-sm,
   .container-md,
   .container-lg {
-    max-width: 960px;
+    max-width: 992px;
   }
 }
 

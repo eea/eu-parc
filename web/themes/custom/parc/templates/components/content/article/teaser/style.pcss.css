@@ -9,7 +9,8 @@
     overflow: hidden;
     border-radius: var(--border-radius);
     margin: 8px;
-    width: 28%;
+    min-width: 28%;
+    max-width: 28%;
     aspect-ratio: 1 / 1;
     position: relative;
 
@@ -73,13 +74,16 @@
     }
   }
 
-  @media (--md) {
-    --h4-font-size: inherit;
-  }
-
   @media (--lg) {
+    --h4-font-size: inherit;
     --card-spacer-y: 0;
     --card-spacer-x: 18px;
+
+    min-height: 576px;
+
+    .card-title {
+      min-height: 116px;
+    }
 
     .card-body {
       margin-top: 1rem;

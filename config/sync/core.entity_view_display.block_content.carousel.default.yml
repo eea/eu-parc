@@ -5,20 +5,22 @@ dependencies:
   config:
     - block_content.type.carousel
     - field.field.block_content.carousel.body
-    - field.field.block_content.carousel.field_img
+    - field.field.block_content.carousel.field_paragraphs
+  module:
+    - entity_reference_revisions
 id: block_content.carousel.default
 targetEntityType: block_content
 bundle: carousel
 mode: default
 content:
-  field_img:
-    type: entity_reference_entity_view
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
       view_mode: default
-      link: false
+      link: ''
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
 hidden:
   body: true
