@@ -54,6 +54,15 @@
       .nav-link {
         --nav-link-font-size: 28px;
       }
+
+      .d-lg-none {
+        transform: rotate(0deg);
+        transition: transform 0.3s linear;
+
+        &.collapsed {
+          transform: rotate(-90deg);
+        }
+      }
     }
 
     .nav-top-menu {
@@ -100,6 +109,18 @@
       & + .nc-bg {
         opacity: 1;
       }
+    }
+  }
+}
+
+@media (--lg) {
+  .region-nav-main {
+    margin-bottom: 6px;
+  }
+
+  .nav-top-menu {
+    .nav-link {
+      padding-block: 0;
     }
   }
 }
