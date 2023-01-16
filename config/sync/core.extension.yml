@@ -9,7 +9,9 @@ module:
   block_class: 0
   block_content: 0
   breakpoint: 0
+  ckeditor: 0
   ckeditor5: 0
+  ckeditor_media_embed: 0
   comment: 0
   config: 0
   contact: 0
