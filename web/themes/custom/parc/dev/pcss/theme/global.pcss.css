@@ -23,146 +23,1504 @@ main {
 }
 
 #mainCarousel {
-  circle {
-    stroke: black;
-    opacity: 0;
+  .v-desktop {
+    circle {
+      stroke: black;
+      opacity: 0;
 
-    animation-duration: 500ms;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-
-    &:nth-of-type(odd) {
-      transform: translateX(5px);
-      animation-name: slideinRL;
-    }
-
-    &:nth-of-type(even) {
-      transform: translateX(-5px);
-      animation-name: slideinLR;
-    }
-  }
-
-  g {
-    &:nth-of-type(odd) path {
-      stroke-dashoffset: -50;
-      stroke-dasharray: 300;
-      stroke-width: 16;
-      animation-iteration-count: 1;
+      animation-duration: 500ms;
       animation-timing-function: ease-out;
       animation-fill-mode: forwards;
-      animation-name: dashLeftToRight;
+      animation-iteration-count: 1;
+
+      &:nth-of-type(odd) {
+        transform: translateX(5px);
+        animation-name: slideinRL;
+      }
+
+      &:nth-of-type(even) {
+        transform: translateX(-5px);
+        animation-name: slideinLR;
+      }
     }
 
-    &:nth-of-type(even) path {
-      stroke-dashoffset: 310;
-      stroke-dasharray: 300;
-      stroke-width: 16;
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: dashRightToLeft;
+    g {
+      &:nth-of-type(odd) path {
+        stroke-dashoffset: -50;
+        stroke-dasharray: 300;
+        stroke-width: 16;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+        animation-name: dashLeftToRight;
+      }
+
+      &:nth-of-type(even) path {
+        stroke-dashoffset: 310;
+        stroke-dasharray: 300;
+        stroke-width: 16;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+        animation-name: dashRightToLeft;
+      }
+
+      .line3 {
+        stroke-dashoffset: -200;
+        stroke-dasharray: 300;
+        stroke-width: 16;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+        animation-name: dashLeftToRight;
+      }
+    }
+
+    .static {
+      .line2 {
+        animation-name: rollStatic;
+        animation-duration: 4s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+      }
+    }
+
+    .animate {
+      .line2 {
+        animation-name: roll;
+        animation-duration: 4s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+      }
+    }
+
+    .line1 {
+      animation-duration: 1.5s;
     }
 
     .line3 {
-      stroke-dashoffset: -200;
+      animation-duration: 1s;
+    }
+
+    @keyframes dashLeftToRight {
+      from {
+        stroke-dashoffset: -40;
+        stroke-dasharray: 300;
+      }
+      to {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 300;
+      }
+    }
+
+    @keyframes dashRightToLeft {
+      from {
+        stroke-dashoffset: 310;
+        stroke-dasharray: 300;
+      }
+      to {
+        stroke-dashoffset: 200;
+        stroke-dasharray: 300;
+      }
+    }
+
+    @keyframes slideinRL {
+      0% {
+        opacity: 0;
+        transform: translateX(5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0px);
+      }
+    }
+
+    @keyframes slideinLR {
+      0% {
+        opacity: 0;
+        transform: translateX(-5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0px);
+      }
+    }
+
+    @keyframes roll {
+      0% {
+        stroke-dashoffset: 200;
+      }
+      50% {
+        stroke-dashoffset: 300;
+      }
+      100% {
+        stroke-dashoffset: 200;
+      }
+    }
+
+    @keyframes rollStatic {
+      0% {
+        stroke-dashoffset: 200;
+      }
+      100% {
+        stroke-dashoffset: 200;
+      }
+    }
+  }
+
+  .v-mobile {
+    svg[data-v-5f486725] {
+      background-color: #fafafa;
+    }
+    @keyframes slideinRL-5f486725 {
+      0% {
+        opacity: 0;
+        transform: translateX(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes slideinLR-5f486725 {
+      0% {
+        opacity: 0;
+        transform: translateX(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    circle[data-v-5f486725] {
+      stroke: #000;
+      opacity: 0;
+      animation-duration: 0.5s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+    }
+    circle[data-v-5f486725]:nth-of-type(odd) {
+      transform: translateX(5px);
+      animation-name: slideinRL-5f486725;
+    }
+    circle[data-v-5f486725]:nth-of-type(2n) {
+      transform: translateX(-5px);
+      animation-name: slideinLR-5f486725;
+    }
+    circle[data-v-5f486725]:first-child {
+      animation-delay: 5ms;
+    }
+    circle[data-v-5f486725]:nth-child(2) {
+      animation-delay: 10ms;
+    }
+    circle[data-v-5f486725]:nth-child(3) {
+      animation-delay: 15ms;
+    }
+    circle[data-v-5f486725]:nth-child(4) {
+      animation-delay: 20ms;
+    }
+    circle[data-v-5f486725]:nth-child(5) {
+      animation-delay: 25ms;
+    }
+    circle[data-v-5f486725]:nth-child(6) {
+      animation-delay: 30ms;
+    }
+    circle[data-v-5f486725]:nth-child(7) {
+      animation-delay: 35ms;
+    }
+    circle[data-v-5f486725]:nth-child(8) {
+      animation-delay: 40ms;
+    }
+    circle[data-v-5f486725]:nth-child(9) {
+      animation-delay: 45ms;
+    }
+    circle[data-v-5f486725]:nth-child(10) {
+      animation-delay: 50ms;
+    }
+    circle[data-v-5f486725]:nth-child(11) {
+      animation-delay: 55ms;
+    }
+    circle[data-v-5f486725]:nth-child(12) {
+      animation-delay: 60ms;
+    }
+    circle[data-v-5f486725]:nth-child(13) {
+      animation-delay: 65ms;
+    }
+    circle[data-v-5f486725]:nth-child(14) {
+      animation-delay: 70ms;
+    }
+    circle[data-v-5f486725]:nth-child(15) {
+      animation-delay: 75ms;
+    }
+    circle[data-v-5f486725]:nth-child(16) {
+      animation-delay: 80ms;
+    }
+    circle[data-v-5f486725]:nth-child(17) {
+      animation-delay: 85ms;
+    }
+    circle[data-v-5f486725]:nth-child(18) {
+      animation-delay: 90ms;
+    }
+    circle[data-v-5f486725]:nth-child(19) {
+      animation-delay: 95ms;
+    }
+    circle[data-v-5f486725]:nth-child(20) {
+      animation-delay: 0.1s;
+    }
+    circle[data-v-5f486725]:nth-child(21) {
+      animation-delay: 105ms;
+    }
+    circle[data-v-5f486725]:nth-child(22) {
+      animation-delay: 0.11s;
+    }
+    circle[data-v-5f486725]:nth-child(23) {
+      animation-delay: 115ms;
+    }
+    circle[data-v-5f486725]:nth-child(24) {
+      animation-delay: 0.12s;
+    }
+    circle[data-v-5f486725]:nth-child(25) {
+      animation-delay: 125ms;
+    }
+    circle[data-v-5f486725]:nth-child(26) {
+      animation-delay: 0.13s;
+    }
+    circle[data-v-5f486725]:nth-child(27) {
+      animation-delay: 135ms;
+    }
+    circle[data-v-5f486725]:nth-child(28) {
+      animation-delay: 0.14s;
+    }
+    circle[data-v-5f486725]:nth-child(29) {
+      animation-delay: 145ms;
+    }
+    circle[data-v-5f486725]:nth-child(30) {
+      animation-delay: 0.15s;
+    }
+    circle[data-v-5f486725]:nth-child(31) {
+      animation-delay: 155ms;
+    }
+    circle[data-v-5f486725]:nth-child(32) {
+      animation-delay: 0.16s;
+    }
+    circle[data-v-5f486725]:nth-child(33) {
+      animation-delay: 165ms;
+    }
+    circle[data-v-5f486725]:nth-child(34) {
+      animation-delay: 0.17s;
+    }
+    circle[data-v-5f486725]:nth-child(35) {
+      animation-delay: 175ms;
+    }
+    circle[data-v-5f486725]:nth-child(36) {
+      animation-delay: 0.18s;
+    }
+    circle[data-v-5f486725]:nth-child(37) {
+      animation-delay: 185ms;
+    }
+    circle[data-v-5f486725]:nth-child(38) {
+      animation-delay: 0.19s;
+    }
+    circle[data-v-5f486725]:nth-child(39) {
+      animation-delay: 195ms;
+    }
+    circle[data-v-5f486725]:nth-child(40) {
+      animation-delay: 0.2s;
+    }
+    circle[data-v-5f486725]:nth-child(41) {
+      animation-delay: 205ms;
+    }
+    circle[data-v-5f486725]:nth-child(42) {
+      animation-delay: 0.21s;
+    }
+    circle[data-v-5f486725]:nth-child(43) {
+      animation-delay: 215ms;
+    }
+    circle[data-v-5f486725]:nth-child(44) {
+      animation-delay: 0.22s;
+    }
+    circle[data-v-5f486725]:nth-child(45) {
+      animation-delay: 225ms;
+    }
+    circle[data-v-5f486725]:nth-child(46) {
+      animation-delay: 0.23s;
+    }
+    circle[data-v-5f486725]:nth-child(47) {
+      animation-delay: 235ms;
+    }
+    circle[data-v-5f486725]:nth-child(48) {
+      animation-delay: 0.24s;
+    }
+    circle[data-v-5f486725]:nth-child(49) {
+      animation-delay: 245ms;
+    }
+    circle[data-v-5f486725]:nth-child(50) {
+      animation-delay: 0.25s;
+    }
+    circle[data-v-5f486725]:nth-child(51) {
+      animation-delay: 255ms;
+    }
+    circle[data-v-5f486725]:nth-child(52) {
+      animation-delay: 0.26s;
+    }
+    circle[data-v-5f486725]:nth-child(53) {
+      animation-delay: 265ms;
+    }
+    circle[data-v-5f486725]:nth-child(54) {
+      animation-delay: 0.27s;
+    }
+    circle[data-v-5f486725]:nth-child(55) {
+      animation-delay: 275ms;
+    }
+    circle[data-v-5f486725]:nth-child(56) {
+      animation-delay: 0.28s;
+    }
+    circle[data-v-5f486725]:nth-child(57) {
+      animation-delay: 285ms;
+    }
+    circle[data-v-5f486725]:nth-child(58) {
+      animation-delay: 0.29s;
+    }
+    circle[data-v-5f486725]:nth-child(59) {
+      animation-delay: 295ms;
+    }
+    circle[data-v-5f486725]:nth-child(60) {
+      animation-delay: 0.3s;
+    }
+    circle[data-v-5f486725]:nth-child(61) {
+      animation-delay: 305ms;
+    }
+    circle[data-v-5f486725]:nth-child(62) {
+      animation-delay: 0.31s;
+    }
+    circle[data-v-5f486725]:nth-child(63) {
+      animation-delay: 315ms;
+    }
+    circle[data-v-5f486725]:nth-child(64) {
+      animation-delay: 0.32s;
+    }
+    circle[data-v-5f486725]:nth-child(65) {
+      animation-delay: 325ms;
+    }
+    circle[data-v-5f486725]:nth-child(66) {
+      animation-delay: 0.33s;
+    }
+    circle[data-v-5f486725]:nth-child(67) {
+      animation-delay: 335ms;
+    }
+    circle[data-v-5f486725]:nth-child(68) {
+      animation-delay: 0.34s;
+    }
+    circle[data-v-5f486725]:nth-child(69) {
+      animation-delay: 345ms;
+    }
+    circle[data-v-5f486725]:nth-child(70) {
+      animation-delay: 0.35s;
+    }
+    circle[data-v-5f486725]:nth-child(71) {
+      animation-delay: 355ms;
+    }
+    circle[data-v-5f486725]:nth-child(72) {
+      animation-delay: 0.36s;
+    }
+    circle[data-v-5f486725]:nth-child(73) {
+      animation-delay: 365ms;
+    }
+    circle[data-v-5f486725]:nth-child(74) {
+      animation-delay: 0.37s;
+    }
+    circle[data-v-5f486725]:nth-child(75) {
+      animation-delay: 375ms;
+    }
+    circle[data-v-5f486725]:nth-child(76) {
+      animation-delay: 0.38s;
+    }
+    circle[data-v-5f486725]:nth-child(77) {
+      animation-delay: 385ms;
+    }
+    circle[data-v-5f486725]:nth-child(78) {
+      animation-delay: 0.39s;
+    }
+    circle[data-v-5f486725]:nth-child(79) {
+      animation-delay: 395ms;
+    }
+    circle[data-v-5f486725]:nth-child(80) {
+      animation-delay: 0.4s;
+    }
+    circle[data-v-5f486725]:nth-child(81) {
+      animation-delay: 405ms;
+    }
+    circle[data-v-5f486725]:nth-child(82) {
+      animation-delay: 0.41s;
+    }
+    circle[data-v-5f486725]:nth-child(83) {
+      animation-delay: 415ms;
+    }
+    circle[data-v-5f486725]:nth-child(84) {
+      animation-delay: 0.42s;
+    }
+    circle[data-v-5f486725]:nth-child(85) {
+      animation-delay: 425ms;
+    }
+    circle[data-v-5f486725]:nth-child(86) {
+      animation-delay: 0.43s;
+    }
+    circle[data-v-5f486725]:nth-child(87) {
+      animation-delay: 435ms;
+    }
+    circle[data-v-5f486725]:nth-child(88) {
+      animation-delay: 0.44s;
+    }
+    circle[data-v-5f486725]:nth-child(89) {
+      animation-delay: 445ms;
+    }
+    circle[data-v-5f486725]:nth-child(90) {
+      animation-delay: 0.45s;
+    }
+    circle[data-v-5f486725]:nth-child(91) {
+      animation-delay: 455ms;
+    }
+    circle[data-v-5f486725]:nth-child(92) {
+      animation-delay: 0.46s;
+    }
+    circle[data-v-5f486725]:nth-child(93) {
+      animation-delay: 465ms;
+    }
+    circle[data-v-5f486725]:nth-child(94) {
+      animation-delay: 0.47s;
+    }
+    circle[data-v-5f486725]:nth-child(95) {
+      animation-delay: 475ms;
+    }
+    circle[data-v-5f486725]:nth-child(96) {
+      animation-delay: 0.48s;
+    }
+    circle[data-v-5f486725]:nth-child(97) {
+      animation-delay: 485ms;
+    }
+    circle[data-v-5f486725]:nth-child(98) {
+      animation-delay: 0.49s;
+    }
+    circle[data-v-5f486725]:nth-child(99) {
+      animation-delay: 495ms;
+    }
+    circle[data-v-5f486725]:nth-child(100) {
+      animation-delay: 0.5s;
+    }
+    @keyframes dashLeftToRight-5f486725 {
+      0% {
+        stroke-dashoffset: -50;
+        stroke-dasharray: 300;
+      }
+      to {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 300;
+      }
+    }
+    @keyframes dashRightToLeft-5f486725 {
+      0% {
+        stroke-dashoffset: 350;
+        stroke-dasharray: 300;
+      }
+      to {
+        stroke-dashoffset: 160;
+        stroke-dasharray: 300;
+      }
+    }
+    .text[data-v-5f486725] {
+      transform: translateX(10px);
+    }
+    g:nth-of-type(odd) path[data-v-5f486725] {
+      stroke-dashoffset: -50;
       stroke-dasharray: 300;
-      stroke-width: 16;
+      stroke-width: 9;
       animation-iteration-count: 1;
       animation-timing-function: ease-out;
       animation-fill-mode: forwards;
-      animation-name: dashLeftToRight;
+      animation-name: dashLeftToRight-5f486725;
     }
-  }
-
-  .static {
-    .line2 {
-      animation-name: rollStatic;
-      animation-duration: 4s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: 1;
-    }
-  }
-
-  .animate {
-    .line2 {
-      animation-name: roll;
-      animation-duration: 4s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: 1;
-    }
-  }
-
-  .line1 {
-    animation-duration: 1.5s;
-  }
-
-  .line3 {
-    animation-duration: 1s;
-  }
-
-  @keyframes dashLeftToRight {
-    from {
-      stroke-dashoffset: -40;
-      stroke-dasharray: 300;
-    }
-    to {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 300;
-    }
-  }
-
-  @keyframes dashRightToLeft {
-    from {
+    g:nth-of-type(2n) path[data-v-5f486725] {
       stroke-dashoffset: 310;
       stroke-dasharray: 300;
+      stroke-width: 9;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      animation-name: dashRightToLeft-5f486725;
     }
-    to {
-      stroke-dashoffset: 200;
+    g .line3[data-v-5f486725] {
+      stroke-dashoffset: -200;
       stroke-dasharray: 300;
+      stroke-width: 9;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards;
+      animation-name: dashLeftToRight-5f486725;
     }
-  }
-
-  @keyframes slideinRL {
-    0% {
-      opacity: 0;
-      transform: translateX(5px);
+    @keyframes roll-5f486725 {
+      0% {
+        stroke-dashoffset: 200;
+      }
+      50% {
+        stroke-dashoffset: 300;
+      }
+      to {
+        stroke-dashoffset: 200;
+      }
     }
-    100% {
-      opacity: 1;
-      transform: translateX(0px);
+    @keyframes rollStatic-5f486725 {
+      0% {
+        stroke-dashoffset: 200;
+      }
+      50% {
+        stroke-dashoffset: 200;
+      }
+      to {
+        stroke-dashoffset: 200;
+      }
     }
-  }
-
-  @keyframes slideinLR {
-    0% {
-      opacity: 0;
-      transform: translateX(-5px);
+    .line2.static[data-v-5f486725] {
+      animation-name: rollStatic-5f486725;
+      animation-duration: 4s !important;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
     }
-    100% {
-      opacity: 1;
-      transform: translateX(0px);
+    .line2.animate[data-v-5f486725] {
+      animation-name: roll-5f486725;
+      animation-duration: 4s !important;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
     }
-  }
-
-  @keyframes roll {
-    0% {
-      stroke-dashoffset: 200;
+    g:first-child .line1[data-v-5f486725] {
+      animation-duration: 1.52s;
     }
-    50% {
-      stroke-dashoffset: 300;
+    g:first-child .line3[data-v-5f486725] {
+      animation-duration: 70ms;
     }
-    100% {
-      stroke-dashoffset: 200;
+    g:nth-child(2) .line1[data-v-5f486725] {
+      animation-duration: 1.54s;
     }
-  }
-
-  @keyframes rollStatic {
-    0% {
-      stroke-dashoffset: 200;
+    g:nth-child(2) .line3[data-v-5f486725] {
+      animation-duration: 90ms;
     }
-    100% {
-      stroke-dashoffset: 200;
+    g:nth-child(3) .line1[data-v-5f486725] {
+      animation-duration: 1.56s;
+    }
+    g:nth-child(3) .line3[data-v-5f486725] {
+      animation-duration: 0.11s;
+    }
+    g:nth-child(4) .line1[data-v-5f486725] {
+      animation-duration: 1.58s;
+    }
+    g:nth-child(4) .line3[data-v-5f486725] {
+      animation-duration: 0.13s;
+    }
+    g:nth-child(5) .line1[data-v-5f486725] {
+      animation-duration: 1.6s;
+    }
+    g:nth-child(5) .line3[data-v-5f486725] {
+      animation-duration: 0.15s;
+    }
+    g:nth-child(6) .line1[data-v-5f486725] {
+      animation-duration: 1.62s;
+    }
+    g:nth-child(6) .line3[data-v-5f486725] {
+      animation-duration: 0.17s;
+    }
+    g:nth-child(7) .line1[data-v-5f486725] {
+      animation-duration: 1.64s;
+    }
+    g:nth-child(7) .line3[data-v-5f486725] {
+      animation-duration: 0.19s;
+    }
+    g:nth-child(8) .line1[data-v-5f486725] {
+      animation-duration: 1.66s;
+    }
+    g:nth-child(8) .line3[data-v-5f486725] {
+      animation-duration: 0.21s;
+    }
+    g:nth-child(9) .line1[data-v-5f486725] {
+      animation-duration: 1.68s;
+    }
+    g:nth-child(9) .line3[data-v-5f486725] {
+      animation-duration: 0.23s;
+    }
+    g:nth-child(10) .line1[data-v-5f486725] {
+      animation-duration: 1.7s;
+    }
+    g:nth-child(10) .line3[data-v-5f486725] {
+      animation-duration: 0.25s;
+    }
+    g:nth-child(11) .line1[data-v-5f486725] {
+      animation-duration: 1.72s;
+    }
+    g:nth-child(11) .line3[data-v-5f486725] {
+      animation-duration: 0.27s;
+    }
+    g:nth-child(12) .line1[data-v-5f486725] {
+      animation-duration: 1.74s;
+    }
+    g:nth-child(12) .line3[data-v-5f486725] {
+      animation-duration: 0.29s;
+    }
+    g:nth-child(13) .line1[data-v-5f486725] {
+      animation-duration: 1.76s;
+    }
+    g:nth-child(13) .line3[data-v-5f486725] {
+      animation-duration: 0.31s;
+    }
+    g:nth-child(14) .line1[data-v-5f486725] {
+      animation-duration: 1.78s;
+    }
+    g:nth-child(14) .line3[data-v-5f486725] {
+      animation-duration: 0.33s;
+    }
+    g:nth-child(15) .line1[data-v-5f486725] {
+      animation-duration: 1.8s;
+    }
+    g:nth-child(15) .line3[data-v-5f486725] {
+      animation-duration: 0.35s;
+    }
+    g:nth-child(16) .line1[data-v-5f486725] {
+      animation-duration: 1.82s;
+    }
+    g:nth-child(16) .line3[data-v-5f486725] {
+      animation-duration: 0.37s;
+    }
+    g:nth-child(17) .line1[data-v-5f486725] {
+      animation-duration: 1.84s;
+    }
+    g:nth-child(17) .line3[data-v-5f486725] {
+      animation-duration: 0.39s;
+    }
+    g:nth-child(18) .line1[data-v-5f486725] {
+      animation-duration: 1.86s;
+    }
+    g:nth-child(18) .line3[data-v-5f486725] {
+      animation-duration: 0.41s;
+    }
+    g:nth-child(19) .line1[data-v-5f486725] {
+      animation-duration: 1.88s;
+    }
+    g:nth-child(19) .line3[data-v-5f486725] {
+      animation-duration: 0.43s;
+    }
+    g:nth-child(20) .line1[data-v-5f486725] {
+      animation-duration: 1.9s;
+    }
+    g:nth-child(20) .line3[data-v-5f486725] {
+      animation-duration: 0.45s;
+    }
+    g:nth-child(21) .line1[data-v-5f486725] {
+      animation-duration: 1.92s;
+    }
+    g:nth-child(21) .line3[data-v-5f486725] {
+      animation-duration: 0.47s;
+    }
+    g:nth-child(22) .line1[data-v-5f486725] {
+      animation-duration: 1.94s;
+    }
+    g:nth-child(22) .line3[data-v-5f486725] {
+      animation-duration: 0.49s;
+    }
+    g:nth-child(23) .line1[data-v-5f486725] {
+      animation-duration: 1.96s;
+    }
+    g:nth-child(23) .line3[data-v-5f486725] {
+      animation-duration: 0.51s;
+    }
+    g:nth-child(24) .line1[data-v-5f486725] {
+      animation-duration: 1.98s;
+    }
+    g:nth-child(24) .line3[data-v-5f486725] {
+      animation-duration: 0.53s;
+    }
+    g:nth-child(25) .line1[data-v-5f486725] {
+      animation-duration: 2s;
+    }
+    g:nth-child(25) .line3[data-v-5f486725] {
+      animation-duration: 0.55s;
+    }
+    g:nth-child(26) .line1[data-v-5f486725] {
+      animation-duration: 2.02s;
+    }
+    g:nth-child(26) .line3[data-v-5f486725] {
+      animation-duration: 0.57s;
+    }
+    g:nth-child(27) .line1[data-v-5f486725] {
+      animation-duration: 2.04s;
+    }
+    g:nth-child(27) .line3[data-v-5f486725] {
+      animation-duration: 0.59s;
+    }
+    g:nth-child(28) .line1[data-v-5f486725] {
+      animation-duration: 2.06s;
+    }
+    g:nth-child(28) .line3[data-v-5f486725] {
+      animation-duration: 0.61s;
+    }
+    g:nth-child(29) .line1[data-v-5f486725] {
+      animation-duration: 2.08s;
+    }
+    g:nth-child(29) .line3[data-v-5f486725] {
+      animation-duration: 0.63s;
+    }
+    g:nth-child(30) .line1[data-v-5f486725] {
+      animation-duration: 2.1s;
+    }
+    g:nth-child(30) .line3[data-v-5f486725] {
+      animation-duration: 0.65s;
+    }
+    g:nth-child(31) .line1[data-v-5f486725] {
+      animation-duration: 2.12s;
+    }
+    g:nth-child(31) .line3[data-v-5f486725] {
+      animation-duration: 0.67s;
+    }
+    g:nth-child(32) .line1[data-v-5f486725] {
+      animation-duration: 2.14s;
+    }
+    g:nth-child(32) .line3[data-v-5f486725] {
+      animation-duration: 0.69s;
+    }
+    g:nth-child(33) .line1[data-v-5f486725] {
+      animation-duration: 2.16s;
+    }
+    g:nth-child(33) .line3[data-v-5f486725] {
+      animation-duration: 0.71s;
+    }
+    g:nth-child(34) .line1[data-v-5f486725] {
+      animation-duration: 2.18s;
+    }
+    g:nth-child(34) .line3[data-v-5f486725] {
+      animation-duration: 0.73s;
+    }
+    g:nth-child(35) .line1[data-v-5f486725] {
+      animation-duration: 2.2s;
+    }
+    g:nth-child(35) .line3[data-v-5f486725] {
+      animation-duration: 0.75s;
+    }
+    g:nth-child(36) .line1[data-v-5f486725] {
+      animation-duration: 2.22s;
+    }
+    g:nth-child(36) .line3[data-v-5f486725] {
+      animation-duration: 0.77s;
+    }
+    g:nth-child(37) .line1[data-v-5f486725] {
+      animation-duration: 2.24s;
+    }
+    g:nth-child(37) .line3[data-v-5f486725] {
+      animation-duration: 0.79s;
+    }
+    g:nth-child(38) .line1[data-v-5f486725] {
+      animation-duration: 2.26s;
+    }
+    g:nth-child(38) .line3[data-v-5f486725] {
+      animation-duration: 0.81s;
+    }
+    g:nth-child(39) .line1[data-v-5f486725] {
+      animation-duration: 2.28s;
+    }
+    g:nth-child(39) .line3[data-v-5f486725] {
+      animation-duration: 0.83s;
+    }
+    g:nth-child(40) .line1[data-v-5f486725] {
+      animation-duration: 2.3s;
+    }
+    g:nth-child(40) .line3[data-v-5f486725] {
+      animation-duration: 0.85s;
+    }
+    g:nth-child(41) .line1[data-v-5f486725] {
+      animation-duration: 2.32s;
+    }
+    g:nth-child(41) .line3[data-v-5f486725] {
+      animation-duration: 0.87s;
+    }
+    g:nth-child(42) .line1[data-v-5f486725] {
+      animation-duration: 2.34s;
+    }
+    g:nth-child(42) .line3[data-v-5f486725] {
+      animation-duration: 0.89s;
+    }
+    g:nth-child(43) .line1[data-v-5f486725] {
+      animation-duration: 2.36s;
+    }
+    g:nth-child(43) .line3[data-v-5f486725] {
+      animation-duration: 0.91s;
+    }
+    g:nth-child(44) .line1[data-v-5f486725] {
+      animation-duration: 2.38s;
+    }
+    g:nth-child(44) .line3[data-v-5f486725] {
+      animation-duration: 0.93s;
+    }
+    g:nth-child(45) .line1[data-v-5f486725] {
+      animation-duration: 2.4s;
+    }
+    g:nth-child(45) .line3[data-v-5f486725] {
+      animation-duration: 0.95s;
+    }
+    g:nth-child(46) .line1[data-v-5f486725] {
+      animation-duration: 2.42s;
+    }
+    g:nth-child(46) .line3[data-v-5f486725] {
+      animation-duration: 0.97s;
+    }
+    g:nth-child(47) .line1[data-v-5f486725] {
+      animation-duration: 2.44s;
+    }
+    g:nth-child(47) .line3[data-v-5f486725] {
+      animation-duration: 0.99s;
+    }
+    g:nth-child(48) .line1[data-v-5f486725] {
+      animation-duration: 2.46s;
+    }
+    g:nth-child(48) .line3[data-v-5f486725] {
+      animation-duration: 1.01s;
+    }
+    g:nth-child(49) .line1[data-v-5f486725] {
+      animation-duration: 2.48s;
+    }
+    g:nth-child(49) .line3[data-v-5f486725] {
+      animation-duration: 1.03s;
+    }
+    g:nth-child(50) .line1[data-v-5f486725] {
+      animation-duration: 2.5s;
+    }
+    g:nth-child(50) .line3[data-v-5f486725] {
+      animation-duration: 1.05s;
+    }
+    g:nth-child(51) .line1[data-v-5f486725] {
+      animation-duration: 2.52s;
+    }
+    g:nth-child(51) .line3[data-v-5f486725] {
+      animation-duration: 1.07s;
+    }
+    g:nth-child(52) .line1[data-v-5f486725] {
+      animation-duration: 2.54s;
+    }
+    g:nth-child(52) .line3[data-v-5f486725] {
+      animation-duration: 1.09s;
+    }
+    g:nth-child(53) .line1[data-v-5f486725] {
+      animation-duration: 2.56s;
+    }
+    g:nth-child(53) .line3[data-v-5f486725] {
+      animation-duration: 1.11s;
+    }
+    g:nth-child(54) .line1[data-v-5f486725] {
+      animation-duration: 2.58s;
+    }
+    g:nth-child(54) .line3[data-v-5f486725] {
+      animation-duration: 1.13s;
+    }
+    g:nth-child(55) .line1[data-v-5f486725] {
+      animation-duration: 2.6s;
+    }
+    g:nth-child(55) .line3[data-v-5f486725] {
+      animation-duration: 1.15s;
+    }
+    g:nth-child(56) .line1[data-v-5f486725] {
+      animation-duration: 2.62s;
+    }
+    g:nth-child(56) .line3[data-v-5f486725] {
+      animation-duration: 1.17s;
+    }
+    g:nth-child(57) .line1[data-v-5f486725] {
+      animation-duration: 2.64s;
+    }
+    g:nth-child(57) .line3[data-v-5f486725] {
+      animation-duration: 1.19s;
+    }
+    g:nth-child(58) .line1[data-v-5f486725] {
+      animation-duration: 2.66s;
+    }
+    g:nth-child(58) .line3[data-v-5f486725] {
+      animation-duration: 1.21s;
+    }
+    g:nth-child(59) .line1[data-v-5f486725] {
+      animation-duration: 2.68s;
+    }
+    g:nth-child(59) .line3[data-v-5f486725] {
+      animation-duration: 1.23s;
+    }
+    g:nth-child(60) .line1[data-v-5f486725] {
+      animation-duration: 2.7s;
+    }
+    g:nth-child(60) .line3[data-v-5f486725] {
+      animation-duration: 1.25s;
+    }
+    g:nth-child(61) .line1[data-v-5f486725] {
+      animation-duration: 2.72s;
+    }
+    g:nth-child(61) .line3[data-v-5f486725] {
+      animation-duration: 1.27s;
+    }
+    g:nth-child(62) .line1[data-v-5f486725] {
+      animation-duration: 2.74s;
+    }
+    g:nth-child(62) .line3[data-v-5f486725] {
+      animation-duration: 1.29s;
+    }
+    g:nth-child(63) .line1[data-v-5f486725] {
+      animation-duration: 2.76s;
+    }
+    g:nth-child(63) .line3[data-v-5f486725] {
+      animation-duration: 1.31s;
+    }
+    g:nth-child(64) .line1[data-v-5f486725] {
+      animation-duration: 2.78s;
+    }
+    g:nth-child(64) .line3[data-v-5f486725] {
+      animation-duration: 1.33s;
+    }
+    g:nth-child(65) .line1[data-v-5f486725] {
+      animation-duration: 2.8s;
+    }
+    g:nth-child(65) .line3[data-v-5f486725] {
+      animation-duration: 1.35s;
+    }
+    g:nth-child(66) .line1[data-v-5f486725] {
+      animation-duration: 2.82s;
+    }
+    g:nth-child(66) .line3[data-v-5f486725] {
+      animation-duration: 1.37s;
+    }
+    g:nth-child(67) .line1[data-v-5f486725] {
+      animation-duration: 2.84s;
+    }
+    g:nth-child(67) .line3[data-v-5f486725] {
+      animation-duration: 1.39s;
+    }
+    g:nth-child(68) .line1[data-v-5f486725] {
+      animation-duration: 2.86s;
+    }
+    g:nth-child(68) .line3[data-v-5f486725] {
+      animation-duration: 1.41s;
+    }
+    g:nth-child(69) .line1[data-v-5f486725] {
+      animation-duration: 2.88s;
+    }
+    g:nth-child(69) .line3[data-v-5f486725] {
+      animation-duration: 1.43s;
+    }
+    g:nth-child(70) .line1[data-v-5f486725] {
+      animation-duration: 2.9s;
+    }
+    g:nth-child(70) .line3[data-v-5f486725] {
+      animation-duration: 1.45s;
+    }
+    g:nth-child(71) .line1[data-v-5f486725] {
+      animation-duration: 2.92s;
+    }
+    g:nth-child(71) .line3[data-v-5f486725] {
+      animation-duration: 1.47s;
+    }
+    g:nth-child(72) .line1[data-v-5f486725] {
+      animation-duration: 2.94s;
+    }
+    g:nth-child(72) .line3[data-v-5f486725] {
+      animation-duration: 1.49s;
+    }
+    g:nth-child(73) .line1[data-v-5f486725] {
+      animation-duration: 2.96s;
+    }
+    g:nth-child(73) .line3[data-v-5f486725] {
+      animation-duration: 1.51s;
+    }
+    g:nth-child(74) .line1[data-v-5f486725] {
+      animation-duration: 2.98s;
+    }
+    g:nth-child(74) .line3[data-v-5f486725] {
+      animation-duration: 1.53s;
+    }
+    g:nth-child(75) .line1[data-v-5f486725] {
+      animation-duration: 3s;
+    }
+    g:nth-child(75) .line3[data-v-5f486725] {
+      animation-duration: 1.55s;
+    }
+    g:nth-child(76) .line1[data-v-5f486725] {
+      animation-duration: 3.02s;
+    }
+    g:nth-child(76) .line3[data-v-5f486725] {
+      animation-duration: 1.57s;
+    }
+    g:nth-child(77) .line1[data-v-5f486725] {
+      animation-duration: 3.04s;
+    }
+    g:nth-child(77) .line3[data-v-5f486725] {
+      animation-duration: 1.59s;
+    }
+    g:nth-child(78) .line1[data-v-5f486725] {
+      animation-duration: 3.06s;
+    }
+    g:nth-child(78) .line3[data-v-5f486725] {
+      animation-duration: 1.61s;
+    }
+    g:nth-child(79) .line1[data-v-5f486725] {
+      animation-duration: 3.08s;
+    }
+    g:nth-child(79) .line3[data-v-5f486725] {
+      animation-duration: 1.63s;
+    }
+    g:nth-child(80) .line1[data-v-5f486725] {
+      animation-duration: 3.1s;
+    }
+    g:nth-child(80) .line3[data-v-5f486725] {
+      animation-duration: 1.65s;
+    }
+    g:nth-child(81) .line1[data-v-5f486725] {
+      animation-duration: 3.12s;
+    }
+    g:nth-child(81) .line3[data-v-5f486725] {
+      animation-duration: 1.67s;
+    }
+    g:nth-child(82) .line1[data-v-5f486725] {
+      animation-duration: 3.14s;
+    }
+    g:nth-child(82) .line3[data-v-5f486725] {
+      animation-duration: 1.69s;
+    }
+    g:nth-child(83) .line1[data-v-5f486725] {
+      animation-duration: 3.16s;
+    }
+    g:nth-child(83) .line3[data-v-5f486725] {
+      animation-duration: 1.71s;
+    }
+    g:nth-child(84) .line1[data-v-5f486725] {
+      animation-duration: 3.18s;
+    }
+    g:nth-child(84) .line3[data-v-5f486725] {
+      animation-duration: 1.73s;
+    }
+    g:nth-child(85) .line1[data-v-5f486725] {
+      animation-duration: 3.2s;
+    }
+    g:nth-child(85) .line3[data-v-5f486725] {
+      animation-duration: 1.75s;
+    }
+    g:nth-child(86) .line1[data-v-5f486725] {
+      animation-duration: 3.22s;
+    }
+    g:nth-child(86) .line3[data-v-5f486725] {
+      animation-duration: 1.77s;
+    }
+    g:nth-child(87) .line1[data-v-5f486725] {
+      animation-duration: 3.24s;
+    }
+    g:nth-child(87) .line3[data-v-5f486725] {
+      animation-duration: 1.79s;
+    }
+    g:nth-child(88) .line1[data-v-5f486725] {
+      animation-duration: 3.26s;
+    }
+    g:nth-child(88) .line3[data-v-5f486725] {
+      animation-duration: 1.81s;
+    }
+    g:nth-child(89) .line1[data-v-5f486725] {
+      animation-duration: 3.28s;
+    }
+    g:nth-child(89) .line3[data-v-5f486725] {
+      animation-duration: 1.83s;
+    }
+    g:nth-child(90) .line1[data-v-5f486725] {
+      animation-duration: 3.3s;
+    }
+    g:nth-child(90) .line3[data-v-5f486725] {
+      animation-duration: 1.85s;
+    }
+    g:nth-child(91) .line1[data-v-5f486725] {
+      animation-duration: 3.32s;
+    }
+    g:nth-child(91) .line3[data-v-5f486725] {
+      animation-duration: 1.87s;
+    }
+    g:nth-child(92) .line1[data-v-5f486725] {
+      animation-duration: 3.34s;
+    }
+    g:nth-child(92) .line3[data-v-5f486725] {
+      animation-duration: 1.89s;
+    }
+    g:nth-child(93) .line1[data-v-5f486725] {
+      animation-duration: 3.36s;
+    }
+    g:nth-child(93) .line3[data-v-5f486725] {
+      animation-duration: 1.91s;
+    }
+    g:nth-child(94) .line1[data-v-5f486725] {
+      animation-duration: 3.38s;
+    }
+    g:nth-child(94) .line3[data-v-5f486725] {
+      animation-duration: 1.93s;
+    }
+    g:nth-child(95) .line1[data-v-5f486725] {
+      animation-duration: 3.4s;
+    }
+    g:nth-child(95) .line3[data-v-5f486725] {
+      animation-duration: 1.95s;
+    }
+    g:nth-child(96) .line1[data-v-5f486725] {
+      animation-duration: 3.42s;
+    }
+    g:nth-child(96) .line3[data-v-5f486725] {
+      animation-duration: 1.97s;
+    }
+    g:nth-child(97) .line1[data-v-5f486725] {
+      animation-duration: 3.44s;
+    }
+    g:nth-child(97) .line3[data-v-5f486725] {
+      animation-duration: 1.99s;
+    }
+    g:nth-child(98) .line1[data-v-5f486725] {
+      animation-duration: 3.46s;
+    }
+    g:nth-child(98) .line3[data-v-5f486725] {
+      animation-duration: 2.01s;
+    }
+    g:nth-child(99) .line1[data-v-5f486725] {
+      animation-duration: 3.48s;
+    }
+    g:nth-child(99) .line3[data-v-5f486725] {
+      animation-duration: 2.03s;
+    }
+    g:nth-child(100) .line1[data-v-5f486725] {
+      animation-duration: 3.5s;
+    }
+    g:nth-child(100) .line3[data-v-5f486725] {
+      animation-duration: 2.05s;
+    }
+    g:nth-child(101) .line1[data-v-5f486725] {
+      animation-duration: 3.52s;
+    }
+    g:nth-child(101) .line3[data-v-5f486725] {
+      animation-duration: 2.07s;
+    }
+    g:nth-child(102) .line1[data-v-5f486725] {
+      animation-duration: 3.54s;
+    }
+    g:nth-child(102) .line3[data-v-5f486725] {
+      animation-duration: 2.09s;
+    }
+    g:nth-child(103) .line1[data-v-5f486725] {
+      animation-duration: 3.56s;
+    }
+    g:nth-child(103) .line3[data-v-5f486725] {
+      animation-duration: 2.11s;
+    }
+    g:nth-child(104) .line1[data-v-5f486725] {
+      animation-duration: 3.58s;
+    }
+    g:nth-child(104) .line3[data-v-5f486725] {
+      animation-duration: 2.13s;
+    }
+    g:nth-child(105) .line1[data-v-5f486725] {
+      animation-duration: 3.6s;
+    }
+    g:nth-child(105) .line3[data-v-5f486725] {
+      animation-duration: 2.15s;
+    }
+    g:nth-child(106) .line1[data-v-5f486725] {
+      animation-duration: 3.62s;
+    }
+    g:nth-child(106) .line3[data-v-5f486725] {
+      animation-duration: 2.17s;
+    }
+    g:nth-child(107) .line1[data-v-5f486725] {
+      animation-duration: 3.64s;
+    }
+    g:nth-child(107) .line3[data-v-5f486725] {
+      animation-duration: 2.19s;
+    }
+    g:nth-child(108) .line1[data-v-5f486725] {
+      animation-duration: 3.66s;
+    }
+    g:nth-child(108) .line3[data-v-5f486725] {
+      animation-duration: 2.21s;
+    }
+    g:nth-child(109) .line1[data-v-5f486725] {
+      animation-duration: 3.68s;
+    }
+    g:nth-child(109) .line3[data-v-5f486725] {
+      animation-duration: 2.23s;
+    }
+    g:nth-child(110) .line1[data-v-5f486725] {
+      animation-duration: 3.7s;
+    }
+    g:nth-child(110) .line3[data-v-5f486725] {
+      animation-duration: 2.25s;
+    }
+    g:nth-child(111) .line1[data-v-5f486725] {
+      animation-duration: 3.72s;
+    }
+    g:nth-child(111) .line3[data-v-5f486725] {
+      animation-duration: 2.27s;
+    }
+    g:nth-child(112) .line1[data-v-5f486725] {
+      animation-duration: 3.74s;
+    }
+    g:nth-child(112) .line3[data-v-5f486725] {
+      animation-duration: 2.29s;
+    }
+    g:nth-child(113) .line1[data-v-5f486725] {
+      animation-duration: 3.76s;
+    }
+    g:nth-child(113) .line3[data-v-5f486725] {
+      animation-duration: 2.31s;
+    }
+    g:nth-child(114) .line1[data-v-5f486725] {
+      animation-duration: 3.78s;
+    }
+    g:nth-child(114) .line3[data-v-5f486725] {
+      animation-duration: 2.33s;
+    }
+    g:nth-child(115) .line1[data-v-5f486725] {
+      animation-duration: 3.8s;
+    }
+    g:nth-child(115) .line3[data-v-5f486725] {
+      animation-duration: 2.35s;
+    }
+    g:nth-child(116) .line1[data-v-5f486725] {
+      animation-duration: 3.82s;
+    }
+    g:nth-child(116) .line3[data-v-5f486725] {
+      animation-duration: 2.37s;
+    }
+    g:nth-child(117) .line1[data-v-5f486725] {
+      animation-duration: 3.84s;
+    }
+    g:nth-child(117) .line3[data-v-5f486725] {
+      animation-duration: 2.39s;
+    }
+    g:nth-child(118) .line1[data-v-5f486725] {
+      animation-duration: 3.86s;
+    }
+    g:nth-child(118) .line3[data-v-5f486725] {
+      animation-duration: 2.41s;
+    }
+    g:nth-child(119) .line1[data-v-5f486725] {
+      animation-duration: 3.88s;
+    }
+    g:nth-child(119) .line3[data-v-5f486725] {
+      animation-duration: 2.43s;
+    }
+    g:nth-child(120) .line1[data-v-5f486725] {
+      animation-duration: 3.9s;
+    }
+    g:nth-child(120) .line3[data-v-5f486725] {
+      animation-duration: 2.45s;
+    }
+    g:nth-child(121) .line1[data-v-5f486725] {
+      animation-duration: 3.92s;
+    }
+    g:nth-child(121) .line3[data-v-5f486725] {
+      animation-duration: 2.47s;
+    }
+    g:nth-child(122) .line1[data-v-5f486725] {
+      animation-duration: 3.94s;
+    }
+    g:nth-child(122) .line3[data-v-5f486725] {
+      animation-duration: 2.49s;
+    }
+    g:nth-child(123) .line1[data-v-5f486725] {
+      animation-duration: 3.96s;
+    }
+    g:nth-child(123) .line3[data-v-5f486725] {
+      animation-duration: 2.51s;
+    }
+    g:nth-child(124) .line1[data-v-5f486725] {
+      animation-duration: 3.98s;
+    }
+    g:nth-child(124) .line3[data-v-5f486725] {
+      animation-duration: 2.53s;
+    }
+    g:nth-child(125) .line1[data-v-5f486725] {
+      animation-duration: 4s;
+    }
+    g:nth-child(125) .line3[data-v-5f486725] {
+      animation-duration: 2.55s;
+    }
+    g:nth-child(126) .line1[data-v-5f486725] {
+      animation-duration: 4.02s;
+    }
+    g:nth-child(126) .line3[data-v-5f486725] {
+      animation-duration: 2.57s;
+    }
+    g:nth-child(127) .line1[data-v-5f486725] {
+      animation-duration: 4.04s;
+    }
+    g:nth-child(127) .line3[data-v-5f486725] {
+      animation-duration: 2.59s;
+    }
+    g:nth-child(128) .line1[data-v-5f486725] {
+      animation-duration: 4.06s;
+    }
+    g:nth-child(128) .line3[data-v-5f486725] {
+      animation-duration: 2.61s;
+    }
+    g:nth-child(129) .line1[data-v-5f486725] {
+      animation-duration: 4.08s;
+    }
+    g:nth-child(129) .line3[data-v-5f486725] {
+      animation-duration: 2.63s;
+    }
+    g:nth-child(130) .line1[data-v-5f486725] {
+      animation-duration: 4.1s;
+    }
+    g:nth-child(130) .line3[data-v-5f486725] {
+      animation-duration: 2.65s;
+    }
+    g:nth-child(131) .line1[data-v-5f486725] {
+      animation-duration: 4.12s;
+    }
+    g:nth-child(131) .line3[data-v-5f486725] {
+      animation-duration: 2.67s;
+    }
+    g:nth-child(132) .line1[data-v-5f486725] {
+      animation-duration: 4.14s;
+    }
+    g:nth-child(132) .line3[data-v-5f486725] {
+      animation-duration: 2.69s;
+    }
+    g:nth-child(133) .line1[data-v-5f486725] {
+      animation-duration: 4.16s;
+    }
+    g:nth-child(133) .line3[data-v-5f486725] {
+      animation-duration: 2.71s;
+    }
+    g:nth-child(134) .line1[data-v-5f486725] {
+      animation-duration: 4.18s;
+    }
+    g:nth-child(134) .line3[data-v-5f486725] {
+      animation-duration: 2.73s;
+    }
+    g:nth-child(135) .line1[data-v-5f486725] {
+      animation-duration: 4.2s;
+    }
+    g:nth-child(135) .line3[data-v-5f486725] {
+      animation-duration: 2.75s;
+    }
+    g:nth-child(136) .line1[data-v-5f486725] {
+      animation-duration: 4.22s;
+    }
+    g:nth-child(136) .line3[data-v-5f486725] {
+      animation-duration: 2.77s;
+    }
+    g:nth-child(137) .line1[data-v-5f486725] {
+      animation-duration: 4.24s;
+    }
+    g:nth-child(137) .line3[data-v-5f486725] {
+      animation-duration: 2.79s;
+    }
+    g:nth-child(138) .line1[data-v-5f486725] {
+      animation-duration: 4.26s;
+    }
+    g:nth-child(138) .line3[data-v-5f486725] {
+      animation-duration: 2.81s;
+    }
+    g:nth-child(139) .line1[data-v-5f486725] {
+      animation-duration: 4.28s;
+    }
+    g:nth-child(139) .line3[data-v-5f486725] {
+      animation-duration: 2.83s;
+    }
+    g:nth-child(140) .line1[data-v-5f486725] {
+      animation-duration: 4.3s;
+    }
+    g:nth-child(140) .line3[data-v-5f486725] {
+      animation-duration: 2.85s;
+    }
+    g:nth-child(141) .line1[data-v-5f486725] {
+      animation-duration: 4.32s;
+    }
+    g:nth-child(141) .line3[data-v-5f486725] {
+      animation-duration: 2.87s;
+    }
+    g:nth-child(142) .line1[data-v-5f486725] {
+      animation-duration: 4.34s;
+    }
+    g:nth-child(142) .line3[data-v-5f486725] {
+      animation-duration: 2.89s;
+    }
+    g:nth-child(143) .line1[data-v-5f486725] {
+      animation-duration: 4.36s;
+    }
+    g:nth-child(143) .line3[data-v-5f486725] {
+      animation-duration: 2.91s;
+    }
+    g:nth-child(144) .line1[data-v-5f486725] {
+      animation-duration: 4.38s;
+    }
+    g:nth-child(144) .line3[data-v-5f486725] {
+      animation-duration: 2.93s;
+    }
+    g:nth-child(145) .line1[data-v-5f486725] {
+      animation-duration: 4.4s;
+    }
+    g:nth-child(145) .line3[data-v-5f486725] {
+      animation-duration: 2.95s;
+    }
+    g:nth-child(146) .line1[data-v-5f486725] {
+      animation-duration: 4.42s;
+    }
+    g:nth-child(146) .line3[data-v-5f486725] {
+      animation-duration: 2.97s;
+    }
+    g:nth-child(147) .line1[data-v-5f486725] {
+      animation-duration: 4.44s;
+    }
+    g:nth-child(147) .line3[data-v-5f486725] {
+      animation-duration: 2.99s;
+    }
+    g:nth-child(148) .line1[data-v-5f486725] {
+      animation-duration: 4.46s;
+    }
+    g:nth-child(148) .line3[data-v-5f486725] {
+      animation-duration: 3.01s;
+    }
+    g:nth-child(149) .line1[data-v-5f486725] {
+      animation-duration: 4.48s;
+    }
+    g:nth-child(149) .line3[data-v-5f486725] {
+      animation-duration: 3.03s;
+    }
+    g:nth-child(150) .line1[data-v-5f486725] {
+      animation-duration: 4.5s;
+    }
+    g:nth-child(150) .line3[data-v-5f486725] {
+      animation-duration: 3.05s;
+    }
+    g:nth-child(151) .line1[data-v-5f486725] {
+      animation-duration: 4.52s;
+    }
+    g:nth-child(151) .line3[data-v-5f486725] {
+      animation-duration: 3.07s;
+    }
+    g:nth-child(152) .line1[data-v-5f486725] {
+      animation-duration: 4.54s;
+    }
+    g:nth-child(152) .line3[data-v-5f486725] {
+      animation-duration: 3.09s;
+    }
+    g:nth-child(153) .line1[data-v-5f486725] {
+      animation-duration: 4.56s;
+    }
+    g:nth-child(153) .line3[data-v-5f486725] {
+      animation-duration: 3.11s;
+    }
+    g:nth-child(154) .line1[data-v-5f486725] {
+      animation-duration: 4.58s;
+    }
+    g:nth-child(154) .line3[data-v-5f486725] {
+      animation-duration: 3.13s;
+    }
+    g:nth-child(155) .line1[data-v-5f486725] {
+      animation-duration: 4.6s;
+    }
+    g:nth-child(155) .line3[data-v-5f486725] {
+      animation-duration: 3.15s;
     }
   }
 }
