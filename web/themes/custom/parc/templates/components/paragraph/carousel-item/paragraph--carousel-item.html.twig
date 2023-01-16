@@ -7,11 +7,11 @@
 {% extends "paragraph.html.twig" %}
 
 {% block content %}
-  <div class="{{ content.field_mobile_image.0 ? 'd-none d-lg-block' }}">
+  <div class="{{ content.field_mobile_image.0 ? 'd-none d-lg-block v-desktop' }}">
     {{ content.field_desktop_image.0 }}
   </div>
 
-  <div class="{{ content.field_desktop_image.0 ? 'd-lg-none' }}">
+  <div class="{{ content.field_desktop_image.0 ? 'v-mobile d-lg-none' }}">
     {{ content.field_mobile_image.0 }}
   </div>
 {% endblock %}
