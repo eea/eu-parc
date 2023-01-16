@@ -93,7 +93,8 @@
 
     & .card-img {
       margin: 6px 6px 0;
-      width: calc(100% - 12px);
+      min-width: calc(100% - 12px);
+      max-width: calc(100% - 12px);
       aspect-ratio: 16 / 12;
     }
 

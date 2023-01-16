@@ -83,6 +83,15 @@
         line-height: 1.4em;
         padding-block: 8px;
       }
+
+      .d-lg-none {
+        transform: rotate(0deg);
+        transition: transform 0.3s linear;
+
+        &.collapsed {
+          transform: rotate(-90deg);
+        }
+      }
     }
   }
 }
