@@ -10,8 +10,12 @@
 
   @media (--lg) {
     .field--name-body {
-      & > * {
+      & > *:not(blockquote) {
         padding-inline: 8.3333% 16.6666%;
+      }
+
+      & > p.small {
+        padding-inline: 16.6666% 25%;
       }
 
       & > p:has(img) {

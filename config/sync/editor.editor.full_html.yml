@@ -13,6 +13,9 @@ editor: ckeditor5
 settings:
   toolbar:
     items:
+      - heading
+      - style
+      - '|'
       - bold
       - italic
       - strikethrough
@@ -30,8 +33,6 @@ settings:
       - drupalMedia
       - insertTable
       - horizontalLine
-      - '|'
-      - heading
       - codeBlock
       - '|'
       - sourceEditing
@@ -43,8 +44,17 @@ settings:
         - heading4
         - heading5
         - heading6
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Small paragraph'
+          element: '<p class="small">'
+        -
+          label: 'News Blockquote'
+          element: '<blockquote class="news-blockquote">'
     ckeditor5_sourceEditing:
-      allowed_tags: {  }
+      allowed_tags:
+        - '<blockquote class>'
     ckeditor5_list:
       reversed: true
       startIndex: true

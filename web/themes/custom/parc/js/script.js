@@ -6,8 +6,6 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.general = {
     attach: function (context, settings) {
-      // const divs = container.querySelectorAll(".card-styled-border svg");
-
       var randomOffset = Math.random()*100;
       var speedDemping = 0.05+Math.random()*0.3;
 
