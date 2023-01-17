@@ -68,13 +68,36 @@
 }
 
 /* Blockquotesx */
-.blockquote {
+blockquote {
   --blockquote-margin-y: var(--spacer);
   margin-bottom: var(--blockquote-margin-y);
-  font-size: var(--blockquote-font-size, 1.25);
+  font-size: var(--blockquote-font-size, 22px);
+  line-height: var(--blockquote-line);
+
+  & > p:first-child:before {
+    content: '“';
+  }
+  & > p:first-child:after {
+    content: '”';
+  }
 
   & > :last-child {
     margin-bottom: 0;
+  }
+
+  @media (--lg) {
+    padding-right: 16.6666%;
+  }
+
+  &.news-blockquote {
+    font-style: italic;
+    color: #E06558;
+    font-weight: var(--base-font-weight);
+
+    @media (--lg) {
+      padding-left: 16.6666%;
+      padding-right: 25%;
+    }
   }
 }
 

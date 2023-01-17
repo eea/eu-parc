@@ -41,7 +41,7 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: ''
+      allowed_html: '<blockquote class> <p class="small">'
       filter_html_help: true
       filter_html_nofollow: false
   media_embed:
