@@ -1,72 +1,63 @@
-uuid: 6e0a56b2-fdae-4e02-b51e-0adf51d12013
+uuid: 3708cac4-61fe-4843-a0b4-42c43aeb9809
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.full_html
   module:
-    - ckeditor5
-_core:
-  default_config_hash: a0UeuvbLLshU7EeXK0lLcsZYdDuR4ByvaYRhrX_84mo
+    - ckeditor
 format: full_html
-editor: ckeditor5
+editor: ckeditor
 settings:
   toolbar:
-    items:
-      - heading
-      - style
-      - '|'
-      - bold
-      - italic
-      - strikethrough
-      - superscript
-      - subscript
-      - removeFormat
-      - '|'
-      - link
-      - '|'
-      - bulletedList
-      - numberedList
-      - '|'
-      - blockQuote
-      - drupalInsertImage
-      - drupalMedia
-      - insertTable
-      - horizontalLine
-      - codeBlock
-      - '|'
-      - sourceEditing
+    rows:
+      -
+        -
+          name: Formatting
+          items:
+            - Bold
+            - Italic
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - JustifyBlock
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Lists
+          items:
+            - BulletedList
+            - NumberedList
+        -
+          name: Media
+          items:
+            - Blockquote
+            - DrupalImage
+            - DrupalMediaLibrary
+        -
+          name: Style
+          items:
+            - Styles
+            - Templates
+        -
+          name: Tools
+          items:
+            - Source
+            - Maximize
   plugins:
-    ckeditor5_heading:
-      enabled_headings:
-        - heading2
-        - heading3
-        - heading4
-        - heading5
-        - heading6
-    ckeditor5_style:
-      styles:
-        -
-          label: 'Small paragraph'
-          element: '<p class="small">'
-        -
-          label: 'News Blockquote'
-          element: '<blockquote class="news-blockquote">'
-    ckeditor5_sourceEditing:
-      allowed_tags:
-        - '<blockquote class>'
-    ckeditor5_list:
-      reversed: true
-      startIndex: true
-    ckeditor5_imageResize:
-      allow_resize: true
-    media_media:
-      allow_view_mode_override: false
+    stylescombo:
+      styles: ''
+    templates:
+      template_path: ''
+      replace_content: 0
 image_upload:
-  status: true
+  status: false
   scheme: public
   directory: inline-images
   max_size: ''
   max_dimensions:
-    width: 0
-    height: 0
+    width: null
+    height: null

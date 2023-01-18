@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5b355e9920a4b2bc197a1d9bcd372b9",
+    "content-hash": "58c61746321cf7f9f86fc9fd16633446",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1803,6 +1803,57 @@
             }
         },
         {
+            "name": "drupal/ckeditor_div_manager",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_div_manager.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_div_manager-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "65c4529859775c24ca73feeb730c136038733a43"
+            },
+            "require": {
+                "drupal/ckeditor": "*",
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1620063439",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Corey Eiseman",
+                    "homepage": "https://www.drupal.org/u/toegristle",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "toegristle",
+                    "homepage": "https://www.drupal.org/user/1802910"
+                }
+            ],
+            "description": "Adds the Div Container Manager plugin to CKEditor.",
+            "homepage": "https://www.drupal.org/project/ckeditor_div_manager",
+            "support": {
+                "source": "https://cgit.drupalcode.org/ckeditor_div_manager",
+                "issues": "https://www.drupal.org/project/issues/ckeditor_div_manager"
+            }
+        },
+        {
             "name": "drupal/ckeditor_media_embed",
             "version": "1.11.0",
             "source": {
@@ -1855,6 +1906,100 @@
             "support": {
                 "source": "https://drupal.org/project/ckeditor_media_embed",
                 "issues": "https://drupal.org/project/issues/ckeditor_media_embed"
+            }
+        },
+        {
+            "name": "drupal/ckeditor_templates",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_templates.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_templates-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "4957f9d3b1d817433432f00518c18f52980a5376"
+            },
+            "require": {
+                "drupal/ckeditor": "*",
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1601232517",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "lucaslg",
+                    "homepage": "https://www.drupal.org/user/3128975"
+                },
+                {
+                    "name": "mandclu",
+                    "homepage": "https://www.drupal.org/user/52136"
+                }
+            ],
+            "description": "Integrates the CKEditor templates plugin.",
+            "homepage": "https://www.drupal.org/project/ckeditor_templates",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_templates"
+            }
+        },
+        {
+            "name": "drupal/ckeditor_templates_ui",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/ckeditor_templates_ui.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/ckeditor_templates_ui-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "9ad3716df4c99f84aa5acd56702238b8043b39c5"
+            },
+            "require": {
+                "drupal/ckeditor_templates": "*",
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1602169160",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Anas_maw",
+                    "homepage": "https://www.drupal.org/user/3258840"
+                }
+            ],
+            "description": "Provide ui for adding ckeditor templates",
+            "homepage": "https://www.drupal.org/project/ckeditor_templates_ui",
+            "support": {
+                "source": "https://git.drupalcode.org/project/ckeditor_templates_ui"
             }
         },
         {
@@ -2464,6 +2609,67 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/image_field_caption",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/image_field_caption.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/image_field_caption-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "ea4705e97d8b13257507f2013e16a7ba244a4298"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1651684811",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "awm",
+                    "homepage": "https://www.drupal.org/user/1059398"
+                },
+                {
+                    "name": "hanoii",
+                    "homepage": "https://www.drupal.org/user/23157"
+                },
+                {
+                    "name": "iStryker",
+                    "homepage": "https://www.drupal.org/user/303676"
+                },
+                {
+                    "name": "ironsizide",
+                    "homepage": "https://www.drupal.org/user/787980"
+                },
+                {
+                    "name": "tyler.frankenstein",
+                    "homepage": "https://www.drupal.org/user/150680"
+                }
+            ],
+            "description": "Add caption to image field.",
+            "homepage": "https://www.drupal.org/project/image_field_caption",
+            "support": {
+                "source": "https://git.drupalcode.org/project/image_field_caption",
+                "issues": "https://www.drupal.org/project/issues/image_field_caption"
             }
         },
         {

@@ -41,7 +41,7 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: '<blockquote class> <p class="small">'
+      allowed_html: '<div class> <p class="small"> <blockquote class="news-blockquote"> <strong> <em> <a href> <ul> <li> <ol> <img src alt data-entity-type data-entity-uuid data-align data-caption> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
       filter_html_help: true
       filter_html_nofollow: false
   media_embed:
