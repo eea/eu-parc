@@ -12,6 +12,8 @@ module:
   ckeditor: 0
   ckeditor5: 0
   ckeditor_media_embed: 0
+  ckeditor_templates: 0
+  ckeditor_templates_ui: 0
   comment: 0
   config: 0
   contact: 0
@@ -29,6 +31,7 @@ module:
   help: 0
   history: 0
   image: 0
+  image_field_caption: 0
   layout_builder: 0
   layout_builder_admin_theme: 0
   layout_builder_component_attributes: 0
