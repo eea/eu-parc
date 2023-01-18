@@ -22,6 +22,19 @@ main {
   }
 }
 
+/* Page layout. */
+.region-content-bottom {
+  padding-block: 80px;
+
+  /* Temp. */
+  .block-views {
+    & > h2 {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+  }
+}
+
 #mainCarousel {
   .v-desktop {
     circle {
@@ -1753,7 +1766,7 @@ main {
 }
 
 @media (--lg) {
-  .field--name-body {
+  .region-content .field--name-body {
     & > *:not(blockquote):not(div) {
       margin-inline: 8.3333% 16.6666%;
     }

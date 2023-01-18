@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--article-compact') }}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    'second-style',
+  ]
+%}
+
+<article{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {{ content.field_image }}
+
+  <div class="container-head">
+    <div class="meta d-flex justify-content-between fw-bold">
+      <div class="field-category text-uppercase">
+        {{- content.field_tags -}}
+      </div>
+
+      <div class="field-date">
+        {{- date -}}
+      </div>
+    </div>
+
+    <h1 class="node-title fw-bold">
+      {{- label -}}
+    </h1>
+  </div>
+
+
+  {{ content.body }}
+  {{ content|without('body', 'field_image', 'field_tags')}}
+</article>

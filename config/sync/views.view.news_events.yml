@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.related
     - core.entity_view_mode.node.teaser
     - node.type.article
   module:
@@ -22,6 +23,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
+      title: 'News and Events (front)'
       fields:
         title:
           id: title
@@ -187,12 +189,51 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
+  block_related_news:
+    id: block_related_news
+    display_title: Related
+    display_plugin: block
+    position: 2
+    display_options:
+      title: 'Related News'
+      style:
+        type: grid
+        options:
+          grouping: {  }
+          columns: 12
+          automatic_width: false
+          alignment: horizontal
+          row_class_custom: 'row g-4'
+          row_class_default: false
+          col_class_custom: col-lg-4
+          col_class_default: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: related
+      defaults:
+        title: false
+        style: false
+        row: false
+      display_description: ''
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url.query_args
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
   embed_1:
     id: embed_1
-    display_title: Embed
+    display_title: 'Front News & Events'
     display_plugin: embed
     position: 1
     display_options:
+      display_description: ''
       display_extenders: {  }
     cache_metadata:
       max-age: -1

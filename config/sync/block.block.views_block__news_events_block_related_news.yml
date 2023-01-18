@@ -1,0 +1,32 @@
+uuid: 43534a0a-ec1f-4c2f-a655-473ee9f6ddd1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.news_events
+  module:
+    - node
+    - views
+  theme:
+    - parc
+id: views_block__news_events_block_related_news
+theme: parc
+region: content_bottom
+weight: 0
+provider: null
+plugin: 'views_block:news_events-block_related_news'
+settings:
+  id: 'views_block:news_events-block_related_news'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      article: article

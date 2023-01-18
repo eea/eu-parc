@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/card') }}
+{{ attach_library('parc/n--article-related') }}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    'card',
+    'position-relative',
+    content.field_classes.0|render|clean_class,
+  ]
+%}
+
+{% set collpaseID = 'wwd--article-' ~ node.id() %}
+
+
+<article{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="card-img svg-news--effect">
+    {{ content.field_image }}
+    {{ content.field_svg_hover }}
+  </div>
+
+  <div class="card-body">
+    <div class="meta d-flex justify-content-between fw-bold">
+      <div class="field-category text-uppercase">
+        {{- content.field_tags -}}
+      </div>
+
+      <div class="field-date">
+        {{- date -}}
+      </div>
+    </div>
+
+    <div class="article-content d-flex flex-grow-1 flex-column justify-content-between align-items-start">
+      <h4 class="card-title fw-bold">
+        {{- label -}}
+      </h4>
+
+      <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
+        <span class="more">
+          {{- 'Read more'|t -}}
+        </span>
+
+        <span class="less">
+          {{- 'Read less'|t -}}
+        </span>
+      </button>
+    </div>
+  </div>
+
+  {{ content.field_scroller }}
+</article>

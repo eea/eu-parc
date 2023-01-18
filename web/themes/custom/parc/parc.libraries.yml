@@ -160,6 +160,21 @@ n--article-teaser:
     component:
       css/components/content/article/teaser/style.css: {}
 
+n--article-full:
+  css:
+    component:
+      css/components/content/article/full/style.css: {}
+
+n--article-compact:
+  css:
+    component:
+      css/components/content/article/compact/style.css: {}
+
+n--article-related:
+  css:
+    component:
+      css/components/content/article/related/style.css: {}
+
 n--basic-page-full:
   css:
     component:
