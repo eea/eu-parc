@@ -7,6 +7,6 @@ label: 'Small paragraph'
 image: ''
 description: ''
 html:
-  value: '<div class="small"></div>'
+  value: "<div class=\"content-container-sm small\">\r\n</div>"
   format: full_html
 weight: 1

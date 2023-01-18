@@ -7,25 +7,4 @@
       margin-top: var(--spacer);
     }
   }
-
-  @media (--lg) {
-    .field--name-body {
-      & > *:not(blockquote):not(div) {
-        padding-inline: 8.3333% 16.6666%;
-      }
-
-      & > p:has(img) {
-        padding-inline: 0 !important;
-      }
-
-      & > div.small {
-        padding-inline: 16.6666% 25%;
-        margin-bottom: var(--spacer);
-
-        p {
-          margin-bottom: 0.75em;
-        }
-      }
-    }
-  }
 }
