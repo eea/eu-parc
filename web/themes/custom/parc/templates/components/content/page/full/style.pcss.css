@@ -131,8 +131,14 @@
     margin-top: 4px;
     min-height: 50px;
     font-weight: var(--fw-medium);
-    padding-inline: 20px;
+    padding: 4px 20px;
     color: var(--pt-color);
+    text-decoration: none;
+    line-height: 1.3em;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 /* End Thematic areas. */
