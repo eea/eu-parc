@@ -15,12 +15,18 @@ settings:
         -
           name: Formatting
           items:
+            - Format
             - Bold
             - Italic
+            - Underline
+            - Strike
+            - RemoveFormat
             - JustifyLeft
             - JustifyCenter
             - JustifyRight
             - JustifyBlock
+            - Outdent
+            - Indent
         -
           name: Links
           items:
@@ -37,6 +43,8 @@ settings:
             - Blockquote
             - DrupalImage
             - DrupalMediaLibrary
+            - Table
+            - HorizontalRule
         -
           name: Style
           items:
@@ -49,7 +57,7 @@ settings:
             - Maximize
   plugins:
     stylescombo:
-      styles: ''
+      styles: "p.content-container-sm.small|Small Paragraph\r\nul.content-container-sm.small|List Small container\r\nblockquote.news-blockquote|News blockquote"
     templates:
       template_path: ''
       replace_content: 0

@@ -41,7 +41,7 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: '<div class> <p class="small"> <blockquote class="news-blockquote"> <strong> <em> <a href> <ul> <li> <ol> <img src alt data-entity-type data-entity-uuid data-align data-caption> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title>'
+      allowed_html: '<div class> <blockquote class="news-blockquote"> <strong> <em> <a href> <li> <ol> <img src alt data-entity-type data-entity-uuid data-align data-caption> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <ul class="content-container-sm small"> <p class="small content-container-sm small"> <h1> <h2> <h3> <h4> <h5> <h6> <pre> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <u> <s>'
       filter_html_help: true
       filter_html_nofollow: false
   media_embed:
