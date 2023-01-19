@@ -1,0 +1,53 @@
+uuid: f0680826-6a0a-4c88-9ea0-8e859d9b447a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_views_reference
+    - node.type.basic_page
+  module:
+    - viewsreference
+id: node.basic_page.field_views_reference
+field_name: field_views_reference
+entity_type: node
+bundle: basic_page
+label: 'Views reference'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: 0
+  plugin_types:
+    block: block
+    embed: embed
+    default: 0
+    page: 0
+    feed: 0
+  preselect_views:
+    block_content: 0
+    comment: 0
+    comments_recent: 0
+    content: 0
+    content_recent: 0
+    files: 0
+    frontpage: 0
+    media: 0
+    media_library: 0
+    news_events: 0
+    taxonomy_term: 0
+    user_admin_people: 0
+    watchdog: 0
+    who_s_new: 0
+    who_s_online: 0
+  enabled_settings:
+    pager: 0
+    argument: 0
+    limit: 0
+    offset: 0
+    title: 0
+field_type: viewsreference

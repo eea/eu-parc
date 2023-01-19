@@ -51,13 +51,15 @@
       </h4>
 
       {% if content.body.0 %}
-        <div class="collapse multi-collapse-{{ collpaseID }} show" id="{{ collpaseID }}-second">
+        <div class="collapse multi-collapse-{{ collpaseID }} show grow-1 mini-content" id="{{ collpaseID }}-second">
           {{- content.body -}}
         </div>
 
         <div class="collapse multi-collapse-{{ collpaseID }} mb-lg-3" id="{{ collpaseID }}">
           {{ body_full }}
         </div>
+      {% else %}
+        <div class="mini-content"></div>
       {% endif %}
 
       <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">

@@ -50,15 +50,19 @@
         {{- label -}}
       </h4>
 
-      <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
-        <span class="more">
-          {{- 'Read more'|t -}}
-        </span>
+      {# <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
+              <span class="more">
+                {{- 'Read more'|t -}}
+              </span>
+      
+              <span class="less">
+                {{- 'Read less'|t -}}
+              </span>
+            </button> #}
 
-        <span class="less">
-          {{- 'Read less'|t -}}
-        </span>
-      </button>
+      <a class="btn btn-clear btn-arrow stretched-link" href={{ url }}>
+        {{- 'Read more'|t -}}
+      </a>
     </div>
   </div>
 

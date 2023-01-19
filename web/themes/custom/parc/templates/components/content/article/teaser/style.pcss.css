@@ -80,6 +80,7 @@
     --card-spacer-x: 18px;
 
     min-height: 576px;
+    flex-direction: column;
 
     .card-title {
       min-height: 116px;
@@ -89,17 +90,16 @@
       margin-top: 1rem;
     }
 
-    flex-direction: column;
+    .mini-content {
+      min-height: 76px;
+      width: 100%;
+    }
 
     & .card-img {
       margin: 6px 6px 0;
       min-width: calc(100% - 12px);
       max-width: calc(100% - 12px);
       aspect-ratio: 16 / 12;
-    }
-
-    & .article-content {
-      min-height: 198px;
     }
 
     & .card-styled-border {
