@@ -16,6 +16,7 @@ settings:
           name: Formatting
           items:
             - Format
+            - Styles
             - Bold
             - Italic
             - Underline
@@ -55,7 +56,9 @@ settings:
             - Source
             - Maximize
             - IndentParagraph
-  plugins: {  }
+  plugins:
+    stylescombo:
+      styles: 'blockquote.news-blockquote|News blockquote'
 image_upload:
   status: false
   scheme: public

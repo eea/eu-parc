@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
     - field.field.node.basic_page.field_svg_title
+    - field.field.node.basic_page.field_views_reference
     - node.type.basic_page
   module:
     - text
@@ -32,3 +33,4 @@ content:
 hidden:
   field_banner: true
   field_svg_title: true
+  field_views_reference: true

@@ -5,9 +5,8 @@
  */
 #}
 
-{{ attach_library('edwt/collapse') }}
 {{ attach_library('parc/card') }}
-{{ attach_library('parc/n--article-teaser') }}
+{{ attach_library('parc/n--article-related') }}
 
 {%
   set classes = [
@@ -51,27 +50,19 @@
         {{- label -}}
       </h4>
 
-      {% if content.body.0 %}
-        <div class="collapse multi-collapse-{{ collpaseID }} show grow-1 mini-content" id="{{ collpaseID }}-second">
-          {{- content.body -}}
-        </div>
+      {# <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
+              <span class="more">
+                {{- 'Read more'|t -}}
+              </span>
+      
+              <span class="less">
+                {{- 'Read less'|t -}}
+              </span>
+            </button> #}
 
-        <div class="collapse multi-collapse-{{ collpaseID }} mb-lg-3" id="{{ collpaseID }}">
-          {{ body_full }}
-        </div>
-      {% else %}
-        <div class="mini-content"></div>
-      {% endif %}
-
-      <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
-        <span class="more">
-          {{- 'Read more'|t -}}
-        </span>
-
-        <span class="less">
-          {{- 'Read less'|t -}}
-        </span>
-      </button>
+      <a class="btn btn-clear btn-arrow stretched-link" href={{ url }}>
+        {{- 'Read more'|t -}}
+      </a>
     </div>
   </div>
 

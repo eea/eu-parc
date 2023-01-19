@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Parc theme implementation to display a formatted image field with a caption.
+ */
+#}
+
+{% if url %}
+  <a href="{{ url }}">{{ image }}</a>
+{% else %}
+  {{ image }}
+{% endif %}
+
+{% if caption %}
+  <div class="image-field-caption">{{ caption }}</div>
+{% endif %}

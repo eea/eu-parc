@@ -5,17 +5,7 @@
  */
 #}
 
-{%
-  set classes = [
-    'field',
-    'mb-lg-3',
-    'd-none',
-    'd-lg-block',
-  ]
-%}
-
-
-<div{{attributes.addClass(classes)}}>
+<div class="field-category">
   {% for item in items %}
     {{- item.content }}{{ not loop.last ? ', ' -}}
   {% endfor %}

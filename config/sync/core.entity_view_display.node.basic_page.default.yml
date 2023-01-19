@@ -6,12 +6,14 @@ dependencies:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
     - field.field.node.basic_page.field_svg_title
+    - field.field.node.basic_page.field_views_reference
     - node.type.basic_page
   module:
     - layout_builder
     - media
     - text
     - user
+    - viewsreference
 third_party_settings:
   layout_builder:
     enabled: false
@@ -49,6 +51,15 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_views_reference:
+    type: viewsreference_formatter
+    label: above
+    settings:
+      plugin_types:
+        - block
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   links: true
