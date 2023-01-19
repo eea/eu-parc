@@ -259,7 +259,7 @@
               items: [
                 [editor.lang.common.notSet],
                 ['Indented Paragraph', 'content-container-sm small'],
-                ['News list', 'content-news-list-wrapped'],
+                ['News blockquote', 'content-container-sm news-blockquote'],
               ],
             },
           ]
