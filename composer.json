@@ -17,6 +17,7 @@
     "require": {
         "composer/installers": "^1.9",
         "drupal/admin_toolbar": "^3.3",
+        "drupal/backup_migrate": "^5.0",
         "drupal/block_class": "^2.0",
         "drupal/ckeditor_media_embed": "^1.11",
         "drupal/ckeditor_templates": "^1.2",
