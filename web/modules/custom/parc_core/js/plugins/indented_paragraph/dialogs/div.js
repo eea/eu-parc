@@ -254,11 +254,11 @@
               type: 'select',
               style: 'width: 100%;',
               label: 'Pick a style',
-              'default': 'content-indented-small',
+              'default': 'content-container-sm small',
               // Options are loaded dynamically.
               items: [
                 [editor.lang.common.notSet],
-                ['Indented Paragraph', 'content-indented-small'],
+                ['Indented Paragraph', 'content-container-sm small'],
                 ['News list', 'content-news-list-wrapped'],
               ],
             },
