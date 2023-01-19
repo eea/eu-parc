@@ -80,7 +80,7 @@ function parc_theme_suggestions_alter(
 function parc_preprocess_node(&$variables) {
   $node = $variables['node'];
   if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'article') {
-    $variables['body_full'] = $node->body->view('full');
+    $variables['body_full'] = $node->body->view('default');
   }
 }
 
