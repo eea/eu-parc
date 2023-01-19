@@ -239,7 +239,7 @@
 
     // @type divDialog
     return {
-      title: editor.lang.div.title,
+      title: 'Apply Container',
       minWidth: 400,
       minHeight: 165,
       contents: [{
@@ -253,7 +253,7 @@
               id: 'class',
               type: 'select',
               style: 'width: 100%;',
-              label: editor.lang.div.styleSelectLabel,
+              label: 'Pick a style',
               'default': 'content-indented-small',
               // Options are loaded dynamically.
               items: [
