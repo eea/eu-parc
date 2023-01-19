@@ -25,8 +25,12 @@ settings:
             - JustifyCenter
             - JustifyRight
             - JustifyBlock
+            - Cut
             - Outdent
             - Indent
+            - Paste
+            - PasteText
+            - PasteFromWord
         -
           name: Links
           items:
@@ -46,21 +50,12 @@ settings:
             - Table
             - HorizontalRule
         -
-          name: Style
-          items:
-            - Styles
-            - Templates
-        -
           name: Tools
           items:
             - Source
             - Maximize
-  plugins:
-    stylescombo:
-      styles: "p.content-container-sm.small|Small Paragraph\r\nul.content-container-sm.small|List Small container\r\nblockquote.news-blockquote|News blockquote"
-    templates:
-      template_path: ''
-      replace_content: 0
+            - IndentParagraph
+  plugins: {  }
 image_upload:
   status: false
   scheme: public
