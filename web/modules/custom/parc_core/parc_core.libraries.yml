@@ -1,6 +1,6 @@
 ajax_links:
   js:
-    assets/js/ajax-links.js: {}
+    js/ajax-links.js: {}
   dependencies:
     - core/jquery
     - core/drupal.ajax

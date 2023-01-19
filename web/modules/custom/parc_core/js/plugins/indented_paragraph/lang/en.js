@@ -1,0 +1,16 @@
+
+CKEDITOR.plugins.setLang( 'div', 'en', {
+	IdInputLabel: 'Id',
+	advisoryTitleInputLabel: 'Advisory Title',
+	cssClassInputLabel: 'Classes',
+	edit: 'Edit Div',
+	inlineStyleInputLabel: 'Inline Style',
+	langDirLTRLabel: 'Left to Right (LTR)',
+	langDirLabel: 'Language Direction',
+	langDirRTLLabel: 'Right to Left (RTL)',
+	languageCodeInputLabel: ' Language Code',
+	remove: 'Remove Div',
+	styleSelectLabel: 'Style',
+	title: 'Apply Container',
+	toolbar: 'Apply Container'
+} );
