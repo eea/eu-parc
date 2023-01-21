@@ -1,3 +1,47 @@
+header {
+  .navbar-brand {
+    width: 220px;
+  }
+
+  .navbar {
+    transition: 0.35s linear min-height;
+  }
+
+  .region-nav-additional {
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-name: regionAditionalOut;
+    animation-duration: 0.3s;
+  }
+}
+
+.h-sticky {
+  margin-bottom: calc(96px - 68px);
+
+  .navbar {
+    min-height: 68px;
+  }
+
+  .region-nav-additional {
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-name: regionAditionalIn;
+    animation-duration: 0.3s;
+  }
+
+  .site-logo {
+    @media (--lg) {
+      --sl-mw: 180px;
+    }
+  }
+
+  .region-nav-main {
+    margin-bottom: 0;
+  }
+}
+
 .overlay-is-navbar-collapse {
   --c-logo-circle: var(--c-white);
 }
@@ -16,6 +60,7 @@
 }
 
 .region-nav-additional {
+  display: flex;
   align-self: flex-end;
   gap: 0.5rem;
   margin-top: 0; /* was .75rem need to change logo( is not correct) */
@@ -194,6 +239,20 @@
 }
 
 .site-logo {
+  --sl-mw: 160px;
+  display: block;
+  max-width: var(--sl-mw);
+  transition: var(--transition-base);
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (--lg) {
+    --sl-mw: 220px;
+  }
+
   svg:hover g:nth-of-type(odd) .line2 {
     animation-name: dashOutTwo;
   }
@@ -268,5 +327,34 @@
       stroke-dashoffset: -5;
       stroke-dasharray: 4;
     }
+  }
+}
+
+@keyframes regionAditionalIn {
+  0% {
+    opacity: 1;
+    max-height: 29px;
+  }
+  99% {
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    max-height: 0px;
+    display: none;
+  }
+}
+@keyframes regionAditionalOut {
+  0% {
+    opacity: 0;
+    max-height: 0px;
+  }
+  1% {
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    max-height: 29px;
+    display: block;
   }
 }
