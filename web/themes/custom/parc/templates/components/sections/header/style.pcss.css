@@ -46,6 +46,7 @@ header {
 
 .overlay-is-navbar-collapse {
   --c-logo-circle: var(--c-white);
+  overflow: hidden;
 }
 
 .navbar-toggler {
