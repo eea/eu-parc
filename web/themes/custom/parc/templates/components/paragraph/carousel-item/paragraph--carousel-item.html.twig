@@ -7,6 +7,14 @@
 {% extends "paragraph.html.twig" %}
 
 {% block content %}
+  <picture>
+    <source srcset="baby-zoomed-out.jpg" media="(min-width: 1000px)"/>
+
+    <source srcset="" media="(min-width: 600px)"/>
+
+    <img src="baby-zoomed-out.jpg" alt="Baby Sleeping"/>
+  </picture>
+
   <div class="{{ content.field_mobile_image.0 ? 'd-none d-lg-block v-desktop' }}">
     {{ content.field_desktop_image.0 }}
   </div>

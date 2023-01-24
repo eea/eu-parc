@@ -7,4 +7,9 @@
       margin-top: var(--spacer);
     }
   }
+
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
 }

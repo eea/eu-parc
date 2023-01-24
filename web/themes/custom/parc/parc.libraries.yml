@@ -190,6 +190,8 @@ s--header:
   css:
     component:
       css/components/sections/header/style.css: {}
+  js:
+    templates/components/sections/header/script.js: {}
 
 s--footer:
   css:
