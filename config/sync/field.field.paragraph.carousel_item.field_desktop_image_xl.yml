@@ -1,19 +1,19 @@
-uuid: 35768916-83c6-49ea-8c1a-a935f1cfa108
+uuid: c3affe15-efba-412c-a0b5-febad4ddf9b1
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_desktop_image
+    - field.storage.paragraph.field_desktop_image_xl
     - media.type.image
     - media.type.vector
     - paragraphs.paragraphs_type.carousel_item
-id: paragraph.carousel_item.field_desktop_image
-field_name: field_desktop_image
+id: paragraph.carousel_item.field_desktop_image_xl
+field_name: field_desktop_image_xl
 entity_type: paragraph
 bundle: carousel_item
-label: 'Desktop image'
+label: 'Desktop image xl'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

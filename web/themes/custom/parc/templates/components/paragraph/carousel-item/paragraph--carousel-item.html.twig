@@ -2,24 +2,61 @@
 /**
  * @file
  * Parc theme implementation to display a paragraph.
+ * {% extends "paragraph.html.twig" %}
+ * {% set url_xl = content.field_desktop_image_xl.0|render|striptags|trim %}
+ * {% set url_md = content.field_desktop_image.0|render|striptags %}
+ * {% set url_sm = content.field_mobile_image.0|render|striptags %}
+{% block content %}
+  <picture>
+    {% if content.field_desktop_image_xl.0 %}
+      <source class="lazy-img" srcset="{{ url_xl|trim }}" media="(min-width: 1500px)"/>
+    {% endif %}
+
+    {% if content.field_desktop_image.0 %}
+      <source class="lazy-img" srcset="{{ url_md|trim }}" media="(min-width: 768px) and (max-width: 1499.99px)"/>
+    {% endif %}
+
+    <img class="lazy-img" src="{{ url_sm|trim }}"/>
+  </picture>
+{% endblock %}
 #}
 
 {% extends "paragraph.html.twig" %}
 
+{% set classes_sm = [
+  'v-mobile',
+  'd-md-none',
+] %}
+
+{% set classes_md = [
+  'v-desktop',
+  content.field_mobile_image.0 ?'d-none',
+  'd-md-block',
+  content.field_desktop_image_xl.0 ? 'd-xl-none',
+] %}
+
+{% set classes_xl = [
+  'v-desktop-xl',
+  content.field_mobile_image.0 ? 'd-none',
+  content.field_desktop_image.0 ? 'd-xl-block' : 'd-md-block',
+] %}
+
 {% block content %}
-  <picture>
-    <source srcset="baby-zoomed-out.jpg" media="(min-width: 1000px)"/>
+  {% if content.field_desktop_image_xl.0 %}
+    <div class="{{classes_xl|join(' ')}}">
+      {{ content.field_desktop_image_xl }}
+    </div>
+  {% endif %}
 
-    <source srcset="" media="(min-width: 600px)"/>
+  {% if content.field_desktop_image.0 %}
+    <div class="{{classes_md|join(' ')}}">
+      {{ content.field_desktop_image }}
+    </div>
+  {% endif %}
 
-    <img src="baby-zoomed-out.jpg" alt="Baby Sleeping"/>
-  </picture>
-
-  <div class="{{ content.field_mobile_image.0 ? 'd-none d-lg-block v-desktop' }}">
-    {{ content.field_desktop_image.0 }}
-  </div>
-
-  <div class="{{ content.field_desktop_image.0 ? 'v-mobile d-lg-none' }}">
-    {{ content.field_mobile_image.0 }}
-  </div>
+  {% if content.field_mobile_image.0 %}
+    <div class="{{classes_sm|join(' ') }}">
+      {{ content.field_mobile_image }}
+    </div>
+  {% endif %}
 {% endblock %}

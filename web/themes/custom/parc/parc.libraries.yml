@@ -71,6 +71,8 @@ carousel:
   css:
     component:
       css/components/carousel.css: {}
+  dependencies:
+    - edwt/carousel
 
 close:
   css:
@@ -184,6 +186,12 @@ n--basic-page-compact:
   css:
     component:
       css/components/content/basic-page/compact/style.css: {}
+
+# Block
+b--carousel:
+  css:
+    component:
+      css/components/block/carousel/style.css: {}
 
 # Section.
 s--header:
