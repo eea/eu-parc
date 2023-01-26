@@ -193,9 +193,8 @@ header {
 
     .collapse {
       position: absolute;
-      left: 0;
-      width: 100%;
       background-color: var(--c-white);
+      padding-left: var(--navbar-nav-link-padding-x);
       /* border-top: 1px solid var(--border-color); */
       box-shadow: 0 0 0 100vmax var(--c-white);
       clip-path: inset(0 -100vmax);

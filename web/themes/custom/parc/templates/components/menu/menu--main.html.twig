@@ -20,6 +20,7 @@
           'mb-0',
         ]
       %}
+
       <ul{{attributes.addClass(classes)}}>
       {% else %}
         <ul class="second-level list-unstyled">
@@ -34,7 +35,7 @@
             item.is_expanded ? 'dropdown-toggle',
             item.is_collapsed ? 'dropdown-toggle',
             item.in_active_trail ? 'active',
-            item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
+            menu_level == 0 and item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
           ]
         %}
           <li{{item.attributes.addClass('nav-item')}}>
