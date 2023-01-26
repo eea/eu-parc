@@ -18,7 +18,7 @@ header {
       animation-duration: 0.3s;
     }
 
-    .vh {
+    &.vh {
       opacity: 0;
       pointer-events: none;
     }
