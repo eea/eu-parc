@@ -1,13 +1,11 @@
 {
-  "name": "EaudeWebTheme",
+  "name": "Parc",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "yarn build:css",
-    "watch": "yarn watch:css",
-    "build:css": "node ./config-postcss/postcss-build.js",
-    "watch:css": "node ./config-postcss/postcss-watch.js"
+    "build": "node ./config-postcss/postcss-build.js",
+    "watch": "node ./config-postcss/postcss-watch.js"
   },
   "author": "JoSecret",
   "license": "ISC",
