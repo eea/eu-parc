@@ -11,6 +11,9 @@
  * @ingroup themeable
  */
 #}
+
+{% set id = content["#settings"]["label"]|clean_class %}
+
 {%
   set classes = [
     'layout',
@@ -24,7 +27,7 @@
 {% endif %}
 
 {% if content %}
-  <div{{attributes.addClass(classes)}}>
+  <div{{attributes.addClass(classes).setAttribute('id', id)}}>
     <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content', addClass ? 'container') }}>
 
       {{ content.content }}

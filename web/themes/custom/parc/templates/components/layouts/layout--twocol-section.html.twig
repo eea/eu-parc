@@ -5,6 +5,8 @@
  */
 #}
 
+{% set id = content["#settings"]["label"]|clean_class %}
+
 {% if attributes.hasClass('add-container') %}
   {% set attributes = attributes.removeClass('add-container') %}
   {% set addClass = TRUE %}
@@ -19,9 +21,9 @@
 {% if content %}
   {% if addClass %}
     <div class="container node--content-pb">
-    {% endif %}
+  {% endif %}
 
-    <div{{attributes.addClass(classes).removeClass('layout--twocol-section--33-67')}}>
+    <div{{attributes.addClass(classes).setAttribute('id', id).removeClass('layout--twocol-section--33-67')}}>
       {% if content.first %}
         <div {{ region_attributes.first.addClass('layout_region', 'col-12 col-lg col-menu', 'sticky-top') }}>
           {{ content.first }}
@@ -35,7 +37,7 @@
       {% endif %}
     </div>
 
-    {% if addClass %}
+  {% if addClass %}
     </div>
   {% endif %}
 {% endif %}
