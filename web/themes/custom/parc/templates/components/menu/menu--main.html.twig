@@ -22,7 +22,7 @@
       %}
       <ul{{attributes.addClass(classes)}}>
       {% else %}
-        <ul class="second-level d-lg-none list-unstyled">
+        <ul class="second-level list-unstyled">
         {% endif %}
         {% for item in items %}
           {% set linkID = item.title|clean_class %}
