@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Parc implementation for views to display rows in a grid.
+ */
+#}
+{%
+  set classes = [
+    'views-view-grid',
+    'clearfix',
+  ]
+%}
+
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+<div{{attributes.addClass(classes)}}>
+  {% for row in items %}
+    <div{{row.attributes.addClass(row_classes)}}>
+      {% for column in row.content %}
+        <div {{row.content|length<4?'class="col"':column.attributes.addClass(col_classes)}}> {{- column.content -}} </div> {% endfor %} </div> {% endfor %} </div>
