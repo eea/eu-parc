@@ -8,7 +8,55 @@ dependencies:
     - field.field.paragraph.carousel_item.field_mobile_image
     - paragraphs.paragraphs_type.carousel_item
   module:
+    - field_group
     - media_library
+third_party_settings:
+  field_group:
+    group_mob:
+      children:
+        - field_mobile_image
+      label: Mobile
+      region: content
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_desktop:
+      children:
+        - field_desktop_image
+      label: Desktop
+      region: content
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
+    group_desktop_xl:
+      children:
+        - field_desktop_image_xl
+      label: 'Desktop xl'
+      region: content
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: false
+        description: ''
+        required_fields: true
 id: paragraph.carousel_item.default
 targetEntityType: paragraph
 bundle: carousel_item
@@ -16,21 +64,21 @@ mode: default
 content:
   field_desktop_image:
     type: media_library_widget
-    weight: 0
+    weight: 2
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_desktop_image_xl:
     type: media_library_widget
-    weight: 2
+    weight: 3
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_mobile_image:
     type: media_library_widget
-    weight: 1
+    weight: 2
     region: content
     settings:
       media_types: {  }
