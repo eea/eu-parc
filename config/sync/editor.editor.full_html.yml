@@ -17,6 +17,8 @@ settings:
           items:
             - Format
             - Styles
+            - TextColor
+            - BGColor
             - Bold
             - Italic
             - Underline
@@ -59,6 +61,8 @@ settings:
   plugins:
     stylescombo:
       styles: 'blockquote.news-blockquote|News blockquote'
+    colorbutton:
+      colors: ''
 image_upload:
   status: false
   scheme: public
