@@ -20,6 +20,16 @@
   }
 }
 
+.visible-last-xl {
+  & > div:last-child {
+    display: none;
+
+    @media (--xl) {
+      display: flex;
+    }
+  }
+}
+
 .card-styled-border img {
   transform: translateY(50%);
   align-self: flex-start;

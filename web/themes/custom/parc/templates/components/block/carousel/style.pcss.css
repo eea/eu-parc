@@ -1,4 +1,31 @@
 #mainCarousel {
+  img,
+  svg {
+    /* size from design 680/968. */
+    aspect-ratio: 85/121;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (--md) {
+    img,
+    svg {
+      /* size from design ~ 1280/720. */
+      aspect-ratio: 16/9;
+    }
+  }
+
+  @media (--xl) {
+    img,
+    svg {
+      /* size from design ~ 1920/700. */
+      aspect-ratio: 81/35;
+    }
+  }
+}
+
+#mainCarousel {
   .v-desktop-xl {
     svg[data-v-cc49566a] {
       background-color: #fafafa;

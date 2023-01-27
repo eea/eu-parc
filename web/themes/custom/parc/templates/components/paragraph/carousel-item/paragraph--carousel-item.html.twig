@@ -25,7 +25,8 @@
 
 {% set classes_sm = [
   'v-mobile',
-  'd-md-none',
+  content.field_desktop_image.0 ? 'd-md-none',
+  content.field_desktop_image_xl.0 ? 'd-xl-none',
 ] %}
 
 {% set classes_md = [
