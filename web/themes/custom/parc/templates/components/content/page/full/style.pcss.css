@@ -58,7 +58,6 @@
   @media (--lg) {
     .field-description {
       font-size: 34px;
-      max-width: 80%;
     }
   }
 }
