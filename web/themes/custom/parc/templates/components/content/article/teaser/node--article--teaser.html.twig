@@ -47,7 +47,7 @@
     </div>
 
     <div class="article-content d-flex flex-grow-1 flex-column justify-content-between align-items-start">
-      <h4 class="card-title fw-bold">
+      <h4 class="card-title fw-bold" {{ content.field_label_color.0 ? 'style=color:' ~ content.field_label_color|render|striptags|trim ~ ';' }}>
         {{- label -}}
       </h4>
 

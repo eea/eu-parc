@@ -14,8 +14,8 @@ third_party_settings:
     classes: block-social
 id: social
 theme: parc
-region: nav_additional
-weight: -4
+region: footer
+weight: -5
 provider: null
 plugin: 'block_content:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
 settings:

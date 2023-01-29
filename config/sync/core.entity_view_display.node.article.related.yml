@@ -6,15 +6,14 @@ dependencies:
     - core.entity_view_mode.node.related
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_classes
     - field.field.node.article.field_image
+    - field.field.node.article.field_label_color
     - field.field.node.article.field_scroller
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
   module:
     - layout_builder
-    - options
     - svg_image
     - user
 third_party_settings:
@@ -28,13 +27,6 @@ targetEntityType: node
 bundle: article
 mode: related
 content:
-  field_classes:
-    type: list_key
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_image:
     type: image_url
     label: hidden
@@ -72,4 +64,5 @@ content:
 hidden:
   body: true
   comment: true
+  field_label_color: true
   links: true

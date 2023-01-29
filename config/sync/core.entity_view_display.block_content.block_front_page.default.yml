@@ -7,6 +7,7 @@ dependencies:
     - field.field.block_content.block_front_page.body
     - field.field.block_content.block_front_page.field_before_title
     - field.field.block_content.block_front_page.field_paragraphs
+    - field.field.block_content.block_front_page.field_row_classes
     - field.field.block_content.block_front_page.field_svg_title
     - field.field.block_content.block_front_page.field_views
   module:
@@ -41,6 +42,14 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_row_classes:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_svg_title:
     type: entity_reference_entity_view

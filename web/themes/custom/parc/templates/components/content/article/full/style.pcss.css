@@ -1,9 +1,11 @@
 .node--article--full {
   .page-title {
     padding-block: 80px;
-  }
 
-  @media (--lg) {
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
   }
 
   .svg-footer {

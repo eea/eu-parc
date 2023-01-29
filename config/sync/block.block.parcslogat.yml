@@ -15,7 +15,7 @@ third_party_settings:
 id: parcslogat
 theme: parc
 region: footer
-weight: -7
+weight: -8
 provider: null
 plugin: 'block_content:fb33541d-4495-4163-8179-76d58163e0d6'
 settings:

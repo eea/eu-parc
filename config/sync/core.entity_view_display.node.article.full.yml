@@ -6,8 +6,8 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.article.body
     - field.field.node.article.comment
-    - field.field.node.article.field_classes
     - field.field.node.article.field_image
+    - field.field.node.article.field_label_color
     - field.field.node.article.field_scroller
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
@@ -17,7 +17,6 @@ dependencies:
     - ctools
     - image_field_caption
     - layout_builder
-    - options
     - system
     - text
     - user
@@ -80,13 +79,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_classes:
-    type: list_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_image:
     type: image_caption
     label: hidden
@@ -117,5 +109,6 @@ content:
     region: content
 hidden:
   comment: true
+  field_label_color: true
   field_svg_hover: true
   links: true

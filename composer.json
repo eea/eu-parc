@@ -22,6 +22,7 @@
         "drupal/ckeditor_media_embed": "^1.11",
         "drupal/ckeditor_templates": "^1.2",
         "drupal/ckeditor_templates_ui": "^1.4",
+        "drupal/color_field": "^3.0",
         "drupal/colorbutton": "^1.5",
         "drupal/core-composer-scaffold": "^9.5",
         "drupal/core-project-message": "^9.5",

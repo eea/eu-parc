@@ -1,0 +1,19 @@
+uuid: 951f1d23-0c6e-4507-956f-3340aa7b44bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.block_front_page
+    - field.storage.block_content.field_row_classes
+id: block_content.block_front_page.field_row_classes
+field_name: field_row_classes
+entity_type: block_content
+bundle: block_front_page
+label: 'Row classes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
