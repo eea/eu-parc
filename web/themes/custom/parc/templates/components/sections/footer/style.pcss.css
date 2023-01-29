@@ -26,30 +26,30 @@ footer {
   grid-template-rows: auto 1fr minmax(29px, auto);
   gap: 1px;
   grid-template-areas:
-    "block-parcslogat block-parcslogat"
-    "block-footer block-footerpark"
-    "block-footer block-social";
+    "rf-block-top rf-block-top"
+    "rf-block-left rf-block-right"
+    "rf-block-left rf-block-right-bottom";
 
   @media (--md) {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
-      "block-parcslogat block-parcslogat block-parcslogat"
-      "block-footer block-footerpark ."
-      "block-footer block-social .";
+      "rf-block-top rf-block-top rf-block-top"
+      "rf-block-left rf-block-right ."
+      "rf-block-left rf-block-right-bottom .";
   }
 
-  #block-parcslogat {
-    grid-area: block-parcslogat;
+  .rf-block-top {
+    grid-area: rf-block-top;
   }
-  #block-footer {
-    grid-area: block-footer;
+  .rf-block-left {
+    grid-area: rf-block-left;
   }
-  #block-footerpark {
-    grid-area: block-footerpark;
+  .rf-block-right {
+    grid-area: rf-block-right;
   }
-  #block-social {
+  .rf-block-right-bottom {
     align-self: center;
-    grid-area: block-social;
+    grid-area: rf-block-right-bottom;
   }
 
   .nav {

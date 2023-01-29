@@ -5,9 +5,13 @@ dependencies:
   config:
     - system.menu.footer-park
   module:
+    - block_class
     - system
   theme:
     - parc
+third_party_settings:
+  block_class:
+    classes: rf-block-right
 id: footerpark
 theme: parc
 region: footer
