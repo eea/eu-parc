@@ -17,6 +17,12 @@
 
   @media (--lg) {
     --svg-height: auto;
+
+    & .layout {
+      & .block--title {
+        text-align: center;
+      }
+    }
   }
 }
 

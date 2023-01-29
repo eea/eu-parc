@@ -1,22 +1,22 @@
-uuid: 0d3fbcd7-0c72-495b-851a-b9b990ea68a0
+uuid: 8acac7e6-3bb7-489a-842f-fba6fbc15628
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.footer
+    - system.menu.footer-park
   module:
     - system
   theme:
     - parc
-id: footer
+id: footerpark
 theme: parc
 region: footer
-weight: -7
+weight: -6
 provider: null
-plugin: 'system_menu_block:footer'
+plugin: 'system_menu_block:footer-park'
 settings:
-  id: 'system_menu_block:footer'
-  label: Footer
+  id: 'system_menu_block:footer-park'
+  label: 'Footer Park'
   label_display: '0'
   provider: system
   level: 1

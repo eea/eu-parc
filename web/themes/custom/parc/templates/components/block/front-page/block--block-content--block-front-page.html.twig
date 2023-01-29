@@ -20,7 +20,8 @@
   {% endif %}
   {{ title_suffix }}
 
-  {% block content %}
-    {{- content -}}
-  {% endblock %}
+  {{- content|without('field_paragraphs', 'field_row_classes') -}}
+  <div class="row g-4 {{ content.field_row_classes|render|striptags|trim }}">
+    {{content.field_paragraphs}}
+  </div>
 </div>

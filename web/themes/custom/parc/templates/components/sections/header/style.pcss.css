@@ -193,11 +193,16 @@ header {
 
     .collapse {
       position: absolute;
-      background-color: var(--c-white);
+      background-color: rgba(255, 255, 255, 0.95);
       padding-left: var(--navbar-nav-link-padding-x);
       /* border-top: 1px solid var(--border-color); */
-      box-shadow: 0 0 0 100vmax var(--c-white);
+      box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
       clip-path: inset(0 -100vmax);
+      padding-bottom: 2rem;
+    }
+
+    .second-level {
+      min-height: 128px;
     }
   }
 }
