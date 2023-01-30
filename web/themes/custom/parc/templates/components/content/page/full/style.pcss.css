@@ -177,6 +177,7 @@
 .block-cards {
   .card {
     min-height: 260px;
+    width: 100%;
   }
 
   .card-body {
