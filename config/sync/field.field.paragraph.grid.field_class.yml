@@ -1,0 +1,19 @@
+uuid: deb48a7a-b649-4eb7-abd9-bc28293b41d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_class
+    - paragraphs.paragraphs_type.grid
+id: paragraph.grid.field_class
+field_name: field_class
+entity_type: paragraph
+bundle: grid
+label: Class
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

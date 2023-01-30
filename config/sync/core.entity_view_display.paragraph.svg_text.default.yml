@@ -1,0 +1,32 @@
+uuid: 1d9a11a4-7e78-4571-8e7d-2ccc089b64a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.svg_text.field_body
+    - field.field.paragraph.svg_text.field_svg
+    - paragraphs.paragraphs_type.svg_text
+  module:
+    - text
+id: paragraph.svg_text.default
+targetEntityType: paragraph
+bundle: svg_text
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_svg:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

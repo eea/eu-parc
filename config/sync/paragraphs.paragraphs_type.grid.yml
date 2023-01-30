@@ -1,0 +1,10 @@
+uuid: 82e9ba0d-9cca-4384-a874-310b71ad92eb
+langcode: en
+status: true
+dependencies: {  }
+id: grid
+label: Grid
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

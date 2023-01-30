@@ -187,11 +187,17 @@ n--basic-page-compact:
     component:
       css/components/content/basic-page/compact/style.css: {}
 
-# Block
+# Block.
 b--carousel:
   css:
     component:
       css/components/block/carousel/style.css: {}
+
+# Paragraph.
+p--svg-text:
+  css:
+    component:
+      css/components/paragraph/svg-text/style.css: {}
 
 # Section.
 s--header:
