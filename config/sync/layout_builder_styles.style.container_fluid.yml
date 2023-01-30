@@ -1,0 +1,12 @@
+uuid: 3e05b2ca-5ab3-4d73-a479-ce6d2bce2595
+langcode: en
+status: true
+dependencies: {  }
+id: container_fluid
+label: 'Container fluid'
+classes: container-fluid
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 0
