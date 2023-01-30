@@ -1,0 +1,10 @@
+uuid: 9aa33f63-2662-4873-8f47-df37bb3451c8
+langcode: en
+status: true
+dependencies: {  }
+id: svg_text
+label: 'SVG + Text'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

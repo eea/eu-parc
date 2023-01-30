@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Parc theme implementation to display a paragraph.
+#}
+
+{% extends "paragraph.html.twig" %}
+
+{% block content %}
+  {{ attach_library('parc/p--svg-text') }}
+
+  <div class="row {{ content.field_class.0 ? content.field_class|render|striptags|trim }}">
+    {{ content|without('field_class') }}
+  </div>
+{% endblock %}

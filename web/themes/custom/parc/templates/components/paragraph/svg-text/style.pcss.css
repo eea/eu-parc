@@ -1,0 +1,14 @@
+.paragraph--svg-text {
+  .field--type-image {
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .field--name-field-body {
+    font-size: 12px;
+    line-height: 1.45em;
+    margin-top: 32px;
+  }
+}

@@ -11,7 +11,7 @@ dependencies:
     - parc
 third_party_settings:
   block_class:
-    classes: rf-block-right
+    classes: rf-block-left
 id: footerpark
 theme: parc
 region: footer

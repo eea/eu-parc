@@ -1,0 +1,29 @@
+uuid: 99852add-f073-4e1b-95a0-bffe00eea401
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_svg
+    - media.type.vector
+    - paragraphs.paragraphs_type.svg_text
+id: paragraph.svg_text.field_svg
+field_name: field_svg
+entity_type: paragraph
+bundle: svg_text
+label: SVG
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
