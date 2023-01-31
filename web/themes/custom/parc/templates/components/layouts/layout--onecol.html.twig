@@ -27,10 +27,15 @@
 {% endif %}
 
 {% if content %}
-  <div{{attributes.addClass(classes).setAttribute('id', id)}}>
-    <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content', addClass ? 'container') }}>
-
-      {{ content.content }}
+  {% if attributes.hasClass('bg-gray') %}
+    <div class="bg-gray">
+    {% endif %}
+    <div{{attributes.addClass(classes).setAttribute('id',id)}}>
+      <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content', addClass ? 'container') }}>
+        {{ content.content }}
+      </div>
     </div>
-  </div>
+    {% if attributes.hasClass('bg-gray') %}
+    </div>
+  {% endif %}
 {% endif %}

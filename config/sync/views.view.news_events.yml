@@ -274,7 +274,7 @@ display:
           columns: 12
           automatic_width: false
           alignment: horizontal
-          row_class_custom: 'row g-4'
+          row_class_custom: 'row g-4 align-items-lg-start'
           row_class_default: false
           col_class_custom: 'col-lg-4 col-xl-3'
           col_class_default: false

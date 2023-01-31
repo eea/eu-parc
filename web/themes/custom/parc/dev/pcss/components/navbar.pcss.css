@@ -5,7 +5,7 @@
   --navbar-hover-color: rgba(0, 0, 0, 0.7);
   --navbar-disabled-color: rgba(0, 0, 0, 0.3);
   --navbar-active-color: rgba(0, 0, 0, 0.9);
-  --navbar-brand-margin-end: 84px;
+  --navbar-brand-margin-end: 0;
   --navbar-brand-font-size: 1.25rem;
   --navbar-brand-color: var(--c-white);
   --navbar-brand-hover-color: var(--c-gray-400);
