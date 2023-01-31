@@ -120,5 +120,8 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "drupal/stage_file_proxy": "^2.0"
     }
 }
