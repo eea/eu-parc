@@ -5,10 +5,6 @@ header {
     width: 220px;
   }
 
-  .navbar {
-    transition: 0.35s linear min-height;
-  }
-
   @media (--lg) {
     .region-nav-additional {
       animation-iteration-count: 1;
@@ -18,9 +14,23 @@ header {
       animation-duration: 0.3s;
     }
 
+    .navbar {
+      transition: 0.35s linear min-height;
+    }
+
     &.vh {
       opacity: 0;
       pointer-events: none;
+    }
+
+    .nav-main {
+      margin-inline: auto;
+    }
+  }
+
+  @media (--xl) {
+    .menu--main {
+      padding-right: 220px;
     }
   }
 }
@@ -277,7 +287,7 @@ header {
 .block-social .field--name-body {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
 .site-logo {
