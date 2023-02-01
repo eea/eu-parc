@@ -15,7 +15,7 @@ mode: default
 content:
   field_class:
     type: string_textfield
-    weight: 0
+    weight: 1
     region: content
     settings:
       size: 60
@@ -23,7 +23,7 @@ content:
     third_party_settings: {  }
   field_items:
     type: paragraphs
-    weight: 1
+    weight: 2
     region: content
     settings:
       title: Column
