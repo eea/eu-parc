@@ -1,19 +1,18 @@
-uuid: 28aac55c-b785-489a-a429-8474bf245c53
+uuid: 2d2d9ee4-b094-4e33-86a9-3dde6edab1c5
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_items
+    - field.storage.node.field_paragraphs_in
+    - node.type.basic_page
     - paragraphs.paragraphs_type.grid
-    - paragraphs.paragraphs_type.media
-    - paragraphs.paragraphs_type.svg_text
   module:
     - entity_reference_revisions
-id: paragraph.grid.field_items
-field_name: field_items
-entity_type: paragraph
-bundle: grid
-label: Items
+id: node.basic_page.field_paragraphs_in
+field_name: field_paragraphs_in
+entity_type: node
+bundle: basic_page
+label: Paragraphs
 description: ''
 required: false
 translatable: false
@@ -23,32 +22,31 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      svg_text: svg_text
-      media: media
+      grid: grid
     negate: 0
     target_bundles_drag_drop:
       accordion_item:
         weight: 9
         enabled: false
       card:
-        weight: 7
+        weight: 10
         enabled: false
       carousel_item:
-        weight: 8
+        weight: 11
         enabled: false
       grid:
-        weight: 9
-        enabled: false
+        weight: 12
+        enabled: true
       links_list:
-        weight: 10
+        weight: 13
         enabled: false
       media:
         weight: 14
-        enabled: true
+        enabled: false
       svg_text:
-        weight: 11
-        enabled: true
+        weight: 15
+        enabled: false
       what_we_do:
-        weight: 12
+        weight: 16
         enabled: false
 field_type: entity_reference_revisions

@@ -204,6 +204,11 @@ p--carousel-item:
     component:
       css/components/paragraph/carousel-item/style.css: {}
 
+p--media:
+  css:
+    component:
+      css/components/paragraph/media/style.css: {}
+
 # Section.
 s--header:
   css:
