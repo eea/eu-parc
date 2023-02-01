@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Parc theme implementation to display a paragraph.
+ */
+#}
+
+{% set heading = 'h-' ~ paragraph.id() %}
+{% set itemID = 'i-ID--' ~ paragraph.id() %}
+
+<div class="accordion-header">
+  <button class="btn link-ta collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ itemID }}" aria-expanded="true" aria-controls="{{ itemID }}">
+
+    {{- content.field_label_plain.0 -}}
+    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewbox="0 0 8 8">
+      <line x2="6" transform="translate(1 4)" fill="none" stroke="#008475" stroke-linecap="round" stroke-width="2"/>
+      <line class="line-2" y1="6" transform="translate(4 1)" fill="none" stroke="#008475" stroke-linecap="round" stroke-width="2"/>
+    </svg>
+  </button>
+</div>
+
+<div id="{{ itemID }}" class="accordion-collapse collapse" aria-labelledby="{{ heading }}" data-bs-parent="#aID--{{ parentID }}">
+  {{- content.field_body -}}
+</div>
