@@ -67,4 +67,15 @@
       }, false);
     }
   };
+
+  Drupal.behaviors.thematicAreas = {
+    attach: function (context, settings) {
+      var section_id;
+      $('.governance-svg').click(function () {
+         section_id = $(this).attr('href');
+         $('.governance-content').removeClass('show');
+         $(section_id).addClass('show');
+      })
+    }
+  };
 })(jQuery, Drupal, once);

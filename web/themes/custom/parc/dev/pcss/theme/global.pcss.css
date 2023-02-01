@@ -270,6 +270,13 @@ main {
   display: none;
 }
 
+.governance-content {
+  display: none;
+  &.show {
+    display: block;
+  }
+}
+
 @media (--lg) {
   .layout--twocol-section .field--name-body {
     & > *:not(blockquote):not(div) {
