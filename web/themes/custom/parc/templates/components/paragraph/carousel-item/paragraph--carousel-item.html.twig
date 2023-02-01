@@ -26,7 +26,7 @@
 {% set classes_sm = [
   'v-mobile',
   content.field_desktop_image.0 ? 'd-md-none',
-  content.field_desktop_image_xl.0 ? 'd-xl-none',
+  content.field_desktop_image_xl.0 ? 'd-md-none',
 ] %}
 
 {% set classes_md = [
@@ -38,11 +38,13 @@
 
 {% set classes_xl = [
   'v-desktop-xl',
-  content.field_mobile_image.0 ? 'd-none',
+  'd-none',
   content.field_desktop_image.0 ? 'd-xl-block' : 'd-md-block',
 ] %}
 
 {% block content %}
+  {{ attach_library('parc/p--carousel-item') }}
+
   {% if content.field_desktop_image_xl.0 %}
     <div class="{{classes_xl|join(' ')}}">
       {{ content.field_desktop_image_xl }}
@@ -60,4 +62,6 @@
       {{ content.field_mobile_image }}
     </div>
   {% endif %}
+
+  {{ content.field_body }}
 {% endblock %}

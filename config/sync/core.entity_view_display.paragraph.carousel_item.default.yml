@@ -3,15 +3,25 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.carousel_item.field_body
     - field.field.paragraph.carousel_item.field_desktop_image
     - field.field.paragraph.carousel_item.field_desktop_image_xl
     - field.field.paragraph.carousel_item.field_mobile_image
     - paragraphs.paragraphs_type.carousel_item
+  module:
+    - text
 id: paragraph.carousel_item.default
 targetEntityType: paragraph
 bundle: carousel_item
 mode: default
 content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_desktop_image:
     type: entity_reference_entity_view
     label: hidden
