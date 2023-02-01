@@ -28,7 +28,9 @@
 
 .visible-last-xl {
   & > div:last-child {
-    display: none;
+    @media (--lg) {
+      display: none;
+    }
 
     @media (--xl) {
       display: flex;
