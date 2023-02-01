@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a field.
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'position-absolute'
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  <div class="container">
+    {% for item in items %}
+      {{- item.content -}}
+    {% endfor %}
+  </div>
+</div>

@@ -199,6 +199,11 @@ p--svg-text:
     component:
       css/components/paragraph/svg-text/style.css: {}
 
+p--carousel-item:
+  css:
+    component:
+      css/components/paragraph/carousel-item/style.css: {}
+
 # Section.
 s--header:
   css:

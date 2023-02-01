@@ -36,11 +36,13 @@
     box-shadow 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-underline-offset: 0.25em;
 
   &:hover {
     color: var(--btn-hover-color);
     background-color: var(--btn-hover-bg);
     border-color: var(--btn-hover-border-color);
+    text-decoration: underline;
   }
 }
 @media (prefers-reduced-motion: reduce) {

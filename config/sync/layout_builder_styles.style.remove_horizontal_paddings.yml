@@ -1,10 +1,10 @@
-uuid: d1efbcd2-a51d-4760-8d90-e9a664d6833b
+uuid: 140ab23d-4fde-4886-97f3-f865e7da8b42
 langcode: en
 status: true
 dependencies: {  }
-id: no_paddings
-label: 'Remove all paddings'
-classes: p-0
+id: remove_horizontal_paddings
+label: 'Remove horizontal paddings'
+classes: py-0
 type: section
 group: default
 block_restrictions: {  }

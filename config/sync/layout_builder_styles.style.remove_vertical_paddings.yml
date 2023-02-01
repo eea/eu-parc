@@ -1,10 +1,10 @@
-uuid: d1efbcd2-a51d-4760-8d90-e9a664d6833b
+uuid: b61d367b-66e5-4453-9328-ebcf06d1a9eb
 langcode: en
 status: true
 dependencies: {  }
-id: no_paddings
-label: 'Remove all paddings'
-classes: p-0
+id: remove_vertical_paddings
+label: 'Remove vertical paddings'
+classes: px-0
 type: section
 group: default
 block_restrictions: {  }
