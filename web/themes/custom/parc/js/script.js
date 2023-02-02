@@ -78,7 +78,7 @@
 
          $('.governance-content').removeClass('show');
          $(section_id).addClass('show');
-         $('html,body').animate({scrollTop: $('.governance-title').offset().top}, 100);
+         $('html,body').animate({scrollTop: $('.governance-title').offset().top}, 800);
       })
     }
   };
