@@ -172,6 +172,7 @@
     padding: 4px 20px;
     color: var(--pt-color);
     text-decoration: none;
+    text-align: left;
     line-height: 1.3em;
 
     &:hover {
