@@ -38,8 +38,12 @@
   }
 
   & .card-title {
-    letter-spacing: 110%;
+    letter-spacing: 0.011em;
     color: var(--news-c-title, var(--red));
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   & .meta {
