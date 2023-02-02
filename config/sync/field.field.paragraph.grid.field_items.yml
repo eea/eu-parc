@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_items
     - paragraphs.paragraphs_type.grid
+    - paragraphs.paragraphs_type.media
     - paragraphs.paragraphs_type.svg_text
   module:
     - entity_reference_revisions
@@ -23,8 +24,12 @@ settings:
   handler_settings:
     target_bundles:
       svg_text: svg_text
+      media: media
     negate: 0
     target_bundles_drag_drop:
+      accordion_item:
+        weight: 9
+        enabled: false
       card:
         weight: 7
         enabled: false
@@ -37,6 +42,9 @@ settings:
       links_list:
         weight: 10
         enabled: false
+      media:
+        weight: 14
+        enabled: true
       svg_text:
         weight: 11
         enabled: true

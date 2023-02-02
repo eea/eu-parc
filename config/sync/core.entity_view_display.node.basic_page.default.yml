@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
     - field.field.node.basic_page.field_paragraphs
+    - field.field.node.basic_page.field_paragraphs_in
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - node.type.basic_page
@@ -51,6 +52,15 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 4
+    region: content
+  field_paragraphs_in:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_svg_title:
     type: media_thumbnail

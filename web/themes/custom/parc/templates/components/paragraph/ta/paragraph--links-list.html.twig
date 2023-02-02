@@ -5,6 +5,8 @@
  */
 #}
 
+{{ attach_library('edwt/accordion') }}
+
 {%
   set classes = [
     'paragraph',
@@ -14,6 +16,8 @@
   ]
 %}
 
+{% set accordionID = 'aID--' ~ paragraph.id() %}
+
 <div class="col-md-6 col-lg-3">
   <div{{attributes.addClass(classes)}}>
     <div class="paragraph--top d-flex flex-column">
@@ -22,6 +26,11 @@
       <h5 class="card-title">
         {{ content.field_label_plain.0 }}
       </h5>
+    </div>
+
+
+    <div class="accordion" id="{{ accordionID }}">
+      {{ content.field_items }}
     </div>
 
     {{ content.field_link }}

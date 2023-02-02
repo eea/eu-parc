@@ -278,13 +278,19 @@ main {
 }
 
 @media (--lg) {
-  .layout--twocol-section .field--name-body {
-    & > *:not(blockquote):not(div) {
-      margin-inline: 8.3333% 16.6666%;
+  .layout--twocol-section {
+    .field--name-body {
+      & > *:not(blockquote):not(div) {
+        margin-inline: 8.3333% 16.6666%;
+      }
+
+      & > p:has(img) {
+        margin-inline: 0 !important;
+      }
     }
 
-    & > p:has(img) {
-      margin-inline: 0 !important;
+    .content-container {
+      margin-inline: 8.3333% 16.6666%;
     }
 
     .content-container-sm {

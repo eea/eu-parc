@@ -5,14 +5,15 @@
  */
 #}
 
-<div id="mainCarousel" class="carousel slide" data-bs-ride="true" data-interval="false">
+<div id="mainCarousel" class="carousel slide" data-bs-ride="true" data-interval="900000">
+
   <div class="carousel-indicators">
     {% for item in items %}
       <button type="button" data-bs-target="#mainCarousel" data-bs-interval="false" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-label="Slide {{ loop.index }}"></button>
     {% endfor %}
   </div>
 
-  <div class="carousel-inner" data-interval="false">
+  <div class="carousel-inner" data-interval="900000">
     {% for item in items %}
       <div class="carousel-item{{ loop.first ? ' active' }}">
         {{- item.content -}}

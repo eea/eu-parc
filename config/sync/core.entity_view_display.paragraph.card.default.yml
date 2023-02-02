@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.card.field_body
     - field.field.paragraph.card.field_label
     - field.field.paragraph.card.field_link_one
     - field.field.paragraph.card.field_scroller
@@ -15,6 +16,13 @@ targetEntityType: paragraph
 bundle: card
 mode: default
 content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_label:
     type: text_default
     label: hidden

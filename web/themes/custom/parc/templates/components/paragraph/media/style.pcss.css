@@ -1,0 +1,22 @@
+.paragraph--media {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .link-download {
+    --link-color: var(--c-primary);
+    --link-h-color: var(--link-color);
+    --link-decoration: none;
+    --link-h-decoration: underline;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 145%;
+    letter-spacing: 0.01em;
+    margin-top: 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

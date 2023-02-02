@@ -1,0 +1,10 @@
+uuid: f228ff17-319d-46f0-9e09-144466ffbc57
+langcode: en
+status: true
+dependencies: {  }
+id: accordion_item
+label: 'Accordion item'
+icon_uuid: null
+icon_default: null
+description: 'Accordion item used (for now) in Thematic Areas Block'
+behavior_plugins: {  }

@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies: {  }
 id: no_paddings
-label: 'No paddings'
-classes: py-0
+label: 'Remove all paddings'
+classes: p-0
 type: section
 group: default
 block_restrictions: {  }

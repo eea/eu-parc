@@ -92,3 +92,17 @@ function parc_preprocess_block(&$variables) {
     ->getInstanceFromDefinition(ParcThemeProcess::class)
     ->preprocessBlock($variables);
 }
+
+/**
+ * Implements parc_preprocess_paragraph.
+ */
+function parc_preprocess_paragraph(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  // Get parent entity.
+  $parent = $paragraph->getParentEntity();
+
+  if (isset($parent)) {
+    $variables['parentID'] = $parent->Id();
+  }
+}

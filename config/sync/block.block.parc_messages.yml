@@ -10,8 +10,8 @@ _core:
   default_config_hash: BZ5tpW7H8X4PVGRm3MImTIHd2tN0eF7zOtp4SpRYUA0
 id: parc_messages
 theme: parc
-region: content
-weight: -5
+region: highlighted
+weight: -8
 provider: null
 plugin: system_messages_block
 settings:

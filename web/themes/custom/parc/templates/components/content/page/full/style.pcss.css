@@ -28,7 +28,9 @@
 
 .visible-last-xl {
   & > div:last-child {
-    display: none;
+    @media (--lg) {
+      display: none;
+    }
 
     @media (--xl) {
       display: flex;
@@ -44,7 +46,7 @@
 }
 
 /* What We Do. */
-.block-whatWeDo {
+.block--front-page {
   .field-description {
     font-size: 24px;
     line-height: 1.45em;
@@ -137,11 +139,32 @@
     align-self: center;
   }
 
+  .accordion-item {
+    --a-border-radius: var(--border-radius);
+    --a-bg: var(--c-body-bg);
+
+    padding: 0;
+    border: none;
+  }
+
+  .field--name-field-body {
+    font-size: 14px;
+    color: var(--pt-color);
+    font-weight: var(--font-weight-normal);
+    padding-inline: 1.25rem;
+    padding-bottom: 1rem;
+    line-height: 125%;
+  }
+
   .link-ta {
+    --btn-hover-color: var(--pt-color);
     background-color: var(--c-body-bg);
     border-radius: var(--border-radius);
     font-size: 16px;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     align-items: center;
     margin-top: 4px;
     min-height: 50px;
@@ -153,6 +176,16 @@
 
     &:hover {
       text-decoration: underline;
+    }
+
+    .line-2 {
+      transition: var(--transition-base);
+    }
+
+    &:not(.collapsed) {
+      .line-2 {
+        stroke: transparent;
+      }
     }
   }
 }
