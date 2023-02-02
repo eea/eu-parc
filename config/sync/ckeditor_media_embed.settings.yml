@@ -3,4 +3,3 @@ _core:
 embed_provider: 'http://ckeditor.iframe.ly/api/oembed?url={url}&callback={callback}'
 ckeditor_version: ''
 plugins_installed_version: ''
-plugins_version_installed: 4.18.0
