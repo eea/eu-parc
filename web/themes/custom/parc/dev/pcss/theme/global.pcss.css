@@ -270,6 +270,12 @@ main {
   display: none;
 }
 
+.governance-svg.active .path-stroke,
+.governance-svg:hover .path-stroke {
+  fill: #ECECEC;
+  stroke-opacity: 100%;
+}
+
 .governance-content {
   display: none;
   &.show {

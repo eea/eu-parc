@@ -70,10 +70,15 @@
   Drupal.behaviors.thematicAreas = {
     attach: function (context, settings) {
       var section_id;
-      $('.governance-svg').click(function () {
-         section_id = $(this).attr('href');
+      $('.governance-svg').once('governanceSvgClick').click(function (e) {
+         e.preventDefault();
+         section_id = $(this).attr('data-section-id');
+         $(this).parent().find('.governance-svg.active').removeClass('active');
+         $(this).addClass('active');
+
          $('.governance-content').removeClass('show');
          $(section_id).addClass('show');
+         $('html,body').animate({scrollTop: $('.governance-title').offset().top}, 100);
       })
     }
   };
