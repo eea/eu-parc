@@ -1,0 +1,12 @@
+uuid: b61d367b-66e5-4453-9328-ebcf06d1a9eb
+langcode: en
+status: true
+dependencies: {  }
+id: remove_vertical_paddings
+label: 'Remove vertical paddings'
+classes: px-0
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 0

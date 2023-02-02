@@ -1,0 +1,12 @@
+uuid: 140ab23d-4fde-4886-97f3-f865e7da8b42
+langcode: en
+status: true
+dependencies: {  }
+id: remove_horizontal_paddings
+label: 'Remove horizontal paddings'
+classes: py-0
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 0

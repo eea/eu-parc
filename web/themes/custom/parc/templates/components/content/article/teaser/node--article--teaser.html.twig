@@ -24,9 +24,7 @@
 %}
 
 {% set collpaseID = 'wwd--article-' ~ node.id() %}
-{% set renderLabel = label.0['#context'].value %}
-
-{% set newLabel = renderLabel|length > 40 ? renderLabel|slice(0, 40) ~ '...' : renderLabel %}
+{# {% set renderLabel = label.0['#context'].value %} #}
 
 <article{{attributes.addClass(classes)}}>
   {{ title_prefix }}
@@ -49,8 +47,9 @@
     </div>
 
     <div class="article-content d-flex flex-grow-1 flex-column justify-content-between align-items-start">
-      <h4 class="card-title fw-bold" {{ content.field_label_color.0 ? 'style=color:' ~ content.field_label_color|render|striptags|trim ~ ';' }}>
-        {{- newLabel -}}
+      <h4 class="card-title fw-bold" {{ content.field_label_color.0 ? 'style=--news-c-title:' ~ content.field_label_color|render|striptags|trim ~ ';' }}>
+
+        {{- label.0 -}}
       </h4>
 
       {% if content.body.0 %}

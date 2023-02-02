@@ -1,0 +1,31 @@
+uuid: 80e33022-4060-4a7b-9546-3c457734862d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_preview_image
+    - media.type.image
+    - media.type.vector
+    - paragraphs.paragraphs_type.media
+id: paragraph.media.field_preview_image
+field_name: field_preview_image
+entity_type: paragraph
+bundle: media
+label: 'Preview image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference
