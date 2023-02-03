@@ -53,10 +53,6 @@
     margin-bottom: var(--p-parc);
   }
 
-  strong {
-    display: block;
-  }
-
   @media (--lg) {
     .field-description {
       font-size: 34px;
