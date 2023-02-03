@@ -981,9 +981,6 @@ div[class*="border-"] {
 
 .bg-gray {
   background-color: rgba(var(--rgb-gray), var(--bg-opacity)) !important;
-  &.container-fluid {
-    max-width: 100%;
-  }
 }
 
 .bg-black {
