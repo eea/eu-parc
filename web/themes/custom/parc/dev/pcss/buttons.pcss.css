@@ -157,6 +157,7 @@ fieldset:disabled .btn {
   padding-right: var(--btn-pr, 12px);
   display: inline-flex;
   flex-direction: row-reverse;
+  font-size: 16px;
 
   .less {
     display: none;
@@ -179,6 +180,10 @@ fieldset:disabled .btn {
     &:before {
       transform: rotate(-90deg);
     }
+  }
+
+  @media (--lg) {
+    font-size: 1rem;
   }
 }
 

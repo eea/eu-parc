@@ -3,8 +3,6 @@ footer {
   padding-bottom: 52px;
 
   & .row-bottom {
-    margin-top: 2rem;
-
     @media (--lg) {
       margin-top: 168px;
     }
@@ -67,27 +65,34 @@ footer {
 }
 
 .block-parc {
-  margin-bottom: 2rem;
-  font-size: 48px;
+  margin-bottom: 6rem;
+  font-size: 32px;
   line-height: 125%;
 
   @media (--lg) {
+    font-size: 48px;
     margin-bottom: 90px;
   }
 }
 
 .btn-lg.btn-outline-white {
-  --btn-padding-y: 34px;
-  --btn-padding-x: 42px;
+  --btn-padding-y: 17px;
+  --btn-padding-x: 36px;
   --btn-color: #ffffff;
   --btn-border-color: var(--btn-color);
   --btn-hover-border-color: var(--btn-color);
   --btn-hover-color: #000000;
   --btn-hover-bg: var(--btn-color);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   text-decoration: none;
   margin-top: 10px;
+
+  @media (--lg) {
+    font-size: 24px;
+    --btn-padding-y: 34px;
+    --btn-padding-x: 42px;
+  }
 }
 
 .nav-term-privacy {

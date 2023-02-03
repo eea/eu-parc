@@ -5,9 +5,13 @@ dependencies:
   content:
     - 'block_content:basic:ea928168-65ae-44ce-bc3a-c76c289abff6'
   module:
+    - block_class
     - block_content
   theme:
     - parc
+third_party_settings:
+  block_class:
+    classes: 'mt-f mt-lg-0'
 id: subscribebuttons
 theme: parc
 region: footer_second
