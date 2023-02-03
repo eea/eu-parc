@@ -38,7 +38,7 @@ jobs:
           public_files_dir:     /var/www/config/devel.eu-parc.eu/files
           # env_file:           /var/www/config/devel.eu-parc.eu/.env
           robo_file:            /var/www/config/devel.eu-parc.eu/robo.yml
-          # database_dump_dir:  /var/www/config/devel.eu-parc.eu/sync
+          database_dump_dir:    /var/www/config/devel.eu-parc.eu/sync
           artifacts_lifespan: 30
 
       - name: 'Update the Drupal instance'
