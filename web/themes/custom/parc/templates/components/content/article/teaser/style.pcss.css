@@ -13,6 +13,7 @@
     max-width: 28%;
     aspect-ratio: 1 / 1;
     position: relative;
+    align-self: flex-start;
 
     .img {
       position: absolute;
@@ -40,10 +41,15 @@
   & .card-title {
     letter-spacing: 0.011em;
     color: var(--news-c-title, var(--red));
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+  }
+
+  .mini {
+    .card-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
   }
 
   & .meta {
@@ -95,8 +101,11 @@
     }
 
     .mini-content {
-      min-height: 104px;
       width: 100%;
+
+      &.show {
+        min-height: 104px;
+      }
     }
 
     & .card-img {

@@ -594,7 +594,7 @@ div[class*="border-"] {
   margin-top: 3rem !important;
 }
 .mt-f {
-  margin-top: 7rem !important;
+  margin-top: 5rem !important;
 }
 .mt-auto {
   margin-top: auto !important;
@@ -637,6 +637,9 @@ div[class*="border-"] {
 }
 .mb-5 {
   margin-bottom: 3rem !important;
+}
+.mb-f {
+  margin-bottom: 5rem !important;
 }
 .mb-auto {
   margin-bottom: auto !important;

@@ -155,6 +155,12 @@ n--article-teaser:
   css:
     component:
       css/components/content/article/teaser/style.css: {}
+  js:
+    templates/components/content/article/teaser/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
 
 n--article-full:
   css:
