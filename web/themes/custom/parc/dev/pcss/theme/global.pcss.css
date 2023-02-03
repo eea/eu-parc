@@ -272,7 +272,7 @@ main {
 
 .governance-svg.active .path-stroke,
 .governance-svg:hover .path-stroke {
-  fill: #ECECEC;
+  fill: #ececec;
   stroke-opacity: 100%;
 }
 

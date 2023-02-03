@@ -53,10 +53,6 @@
     margin-bottom: var(--p-parc);
   }
 
-  strong {
-    display: block;
-  }
-
   @media (--lg) {
     .field-description {
       font-size: 34px;
@@ -149,7 +145,6 @@
 
   .field--name-field-body {
     font-size: 14px;
-    color: var(--pt-color);
     font-weight: var(--font-weight-normal);
     padding-inline: 1.25rem;
     padding-bottom: 1rem;
