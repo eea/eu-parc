@@ -84,6 +84,19 @@
     }
   }
 
+  @media (--downLg) {
+    .article-content {
+      .field--name-body {
+        margin-bottom: 1rem;
+      }
+
+      .field--name-body,
+      blockquote {
+        font-size: 16px;
+      }
+    }
+  }
+
   @media (--lg) {
     --h4-font-size: inherit;
     --card-spacer-y: 0;
