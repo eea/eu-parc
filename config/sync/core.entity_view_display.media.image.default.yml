@@ -20,7 +20,7 @@ content:
     label: visually_hidden
     settings:
       image_link: ''
-      image_style: large
+      image_style: ''
       svg_attributes:
         width: null
         height: null
