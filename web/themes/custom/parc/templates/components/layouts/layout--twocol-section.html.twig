@@ -25,13 +25,13 @@
 
     <div{{attributes.addClass(classes).setAttribute('id',id).removeClass('layout--twocol-section--33-67')}}>
       {% if content.first %}
-        <div {{ region_attributes.first.addClass('layout_region', 'col-12 col-lg col-menu', 'sticky-top') }}>
+        <div {{ region_attributes.first.addClass('layout_region', 'col-12', 'col-lg', 'col-menu') }}>
           {{ content.first }}
         </div>
       {% endif %}
 
       {% if content.second %}
-        <div {{ region_attributes.second.addClass('layout_region', 'col-12 col-lg col-content') }}>
+        <div {{ region_attributes.second.addClass('layout_region', 'col-12', 'col-lg', 'col-content') }}>
           {{ content.second }}
         </div>
       {% endif %}
