@@ -28,7 +28,7 @@
     padding-bottom: 108px;
   }
 
-  @media (--lg) {
+  @media (--md) {
     .block-field-blocknodebasic-pagefield-svg-title {
       position: inherit;
       padding-block: 80px;

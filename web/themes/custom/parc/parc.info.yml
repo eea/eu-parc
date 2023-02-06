@@ -6,7 +6,6 @@ base theme: edwt
 
 libraries-override:
   edwt/global-styling: parc/global-styling
-  edwt/js-latest: parc/js-latest
   edwt/theme-fonts: false
   edwt/nav: parc/nav
   edwt/navbar: parc/navbar
