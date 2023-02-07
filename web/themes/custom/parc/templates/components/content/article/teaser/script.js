@@ -3,8 +3,8 @@
  * Description.
 */
 
-(function ($, Drupal, once) {
-  Drupal.behaviors.general = {
+(function ($, Drupal) {
+  Drupal.behaviors.articleTeaser = {
     attach: function (context, settings) {
       $('.node--article--teaser .mini-content').on('show.bs.collapse', function () {
         $(this).parent().addClass('mini');
@@ -14,4 +14,4 @@
       });
     }
   };
-})(jQuery, Drupal, once);
+})(jQuery, Drupal);

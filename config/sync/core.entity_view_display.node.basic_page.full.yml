@@ -87,7 +87,7 @@ third_party_settings:
                   data: ''
                 block_content_attributes:
                   id: ''
-                  class: 'container text-center'
+                  class: 'container-fluid text-md-center'
                   style: ''
                   data: ''
         third_party_settings: {  }
