@@ -44,12 +44,18 @@
 
   Drupal.behaviors.mainNav = {
     attach: function (context, settings) {
-      $('#mainSidebar').on('show.bs.collapse', function () {
+      let mainSidebar = $('#mainSidebar', context);
+
+      mainSidebar.on('show.bs.collapse', function () {
         $('body').addClass('overlay-is-navbar-collapse');
       });
 
-      $('#mainSidebar').on('hide.bs.collapse', function () {
+      mainSidebar.on('hide.bs.collapse', function () {
         $('body').removeClass('overlay-is-navbar-collapse');
+      });
+
+      $('.nav-link.is-active[data-drupal-link-system-path="<front>"]', context).on('click', function(){
+        mainSidebar.collapse('hide');
       });
 
       var lastScrollTop = 0;
