@@ -21,13 +21,6 @@ global-styling:
     - core/jquery
     - core/jquery.once
 
-js-latest:
-  js:
-    https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js:
-      { type: external, minified: true }
-  dependencies:
-    - core/popperjs
-
 # Components.
 accordion:
   css:
@@ -160,7 +153,6 @@ n--article-teaser:
   dependencies:
     - core/drupal
     - core/jquery
-    - core/jquery.once
 
 n--article-full:
   css:
