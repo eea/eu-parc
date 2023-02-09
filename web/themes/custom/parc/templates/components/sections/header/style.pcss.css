@@ -103,7 +103,9 @@ header {
     position: absolute;
     top: 100%;
     inset-inline: 0px;
-    min-height: calc(90vh - var(--header-height) - var(--drupal-body-pt));
+    height: calc(
+      90vh - var(--header-height) - var(--drupal-body-pt)
+    ) !important;
     color: var(--c-white);
     display: flex;
     align-items: stretch;
