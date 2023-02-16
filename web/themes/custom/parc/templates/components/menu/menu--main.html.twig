@@ -30,7 +30,7 @@
 
           {%
           set classes_link = [
-            'nav-link',
+            item.url|render == '' ? 'text-muted' :'nav-link',
             'grow-1',
             item.is_expanded ? 'dropdown-toggle',
             item.is_collapsed ? 'dropdown-toggle',

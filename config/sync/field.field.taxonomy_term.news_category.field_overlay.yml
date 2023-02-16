@@ -1,0 +1,29 @@
+uuid: 00bff777-3754-4df8-8d10-71c0016a713e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_overlay
+    - media.type.vector
+    - taxonomy.vocabulary.news_category
+id: taxonomy_term.news_category.field_overlay
+field_name: field_overlay
+entity_type: taxonomy_term
+bundle: news_category
+label: Overlay
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

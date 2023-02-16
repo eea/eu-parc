@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a field.
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    'mb-lg-3',
+    'd-none',
+    'd-lg-block',
+  ]
+%}
+
+
+<div{{attributes.addClass(classes)}}>
+  {% for item in items %}
+    {{- item.content }}{{ not loop.last ? ', ' -}}
+  {% endfor %}
+</div>

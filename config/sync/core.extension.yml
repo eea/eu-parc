@@ -4,6 +4,7 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   automated_cron: 0
+  better_exposed_filters: 0
   big_pipe: 0
   block: 0
   block_class: 0
@@ -35,6 +36,10 @@ module:
   history: 0
   image: 0
   image_field_caption: 0
+  jquery_ui: 0
+  jquery_ui_datepicker: 0
+  jquery_ui_slider: 0
+  jquery_ui_touch_punch: 0
   layout_builder: 0
   layout_builder_admin_theme: 0
   layout_builder_component_attributes: 0
@@ -70,6 +75,8 @@ module:
   tour: 0
   update: 0
   user: 0
+  views_ajax_history: 0
+  views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
   extlink: 1

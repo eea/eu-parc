@@ -154,6 +154,11 @@ n--article-teaser:
     - core/drupal
     - core/jquery
 
+n--article-archive:
+  css:
+    component:
+      css/components/content/article/archive/style.css: {}
+
 n--article-full:
   css:
     component:
@@ -213,3 +218,15 @@ s--footer:
   css:
     component:
       css/components/sections/footer/style.css: {}
+
+# Other.
+f--views-exposed:
+  css:
+    component:
+      css/components/forms/views-exposed/style.css: {}
+  js:
+    templates/components/forms/views-exposed/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once

@@ -9,6 +9,7 @@ libraries-override:
   edwt/theme-fonts: false
   edwt/nav: parc/nav
   edwt/navbar: parc/navbar
+  edwt/forms: parc/forms
 
 stylesheets-remove:
   - "@classy/css/components/tabs.css"

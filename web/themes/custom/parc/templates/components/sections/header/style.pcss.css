@@ -61,6 +61,12 @@ header {
   }
 }
 
+.menu--main {
+  .text-muted {
+    display: none;
+  }
+}
+
 .overlay-is-navbar-collapse {
   --c-logo-circle: var(--c-white);
   overflow: hidden;
@@ -194,6 +200,19 @@ header {
   .nav-main {
     max-width: fit-content;
     position: relative;
+
+    span.nav-link {
+      font-size: 10px;
+      margin-bottom: 14px;
+      margin-top: 15px;
+      color: #999898;
+    }
+
+    .text-muted {
+      display: block;
+      text-transform: uppercase;
+      font-size: 10px;
+    }
 
     & > .nav-item {
       &:hover {

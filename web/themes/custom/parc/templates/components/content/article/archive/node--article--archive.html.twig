@@ -1,0 +1,64 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('edwt/collapse') }}
+{{ attach_library('parc/card') }}
+{{ attach_library('parc/n--article-archive') }}
+
+{% set color = node.field_tags.entity.field_color.value.0.color %}
+{% set termId = node.field_tags.entity.id %}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    'card',
+    'position-relative',
+    content.field_classes.0|render|clean_class,
+  ]
+%}
+
+{% set count = termOverlayTotal(termId) %}
+
+<article{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="card-img svg-news--effect">
+
+    {{ content.field_image }}
+    <div class="field field-media field--name-field-media-image-1 field--type-image field--label-visually_hidden">
+      {{ include(termOverlay(termId, random(count))) }}
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="meta d-flex justify-content-between fw-bold">
+      <div class="field-category text-uppercase">
+        {{- content.field_tags -}}
+      </div>
+
+      <div class="field-date">
+        {{- date -}}
+      </div>
+    </div>
+
+    <h4 class="card-title fw-bold" {{ color ? 'style=--news-c-title:' ~ color }}>
+      {{- label.0 -}}
+    </h4>
+
+    <a class="btn btn-clear btn-arrow me-auto stretched-link" href="{{ url }}">
+      {{- 'Read more'|t -}}
+    </a>
+  </div>
+
+  {{ content.field_scroller }}
+</article>
