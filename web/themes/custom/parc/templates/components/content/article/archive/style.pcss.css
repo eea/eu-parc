@@ -1,0 +1,138 @@
+.node--article--archive {
+  --card-spacer-y: 8px;
+  --card-spacer-x: 8px;
+  --h4-font-size: 20px;
+
+  &.card {
+    flex-direction: row;
+  }
+
+  & .card-img {
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    margin: 8px;
+    min-width: 28%;
+    max-width: 28%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    align-self: flex-start;
+
+    .img {
+      position: absolute;
+      inset: 0;
+      filter: grayscale(100%);
+      background-size: 110% 110%;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: all 200ms ease-in-out;
+    }
+
+    svg {
+      position: absolute;
+      inset: 0;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  & .card-body {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+
+  & .card-title {
+    letter-spacing: 0.011em;
+    color: var(--news-c-title, var(--red));
+  }
+
+  & .meta {
+    font-size: 12px;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .field-category {
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 4px;
+    position: relative;
+    z-index: 2;
+
+    & a {
+      --link-color: var(--red);
+      --link-h-color: var(--red);
+    }
+  }
+
+  & .field-date {
+    letter-spacing: 0.02em;
+  }
+
+  & .card-styled-border {
+    display: none;
+  }
+
+  &:hover {
+    & .card-img {
+      .img {
+        filter: grayscale(0%);
+        background-size: 100% 100%;
+      }
+    }
+  }
+
+  @media (--downMd) {
+    .btn-arrow {
+      margin-top: auto;
+      margin-bottom: 8px;
+    }
+
+    .article-content {
+      .field--name-body {
+        margin-bottom: 1rem;
+      }
+
+      .field--name-body,
+      blockquote {
+        font-size: 16px;
+      }
+    }
+  }
+
+  @media (--md) {
+    --h4-font-size: inherit;
+    --card-spacer-y: 0;
+    --card-spacer-x: 18px;
+
+    &.card {
+      flex-direction: column;
+    }
+
+    .card-title {
+      min-height: 154px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    & .card-img {
+      margin: 6px 6px 0;
+      min-width: calc(100% - 12px);
+      max-width: calc(100% - 12px);
+      aspect-ratio: 16 / 12;
+    }
+
+    & .card-styled-border {
+      display: block;
+    }
+
+    & .meta {
+      margin-bottom: 14px;
+    }
+  }
+}

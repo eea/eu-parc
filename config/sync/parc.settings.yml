@@ -7,7 +7,7 @@ logo:
   use_default: 1
 favicon:
   use_default: 1
-sg__container: container
+sg__container: container-fluid
 sg__status_message_type: alerts
 sr__clean_branding: 1
 sr__class_branding: ''

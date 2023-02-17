@@ -7,6 +7,7 @@
 
 use Drupal\node\Entity\Node;
 use Drupal\menu_link_content\MenuLinkContentInterface;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_preprocess_page().
@@ -48,4 +49,11 @@ function parc_core_preprocess_menu(&$variables) {
       }
     }
   }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function parc_core_views_pre_render(ViewExecutable $view) {
+  // dump($view->result);.
 }

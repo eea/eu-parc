@@ -309,3 +309,19 @@ main {
     }
   }
 }
+
+.svg-title {
+  padding-block: 24px;
+
+  svg {
+    max-width: 100%;
+    height: auto;
+    width: 320px;
+  }
+
+  @media (--md) {
+    padding-block: 80px;
+    display: flex;
+    justify-content: center;
+  }
+}
