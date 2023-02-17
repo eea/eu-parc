@@ -1,0 +1,22 @@
+_core:
+  default_config_hash: QUZHrnAKd4ixgLLVtD3JrrBMlwbmJ6VU-qKcOMDKatw
+buttons_size: 50
+additional_html: "<a class=\"a2a_button_facebook\">\r\n    <img src=\"https://static.addtoany.com/buttons/custom/facebook-icon-long-shadow.png\" border=\"0\" alt=\"Facebook\" width=\"27\" height=\"27\">\r\n</a>\r\n<a class=\"a2a_button_twitter\">\r\n    <img src=\"https://static.addtoany.com/buttons/custom/twitter-icon-long-shadow.png\" border=\"0\" alt=\"Twitter\" width=\"27\" height=\"27\">\r\n</a>\r\n<a class=\"a2a_dd\" href=\"https://www.addtoany.com/share\">\r\n    <img src=\"https://static.addtoany.com/buttons/custom/addtoany-icon-long-shadow.png\" border=\"0\" alt=\"Share\" width=\"27\" height=\"27\">\r\n</a>"
+additional_css: ''
+additional_js: ''
+universal_button: none
+custom_universal_button: ''
+universal_button_placement: before
+entities:
+  media: 0
+  node: 1
+  comment: 0
+  block_content: 0
+  contact_message: 0
+  file: 0
+  menu_link_content: 0
+  path_alias: 0
+  shortcut: 0
+  taxonomy_term: 0
+  user: 0
+  paragraph: 0
