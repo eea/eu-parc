@@ -87,7 +87,7 @@ ns__navbar_bg: '0'
 ns__navbar_out: '0'
 sr__clean_content_bottom: 0
 sr__class_content_bottom: bg-gray
-sr__container_content_bottom: container
+sr__container_content_bottom: container-fluid
 sr__container_position_content_bottom: after
 sr__extra_class_content_bottom: ''
 sg__status_message__type: alerts
