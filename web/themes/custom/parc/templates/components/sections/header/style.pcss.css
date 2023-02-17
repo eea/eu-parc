@@ -300,7 +300,7 @@ header {
       .nav-link {
         --navbar-nav-link-padding-x: 0;
         --nav-link-padding-y: 4px;
-        min-width: 120px;
+        min-width: 220px;
         font-size: 18px;
         line-height: 30px;
         font-weight: var(--base-font-weight);
