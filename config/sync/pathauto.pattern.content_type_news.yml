@@ -1,23 +1,22 @@
-uuid: bb6bfdfb-33f1-4717-8b6a-4ca4fd3cffe7
+uuid: 8bc0b1c9-984a-4baa-8609-58e2abaaed94
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: basic_pages
-label: 'Basic pages'
+id: content_type_news
+label: 'News content type'
 type: 'canonical_entities:node'
-pattern: '[node:title]'
+pattern: '/news/[node:title]'
 selection_criteria:
-  251d6eca-bb56-4afc-98a2-77ba99139f79:
+  b5bbf17d-f208-4d33-bfdd-0e1060fd8f12:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 251d6eca-bb56-4afc-98a2-77ba99139f79
+    uuid: b5bbf17d-f208-4d33-bfdd-0e1060fd8f12
     context_mapping:
       node: node
     bundles:
-      basic_page: basic_page
-      page: page
+      article: article
 selection_logic: and
 weight: -5
 relationships: {  }

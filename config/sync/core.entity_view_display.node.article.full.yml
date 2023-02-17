@@ -59,9 +59,9 @@ third_party_settings:
               label_display: '0'
               provider: system
               context_mapping: {  }
-              level: 2
+              level: 3
               depth: 1
-              expand_all_items: false
+              expand_all_items: true
             weight: 0
             additional: {  }
         third_party_settings: {  }
