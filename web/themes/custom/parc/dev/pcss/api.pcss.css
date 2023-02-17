@@ -941,7 +941,6 @@ div[class*="border-"] {
   color: rgba(var(--body-color-rgb), var(--text-opacity)) !important;
 }
 .text-muted {
-  --text-opacity: 1;
   color: var(--c-gray) !important;
 }
 .text-black-50 {

@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_overlay
-    - media.type.vector
+    - media.type.overlay
     - taxonomy.vocabulary.news_category
 id: taxonomy_term.news_category.field_overlay
 field_name: field_overlay
@@ -20,10 +20,10 @@ settings:
   handler: 'default:media'
   handler_settings:
     target_bundles:
-      vector: vector
+      overlay: overlay
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: overlay
 field_type: entity_reference
