@@ -1,6 +1,6 @@
 _core:
   default_config_hash: QUZHrnAKd4ixgLLVtD3JrrBMlwbmJ6VU-qKcOMDKatw
-buttons_size: 50
+buttons_size: 28
 additional_html: "<a class=\"a2a_button_facebook\">\r\n    <img src=\"https://static.addtoany.com/buttons/custom/facebook-icon-long-shadow.png\" border=\"0\" alt=\"Facebook\" width=\"27\" height=\"27\">\r\n</a>\r\n<a class=\"a2a_button_twitter\">\r\n    <img src=\"https://static.addtoany.com/buttons/custom/twitter-icon-long-shadow.png\" border=\"0\" alt=\"Twitter\" width=\"27\" height=\"27\">\r\n</a>\r\n<a class=\"a2a_dd\" href=\"https://www.addtoany.com/share\">\r\n    <img src=\"https://static.addtoany.com/buttons/custom/addtoany-icon-long-shadow.png\" border=\"0\" alt=\"Share\" width=\"27\" height=\"27\">\r\n</a>"
 additional_css: ''
 additional_js: ''

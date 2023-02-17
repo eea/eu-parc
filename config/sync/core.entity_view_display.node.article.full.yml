@@ -35,8 +35,12 @@ third_party_settings:
           layout_builder_styles_style:
             background_green: 0
             background_grey: 0
-            container: container
+            container: 0
+            container_fluid: 0
+            margin_bottom_5: 0
             no_paddings: 0
+            remove_horizontal_paddings: 0
+            remove_vertical_paddings: 0
         components:
           e1433005-1eb4-40f3-93a1-9fcda6e3a711:
             uuid: e1433005-1eb4-40f3-93a1-9fcda6e3a711
