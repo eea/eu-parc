@@ -212,11 +212,13 @@ header {
       display: block;
       text-transform: uppercase;
       font-size: 10px;
+      position: relative;
+      z-index: 1;
     }
 
-    & > .nav-item {
+    .nav-link-level-0 {
       &:hover {
-        .collapse {
+        .mm-collapse-0 {
           display: block;
         }
       }
@@ -224,16 +226,20 @@ header {
 
     .collapse {
       position: absolute;
+    }
+
+    .mm-collapse-0 {
       background-color: rgba(255, 255, 255, 0.95);
       padding-left: var(--navbar-nav-link-padding-x);
       /* border-top: 1px solid var(--border-color); */
       box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
       clip-path: inset(0 -100vmax);
       padding-bottom: 2rem;
+      min-height: 350px;
     }
 
-    .second-level {
-      min-height: 128px;
+    .mm-level-1 {
+      margin-top: 24px;
     }
   }
 }
@@ -288,12 +294,30 @@ header {
       --navbar-active-color: var(--c-dark);
     }
 
-    .second-level {
-      a {
-        padding: 6px 0;
+    .mm-level-1 {
+      position: relative;
+
+      .nav-link {
+        --navbar-nav-link-padding-x: 0;
+        --nav-link-padding-y: 4px;
+        min-width: 120px;
         font-size: 18px;
         line-height: 30px;
         font-weight: var(--base-font-weight);
+      }
+    }
+
+    .mm-collapse-1 {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      padding-bottom: 0;
+      display: none;
+    }
+
+    .nav-link-level-1:hover {
+      .mm-collapse-1 {
+        display: block;
       }
     }
 

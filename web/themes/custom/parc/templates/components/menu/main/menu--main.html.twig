@@ -23,7 +23,7 @@
 
       <ul{{attributes.addClass(classes)}}>
       {% else %}
-        <ul class="second-level list-unstyled">
+        <ul class="second-level mm-level-{{ menu_level }} list-unstyled">
         {% endif %}
         {% for item in items %}
           {% set linkID = item.title|clean_class %}
@@ -32,13 +32,14 @@
           set classes_link = [
             item.url|render == '' ? 'text-muted' :'nav-link',
             'grow-1',
+            'nav-link-level-' ~ menu_level,
             item.is_expanded ? 'dropdown-toggle',
             item.is_collapsed ? 'dropdown-toggle',
             item.in_active_trail ? 'active',
             menu_level == 0 and item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
           ]
         %}
-          <li{{item.attributes.addClass('nav-item')}}>
+          <li{{item.attributes.addClass('nav-item','nav-link-level-'~menu_level)}}>
             {% if item.is_expanded and menu_level == 0 %}
               <div class="d-flex justify-content-between">
                 {{ attach_library('parc/collapse') }}
@@ -54,7 +55,7 @@
             {% endif %}
 
             {% if item.below %}
-              <div class="collapse" id="collapseMainSecond-{{ linkID }}">
+              <div class="collapse mm-collapse-{{menu_level}}" id="collapseMainSecond-{{ linkID }}">
                 {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
               </div>
             {% endif %}

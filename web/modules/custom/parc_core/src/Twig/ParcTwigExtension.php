@@ -83,7 +83,7 @@ class ParcTwigExtension extends AbstractExtension {
       $svg = $term->get('field_overlay')->referencedEntities();
       if (isset($svg[$weight])) {
         $svg = $svg[$weight];
-        $overlay = $svg->get('field_media_image_1')->entity->createFileUrl();
+        $overlay = $svg->get('field_media_image_2')->entity->createFileUrl();
       }
     }
 

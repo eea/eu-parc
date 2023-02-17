@@ -27,11 +27,17 @@
       transition: all 200ms ease-in-out;
     }
 
-    svg {
+    .field-media {
       position: absolute;
       inset: 0;
-      max-width: 100%;
+    }
+
+    svg {
+      min-height: 100%;
+      width: auto;
+      min-width: 100%;
       height: auto;
+      display: block;
     }
   }
 
@@ -73,6 +79,11 @@
 
   & .card-styled-border {
     display: none;
+  }
+
+  .field--type-image {
+    position: relative;
+    z-index: 2;
   }
 
   &:hover {
