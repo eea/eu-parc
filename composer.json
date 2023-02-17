@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "drupal/addtoany": "^2.0",
         "drupal/admin_toolbar": "^3.3",
         "drupal/backup_migrate": "^5.0",
         "drupal/better_exposed_filters": "^6.0",
