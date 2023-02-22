@@ -1,6 +1,7 @@
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
 module:
+  address: 0
   addtoany: 0
   admin_toolbar: 0
   admin_toolbar_tools: 0
@@ -13,6 +14,7 @@ module:
   breakpoint: 0
   ckeditor: 0
   ckeditor5: 0
+  ckeditor_bs_grid: 0
   ckeditor_media_embed: 0
   ckeditor_templates: 0
   ckeditor_templates_ui: 0
@@ -24,6 +26,7 @@ module:
   contextual: 0
   ctools: 0
   datetime: 0
+  datetime_range: 0
   dblog: 0
   dynamic_page_cache: 0
   editor: 0

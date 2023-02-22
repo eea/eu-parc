@@ -1,0 +1,29 @@
+uuid: 424eb1fd-d580-4e83-a190-65a4a1f03a71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_categories
+    - node.type.events
+    - taxonomy.vocabulary.events_category
+id: node.events.field_categories
+field_name: field_categories
+entity_type: node
+bundle: events
+label: Categories
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      events_category: events_category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

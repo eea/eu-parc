@@ -1,0 +1,22 @@
+uuid: 98bd36e6-68f6-44d2-9c42-e06bdc2d46a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_colors
+    - taxonomy.vocabulary.events_category
+  module:
+    - color_field
+id: taxonomy_term.events_category.field_colors
+field_name: field_colors
+entity_type: taxonomy_term
+bundle: events_category
+label: Colors
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

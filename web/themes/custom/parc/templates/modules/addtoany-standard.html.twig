@@ -5,7 +5,6 @@
  */
 #}
 {% apply spaceless %}
-
 {% if button_setting != 'none' %}
   {% set universal_button %}
   <a class="a2a_dd addtoany_share" href="https://www.addtoany.com/share#url={{ link_url|url_encode }}&amp;title={{ link_title|url_encode }}">
@@ -31,6 +30,5 @@
       {{ universal_button }}
     {% endif %}
   </span>
-  <div>
-
-    {% endapply %}
+</div>
+{% endapply %}

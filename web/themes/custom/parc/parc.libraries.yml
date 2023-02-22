@@ -164,6 +164,21 @@ n--article-full:
     component:
       css/components/content/article/full/style.css: {}
 
+n--events-full:
+  css:
+    component:
+      css/components/content/events/vm-full/style.css: {}
+
+n--events-header:
+  css:
+    component:
+      css/components/content/events/vm-header/style.css: {}
+
+n--events-info:
+  css:
+    component:
+      css/components/content/events/vm-info/style.css: {}
+
 n--article-compact:
   css:
     component:

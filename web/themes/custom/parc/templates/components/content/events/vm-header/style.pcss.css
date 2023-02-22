@@ -1,0 +1,51 @@
+.section--events--header {
+  min-height: 365px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  padding: 10px 20px 20px;
+  color: var(--c-white);
+  background-color: var(--ne-c-cat);
+  font-weight: var(--fw-bold);
+
+  .section-bottom {
+    margin-top: auto;
+    font-size: 12px;
+    line-height: 1em;
+  }
+
+  .btn-calendar {
+    --link-color: var(--c-white);
+    --link-decoration: none;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-left: 4px;
+    }
+  }
+
+  .locality {
+    text-transform: uppercase;
+  }
+
+  .field--name-field-date {
+    font-weight: var(--fw-bold);
+    font-size: 54px;
+    margin-top: 10px;
+    line-height: 1em;
+  }
+
+  .se--year {
+    font-size: 16px;
+  }
+
+  @media (--lg) {
+    margin-right: calc(var(--col-w1) * 2);
+
+    .field--name-field-date {
+      font-size: 96px;
+      margin-top: 0;
+    }
+  }
+}

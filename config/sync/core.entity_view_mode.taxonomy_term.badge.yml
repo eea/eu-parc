@@ -1,0 +1,10 @@
+uuid: 5e6cf5a9-693c-483c-b0a2-ad3d40e2e15b
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.badge
+label: Badge
+targetEntityType: taxonomy_term
+cache: true

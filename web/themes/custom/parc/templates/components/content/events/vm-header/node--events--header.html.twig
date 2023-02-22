@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--events-header') }}
+
+{%
+  set classes = [
+    'section--' ~ node.bundle|clean_class,
+    view_mode ? 'section--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  ]
+%}
+
+<section{{attributes.addClass(classes)}}>
+  <div class="section-top d-flex justify-content-between">
+    {{- content.field_categories -}}
+
+    <div class="se--year">
+      {{- content.field_date.0.start_date['#markup']|date('U')|date('Y') -}}
+    </div>
+  </div>
+
+  {{ content.field_date }}
+
+  <div class="section-bottom d-flex justify-content-between">
+    {{- content.field_address.0.locality -}}
+    <a href="#" class="text-uppercase btn-calendar">
+      {{- 'Add to Calendar'|t -}}
+      <svg width="10" height="8" viewbox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.24414 0.75H7.44187C8.10608 0.75 8.76704 1.35919 8.76704 1.97138L8.76704 4.89154" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="0.75" y1="-0.75" x2="6.34712" y2="-0.75" transform="matrix(-0.8 0.6 -0.8 -0.6 5.67773 2.5752)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+</section>
