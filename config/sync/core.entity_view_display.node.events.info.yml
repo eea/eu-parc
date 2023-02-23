@@ -1,0 +1,70 @@
+uuid: ea89facc-8f33-45f9-87a8-c4c0b11dc1c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.info
+    - field.field.node.events.body
+    - field.field.node.events.field_address
+    - field.field.node.events.field_categories
+    - field.field.node.events.field_date
+    - field.field.node.events.field_time
+    - field.field.node.events.field_website
+    - node.type.events
+  module:
+    - address
+    - datetime_range
+    - layout_builder
+    - link
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.events.info
+targetEntityType: node
+bundle: events
+mode: info
+content:
+  field_address:
+    type: address_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_date:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      separator: '-'
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_time:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_website:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  addtoany: true
+  body: true
+  field_categories: true
+  links: true

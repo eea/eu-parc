@@ -285,14 +285,11 @@ main {
 
 @media (--lg) {
   .layout--twocol-section {
-    .field--name-body {
-      & > *:not(blockquote):not(div) {
-        margin-inline: 8.3333% 16.6666%;
-      }
+    align-items: stretch;
 
-      & > p:has(img) {
-        margin-inline: 0 !important;
-      }
+    .col-menu {
+      display: flex;
+      flex-direction: column;
     }
 
     .content-container {
@@ -424,4 +421,9 @@ main {
       height: auto;
     }
   }
+}
+
+.more-link {
+  text-align: center;
+  margin-top: 50px;
 }

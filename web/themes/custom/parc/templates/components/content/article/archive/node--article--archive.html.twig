@@ -33,7 +33,6 @@
   {{ title_suffix }}
 
   <div class="card-img svg-news--effect">
-
     {{ content.field_image }}
     <div class="field field-media field--name-field-media-image-1 field--type-image field--label-visually_hidden">
       {{ include(termOverlay(termId, random(count))) }}
@@ -55,7 +54,7 @@
       {{- label.0 -}}
     </h4>
 
-    <a class="btn btn-clear btn-arrow me-auto stretched-link" href="{{ url }}">
+    <a class="btn btn-clear btn-arrow me-auto" href="{{ url }}">
       {{- 'Read more'|t -}}
     </a>
   </div>

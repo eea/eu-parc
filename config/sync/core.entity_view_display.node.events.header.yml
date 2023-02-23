@@ -1,0 +1,59 @@
+uuid: cd13ce88-0733-414c-a28b-6df2528fef6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.header
+    - field.field.node.events.body
+    - field.field.node.events.field_address
+    - field.field.node.events.field_categories
+    - field.field.node.events.field_date
+    - field.field.node.events.field_time
+    - field.field.node.events.field_website
+    - node.type.events
+  module:
+    - address
+    - datetime_range
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.events.header
+targetEntityType: node
+bundle: events
+mode: header
+content:
+  field_address:
+    type: address_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_categories:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: badge
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_date:
+    type: daterange_custom
+    label: hidden
+    settings:
+      timezone_override: ''
+      date_format: d.m
+      separator: '-'
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  body: true
+  field_time: true
+  field_website: true
+  links: true

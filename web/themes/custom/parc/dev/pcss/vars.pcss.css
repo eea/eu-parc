@@ -54,15 +54,15 @@
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-bolder: bolder;
+  --fw-bold: 700;
+  --fw-bolder: 900;
 
   --c-gray-dark: #343a40;
   --c-gray-100: #fafafa;
   --c-gray-200: #f5f5f5;
   --c-gray-300: #e4e3e3;
   --c-gray-400: #ced4da;
-  --c-gray-500: #adb5bd;
+  --c-gray-500: #999898;
   --c-gray-600: #666666;
   --c-gray-700: #515151;
   --c-gray-800: #343a40;
