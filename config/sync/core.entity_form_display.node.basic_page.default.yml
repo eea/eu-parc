@@ -5,14 +5,17 @@ dependencies:
   config:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
+    - field.field.node.basic_page.field_metatags
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
+    - field.field.node.basic_page.field_seo_keyword
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - node.type.basic_page
   module:
     - field_group
     - media_library
+    - metatag
     - paragraphs
     - path
     - text
@@ -26,7 +29,7 @@ third_party_settings:
       label: 'Other content'
       region: content
       parent_name: ''
-      weight: 10
+      weight: 11
       format_type: details
       format_settings:
         classes: ''
@@ -41,7 +44,7 @@ third_party_settings:
       label: 'Other content Bottom (out  of content container)'
       region: content
       parent_name: ''
-      weight: 11
+      weight: 12
       format_type: details
       format_settings:
         classes: ''
@@ -77,6 +80,14 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_metatags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
     third_party_settings: {  }
   field_paragraphs:
     type: paragraphs
@@ -114,6 +125,16 @@ content:
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
     third_party_settings: {  }
+  field_seo_keyword:
+    type: entity_reference_autocomplete
+    weight: 13
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_svg_title:
     type: media_library_widget
     weight: 9
@@ -143,6 +164,16 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap_index_now:
+    weight: 14
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox

@@ -7,6 +7,8 @@ dependencies:
     - field.field.node.events.field_address
     - field.field.node.events.field_categories
     - field.field.node.events.field_date
+    - field.field.node.events.field_metatags
+    - field.field.node.events.field_seo_keyword
     - field.field.node.events.field_time
     - field.field.node.events.field_website
     - node.type.events
@@ -14,6 +16,7 @@ dependencies:
     - address
     - datetime_range
     - link
+    - metatag
     - path
     - text
 id: node.events.default
@@ -59,6 +62,24 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_metatags:
+    type: metatag_firehose
+    weight: 132
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
+    third_party_settings: {  }
+  field_seo_keyword:
+    type: entity_reference_autocomplete
+    weight: 131
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_time:
     type: string_textfield
     weight: 127
@@ -87,6 +108,16 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap_index_now:
+    weight: 130
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox

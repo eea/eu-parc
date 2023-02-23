@@ -4,11 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_metatags
+    - field.field.node.page.field_seo_keyword
     - field.field.node.page.layout_builder__layout
     - node.type.page
   module:
     - layout_builder
     - layout_discovery
+    - metatag
     - text
     - user
 third_party_settings:
@@ -46,6 +49,37 @@ third_party_settings:
                 entity: layout_builder.entity
             weight: 1
             additional: {  }
+          5a6be183-e0aa-4291-9f92-5330298d1bd0:
+            uuid: 5a6be183-e0aa-4291-9f92-5330298d1bd0
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_seo_keyword'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          b3ff1fd8-afc8-4a59-a6c5-1d08add01505:
+            uuid: b3ff1fd8-afc8-4a59-a6c5-1d08add01505
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_metatags'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: metatag_empty_formatter
+                label: above
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
         third_party_settings: {  }
 _core:
   default_config_hash: M_Y8L5tfmhx7DR143E05YyZSpvgil6VFvqcfBWykalg
@@ -60,6 +94,21 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 100
+    region: content
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_seo_keyword:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
     region: content
   links:
     settings: {  }

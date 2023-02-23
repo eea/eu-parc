@@ -8,7 +8,9 @@ dependencies:
     - field.field.node.article.comment
     - field.field.node.article.field_image
     - field.field.node.article.field_label_color
+    - field.field.node.article.field_metatags
     - field.field.node.article.field_scroller
+    - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
@@ -55,8 +57,11 @@ content:
     weight: 1
     region: content
 hidden:
+  addtoany: true
   comment: true
   field_label_color: true
+  field_metatags: true
   field_scroller: true
+  field_seo_keyword: true
   field_svg_hover: true
   links: true
