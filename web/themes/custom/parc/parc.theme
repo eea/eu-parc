@@ -116,6 +116,9 @@ function parc_preprocess_paragraph(&$variables) {
  */
 function parc_theme($existing, $type, $theme, $path) {
   return [
+    'views_exposed_form__content_events__page_events' => [
+      'render element' => 'form',
+    ],
     'views_exposed_form__news_events__page_news' => [
       'render element' => 'form',
     ],

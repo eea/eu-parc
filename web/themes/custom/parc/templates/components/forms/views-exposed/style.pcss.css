@@ -42,6 +42,7 @@
 
   .bef-checkboxes {
     & > .form-item {
+      display: flex;
       padding-block: 4px;
     }
   }

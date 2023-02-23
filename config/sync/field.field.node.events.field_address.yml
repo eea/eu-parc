@@ -28,6 +28,6 @@ settings:
     familyName:
       override: hidden
     organization:
-      override: hidden
+      override: optional
   fields: {  }
 field_type: address
