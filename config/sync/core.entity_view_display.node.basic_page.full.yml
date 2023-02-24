@@ -6,8 +6,10 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
+    - field.field.node.basic_page.field_metatags
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
+    - field.field.node.basic_page.field_seo_keyword
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - node.type.basic_page
@@ -241,8 +243,11 @@ content:
     weight: 2
     region: content
 hidden:
+  addtoany: true
+  field_metatags: true
   field_paragraphs: true
   field_paragraphs_in: true
+  field_seo_keyword: true
   field_views_reference: true
   layout_builder__layout: true
   links: true

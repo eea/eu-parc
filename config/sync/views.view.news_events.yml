@@ -810,6 +810,14 @@ display:
       display_extenders:
         ajax_history:
           enable_history: true
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
       path: news
       menu:
         type: normal
