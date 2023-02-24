@@ -7,6 +7,7 @@
 
 use Drupal\node\Entity\Node;
 use Drupal\menu_link_content\MenuLinkContentInterface;
+use Drupal\parc_core\ParcCoreViews;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -55,5 +56,7 @@ function parc_core_preprocess_menu(&$variables) {
  * Implements hook_views_pre_render().
  */
 function parc_core_views_pre_render(ViewExecutable $view) {
-  // dump($view->result);.
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(ParcCoreViews::class)
+    ->viewsPreRender($view);
 }
