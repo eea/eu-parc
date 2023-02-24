@@ -1,0 +1,119 @@
+<?php
+
+namespace Drupal\parc_core;
+
+use Drupal\path_alias\AliasManager;
+use Drupal\Core\Path\CurrentPathStack;
+use Drupal\Core\Routing\CurrentRouteMatch;
+use Drupal\Core\Session\AccountProxyInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Theme\ThemeManagerInterface;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Defines a class for reacting to preprocess Views.
+ *
+ * @internal
+ */
+class ParcCoreViews implements ContainerInjectionInterface {
+
+  use StringTranslationTrait;
+
+  /**
+   * The Entity Type Manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The Theme Manager service.
+   *
+   * @var \Drupal\Core\Theme\ThemeManagerInterface
+   */
+  protected $themeManager;
+
+  /**
+   * Constructs a new ParcCoreViews object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   Entity type manager service.
+   * @param \Drupal\Core\Theme\ThemeManagerInterface $theme_manager
+   *   Theme manager.
+   */
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager,
+    ThemeManagerInterface $theme_manager
+  ) {
+    $this->entityTypeManager = $entity_type_manager;
+    $this->themeManager = $theme_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager'),
+      $container->get('theme.manager')
+    );
+  }
+
+  /**
+   * Views Pre render.
+   *
+   * @see hook_views_pre_render()
+   */
+  public function viewsPreRender(ViewExecutable &$view) {
+    // Get overlays in the desired order.
+    if ($view->id() === 'news_events' && $view->current_display === 'page_news') {
+      // Default overlay if none is defined.
+      $defaultOverlay = '/' . $this->themeManager->getActiveTheme()->getPath();
+      $defaultOverlay .= '/img/ovelay-default.svg';
+
+      $terms =$this->entityTypeManager->getStorage('taxonomy_term')
+        ->loadTree('news_category', 0, NULL, TRUE);
+
+      // Get the overlays data.
+      $overlays = [];
+      foreach ($terms as $term) {
+        $overlays[$term->id()]['current'] = 0;
+        if (
+          $term->hasField('field_overlay') &&
+          !$term->get('field_overlay')->isEmpty()
+        ) {
+          $svgs = $term->get('field_overlay')->referencedEntities();
+          foreach ($svgs as $key => $svg) {
+            $overlays[$term->id()]['overlays'][$key] = $svg->get(
+              'field_media_image_2'
+            )->entity->createFileUrl();
+          }
+        }
+        $overlays[$term->id()]['max'] = count(
+          $overlays[$term->id()]['overlays']
+        ) - 1;
+      }
+
+      foreach ($view->result as &$result) {
+        $termId = $result->_entity->get('field_tags')->entity->id();
+        // Get the overlay value for the current content.
+        if ($overlays[$termId]['current'] > $overlays[$termId]['max']) {
+          $overlay = 0;
+          $overlays[$termId]['current'] = 1;
+        }
+        else {
+          $overlay = $overlays[$termId]['current']++;
+        }
+
+        // Assing the overlay value.
+        $result->_entity->overlay = isset($overlays[$termId]['overlays'][$overlay]) ?
+          $overlays[$termId]['overlays'][$overlay] :
+          $defaultOverlay;
+      }
+    }
+  }
+
+}
