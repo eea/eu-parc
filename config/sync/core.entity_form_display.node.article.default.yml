@@ -7,7 +7,9 @@ dependencies:
     - field.field.node.article.comment
     - field.field.node.article.field_image
     - field.field.node.article.field_label_color
+    - field.field.node.article.field_metatags
     - field.field.node.article.field_scroller
+    - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - image.style.thumbnail
@@ -15,6 +17,7 @@ dependencies:
   module:
     - color_field
     - media_library
+    - metatag
     - path
     - svg_image
     - text
@@ -56,12 +59,30 @@ content:
     settings:
       default_colors: '#008475,#e45c4d,#6e009a,#31d9c4'
     third_party_settings: {  }
+  field_metatags:
+    type: metatag_firehose
+    weight: 26
+    region: content
+    settings:
+      sidebar: true
+      use_details: true
+    third_party_settings: {  }
   field_scroller:
     type: media_library_widget
     weight: 12
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_seo_keyword:
+    type: entity_reference_autocomplete
+    weight: 14
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_svg_hover:
     type: media_library_widget
@@ -92,6 +113,16 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  simple_sitemap:
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  simple_sitemap_index_now:
+    weight: 15
+    region: content
+    settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox

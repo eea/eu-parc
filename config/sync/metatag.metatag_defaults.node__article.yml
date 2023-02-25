@@ -1,0 +1,12 @@
+uuid: bdd1db99-5574-4411-99cd-1e14dfbdc7bc
+langcode: en
+status: true
+dependencies: {  }
+id: node__article
+label: 'Content: News'
+tags:
+  description: '[node:summary]'
+  keywords: '[node:field_seo_keyword]'
+  news_keywords: '[node:field_seo_keyword]'
+  robots: 'index, follow'
+  title: '[node:title] | [site:name]'
