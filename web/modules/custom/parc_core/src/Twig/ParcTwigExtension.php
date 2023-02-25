@@ -61,6 +61,9 @@ class ParcTwigExtension extends AbstractExtension {
     if ($term && $term->hasField('field_color') && !$term->get('field_color')->isEmpty()) {
       $color = $term->get('field_color')->getValue();
     }
+    elseif ($term && $term->hasField('field_colors') && !$term->get('field_colors')->isEmpty()) {
+      $color = $term->get('field_colors')->getValue();
+    }
 
     return isset($color[0]['color']) ? $color[0]['color'] : '#000000';
   }

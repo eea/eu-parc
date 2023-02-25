@@ -169,6 +169,11 @@ n--events-full:
     component:
       css/components/content/events/vm-full/style.css: {}
 
+n--events-teaser:
+  css:
+    component:
+      css/components/content/events/vm-teaser/style.css: {}
+
 n--events-header:
   css:
     component:

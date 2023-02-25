@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.events.field_website
     - node.type.events
   module:
+    - address
     - datetime_range
     - user
 id: node.events.teaser
@@ -21,15 +22,38 @@ targetEntityType: node
 bundle: events
 mode: teaser
 content:
+  field_address:
+    type: address_default
+    label: hidden
+    settings: {}
+    third_party_settings: {}
+    weight: 1
+    region: content
+  field_categories:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {}
+    weight: 2
+    region: content
   field_date:
     type: daterange_default
     label: hidden
     settings:
-      timezone_override: ''
+      timezone_override: ""
       format_type: medium
-      separator: '-'
-    third_party_settings: {  }
+      separator: "-"
+    third_party_settings: {}
     weight: 0
+    region: content
+  field_time:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+    weight: 3
     region: content
 hidden:
   addtoany: true

@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a field.
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    'field--' ~ field_name|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {%- for item in items -%}
+    {% if item.content.end_date %}
+      {% set date_start = item.content.start_date['#text']|split('.') %}
+      {% set date_end = item.content.end_date['#text']|split('.') %}
+      {% set delimiter = item.content.separator['#plain_text'] %}
+
+      {% if date_start.2 != date_end.2 %}
+        {{- item.content -}}
+      {% elseif date_start.1 != date_end.1 %}
+        {{ date_start.0 }}
+        {{ date_start.1 }}
+        {{ delimiter }}
+        {{ date_end.0 }}
+        {{ date_end.1 }}
+        {{ date_start.2 }}
+      {% elseif date_start.0 != date_end.0 %}
+        {{ date_start.0 }}
+        {{ delimiter }}
+        {{ date_end.0 }}
+        {{ date_start.1 }}
+        {{ date_start.2 }}
+      {% endif %}
+    {% else %}
+      {{- item.content -}}
+    {% endif %}
+  {%- endfor -%}
+</div>

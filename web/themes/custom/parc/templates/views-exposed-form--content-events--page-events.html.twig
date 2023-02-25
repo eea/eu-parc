@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a 'form' element.
+ */
+#}
+
+<div class="row align-items-center">
+  <div class="col-auto">
+    {{ form.field_categories_target_id_collapsible }}
+  </div>
+
+  <div class="col-auto me-auto">
+    <div id="js-selected-categories" class="w--labels d-flex gap-2"></div>
+  </div>
+
+  <div class="col-auto">
+    <div class="d-none">
+      {{ form.sort_bef_combine }}
+    </div>
+    <button id="js-order-btn" class="btn btn-link btn-date-order" type="button">
+      {{- "DATE"|t -}}
+    </button>
+  </div>
+</div>
+{{ form|without('sort_bef_combine', 'field_categories_target_id_collapsible') }}
