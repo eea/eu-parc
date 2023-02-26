@@ -58,10 +58,7 @@ content:
 hidden:
   addtoany: true
   body: true
-  field_address: true
-  field_categories: true
   field_metatags: true
   field_seo_keyword: true
-  field_time: true
   field_website: true
   links: true

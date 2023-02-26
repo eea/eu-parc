@@ -497,6 +497,12 @@ div[class*="border-"] {
 .order-last {
   order: 6 !important;
 }
+.mb-parc {
+  margin-bottom: 80px;
+}
+.mt-parc {
+  margin-top: 80px;
+}
 
 .m-0 {
   margin: 0 0 !important;

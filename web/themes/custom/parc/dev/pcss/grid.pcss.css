@@ -951,5 +951,4 @@
     auto-fill,
     minmax(var(--grid-auto-fill-minw), 1fr)
   );
-  grid-template-rows: repeat(2, minmax(150px, min-content));
 }

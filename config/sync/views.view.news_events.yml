@@ -464,8 +464,10 @@ display:
         arguments: false
         filters: false
         filter_groups: false
+        header: false
       relationships: {  }
       display_description: ''
+      header: {  }
       display_extenders:
         ajax_history: {  }
     cache_metadata:
