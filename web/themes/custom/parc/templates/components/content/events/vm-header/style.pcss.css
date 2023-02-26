@@ -29,7 +29,7 @@
     text-transform: uppercase;
   }
 
-  .field--name-field-date {
+  .field-date {
     font-weight: var(--fw-bold);
     font-size: 54px;
     margin-top: 10px;

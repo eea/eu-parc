@@ -308,18 +308,24 @@ main {
 }
 
 .svg-title {
-  padding-block: 24px;
+  margin-block: 24px;
+  display: grid;
 
   svg {
     max-width: 100%;
+    max-height: 36px;
     height: auto;
-    width: 320px;
+    width: auto;
   }
 
   @media (--md) {
-    padding-block: 80px;
-    display: flex;
+    margin-block: 80px;
     justify-content: center;
+    max-height: inherit;
+
+    svg {
+      max-height: inherit;
+    }
   }
 }
 
