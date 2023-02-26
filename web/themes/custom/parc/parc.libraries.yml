@@ -139,7 +139,6 @@ tooltip:
       css/components/tooltip.css: {}
 
 # Node.
-
 n--vm-teaser:
   css:
     component:
@@ -256,3 +255,8 @@ f--views-exposed:
     - core/drupal
     - core/jquery
     - core/jquery.once
+
+o--share:
+  css:
+    component:
+      css/other/share.css: {}
