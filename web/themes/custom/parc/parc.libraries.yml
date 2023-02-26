@@ -139,6 +139,12 @@ tooltip:
       css/components/tooltip.css: {}
 
 # Node.
+
+n--vm-teaser:
+  css:
+    component:
+      css/components/content/vm/teaser.css: {}
+
 n--page-full:
   css:
     component:

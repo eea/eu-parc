@@ -114,4 +114,13 @@
   --blockquote-line: 1.6em;
 
   --col-w1: 8.3333%;
+  --gutter: 1rem;
+}
+
+body {
+  --grid-auto-fill-minw: 188px;
+
+  @media (--md) {
+    --grid-auto-fill-minw: 308px;
+  }
 }

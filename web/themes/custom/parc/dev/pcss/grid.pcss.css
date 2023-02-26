@@ -946,10 +946,10 @@
 
 .grid--auto-fill {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-}
-
-.grid--auto-fit {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--gutter);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--grid-auto-fill-minw), 1fr)
+  );
+  grid-template-rows: repeat(2, minmax(150px, min-content));
 }

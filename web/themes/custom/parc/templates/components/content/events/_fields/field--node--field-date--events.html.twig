@@ -8,11 +8,17 @@
 {%
   set classes = [
     'field',
-    'field--' ~ field_name|clean_class,
+    field_name|clean_class,
   ]
 %}
 
 <div{{attributes.addClass(classes)}}>
+  {% if not label_hidden %}
+    <div{{title_attributes.addClass(title_classes,'f-label')}}>
+      {{- label -}}
+    </div>
+  {% endif %}
+
   {%- for item in items -%}
     {% if item.content.end_date %}
       {% set date_start = item.content.start_date['#text']|split('.') %}
@@ -22,18 +28,14 @@
       {% if date_start.2 != date_end.2 %}
         {{- item.content -}}
       {% elseif date_start.1 != date_end.1 %}
-        {{ date_start.0 }}
-        {{ date_start.1 }}
+        {{ date_start.0 }}.{{ date_start.1 }}
         {{ delimiter }}
         {{ date_end.0 }}
-        {{ date_end.1 }}
-        {{ date_start.2 }}
+        {{ date_end.1 }}.{{ date_start.2 }}
       {% elseif date_start.0 != date_end.0 %}
         {{ date_start.0 }}
         {{ delimiter }}
-        {{ date_end.0 }}
-        {{ date_start.1 }}
-        {{ date_start.2 }}
+        {{ date_end.0 }}.{{ date_start.1 }}.{{ date_start.2 }}
       {% endif %}
     {% else %}
       {{- item.content -}}

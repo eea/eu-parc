@@ -5,53 +5,45 @@
  */
 #}
 
-{{ attach_library('parc/card') }}
-{{ attach_library('parc/n--events-teaser') }}
+{% extends "node--teaser.html.twig" %}
 
-{% set color = node.field_categories.entity.field_colors.value.0.color %}
+{% block article %}
 
-{%
-  set classes = [
-    'node',
-    'node--' ~ node.bundle|clean_class,
-    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    'card',
-    'position-relative',
-  ]
-%}
+  {{ attach_library('parc/n--events-teaser') }}
+  {% set color = node.field_categories.entity.field_colors.value.0.color %}
 
-<article{{attributes.addClass(classes).setAttribute('style','--ne-c-cat:'~color~';')}}>
-  <div class="card-img">
-    {{- content.field_date -}}
-    {{- content.field_address -}}
-  </div>
-
-  <div class="card-body">
-    <div class="meta d-flex justify-content-between fw-bold">
-      {{- content|without('field_date', 'field_address') -}}
+  <article{{attributes.addClass(classes).setAttribute('style','--ne-c-cat:'~color~';')}}>
+    <div class="card-img">
+      <div class="w--bg">
+        {{- content.field_date -}}
+        {{- content.field_address -}}
+      </div>
     </div>
 
-    <h2{{title_attributes.addClass('card-title','fw-bold')}}>
-      {{- label -}}
-    </h2>
+    <div class="card-body">
+      <div class="meta d-flex justify-content-between fw-bold">
+        {{- content|without('field_date', 'field_address') -}}
+      </div>
 
-    <a class="btn btn-clear btn-arrow me-auto stretched-link" href="{{ url }}">
-      {{- 'Read more'|t -}}
-    </a>
-  </div>
+      <h2{{title_attributes.addClass('card-title','fw-bold')}}>
+        {{- label -}}
+      </h2>
 
-  <div class="card-styled-border">
-    <svg xmlns="http://www.w3.org/2000/svg" width="427" height="30" viewbox="0 0 427 30" fill="none">
-      <g style="mix-blend-mode:multiply">
-        <path class="line1" d="M227 15L289 15" stroke="#B0E6DF" stroke-width="16" stroke-linecap="round" style="stroke-dashoffset: 44.78308830245802"></path>
-      </g>
-      <g style="mix-blend-mode:multiply">
-        <path class="line1" d="M28 15L90 15" stroke="#E0C7F5" stroke-width="16" stroke-linecap="round" style="stroke-dashoffset: -22.767902514127407"></path>
-      </g>
-      <circle cx="289" cy="14.5" r="7" fill="black"></circle>
-    </svg>
-  </div>
-</article>
+      <a class="btn btn-clear btn-arrow me-auto stretched-link" href="{{ url }}">
+        {{- 'Read more'|t -}}
+      </a>
+    </div>
+
+    <div class="card-styled-border">
+      <svg xmlns="http://www.w3.org/2000/svg" width="427" height="30" viewbox="0 0 427 30" fill="none">
+        <g style="mix-blend-mode:multiply">
+          <path class="line1" d="M227 15L289 15" stroke="#B0E6DF" stroke-width="16" stroke-linecap="round" style="stroke-dashoffset: 44.78308830245802"></path>
+        </g>
+        <g style="mix-blend-mode:multiply">
+          <path class="line1" d="M28 15L90 15" stroke="#E0C7F5" stroke-width="16" stroke-linecap="round" style="stroke-dashoffset: -22.767902514127407"></path>
+        </g>
+        <circle cx="289" cy="14.5" r="7" fill="black"></circle>
+      </svg>
+    </div>
+  </article>
+{% endblock article %}
