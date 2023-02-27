@@ -27,4 +27,12 @@
       });
     }
   };
+
+  Drupal.behaviors.detailsMouse = {
+    attach: function (context) {
+      $('details', context).on('mouseleave', function(e) {
+        e.currentTarget.open=false;
+      });
+    }
+  };
 })(jQuery, Drupal, once);

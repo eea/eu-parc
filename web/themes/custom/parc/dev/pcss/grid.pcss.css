@@ -951,4 +951,23 @@
     auto-fill,
     minmax(var(--grid-auto-fill-minw), 1fr)
   );
+
+  @media (--xl) {
+    grid-template-columns: repeat(4, minmax(var(--grid-auto-fill-minw), 1fr));
+  }
+}
+
+.grid--auto-fill.gaf--news {
+  grid-template-columns: 1fr;
+
+  @media (--md) {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--grid-auto-fill-minw), 1fr)
+    );
+  }
+
+  @media (--xl) {
+    grid-template-columns: repeat(4, minmax(var(--grid-auto-fill-minw), 1fr));
+  }
 }

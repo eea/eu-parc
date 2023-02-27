@@ -3,6 +3,8 @@
   --card-spacer-x: 8px;
   --h4-font-size: 20px;
 
+  min-height: 100%;
+
   &.card {
     flex-direction: row;
   }
@@ -11,17 +13,17 @@
     overflow: hidden;
     border-radius: var(--border-radius);
     margin: 8px;
-    min-width: 28%;
-    max-width: 28%;
+    min-width: 108px;
+    max-width: 108px;
     aspect-ratio: 1 / 1;
     position: relative;
     align-self: flex-start;
 
     .img {
       position: absolute;
-      inset: 0;
+      inset: -10%;
       filter: grayscale(100%);
-      background-size: 110% 110%;
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       transition: all 200ms ease-in-out;
@@ -50,6 +52,7 @@
   & .card-title {
     letter-spacing: 0.011em;
     color: var(--news-c-title, var(--red));
+    flex-grow: 1;
   }
 
   & .meta {
@@ -91,7 +94,7 @@
     & .card-img {
       .img {
         filter: grayscale(0%);
-        background-size: 100% 100%;
+        inset: 0;
       }
     }
   }
@@ -124,11 +127,6 @@
     }
 
     .card-title {
-      min-height: 154px;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
       margin-bottom: 32px;
     }
 

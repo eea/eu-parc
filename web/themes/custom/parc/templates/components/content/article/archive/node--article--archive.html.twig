@@ -29,16 +29,18 @@
   {{ title_prefix }}
   {{ title_suffix }}
 
-  <div class="card-img svg-news--effect">
-    {{ content.field_image }}
-    <div
-      class="field field-media field--name-field-media-image-1 field--type-image field--label-visually_hidden">
-      {# Render Overlay, see parc_core_views_pre_render #}
-      {{ include(node.overlay) }}
+  <a class="" href="{{ url }}">
+    <div class="card-img svg-news--effect">
+      {{ content.field_image }}
+      <div
+        class="field field-media field--name-field-media-image-1 field--type-image field--label-visually_hidden">
+        {# Render Overlay, see parc_core_views_pre_render #}
+        {{ include(node.overlay) }}
+      </div>
     </div>
-  </div>
+  </a>
 
-  <div class="card-body">
+  <div class="card-body position-relative">
     <div class="meta d-flex justify-content-between fw-bold">
       <div class="field-category text-uppercase">
         {{- content.field_tags -}}
@@ -53,7 +55,7 @@
       {{- label.0 -}}
     </h4>
 
-    <a class="btn btn-clear btn-arrow me-auto" href="{{ url }}">
+    <a class="btn btn-clear btn-arrow me-auto stretched-link" href="{{ url }}">
       {{- 'Read more'|t -}}
     </a>
   </div>
