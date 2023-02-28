@@ -105,20 +105,26 @@ class ParcCoreViews implements ContainerInjectionInterface {
       }
 
       foreach ($view->result as &$result) {
-        $termId = $result->_entity->get('field_tags')->entity->id();
-        // Get the overlay value for the current content.
-        if ($overlays[$termId]['current'] > $overlays[$termId]['max']) {
-          $overlay = 0;
-          $overlays[$termId]['current'] = 1;
+        if ($result->_entity->hasField('field_tags') && !$result->_entity->get('field_tags')->isEmpty()) {
+          $termId = $result->_entity->get('field_tags')->entity->id();
+
+          // Get the overlay value for the current content.
+          if ($overlays[$termId]['current'] > $overlays[$termId]['max']) {
+            $overlay = 0;
+            $overlays[$termId]['current'] = 1;
+          }
+          else {
+            $overlay = $overlays[$termId]['current']++;
+          }
+
+          // Assing the overlay value.
+          $result->_entity->overlay = isset($overlays[$termId]['overlays'][$overlay]) ?
+            $overlays[$termId]['overlays'][$overlay] :
+            $defaultOverlay;
         }
         else {
-          $overlay = $overlays[$termId]['current']++;
+          $result->_entity->overlay = $defaultOverlay;
         }
-
-        // Assing the overlay value.
-        $result->_entity->overlay = isset($overlays[$termId]['overlays'][$overlay]) ?
-          $overlays[$termId]['overlays'][$overlay] :
-          $defaultOverlay;
       }
     }
   }
