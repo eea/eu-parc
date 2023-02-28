@@ -6,6 +6,10 @@
       max-width: 100%;
       height: auto;
     }
+
+    @media (--lg) {
+      text-align: center;
+    }
   }
 
   .svg-footer {

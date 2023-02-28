@@ -119,7 +119,7 @@
 
   @media (--md) {
     --h4-font-size: inherit;
-    --card-spacer-y: 0;
+    --card-spacer-y: 18px;
     --card-spacer-x: 18px;
 
     &.card {
