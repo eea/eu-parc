@@ -92,9 +92,16 @@ class ParcCoreViews implements ContainerInjectionInterface {
             )->entity->createFileUrl();
           }
         }
-        $overlays[$term->id()]['max'] = count(
-          $overlays[$term->id()]['overlays']
-        ) - 1;
+
+        // Set max values.
+        if (isset($overlays[$term->id()]['overlays'])) {
+          $overlays[$term->id()]['max'] = count(
+            $overlays[$term->id()]['overlays']
+          ) - 1;
+        }
+        else {
+          $overlays[$term->id()]['max'] = 0;
+        }
       }
 
       foreach ($view->result as &$result) {
