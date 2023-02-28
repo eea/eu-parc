@@ -1,7 +1,6 @@
 {#
 /**
  * @file
- * Parc override to display a taxonomy term.
  */
 #}
 
@@ -13,8 +12,6 @@
   {% set path = 'view.news_events.page_news' %}
 {% endif %}
 
-<div{{attributes}}>
-  <a class="btn btn-badge" href={{ path(path) ~ par }}>
-    {{- name.0 -}}
-  </a>
-</div>
+<a href={{ path(path) ~ par }}>
+  {{- name -}}
+</a>

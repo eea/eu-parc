@@ -1,9 +1,9 @@
-uuid: 026670d5-b2f2-4fe0-8b47-1f1cff9d9b0c
+uuid: 5a286c65-bfb7-4aa0-abe2-aa2b70dbd759
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.taxonomy_term.badge
+    - core.entity_view_mode.taxonomy_term.views_link
     - field.field.taxonomy_term.events_category.field_colors
     - taxonomy.vocabulary.events_category
   module:
@@ -12,10 +12,10 @@ third_party_settings:
   layout_builder:
     enabled: false
     allow_custom: false
-id: taxonomy_term.events_category.badge
+id: taxonomy_term.events_category.views_link
 targetEntityType: taxonomy_term
 bundle: events_category
-mode: badge
+mode: views_link
 content: {  }
 hidden:
   description: true

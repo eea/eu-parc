@@ -1,15 +1,22 @@
-uuid: b78b8c49-39e6-4b2b-8751-89f5ad44ab3d
+uuid: 20e6eebb-464a-4f1d-9aca-03c4fdd026ad
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.taxonomy_term.views_link
     - field.field.taxonomy_term.news_category.field_color
     - field.field.taxonomy_term.news_category.field_overlay
     - taxonomy.vocabulary.news_category
-id: taxonomy_term.news_category.default
+  module:
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.news_category.views_link
 targetEntityType: taxonomy_term
 bundle: news_category
-mode: default
+mode: views_link
 content: {  }
 hidden:
   description: true

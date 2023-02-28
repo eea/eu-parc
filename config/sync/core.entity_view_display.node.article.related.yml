@@ -56,10 +56,11 @@ content:
     weight: 4
     region: content
   field_tags:
-    type: entity_reference_label
+    type: entity_reference_entity_view
     label: hidden
     settings:
-      link: true
+      view_mode: views_link
+      link: false
     third_party_settings: {  }
     weight: 1
     region: content

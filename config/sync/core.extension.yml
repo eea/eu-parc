@@ -6,6 +6,7 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   automated_cron: 0
+  backup_migrate: 0
   better_exposed_filters: 0
   big_pipe: 0
   block: 0
@@ -67,6 +68,7 @@ module:
   parc_core: 0
   path: 0
   path_alias: 0
+  rabbit_hole: 0
   search: 0
   shortcut: 0
   simple_sitemap: 0
