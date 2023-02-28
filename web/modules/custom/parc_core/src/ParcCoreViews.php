@@ -100,7 +100,7 @@ class ParcCoreViews implements ContainerInjectionInterface {
           ) - 1;
         }
         else {
-          $overlays[$term->id()]['max'] =0;
+          $overlays[$term->id()]['max'] = 0;
         }
       }
 
