@@ -33,7 +33,9 @@
     <div class="card-img svg-news--effect">
       {{ content.field_image }}
       <div
-        class="field field-media field--name-field-media-image-1 field--type-image field--label-visually_hidden">{# Render Overlay, see parc_core_views_pre_render #}
+        class="field field-media field--name-field-media-image-1 field--type-image field--label-visually_hidden">
+        {# Render Overlay, see parc_core_views_pre_render #}
+        {{ include(node.overlay) }}
       </div>
     </div>
   </a>
