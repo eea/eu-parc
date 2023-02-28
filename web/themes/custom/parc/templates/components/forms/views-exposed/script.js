@@ -17,7 +17,7 @@
         var labelClass = label.toLowerCase().replace(" ", "-");
         var itemId = $(this).attr('id');
         var color = $(this).parent().data('color');
-        var insert = '<label for="' + itemId + '" class="option bg--' + labelClass + '" style="background-color: ' + color + '">' + label + '</label>'
+        var insert = '<label for="' + itemId + '" class="option bg--' + labelClass + '" style="--ci-bg: ' + color + '">' + label + '</label>'
         $("#js-selected-categories").append(insert);
       });
 

@@ -45,8 +45,14 @@
 
   .bef-checkboxes {
     & > .form-item {
+      cursor: pointer;
       display: flex;
       padding-block: 4px;
+
+      label,
+      input {
+        cursor: pointer;
+      }
     }
   }
 
@@ -71,6 +77,7 @@
     label {
       --ci-c: white;
       --ci-bg: red;
+      cursor: pointer;
       background-color: var(--ci-bg);
       display: flex;
       align-items: center;
@@ -92,6 +99,10 @@
         background-repeat: no-repeat;
         background-position: center;
       }
+    }
+
+    &:hover {
+      opacity: 0.8;
     }
   }
 }
