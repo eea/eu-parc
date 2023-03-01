@@ -2,10 +2,6 @@
 
 namespace Drupal\parc_core;
 
-use Drupal\path_alias\AliasManager;
-use Drupal\Core\Path\CurrentPathStack;
-use Drupal\Core\Routing\CurrentRouteMatch;
-use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -68,65 +64,124 @@ class ParcCoreViews implements ContainerInjectionInterface {
    * @see hook_views_pre_render()
    */
   public function viewsPreRender(ViewExecutable &$view) {
-    // Get overlays in the desired order.
-    if ($view->id() === 'news_events' && $view->current_display === 'page_news') {
+    if (
+      $view->id() === 'news_events' &&
+      (
+        $view->current_display === 'page_news' ||
+        $view->current_display === 'block_related_news'
+      )
+    ) {
       // Default overlay if none is defined.
       $defaultOverlay = '/' . $this->themeManager->getActiveTheme()->getPath();
       $defaultOverlay .= '/img/ovelay-default.svg';
+      $this->getOverlaysOrder(
+        $view,
+        'news_category',
+        'field_tags',
+        'field_overlay',
+        $defaultOverlay
+      );
+    }
 
-      $terms =$this->entityTypeManager->getStorage('taxonomy_term')
-        ->loadTree('news_category', 0, NULL, TRUE);
+    if (
+      $view->id() === 'content_events' &&
+      (
+        $view->current_display === 'page_events' ||
+        $view->current_display === 'attachment_1'
+      )
+    ) {
+      $defaultOverlay = '#8631A7';
+      $this->getOverlaysOrder(
+        $view,
+        'events_category',
+        'field_categories',
+        'field_colors',
+        $defaultOverlay
+      );
+    }
 
-      // Get the overlays data.
-      $overlays = [];
-      foreach ($terms as $term) {
-        $overlays[$term->id()]['current'] = 0;
-        if (
-          $term->hasField('field_overlay') &&
-          !$term->get('field_overlay')->isEmpty()
-        ) {
-          $svgs = $term->get('field_overlay')->referencedEntities();
-          foreach ($svgs as $key => $svg) {
-            $overlays[$term->id()]['overlays'][$key] = $svg->get(
+  }
+
+  /**
+   * Get overlays in the desired order..
+   *
+   *
+   */
+  public function getOverlaysOrder(
+    ViewExecutable &$view,
+    string $vocabulary,
+    string $category,
+    string $fieldOverlay,
+    string $defaultOverlay
+  ) {
+
+    $terms =$this->entityTypeManager->getStorage('taxonomy_term')
+      ->loadTree($vocabulary, 0, NULL, TRUE);
+
+    // Get the overlays data.
+    $overlays = [];
+    foreach ($terms as $term) {
+      $overlays[$term->id()]['current'] = 0;
+      if (
+        $term->hasField($fieldOverlay) &&
+        !$term->get($fieldOverlay)->isEmpty()
+      ) {
+
+        if ($fieldOverlay === 'field_overlay') {
+          $termOverlays = $term->get($fieldOverlay)->referencedEntities();
+          foreach ($termOverlays as $key => $termOverlay) {
+            $overlays[$term->id()]['overlays'][$key] = $termOverlay->get(
               'field_media_image_2'
             )->entity->createFileUrl();
           }
         }
-
-        // Set max values.
-        if (isset($overlays[$term->id()]['overlays'])) {
-          $overlays[$term->id()]['max'] = count(
-            $overlays[$term->id()]['overlays']
-          ) - 1;
-        }
-        else {
-          $overlays[$term->id()]['max'] = 0;
+        elseif ($fieldOverlay === 'field_colors') {
+          $termOverlays = $term->get($fieldOverlay)->getValue();
+          foreach ($termOverlays as $key => $termOverlay) {
+            $overlays[$term->id()]['overlays'][$key] = $termOverlay['color'];
+          }
         }
       }
 
-      foreach ($view->result as &$result) {
-        if ($result->_entity->hasField('field_tags') && !$result->_entity->get('field_tags')->isEmpty()) {
-          $termId = $result->_entity->get('field_tags')->entity->id();
-
-          // Get the overlay value for the current content.
-          if ($overlays[$termId]['current'] > $overlays[$termId]['max']) {
-            $overlay = 0;
-            $overlays[$termId]['current'] = 1;
-          }
-          else {
-            $overlay = $overlays[$termId]['current']++;
-          }
-
-          // Assing the overlay value.
-          $result->_entity->overlay = isset($overlays[$termId]['overlays'][$overlay]) ?
-            $overlays[$termId]['overlays'][$overlay] :
-            $defaultOverlay;
-        }
-        else {
-          $result->_entity->overlay = $defaultOverlay;
-        }
+      // Set max values.
+      if (isset($overlays[$term->id()]['overlays'])) {
+        $overlays[$term->id()]['max'] = count(
+          $overlays[$term->id()]['overlays']
+        ) - 1;
+      }
+      else {
+        $overlays[$term->id()]['max'] = 0;
       }
     }
+
+
+    // Assign the overlays value for theming.
+    foreach ($view->result as &$result) {
+      if (
+        $result->_entity->hasField($category) &&
+        !$result->_entity->get($category)->isEmpty()
+      ) {
+        $termId = $result->_entity->get($category)->entity->id();
+
+        // Get the overlay value for the current content.
+        if ($overlays[$termId]['current'] > $overlays[$termId]['max']) {
+          $overlay = 0;
+          $overlays[$termId]['current'] = 1;
+        }
+        else {
+          $overlay = $overlays[$termId]['current']++;
+        }
+
+        // Assing the overlay value.
+        $result->_entity->overlay = isset($overlays[$termId]['overlays'][$overlay]) ?
+          $overlays[$termId]['overlays'][$overlay] :
+          $defaultOverlay;
+      }
+      else {
+        $result->_entity->overlay = $defaultOverlay;
+      }
+    }
+
   }
 
 }

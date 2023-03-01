@@ -10,7 +10,12 @@
 {% block article %}
 
   {{ attach_library('parc/n--events-teaser') }}
-  {% set color = node.field_categories.entity.field_colors.value.0.color %}
+  {% set color = '#8631A7' %}
+
+  {% if node.overlay %}
+    {# Render Overlay, see parc_core_views_pre_render #}
+    {% set color = node.overlay %}
+  {% endif %}
 
   <article{{attributes.addClass(classes).setAttribute('style','--ne-c-cat:'~color~';')}}>
     <div class="card-img">
