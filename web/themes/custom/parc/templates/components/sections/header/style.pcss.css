@@ -231,11 +231,10 @@ header {
     .mm-collapse-0 {
       background-color: rgba(255, 255, 255, 0.95);
       padding-left: var(--navbar-nav-link-padding-x);
-      /* border-top: 1px solid var(--border-color); */
       box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
       clip-path: inset(0 -100vmax);
       padding-bottom: 2rem;
-      min-height: 350px;
+      min-height: 400px;
     }
 
     .mm-level-1 {

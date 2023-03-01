@@ -21,10 +21,13 @@ body {
   color: var(--body-color);
   text-align: var(--body-text-align);
   background-color: var(--c-body-bg);
-  letter-spacing: var(--body-letter-spacing);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(var(--color-black), 0);
   text-underline-offset: 0.25em;
+}
+
+.dialog-off-canvas-main-canvas {
+  letter-spacing: var(--body-letter-spacing);
 }
 
 hr {

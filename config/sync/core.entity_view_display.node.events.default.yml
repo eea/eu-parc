@@ -58,7 +58,23 @@ third_party_settings:
               depth: 0
               expand_all_items: false
             weight: 0
-            additional: {  }
+            additional:
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: sticky-top
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
           9cf5d8c1-7c74-4868-9131-49eac72272c9:
             uuid: 9cf5d8c1-7c74-4868-9131-49eac72272c9
             region: second
