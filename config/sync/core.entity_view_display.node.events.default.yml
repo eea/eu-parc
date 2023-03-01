@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.events.body
+    - field.field.node.events.field_add_to_calendar
     - field.field.node.events.field_address
     - field.field.node.events.field_categories
     - field.field.node.events.field_date
@@ -18,6 +19,7 @@ dependencies:
     - addtoany
     - ctools
     - datetime_range
+    - ics_link_field
     - layout_builder
     - link
     - metatag
@@ -182,22 +184,6 @@ third_party_settings:
                   class: ''
                   style: ''
                   data: ''
-          a27175bf-5b7a-4cf3-b670-f44e10ce10a9:
-            uuid: a27175bf-5b7a-4cf3-b670-f44e10ce10a9
-            region: first
-            configuration:
-              id: 'field_block:node:events:field_seo_keyword'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
           494267e4-9472-4f05-a23b-101f31cafc12:
             uuid: 494267e4-9472-4f05-a23b-101f31cafc12
             region: first
@@ -213,6 +199,25 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 3
             additional: {  }
+          e06d1788-ca63-49fb-b0d3-d960a33d588c:
+            uuid: e06d1788-ca63-49fb-b0d3-d960a33d588c
+            region: first
+            configuration:
+              id: 'field_block:node:events:field_add_to_calendar'
+              label: 'Add to calendar'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: ics_link_field_formatter
+                label: hidden
+                settings:
+                  link_label: 'Add to Calendar'
+                third_party_settings: {  }
+            weight: 5
+            additional: {  }
         third_party_settings: {  }
 id: node.events.default
 targetEntityType: node
@@ -226,6 +231,14 @@ content:
     third_party_settings: {  }
     weight: 101
     region: content
+  field_add_to_calendar:
+    type: ics_link_field_formatter
+    label: above
+    settings:
+      link_label: 'Add to Calendar'
+    third_party_settings: {  }
+    weight: 110
+    region: first
   field_address:
     type: address_default
     label: above
