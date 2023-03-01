@@ -270,7 +270,7 @@ display:
           query_tags: {  }
       relationships: {  }
       css_class: ''
-      use_ajax: true
+      use_ajax: false
       header:
         area:
           id: area
@@ -306,6 +306,7 @@ display:
     display_plugin: attachment
     position: 2
     display_options:
+      enabled: false
       title: 'Past events'
       pager:
         type: some
@@ -476,6 +477,186 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+        - user
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  block_1:
+    id: block_1
+    display_title: 'Past Events'
+    display_plugin: block
+    position: 2
+    display_options:
+      title: 'Past events'
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 12
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: 'Authored on'
+            field_identifier: created
+          exposed: true
+          granularity: second
+      arguments: {  }
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            events: events
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_date_end_value:
+          id: field_date_end_value
+          table: node__field_date
+          field: field_date_end_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          operator: '<'
+          value:
+            min: ''
+            max: ''
+            value: now
+            type: date
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+        field_categories_target_id:
+          id: field_categories_target_id
+          table: node__field_categories
+          field: field_categories_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_categories_target_id_op
+            label: Categories
+            description: ''
+            use_operator: false
+            operator: field_categories_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: categorie
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: true
+          vid: events_category
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        css_class: false
+        sorts: false
+        arguments: false
+        filters: false
+        filter_groups: false
+      css_class: mb-parc
+      display_description: ''
+      exposed_block: true
+      display_extenders:
+        ajax_history:
+          enable_history: false
+        simple_sitemap_display_extender: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
         - user
@@ -862,7 +1043,7 @@ display:
         filter_groups: false
         header: false
       css_class: mb-parc
-      use_ajax: true
+      use_ajax: false
       display_description: ''
       header:
         area:
@@ -880,7 +1061,7 @@ display:
           tokenize: false
       display_extenders:
         ajax_history:
-          enable_history: true
+          enable_history: false
         simple_sitemap_display_extender:
           variants:
             default:

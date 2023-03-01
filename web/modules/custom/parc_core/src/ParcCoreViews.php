@@ -65,31 +65,37 @@ class ParcCoreViews implements ContainerInjectionInterface {
    */
   public function viewsPreRender(ViewExecutable &$view) {
     if (
-      $view->id() === 'news_events' &&
-      (
+      $view->id() === 'news_events'
+
+    ) {
+      if (
         $view->current_display === 'page_news' ||
         $view->current_display === 'block_related_news'
-      )
-    ) {
-      // Default overlay if none is defined.
-      $defaultOverlay = '/' . $this->themeManager->getActiveTheme()->getPath();
-      $defaultOverlay .= '/img/ovelay-default.svg';
-      $this->getOverlaysOrder(
-        $view,
-        'news_category',
-        'field_tags',
-        'field_overlay',
-        $defaultOverlay
-      );
+      ) {
+        // Default overlay if none is defined.
+        $defaultOverlay = '/' . $this->themeManager->getActiveTheme()->getPath();
+        $defaultOverlay .= '/img/ovelay-default.svg';
+        $this->getOverlaysOrder(
+          $view,
+          'news_category',
+          'field_tags',
+          'field_overlay',
+          $defaultOverlay
+       );
+      }
     }
 
     if (
-      $view->id() === 'content_events' &&
-      (
-        $view->current_display === 'page_events' ||
-        $view->current_display === 'attachment_1'
-      )
+      $view->id() === 'content_events'
     ) {
+
+      if (
+
+
+          $view->current_display === 'page_events' ||
+          $view->current_display === 'block_1'
+
+      ) {
       $defaultOverlay = '#8631A7';
       $this->getOverlaysOrder(
         $view,
@@ -99,12 +105,21 @@ class ParcCoreViews implements ContainerInjectionInterface {
         $defaultOverlay
       );
     }
+  }
 
   }
 
   /**
    * Get overlays in the desired order..
    *
+   * @param string $vocabulary
+   *   Vocabulary Id.
+   * @param string $category
+   *   Category Id.
+   * @param string $fieldOverlay
+   *   Field overlay Id.
+   * @param string $defaultOverlay
+   *   Default Overlay.
    *
    */
   public function getOverlaysOrder(
