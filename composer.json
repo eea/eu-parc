@@ -37,6 +37,7 @@
         "drupal/edwt": "2.1.4",
         "drupal/extlink": "^1.7",
         "drupal/field_group": "^3.4",
+        "drupal/ics_link_field": "^1.0@alpha",
         "drupal/image_field_caption": "^1.2",
         "drupal/layout_builder_admin_theme": "^1.1",
         "drupal/layout_builder_component_attributes": "^2.1",

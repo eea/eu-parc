@@ -1,0 +1,19 @@
+uuid: 64c58af5-9101-457f-b387-ba2b46624729
+langcode: en
+status: true
+dependencies:
+  module:
+    - ics_link_field
+    - node
+id: node.field_add_to_calendar
+field_name: field_add_to_calendar
+entity_type: node
+type: ics_link_field_type
+settings: {  }
+module: ics_link_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
