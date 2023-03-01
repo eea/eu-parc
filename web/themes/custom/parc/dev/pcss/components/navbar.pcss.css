@@ -70,7 +70,6 @@
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  letter-spacing: 0;
 }
 
 :where(.navbar-nav) {

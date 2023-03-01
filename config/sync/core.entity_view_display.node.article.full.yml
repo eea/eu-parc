@@ -70,7 +70,23 @@ third_party_settings:
               depth: 1
               expand_all_items: true
             weight: 0
-            additional: {  }
+            additional:
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: sticky-top
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
           40445dae-82dc-4140-af07-b4b96b54c175:
             uuid: 40445dae-82dc-4140-af07-b4b96b54c175
             region: second

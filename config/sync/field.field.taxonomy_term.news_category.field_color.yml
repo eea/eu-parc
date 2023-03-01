@@ -13,9 +13,12 @@ entity_type: taxonomy_term
 bundle: news_category
 label: Color
 description: ''
-required: false
+required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    color: '#000000'
+    opacity: null
 default_value_callback: ''
 settings:
   opacity: 0

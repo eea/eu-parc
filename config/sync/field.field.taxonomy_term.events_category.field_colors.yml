@@ -13,9 +13,15 @@ entity_type: taxonomy_term
 bundle: events_category
 label: Colors
 description: ''
-required: false
+required: true
 translatable: false
-default_value: {  }
+default_value:
+  -
+    color: '#000000'
+    opacity: null
+  -
+    color: '#000000'
+    opacity: null
 default_value_callback: ''
 settings:
   opacity: 0

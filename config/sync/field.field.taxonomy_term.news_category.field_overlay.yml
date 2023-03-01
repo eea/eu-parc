@@ -12,7 +12,7 @@ entity_type: taxonomy_term
 bundle: news_category
 label: Overlay
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
