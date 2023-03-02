@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "~1.0",
         "drupal/address": "^1.11",
         "drupal/addtoany": "^2.0",
         "drupal/admin_toolbar": "^3.3",
@@ -27,7 +28,7 @@
         "drupal/ckeditor_media_embed": "^1.11",
         "drupal/ckeditor_templates": "^1.2",
         "drupal/ckeditor_templates_ui": "^1.4",
-        "drupal/color_field": "^3.0",
+        "drupal/color_field": "^2.5",
         "drupal/colorbutton": "^1.5",
         "drupal/core-composer-scaffold": "^9.5",
         "drupal/core-project-message": "^9.5",
@@ -71,7 +72,8 @@
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
@@ -130,6 +132,12 @@
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
+        },
+        "enable-patching": true,
+        "patches": {
+            "drupal/color_field": {
+                "3064418 HTML5 widget for unlimited values needs improvements":"https://www.drupal.org/files/issues/2020-12-12/3064418-12--color-field-html5-widget-clear.patch"
+            }
         }
     },
     "require-dev": {

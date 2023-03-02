@@ -4,9 +4,16 @@
   .field--name-field-image {
     margin-bottom: 50px;
 
+    .w-img {
+      max-height: 550px;
+      overflow: hidden;
+      display: flex;
+    }
+
     img {
       width: 100%;
       height: auto;
+      align-self: center;
     }
   }
 

@@ -1,0 +1,17 @@
+parc_content:
+  label: "Parc content"
+  path: templates/components/layouts
+  template: layout--parc-content
+  library: parc/l--parc-content
+  category: "Parc"
+  default_region: first
+  icon_map:
+    - [menu, second]
+    - [first, second]
+  regions:
+    menu:
+      label: Menu
+    first:
+      label: First
+    second:
+      label: Second
