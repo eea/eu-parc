@@ -43,7 +43,7 @@
   @media (--lg) {
     margin-right: calc(var(--col-w1) * 2);
 
-    .field--name-field-date {
+    .field-date {
       font-size: 96px;
       margin-top: 0;
     }
