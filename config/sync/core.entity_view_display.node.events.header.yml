@@ -17,6 +17,7 @@ dependencies:
   module:
     - address
     - datetime_range
+    - ics_link_field
     - layout_builder
     - user
 third_party_settings:
@@ -28,6 +29,14 @@ targetEntityType: node
 bundle: events
 mode: header
 content:
+  field_add_to_calendar:
+    type: ics_link_field_formatter
+    label: hidden
+    settings:
+      link_label: 'Add to Calendar'
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_address:
     type: address_default
     label: hidden
@@ -57,7 +66,6 @@ content:
 hidden:
   addtoany: true
   body: true
-  field_add_to_calendar: true
   field_metatags: true
   field_seo_keyword: true
   field_time: true
