@@ -136,7 +136,7 @@ display:
               field_categories_target_id:
                 plugin_id: bef
                 advanced:
-                  placeholder_text: ''
+                  sort_options: false
                   rewrite:
                     filter_rewrite_values: ''
                   collapsible: true
@@ -894,20 +894,18 @@ display:
     position: 1
     display_options:
       sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
+        field_date_value:
+          id: field_date_value
+          table: node__field_date
+          field: field_date_value
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+          plugin_id: datetime
           order: ASC
           expose:
-            label: 'Authored on'
-            field_identifier: created
+            label: 'Date (field_date)'
+            field_identifier: field_date_value
           exposed: true
           granularity: second
       arguments: {  }
