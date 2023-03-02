@@ -103,10 +103,10 @@
         background-repeat: no-repeat;
         background-position: center;
       }
-    }
 
-    &:hover {
-      opacity: 0.8;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }

@@ -1,5 +1,10 @@
 .sticky-top {
+  transition: var(--transition-base);
   top: var(--drupal-body-pt);
+
+  header:not(.vh) + main & {
+    top: calc(var(--drupal-body-pt) + 96px);
+  }
 }
 
 .toast-container {

@@ -5,6 +5,10 @@ header {
     width: 220px;
   }
 
+  .nav-main {
+    letter-spacing: 0.08em;
+  }
+
   @media (--lg) {
     .region-nav-additional {
       animation-iteration-count: 1;
