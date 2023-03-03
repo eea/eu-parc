@@ -1,0 +1,6 @@
+parc_zenodo_api.admin_settings_form:
+  title: 'Zenodo API Token configuration'
+  route_name: parc_zenodo_api.admin_settings_form
+  description: 'Zenodo API Token description.'
+  parent: system.admin_config_services
+  weight: 99
