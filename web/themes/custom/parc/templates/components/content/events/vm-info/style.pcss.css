@@ -13,6 +13,16 @@
     margin-top: 8px;
   }
 
+  .field--name-field-website {
+    a {
+      font-weight: var(--fw-bold);
+    }
+  }
+
+  .organization {
+    font-weight: var(--fw-bold);
+  }
+
   .field-add-to-calendar {
     padding-block: 60px;
 
