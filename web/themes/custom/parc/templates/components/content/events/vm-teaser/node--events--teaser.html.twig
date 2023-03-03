@@ -16,8 +16,9 @@
     {# Render Overlay, see parc_core_views_pre_render #}
     {% set color = node.overlay %}
   {% endif %}
+  {% set labelColor = node.field_categories.entity.field_colors.value.0.color %}
 
-  <article{{attributes.addClass(classes).setAttribute('style','--ne-c-cat:'~color~';')}}>
+  <article{{attributes.addClass(classes).setAttribute('style','--ne-c-cat:'~color~';--ne-c-cat-first:'~labelColor~';')}}>
     <div class="card-img">
       <div class="w--bg">
         {{- content.field_date -}}

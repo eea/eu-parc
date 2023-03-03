@@ -51,7 +51,7 @@
     font-size: var(--net--fs-title);
     flex-grow: 1;
     letter-spacing: 0.011em;
-    color: var(--ne-c-cat, var(--red));
+    color: var(--ne-c-cat-first, var(--red));
   }
 
   & .meta {
