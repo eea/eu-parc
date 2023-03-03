@@ -47,67 +47,7 @@
       }
       catch (RequestException $e) {
         // log exception
-        $message = $response;
-        \Drupal::logger('Zenodo API')->error('wa');
-      }
-      return $response_data;
-    }
-
-    /**
-     * Public static function that GETS Deposition by Deposition ID.
-     *
-     * @param $deposition_id
-     *
-     * @return mixed
-     */
-    public function getDepositionById($deposition_id) {
-      $token = \Drupal::config('parc_zenodo_api.adminsettings')->get('token');
-      $url = 'https://zenodo.org/api/deposit/depositions/' . $deposition_id . '?access_token=' . $token;
-
-      $client = $this->httpClient;
-      try {
-        $response = $client->get($url, []);
-        $response_data = json_decode($response->getBody()->getContents(), TRUE);
-
-        // do something with data
-      }
-      catch (RequestException $e) {
-        // log exception
-        $message = $response;
-        \Drupal::logger('Zenodo API')->error('wa');
-      }
-      return $response_data;
-    }
-
-    /**
-     * Public static function that GETS Deposition Fields.
-     *
-     * @param $deposition
-     *
-     * @return array
-     */
-    public function getDepositionFields($deposition) {
-      foreach ($deposition as $field => $value) {
-        $fields[$field] = $field;
-      }
-      return $fields;
-    }
-
-    public function getDepositionFiles($deposition_id) {
-      $token = \Drupal::config('parc_zenodo_api.adminsettings')->get('token');
-      $url = 'https://zenodo.org/api/deposit/depositions/' . $deposition_id . '/files?access_token=' . $token;
-
-      $client = $this->httpClient;
-      try {
-        $response = $client->get($url, []);
-        $response_data = json_decode($response->getBody()->getContents(), TRUE);
-
-        // do something with data
-      }
-      catch (RequestException $e) {
-        // log exception
-        $message = $response;
-        \Drupal::logger('Zenodo API')->error('wa');
+        \Drupal::logger('PARC Zenodo API')->error($e->getMessage());
       }
       return $response_data;
     }

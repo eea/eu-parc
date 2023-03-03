@@ -34,13 +34,6 @@
     public function buildForm(array $form, FormStateInterface $form_state) {
       $config = $this->config('parc_zenodo_api.adminsettings');
 
-      // TESTING START
-      // use GuzzleHttp\Client;
-//      $client = new Client();
-//      $test = new ZendoApiHelper($client);
-//      echo '<pre>' . print_r($test->getDepositionById(7665045), TRUE) . '</pre>';
-      // TESTING END
-
       $form['token'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Zenodo API Token'),
