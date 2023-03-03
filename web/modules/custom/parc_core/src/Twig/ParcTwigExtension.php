@@ -99,7 +99,7 @@ class ParcTwigExtension extends AbstractExtension {
       }
     }
 
-    return $overlay;
+    return rawurldecode($overlay);
   }
 
   /**
@@ -153,7 +153,7 @@ class ParcTwigExtension extends AbstractExtension {
       }
     }
 
-    return $svg;
+    return rawurldecode($svg);
   }
 
   /**
