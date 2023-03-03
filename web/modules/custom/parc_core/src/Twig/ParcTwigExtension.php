@@ -3,6 +3,7 @@
 namespace Drupal\parc_core\Twig;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleExtensionList;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -10,17 +11,33 @@ use Twig\TwigFunction;
  * Class ParcTwigExtension.
  */
 class ParcTwigExtension extends AbstractExtension {
+
   /**
-   * @file
+   * The Entity Type Manager service.
+   *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
 
   /**
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   * The Module Extension List service.
+   *
+   * @var \Drupal\Core\Extension\ModuleExtensionList
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  protected $moduleList;
+
+  /**
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The Entity Type Manager service
+   * @param \Drupal\Core\Extension\ModuleExtensionList $module_list
+   *   The Module Extension List service
+   */
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager
+    // ModuleExtensionList $module_list
+  ) {
     $this->entityTypeManager = $entity_type_manager;
+    // $this->moduleList = $module_list;
   }
 
   /**
@@ -30,33 +47,23 @@ class ParcTwigExtension extends AbstractExtension {
    */
   public function getFunctions() {
     return [
-      new TwigFunction(
-        'termColor',
-        [$this, 'termColor']
-      ),
-
-      new TwigFunction(
-        'termOverlay',
-        [$this, 'termOverlay']
-      ),
-
-      new TwigFunction(
-        'termOverlayTotal',
-        [$this, 'termOverlayTotal']
-      ),
+      new TwigFunction('termColor', [$this, 'termColor']),
+      new TwigFunction('termOverlay', [$this, 'termOverlay']),
+      new TwigFunction('termOverlayTotal', [$this, 'termOverlayTotal']),
+      new TwigFunction('cardFooterOverlay', [$this, 'cardFooterOverlay']),
     ];
   }
 
   /**
-   * Function to remove only links from the html.
+   * Returns the hex of given Term.
    *
-   * @param $string
-   *   Html as string
+   * @param string $termId
+   *   Term id.
    *
    * @return string
-   *   Filtered html
+   *   Hexcode.
    */
-  public function termColor($termId) {
+  public function termColor(string $termId) {
     $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($termId);
     if ($term && $term->hasField('field_color') && !$term->get('field_color')->isEmpty()) {
       $color = $term->get('field_color')->getValue();
@@ -69,15 +76,17 @@ class ParcTwigExtension extends AbstractExtension {
   }
 
   /**
-   * Function to remove only links from the html.
+   * Returns the file overlay url of given Term.
    *
-   * @param $string
-   *   Html as string
+   * @param string $termId
+   *   Term id.
+   * @param mixed $weight
+   *   Weight.
    *
    * @return string
-   *   Filtered html
+   *   File url.
    */
-  public function termOverlay($termId, $weight) {
+  public function termOverlay(string $termId, mixed $weight) {
     $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($termId);
     $theme = \Drupal::theme()->getActiveTheme();
     $overlay = '/' . $theme->getPath() . '/img/ovelay-default.svg';
@@ -94,7 +103,7 @@ class ParcTwigExtension extends AbstractExtension {
   }
 
   /**
-   * Function to remove only links from the html.
+   * Returns the total of overlays for the given Term.
    *
    * @param $string
    *   Html as string
@@ -110,6 +119,41 @@ class ParcTwigExtension extends AbstractExtension {
     }
 
     return count($overlay) - 1;
+  }
+
+  /**
+   * Returns Card Footer overlay.
+   *
+   * @return string
+   *   Url of SVG file.
+   */
+  public function cardFooterOverlay() {
+    $module = \Drupal::service('extension.list.module')->getPath('parc_core');
+    $svg =  $module . '/assets/footer-overlay-2.svg';
+
+    $database = \Drupal::database();
+    $query = $database->select('media_field_data', 'm');
+    $query->fields('m', ['mid'])
+      ->condition('status', 1)
+      ->condition('bundle', 'card_footer_overlay')
+      ->range(0, 50);
+
+    $medias = $query->execute()->fetchCol();
+
+    if (!empty($medias)) {
+      $mid = array_rand($medias);
+      $media = $this->entityTypeManager->getStorage('media')->load($medias[$mid]);
+
+      if (
+        $media &&
+        $media->hasField('field_media_image') &&
+        !$media->get('field_media_image')->isEmpty()
+      ) {
+        $svg = $media->get('field_media_image')->entity->createFileUrl();
+      }
+    }
+
+    return $svg;
   }
 
   /**
