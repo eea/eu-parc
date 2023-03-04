@@ -6,7 +6,6 @@ dependencies:
     - field.field.taxonomy_term.events_category.field_colors
     - taxonomy.vocabulary.events_category
   module:
-    - color_field
     - text
 id: taxonomy_term.events_category.default
 targetEntityType: taxonomy_term
@@ -20,13 +19,5 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_colors:
-    type: color_field_formatter_text
-    label: inline
-    settings:
-      format: hex
-      opacity: true
-    third_party_settings: {  }
-    weight: 1
-    region: content
-hidden: {  }
+hidden:
+  field_colors: true

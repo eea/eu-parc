@@ -5,16 +5,8 @@
  */
 #}
 
-{% set par = '?categorie[' ~ term.id ~ ']=' ~ term.id %}
-
-{% if term.bundle == 'events_category' %}
-  {% set path = 'view.content_events.page_events' %}
-{% else %}
-  {% set path = 'view.news_events.page_news' %}
-{% endif %}
-
 <div{{attributes}}>
-  <a class="btn btn-badge" href={{ path(path) ~ par }}>
+  <a class="btn btn-badge" href={{ url }}>
     {{- name.0 -}}
   </a>
 </div>
