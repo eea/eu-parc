@@ -1,6 +1,7 @@
 .node--article--full {
   .page-title {
     margin-block: 24px;
+    padding-inline: 20px;
     display: grid;
 
     svg {

@@ -15,3 +15,5 @@ parc_content:
       label: First
     second:
       label: Second
+    social:
+      label: Social

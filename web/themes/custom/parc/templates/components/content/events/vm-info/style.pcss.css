@@ -24,7 +24,7 @@
   }
 
   .field-add-to-calendar {
-    padding-block: 60px;
+    margin-top: var(--p-parc);
 
     a {
       --link-color: var(--lichtblauw);

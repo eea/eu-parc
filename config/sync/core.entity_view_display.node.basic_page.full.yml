@@ -22,6 +22,8 @@ dependencies:
     - system
     - text
     - user
+  theme:
+    - parc
 third_party_settings:
   layout_builder:
     enabled: true
@@ -94,17 +96,34 @@ third_party_settings:
                   data: ''
         third_party_settings: {  }
       -
-        layout_id: layout_twocol_section
+        layout_id: parc_content
         layout_settings:
-          label: ''
+          label: Content
           context_mapping: {  }
-          column_widths: 33-67
           layout_builder_styles_style:
             background_green: 0
             background_grey: 0
-            container: container
+            container_fluid: container_fluid
+            container: 0
+            margin_bottom_5: 0
             no_paddings: 0
+            remove_horizontal_paddings: 0
+            remove_vertical_paddings: 0
         components:
+          6624c0ff-072a-43e1-a4df-672af52e312a:
+            uuid: 6624c0ff-072a-43e1-a4df-672af52e312a
+            region: menu
+            configuration:
+              id: 'system_menu_block:main'
+              label: 'Main navigation'
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+              level: 2
+              depth: 1
+              expand_all_items: false
+            weight: 0
+            additional: {  }
           c51f71c1-2b91-4e35-a330-cf65caf9e5a0:
             uuid: c51f71c1-2b91-4e35-a330-cf65caf9e5a0
             region: second
@@ -116,20 +135,6 @@ third_party_settings:
               view_mode: compact
               context_mapping:
                 entity: layout_builder.entity
-            weight: 0
-            additional: {  }
-          6624c0ff-072a-43e1-a4df-672af52e312a:
-            uuid: 6624c0ff-072a-43e1-a4df-672af52e312a
-            region: first
-            configuration:
-              id: 'system_menu_block:main'
-              label: 'Main navigation'
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-              level: 2
-              depth: 1
-              expand_all_items: false
             weight: 0
             additional: {  }
           abd6556b-277b-4add-b575-f25cf0ab5824:

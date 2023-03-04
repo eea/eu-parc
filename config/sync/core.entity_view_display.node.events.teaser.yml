@@ -45,7 +45,7 @@ content:
     settings:
       timezone_override: ''
       format_type: medium
-      separator: '-'
+      separator: —
     third_party_settings: {  }
     weight: 0
     region: content

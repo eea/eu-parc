@@ -9,32 +9,42 @@
 
 {% set classes = [
   'layout',
-  'row',
   'position-relative',
   'container-content',
   'node--content-pb',
+  'mb-parc',
 ] %}
 
 {% if content %}
   <div{{attributes.addClass(classes).setAttribute('id',id)}}>
-    {% if content.first or content.menu %}
-      <div class='col-12 col-lg col-menu d-flex flex-column'>
-        <div{{region_attributes.menu.addClass('col-menu-sticky','flex-grow-1')}}>
-          <div class="sticky-top">
-            {{ content.menu }}
+    <div class="row">
+      {% if content.first or content.menu %}
+        <div class='col-12 col-lg col-menu d-flex flex-column'>
+          <div{{region_attributes.menu.addClass('col-menu-sticky','flex-grow-1','mb-4')}}>
+            <div class="sticky-top">
+              {{ content.menu }}
+            </div>
+          </div>
+
+          <div{{region_attributes.first.addClass('layout_region','d-none','d-lg-block')}}>
+            {{ content.first }}
           </div>
         </div>
+      {% endif %}
 
-        <div{{region_attributes.first.addClass('layout_region')}}>
-          {{ content.first }}
+      {% if content.second %}
+        <div class="col-12 col-lg col-content">
+          <div{{region_attributes.second.addClass('layout_region')}}>
+            {{ content.second }}
+          </div>
+          <div{{region_attributes.first.addClass('layout_region','d-lg-none').removeClass('d-none')}}>
+            {{ content.first }}
+          </div>
+          <div{{region_attributes.social.addClass('layout_region')}}>
+            {{ content.social }}
+          </div>
         </div>
-      </div>
-    {% endif %}
-
-    {% if content.second %}
-      <div{{region_attributes.second.addClass('layout_region','col-12','col-lg','col-content')}}>
-        {{ content.second }}
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 {% endif %}

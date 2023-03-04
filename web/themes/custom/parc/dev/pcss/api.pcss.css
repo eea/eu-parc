@@ -498,10 +498,10 @@ div[class*="border-"] {
   order: 6 !important;
 }
 .mb-parc {
-  margin-bottom: 80px;
+  margin-bottom: var(--p-parc);
 }
 .mt-parc {
-  margin-top: 80px;
+  margin-top: var(--p-parc);
 }
 
 .m-0 {
