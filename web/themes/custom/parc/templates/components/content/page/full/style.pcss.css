@@ -78,7 +78,6 @@
 
   .field--name-field-body {
     line-height: 29px;
-    letter-spacing: 0.001em;
     padding-block: 20px 80px;
   }
 
@@ -195,7 +194,6 @@
 
   .field-description {
     font-size: 27px;
-    letter-spacing: 0.01em;
     line-height: 140%;
     max-width: 648px;
     margin-inline: auto;

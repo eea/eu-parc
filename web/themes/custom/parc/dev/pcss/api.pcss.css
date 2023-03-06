@@ -917,6 +917,7 @@ div[class*="border-"] {
 }
 .text-uppercase {
   text-transform: uppercase !important;
+  letter-spacing: 0.08em;
 }
 .text-capitalize {
   text-transform: capitalize !important;
