@@ -28,7 +28,9 @@
       {% elseif date_start.0 != date_end.0 %}
         {{ date_start.0 }}
         —
-        {{ date_end.0 }}.{{ date_start.1 }}
+        {{ date_end.0 }}.{{ date_end.1 }}
+      {% else %}
+        {{ date_start.0 }}.{{ date_start.1 }}
       {% endif %}
     {% else %}
       {{- item.content -}}
