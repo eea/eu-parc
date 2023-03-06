@@ -6,8 +6,6 @@ header {
   }
 
   .nav-main {
-    letter-spacing: 0.08em;
-
     .collapse {
       position: absolute;
     }
@@ -235,7 +233,6 @@ header {
 
     .text-muted {
       display: block;
-      text-transform: uppercase;
       font-size: 10px;
       position: relative;
       z-index: 1;

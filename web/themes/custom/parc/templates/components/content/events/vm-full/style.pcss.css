@@ -62,10 +62,6 @@
     }
   }
 
-  .text-uppercase {
-    letter-spacing: 0.08em;
-  }
-
   @keyframes slideinRL {
     0% {
       opacity: 0;

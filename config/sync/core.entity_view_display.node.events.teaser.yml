@@ -17,6 +17,7 @@ dependencies:
   module:
     - address
     - datetime_range
+    - options
     - user
 id: node.events.teaser
 targetEntityType: node
@@ -49,12 +50,18 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  field_time:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
 hidden:
   addtoany: true
   body: true
   field_add_to_calendar: true
   field_metatags: true
   field_seo_keyword: true
-  field_time: true
   field_website: true
   links: true

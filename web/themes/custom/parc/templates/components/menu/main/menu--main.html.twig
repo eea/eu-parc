@@ -31,7 +31,7 @@
 
           {%
           set classes_link = [
-            item.url|render == '' ? 'text-muted' :'nav-link',
+            item.url|render == '' ? 'text-muted text-uppercase' :'nav-link',
             'grow-1',
             'nav-link-level-' ~ menu_level,
             item.is_expanded ? 'dropdown-toggle',
