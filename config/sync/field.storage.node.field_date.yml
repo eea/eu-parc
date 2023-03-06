@@ -1,4 +1,4 @@
-uuid: 33a93736-4500-4718-9d52-bc4284175c32
+uuid: dc5bb22a-752a-4ac8-9c2f-23a2fdfdc3bb
 langcode: en
 status: true
 dependencies:
@@ -10,7 +10,7 @@ field_name: field_date
 entity_type: node
 type: daterange
 settings:
-  datetime_type: date
+  datetime_type: datetime
 module: datetime_range
 locked: false
 cardinality: 1

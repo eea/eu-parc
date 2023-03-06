@@ -15,7 +15,40 @@
     view_mode ? 'section--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
   ]
 %}
+{% if ' - ' in content.field_date.0.start_date['#text'] %}
+  {% set time_render = true %}
+  {% set time_begin = content.field_date.0.start_date['#text']|split(' - ').1 %}
+  {% set time_end = content.field_date.0.end_date['#text']|split(' - ').1 %}
+{% endif %}
 
 <section{{attributes.addClass(classes)}}>
-  {{content}}
+  {{- content.field_date -}}
+
+  {%- if content.field_time.0 or time_render -%}
+    <div class="field field--name-field-time field--type-list-string field--label-above">
+      <div class="f-label">{{- content.field_time['#title'] -}}</div>
+
+      <div>
+        {%- if content.field_time.0 -%}
+          {{- content.field_time.0 -}}
+        {%- endif -%}
+
+        {%- if content.field_time.0 and time_render -%}
+          {{- ', ' -}}
+        {%- endif -%}
+
+        {% if time_render %}
+          {% if time_begin == time_end %}
+            {{- time_begin -}}
+          {% else %}
+            {{- time_begin -}}
+            {{- content.field_date.0.separator['#plain_text'] -}}
+            {{- time_end -}}
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {{-content|without('field_date', 'field_time')-}}
 </section>

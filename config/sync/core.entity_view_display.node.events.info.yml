@@ -20,6 +20,7 @@ dependencies:
     - ics_link_field
     - layout_builder
     - link
+    - options
     - user
 third_party_settings:
   layout_builder:
@@ -50,16 +51,15 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
-      separator: '-'
+      format_type: short
+      separator: –
     third_party_settings: {  }
     weight: 0
     region: content
   field_time:
-    type: string
+    type: list_default
     label: above
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
