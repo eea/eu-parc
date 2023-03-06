@@ -1,6 +1,6 @@
 services:
   parc_core.twig.termColor:
     class: Drupal\parc_core\Twig\ParcTwigExtension
-    arguments: ["@entity_type.manager"]
+    arguments: ["@entity_type.manager", "@extension.list.module"]
     tags:
       - { name: twig.extension }
