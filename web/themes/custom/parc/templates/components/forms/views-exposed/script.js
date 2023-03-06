@@ -14,7 +14,6 @@
 
       $('#edit-categorie-collapsible .bef-checkboxes input:checked').once('viewsExposedForm').each(function() {
         var label = $(this)['0'].labels['0'].innerHTML;
-        console.log(label);
         var labelClass = label.toLowerCase().replace(" ", "-");
         var itemId = $(this).attr('id');
         var color = $(this).parent().data('color');

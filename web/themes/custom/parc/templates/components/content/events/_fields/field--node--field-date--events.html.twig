@@ -34,7 +34,6 @@
 
       {% set delimiter = item.content.separator['#plain_text'] %}
 
-
       {% if date_start.2 != date_end.2 %}
         {{- item.content -}}
       {% elseif date_start.1 != date_end.1 %}
@@ -44,7 +43,9 @@
       {% elseif date_start.0 != date_end.0 %}
         {{ date_start.0 }}
         {{ delimiter }}
-        {{ date_end.0 }}.{{ date_start.1 }}.{{ date_end.2 }}
+        {{ date_end.0 }}.{{ date_end.1 }}.{{ date_end.2 }}
+      {% else %}
+        {{ date_start.0 }}.{{ date_start.1 }}.{{ date_start.2 }}
       {% endif %}
     {% else %}
       {{- item.content -}}
