@@ -23,7 +23,13 @@
  * @see template_preprocess_taxonomy_term()
  */
 #}
-<div{{attributes}}>
+{%
+  set classes = [
+    'taxonomy-term',
+    'vocabulary-' ~ term.bundle|clean_class,
+  ]
+%}
+<div{{attributes.setAttribute('id','taxonomy-term-'~term.id).addClass(classes)}}>
   {{ title_prefix }}
   {% if name and not page %}
     <h2>

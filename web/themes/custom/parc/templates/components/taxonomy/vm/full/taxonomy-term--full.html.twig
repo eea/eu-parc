@@ -4,11 +4,21 @@
  * Parc override to display a taxonomy term.
  */
 #}
-<div{{attributes}}>
+{%
+  set classes = [
+    't-term',
+    't-term--' ~ term.bundle|clean_class,
+    view_mode ? 't-term--' ~ term.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  ]
+%}
+
+<div{{attributes.setAttribute('id','taxonomy-term-'~term.id).addClass(classes)}}>
   {{ title_prefix }}
-  <h2 class="mb-4">
-    {{- name -}}
-  </h2>
+  {% if name %}
+    <h2>
+      <a href="{{ url }}">{{ name }}</a>
+    </h2>
+  {% endif %}
   {{ title_suffix }}
 
   {{ content }}

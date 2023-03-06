@@ -44,215 +44,6 @@ main {
   }
 }
 
-.paragraph--links-list {
-  --anim-duration: 1s;
-
-  circle {
-    opacity: 0;
-    animation-name: slidein;
-    animation-duration: var(--anim-duration);
-    animation-timing-function: ease-in;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-    transition: stroke var(--anim-duration) ease-in-out;
-  }
-
-  circle {
-    animation-delay: 10ms;
-  }
-
-  .line1 {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 200;
-    stroke-width: 20;
-    animation-name: dashIn;
-    animation-duration: calc(var(--anim-duration) * 2);
-    animation-iteration-count: 1;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-  }
-
-  .line2 {
-    stroke-width: 20;
-    transition: stroke var(--anim-duration) ease-in-out;
-  }
-
-  svg {
-    &:hover {
-      cursor: pointer;
-
-      .line1 {
-        animation-name: dashOut;
-      }
-
-      circle {
-        fill: black;
-      }
-
-      .line2 {
-        stroke: var(--red);
-        stroke-dashoffset: 0;
-        stroke-dasharray: 200;
-        stroke-width: 20;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-out;
-        animation-fill-mode: forwards;
-        animation-name: dashHover;
-        animation-duration: 0.4s;
-        position: relevant;
-      }
-
-      g {
-        &:nth-child(1) .line1 {
-          animation-duration: 60ms;
-        }
-        &:nth-child(2) .line1 {
-          animation-duration: 110ms;
-        }
-        &:nth-child(3) .line1 {
-          animation-duration: 160ms;
-        }
-        &:nth-child(4) .line1 {
-          animation-duration: 210ms;
-        }
-        &:nth-child(5) .line1 {
-          animation-duration: 260ms;
-        }
-        &:nth-child(6) .line1 {
-          animation-duration: 310ms;
-        }
-        &:nth-child(7) .line1 {
-          animation-duration: 360ms;
-        }
-        &:nth-child(8) .line1 {
-          animation-duration: 410ms;
-        }
-        &:nth-child(9) .line1 {
-          animation-duration: 460ms;
-        }
-        &:nth-child(10) .line1 {
-          animation-duration: 510ms;
-        }
-        &:nth-child(11) .line1 {
-          animation-duration: 560ms;
-        }
-        &:nth-child(12) .line1 {
-          animation-duration: 610ms;
-        }
-        &:nth-child(13) .line1 {
-          animation-duration: 660ms;
-        }
-        &:nth-child(14) .line1 {
-          animation-duration: 710ms;
-        }
-        &:nth-child(15) .line1 {
-          animation-duration: 760ms;
-        }
-        &:nth-child(16) .line1 {
-          animation-duration: 810ms;
-        }
-        &:nth-child(17) .line1 {
-          animation-duration: 860ms;
-        }
-        &:nth-child(18) .line1 {
-          animation-duration: 910ms;
-        }
-        &:nth-child(19) .line1 {
-          animation-duration: 960ms;
-        }
-        &:nth-child(20) .line1 {
-          animation-duration: 1010ms;
-        }
-      }
-    }
-  }
-
-  @keyframes dashIn {
-    from {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 30;
-    }
-    to {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 200;
-    }
-  }
-
-  @keyframes dashOut {
-    from {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 200;
-    }
-    to {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 30;
-    }
-  }
-
-  @keyframes dashHover {
-    from {
-      stroke-dashoffset: 0;
-      stroke-dasharray: 45;
-    }
-    to {
-      stroke-dashoffset: -90;
-
-      stroke-dasharray: 45;
-    }
-  }
-}
-
-.card-styled-border {
-  display: flex;
-
-  circle {
-    opacity: 0;
-
-    animation-duration: 500ms;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
-    animation-iteration-count: 1;
-
-    &:nth-of-type(odd) {
-      transform: translateX(5px);
-      animation-name: slideinRL;
-    }
-
-    &:nth-of-type(even) {
-      transform: translateX(-5px);
-      animation-name: slideinLR;
-    }
-  }
-
-  .line1 {
-    stroke-dashoffset: 10;
-    stroke-dasharray: 50;
-    stroke-width: 20;
-  }
-
-  @keyframes slideinRL {
-    0% {
-      opacity: 0;
-      transform: translateX(5px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0px);
-    }
-  }
-
-  @keyframes slideinLR {
-    0% {
-      opacity: 0;
-      transform: translateX(-5px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0px);
-    }
-  }
-}
-
 @keyframes slidein {
   0% {
     opacity: 0;
@@ -313,7 +104,7 @@ main {
 }
 
 .svg-title {
-  margin-block: 24px;
+  padding-block: 24px;
   display: grid;
 
   svg {
@@ -324,7 +115,7 @@ main {
   }
 
   @media (--md) {
-    margin-block: 80px;
+    padding-block: 80px;
     justify-content: center;
     max-height: inherit;
 
@@ -341,4 +132,38 @@ main {
 
 .container-content {
   isolation: isolate;
+}
+
+/* efects */
+@keyframes dashIn {
+  from {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 30;
+  }
+  to {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 200;
+  }
+}
+
+@keyframes dashOut {
+  from {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 30;
+  }
+}
+
+@keyframes dashHover {
+  from {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 45;
+  }
+  to {
+    stroke-dashoffset: -90;
+    stroke-dasharray: 45;
+  }
 }

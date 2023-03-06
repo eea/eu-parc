@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.basic_page.field_seo_keyword
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
+    - field.field.node.basic_page.field_views_reference_bottom
     - node.type.basic_page
   module:
     - field_group
@@ -40,6 +41,7 @@ third_party_settings:
         required_fields: true
     group_other_content_out_bottom:
       children:
+        - field_views_reference_bottom
         - field_paragraphs
       label: 'Other content Bottom (out  of content container)'
       region: content
@@ -91,7 +93,7 @@ content:
     third_party_settings: {  }
   field_paragraphs:
     type: paragraphs
-    weight: 12
+    weight: 14
     region: content
     settings:
       title: Paragraph
@@ -145,6 +147,16 @@ content:
   field_views_reference:
     type: viewsreference_autocomplete
     weight: 11
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_views_reference_bottom:
+    type: viewsreference_autocomplete
+    weight: 13
     region: content
     settings:
       match_operator: CONTAINS

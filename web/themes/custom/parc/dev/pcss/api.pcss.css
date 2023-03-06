@@ -500,6 +500,9 @@ div[class*="border-"] {
 .mb-parc {
   margin-bottom: var(--p-parc);
 }
+.pb-parc {
+  padding-bottom: var(--p-parc);
+}
 .mt-parc {
   margin-top: var(--p-parc);
 }

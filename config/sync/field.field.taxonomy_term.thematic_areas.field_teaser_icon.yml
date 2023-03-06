@@ -1,0 +1,29 @@
+uuid: 51341f1d-fd95-4a08-b6af-f441ad1b29d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_teaser_icon
+    - media.type.vector
+    - taxonomy.vocabulary.thematic_areas
+id: taxonomy_term.thematic_areas.field_teaser_icon
+field_name: field_teaser_icon
+entity_type: taxonomy_term
+bundle: thematic_areas
+label: 'Teaser icon'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

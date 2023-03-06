@@ -1,0 +1,22 @@
+uuid: 8af65618-f66b-47bf-9dc9-9c467db5de2e
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_thematic_areas
+label: 'Taxonomy Thematic areas'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/thematic-areas/[term:name]'
+selection_criteria:
+  2033fb48-fec4-4e63-a74f-72c2c37e0bd8:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 2033fb48-fec4-4e63-a74f-72c2c37e0bd8
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      thematic_areas: thematic_areas
+selection_logic: and
+weight: -5
+relationships: {  }

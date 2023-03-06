@@ -1,6 +1,6 @@
 parc_content:
   label: "Parc content"
-  path: templates/components/layouts
+  path: templates/components/layouts/parc-content
   template: layout--parc-content
   library: parc/l--parc-content
   category: "Parc"
