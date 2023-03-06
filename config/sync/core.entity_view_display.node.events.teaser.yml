@@ -28,7 +28,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_categories:
     type: entity_reference_entity_view
@@ -37,7 +37,7 @@ content:
       view_mode: views_link
       link: false
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_date:
     type: daterange_default
@@ -45,17 +45,9 @@ content:
     settings:
       timezone_override: ''
       format_type: medium
-      separator: —
+      separator: '-'
     third_party_settings: {  }
-    weight: 0
-    region: content
-  field_time:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
 hidden:
   addtoany: true
@@ -63,5 +55,6 @@ hidden:
   field_add_to_calendar: true
   field_metatags: true
   field_seo_keyword: true
+  field_time: true
   field_website: true
   links: true
