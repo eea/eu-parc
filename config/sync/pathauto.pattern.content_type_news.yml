@@ -7,12 +7,12 @@ dependencies:
 id: content_type_news
 label: 'News content type'
 type: 'canonical_entities:node'
-pattern: '/news/[node:title]'
+pattern: '/news/[node:field_tags:entity:name]/[node:title]'
 selection_criteria:
-  b5bbf17d-f208-4d33-bfdd-0e1060fd8f12:
+  b3f5faed-e945-41d9-8cfd-395d7881edf2:
     id: 'entity_bundle:node'
     negate: false
-    uuid: b5bbf17d-f208-4d33-bfdd-0e1060fd8f12
+    uuid: b3f5faed-e945-41d9-8cfd-395d7881edf2
     context_mapping:
       node: node
     bundles:

@@ -23,11 +23,11 @@
         {{- item.content -}}
       {% elseif date_start.1 != date_end.1 %}
         {{ date_start.0 }}.{{ date_start.1 }}
-        {{ delimiter }}
+        —
         {{ date_end.0 }}.{{ date_end.1 }}
       {% elseif date_start.0 != date_end.0 %}
         {{ date_start.0 }}
-        {{ delimiter }}
+        —
         {{ date_end.0 }}.{{ date_start.1 }}
       {% endif %}
     {% else %}

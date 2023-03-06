@@ -209,6 +209,16 @@ n--basic-page-compact:
     component:
       css/components/content/basic-page/compact/style.css: {}
 
+n--thematic-areas--full:
+  css:
+    component:
+      css/components/content/thematic-areas/vm-full/style.css: {}
+
+n--thematic-areas--card-item:
+  css:
+    component:
+      css/components/content/thematic-areas/vm-card-item/style.css: {}
+
 # Block.
 b--carousel:
   css:
@@ -243,6 +253,34 @@ s--footer:
   css:
     component:
       css/components/sections/footer/style.css: {}
+
+# Taxonomy.
+t--thematic-areas--full:
+  css:
+    component:
+      css/components/taxonomy/thematic-areas/vm-full/style.css: {}
+
+t--thematic-areas--header:
+  css:
+    component:
+      css/components/taxonomy/thematic-areas/vm-header/style.css: {}
+
+t--thematic-areas--card:
+  css:
+    component:
+      css/components/taxonomy/thematic-areas/vm-card/style.css: {}
+
+# Layout.
+l--parc-content:
+  css:
+    component:
+      css/components/layouts/parc-content/style.css: {}
+
+# Menu.
+m--main:
+  css:
+    component:
+      css/components/menu/main/style.css: {}
 
 # Other.
 f--views-exposed:

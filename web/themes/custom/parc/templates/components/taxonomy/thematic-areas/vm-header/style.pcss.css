@@ -1,0 +1,10 @@
+.t-term--thematic-areas--header {
+  background-color: var(--tta--bg);
+  padding-block: 40px;
+
+  @media (--md) {
+    .field--name-field-icon {
+      width: 75%;
+    }
+  }
+}

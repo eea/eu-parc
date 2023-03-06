@@ -1,0 +1,46 @@
+.node--thematic-areas--card-item {
+  --pt-color: var(--green);
+
+  color: var(--pt-color);
+  background: var(--c-body-bg);
+  border-radius: var(--border-radius);
+
+  .link-ta {
+    --btn-hover-color: var(--pt-color);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: 4px;
+    min-height: 50px;
+    font-weight: var(--fw-medium);
+    padding: 4px 20px;
+    color: var(--pt-color);
+    text-decoration: none;
+    line-height: 1.3em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    .second-line {
+      transition: var(--transition-base);
+    }
+
+    &:not(.collapsed) {
+      .second-line {
+        stroke: transparent;
+      }
+    }
+  }
+
+  .field--name-body {
+    font-size: 14px;
+    font-weight: var(--font-weight-normal);
+    padding-inline: 1.25rem;
+    padding-bottom: 1rem;
+    line-height: 125%;
+  }
+}
