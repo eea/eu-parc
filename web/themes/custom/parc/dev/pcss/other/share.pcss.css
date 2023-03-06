@@ -14,8 +14,7 @@
   border-radius: var(--bw-h);
   padding: 0 18px;
   will-change: transform;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  transition: var(--transition-base);
   margin-top: var(--p-parc);
 
   a {
@@ -25,7 +24,7 @@
     color: var(--c-body);
     will-change: transform;
     transform: scale(0.1);
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 
     svg {
       max-width: 100%;
@@ -45,8 +44,13 @@
       transform: scale(1);
 
       svg {
+        transition: var(--transition-base);
         width: 100%;
         height: auto;
+      }
+
+      &:hover svg {
+        opacity: 0.7;
       }
     }
   }

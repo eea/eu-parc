@@ -27,19 +27,15 @@
     margin-top: var(--p-parc);
 
     a {
-      --link-color: var(--lichtblauw);
-      --link-h-color: var(--lichtblauw);
+      --link-color: var(--ne-c-cat);
+      --link-h-color: var(--link-color);
       --link-decoration: none;
       --link-h-decoration: underline;
 
       font-size: 12px;
       display: flex;
       align-items: center;
-
-      &:after {
-        content: url("data:image/svg+xml, %3Csvg width='10' height='10' viewbox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.24414 1H7.52571C8.16376 1 8.76704 1.57529 8.76704 2.18374L8.76704 6.52205' stroke='#1c85ff' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='5.67773' y1='4.49377' x2='1.0607' y2='9.1108' stroke='#1c85ff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-        margin-left: 4px;
-      }
+      margin-right: 4px;
     }
   }
 }
