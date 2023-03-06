@@ -134,7 +134,59 @@ main {
   isolation: isolate;
 }
 
-/* efects */
+/* Efects. */
+.card-styled-border {
+  display: flex;
+
+  circle {
+    opacity: 0;
+
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+
+    &:nth-of-type(odd) {
+      transform: translateX(5px);
+      animation-name: slideinRL;
+    }
+
+    &:nth-of-type(even) {
+      transform: translateX(-5px);
+      animation-name: slideinLR;
+    }
+  }
+
+  .line1 {
+    stroke-dashoffset: 10;
+    stroke-dasharray: 50;
+    stroke-width: 20;
+  }
+
+  @keyframes slideinRL {
+    0% {
+      opacity: 0;
+      transform: translateX(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes slideinLR {
+    0% {
+      opacity: 0;
+      transform: translateX(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+}
+
+/* Efects need clarification. */
 @keyframes dashIn {
   from {
     stroke-dashoffset: 0;
