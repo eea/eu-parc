@@ -64,9 +64,9 @@ module:
   mysql: 0
   node: 0
   options: 0
-  page_cache: 0
   panelbutton: 0
   parc_core: 0
+  parc_zenodo_api: 0
   path: 0
   path_alias: 0
   rabbit_hole: 0
