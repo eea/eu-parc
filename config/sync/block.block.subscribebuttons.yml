@@ -11,7 +11,7 @@ dependencies:
     - parc
 third_party_settings:
   block_class:
-    classes: 'mt-f mt-lg-0'
+    classes: 'mt-4 mt-lg-0'
 id: subscribebuttons
 theme: parc
 region: footer_second
