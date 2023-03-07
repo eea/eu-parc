@@ -16,9 +16,9 @@
   --body-font-weight: var(--fw-medium);
   --body-letter-spacing: 0.01em;
 
-  --link-color: var(--c-body-color);
+  --link-color: var(--body-color);
   --link-decoration: underline;
-  --link-h-color: var(--c-body-color);
+  --link-h-color: var(--body-color);
   --link-h-decoration: none;
 
   --spacer: 36px;
@@ -97,7 +97,7 @@
   --purple-m: #f58296;
   --purple-l: #fbcdd5;
 
-  --c-body-color: #000000;
+  --body-color: #000000;
   --c-body-bg: #ffffff;
 
   --rgb-white: 255, 255, 255;

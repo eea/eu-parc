@@ -2,6 +2,11 @@
   background-color: var(--tta--bg);
   padding-block: 40px;
 
+  .media-field {
+    max-width: 320px;
+    max-height: 320px;
+  }
+
   @media (--md) {
     .field--name-field-icon {
       width: 75%;

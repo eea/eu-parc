@@ -25,9 +25,9 @@ content:
       image_link: ''
       image_style: ''
       svg_attributes:
-        width: null
-        height: null
-      svg_render_as_image: false
+        width: 320
+        height: 320
+      svg_render_as_image: true
       image_loading:
         attribute: lazy
     third_party_settings: {  }
