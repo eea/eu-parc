@@ -193,7 +193,7 @@ figure {
 img,
 svg {
   vertical-align: middle;
-  max-width: 100% !important;
+  max-width: 100%;
 }
 
 /* Tables */

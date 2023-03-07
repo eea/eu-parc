@@ -40,13 +40,8 @@
       </a>
     </div>
 
-    {% set footerOverlay = cardFooterOverlay() %}
-
-    {{ footerOverlay }}
-    {% if fileExists(footerOverlay) %}
-      <div class="card-styled-border">
-        {{ include(footerOverlay) }}
-      </div>
-    {% endif %}
+    <div class="card-styled-border">
+      {{ include(cardFooterOverlay()) }}
+    </div>
   </article>
 {% endblock article %}

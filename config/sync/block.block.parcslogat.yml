@@ -11,7 +11,7 @@ dependencies:
     - parc
 third_party_settings:
   block_class:
-    classes: 'block-parc rf-block-top mb-f mb-lg-0 row-bottom'
+    classes: 'block-parc rf-block-top row-bottom'
 id: parcslogat
 theme: parc
 region: prefooter
