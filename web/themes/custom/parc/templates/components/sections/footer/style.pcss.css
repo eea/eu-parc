@@ -57,11 +57,6 @@ footer {
       font-size: 19px;
     }
   }
-
-  path {
-    fill: white;
-    opacity: 1;
-  }
 }
 
 .block-parc {
