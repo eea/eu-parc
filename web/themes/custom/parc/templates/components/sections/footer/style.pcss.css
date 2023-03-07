@@ -19,7 +19,7 @@ footer {
 }
 
 .region-footer {
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr minmax(29px, auto);
   gap: 1px;
@@ -56,6 +56,10 @@ footer {
     .nav-link {
       font-size: 19px;
     }
+  }
+
+  > .block {
+    padding-right: 4rem;
   }
 }
 
@@ -96,5 +100,6 @@ footer {
   .nav-link {
     font-size: 10px;
     text-transform: uppercase;
+    letter-spacing: 0.8px;
   }
 }
