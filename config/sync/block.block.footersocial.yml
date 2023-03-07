@@ -1,9 +1,9 @@
-uuid: 48b7b784-67f7-43f6-95b8-4b03f7ab23b6
+uuid: 9fdad784-8375-4879-b2cc-fb4b77dd4529
 langcode: en
-status: false
+status: true
 dependencies:
   content:
-    - 'block_content:basic:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
+    - 'block_content:basic:ba430b44-f791-4817-bdf4-a7fe0774aa27'
   module:
     - block_class
     - block_content
@@ -12,15 +12,15 @@ dependencies:
 third_party_settings:
   block_class:
     classes: block-social
-id: social
+id: footersocial
 theme: parc
 region: footer
-weight: -7
+weight: 0
 provider: null
-plugin: 'block_content:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
+plugin: 'block_content:ba430b44-f791-4817-bdf4-a7fe0774aa27'
 settings:
-  id: 'block_content:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
-  label: Social
+  id: 'block_content:ba430b44-f791-4817-bdf4-a7fe0774aa27'
+  label: 'Footer Social'
   label_display: '0'
   provider: block_content
   status: true
