@@ -27,7 +27,7 @@ footer {
 }
 
 .region-footer {
-  display: flex;
+  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto 1fr minmax(29px, auto);
   gap: 1px;
@@ -37,6 +37,7 @@ footer {
     "rf-block-left rf-block-right-bottom";
 
   @media (--md) {
+    display: flex;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
       "rf-block-top rf-block-top rf-block-top"
@@ -74,6 +75,7 @@ footer {
 .block-parc {
   font-size: 32px;
   line-height: 125%;
+  margin-top: 10.5%;
 
   @media (--lg) {
     font-size: 48px;
