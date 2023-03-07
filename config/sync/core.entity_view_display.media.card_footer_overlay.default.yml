@@ -16,15 +16,15 @@ content:
     type: image
     label: visually_hidden
     settings:
-      image_link: ""
-      image_style: ""
+      image_link: ''
+      image_style: ''
       svg_attributes:
         width: null
         height: null
       svg_render_as_image: false
       image_loading:
         attribute: lazy
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 0
     region: content
 hidden:

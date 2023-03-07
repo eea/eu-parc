@@ -18,7 +18,7 @@ content:
     type: image
     label: hidden
     settings:
-      image_link: ""
+      image_link: ''
       image_style: medium
       svg_attributes:
         width: null
@@ -26,7 +26,7 @@ content:
       svg_render_as_image: true
       image_loading:
         attribute: lazy
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 0
     region: content
 hidden:

@@ -41,6 +41,7 @@ content:
     weight: 100
     region: content
 hidden:
+  addtoany: true
   field_authors: true
   field_cover: true
   field_doi_link: true

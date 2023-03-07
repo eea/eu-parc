@@ -7,9 +7,13 @@ dependencies:
     - field.field.node.events.body
     - field.field.node.events.field_add_to_calendar
     - field.field.node.events.field_address
+    - field.field.node.events.field_address_data
     - field.field.node.events.field_categories
+    - field.field.node.events.field_city
     - field.field.node.events.field_date
+    - field.field.node.events.field_event_format
     - field.field.node.events.field_metatags
+    - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
     - field.field.node.events.field_time
     - field.field.node.events.field_website
@@ -46,7 +50,7 @@ content:
     settings:
       timezone_override: ''
       format_type: medium
-      separator: '-'
+      separator: –
     third_party_settings: {  }
     weight: 2
     region: content
@@ -61,7 +65,11 @@ hidden:
   addtoany: true
   body: true
   field_add_to_calendar: true
+  field_address_data: true
+  field_city: true
+  field_event_format: true
   field_metatags: true
+  field_registration: true
   field_seo_keyword: true
   field_website: true
   links: true
