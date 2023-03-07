@@ -81,7 +81,7 @@ footer {
   --btn-color: #ffffff;
   --btn-border-color: var(--btn-color);
   --btn-hover-border-color: var(--btn-color);
-  --btn-hover-color: #000000;
+  --link-h-color: #000000;
   --btn-hover-bg: var(--btn-color);
   font-size: 20px;
   font-weight: 600;

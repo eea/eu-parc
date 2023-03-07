@@ -1000,6 +1000,23 @@ div[class*="border-"] {
   color: var(--color);
 }
 
+.bg-green {
+  --color: var(--c-white);
+  --link-color: var(--color);
+  --link-h-color: var(--color);
+  background-color: rgba(var(--rgb-green), var(--bg-opacity)) !important;
+  color: var(--color);
+}
+
+.bg-blue {
+  --color: var(--c-white);
+  --link-color: var(--color);
+  --link-h-color: var(--color);
+  background-color: rgba(var(--rgb-blue), var(--bg-opacity)) !important;
+  color: var(--color);
+}
+
+
 .bg-white {
   background-color: rgba(var(--rgb-white), 1);
 }
