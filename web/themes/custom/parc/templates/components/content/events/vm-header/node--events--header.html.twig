@@ -26,7 +26,12 @@
   {{- content.field_date -}}
 
   <div class="section-bottom d-flex justify-content-between">
-    {{- content.field_address -}}
+    {% if content.field_city.0 %}
+      {{- content.field_city.0 -}}
+    {% else %}
+      {{- content.field_event_format.0 -}}
+    {% endif %}
+
     {{- content.field_add_to_calendar -}}
   </div>
 </section>

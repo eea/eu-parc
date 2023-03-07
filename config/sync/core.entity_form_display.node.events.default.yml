@@ -6,21 +6,42 @@ dependencies:
     - field.field.node.events.body
     - field.field.node.events.field_add_to_calendar
     - field.field.node.events.field_address
+    - field.field.node.events.field_address_data
     - field.field.node.events.field_categories
+    - field.field.node.events.field_city
     - field.field.node.events.field_date
+    - field.field.node.events.field_event_format
     - field.field.node.events.field_metatags
+    - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
     - field.field.node.events.field_time
     - field.field.node.events.field_website
     - node.type.events
   module:
-    - address
     - datetime_range
+    - field_group
     - ics_link_field
     - link
     - metatag
     - path
     - text
+third_party_settings:
+  field_group:
+    group_venue:
+      children:
+        - field_city
+        - field_address_data
+      label: Venue
+      region: content
+      parent_name: ''
+      weight: 11
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: ''
+        required_fields: true
 id: node.events.default
 targetEntityType: node
 bundle: events
@@ -44,39 +65,63 @@ content:
     third_party_settings: {  }
   field_add_to_calendar:
     type: ics_link_field_widget
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_address:
-    type: address_default
-    weight: 11
+  field_address_data:
+    type: text_textarea
+    weight: 26
     region: content
-    settings: {  }
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   field_categories:
     type: options_select
-    weight: 13
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_city:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_date:
     type: daterange_default
-    weight: 10
+    weight: 9
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_event_format:
+    type: options_select
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
-    weight: 16
+    weight: 17
     region: content
     settings:
       sidebar: true
       use_details: true
     third_party_settings: {  }
+  field_registration:
+    type: text_textarea
+    weight: 10
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
   field_seo_keyword:
     type: entity_reference_autocomplete
-    weight: 15
+    weight: 16
     region: content
     settings:
       match_operator: CONTAINS
@@ -84,15 +129,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_time:
-    type: options_select
-    weight: 9
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_website:
     type: link_default
-    weight: 12
+    weight: 13
     region: content
     settings:
       placeholder_url: ''
@@ -117,7 +156,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -153,4 +192,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_address: true
+  field_time: true

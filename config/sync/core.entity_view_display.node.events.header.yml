@@ -7,9 +7,13 @@ dependencies:
     - field.field.node.events.body
     - field.field.node.events.field_add_to_calendar
     - field.field.node.events.field_address
+    - field.field.node.events.field_address_data
     - field.field.node.events.field_categories
+    - field.field.node.events.field_city
     - field.field.node.events.field_date
+    - field.field.node.events.field_event_format
     - field.field.node.events.field_metatags
+    - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
     - field.field.node.events.field_time
     - field.field.node.events.field_website
@@ -19,6 +23,7 @@ dependencies:
     - datetime_range
     - ics_link_field
     - layout_builder
+    - options
     - user
 third_party_settings:
   layout_builder:
@@ -35,7 +40,7 @@ content:
     settings:
       link_label: 'Add to Calendar'
     third_party_settings: {  }
-    weight: 2
+    weight: 4
     region: content
   field_address:
     type: address_default
@@ -53,6 +58,14 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  field_city:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_date:
     type: daterange_default
     label: hidden
@@ -61,12 +74,21 @@ content:
       format_type: medium
       separator: '-'
     third_party_settings: {  }
+    weight: 5
+    region: content
+  field_event_format:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
     weight: 3
     region: content
 hidden:
   addtoany: true
   body: true
+  field_address_data: true
   field_metatags: true
+  field_registration: true
   field_seo_keyword: true
   field_time: true
   field_website: true
