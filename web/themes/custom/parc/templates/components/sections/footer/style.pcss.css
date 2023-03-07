@@ -43,6 +43,10 @@ footer {
       "rf-block-top rf-block-top rf-block-top"
       "rf-block-left rf-block-right ."
       "rf-block-left rf-block-right-bottom .";
+
+    > .block {
+      padding-right: 4rem;
+    }
   }
 
   .rf-block-top {
@@ -67,13 +71,11 @@ footer {
     }
   }
 
-  > .block {
-    padding-right: 4rem;
-  }
+
 }
 
 .block-parc {
-  font-size: 32px;
+  font-size: 24px;
   line-height: 125%;
   margin-top: 10.5%;
 
