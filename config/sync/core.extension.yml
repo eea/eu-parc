@@ -6,7 +6,6 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   automated_cron: 0
-  backup_migrate: 0
   better_exposed_filters: 0
   big_pipe: 0
   block: 0
@@ -61,6 +60,10 @@ module:
   menu_trail_by_path: 0
   menu_ui: 0
   metatag: 0
+  metatag_facebook: 0
+  metatag_google_cse: 0
+  metatag_twitter_cards: 0
+  metatag_views: 0
   mysql: 0
   node: 0
   options: 0

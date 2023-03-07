@@ -51,6 +51,7 @@ class ParcTwigExtension extends AbstractExtension {
       new TwigFunction('termOverlay', [$this, 'termOverlay']),
       new TwigFunction('termOverlayTotal', [$this, 'termOverlayTotal']),
       new TwigFunction('cardFooterOverlay', [$this, 'cardFooterOverlay']),
+      new TwigFunction('fileExists', [$this, 'fileExists']),
     ];
   }
 
@@ -154,6 +155,19 @@ class ParcTwigExtension extends AbstractExtension {
     }
 
     return rawurldecode($svg);
+  }
+
+  /**
+   * Checks if file exists on the server.
+   *
+   * @param string $path
+   *   Path to the file on server.
+   *
+   * @return bool
+   *   If file exists.
+   */
+  public function fileExists(string $path) {
+    return file_exists($path);
   }
 
   /**

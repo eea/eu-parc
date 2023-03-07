@@ -1,10 +1,10 @@
 uuid: d7c9ed3e-0c22-4a12-8729-9f786e694237
 langcode: en
 status: true
-dependencies: {}
+dependencies: {  }
 id: card_footer_overlay
-label: "Card Footer Overlay"
-description: "Used to store card footer's overlays"
+label: 'Card Footer Overlay'
+description: 'Used to store card footer''s overlays'
 source: image
 queue_thumbnail_downloads: false
 new_revision: true
