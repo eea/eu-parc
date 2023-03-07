@@ -11,7 +11,7 @@ dependencies:
     - parc
 third_party_settings:
   block_class:
-    classes: block-social
+    classes: 'block-social mt-5 mt-md-0'
 id: footersocial
 theme: parc
 region: footer
