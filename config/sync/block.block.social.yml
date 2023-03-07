@@ -11,11 +11,11 @@ dependencies:
     - parc
 third_party_settings:
   block_class:
-    classes: 'block-social rf-block-right-bottom'
+    classes: block-social
 id: social
 theme: parc
 region: footer
-weight: -5
+weight: -7
 provider: null
 plugin: 'block_content:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
 settings:
