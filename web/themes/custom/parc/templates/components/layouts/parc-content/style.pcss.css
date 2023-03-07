@@ -8,9 +8,13 @@
   @media (--lg) {
     align-items: stretch;
 
+    .field--name-field-address-data p {
+      margin-bottom: 0 !important;
+    }
+
     .field--type-text-long,
     .field--type-text-with-summary {
-      & > *:not(blockquote):not(div) {
+      &:not(.field--name-field-address-data) > *:not(blockquote):not(div) {
         margin-inline: 8.3333% 16.6666%;
       }
 
