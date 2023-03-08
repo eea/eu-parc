@@ -14,6 +14,7 @@ global-styling:
       css/transitions.css: {}
       css/helpers.css: {}
       css/theme/global.css: {}
+      css/theme/block.css: {}
   js:
     js/script.js: {}
   dependencies:

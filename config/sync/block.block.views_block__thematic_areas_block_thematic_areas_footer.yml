@@ -1,0 +1,33 @@
+uuid: 9405083f-0d44-4232-99a0-12e9e786e533
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.thematic_areas
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - parc
+third_party_settings:
+  block_class:
+    classes: label-content-inline
+id: views_block__thematic_areas_block_thematic_areas_footer
+theme: parc
+region: content_bottom
+weight: 0
+provider: null
+plugin: 'views_block:thematic_areas-block_thematic_areas_footer'
+settings:
+  id: 'views_block:thematic_areas-block_thematic_areas_footer'
+  label: ''
+  label_display: visible
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/thematic-areas/*'

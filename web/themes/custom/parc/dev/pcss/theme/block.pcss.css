@@ -1,0 +1,7 @@
+.label-content-inline {
+  @media (--md) {
+    .block--title {
+      margin-left: 25%;
+    }
+  }
+}
