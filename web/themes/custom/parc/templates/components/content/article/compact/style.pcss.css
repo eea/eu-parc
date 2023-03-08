@@ -31,18 +31,12 @@
   }
 
   .field-category {
-    letter-spacing: 0.1em;
-
     a {
       --link-color: var(--red);
       --link-h-color: var(--red);
       --link-decoration: none;
       --link-h-decoration: underline;
     }
-  }
-
-  .field-date {
-    letter-spacing: 0.02em;
   }
 
   .node-title {

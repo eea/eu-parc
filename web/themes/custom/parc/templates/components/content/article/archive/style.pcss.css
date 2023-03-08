@@ -50,7 +50,6 @@
   }
 
   & .card-title {
-    letter-spacing: 0.011em;
     color: var(--news-c-title, var(--red));
     flex-grow: 1;
   }
@@ -63,7 +62,6 @@
   }
 
   .field-category {
-    letter-spacing: 0.1em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

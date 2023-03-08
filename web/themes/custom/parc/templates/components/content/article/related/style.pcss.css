@@ -40,7 +40,6 @@
   }
 
   & .card-title {
-    letter-spacing: 110%;
     color: var(--news-c-title, var(--red));
     margin-bottom: 78px;
   }
@@ -52,8 +51,6 @@
   }
 
   & .field-category {
-    letter-spacing: 0.1em;
-
     & a {
       --link-color: var(--red);
       --link-h-color: var(--red);

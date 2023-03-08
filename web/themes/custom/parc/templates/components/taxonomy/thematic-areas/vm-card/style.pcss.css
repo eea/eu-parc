@@ -2,7 +2,6 @@
   background-color: var(--c-body-bg);
   border-radius: var(--border-radius);
   min-height: 276px;
-  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,13 +14,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    max-height: 250px;
 
     svg {
-      max-width: 178px;
+      height: auto;
     }
   }
 
   .t-term--name {
+    padding-inline: 20px;
+    padding-bottom: 20px;
+    min-height: 78px;
+    display: grid;
+    flex-flow: 1;
+    align-items: flex-end;
+
     a {
       --link-decoration: none;
       --link-h-decoration: underline;
@@ -39,13 +46,13 @@
 
 .svg-hover-effect {
   --anim-duration: 1s;
-  --svg-ta-sw: 20;
+  --svg-ta-sw: 16;
 
   circle {
     opacity: 0;
     animation-name: slidein;
     animation-duration: var(--anim-duration);
-    animation-timing-function: ease-in;
+    animation-timing-funcparagraph--links-listtion: ease-in;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
     transition: stroke var(--anim-duration) ease-in-out;

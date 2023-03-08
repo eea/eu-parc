@@ -108,7 +108,7 @@
     flex-direction: column;
 
     .card-title {
-      min-height: 116px;
+      min-height: 106px;
     }
 
     .card-body {
