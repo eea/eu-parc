@@ -5,29 +5,6 @@ header {
     width: 220px;
   }
 
-  .nav-main {
-    .collapse {
-      position: absolute;
-    }
-  }
-
-  .nav-link-level-0 {
-    &:hover {
-      .mm-collapse-0 {
-        display: block;
-      }
-    }
-  }
-
-  .mm-collapse-0 {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding-left: var(--navbar-nav-link-padding-x);
-    box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
-    clip-path: inset(0 -100vmax);
-    padding-bottom: 2rem;
-    min-height: 400px;
-  }
-
   @media (--lg) {
     .region-nav-additional {
       animation-iteration-count: 1;
@@ -149,6 +126,12 @@ header {
     .nav-main {
       .nav-link {
         --nav-link-font-size: 28px;
+      }
+
+      .mm-collapse-0 {
+        .nav-link {
+          --nav-link-font-size: 18px;
+        }
       }
 
       .d-lg-none {
