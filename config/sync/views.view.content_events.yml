@@ -252,7 +252,7 @@ display:
           columns: 12
           automatic_width: false
           alignment: horizontal
-          row_class_custom: grid--auto-fill
+          row_class_custom: 'grid--auto-fill gaf--events'
           row_class_default: false
           col_class_custom: ''
           col_class_default: false
@@ -929,6 +929,9 @@ display:
               changefreq: ''
               arguments: {  }
               max_links: 100
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
       path: events
       menu:
         type: normal

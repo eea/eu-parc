@@ -7,6 +7,12 @@
 
   /* meniu styles placed in header */
   .region-nav-main & {
+    .nav-main {
+      .collapse {
+        position: absolute;
+      }
+    }
+
     .mm-level-1 {
       position: relative;
       --nav-link-font-size: 18px;
@@ -23,6 +29,23 @@
       .mm-level-1 {
         max-width: 270px;
         margin-top: 24px;
+      }
+
+      .nav-link-level-0 {
+        &:hover {
+          .mm-collapse-0 {
+            display: block;
+          }
+        }
+      }
+
+      .mm-collapse-0 {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding-left: var(--navbar-nav-link-padding-x);
+        box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
+        clip-path: inset(0 -100vmax);
+        padding-bottom: 2rem;
+        min-height: 400px;
       }
     }
   }
