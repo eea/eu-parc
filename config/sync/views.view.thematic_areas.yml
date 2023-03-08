@@ -121,7 +121,7 @@ display:
           entity_type: node
           entity_field: created
           plugin_id: date
-          order: DESC
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
@@ -197,7 +197,9 @@ display:
     display_plugin: block
     position: 2
     display_options:
+      title: 'Block with SVG title Thematic areas'
       defaults:
+        title: false
         header: false
       display_description: ''
       header:
@@ -217,6 +219,35 @@ display:
       display_extenders:
         ajax_history: {  }
         simple_sitemap_display_extender: {  }
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+      block_description: 'Thematic areas with SVG title'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_categories'
+  block_thematic_areas_footer:
+    id: block_thematic_areas_footer
+    display_title: 'Block - Thematic areas Footer'
+    display_plugin: block
+    position: 2
+    display_options:
+      defaults:
+        header: false
+      display_description: ''
+      header: {  }
+      display_extenders:
+        ajax_history: {  }
+        simple_sitemap_display_extender: {  }
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
       block_description: 'Thematic areas'
     cache_metadata:
       max-age: -1
