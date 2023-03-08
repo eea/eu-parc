@@ -8,6 +8,7 @@ dependencies:
     - node.type.thematic_areas
   module:
     - node
+    - taxonomy
     - user
 id: thematic_areas
 label: 'Thematic areas'
@@ -111,22 +112,21 @@ display:
         options: {  }
       empty: {  }
       sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          relationship: none
+        weight:
+          id: weight
+          table: taxonomy_term_field_data
+          field: weight
+          relationship: field_categories
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+          entity_type: taxonomy_term
+          entity_field: weight
+          plugin_id: standard
           order: ASC
           expose:
             label: ''
             field_identifier: ''
           exposed: false
-          granularity: second
       arguments: {  }
       filters:
         status:
@@ -178,7 +178,16 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        field_categories:
+          id: field_categories
+          table: node__field_categories
+          field: field_categories
+          relationship: none
+          group_type: group
+          admin_label: 'field_categories: Taxonomy term'
+          plugin_id: standard
+          required: false
       header: {  }
       footer: {  }
       display_extenders: {  }
