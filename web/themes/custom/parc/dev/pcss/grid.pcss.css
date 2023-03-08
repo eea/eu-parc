@@ -949,11 +949,14 @@
   gap: var(--gutter);
   grid-template-columns: repeat(
     auto-fill,
-    minmax(var(--grid-auto-fill-minw), 1fr)
+    minmax(min(var(--grid-auto-fill-minw), 100%), 1fr)
   );
 
   @media (--xl) {
-    grid-template-columns: repeat(4, minmax(var(--grid-auto-fill-minw), 1fr));
+    grid-template-columns: repeat(
+      4,
+      minmax(min(var(--grid-auto-fill-minw), 100%), 1fr)
+    );
   }
 
   &.gaf--news {
@@ -962,7 +965,7 @@
     @media (--md) {
       grid-template-columns: repeat(
         auto-fill,
-        minmax(var(--grid-auto-fill-minw), 1fr)
+        minmax(min(var(--grid-auto-fill-minw), 100%), 1fr)
       );
     }
 
@@ -980,12 +983,15 @@
     @media (--md) {
       grid-template-columns: repeat(
         auto-fill,
-        minmax(var(--grid-auto-fill-minw), 1fr)
+        minmax(min(var(--grid-auto-fill-minw), 100%), 1fr)
       );
     }
 
     @media (--xl) {
-      grid-template-columns: repeat(4, minmax(var(--grid-auto-fill-minw), 1fr));
+      grid-template-columns: repeat(
+        4,
+        minmax(min(var(--grid-auto-fill-minw), 100%), 1fr)
+      );
     }
   }
 }
