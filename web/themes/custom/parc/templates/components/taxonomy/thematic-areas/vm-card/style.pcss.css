@@ -19,6 +19,7 @@
       --link-h-decoration: underline;
       --link-color: var(--tta--c);
       --link-h-color: var(--tta--c);
+      font-weight: var(--fw-bold);
     }
 
     svg {
