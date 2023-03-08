@@ -75,9 +75,9 @@
   .field--name-field-categories {
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.6;
     margin-right: 4px;
     position: relative;
     z-index: 2;
