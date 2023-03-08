@@ -45,7 +45,8 @@
     letter-spacing: 0.02em;
   }
 
-  .field-city {
+  .field-city,
+  .field-event-format {
     font-size: 12px;
     font-weight: var(--font-weight-normal);
   }

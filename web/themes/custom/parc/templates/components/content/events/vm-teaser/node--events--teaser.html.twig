@@ -22,7 +22,12 @@
     <div class="card-img">
       <div class="w--bg position-relative">
         {{- content.field_date -}}
-        {{- content.field_city -}}
+
+        {% if content.field_city.0 %}
+          {{- content.field_city -}}
+        {% else %}
+          {{- content.field_event_format -}}
+        {% endif %}
       </div>
     </div>
 
