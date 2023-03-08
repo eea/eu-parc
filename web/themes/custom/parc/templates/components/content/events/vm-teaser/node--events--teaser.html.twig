@@ -22,13 +22,13 @@
     <div class="card-img">
       <div class="w--bg position-relative">
         {{- content.field_date -}}
-        {{- content.field_address -}}
+        {{- content.field_city -}}
       </div>
     </div>
 
     <div class="card-body">
       <div class="meta d-flex justify-content-between fw-bold text-uppercase">
-        {{- content|without('field_date', 'field_address') -}}
+        {{- content|without('field_date', 'field_address', 'field_city') -}}
       </div>
 
       <h2{{title_attributes.addClass('card-title','fw-bold')}}>
