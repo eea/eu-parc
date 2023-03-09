@@ -75,23 +75,23 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: rrule_index
+          click_sort_column: value
           type: smartdate_plain
           settings:
             timezone_override: ''
             separator: ' - '
-          group_column: value
+          group_column: entity_id
           group_columns: {  }
           group_rows: true
-          delta_limit: 0
+          delta_limit: 1
           delta_offset: 0
           delta_reversed: false
-          delta_first_last: true
+          delta_first_last: false
           multi_type: separator
           separator: ', '
           field_api_classes: false
@@ -291,7 +291,7 @@ display:
       relationships: {  }
       css_class: ''
       use_ajax: true
-      group_by: false
+      group_by: true
       header:
         area:
           id: area
@@ -385,13 +385,13 @@ display:
           table: node__field_date
           field: field_date_end_value
           relationship: none
-          group_type: group
+          group_type: stddev_pop
           admin_label: ''
           plugin_id: date
           order: ASC
           expose:
-            label: 'Date new - End'
-            field_identifier: field_date_end_value
+            label: 'Date - End'
+            field_identifier: field_date_value
           exposed: true
           granularity: second
       arguments: {  }
@@ -400,28 +400,84 @@ display:
           id: status
           table: node_field_data
           field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
           entity_field: status
           plugin_id: boolean
+          operator: '='
           value: '1'
           group: 1
+          exposed: false
           expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         type:
           id: type
           table: node_field_data
           field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
           entity_type: node
           entity_field: type
           plugin_id: bundle
+          operator: in
           value:
             events: events
           group: 1
+          exposed: false
           expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
             operator_limit_selection: false
             operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
         field_categories_target_id:
           id: field_categories_target_id
           table: node__field_categories
@@ -783,7 +839,21 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      sorts: {  }
+      sorts:
+        field_date_end_value:
+          id: field_date_end_value
+          table: node__field_date
+          field: field_date_end_value
+          relationship: none
+          group_type: max
+          admin_label: ''
+          plugin_id: date
+          order: ASC
+          expose:
+            label: 'Date - End'
+            field_identifier: field_date_value
+          exposed: true
+          granularity: second
       arguments: {  }
       filters:
         status:
@@ -930,7 +1000,7 @@ display:
             max: ''
             value: now
             type: date
-            granularity: second
+            granularity: hour
           group: 1
           exposed: false
           expose:
@@ -969,6 +1039,7 @@ display:
       defaults:
         css_class: false
         use_ajax: false
+        group_by: false
         relationships: false
         sorts: false
         arguments: false
@@ -978,6 +1049,7 @@ display:
       relationships: {  }
       css_class: mb-parc
       use_ajax: false
+      group_by: true
       display_description: ''
       header:
         area:
@@ -1024,6 +1096,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions

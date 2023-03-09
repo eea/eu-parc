@@ -22,9 +22,9 @@
 {% endif %}
 
 <section{{attributes.addClass(classes)}}>
-  {{- content.field_p_date -}}
+  {{- content.field_date -}}
 
-  {{-content|without('field_p_date', 'field_time', 'field_add_to_calendar', 'field_address_data', 'field_city', 'field_website')-}}
+  {{- content|without('field_date', 'field_time', 'field_add_to_calendar', 'field_address_data', 'field_city', 'field_website')-}}
 
   {%- if content.field_city.0 or content.field_address_data.0 -%}
     <div class="f-label">{{ 'Venue'|t }}</div>

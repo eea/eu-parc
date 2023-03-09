@@ -20,6 +20,7 @@ dependencies:
     - ics_link_field
     - layout_builder
     - link
+    - smart_date
     - text
     - user
 third_party_settings:
@@ -54,12 +55,35 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_date:
+    type: smartdate_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      format: compact
+      force_chronological: true
+      add_classes: false
+      time_wrapper: true
+      localize: false
+      parts:
+        start: start
+        end: end
+        duration: '0'
+      duration:
+        separator: ' | '
+        unit: ''
+        decimals: 2
+        suffix: h
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_registration:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_website:
     type: link
@@ -77,7 +101,6 @@ hidden:
   addtoany: true
   body: true
   field_categories: true
-  field_date: true
   field_event_format: true
   field_metatags: true
   field_seo_keyword: true

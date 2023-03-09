@@ -38,7 +38,7 @@
     }
   }
 
-  .field-p-date {
+  .field-date {
     font-size: var(--net--fs-date);
     font-weight: var(--fw-bold);
     line-height: 1.2;
@@ -69,7 +69,7 @@
     margin-bottom: 8px;
     line-height: 1.6;
 
-    .field-p-date {
+    .field-date {
       display: none;
     }
 
