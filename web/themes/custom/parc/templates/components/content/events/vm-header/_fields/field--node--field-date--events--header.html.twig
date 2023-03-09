@@ -1,7 +1,6 @@
 {#
 /**
  * @file
- * Parc theme implementation for a field.
  */
 #}
 
@@ -13,27 +12,48 @@
 %}
 
 <div{{attributes.addClass(classes)}}>
-  {%- for item in items -%}
-    {% if item.content.end_date %}
-      {% set date_start = item.content.start_date['#text']|split('.') %}
-      {% set date_end = item.content.end_date['#text']|split('.') %}
-      {% set delimiter = item.content.separator['#plain_text'] %}
+  {% if items|length > 1 %}
+    {% set count = items|length %}
+    {% set ds = items[0].content.start.date.value['#markup']|split('.') %}
+    {% set de = items[count-1].content.start.date.value['#markup']|split('.') %}
 
-      {% if date_start.2 != date_end.2 %}
-        {{- item.content -}}
-      {% elseif date_start.1 != date_end.1 %}
-        {{ date_start.0 }}.{{ date_start.1 }}
-        —
-        {{ date_end.0 }}.{{ date_end.1 }}
-      {% elseif date_start.0 != date_end.0 %}
-        {{ date_start.0 }}
-        —
-        {{ date_end.0 }}.{{ date_end.1 }}
-      {% else %}
-        {{ date_start.0 }}.{{ date_start.1 }}
-      {% endif %}
-    {% else %}
-      {{- item.content -}}
+    {% if ds.0 != de.0 %}
+      {{ ds.2 }}.{{ ds.1 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}
+    {% elseif ds.1 != de.1 %}
+      {{ de.2 }}.{{ ds.1 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}
+    {% elseif ds.2 != de.2 %}
+      {{ ds.2 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}
     {% endif %}
-  {%- endfor -%}
+  {% else %}
+    {%- for item in items -%}
+      {% set data = item.content['#paragraph'].field_date.0.value|split('-') %}
+      {% set year = data.0 %}
+      {% set month = data.1 %}
+      {% set day = data.2 %}
+
+      {{- day }}.{{ month }}.{{ day -}}
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class="only-year">
+  {% if items|length > 1 %}
+    {% set count = items|length %}
+    {% set ds = items[0].content.start.date.value['#markup']|split('.') %}
+    {% set de = items[count-1].content.start.date.value['#markup']|split('.') %}
+    {% if ds.0 != de.0 %}
+      {{ ds.0 }}{{ ' — ' }}{{ de.0 }}
+    {% else %}
+      {{ ds.0 }}
+    {% endif %}
+  {% else %}
+    {%- for item in items -%}
+      {% set data = items[0].content.start.date.value['#markup']|split('.') %}
+      {% set year = data.0 %}
+      {{ day -}}
+    {% endfor %}
+  {% endif %}
 </div>

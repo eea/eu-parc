@@ -1,4 +1,4 @@
-uuid: c331b4bb-19ab-452f-aced-79e5b048d1c1
+uuid: d0db54aa-dc5d-45c7-a0f0-6d47ff90c62e
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_date
     - node.type.events
   module:
-    - datetime_range
+    - smart_date
 id: node.events.field_date
 field_name: field_date
 entity_type: node
@@ -15,7 +15,14 @@ label: Date
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    default_duration: 60
+    default_duration_increments: "30\r\n60|1 hour\r\n90\r\n120|2 hours\r\ncustom"
+    default_date_type: now
+    default_date: ''
+    min: ''
+    max: ''
 default_value_callback: ''
 settings: {  }
-field_type: daterange
+field_type: smartdate

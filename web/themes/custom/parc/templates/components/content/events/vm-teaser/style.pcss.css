@@ -45,8 +45,11 @@
     letter-spacing: 0.02em;
   }
 
-  .field-city,
-  .field-event-format {
+  .date-meta {
+    display: none;
+  }
+
+  .w--bg--bottom {
     font-size: 12px;
     font-weight: var(--font-weight-normal);
   }
@@ -64,15 +67,18 @@
     font-size: var(--net--fs-meta);
     color: var(--red);
     margin-bottom: 8px;
-    line-height: 1em;
+    line-height: 1.6;
+
+    .field-date {
+      display: none;
+    }
+
+    .date-meta {
+      display: block;
+    }
   }
 
   .field--name-field-categories {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.6;
     margin-right: 4px;
     position: relative;
     z-index: 2;

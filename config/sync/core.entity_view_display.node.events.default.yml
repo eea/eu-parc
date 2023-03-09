@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.field.node.events.body
     - field.field.node.events.field_add_to_calendar
-    - field.field.node.events.field_address
     - field.field.node.events.field_address_data
     - field.field.node.events.field_categories
     - field.field.node.events.field_city
@@ -14,20 +13,18 @@ dependencies:
     - field.field.node.events.field_metatags
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
-    - field.field.node.events.field_time
     - field.field.node.events.field_website
     - node.type.events
     - system.menu.main
   module:
-    - address
     - addtoany
     - ctools
-    - datetime_range
     - ics_link_field
     - layout_builder
     - link
     - metatag
     - options
+    - smart_date
     - system
     - text
     - user
@@ -227,13 +224,6 @@ content:
     third_party_settings: {  }
     weight: 110
     region: first
-  field_address:
-    type: address_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 105
-    region: content
   field_address_data:
     type: text_default
     label: above
@@ -250,15 +240,27 @@ content:
     weight: 112
     region: first
   field_date:
-    type: daterange_default
+    type: smartdate_default
     label: above
     settings:
       timezone_override: ''
       format_type: medium
-      separator: '-'
+      format: default
+      force_chronological: false
+      add_classes: false
+      time_wrapper: true
+      localize: false
+      parts:
+        - start
+        - end
+      duration:
+        separator: ' | '
+        unit: ''
+        decimals: 2
+        suffix: h
     third_party_settings: {  }
-    weight: 103
-    region: content
+    weight: 116
+    region: first
   field_event_format:
     type: list_default
     label: above
@@ -288,14 +290,6 @@ content:
     third_party_settings: {  }
     weight: 108
     region: first
-  field_time:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 107
-    region: content
   field_website:
     type: link
     label: above

@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    field_name|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {% if items|length > 1 %}
+    {% set count = items|length %}
+    {% set dsd = items[0].content['#value']|date('d') %}
+    {% set dsm = items[0].content['#value']|date('m') %}
+    {% set dsy = items[0].content['#value']|date('Y') %}
+    {% set ded = items[count-1].content['#end_value']|date('d') %}
+    {% set dem = items[count-1].content['#end_value']|date('m') %}
+    {% set dey = items[count-1].content['#end_value']|date('Y') %}
+    {% if dsy != dey %}
+      {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
+      {{ ded }}.{{ dem }}.{{ dey }}
+    {% elseif dsm != dem %}
+      {{ ded }}.{{ dsm }}{{ ' — ' }}
+      {{ ded }}.{{ dem }}.{{ dey }}
+    {% elseif dsd != ded %}
+      {{ dsd }}{{ ' — ' }}
+      {{ ded }}.{{ dem }}.{{ dey }}
+    {% endif %}
+  {% else %}
+    {%- for item in items -%}
+      {% set data = item.content['#paragraph'].field_date.0.value|split('-') %}
+      {% set year = data.0 %}
+      {% set month = data.1 %}
+      {% set day = data.2 %}
+
+      {{- day }}.{{ month }}.{{ day -}}
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class="date-meta">
+  {% set bool = items[0].content.start['#text'].time['#markup'] %}
+
+  {% if bool == "All Day" %}
+    {{ bool }}
+  {% else %}
+    {% set ts = items[0].content['#value']|date('h:i') %}
+    {% set te = items[0].content['#end_value']|date('h:i') %}
+    {{- ts }}{{ ' — ' }}{{ te -}}
+  {% endif %}
+</div>

@@ -52,6 +52,7 @@
         "drupal/pathauto": "^1.11",
         "drupal/rabbit_hole": "^1.0@beta",
         "drupal/simple_sitemap": "^4.1",
+        "drupal/smart_date": "^4.0@alpha",
         "drupal/smart_trim": "^2.0",
         "drupal/svg_image": "^1.16",
         "drupal/taxonomy_menu": "^3.6",

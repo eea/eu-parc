@@ -23,17 +23,20 @@
       <div class="w--bg position-relative">
         {{- content.field_date -}}
 
-        {% if content.field_city.0 %}
-          {{- content.field_city -}}
-        {% else %}
-          {{- content.field_event_format -}}
-        {% endif %}
+        <div class="text-uppercase w--bg--bottom">
+          {% if content.field_city.0 %}
+            {{- content.field_city -}}
+          {% else %}
+            {{- content.field_event_format -}}
+          {% endif %}
+        </div>
       </div>
     </div>
 
     <div class="card-body">
       <div class="meta d-flex justify-content-between fw-bold text-uppercase">
-        {{- content|without('field_date', 'field_address', 'field_city', 'field_event_format') -}}
+        {{- content.field_categories -}}
+        {{- content.field_date -}}
       </div>
 
       <h2{{title_attributes.addClass('card-title','fw-bold')}}>

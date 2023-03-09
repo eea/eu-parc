@@ -1,19 +1,18 @@
-uuid: dc5bb22a-752a-4ac8-9c2f-23a2fdfdc3bb
+uuid: 86a920b0-4874-47d3-b2c8-ccd5e886ae06
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime_range
     - node
+    - smart_date
 id: node.field_date
 field_name: field_date
 entity_type: node
-type: daterange
-settings:
-  datetime_type: datetime
-module: datetime_range
+type: smartdate
+settings: {  }
+module: smart_date
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

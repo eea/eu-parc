@@ -126,3 +126,20 @@
   text-decoration: none;
   border-radius: 10em;
 }
+
+/* paragraph event-date */
+.paragraph--events-date--event-date {
+  .time-allday {
+    display: none;
+  }
+
+  &.print-all-day {
+    .time {
+      display: none;
+    }
+
+    .time-allday {
+      display: inline-block;
+    }
+  }
+}
