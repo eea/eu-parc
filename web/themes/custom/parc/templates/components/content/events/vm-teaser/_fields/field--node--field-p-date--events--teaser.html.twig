@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    field_name|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {% if items|length > 1 %}
+    {% set count = items|length %}
+    {% set ds = items[0].content['#paragraph'].field_date.0.value|split('-') %}
+    {% set de = items[count-1].content['#paragraph'].field_date.0.value|split('-') %}
+    {% if ds.0 != de.0 %}
+      {{ ds.2 }}.{{ ds.1 }}.{{ ds.0 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}.{{ de.0 }}
+    {% elseif ds.1 != de.1 %}
+      {{ de.2 }}.{{ ds.1 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}.{{ de.0 }}
+    {% elseif ds.2 != de.2 %}
+      {{ ds.2 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}.{{ de.0 }}
+    {% endif %}
+  {% else %}
+    {%- for item in items -%}
+      {% set data = item.content['#paragraph'].field_date.0.value|split('-') %}
+      {% set year = data.0 %}
+      {% set month = data.1 %}
+      {% set day = data.2 %}
+
+      {{- day }}.{{ month }}.{{ day -}}
+    {% endfor %}
+  {% endif %}
+</div>
+
+<div class="date-meta">
+  {% set bool = items[0].content['#paragraph'].field_all_day.0.value %}
+
+  {% if bool %}
+    {{- "All day"|t -}}
+  {% else %}
+    {% set ts = items[0].content['#paragraph'].field_date.0.start_time_value %}
+    {% set te = items[0].content['#paragraph'].field_date.0.end_time_value %}
+    {{- ts }}{{ ' — ' }}{{ te -}}
+  {% endif %}
+</div>

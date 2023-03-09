@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.header
     - field.field.node.events.body
     - field.field.node.events.field_add_to_calendar
-    - field.field.node.events.field_address
     - field.field.node.events.field_address_data
     - field.field.node.events.field_categories
     - field.field.node.events.field_city
@@ -15,15 +14,13 @@ dependencies:
     - field.field.node.events.field_metatags
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
-    - field.field.node.events.field_time
     - field.field.node.events.field_website
     - node.type.events
   module:
-    - address
-    - datetime_range
     - ics_link_field
     - layout_builder
     - options
+    - smart_date
     - user
 third_party_settings:
   layout_builder:
@@ -42,13 +39,6 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
-  field_address:
-    type: address_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
   field_categories:
     type: entity_reference_entity_view
     label: hidden
@@ -56,7 +46,7 @@ content:
       view_mode: badge
       link: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
   field_city:
     type: string
@@ -67,14 +57,27 @@ content:
     weight: 2
     region: content
   field_date:
-    type: daterange_default
+    type: smartdate_default
     label: hidden
     settings:
       timezone_override: ''
       format_type: medium
-      separator: '-'
+      format: default
+      force_chronological: false
+      add_classes: false
+      time_wrapper: false
+      localize: false
+      parts:
+        start: start
+        end: end
+        duration: '0'
+      duration:
+        separator: ' | '
+        unit: ''
+        decimals: 2
+        suffix: h
     third_party_settings: {  }
-    weight: 5
+    weight: 0
     region: content
   field_event_format:
     type: list_default
@@ -90,6 +93,5 @@ hidden:
   field_metatags: true
   field_registration: true
   field_seo_keyword: true
-  field_time: true
   field_website: true
   links: true

@@ -10,7 +10,7 @@ id: node.events.field_categories
 field_name: field_categories
 entity_type: node
 bundle: events
-label: Categories
+label: 'Category '
 description: ''
 required: false
 translatable: false

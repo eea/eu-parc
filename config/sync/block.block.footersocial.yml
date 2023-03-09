@@ -2,11 +2,8 @@ uuid: 9fdad784-8375-4879-b2cc-fb4b77dd4529
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:basic:ba430b44-f791-4817-bdf4-a7fe0774aa27'
   module:
     - block_class
-    - block_content
   theme:
     - parc
 third_party_settings:

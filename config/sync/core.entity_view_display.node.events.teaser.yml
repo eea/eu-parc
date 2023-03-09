@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.events.body
     - field.field.node.events.field_add_to_calendar
-    - field.field.node.events.field_address
     - field.field.node.events.field_address_data
     - field.field.node.events.field_categories
     - field.field.node.events.field_city
@@ -15,11 +14,10 @@ dependencies:
     - field.field.node.events.field_metatags
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
-    - field.field.node.events.field_time
     - field.field.node.events.field_website
     - node.type.events
   module:
-    - datetime_range
+    - options
     - user
 id: node.events.teaser
 targetEntityType: node
@@ -33,7 +31,7 @@ content:
       view_mode: views_link
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_city:
     type: string
@@ -41,28 +39,23 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
-  field_date:
-    type: daterange_default
+  field_event_format:
+    type: list_default
     label: hidden
-    settings:
-      timezone_override: ''
-      format_type: medium
-      separator: –
+    settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 3
     region: content
 hidden:
   addtoany: true
   body: true
   field_add_to_calendar: true
-  field_address: true
   field_address_data: true
-  field_event_format: true
+  field_date: true
   field_metatags: true
   field_registration: true
   field_seo_keyword: true
-  field_time: true
   field_website: true
   links: true

@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.info
     - field.field.node.events.body
     - field.field.node.events.field_add_to_calendar
-    - field.field.node.events.field_address
     - field.field.node.events.field_address_data
     - field.field.node.events.field_categories
     - field.field.node.events.field_city
@@ -15,15 +14,12 @@ dependencies:
     - field.field.node.events.field_metatags
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
-    - field.field.node.events.field_time
     - field.field.node.events.field_website
     - node.type.events
   module:
-    - datetime_range
     - ics_link_field
     - layout_builder
     - link
-    - options
     - text
     - user
 third_party_settings:
@@ -41,14 +37,14 @@ content:
     settings:
       link_label: 'Add to Calendar'
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   field_address_data:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_city:
     type: string
@@ -56,27 +52,10 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
-    region: content
-  field_date:
-    type: daterange_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: short
-      separator: –
-    third_party_settings: {  }
-    weight: 0
+    weight: 3
     region: content
   field_registration:
     type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_time:
-    type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -92,13 +71,13 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
 hidden:
   addtoany: true
   body: true
-  field_address: true
   field_categories: true
+  field_date: true
   field_event_format: true
   field_metatags: true
   field_seo_keyword: true

@@ -19,13 +19,13 @@
     {{- content.field_categories -}}
 
     <div class="se--year">
-      {{- content.field_date.0.start_date['#markup']|date('Y') -}}
+      {{- content.field_date -}}
     </div>
   </div>
 
   {{- content.field_date -}}
 
-  <div class="section-bottom d-flex justify-content-between">
+  <div class="section-bottom d-flex justify-content-between text-uppercase">
     {% if content.field_city.0 %}
       {{- content.field_city -}}
     {% else %}

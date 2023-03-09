@@ -2,10 +2,6 @@ uuid: 803c5b58-f959-42e9-befa-dc249ba7cdb6
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:basic:a5c1fe42-76d3-45ee-8134-719bf5d08d54'
-  module:
-    - block_content
   theme:
     - parc
 id: footerlogo

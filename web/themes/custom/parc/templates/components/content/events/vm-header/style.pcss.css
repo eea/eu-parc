@@ -43,8 +43,20 @@
     line-height: 1em;
   }
 
+  .only-year {
+    display: none;
+  }
+
   .se--year {
     font-size: 16px;
+
+    .field-date {
+      display: none;
+    }
+
+    .only-year {
+      display: block;
+    }
   }
 
   @media (--lg) {
