@@ -20,35 +20,37 @@
   {% endif %}
 
   {%- for item in items -%}
-    {% if item.content.end_date %}
-      {% if ' - ' in item.content.start_date['#text'] %}
-        {% set year_split = item.content.start_date['#text']|split(' - ') %}
-        {% set year_split_end = item.content.end_date['#text']|split(' - ') %}
+    <div>
+      {% if item.content.end_date %}
+        {% if ' - ' in item.content.start_date['#text'] %}
+          {% set year_split = item.content.start_date['#text']|split(' - ') %}
+          {% set year_split_end = item.content.end_date['#text']|split(' - ') %}
 
-        {% set date_start = year_split.0|split('.') %}
-        {% set date_end = year_split_end.0|split('.') %}
+          {% set date_start = year_split.0|split('.') %}
+          {% set date_end = year_split_end.0|split('.') %}
+        {% else %}
+          {% set date_start = item.content.start_date['#text']|split('.') %}
+          {% set date_end = item.content.end_date['#text']|split('.') %}
+        {% endif %}
+
+        {% set delimiter = item.content.separator['#plain_text'] %}
+
+        {% if date_start.2 != date_end.2 %}
+          {{- item.content -}}
+        {% elseif date_start.1 != date_end.1 %}
+          {{ date_start.0 }}.{{ date_start.1 }}
+          {{ delimiter }}
+          {{ date_end.0 }}.{{ date_end.1 }}.{{ date_end.2 }}
+        {% elseif date_start.0 != date_end.0 %}
+          {{ date_start.0 }}
+          {{ delimiter }}
+          {{ date_end.0 }}.{{ date_end.1 }}.{{ date_end.2 }}
+        {% else %}
+          {{ date_start.0 }}.{{ date_start.1 }}.{{ date_start.2 }}
+        {% endif %}
       {% else %}
-        {% set date_start = item.content.start_date['#text']|split('.') %}
-        {% set date_end = item.content.end_date['#text']|split('.') %}
-      {% endif %}
-
-      {% set delimiter = item.content.separator['#plain_text'] %}
-
-      {% if date_start.2 != date_end.2 %}
         {{- item.content -}}
-      {% elseif date_start.1 != date_end.1 %}
-        {{ date_start.0 }}.{{ date_start.1 }}
-        {{ delimiter }}
-        {{ date_end.0 }}.{{ date_end.1 }}.{{ date_end.2 }}
-      {% elseif date_start.0 != date_end.0 %}
-        {{ date_start.0 }}
-        {{ delimiter }}
-        {{ date_end.0 }}.{{ date_end.1 }}.{{ date_end.2 }}
-      {% else %}
-        {{ date_start.0 }}.{{ date_start.1 }}.{{ date_start.2 }}
       {% endif %}
-    {% else %}
-      {{- item.content -}}
-    {% endif %}
+    </div>
   {%- endfor -%}
 </div>
