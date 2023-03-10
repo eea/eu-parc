@@ -7,8 +7,8 @@ _core:
 id: compact
 label: Compact
 date_format: d.m.Y
-time_format: 'h:i'
-time_hour_format: 'h:i'
+time_format: 'G:i'
+time_hour_format: 'G:i'
 allday_label: 'All Day'
 separator: ' — '
 join: ', '

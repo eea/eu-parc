@@ -29,16 +29,33 @@
     {% endif %}
   {% else %}
     {%- for item in items -%}
-      {% set data = item.content['#paragraph'].field_date.0.value|split('-') %}
-      {% set year = data.0 %}
-      {% set month = data.1 %}
-      {% set day = data.2 %}
+      {% set start = item.content.start.date.value['#markup'] %}
+      {% set end = item.content.end.date.value['#markup'] %}
+      {% set dsd = start|split('.').0 %}
+      {% set dsm = start|split('.').1 %}
+      {% set dsy = start|split('.').2 %}
 
-      {{- day }}.{{ month }}.{{ day -}}
-    {% endfor %}
+      {% if end %}
+        {% set ded = end|split('.').0 %}
+        {% set dem = end|split('.').1 %}
+        {% set dey = end|split('.').2 %}
+
+        {% if dsy != dey %}
+          {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
+          {{ ded }}.{{ dem }}.{{ dey }}
+        {% elseif dsm != dem %}
+          {{ ded }}.{{ dsm }}{{ ' — ' }}
+          {{ ded }}.{{ dem }}.{{ dey }}
+        {% elseif dsd != ded %}
+          {{ dsd }}{{ ' — ' }}
+          {{ ded }}.{{ dsm }}.{{ dsy }}
+        {% endif %}
+      {% else %}
+        {{ dsd }}.{{ dsm }}.{{ dsy }}
+      {% endif %}
+    {%- endfor -%}
   {% endif %}
 </div>
-
 <div class="only-year">
   {% if items|length > 1 %}
     {% set count = items|length %}

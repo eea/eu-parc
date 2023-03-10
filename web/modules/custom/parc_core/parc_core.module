@@ -67,14 +67,6 @@ function parc_core_views_pre_render(ViewExecutable $view) {
  */
 function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if (in_array($form_id, ['node_events_edit_form', 'node_events_form'])) {
-    $form['field_address']['widget'][0]['address']['#after_build'][] = 'parc_core_address_label';
+    $form['#attached']['library'][] = 'parc_core/edit_node_event';
   }
-}
-
-/**
- *
- */
-function parc_core_address_label($element, $form_state) {
-  $element['organization']['#title'] = t('Institution');
-  return $element;
 }
