@@ -31,7 +31,7 @@ content:
     settings:
       view_mode: views_link
       link: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 0
     region: content
   field_city:
@@ -39,14 +39,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 2
     region: content
   field_date:
     type: smartdate_default
     label: hidden
     settings:
-      timezone_override: ""
+      timezone_override: ''
       format_type: medium
       format: compact
       force_chronological: false
@@ -56,20 +56,20 @@ content:
       parts:
         start: start
         end: end
-        duration: "0"
+        duration: '0'
       duration:
-        separator: " | "
-        unit: ""
+        separator: ' | '
+        unit: ''
         decimals: 2
         suffix: h
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 1
     region: content
   field_event_format:
     type: list_default
     label: hidden
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
     weight: 3
     region: content
 hidden:
