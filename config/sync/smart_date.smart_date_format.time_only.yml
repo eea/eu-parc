@@ -7,8 +7,8 @@ _core:
 id: time_only
 label: 'Time Only'
 date_format: ''
-time_format: 'h:I'
-time_hour_format: 'h:I'
+time_format: 'G:I'
+time_hour_format: 'G:I'
 allday_label: 'All day'
 separator: ' — '
 join: ', '

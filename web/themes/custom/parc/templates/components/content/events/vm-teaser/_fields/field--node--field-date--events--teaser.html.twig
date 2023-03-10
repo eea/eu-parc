@@ -32,24 +32,76 @@
     {% endif %}
   {% else %}
     {%- for item in items -%}
-      {% set data = item.content['#paragraph'].field_date.0.value|split('-') %}
-      {% set year = data.0 %}
-      {% set month = data.1 %}
-      {% set day = data.2 %}
+      {% set start = item.content.start.date.value['#markup'] %}
+      {% set end = item.content.end.date.value['#markup'] %}
+      {% set AllDay = item.content.end.time['#markup'] == 'All Day' %}
 
-      {{- day }}.{{ month }}.{{ day -}}
-    {% endfor %}
+
+      {% set dsd = start|split('.').0 %}
+      {% set dsm = start|split('.').1 %}
+      {% set dsy = start|split('.').2 %}
+
+      {% if AllDay %}
+        {% set ds = start|trim('.') %}
+        {% if end %}
+          {% set ded = end|split('.').0 %}
+          {% set dem = end|split('.').1 %}
+          {% set dey = end|split('.').2 %}
+
+          {% if dsy != dey %}
+            {{ ds }}{{ ' — ' }}
+            {{ ded }}.{{ dem }}.{{ dey }}
+          {% elseif dsm != dem %}
+            v2
+            {{ ds }}{{ ' — ' }}
+            {{ ded }}.{{ dem }}.{{ dey }}
+          {% elseif dsd != ded %}
+            v3
+            {{ ds }}{{ ' — ' }}
+            {{ ded }}.{{ dsm }}.{{ dsy }}
+          {% endif %}
+        {% else %}
+          {{ ds }}
+        {% endif %}
+      {% else %}
+        {% if end %}
+          {% set ded = end|split('.').0 %}
+          {% set dem = end|split('.').1 %}
+          {% set dey = end|split('.').2 %}
+
+          {% if dsy != dey %}
+            {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
+            {{ ded }}.{{ dem }}.{{ dey }}
+          {% elseif dsm != dem %}
+            {{ ded }}.{{ dsm }}{{ ' — ' }}
+            {{ ded }}.{{ dem }}.{{ dey }}
+          {% elseif dsd != ded %}
+            {{ dsd }}{{ ' — ' }}
+            {{ ded }}.{{ dsm }}.{{ dsy }}
+          {% endif %}
+        {% else %}
+          {{ dsd }}.{{ dsm }}.{{ dsy }}
+        {% endif %}
+      {% endif %}
+    {%- endfor -%}
   {% endif %}
 </div>
-
 <div class="date-meta">
-  {% set bool = items[0].content.start['#text'].time['#markup'] %}
+  {%- for item in items -%}
+    {% set itemContent = item.content %}
 
-  {% if bool == "All Day" %}
-    {{ bool }}
-  {% else %}
-    {% set ts = items[0].content['#value']|date('h:i') %}
-    {% set te = items[0].content['#end_value']|date('h:i') %}
-    {{- ts }}{{ ' — ' }}{{ te -}}
-  {% endif %}
+    {% if item.content.end %}
+      {% set AllDay = item.content.end.time['#markup'] %}
+    {% else %}
+      {% set AllDay = item.content.start.time['#markup'] %}
+    {% endif %}
+
+    {% if AllDay %}
+      {{ AllDay }}
+    {% else %}
+      {{- itemContent.start.time.value['#markup'] -}}
+      {{- ' — ' -}}
+      {{- itemContent.end.time.value['#markup'] -}}
+    {% endif %}
+  {%- endfor -%}
 </div>

@@ -15,11 +15,6 @@
     view_mode ? 'section--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
   ]
 %}
-{% if ' - ' in content.field_date.0.start_date['#text'] %}
-  {% set time_render = true %}
-  {% set time_begin = content.field_date.0.start_date['#text']|split(' - ').1 %}
-  {% set time_end = content.field_date.0.end_date['#text']|split(' - ').1 %}
-{% endif %}
 
 <section{{attributes.addClass(classes)}}>
   {{- content.field_date -}}
