@@ -39,14 +39,3 @@
     }
   }
 }
-
-.layout {
-  .nav-main {
-    .nav-link {
-      --nav-link-padding-y: 0.35rem;
-      font-size: 24px;
-      font-weight: var(--fw-medium);
-      line-height: 125%;
-    }
-  }
-}

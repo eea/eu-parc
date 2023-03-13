@@ -24,7 +24,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Thematic areas'
+      title: 'All Thematic Areas'
       fields:
         field_categories:
           id: field_categories

@@ -1,15 +1,20 @@
 .t-term--thematic-areas--header {
   background-color: var(--tta--bg);
-  padding-block: 40px;
+  /* padding-block: 40px; */
 
   .media-field {
     max-width: 320px;
     max-height: 320px;
   }
 
-  @media (--md) {
-    .field--name-field-icon {
+  @media (--lg) {
+    .col-content {
+      flex: 0 0 auto;
       width: 75%;
+    }
+
+    .media-field {
+      margin-left: 8.3333%;
     }
   }
 }

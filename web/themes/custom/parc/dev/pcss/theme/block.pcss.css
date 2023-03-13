@@ -1,7 +1,5 @@
-.label-content-inline {
-  @media (--lg) {
-    .block--title {
-      margin-left: 25%;
-    }
+@media (--lg) {
+  .block-inline-with-content {
+    margin-left: 8.3333%;
   }
 }
