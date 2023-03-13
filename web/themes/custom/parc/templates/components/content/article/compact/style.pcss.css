@@ -4,16 +4,9 @@
   .field--name-field-image {
     margin-bottom: 50px;
 
-    .w-img {
-      max-height: 550px;
-      overflow: hidden;
-      display: flex;
-    }
-
     img {
       width: 100%;
       height: auto;
-      align-self: center;
     }
   }
 
@@ -31,6 +24,8 @@
   }
 
   .field-category {
+    letter-spacing: 0.1em;
+
     a {
       --link-color: var(--red);
       --link-h-color: var(--red);
@@ -39,11 +34,15 @@
     }
   }
 
+  .field-date {
+    letter-spacing: 0.02em;
+  }
+
   .node-title {
     font-size: 54px;
     line-height: 110%;
     margin-bottom: 50px;
-    color: var(--nn-c-cat);
+    color: var(--c-primary);
   }
 
   @media (--lg) {

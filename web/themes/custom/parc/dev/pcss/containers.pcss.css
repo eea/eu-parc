@@ -40,6 +40,11 @@
   .container-lg {
     max-width: 992px;
   }
+
+  .container-content {
+    padding-left: var(--gutter-x);
+    padding-right: var(--gutter-x);
+  }
 }
 
 @media (--xl) {
