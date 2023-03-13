@@ -9,23 +9,17 @@
 
 {% set footer_attribute = create_attribute() %}
 
-<footer {{ footer_attribute.setAttribute('id', 'footer').addclass('p-0') }}>
-  <div class='bg-blue py-4'>
-    <div class="container-fluid container-content">
-      <div class="row row-top align-items-start">
-        {{- page.prefooter -}}
-      </div>
-    </div>
-  </div>
+{% set footer_classes = [
+  'bg-black',
+] %}
 
-  <div class="bg-green py-4">
-    <div class="container-fluid container-content pb-1">
-      <div class="row row-top align-items-start">
-        {{- page.footer -}}
-        {{- page.footer_second -}}
-      </div>
-
-      {{ page.footer_s }}
+<footer {{ footer_attribute.setAttribute('id', 'footer').addclass(footer_classes) }}>
+  <div class="container-fluid container-content">
+    <div class="row row-top align-items-start">
+      {{- page.footer -}}
+      {{- page.footer_second -}}
     </div>
+
+    {{ page.footer_s }}
   </div>
 </footer>

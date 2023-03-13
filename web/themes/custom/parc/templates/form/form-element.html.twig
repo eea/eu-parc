@@ -58,21 +58,13 @@
     errors ? 'form-item--error',
   ]
 %}
-
 {%
   set description_classes = [
     'description',
     description_display == 'invisible' ? 'visually-hidden',
   ]
 %}
-
-{% if element['#return_value'] %}
-  {% set data_color = termColor(element['#return_value']) %}
-{% endif %}
-
-<div{{attributes.addClass(classes)}} data-color={{ data_color }}>
-
-
+<div{{attributes.addClass(classes)}}>
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}

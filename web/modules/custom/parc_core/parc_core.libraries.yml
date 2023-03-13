@@ -5,7 +5,3 @@ ajax_links:
     - core/jquery
     - core/drupal.ajax
 
-edit_node_event:
-  css:
-    component:
-      assets/css/edit-node-event.css: {}
