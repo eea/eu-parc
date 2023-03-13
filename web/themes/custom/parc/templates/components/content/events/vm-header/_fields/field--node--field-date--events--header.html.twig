@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    field_name|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {% if items|length > 1 %}
+    {% set count = items|length %}
+    {% set ds = items[0].content.start.date.value['#markup']|split('.') %}
+    {% set de = items[count-1].content.start.date.value['#markup']|split('.') %}
+
+    {% if ds.0 != de.0 %}
+      {{ ds.2 }}.{{ ds.1 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}
+    {% elseif ds.1 != de.1 %}
+      {{ de.2 }}.{{ ds.1 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}
+    {% elseif ds.2 != de.2 %}
+      {{ ds.2 }}{{ ' — ' }}
+      {{ de.2 }}.{{ de.1 }}
+    {% endif %}
+  {% else %}
+    {%- for item in items -%}
+      {% set start = item.content.start.date.value['#markup'] %}
+      {% set end = item.content.end.date.value['#markup'] %}
+      {% set dsd = start|split('.').0 %}
+      {% set dsm = start|split('.').1 %}
+      {% set dsy = start|split('.').2 %}
+
+      {% if end %}
+        {% set ded = end|split('.').0 %}
+        {% set dem = end|split('.').1 %}
+        {% set dey = end|split('.').2 %}
+
+        {% if dsy != dey %}
+          {{ dsd }}.{{ dsm }}{{ ' — ' }}
+          {{ ded }}.{{ dem }}
+        {% elseif dsm != dem %}
+          {{ ded }}.{{ dsm }}{{ ' — ' }}
+          {{ ded }}.{{ dem }}
+        {% elseif dsd != ded %}
+          {{ dsd }}{{ ' — ' }}
+          {{ ded }}.{{ dsm }}
+        {% endif %}
+      {% else %}
+        {{ dsd }}.{{ dsm }}
+      {% endif %}
+    {%- endfor -%}
+  {% endif %}
+</div>
+<div class="only-year">
+  {%- for item in items -%}
+    {% set s = item.content.start.date.value['#markup']|split('.').2 %}
+    {% set e = item.content.end.date.value['#markup']|split('.').2 %}
+
+    {% if not e or s == e %}
+      {{- s -}}
+    {% else %}
+      {{- s -}}{{ ' — ' }}{{- e -}}
+    {% endif %}
+  {% endfor %}
+</div>

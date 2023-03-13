@@ -1,0 +1,29 @@
+uuid: 9f877cfd-1b84-49d6-9ceb-16a7aa918b10
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_add_to_calendar
+    - node.type.events
+  module:
+    - ics_link_field
+id: node.events.field_add_to_calendar
+field_name: field_add_to_calendar
+entity_type: node
+bundle: events
+label: 'Add to calendar'
+description: ''
+required: false
+translatable: false
+default_value:
+  - {  }
+default_value_callback: ''
+settings:
+  title: '[node:title]'
+  location: '[node:field_address]'
+  description: '[node:body]'
+  start_date: '[node:field_date:start_date:medium]'
+  end_date: '[node:field_date:end_date:medium]'
+  start_time: '[node:field_time]'
+  end_time: ''
+field_type: ics_link_field_type

@@ -1,0 +1,33 @@
+uuid: 48c856db-8651-4d6f-85ab-4923526b81dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.compact
+    - field.field.node.thematic_areas.body
+    - field.field.node.thematic_areas.field_categories
+    - node.type.thematic_areas
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.thematic_areas.compact
+targetEntityType: node
+bundle: thematic_areas
+mode: compact
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_categories: true
+  links: true

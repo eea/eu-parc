@@ -1,6 +1,6 @@
 uuid: 48b7b784-67f7-43f6-95b8-4b03f7ab23b6
 langcode: en
-status: true
+status: false
 dependencies:
   content:
     - 'block_content:basic:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
@@ -11,11 +11,11 @@ dependencies:
     - parc
 third_party_settings:
   block_class:
-    classes: 'block-social rf-block-right-bottom'
+    classes: block-social
 id: social
 theme: parc
 region: footer
-weight: -5
+weight: -7
 provider: null
 plugin: 'block_content:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
 settings:

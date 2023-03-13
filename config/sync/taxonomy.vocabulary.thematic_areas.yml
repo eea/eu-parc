@@ -1,0 +1,8 @@
+uuid: d2d4627d-c645-4933-a49d-750b9d3877f5
+langcode: en
+status: true
+dependencies: {  }
+name: 'Thematic areas'
+vid: thematic_areas
+description: ''
+weight: 0

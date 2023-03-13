@@ -1,0 +1,10 @@
+uuid: e5a50252-ef52-4976-86f8-5d2fd3980986
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.svg
+label: SVG
+targetEntityType: media
+cache: true

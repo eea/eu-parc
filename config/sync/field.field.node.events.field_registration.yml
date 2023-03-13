@@ -1,0 +1,21 @@
+uuid: 91dbe557-1348-4ce8-b011-25a8aab3649e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_registration
+    - node.type.events
+  module:
+    - text
+id: node.events.field_registration
+field_name: field_registration
+entity_type: node
+bundle: events
+label: Registration
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

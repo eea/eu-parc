@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Parc override to display a taxonomy term.
+ */
+#}
+
+<div{{attributes}}>
+  {% set path = "/events?category%5B" ~ term.id ~ "%5d=" ~ term.id %}
+  <a class="btn btn-badge" href={{ path }}>
+    {{- name.0 -}}
+  </a>
+</div>
