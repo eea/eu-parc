@@ -15,7 +15,7 @@
     margin: 8px;
     min-width: 108px;
     max-width: 108px;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 8 / 5;
     position: relative;
     align-self: flex-start;
 
@@ -132,7 +132,6 @@
       margin: 6px 6px 0;
       min-width: calc(100% - 12px);
       max-width: calc(100% - 12px);
-      aspect-ratio: 8 / 5;
     }
 
     & .card-styled-border {
