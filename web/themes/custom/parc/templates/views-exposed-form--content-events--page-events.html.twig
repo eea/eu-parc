@@ -5,22 +5,4 @@
  */
 #}
 
-<div class="row align-items-center">
-  <div class="col-sm-auto">
-    {{ form.categorie_collapsible }}
-  </div>
-
-  <div class="col-sm-auto me-auto">
-    <div id="js-selected-categories" class="w--labels d-flex gap-2"></div>
-  </div>
-
-  <div class="col-sm-auto">
-    <div class="d-none">
-      {{ form.sort_bef_combine }}
-    </div>
-    <button id="js-order-btn" class="btn btn-link btn-date-order" type="button">
-      {{- "DATE"|t -}}
-    </button>
-  </div>
-</div>
-{{ form|without('sort_bef_combine', 'categorie_collapsible') }}
+{% include "views-exposed-form--news-events--page-news.html.twig" %}

@@ -41,36 +41,29 @@
         {% set dey = end|split('.').2 %}
 
         {% if dsy != dey %}
-          {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
-          {{ ded }}.{{ dem }}.{{ dey }}
+          {{ dsd }}.{{ dsm }}{{ ' — ' }}
+          {{ ded }}.{{ dem }}
         {% elseif dsm != dem %}
           {{ ded }}.{{ dsm }}{{ ' — ' }}
-          {{ ded }}.{{ dem }}.{{ dey }}
+          {{ ded }}.{{ dem }}
         {% elseif dsd != ded %}
           {{ dsd }}{{ ' — ' }}
-          {{ ded }}.{{ dsm }}.{{ dsy }}
+          {{ ded }}.{{ dsm }}
         {% endif %}
       {% else %}
-        {{ dsd }}.{{ dsm }}.{{ dsy }}
+        {{ dsd }}.{{ dsm }}
       {% endif %}
     {%- endfor -%}
   {% endif %}
 </div>
 <div class="only-year">
-  {% if items|length > 1 %}
-    {% set count = items|length %}
-    {% set ds = items[0].content.start.date.value['#markup']|split('.') %}
-    {% set de = items[count-1].content.start.date.value['#markup']|split('.') %}
-    {% if ds.0 != de.0 %}
-      {{ ds.0 }}{{ ' — ' }}{{ de.0 }}
+  {%- for item in items -%}
+    {% set s = item.content.start.date.value['#markup']|split('.').2 %}
+    {% set e = item.content.end.date.value['#markup']|split('.').2 %}
+    {% if s == e %}
+      {{- s -}}
     {% else %}
-      {{ ds.0 }}
+      {{- s -}}{{ ' — ' }}{{- e -}}
     {% endif %}
-  {% else %}
-    {%- for item in items -%}
-      {% set data = items[0].content.start.date.value['#markup']|split('.') %}
-      {% set year = data.0 %}
-      {{ day -}}
-    {% endfor %}
-  {% endif %}
+  {% endfor %}
 </div>
