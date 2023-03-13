@@ -291,7 +291,7 @@ display:
       relationships: {  }
       css_class: ''
       use_ajax: true
-      group_by: true
+      group_by: false
       header:
         area:
           id: area
@@ -385,10 +385,10 @@ display:
           table: node__field_date
           field: field_date_end_value
           relationship: none
-          group_type: stddev_pop
+          group_type: group
           admin_label: ''
           plugin_id: date
-          order: ASC
+          order: DESC
           expose:
             label: 'Date - End'
             field_identifier: field_date_value
@@ -845,7 +845,7 @@ display:
           table: node__field_date
           field: field_date_end_value
           relationship: none
-          group_type: max
+          group_type: group
           admin_label: ''
           plugin_id: date
           order: ASC
@@ -952,7 +952,7 @@ display:
           exposed: true
           expose:
             operator_id: field_categories_target_id_op
-            label: Categories
+            label: 'Event Types'
             description: ''
             use_operator: false
             operator: field_categories_target_id_op
