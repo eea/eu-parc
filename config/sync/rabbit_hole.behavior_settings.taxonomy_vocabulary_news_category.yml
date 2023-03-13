@@ -9,6 +9,6 @@ entity_type_id: taxonomy_vocabulary
 entity_id: news_category
 action: page_redirect
 allow_override: 0
-redirect: '/news?categorie%5B[term:tid]%5D=[term:tid]'
+redirect: '/news?category%5B[term:tid]%5D=[term:tid]'
 redirect_code: 301
 redirect_fallback_action: access_denied

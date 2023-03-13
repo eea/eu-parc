@@ -737,7 +737,7 @@ display:
             operator: field_tags_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: categorie
+            identifier: category
             required: false
             remember: false
             multiple: true
