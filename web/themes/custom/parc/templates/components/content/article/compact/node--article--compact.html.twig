@@ -7,19 +7,17 @@
 
 {{ attach_library('parc/n--article-compact') }}
 
+{% set color = node.field_tags.entity.field_color.value.0.color %}
+
 {%
   set classes = [
     'node',
     'node--' ~ node.bundle|clean_class,
     view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    'second-style',
   ]
 %}
 
-<article{{attributes.addClass(classes)}}>
+<article{{attributes.addClass(classes).setAttribute('style','--nn-c-cat:'~color~';')}}>
   {{ title_prefix }}
   {{ title_suffix }}
 

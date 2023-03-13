@@ -8,6 +8,8 @@
 {{ attach_library('parc/n--basic-page-full') }}
 {{ attach_library('parc/n--article-full') }}
 
+{% set color = node.	field_tags.entity.field_color.value.0.color %}
+
 {%
   set classes = [
     'node',
@@ -20,7 +22,7 @@
   ]
 %}
 
-<article{{attributes.addClass(classes)}}>
+<article{{attributes.addClass(classes).setAttribute('style','--nn-c-cat:'~color~';')}}>
   {{ title_prefix }}
   {{ title_suffix }}
 

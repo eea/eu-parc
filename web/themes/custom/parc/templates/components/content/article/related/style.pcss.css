@@ -86,7 +86,7 @@
       margin: 6px 6px 0;
       min-width: calc(100% - 12px);
       max-width: calc(100% - 12px);
-      aspect-ratio: 16 / 12;
+      aspect-ratio: 8 / 5;
     }
 
     .card-styled-border {

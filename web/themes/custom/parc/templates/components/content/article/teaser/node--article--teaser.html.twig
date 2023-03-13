@@ -24,9 +24,9 @@
 %}
 
 {% set collpaseID = 'parc--article-' ~ node.id() %}
-{# {% set renderLabel = label.0['#context'].value %} #}
+{% set color = node.field_tags.entity.field_color.value.0.color %}
 
-<article{{attributes.addClass(classes)}}>
+<article{{attributes.addClass(classes).setAttribute('style','--nn-c-cat:'~color~';')}}>
   {{ title_prefix }}
   {{ title_suffix }}
 

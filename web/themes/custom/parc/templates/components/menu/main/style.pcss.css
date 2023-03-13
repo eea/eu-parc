@@ -7,12 +7,6 @@
 
   /* meniu styles placed in header */
   .region-nav-main & {
-    .nav-main {
-      .collapse {
-        position: absolute;
-      }
-    }
-
     .mm-level-1 {
       position: relative;
       --nav-link-font-size: 18px;
@@ -29,6 +23,12 @@
       .mm-level-1 {
         max-width: 270px;
         margin-top: 24px;
+      }
+
+      .mm-level-2 {
+        .nav-link {
+          min-width: 250px;
+        }
       }
 
       .nav-link-level-0 {
@@ -51,6 +51,15 @@
     }
   }
 
+  .layout--parc-content & {
+    .nav-link {
+      --nav-link-padding-y: 0.35rem;
+      --nav-link-font-size: 24px;
+      font-weight: var(--fw-medium);
+      line-height: 125%;
+    }
+  }
+
   /* meniu styles placed in sidebar */
   .menu--sidebar--multilevel & {
     .text-muted {
@@ -64,14 +73,11 @@
     }
     .nav-link-level-1 {
       --nav-link-padding-y: 0.5rem;
+      --nav-link-font-size: 18px;
     }
 
     .mm-collapse-0 {
       display: block;
-    }
-
-    .mm-level-1 {
-      --nav-link-font-size: 16px;
     }
   }
 }

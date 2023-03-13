@@ -471,6 +471,10 @@ display:
       display_extenders:
         ajax_history: {  }
         simple_sitemap_display_extender: {  }
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+      block_hide_empty: true
     cache_metadata:
       max-age: -1
       contexts:

@@ -5,14 +5,10 @@ dependencies:
   config:
     - views.view.thematic_areas
   module:
-    - block_class
     - system
     - views
   theme:
     - parc
-third_party_settings:
-  block_class:
-    classes: label-content-inline
 id: views_block__thematic_areas_block_thematic_areas_footer
 theme: parc
 region: content_bottom
