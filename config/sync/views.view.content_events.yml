@@ -498,7 +498,7 @@ display:
             operator: field_categories_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: categorie
+            identifier: category
             required: false
             remember: false
             multiple: true
@@ -958,7 +958,7 @@ display:
             operator: field_categories_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: categorie
+            identifier: category
             required: false
             remember: false
             multiple: true
@@ -1049,7 +1049,7 @@ display:
       relationships: {  }
       css_class: mb-parc
       use_ajax: false
-      group_by: true
+      group_by: false
       display_description: ''
       header:
         area:

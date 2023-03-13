@@ -60,7 +60,8 @@
   {%- for item in items -%}
     {% set s = item.content.start.date.value['#markup']|split('.').2 %}
     {% set e = item.content.end.date.value['#markup']|split('.').2 %}
-    {% if s == e %}
+
+    {% if not e or s == e %}
       {{- s -}}
     {% else %}
       {{- s -}}{{ ' — ' }}{{- e -}}
