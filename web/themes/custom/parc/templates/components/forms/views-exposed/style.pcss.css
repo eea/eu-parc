@@ -30,7 +30,7 @@
     font-weight: var(--fw-medium);
     position: relative;
     z-index: 2;
-    line-height: 46px;
+    line-height: 33px;
 
     &:hover {
       text-decoration: underline;
@@ -62,8 +62,9 @@
 
   .btn-date-order {
     font-size: 12px;
-    font-weight: --fw-medium;
+    font-weight: var(--fw-medium);
     padding: 0;
+    display: flex;
 
     &:after {
       content: url("data:image/svg+xml,%3Csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8.24805 3.91797L5.26105 7.53032C4.90911 7.95595 4.3385 7.95595 3.98656 7.53032L0.999568 3.91797' stroke='black' stroke-linecap='round'/%3E%3Cline x1='4.74805' y1='3.5' x2='4.74805' y2='0.5' stroke='black' stroke-linecap='round'/%3E%3C/svg%3E%0A");
@@ -107,6 +108,13 @@
       &:hover {
         opacity: 0.8;
       }
+    }
+  }
+
+  @media (--md) {
+    .parc-col--categories {
+      position: relative;
+      z-index: 1;
     }
   }
 }
