@@ -92,7 +92,7 @@ blockquote {
 
 /* Strong */
 :where(b, strong) {
-  font-weight: var(--fw-bolder);
+  font-weight: var(--fw-bold);
 }
 
 :where(small, .small) {
