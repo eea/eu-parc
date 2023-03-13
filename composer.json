@@ -23,7 +23,7 @@
         "drupal/backup_migrate": "^5.0",
         "drupal/better_exposed_filters": "^6.0",
         "drupal/block_class": "^2.0",
-        "drupal/calendar_link": "^3.0",
+        "drupal/calendar_link": "^2.1",
         "drupal/ckeditor_bs_grid": "^2.0",
         "drupal/ckeditor_media_embed": "^1.11",
         "drupal/ckeditor_templates": "^1.2",
