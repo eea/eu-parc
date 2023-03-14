@@ -26,7 +26,7 @@
   {% set addClass = TRUE %}
 {% endif %}
 
-{% if content.content|render is not empty %}
+{% if content.content is not empty %}
   {% if attributes.hasClass('bg-gray') %}
     <div class="bg-gray">
     {% endif %}

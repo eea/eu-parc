@@ -1,21 +1,19 @@
-uuid: 2ed2ca4e-944e-4c7f-896c-b821dffe6a14
+uuid: 85c3624d-4de7-4155-b8e1-cfe0a5c7913f
 langcode: en
 status: true
 dependencies:
   module:
+    - media
     - node
-    - taxonomy
-_core:
-  default_config_hash: WpOE_bs8Bs_HY2ns7n2r__de-xno0-Bxkqep5-MsHAs
-id: node.field_tags
-field_name: field_tags
+id: node.field_scroller
+field_name: field_scroller
 entity_type: node
 type: entity_reference
 settings:
-  target_type: taxonomy_term
+  target_type: media
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

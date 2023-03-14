@@ -9,34 +9,35 @@
 
 {% if attributes.hasClass('add-container') %}
   {% set attributes = attributes.removeClass('add-container') %}
-  {% set addClasses = TRUE %}
+  {% set addClass = TRUE %}
 {% endif %}
 
 {% set classes = [
   'row',
+  'align-items-start',
   'position-relative',
 ] %}
 
 {% if content %}
-  {% if addClasses %}
+  {% if addClass %}
     <div class="container-fluid container-content node--content-pb">
     {% endif %}
 
     <div{{attributes.addClass(classes).setAttribute('id',id).removeClass('layout--twocol-section--33-67')}}>
       {% if content.first %}
-        <div{{region_attributes.first.addClass('layout_region','col-12','col-lg','col-menu')}}>
+        <div {{ region_attributes.first.addClass('layout_region', 'col-12', 'col-lg', 'col-menu') }}>
           {{ content.first }}
         </div>
       {% endif %}
 
       {% if content.second %}
-        <div{{region_attributes.second.addClass('layout_region','col-12','col-lg','col-content')}}>
+        <div {{ region_attributes.second.addClass('layout_region', 'col-12', 'col-lg', 'col-content') }}>
           {{ content.second }}
         </div>
       {% endif %}
     </div>
 
-    {% if addClasses %}
+    {% if addClass %}
     </div>
   {% endif %}
 {% endif %}

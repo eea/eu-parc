@@ -5,19 +5,15 @@ dependencies:
   config:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
-    - field.field.node.basic_page.field_metatags
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
-    - field.field.node.basic_page.field_seo_keyword
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
-    - field.field.node.basic_page.field_views_reference_bottom
     - node.type.basic_page
   module:
     - entity_reference_revisions
     - layout_builder
     - media
-    - metatag
     - text
     - user
     - viewsreference
@@ -48,13 +44,6 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_metatags:
-    type: metatag_empty_formatter
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 7
-    region: content
   field_paragraphs:
     type: entity_reference_revisions_entity_view
     label: above
@@ -72,14 +61,6 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 5
-    region: content
-  field_seo_keyword:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 6
     region: content
   field_svg_title:
     type: media_thumbnail
@@ -101,15 +82,5 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_views_reference_bottom:
-    type: viewsreference_formatter
-    label: above
-    settings:
-      plugin_types:
-        - block
-    third_party_settings: {  }
-    weight: 8
-    region: content
 hidden:
-  addtoany: true
   links: true

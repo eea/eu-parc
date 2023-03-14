@@ -12,6 +12,7 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 145%;
+    letter-spacing: 0.01em;
     margin-top: 12px;
 
     display: flex;
