@@ -12,7 +12,7 @@
         btn.addClass("arrow-up");
       }
 
-      $('#edit-categorie-collapsible .bef-checkboxes input:checked').once('viewsExposedForm').each(function() {
+      $('#edit-category-collapsible .bef-checkboxes input:checked').once('viewsExposedForm').each(function() {
         var label = $(this)['0'].labels['0'].innerHTML;
         var labelClass = label.toLowerCase().replace(" ", "-");
         var itemId = $(this).attr('id');
