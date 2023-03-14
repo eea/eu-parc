@@ -9,13 +9,14 @@ label: 'Basic pages'
 type: 'canonical_entities:node'
 pattern: '[node:title]'
 selection_criteria:
-  251d6eca-bb56-4afc-98a2-77ba99139f79:
+  7cca13a8-95bf-4203-a07d-4b4b3188fd3b:
     id: 'entity_bundle:node'
     negate: false
-    uuid: 251d6eca-bb56-4afc-98a2-77ba99139f79
+    uuid: 7cca13a8-95bf-4203-a07d-4b4b3188fd3b
     context_mapping:
       node: node
     bundles:
+      article: article
       basic_page: basic_page
       page: page
 selection_logic: and

@@ -1,8 +1,0 @@
-uuid: 5f956602-85c3-40ac-ba23-8c3a5f4271cb
-langcode: en
-status: true
-dependencies: {  }
-id: events_time
-label: 'Events time'
-locked: false
-pattern: 'H:i'

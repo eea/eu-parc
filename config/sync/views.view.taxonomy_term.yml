@@ -1,6 +1,6 @@
 uuid: 41a2c895-51bd-48c5-80f3-5d30bf9a8ca4
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
@@ -8,7 +8,6 @@ dependencies:
     - node
     - taxonomy
     - user
-    - views_infinite_scroll
 _core:
   default_config_hash: YKgw0f77GEmCu6_6Om9Mbig0mON9JdfVuMxTtd0WQaI
 id: taxonomy_term
@@ -27,10 +26,10 @@ display:
     display_options:
       fields: {  }
       pager:
-        type: infinite_scroll
+        type: mini
         options:
           offset: 0
-          items_per_page: 12
+          items_per_page: 10
           total_pages: 0
           id: 0
           tags:
@@ -44,10 +43,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          views_infinite_scroll:
-            button_text: 'Load More'
-            automatically_load_content: false
-            initially_load_all_pages: false
       exposed_form:
         type: basic
         options:
@@ -218,16 +213,12 @@ display:
             default_group_multiple: {  }
             group_items: {  }
       style:
-        type: grid
+        type: default
         options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
           uses_fields: false
-          columns: 400
-          automatic_width: false
-          alignment: horizontal
-          row_class_custom: grid--auto-fill
-          row_class_default: false
-          col_class_custom: ''
-          col_class_default: false
       row:
         type: 'entity:node'
         options:
@@ -274,7 +265,6 @@ display:
     display_plugin: feed
     position: 2
     display_options:
-      enabled: false
       pager:
         type: some
         options:
@@ -313,59 +303,10 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      arguments:
-        tid:
-          id: tid
-          table: taxonomy_index
-          field: tid
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          default_action: 'not found'
-          exception:
-            value: ''
-            title_enable: false
-            title: All
-          title_enable: true
-          title: '{{ arguments.tid }}'
-          default_argument_type: fixed
-          default_argument_options:
-            argument: ''
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            override: false
-            items_per_page: 25
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: true
-          validate:
-            type: 'entity:taxonomy_term'
-            fail: 'not found'
-          validate_options:
-            bundles: {  }
-            access: true
-            operation: view
-            multiple: 0
-          break_phrase: false
-          add_table: false
-          require_value: false
-          reduce_duplicates: false
       query:
         type: views_query
         options: {  }
-      defaults:
-        css_class: false
-        arguments: false
-      css_class: 'mt-3 mb-5'
-      display_extenders:
-        ajax_history: {  }
-        simple_sitemap_display_extender:
-          variants: {  }
+      display_extenders: {  }
       path: taxonomy/term/%
     cache_metadata:
       max-age: -1

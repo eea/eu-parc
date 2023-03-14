@@ -7,7 +7,8 @@
 {%
   set classes = [
     'views-view-grid',
-    ]
+    'clearfix',
+  ]
 %}
 
 {% if title %}
@@ -16,9 +17,15 @@
 
 <div{{attributes.addClass(classes)}}>
   {% for row in items %}
-    <div{{row.attributes.addClass(row_classes)}}>
+    <div{{row.attributes.addClass(row_classes,row.content|length<4?'':'visible-last-xl')}}>
       {% for column in row.content %}
-        <div class="col-12 col-lg-6 col-xl">
+        {% if row.content|length < 4 %}
+          {% set cl = "col-12 col-lg" %}
+        {% else %}
+          {% set cl = "col-lg-4 col-xl-3" %}
+        {% endif %}
+
+        <div class="{{ cl }}">
           {{- column.content -}}
         </div>
       {% endfor %}

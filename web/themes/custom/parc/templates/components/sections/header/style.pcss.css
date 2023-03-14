@@ -61,12 +61,6 @@ header {
   }
 }
 
-.menu--main {
-  .text-muted {
-    display: none;
-  }
-}
-
 .overlay-is-navbar-collapse {
   --c-logo-circle: var(--c-white);
   overflow: hidden;
@@ -105,27 +99,15 @@ header {
     width: 100%;
   }
 
-  .mm-collapse-1 {
-    display: none !important;
-    visibility: hidden !important;
-  }
-
   .navbar-collapse {
     position: absolute;
-    top: calc(100% + 27px);
+    top: 100%;
     inset-inline: 0px;
-    height: calc(
-      90vh - var(--header-height) - var(--drupal-body-pt)
-    ) !important;
-    height: calc(
-      100dvh - var(--header-height) - var(--drupal-body-pt)
-    ) !important;
-    overflow: hidden;
-    overflow-y: auto;
+    min-height: calc(90vh - var(--header-height) - var(--drupal-body-pt));
     color: var(--c-white);
     display: flex;
     align-items: stretch;
-    padding: 30px 60px;
+    padding-inline: 60px;
 
     .nav-link {
       --nav-link-color: var(--c-white);
@@ -136,12 +118,6 @@ header {
     .nav-main {
       .nav-link {
         --nav-link-font-size: 28px;
-      }
-
-      .mm-collapse-0 {
-        .nav-link {
-          --nav-link-font-size: 18px;
-        }
       }
 
       .d-lg-none {
@@ -163,6 +139,7 @@ header {
     .region-nav-main {
       flex-grow: 1;
       display: flex;
+      align-items: center;
     }
 
     .region-nav-additional {
@@ -172,7 +149,7 @@ header {
     }
 
     .menu--top-menu {
-      margin-bottom: 20px;
+      margin-bottom: 60px;
     }
 
     .block-social {
@@ -216,18 +193,26 @@ header {
     max-width: fit-content;
     position: relative;
 
-    span.nav-link {
-      font-size: 10px;
-      margin-bottom: 14px;
-      margin-top: 15px;
-      color: #999898;
+    & > .nav-item {
+      &:hover {
+        .collapse {
+          display: block;
+        }
+      }
     }
 
-    .text-muted {
-      display: block;
-      font-size: 10px;
-      position: relative;
-      z-index: 1;
+    .collapse {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding-left: var(--navbar-nav-link-padding-x);
+      /* border-top: 1px solid var(--border-color); */
+      box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
+      clip-path: inset(0 -100vmax);
+      padding-bottom: 2rem;
+    }
+
+    .second-level {
+      min-height: 128px;
     }
   }
 }
@@ -282,17 +267,12 @@ header {
       --navbar-active-color: var(--c-dark);
     }
 
-    .mm-collapse-1 {
-      position: absolute;
-      inset-block: 0;
-      left: 100%;
-      padding-bottom: 0;
-      display: none;
-    }
-
-    .nav-link-level-1:hover {
-      .mm-collapse-1 {
-        display: block;
+    .second-level {
+      a {
+        padding: 6px 0;
+        font-size: 18px;
+        line-height: 30px;
+        font-weight: var(--base-font-weight);
       }
     }
 

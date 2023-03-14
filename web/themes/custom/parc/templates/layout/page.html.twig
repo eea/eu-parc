@@ -51,8 +51,8 @@
 
 {% block wrap_main %}
   <main role="main" class="flex-grow-1">
+    <a id="main-content" tabindex="-1"></a>
     {# link is in html.html.twig #}
-    <span id="main-content" tabindex="-1"></span>
 
     {% block main %}
       {% include '@parc/components/sections/main/main.html.twig' %}
