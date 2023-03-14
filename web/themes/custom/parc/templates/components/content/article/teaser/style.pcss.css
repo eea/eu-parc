@@ -40,7 +40,7 @@
 
   & .card-title {
     letter-spacing: 0.011em;
-    color: var(--nn-c-cat, var(--red));
+    color: var(--news-c-title, var(--red));
   }
 
   .mini {
@@ -60,8 +60,6 @@
 
   & .field-category {
     letter-spacing: 0.1em;
-    position: relative;
-    z-index: 2;
 
     & a {
       --link-color: var(--red);
@@ -108,7 +106,7 @@
     flex-direction: column;
 
     .card-title {
-      min-height: 106px;
+      min-height: 116px;
     }
 
     .card-body {
@@ -127,7 +125,7 @@
       margin: 6px 6px 0;
       min-width: calc(100% - 12px);
       max-width: calc(100% - 12px);
-      aspect-ratio: 8 / 5;
+      aspect-ratio: 16 / 12;
     }
 
     & .card-styled-border {

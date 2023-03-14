@@ -15,7 +15,7 @@
       aspect-ratio: 16/9;
     }
 
-    @media (--xxl) {
+    @media (--xl) {
       /* size from design ~ 1920/700. */
       aspect-ratio: 960/350;
     }

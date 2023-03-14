@@ -40,6 +40,7 @@
   }
 
   & .card-title {
+    letter-spacing: 110%;
     color: var(--news-c-title, var(--red));
     margin-bottom: 78px;
   }
@@ -51,6 +52,8 @@
   }
 
   & .field-category {
+    letter-spacing: 0.1em;
+
     & a {
       --link-color: var(--red);
       --link-h-color: var(--red);
@@ -86,7 +89,7 @@
       margin: 6px 6px 0;
       min-width: calc(100% - 12px);
       max-width: calc(100% - 12px);
-      aspect-ratio: 8 / 5;
+      aspect-ratio: 16 / 12;
     }
 
     .card-styled-border {
