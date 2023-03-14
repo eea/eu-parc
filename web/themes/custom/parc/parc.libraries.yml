@@ -14,6 +14,7 @@ global-styling:
       css/transitions.css: {}
       css/helpers.css: {}
       css/theme/global.css: {}
+      css/theme/block.css: {}
   js:
     js/script.js: {}
   dependencies:
@@ -139,6 +140,11 @@ tooltip:
       css/components/tooltip.css: {}
 
 # Node.
+n--vm-teaser:
+  css:
+    component:
+      css/components/content/vm/teaser.css: {}
+
 n--page-full:
   css:
     component:
@@ -154,10 +160,35 @@ n--article-teaser:
     - core/drupal
     - core/jquery
 
+n--article-archive:
+  css:
+    component:
+      css/components/content/article/archive/style.css: {}
+
 n--article-full:
   css:
     component:
       css/components/content/article/full/style.css: {}
+
+n--events-full:
+  css:
+    component:
+      css/components/content/events/vm-full/style.css: {}
+
+n--events-teaser:
+  css:
+    component:
+      css/components/content/events/vm-teaser/style.css: {}
+
+n--events-header:
+  css:
+    component:
+      css/components/content/events/vm-header/style.css: {}
+
+n--events-info:
+  css:
+    component:
+      css/components/content/events/vm-info/style.css: {}
 
 n--article-compact:
   css:
@@ -178,6 +209,16 @@ n--basic-page-compact:
   css:
     component:
       css/components/content/basic-page/compact/style.css: {}
+
+n--thematic-areas--full:
+  css:
+    component:
+      css/components/content/thematic-areas/vm-full/style.css: {}
+
+n--thematic-areas--card-item:
+  css:
+    component:
+      css/components/content/thematic-areas/vm-card-item/style.css: {}
 
 # Block.
 b--carousel:
@@ -213,3 +254,48 @@ s--footer:
   css:
     component:
       css/components/sections/footer/style.css: {}
+
+# Taxonomy.
+t--thematic-areas--full:
+  css:
+    component:
+      css/components/taxonomy/thematic-areas/vm-full/style.css: {}
+
+t--thematic-areas--header:
+  css:
+    component:
+      css/components/taxonomy/thematic-areas/vm-header/style.css: {}
+
+t--thematic-areas--card:
+  css:
+    component:
+      css/components/taxonomy/thematic-areas/vm-card/style.css: {}
+
+# Layout.
+l--parc-content:
+  css:
+    component:
+      css/components/layouts/parc-content/style.css: {}
+
+# Menu.
+m--main:
+  css:
+    component:
+      css/components/menu/main/style.css: {}
+
+# Other.
+f--views-exposed:
+  css:
+    component:
+      css/components/forms/views-exposed/style.css: {}
+  js:
+    templates/components/forms/views-exposed/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+
+o--share:
+  css:
+    component:
+      css/other/share.css: {}

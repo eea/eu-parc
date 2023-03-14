@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ */
+#}
+
+{% set path = "/events?category%5B" ~ term.id ~ "%5d=" ~ term.id %}
+
+<a href={{ path }}>
+  {{- name -}}
+</a>

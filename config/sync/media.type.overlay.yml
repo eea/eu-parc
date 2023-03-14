@@ -1,0 +1,13 @@
+uuid: 2838933b-e2d1-4c49-9472-946e6d64d84e
+langcode: en
+status: true
+dependencies: {  }
+id: overlay
+label: Overlay
+description: 'Used fro Article content type (News).'
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image_2
+field_map: {  }

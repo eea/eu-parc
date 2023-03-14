@@ -1,0 +1,37 @@
+.smartdate--widget > .fieldset__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.smartdate--widget .form-datetime-wrapper {
+  margin-block: 1rem 0;
+}
+
+.smartdate--widget .allday-label {
+  display: flex;
+  align-items: center;
+}
+
+.smartdate--widget .allday {
+  margin: 2px 1em 0 1em !important;
+}
+
+.smartdate--widget .duration-wrapper {
+  display: none !important;
+}
+
+.form-items-inline.time-start,
+.form-items-inline.time-end {
+  gap: 1rem;
+}
+
+@media (min-width: 56em) {
+  .smartdate--time-inline {
+    align-items: center;
+  }
+
+  .smartdate--time-inline .smartdate--separator {
+    margin-bottom: 0 !important;
+  }
+}

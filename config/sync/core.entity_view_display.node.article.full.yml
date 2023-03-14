@@ -7,36 +7,103 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.comment
     - field.field.node.article.field_image
-    - field.field.node.article.field_label_color
-    - field.field.node.article.field_scroller
+    - field.field.node.article.field_metatags
+    - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
     - system.menu.main
   module:
+    - addtoany
     - ctools
     - image_field_caption
     - layout_builder
     - system
     - text
     - user
+  theme:
+    - parc
 third_party_settings:
   layout_builder:
     enabled: true
     allow_custom: false
     sections:
       -
-        layout_id: layout_twocol_section
+        layout_id: parc_content
         layout_settings:
-          label: ''
+          label: content
           context_mapping: {  }
-          column_widths: 33-67
           layout_builder_styles_style:
             background_green: 0
             background_grey: 0
-            container: container
+            container_fluid: container_fluid
+            container: 0
+            margin_bottom_5: 0
             no_paddings: 0
+            remove_horizontal_paddings: 0
+            remove_vertical_paddings: 0
         components:
+          32564fe4-477f-4ab0-8661-843de6bea547:
+            uuid: 32564fe4-477f-4ab0-8661-843de6bea547
+            region: menu
+            configuration:
+              id: 'system_menu_block:main'
+              label: 'Main navigation'
+              label_display: '0'
+              provider: system
+              context_mapping: {  }
+              level: 3
+              depth: 1
+              expand_all_items: true
+            weight: 0
+            additional:
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: sticky-top
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+          40445dae-82dc-4140-af07-b4b96b54c175:
+            uuid: 40445dae-82dc-4140-af07-b4b96b54c175
+            region: second
+            configuration:
+              id: addtoany_block
+              label: 'Share buttons'
+              label_display: '0'
+              provider: addtoany
+              context_mapping: {  }
+              link_url: ''
+              link_title: Share
+              buttons_size: '16'
+              addtoany_html: "<a class=\"a2a_button_twitter\"><svg width=\"14\" height=\"12\" viewBox=\"0 0 14 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M11.7614 1.71418L10.1225 2.41656L11.8877 2.66872C11.9827 2.6823 12.0765 2.6942 12.1696 2.70419C11.9749 2.8672 11.7859 3.03917 11.6048 3.2202L11.4418 3.38324L11.46 3.6131C11.7388 7.14568 9.33193 10.3086 5.80077 10.9759C4.55136 11.0314 3.31166 10.8641 2.17034 10.457C2.92687 10.3344 3.7608 10.0222 4.42316 9.31572L5.3077 8.37221L4.01976 8.47524L4.01852 8.47534L4.00309 8.47627C3.98915 8.47702 3.96682 8.47804 3.93716 8.47879C3.87773 8.4803 3.78952 8.48069 3.6808 8.47582C3.46163 8.46598 3.16816 8.43508 2.86276 8.35328C2.4515 8.24312 2.05459 8.05302 1.76844 7.72446C2.12592 7.68355 2.46286 7.62276 2.75645 7.56404L2.77082 6.58655C1.93728 6.3942 1.27708 5.82445 1 5.11573C1.20711 5.15439 1.4245 5.17375 1.65839 5.17375H2.96707L1.99306 4.30227L1.99209 4.3014L1.98169 4.29164C1.97187 4.28231 1.95604 4.26699 1.9354 4.24602C1.89402 4.20398 1.83377 4.13979 1.76386 4.05616C1.62293 3.88761 1.44873 3.64728 1.30889 3.35684C1.10719 2.93793 0.98067 2.42941 1.11945 1.86714C1.42173 2.1603 1.842 2.53459 2.35297 2.90396C3.42815 3.6812 4.97018 4.48371 6.69058 4.37271L7.29846 4.33349L7.14151 3.74492C6.82024 2.54017 7.52433 1.39878 8.77707 1.05959C9.53674 0.893953 10.3481 1.0706 10.9048 1.6273L11.0816 1.80408L11.3291 1.76872C11.5278 1.74034 11.72 1.69774 11.9055 1.64105C11.8594 1.66836 11.8113 1.69279 11.7614 1.71418Z\" fill=\"black\" stroke=\"black\"/></svg></a>\r\n\r\n<a class=\"a2a_button_linkedin\"><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_536_1679)\"><path d=\"M11.1 0H0.9C0.4 0 0 0.4 0 0.9V11.2C0 11.6 0.4 12 0.9 12H11.1C11.6 12 12 11.6 12 11.1V0.9C12 0.4 11.6 0 11.1 0ZM3.6 10.2H1.8V4.5H3.6V10.2ZM2.7 3.7C2.1 3.7 1.7 3.2 1.7 2.7C1.7 2.1 2.2 1.7 2.7 1.7C3.2 1.7 3.7 2.2 3.7 2.7C3.7 3.3 3.2 3.7 2.7 3.7ZM10.2 10.2H8.4V7.4C8.4 6.7 8.4 5.9 7.5 5.9C6.6 5.9 6.4 6.6 6.4 7.4V10.2H4.6V4.5H6.3V5.3C6.5 4.9 7.1 4.4 8 4.4C9.8 4.4 10.1 5.6 10.1 7.1V10.2H10.2Z\" fill=\"black\"/></g><defs><clipPath id=\"clip0_536_1679\"><rect width=\"12\" height=\"12\" fill=\"white\"/></clipPath></defs></svg></a>\r\n\r\n<a class=\"a2a_button_facebook\"><svg width=\"9\" height=\"15\" viewBox=\"0 0 9 15\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 6.2H3.53293L3.49903 5.66881L3.49897 5.66779L3.49859 5.66084L3.49715 5.62803C3.496 5.598 3.49466 5.55213 3.49412 5.49255C3.49304 5.37324 3.49518 5.19977 3.50839 4.98911C3.53496 4.56549 3.60561 4.00308 3.77851 3.4325C4.12214 2.29853 4.83109 1.22309 6.33567 1H8.4V2.2H7.7C6.95596 2.2 6.39971 2.71317 6.06264 3.20474C5.72212 3.70133 5.5 4.32328 5.5 4.8V5.7V6.2H6H8.4V7.4H5.9H5.4V7.9V14H3.5V7.9V7.4H3H1V6.2H3Z\" fill=\"black\" stroke=\"black\"/></svg></a>\r\n\r\n<a class=\"a2a_button_youtube\"><svg width=\"14\" height=\"10\" viewBox=\"0 0 14 10\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M13.9 2.1C13.9 2.1 13.8 1.1 13.3 0.7C12.8 0.0999998 12.2 0.0999999 11.9 0.0999999C9.9 -9.68575e-08 7 0 7 0C7 0 4.1 -9.68575e-08 2.1 0.0999999C1.8 0.0999999 1.2 0.0999998 0.7 0.7C0.3 1.1 0.0999999 2.1 0.0999999 2.1C0.0999999 2.1 0 3.2 0 4.3V5.4C0 6.5 0.0999999 7.7 0.0999999 7.7C0.0999999 7.7 0.2 8.7 0.7 9.1C1.2 9.7 1.9 9.6 2.2 9.7C3.3 9.8 7 9.8 7 9.8C7 9.8 9.9 9.8 11.9 9.7C12.2 9.7 12.8 9.7 13.3 9.1C13.7 8.7 13.9 7.7 13.9 7.7C13.9 7.7 14 6.6 14 5.4V4.3C14 3.6 13.9 2.8 13.9 2.1ZM5.6 6.7V2.8L9.4 4.8L5.6 6.7Z\" fill=\"black\"/></svg></a>"
+            weight: 2
+            additional:
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: block-inline-with-content
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
           e1433005-1eb4-40f3-93a1-9fcda6e3a711:
             uuid: e1433005-1eb4-40f3-93a1-9fcda6e3a711
             region: second
@@ -48,21 +115,7 @@ third_party_settings:
               view_mode: compact
               context_mapping:
                 entity: layout_builder.entity
-            weight: 0
-            additional: {  }
-          32564fe4-477f-4ab0-8661-843de6bea547:
-            uuid: 32564fe4-477f-4ab0-8661-843de6bea547
-            region: first
-            configuration:
-              id: 'system_menu_block:main'
-              label: 'Main navigation'
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-              level: 2
-              depth: 1
-              expand_all_items: false
-            weight: 0
+            weight: 1
             additional: {  }
         third_party_settings: {  }
 _core:
@@ -90,15 +143,6 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_scroller:
-    type: entity_reference_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_tags:
     type: entity_reference_label
     label: above
@@ -108,7 +152,9 @@ content:
     weight: 2
     region: content
 hidden:
+  addtoany: true
   comment: true
-  field_label_color: true
+  field_metatags: true
+  field_seo_keyword: true
   field_svg_hover: true
   links: true

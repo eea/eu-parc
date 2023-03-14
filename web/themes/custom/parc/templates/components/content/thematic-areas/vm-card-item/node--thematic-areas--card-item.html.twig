@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('edwt/collapse') }}
+{{ attach_library('parc/n--thematic-areas--card-item') }}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  ]
+%}
+
+{% set itemID = 'nId-' ~ node.id() %}
+
+<article{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <button class="btn link-ta collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ itemID }}" aria-expanded="true" aria-controls="{{ itemID }}">
+    {{- label.0 -}}
+    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewbox="0 0 8 8">
+      <line x2="6" transform="translate(1 4)" fill="none" stroke="#008475" stroke-linecap="round" stroke-width="2"/>
+      <line class="second-line" y1="6" transform="translate(4 1)" fill="none" stroke="#008475" stroke-linecap="round" stroke-width="2"/>
+    </svg>
+  </button>
+
+  <div id="{{ itemID }}" class="collapse">
+    {{- content -}}
+  </div>
+</article>

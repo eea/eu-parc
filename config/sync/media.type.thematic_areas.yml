@@ -1,0 +1,13 @@
+uuid: a0666b52-85c1-46a6-8922-6d9c7e45ba03
+langcode: en
+status: true
+dependencies: {  }
+id: thematic_areas
+label: 'Thematic areas'
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image_3
+field_map: {  }

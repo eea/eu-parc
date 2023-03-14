@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a details element.
+ */
+#}
+
+{% if open %}
+  {% set attributes = attributes.setAttribute('open', '') %}
+{% else %}
+  {% set attributes = attributes.removeAttribute('open') %}
+{% endif %}
+
+<details{{attributes}}>
+  {%
+    set summary_classes = [
+      required ? 'js-form-required',
+      required ? 'form-required',
+    ]
+  %}
+  {%- if title -%}
+    <summary{{summary_attributes.addClass(summary_classes)}}>{{ title }}</summary>
+  {%- endif -%}
+
+  {% if errors %}
+    <div>
+      {{ errors }}
+    </div>
+  {% endif %}
+
+  {{ description }}
+  {{ children }}
+  {{ value }}
+</details>

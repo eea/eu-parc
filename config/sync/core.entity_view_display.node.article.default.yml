@@ -6,13 +6,14 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.comment
     - field.field.node.article.field_image
-    - field.field.node.article.field_label_color
-    - field.field.node.article.field_scroller
+    - field.field.node.article.field_metatags
+    - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
   module:
     - image_field_caption
+    - metatag
     - text
     - user
 _core:
@@ -22,6 +23,11 @@ targetEntityType: node
 bundle: article
 mode: default
 content:
+  addtoany:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
   body:
     type: text_default
     label: hidden
@@ -40,14 +46,20 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_scroller:
-    type: entity_reference_entity_view
+  field_metatags:
+    type: metatag_empty_formatter
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_seo_keyword:
+    type: entity_reference_label
     label: above
     settings:
-      view_mode: default
-      link: false
+      link: true
     third_party_settings: {  }
-    weight: 4
+    weight: 6
     region: content
   field_tags:
     type: entity_reference_label
@@ -59,6 +71,5 @@ content:
     region: content
 hidden:
   comment: true
-  field_label_color: true
   field_svg_hover: true
   links: true
