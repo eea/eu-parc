@@ -62,6 +62,7 @@ class ParcEventSubscriber implements EventSubscriberInterface {
       $options = [
         'query' => [
           'category[' . $term->id() . ']' => $term->id(),
+          'close' => TRUE,
         ],
       ];
       $url->setOptions($options);
