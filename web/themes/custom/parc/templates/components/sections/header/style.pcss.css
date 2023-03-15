@@ -288,6 +288,7 @@ header {
       left: 100%;
       padding-bottom: 0;
       display: none;
+      min-width: 270px;
     }
 
     .nav-link-level-1:hover {
