@@ -1,7 +1,7 @@
 /**
  * @file
  * Description.
-*/
+ */
 
 (function ($, Drupal, once) {
   Drupal.behaviors.viewsExposedForm = {
@@ -9,12 +9,11 @@
       var btn = $("#js-order-btn", context);
       if (window.location.href.indexOf("_DESC") > -1) {
         btn.addClass("arrow-up");
-      }
-      else {
+      } else {
         btn.removeClass("arrow-up");
       }
 
-      $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input").each(function() {
+      $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;
         var labelClass = label.toLowerCase().replace(" ", "-");
         var itemId = $(this).attr('id');
@@ -24,14 +23,13 @@
             var insert = '<label for="' + itemId + '" class="option bg--' + labelClass + '" style="--ci-bg: ' + color + '">' + label + '</label>'
             $("#js-selected-category").append(insert);
           }
-        }
-        else {
+        } else {
           $(context).find("#js-selected-category label[class*='bg--" + labelClass + "']").remove();
         }
 
       });
       $(context).find("#js-selected-category label").each(function () {
-        $(this).on('click', function() {
+        $(this).on('click', function () {
           let idAttr = $(this).attr('for');
           $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input#" + idAttr).prop("checked", false).trigger("change");
           $(this).remove();
@@ -39,12 +37,16 @@
       });
 
       $(context).find('#js-order-btn').on('click', function () {
-        var fieldSet = $(context).find('fieldset[data-drupal-selector="edit-sort-bef-combine"]');
+        var fieldSet = $('fieldset[data-drupal-selector="edit-sort-bef-combine"]', context);
 
-        fieldSet.find('input').each(function () {
-          if (!$(this).is(':checked')) {
-            $(this).prop("checked", true).trigger("change");
+        fieldSet.each(function () {
+          if (window.location.href.indexOf("_DESC") > -1) {
+            var inputUncheck = $(this).find("input[value='created_ASC']");
+          } else {
+            var inputUncheck = $(this).find("input[value='created_DESC']");
           }
+
+          inputUncheck.prop("checked", true).trigger("change");
         });
       });
     }
@@ -52,8 +54,8 @@
 
   Drupal.behaviors.detailsMouse = {
     attach: function (context) {
-      $('details', context).on('mouseleave', function(e) {
-        e.currentTarget.open=false;
+      $('details', context).on('mouseleave', function (e) {
+        e.currentTarget.open = false;
       });
     }
   };
