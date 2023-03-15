@@ -7,7 +7,7 @@ dependencies:
 id: taxonomy_vocabulary_events_category
 entity_type_id: taxonomy_vocabulary
 entity_id: events_category
-action: page_redirect
+action: display_page
 allow_override: 0
 redirect: '/events?category%5B[term:tid]%5D=[term:tid]'
 redirect_code: 301
