@@ -26,6 +26,11 @@
     .navbar-nav.nav-main {
       margin-left: 0;
       display: none;
+      inset-inline: -12px !important;
+
+      .nav-link {
+        padding-inline: 16px;
+      }
 
       &.show {
         display: block;
