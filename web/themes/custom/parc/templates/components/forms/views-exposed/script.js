@@ -10,6 +10,9 @@
       if (window.location.href.indexOf("_DESC") > -1) {
         btn.addClass("arrow-up");
       }
+      else {
+        btn.removeClass("arrow-up");
+      }
 
       $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input").each(function() {
         var label = $(this)['0'].labels['0'].innerHTML;
@@ -33,7 +36,17 @@
           $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input#" + idAttr).prop("checked", false).trigger("change");
           $(this).remove();
         });
-      })
+      });
+
+      $(context).find('#js-order-btn').on('click', function () {
+        var fieldSet = $(context).find('fieldset[data-drupal-selector="edit-sort-bef-combine"]');
+
+        fieldSet.find('input').each(function () {
+          if (!$(this).is(':checked')) {
+            $(this).prop("checked", true).trigger("change");
+          }
+        });
+      });
     }
   };
 
