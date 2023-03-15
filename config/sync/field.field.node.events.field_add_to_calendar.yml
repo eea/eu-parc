@@ -22,8 +22,8 @@ settings:
   title: '[node:title]'
   location: '[node:field_address]'
   description: '[node:body]'
-  start_date: '[node:field_date:start_date:medium]'
-  end_date: '[node:field_date:end_date:medium]'
-  start_time: '[node:field_time]'
+  start_date: '[node:field_date:value-format:medium]'
+  end_date: '[node:field_date:end_value-format:medium]'
+  start_time: '[node:field_date:value-format:time_only]'
   end_time: ''
 field_type: ics_link_field_type
