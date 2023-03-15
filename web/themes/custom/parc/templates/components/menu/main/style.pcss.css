@@ -14,7 +14,9 @@
       .nav-link {
         --navbar-nav-link-padding-x: 0;
         --nav-link-padding-y: 4px;
-        min-width: 250px;
+        /* min-width: 250px; */
+        white-space: inherit;
+        max-width: 260px;
         line-height: 30px;
       }
     }
@@ -27,7 +29,7 @@
 
       .mm-level-2 {
         .nav-link {
-          min-width: 250px;
+          min-width: 290px;
         }
       }
 
@@ -37,6 +39,11 @@
             display: block;
           }
         }
+      }
+
+      .nav-link-level-1 {
+        width: max-content;
+        padding-right: 20px;
       }
 
       .mm-collapse-0 {
