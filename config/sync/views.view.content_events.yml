@@ -815,7 +815,20 @@ display:
         header: false
       use_ajax: false
       display_description: ''
-      header: {  }
+      header:
+        entity_taxonomy_term:
+          id: entity_taxonomy_term
+          table: views
+          field: entity_taxonomy_term
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: entity
+          empty: false
+          target: '{{ raw_arguments.tid }}'
+          view_mode: views_link
+          tokenize: true
+          bypass_access: false
       display_extenders:
         ajax_history:
           enable_history: false
