@@ -41,8 +41,12 @@
         }
       }
 
-      .nav-link-level-1 {
+      .nav-link.nav-link-level-1 {
         width: max-content;
+        padding-right: 20px;
+      }
+
+      .text-muted {
         padding-right: 20px;
       }
 
