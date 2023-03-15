@@ -12,6 +12,9 @@
       } else {
         btn.removeClass("arrow-up");
       }
+      else {
+        btn.removeClass("arrow-up");
+      }
 
       $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;
