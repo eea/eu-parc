@@ -12,30 +12,36 @@
   function parc_zenodo_api_cron() {
     $client = new Client();
     $connection = new ZendoApiHelper($client);
-    $depositions = $connection->getAllDepositions();
+    $depositions = $connection->getAllRecords();
     $bundle = 'publications';
 
-    foreach ($depositions as $deposition) {
-      $deposition_id = $deposition['id'];
-      // Check if Publications exists on local and if the Updated Date field is changed.
-      $results = \Drupal::entityTypeManager()
-        ->getStorage('node')
-        ->loadByProperties(['type' => $bundle, 'field_zenodo_id' => $deposition_id]);
-      if ($results == NULL) {
-        try {
-          createPublication($deposition);
-        } catch (Exception $e) {
-          \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
-        }
-      } else {
-        foreach ($results as $val) {
-          $node = $val;
-        }
-        if (checkPublicationUpdated($deposition['modified'], $node)) {
+    foreach ($depositions as $page => $records) {
+      foreach ($records['hits']['hits'] as $key => $deposition) {
+        $deposition_id = $deposition['id'];
+        // Check if Publications exists on local and if the Updated Date field is changed.
+        $results = \Drupal::entityTypeManager()
+          ->getStorage('node')
+          ->loadByProperties([
+            'type' => $bundle,
+            'field_zenodo_id' => $deposition_id
+          ]);
+        if ($results == NULL) {
           try {
-            updatePublication($deposition, $node);
+            createPublication($deposition);
           } catch (Exception $e) {
             \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
+          }
+        }
+        else {
+          foreach ($results as $val) {
+            $node = $val;
+          }
+          if (checkPublicationUpdated($deposition['modified'], $node)) {
+            try {
+              updatePublication($deposition, $node);
+            } catch (Exception $e) {
+              \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
+            }
           }
         }
       }
@@ -74,22 +80,22 @@
       }
     }
     $altered_publication_date = explode('.', $deposition['created']);
-    $altered_modified_date = explode('.', $deposition['modified']);
+    $altered_modified_date = explode('.', $deposition['updated']);
     $values = [
-      'title' => !empty($deposition['title']) ? $deposition['title'] : 'Untitled',
+      'title' => !empty($deposition['metadata']['title']) ? $deposition['metadata']['title'] : 'Untitled',
       'body' => $deposition['metadata']['description'] ?? '',
       'field_authors' => $creators,
-      'field_doi_link' => $deposition['doi_url'] ?? '',
-      'field_download_link' => $deposition['files'][0]['links']['download']?? '',
-      'field_volume' => $deposition['metadata']['journal_volume'] ?? '',
-      'field_issue' => $deposition['metadata']['journal_issue'] ?? '',
-      'field_journal' => $deposition['metadata']['journal_title'] ?? '',
-      'field_pages' => $deposition['metadata']['journal_pages'] ?? '',
+      'field_doi_link' => $deposition['links']['doi'] ?? '',
+      'field_download_link' => $deposition['files'][0]['links']['self']?? '',
+      'field_volume' => $deposition['metadata']['journal']['volume'] ?? '',
+      'field_issue' => $deposition['metadata']['journal']['issue'] ?? '',
+      'field_journal' => $deposition['metadata']['journal']['title'] ?? '',
+      'field_pages' => $deposition['metadata']['journal']['pages'] ?? '',
       'field_key_words' => $keywords,
       'field_publication_date' => $deposition['created'] ? $altered_publication_date[0] : '',
-      'field_updated_date' => $deposition['modified'] ? $altered_modified_date[0]: '',
+      'field_updated_date' => $deposition['updated'] ? $altered_modified_date[0]: '',
       'field_zenodo_id' => $deposition['id'] ? : '',
-      'status' => $deposition['state'] == 'done' ? 1 : 0,
+      'status' => 1,
     ];
     return $values;
   }
