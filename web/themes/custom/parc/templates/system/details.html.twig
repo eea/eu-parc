@@ -17,6 +17,13 @@
  * @ingroup themeable
  */
 #}
+{% if open %}
+  {% set attributes = attributes.setAttribute('open', '') %}
+{% else %}
+  {% set attributes = attributes.removeAttribute('open') %}
+{% endif %}
+
+
 <details{{attributes}}>
   {%
     set summary_classes = [
