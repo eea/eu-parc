@@ -12,6 +12,7 @@ dependencies:
     - node
     - taxonomy
     - user
+    - views_infinite_scroll
 id: publications
 label: Publications
 module: views
@@ -76,7 +77,7 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: mini
+        type: infinite_scroll
         options:
           offset: 0
           items_per_page: 10
@@ -93,6 +94,10 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: true
+            initially_load_all_pages: false
       exposed_form:
         type: bef
         options:
@@ -211,7 +216,7 @@ display:
             identifier: field_key_words_target_id
             required: false
             remember: false
-            multiple: false
+            multiple: true
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
@@ -251,6 +256,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      use_ajax: true
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -275,7 +281,8 @@ display:
     display_options:
       display_description: ''
       display_extenders:
-        ajax_history: {  }
+        ajax_history:
+          enable_history: true
         simple_sitemap_display_extender:
           variants: {  }
         metatag_display_extender:
