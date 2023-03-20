@@ -125,7 +125,7 @@ display:
               plugin_id: bef
               advanced:
                 combine: true
-                combine_rewrite: "Publication Date Asc|Asc\r\nPublication Date Desc|Desc"
+                combine_rewrite: "Publication Date Asc|Date\r\nPublication Date Desc|Date"
                 reset: false
                 reset_label: ''
                 collapsible: false
@@ -213,7 +213,7 @@ display:
             operator: field_key_words_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_key_words_target_id
+            identifier: category
             required: false
             remember: false
             multiple: true
@@ -235,12 +235,12 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: true
+          reduce_duplicates: false
           vid: publications
           type: select
-          hierarchy: true
+          hierarchy: false
           limit: true
-          error_message: false
+          error_message: true
       style:
         type: default
       row:
