@@ -271,6 +271,7 @@ textarea.form-control-lg {
 }
 .form-check-input {
   width: 18px;
+  min-width: 18px;
   height: 18px;
   margin-top: 7px;
   margin-right: 6px;

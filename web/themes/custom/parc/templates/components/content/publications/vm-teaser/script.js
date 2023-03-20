@@ -1,26 +1,31 @@
+/**
+ * @file
+ * Description.
+ */
 
-function updateSlidePosition(e, direction) {
-  const firstSlideWidth = e.querySelector(".cs--item").offsetWidth;
+(function ($, Drupal, once) {
+  Drupal.behaviors.keyMessagesCarousel = {
+    attach: function (context) {
+      $('.js-slider-prev', context).on('click', function () {
+        updateSlidePosition("prev");
+      });
+
+      $(context).find('.js-slider-next').once('keyMessagesCarousel').on('click', function () {
+        updateSlidePosition("next");
+      });
+    }
+  };
+})(jQuery, Drupal, once);
+
+
+
+function updateSlidePosition(direction) {
+  let cs = document.querySelector(".carousel-scroll");
+  const firstSlideWidth = cs.querySelector(".cs--item").offsetWidth;
 
   if (direction === "prev") {
-      e.scrollLeft -= firstSlideWidth;
+    cs.scrollLeft -= firstSlideWidth;
   } else {
-      e.scrollLeft += firstSlideWidth;
+    cs.scrollLeft += firstSlideWidth;
   }
-}
-
-let cs = document.querySelector(".carousel-scroll");
-
-if (cs.length > 0) {
-  document
-    .querySelector(".js-slider-prev")
-    .addEventListener("click", function () {
-        updateSlidePosition(cs, "prev");
-    });
-
-  document
-    .querySelector(".js-slider-next")
-    .addEventListener("click", function () {
-        updateSlidePosition(cs, "next");
-  });
 }
