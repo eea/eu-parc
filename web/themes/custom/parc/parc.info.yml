@@ -10,6 +10,7 @@ libraries-override:
   edwt/nav: parc/nav
   edwt/navbar: parc/navbar
   edwt/forms: parc/forms
+  edwt/dropdowns: parc/dropdowns
 
 stylesheets-remove:
   - "@classy/css/components/tabs.css"

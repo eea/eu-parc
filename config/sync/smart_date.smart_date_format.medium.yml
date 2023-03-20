@@ -1,0 +1,15 @@
+uuid: 6575ac09-de75-43c4-92ab-54eda3527ffa
+langcode: en
+status: true
+dependencies: {  }
+id: medium
+label: Medium
+date_format: Y-m-d
+time_format: ''
+time_hour_format: ''
+allday_label: ''
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

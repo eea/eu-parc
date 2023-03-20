@@ -101,7 +101,8 @@
       margin-right: calc(var(--col-w1) * 2);
     }
 
-    .field--name-body {
+    .field--name-body,
+    .body {
       & > *:not(blockquote):not(div) {
         margin-right: calc(var(--col-w1) * 2);
       }
