@@ -49,6 +49,15 @@
           inputUncheck.prop("checked", true).trigger("change");
         });
       });
+
+      // $('body').once('viewsExposedForm').on('click', '#js-order-btn', function() {
+      //   var fieldSet = $('fieldset[data-drupal-selector="edit-sort-bef-combine"]', context)
+
+      //   fieldSet.each(function () {
+      //     let inputUncheck = $(this).find('input:not(:checked)');
+      //     inputUncheck.trigger( "click" );
+      //   });
+      // });
     }
   };
 

@@ -1,17 +1,17 @@
-uuid: 5aa420f8-9a8d-45fe-beea-f6c821ab8c38
+uuid: 17b0021a-e7e3-4ee7-8bae-6c3ef5be40f2
 langcode: en
 status: true
 dependencies:
   module:
-    - media
+    - color_field
     - node
-id: node.field_cover
-field_name: field_cover
+id: node.field_text_color
+field_name: field_text_color
 entity_type: node
-type: entity_reference
+type: color_field_type
 settings:
-  target_type: media
-module: core
+  format: '#HEXHEX'
+module: color_field
 locked: false
 cardinality: 1
 translatable: true
