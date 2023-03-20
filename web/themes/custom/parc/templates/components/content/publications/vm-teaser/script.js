@@ -11,14 +11,12 @@ function updateSlidePosition(e, direction) {
 
 let cs = document.querySelector(".carousel-scroll");
 
-
 if (cs.length > 0) {
   document
     .querySelector(".js-slider-prev")
     .addEventListener("click", function () {
         updateSlidePosition(cs, "prev");
     });
-
 
   document
     .querySelector(".js-slider-next")

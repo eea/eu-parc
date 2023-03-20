@@ -1016,7 +1016,6 @@ div[class*="border-"] {
   color: var(--color);
 }
 
-
 .bg-white {
   background-color: rgba(var(--rgb-white), 1);
 }
