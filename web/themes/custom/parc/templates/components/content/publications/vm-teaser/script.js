@@ -11,14 +11,16 @@ function updateSlidePosition(e, direction) {
 
 let cs = document.querySelector(".carousel-scroll");
 
-document
+if (cs.length > 0) {
+  document
     .querySelector(".js-slider-prev")
     .addEventListener("click", function () {
         updateSlidePosition(cs, "prev");
     });
 
-document
+  document
     .querySelector(".js-slider-next")
     .addEventListener("click", function () {
         updateSlidePosition(cs, "next");
-    });
+  });
+}
