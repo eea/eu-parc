@@ -6,7 +6,7 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.keyMessagesCarousel = {
     attach: function (context) {
-      $('.js-slider-prev', context).on('click', function () {
+      $(context).find('.js-slider-prev').once('keyMessagesCarousel').on('click', function () {
         updateSlidePosition("prev");
       });
 
