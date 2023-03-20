@@ -8,6 +8,10 @@
       max-height: 550px;
       overflow: hidden;
       display: flex;
+
+      @media (--downLg) {
+        margin-inline: -20px;
+      }
     }
 
     img {

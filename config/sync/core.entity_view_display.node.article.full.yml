@@ -18,7 +18,7 @@ dependencies:
     - ctools
     - image_field_caption
     - layout_builder
-    - system
+    - menu_block
     - text
     - user
   theme:
@@ -43,36 +43,6 @@ third_party_settings:
             remove_horizontal_paddings: 0
             remove_vertical_paddings: 0
         components:
-          32564fe4-477f-4ab0-8661-843de6bea547:
-            uuid: 32564fe4-477f-4ab0-8661-843de6bea547
-            region: menu
-            configuration:
-              id: 'system_menu_block:main'
-              label: 'Main navigation'
-              label_display: '0'
-              provider: system
-              context_mapping: {  }
-              level: 3
-              depth: 1
-              expand_all_items: true
-            weight: 0
-            additional:
-              component_attributes:
-                block_attributes:
-                  id: ''
-                  class: sticky-top
-                  style: ''
-                  data: ''
-                block_title_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
-                block_content_attributes:
-                  id: ''
-                  class: ''
-                  style: ''
-                  data: ''
           40445dae-82dc-4140-af07-b4b96b54c175:
             uuid: 40445dae-82dc-4140-af07-b4b96b54c175
             region: second
@@ -115,6 +85,26 @@ third_party_settings:
               view_mode: compact
               context_mapping:
                 entity: layout_builder.entity
+            weight: 1
+            additional: {  }
+          47c6e027-e1e2-4f41-9b22-3d73841a38d2:
+            uuid: 47c6e027-e1e2-4f41-9b22-3d73841a38d2
+            region: menu
+            configuration:
+              id: 'menu_block:main'
+              label: 'Main navigation'
+              label_display: '0'
+              provider: menu_block
+              context_mapping: {  }
+              follow: false
+              follow_parent: child
+              label_link: false
+              label_type: block
+              level: 3
+              depth: 0
+              expand_all_items: false
+              parent: 'main:'
+              suggestion: sidebar_dropdown
             weight: 1
             additional: {  }
         third_party_settings: {  }
