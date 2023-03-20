@@ -82,6 +82,13 @@ function parc_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'article') {
     $variables['body_full'] = $node->body->view('default');
   }
+  if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'publications') {
+    // $node = $variables['node'];
+    // $node->get('field_journal')->getString();
+    // $variables['elements']['field_journal']['0']['#context']['value'] = "just";
+    // dump($variables['elements']['field_journal']['0']['#context']['value']);
+    // dump($node);
+  }
 }
 
 /**

@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.publications.body
     - field.field.node.publications.field_authors
+    - field.field.node.publications.field_background_color
     - field.field.node.publications.field_cover
     - field.field.node.publications.field_doi_link
     - field.field.node.publications.field_download_link
@@ -14,14 +15,15 @@ dependencies:
     - field.field.node.publications.field_key_words
     - field.field.node.publications.field_pages
     - field.field.node.publications.field_publication_date
+    - field.field.node.publications.field_text_color
     - field.field.node.publications.field_updated_date
     - field.field.node.publications.field_volume
     - field.field.node.publications.field_zenodo_id
     - node.type.publications
   module:
+    - color_field
     - datetime
     - link
-    - svg_image
     - text
     - user
 id: node.publications.default
@@ -44,20 +46,23 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
-  field_cover:
-    type: image
-    label: hidden
+  field_background_color:
+    type: color_field_formatter_text
+    label: above
     settings:
-      image_link: ''
-      image_style: ''
-      svg_attributes:
-        width: null
-        height: null
-      svg_render_as_image: true
-      image_loading:
-        attribute: lazy
+      format: hex
+      opacity: true
     third_party_settings: {  }
-    weight: 112
+    weight: 117
+    region: content
+  field_cover:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 115
     region: content
   field_doi_link:
     type: link
@@ -130,6 +135,15 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 113
+    region: content
+  field_text_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 116
     region: content
   field_updated_date:
     type: datetime_default
