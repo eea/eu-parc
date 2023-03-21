@@ -207,7 +207,7 @@ display:
           exposed: true
           expose:
             operator_id: field_key_words_target_id_op
-            label: Topic
+            label: 'All publications'
             description: ''
             use_operator: false
             operator: field_key_words_target_id_op

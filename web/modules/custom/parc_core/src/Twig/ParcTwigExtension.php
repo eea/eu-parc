@@ -3,7 +3,6 @@
 namespace Drupal\parc_core\Twig;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Extension\ModuleExtensionList;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -28,13 +27,13 @@ class ParcTwigExtension extends AbstractExtension {
 
   /**
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The Entity Type Manager service
+   *   The Entity Type Manager service.
    * @param \Drupal\Core\Extension\ModuleExtensionList $module_list
-   *   The Module Extension List service
+   *   The Module Extension List service.
    */
   public function __construct(
     EntityTypeManagerInterface $entity_type_manager
-    // ModuleExtensionList $module_list
+    // ModuleExtensionList $module_list.
   ) {
     $this->entityTypeManager = $entity_type_manager;
     // $this->moduleList = $module_list;
@@ -73,7 +72,7 @@ class ParcTwigExtension extends AbstractExtension {
       $color = $term->get('field_colors')->getValue();
     }
 
-    return isset($color[0]['color']) ? $color[0]['color'] : '#000000';
+    return isset($color[0]['color']) ? $color[0]['color'] : '#6E009A';
   }
 
   /**
@@ -130,7 +129,7 @@ class ParcTwigExtension extends AbstractExtension {
    */
   public function cardFooterOverlay() {
     $module = \Drupal::service('extension.list.module')->getPath('parc_core');
-    $svg =  $module . '/assets/footer-overlay-2.svg';
+    $svg = $module . '/assets/footer-overlay-2.svg';
 
     $database = \Drupal::database();
     $query = $database->select('media_field_data', 'm');
