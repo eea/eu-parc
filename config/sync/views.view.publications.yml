@@ -235,12 +235,12 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: false
+          reduce_duplicates: true
           vid: publications
           type: select
           hierarchy: false
           limit: true
-          error_message: true
+          error_message: false
       style:
         type: default
       row:
