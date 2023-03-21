@@ -47,7 +47,6 @@ use GuzzleHttp\Client;
       }
     }
   }
-}
 
   function createPublication($deposition) {
     $values = getFieldValues($deposition);
