@@ -52,6 +52,7 @@
     $values = getFieldValues($deposition);
     $values['type'] = 'publications';
     $node = Node::create($values);
+    $node->body->format = 'full_html';
     $node->save();
   }
 
@@ -68,17 +69,39 @@
       $vid = 'publications';
       $taxonomy_vocabulary_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
       foreach ($deposition['metadata']['keywords'] as $keyword) {
-        if (checkTermExists($taxonomy_vocabulary_terms, $keyword)) {
-          $keywords[] = ['target_id' => checkTermExists($taxonomy_vocabulary_terms, $keyword)];
+        if (strpos($keyword,',') !== NULL || strpos($keyword,'·') !== NULL) {
+          if (strpos($keyword,',') !== NULL) {
+            $keywords_array = explode(',',$keyword);
+          } else {
+            $keywords_array = explode(' · ', $keyword);
+          }
+          foreach ($keywords_array as $k) {
+            $k = ucfirst(trim($k));
+
+            if (checkTermExists($taxonomy_vocabulary_terms, $k)) {
+              $keywords[] = ['target_id' => checkTermExists($taxonomy_vocabulary_terms, $k)];
+            } else {
+              $new_term = Term::create([
+                'name' => $k,
+                'vid' => $vid
+              ])->save();
+              $keywords[] = ['target_id' => $new_term];
+            }
+          }
         } else {
-          $new_term = Term::create([
-            'name' => $keyword,
-            'vid' => $vid
-          ])->save();
-          $keywords[] = ['target_id' => $new_term];
+          if (checkTermExists($taxonomy_vocabulary_terms, $keyword)) {
+            $keywords[] = ['target_id' => checkTermExists($taxonomy_vocabulary_terms, $keyword)];
+          } else {
+            $new_term = Term::create([
+              'name' => $keyword,
+              'vid' => $vid
+            ])->save();
+            $keywords[] = ['target_id' => $new_term];
+          }
         }
       }
     }
+
     $altered_publication_date = explode('.', $deposition['created']);
     $altered_modified_date = explode('.', $deposition['updated']);
     $values = [
