@@ -53,6 +53,7 @@ function parc_zenodo_api_cron() {
       }
     }
   }
+}
 
 /**
  *
