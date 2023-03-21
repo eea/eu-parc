@@ -73,6 +73,29 @@ class ZendoApiHelper {
       // log exception
       \Drupal::logger('PARC Zenodo API')->error($e->getMessage());
     }
-    return $records;
+
+    public function getAllRecords() {
+      $records = [];
+      $token = \Drupal::config('parc_zenodo_api.adminsettings')->get('token');
+      $client = $this->httpClient;
+
+      try {
+        $i = 1;
+          do {
+            $url = 'https://zenodo.org/api/records?access_token=' . $token . '&communities=parc&size=10&page=' . $i;
+            $response = $client->get($url);
+            $response_data = json_decode($response->getBody()->getContents(), TRUE);
+            $i++;
+            if (!empty($response_data['hits']['hits'])) {
+              $records[$i-1] = $response_data;
+            }
+          } while (!empty($response_data['hits']['hits']));
+      }
+      catch (RequestException $e) {
+        // log exception
+        \Drupal::logger('PARC Zenodo API')->error($e->getMessage());
+      }
+      return $records;
+    }
   }
 }

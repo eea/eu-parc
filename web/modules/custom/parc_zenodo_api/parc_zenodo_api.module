@@ -5,42 +5,43 @@ use Drupal\parc_zenodo_api\ZendoApiHelper;
 use Drupal\taxonomy\Entity\Term;
 use GuzzleHttp\Client;
 
-/**
- * Implement hook_cron().
- * @return void
- */
-function parc_zenodo_api_cron() {
-  $client = new Client();
-  $connection = new ZendoApiHelper($client);
-  $depositions = $connection->getAllRecords();
-  $bundle = 'publications';
+  /**
+   * Implement hook_cron().
+   * @return void
+   */
+  function parc_zenodo_api_cron() {
+    $client = new Client();
+    $connection = new ZendoApiHelper($client);
+    $depositions = $connection->getAllRecords();
+    $bundle = 'publications';
 
-  foreach ($depositions as $page => $records) {
-    foreach ($records['hits']['hits'] as $key => $deposition) {
-      $deposition_id = $deposition['id'];
-      // Check if Publications exists on local and if the Updated Date field is changed.
-      $results = \Drupal::entityTypeManager()
-        ->getStorage('node')
-        ->loadByProperties([
-          'type' => $bundle,
-          'field_zenodo_id' => $deposition_id
-        ]);
-      if ($results == NULL) {
-        try {
-          createPublication($deposition);
-        } catch (Exception $e) {
-          \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
-        }
-      }
-      else {
-        foreach ($results as $val) {
-          $node = $val;
-        }
-        if (checkPublicationUpdated($deposition['modified'], $node)) {
+    foreach ($depositions as $page => $records) {
+      foreach ($records['hits']['hits'] as $key => $deposition) {
+        $deposition_id = $deposition['id'];
+        // Check if Publications exists on local and if the Updated Date field is changed.
+        $results = \Drupal::entityTypeManager()
+          ->getStorage('node')
+          ->loadByProperties([
+            'type' => $bundle,
+            'field_zenodo_id' => $deposition_id
+          ]);
+        if ($results == NULL) {
           try {
-            updatePublication($deposition, $node);
+            createPublication($deposition);
           } catch (Exception $e) {
             \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
+          }
+        }
+        else {
+          foreach ($results as $val) {
+            $node = $val;
+          }
+          if (checkPublicationUpdated($deposition['modified'], $node)) {
+            try {
+              updatePublication($deposition, $node);
+            } catch (Exception $e) {
+              \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
+            }
           }
         }
       }
@@ -48,12 +49,13 @@ function parc_zenodo_api_cron() {
   }
 }
 
-function createPublication($deposition) {
-  $values = getFieldValues($deposition);
-  $values['type'] = 'publications';
-  $node = Node::create($values);
-  $node->save();
-}
+  function createPublication($deposition) {
+    $values = getFieldValues($deposition);
+    $values['type'] = 'publications';
+    $node = Node::create($values);
+    $node->body->format = 'full_html';
+    $node->save();
+  }
 
 function getFieldValues($deposition) {
   $creators = [];
@@ -63,21 +65,63 @@ function getFieldValues($deposition) {
       $creator_name = str_replace(', ', ' ', $creator['name']);
       $creators[] = ['value' => $creator_name];
     }
-  }
-  if (isset($deposition['metadata']) && isset($deposition['metadata']['keywords'])) {
-    $vid = 'publications';
-    $taxonomy_vocabulary_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
-    foreach ($deposition['metadata']['keywords'] as $keyword) {
-      if (checkTermExists($taxonomy_vocabulary_terms, $keyword)) {
-        $keywords[] = ['target_id' => checkTermExists($taxonomy_vocabulary_terms, $keyword)];
-      } else {
-        $new_term = Term::create([
-          'name' => $keyword,
-          'vid' => $vid
-        ])->save();
-        $keywords[] = ['target_id' => $new_term];
+
+    if (isset($deposition['metadata']) && isset($deposition['metadata']['keywords'])) {
+      $vid = 'publications';
+      $taxonomy_vocabulary_terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+      foreach ($deposition['metadata']['keywords'] as $keyword) {
+        if (strpos($keyword,',') !== NULL || strpos($keyword,'·') !== NULL) {
+          if (strpos($keyword,',') !== NULL) {
+            $keywords_array = explode(',',$keyword);
+          } else {
+            $keywords_array = explode(' · ', $keyword);
+          }
+          foreach ($keywords_array as $k) {
+            $k = ucfirst(trim($k));
+
+            if (checkTermExists($taxonomy_vocabulary_terms, $k)) {
+              $keywords[] = ['target_id' => checkTermExists($taxonomy_vocabulary_terms, $k)];
+            } else {
+              $new_term = Term::create([
+                'name' => $k,
+                'vid' => $vid
+              ])->save();
+              $keywords[] = ['target_id' => $new_term];
+            }
+          }
+        } else {
+          if (checkTermExists($taxonomy_vocabulary_terms, $keyword)) {
+            $keywords[] = ['target_id' => checkTermExists($taxonomy_vocabulary_terms, $keyword)];
+          } else {
+            $new_term = Term::create([
+              'name' => $keyword,
+              'vid' => $vid
+            ])->save();
+            $keywords[] = ['target_id' => $new_term];
+          }
+        }
       }
     }
+
+    $altered_publication_date = explode('.', $deposition['created']);
+    $altered_modified_date = explode('.', $deposition['updated']);
+    $values = [
+      'title' => !empty($deposition['metadata']['title']) ? $deposition['metadata']['title'] : 'Untitled',
+      'body' => $deposition['metadata']['description'] ?? '',
+      'field_authors' => $creators,
+      'field_doi_link' => $deposition['links']['doi'] ?? '',
+      'field_download_link' => $deposition['files'][0]['links']['self']?? '',
+      'field_volume' => $deposition['metadata']['journal']['volume'] ?? '',
+      'field_issue' => $deposition['metadata']['journal']['issue'] ?? '',
+      'field_journal' => $deposition['metadata']['journal']['title'] ?? '',
+      'field_pages' => $deposition['metadata']['journal']['pages'] ?? '',
+      'field_key_words' => $keywords,
+      'field_publication_date' => $deposition['created'] ? $altered_publication_date[0] : '',
+      'field_updated_date' => $deposition['updated'] ? $altered_modified_date[0]: '',
+      'field_zenodo_id' => $deposition['id'] ? : '',
+      'status' => 1,
+    ];
+    return $values;
   }
   $altered_publication_date = explode('.', $deposition['created']);
   $altered_modified_date = explode('.', $deposition['updated']);
