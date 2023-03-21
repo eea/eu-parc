@@ -5,6 +5,11 @@
   padding: 1rem;
   border-radius: var(--border-radius);
 
+  .news-container {
+    max-width: 88.75rem;
+    margin-inline: auto;
+  }
+
   .col-sp-img {
     width: 95px;
     aspect-ratio: 95 / 142;
