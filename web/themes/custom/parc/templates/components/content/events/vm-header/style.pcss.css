@@ -8,6 +8,11 @@
   background-color: var(--ne-c-cat);
   font-weight: var(--fw-bold);
 
+  @media (--downLg) {
+    box-shadow: 0 0 0 100vmax var(--ne-c-cat);
+    clip-path: inset(0 -100vmax);
+  }
+
   .section-bottom {
     margin-top: auto;
     font-size: 12px;

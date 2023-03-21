@@ -16,6 +16,7 @@
   will-change: transform;
   transition: var(--transition-base);
   margin-top: var(--p-parc);
+  transform: scale(1);
 
   a {
     width: 23px;
@@ -35,8 +36,6 @@
   }
 
   &:hover {
-    /* transition-delay: .4s; */
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
 
     a {
@@ -67,7 +66,7 @@
   text-align: center;
   line-height: var(--bw-h);
   letter-spacing: 0.08em;
-  color: var(--c-gray-100);
+  color: var(--c-white);
   background-color: var(--c-dark);
   transition: all 1s ease;
 }
