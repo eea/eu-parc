@@ -1,0 +1,10 @@
+uuid: e475a896-6798-4edb-a131-5712f89320f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.compact
+label: Compact
+targetEntityType: taxonomy_term
+cache: true

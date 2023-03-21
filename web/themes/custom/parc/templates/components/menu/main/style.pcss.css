@@ -1,0 +1,94 @@
+.nav-main {
+  .mm-level-1 {
+    .nav-link {
+      font-weight: var(--base-font-weight);
+    }
+  }
+
+  /* meniu styles placed in header */
+  .region-nav-main & {
+    .mm-level-1 {
+      position: relative;
+      --nav-link-font-size: 18px;
+
+      .nav-link {
+        --navbar-nav-link-padding-x: 0;
+        --nav-link-padding-y: 4px;
+        /* min-width: 250px; */
+        white-space: inherit;
+        max-width: 260px;
+        line-height: 30px;
+      }
+    }
+
+    @media (--lg) {
+      .mm-level-1 {
+        max-width: 270px;
+        margin-top: 24px;
+      }
+
+      .mm-level-2 {
+        .nav-link {
+          min-width: 290px;
+        }
+      }
+
+      .nav-link-level-0 {
+        &:hover {
+          .mm-collapse-0 {
+            display: block;
+          }
+        }
+      }
+
+      .nav-link.nav-link-level-1 {
+        width: max-content;
+        padding-right: 20px;
+      }
+
+      .text-muted {
+        padding-right: 20px;
+      }
+
+      .mm-collapse-0 {
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.95);
+        padding-left: var(--navbar-nav-link-padding-x);
+        box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
+        clip-path: inset(0 -100vmax);
+        padding-bottom: 2rem;
+        min-height: 400px;
+      }
+    }
+  }
+
+  .layout--parc-content & {
+    .nav-link {
+      --nav-link-padding-y: 0.35rem;
+      --nav-link-font-size: 24px;
+      font-weight: var(--fw-medium);
+      line-height: 125%;
+    }
+  }
+
+  /* meniu styles placed in sidebar */
+  .menu--sidebar--multilevel & {
+    .text-muted {
+      display: none;
+    }
+
+    li.nav-link-level-0 {
+      &:not(.li-active) {
+        display: none;
+      }
+    }
+    .nav-link-level-1 {
+      --nav-link-padding-y: 0.5rem;
+      --nav-link-font-size: 18px;
+    }
+
+    .mm-collapse-0 {
+      display: block;
+    }
+  }
+}

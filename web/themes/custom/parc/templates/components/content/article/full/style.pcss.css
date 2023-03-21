@@ -1,10 +1,24 @@
 .node--article--full {
   .page-title {
-    padding-block: 80px;
+    margin-block: 24px;
+    padding-inline: 20px;
+    display: grid;
 
     svg {
       max-width: 100%;
+      max-height: 36px;
       height: auto;
+      width: auto;
+    }
+
+    @media (--md) {
+      margin-block: 80px;
+      justify-content: center;
+      max-height: inherit;
+
+      svg {
+        max-height: inherit;
+      }
     }
   }
 

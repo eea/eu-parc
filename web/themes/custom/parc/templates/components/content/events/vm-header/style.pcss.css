@@ -1,0 +1,75 @@
+.section--events--header {
+  min-height: 365px;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius);
+  padding: 10px 20px 20px;
+  color: var(--c-white);
+  background-color: var(--ne-c-cat);
+  font-weight: var(--fw-bold);
+
+  @media (--downLg) {
+    box-shadow: 0 0 0 100vmax var(--ne-c-cat);
+    clip-path: inset(0 -100vmax);
+  }
+
+  .section-bottom {
+    margin-top: auto;
+    font-size: 12px;
+    line-height: 1em;
+  }
+
+  .field-add-to-calendar {
+    a {
+      --link-color: var(--c-white);
+      --link-h-color: var(--c-white);
+      --link-decoration: none;
+      --link-h-decoration: underline;
+
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+
+      &:after {
+        content: url("data:image/svg+xml, %3Csvg width='10' height='10' viewbox='0 0 10 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.24414 1H7.52571C8.16376 1 8.76704 1.57529 8.76704 2.18374L8.76704 6.52205' stroke='#fff' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='5.67773' y1='4.49377' x2='1.0607' y2='9.1108' stroke='#fff' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+        margin-left: 4px;
+      }
+    }
+
+    svg {
+      margin-left: 4px;
+    }
+  }
+
+  .field-date {
+    font-weight: var(--fw-bold);
+    font-size: 54px;
+    margin-top: 10px;
+    line-height: 1em;
+  }
+
+  .only-year {
+    display: none;
+  }
+
+  .se--year {
+    font-size: 16px;
+
+    .field-date {
+      display: none;
+    }
+
+    .only-year {
+      display: block;
+    }
+  }
+
+  @media (--lg) {
+    margin-right: calc(var(--col-w1) * 2);
+
+    .field-date {
+      font-size: 96px;
+      margin-top: 0;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    field_name|clean_class,
+    'd-flex',
+    'align-items-center',
+    'text-uppercase',
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {% for item in items %}
+    {{- item.content -}}
+    <svg width="10" height="10" viewbox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3.24463 1H7.5262C8.16425 1 8.76753 1.57529 8.76753 2.18374L8.76753 6.52205" stroke="var(--ne-c-cat)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="5.67773" y1="4.49401" x2="1.0607" y2="9.11105" stroke="var(--ne-c-cat)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  {% endfor %}
+</div>

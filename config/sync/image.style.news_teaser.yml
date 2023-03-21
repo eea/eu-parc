@@ -1,0 +1,15 @@
+uuid: ba1d6897-68e9-4cc2-9046-8ed235d05400
+langcode: en
+status: true
+dependencies: {  }
+name: news_teaser
+label: 'News teaser (~455x285)'
+effects:
+  b9016753-28d5-4d00-a852-18ae993039eb:
+    uuid: b9016753-28d5-4d00-a852-18ae993039eb
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 455
+      height: 285
+      anchor: center-center

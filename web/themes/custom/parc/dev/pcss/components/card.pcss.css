@@ -1,4 +1,4 @@
-.card {
+:where(.card) {
   --card-spacer-y: 20px;
   --card-spacer-x: 20px;
   --card-title-spacer-y: 0.5rem;

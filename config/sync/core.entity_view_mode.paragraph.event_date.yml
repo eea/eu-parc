@@ -1,0 +1,10 @@
+uuid: 2620c0f8-5494-4d3a-adf4-9af9cdb58440
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.event_date
+label: 'Event date list'
+targetEntityType: paragraph
+cache: true

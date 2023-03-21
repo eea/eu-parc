@@ -3,14 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.archive
     - core.entity_view_mode.node.related
     - core.entity_view_mode.node.teaser
     - node.type.article
+    - system.menu.main
+    - taxonomy.vocabulary.news_category
   module:
+    - better_exposed_filters
     - node
+    - taxonomy
     - user
+    - views_infinite_scroll
 id: news_events
-label: 'News & events'
+label: 'Content News'
 module: views
 description: ''
 tag: ''
@@ -73,11 +79,29 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: none
+        type: infinite_scroll
         options:
           offset: 0
+          items_per_page: 12
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: true
+            initially_load_all_pages: false
       exposed_form:
-        type: basic
+        type: bef
         options:
           submit_button: Apply
           reset_button: false
@@ -86,6 +110,24 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: null
+          bef:
+            general:
+              autosubmit: false
+              autosubmit_exclude_textfield: false
+              autosubmit_textfield_delay: 500
+              autosubmit_hide: false
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+              reset_button_always_show: false
+            sort:
+              plugin_id: default
+            filter:
+              field_tags_target_id:
+                plugin_id: default
       access:
         type: perm
         options:
@@ -107,8 +149,8 @@ display:
           plugin_id: date
           order: DESC
           expose:
-            label: ''
-            field_identifier: ''
+            label: 'Authored on'
+            field_identifier: created
           exposed: false
           granularity: second
       arguments: {  }
@@ -138,6 +180,46 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        promote:
+          id: promote
+          table: node_field_data
+          field: promote
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: promote
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       style:
         type: grid
         options:
@@ -159,11 +241,28 @@ display:
         options:
           query_comment: ''
           disable_sql_rewrite: false
-          distinct: false
+          distinct: true
           replica: false
           query_tags: {  }
-      relationships: {  }
-      header: {  }
+      relationships:
+        term_node_tid:
+          id: term_node_tid
+          table: node_field_data
+          field: term_node_tid
+          entity_type: node
+          plugin_id: node_term_data
+      use_ajax: false
+      use_more: false
+      use_more_always: true
+      use_more_text: 'All News'
+      link_display: '0'
+      link_url: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          plugin_id: text
       footer: {  }
       display_extenders: {  }
     cache_metadata:
@@ -171,6 +270,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -178,14 +278,14 @@ display:
     id: block_related_news
     display_title: Related
     display_plugin: block
-    position: 3
+    position: 4
     display_options:
-      title: 'Related News'
+      title: 'Related news'
       pager:
         type: some
         options:
           offset: 0
-          items_per_page: 3
+          items_per_page: 0
       arguments:
         nid:
           id: nid
@@ -223,36 +323,165 @@ display:
           validate_options: {  }
           break_phrase: false
           not: true
+        tid:
+          id: tid
+          table: taxonomy_index
+          field: tid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: taxonomy_tid
+          default_argument_options:
+            term_page: '0'
+            node: true
+            limit: false
+            vids: {  }
+            anyall: +
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            override: false
+            items_per_page: 25
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          break_phrase: false
+          add_table: false
+          require_value: false
+          reduce_duplicates: true
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            article: article
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_tags_target_id:
+          id: field_tags_target_id
+          table: node__field_tags
+          field: field_tags_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: 'not empty'
+          value: {  }
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: news_category
+          type: textfield
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: grid
         options:
-          grouping: {  }
-          columns: 12
+          uses_fields: false
+          columns: 5000
           automatic_width: false
           alignment: horizontal
           row_class_custom: 'row g-4'
           row_class_default: false
-          col_class_custom: col-lg-4
+          col_class_custom: 'col-md-6 col-lg-4'
           col_class_default: false
       row:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: related
+          view_mode: archive
       defaults:
         title: false
         pager: false
         style: false
         row: false
+        relationships: false
         arguments: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships: {  }
       display_description: ''
-      display_extenders: {  }
+      header: {  }
+      display_extenders:
+        ajax_history: {  }
+        simple_sitemap_display_extender: {  }
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+      block_hide_empty: true
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -260,13 +489,30 @@ display:
     id: embed_1
     display_title: 'Front News & Events'
     display_plugin: embed
-    position: 1
+    position: 2
     display_options:
       pager:
         type: some
         options:
           offset: 0
           items_per_page: 4
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: 'Authored on'
+            field_identifier: created
+          exposed: false
+          granularity: second
       style:
         type: grid
         options:
@@ -285,10 +531,22 @@ display:
           view_mode: teaser
       defaults:
         pager: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
         style: false
         row: false
+        sorts: false
       display_description: ''
-      display_extenders: {  }
+      use_more: true
+      use_more_always: true
+      use_more_text: 'All News'
+      link_display: page_news
+      link_url: ''
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       max-age: -1
       contexts:
@@ -301,9 +559,14 @@ display:
     id: embed_all_news
     display_title: 'All News'
     display_plugin: embed
-    position: 2
+    position: 3
     display_options:
       title: 'All News'
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 12
       style:
         type: grid
         options:
@@ -322,15 +585,257 @@ display:
           view_mode: related
       defaults:
         title: false
+        pager: false
         style: false
         row: false
       display_description: ''
-      display_extenders: {  }
+      display_extenders:
+        ajax_history: {  }
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  page_news:
+    id: page_news
+    display_title: 'Page "All News"'
+    display_plugin: page
+    position: 1
+    display_options:
+      title: 'All News'
+      pager:
+        type: infinite_scroll
+        options:
+          offset: 0
+          items_per_page: 12
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: true
+            initially_load_all_pages: false
+      exposed_form:
+        type: bef
+        options:
+          submit_button: Apply
+          reset_button: false
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: basic_html
+          bef:
+            general:
+              autosubmit: true
+              autosubmit_exclude_textfield: false
+              autosubmit_textfield_delay: 500
+              autosubmit_hide: true
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+              reset_button_always_show: false
+            sort:
+              plugin_id: bef
+              advanced:
+                combine: true
+                combine_rewrite: "Date Asc|Oldest first\r\nDate Desc|Newest first"
+                reset: false
+                reset_label: ''
+                collapsible: false
+                collapsible_label: 'Sort options'
+                is_secondary: true
+            filter:
+              field_tags_target_id:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: true
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: false
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: Date
+            field_identifier: created
+          exposed: true
+          granularity: second
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            article: article
+          group: 1
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+        field_tags_target_id:
+          id: field_tags_target_id
+          table: node__field_tags
+          field: field_tags_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_tags_target_id_op
+            label: Categories
+            description: ''
+            use_operator: false
+            operator: field_tags_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: category
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: news_category
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 1200
+          automatic_width: false
+          alignment: horizontal
+          row_class_custom: 'grid--auto-fill gaf--news mb-5'
+          row_class_default: false
+          col_class_custom: ''
+          col_class_default: false
+      row:
+        type: 'entity:node'
+        options:
+          relationship: none
+          view_mode: archive
+      defaults:
+        title: false
+        use_ajax: false
+        pager: false
+        exposed_form: false
+        style: false
+        row: false
+        relationships: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      relationships: {  }
+      use_ajax: true
+      display_description: ''
+      header: {  }
+      exposed_block: true
+      display_extenders:
+        ajax_history:
+          enable_history: true
+        simple_sitemap_display_extender:
+          variants:
+            default:
+              index: true
+              priority: '0.5'
+              changefreq: ''
+              arguments: {  }
+              max_links: 100
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+      path: news
+      menu:
+        type: normal
+        title: News
+        description: ''
+        weight: -49
+        expanded: false
+        menu_name: main
+        parent: 'menu_link_content:89c1be64-785c-4f8a-b741-b35f4265de63'
+        context: '0'
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

@@ -1,0 +1,29 @@
+uuid: 0da6c5ee-e628-4c80-b426-061e51bd0f6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_categories
+    - node.type.thematic_areas
+    - taxonomy.vocabulary.thematic_areas
+id: node.thematic_areas.field_categories
+field_name: field_categories
+entity_type: node
+bundle: thematic_areas
+label: Categories
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      thematic_areas: thematic_areas
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

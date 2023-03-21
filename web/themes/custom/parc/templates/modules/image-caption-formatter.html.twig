@@ -5,11 +5,13 @@
  */
 #}
 
-{% if url %}
-  <a href="{{ url }}">{{ image }}</a>
-{% else %}
-  {{ image }}
-{% endif %}
+<div class="w-img">
+  {% if url %}
+    <a href="{{ url }}">{{ image }}</a>
+  {% else %}
+    {{ image }}
+  {% endif %}
+</div>
 
 {% if caption %}
   <div class="image-field-caption">{{ caption }}</div>

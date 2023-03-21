@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Parc theme implementation to display a two-column layout.
+ */
+#}
+
+{% set id = content["#settings"]["label"]|clean_class %}
+
+{% set classes = [
+  'layout',
+  'layout--parc-content',
+  'position-relative',
+  'container-content',
+  'node--content-pb',
+  'mb-parc',
+] %}
+
+{% if content %}
+  <div{{attributes.addClass(classes).setAttribute('id',id)}}>
+    <div class="row">
+      {% if content.first or content.menu %}
+        <div class='col-12 col-lg col-menu d-flex flex-column'>
+          <div{{region_attributes.menu.addClass('col-menu-sticky','flex-grow-1','mb-4')}}>
+            <div class="sticky-top">
+              {{ content.menu }}
+            </div>
+          </div>
+
+          <div{{region_attributes.first.addClass('layout_region','d-none','d-lg-block')}}>
+            {{ content.first }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if content.second %}
+        <div class="col-12 col-lg col-content">
+          <div{{region_attributes.second.addClass('lr--second')}}>
+            {{ content.second }}
+          </div>
+          <div{{region_attributes.first.addClass('layout_region','d-lg-none').removeClass('d-none')}}>
+            {{ content.first }}
+          </div>
+          <div{{region_attributes.social.addClass('layout_region')}}>
+            {{ content.social }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

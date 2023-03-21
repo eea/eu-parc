@@ -18,13 +18,7 @@
   {% for row in items %}
     <div{{row.attributes.addClass(row_classes)}}>
       {% for column in row.content %}
-        {% set cl = "col-12 col-lg-6 col-xl" %}
-        {# {% if row.content|length < 4 %}
-                        {% else %}
-                          {% set cl = "col-lg-4 col-xl-3" %}
-                        {% endif %} #}
-
-        <div class="{{ cl }}">
+        <div class="col-12 col-lg-6 col-xl">
           {{- column.content -}}
         </div>
       {% endfor %}

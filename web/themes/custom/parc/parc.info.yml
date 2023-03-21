@@ -9,6 +9,8 @@ libraries-override:
   edwt/theme-fonts: false
   edwt/nav: parc/nav
   edwt/navbar: parc/navbar
+  edwt/forms: parc/forms
+  edwt/dropdowns: parc/dropdowns
 
 stylesheets-remove:
   - "@classy/css/components/tabs.css"
@@ -25,6 +27,7 @@ regions:
   content_bottom: "Content bottom"
   sidebar_first: "Sidebar first"
   sidebar_second: "Sidebar second"
+  prefooter: Pre-footer
   footer: Footer
   footer_second: Footer Second
   footer_s: After Footer

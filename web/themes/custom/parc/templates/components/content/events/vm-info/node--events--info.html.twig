@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--events-info') }}
+
+{% set color = node.field_tags.entity.field_colors.value.0.color %}
+
+{%
+  set classes = [
+    'section--' ~ node.bundle|clean_class,
+    view_mode ? 'section--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  ]
+%}
+
+<section{{attributes.addClass(classes)}}>
+  {{- content.field_date -}}
+
+  {{- content|without('field_date', 'field_time', 'field_add_to_calendar', 'field_address_data', 'field_city', 'field_website')-}}
+
+  {%- if content.field_city.0 or content.field_address_data.0 -%}
+    <div class="f-label">{{ 'Venue'|t }}</div>
+    {{- content.field_address_data -}}
+    {{- content.field_city -}}
+  {%- endif -%}
+
+  {{- content.field_website -}}
+  {{- content.field_add_to_calendar -}}
+</section>

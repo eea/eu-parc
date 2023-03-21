@@ -5,7 +5,7 @@
  */
 #}
 
-<div class="field-category">
+<div class="field-category text-uppercase">
   {% for item in items %}
     {{- item.content }}{{ not loop.last ? ', ' -}}
   {% endfor %}

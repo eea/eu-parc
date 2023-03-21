@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ */
+#}
+
+{%
+  set classes = [
+    'field',
+    field_name|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {% for item in items %}
+    {{- item.content.date['#text'] -}},
+
+    <span class="time">
+      {{ item.content.start_time['#text'] -}}
+      {{- item.content.time_separator['#plain_text'] -}}
+      {{- item.content.end_time['#text'] }}
+    </span>
+
+    <span class="time-allday">
+      {{- 'All day'|t -}}
+    </span>
+  {% endfor %}
+</div>

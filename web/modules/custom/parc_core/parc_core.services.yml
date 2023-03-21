@@ -1,0 +1,11 @@
+services:
+  parc_core.twig.termColor:
+    class: Drupal\parc_core\Twig\ParcTwigExtension
+    arguments: ["@entity_type.manager", "@extension.list.module"]
+    tags:
+      - { name: twig.extension }
+  parc_core.event_subscriber:
+    class: Drupal\parc_core\EventSubscriber\ParcEventSubscriber
+    arguments: ["@entity_type.manager"]
+    tags:
+      - { name: event_subscriber }
