@@ -2,16 +2,12 @@
 
 namespace Drupal\parc_core\EventSubscriber;
 
-use Drupal;
 use Drupal\Core\Url;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\Core\Cache\CacheableRedirectResponse;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -36,7 +32,7 @@ class ParcEventSubscriber implements EventSubscriberInterface {
     $this->entityTypeManager = $entity_type_manager;
   }
 
- /**
+  /**
    * A method to be called whenever a kernel.request event is dispatched.
    *
    * It invokes a rabbit hole behavior on an entity in the request if
@@ -52,21 +48,29 @@ class ParcEventSubscriber implements EventSubscriberInterface {
       switch ($term->bundle()) {
         case 'news_category':
           $url = Url::fromRoute('view.news_events.page_news');
+          $options = [
+            'query' => [
+              'category[' . $term->id() . ']' => $term->id(),
+              'close' => TRUE,
+            ],
+          ];
+          $url->setOptions($options);
+          $event->setResponse(new CacheableRedirectResponse($url->toString()));
           break;
 
         case 'events_category':
           $url = Url::fromRoute('view.content_events.page_events');
+          $options = [
+            'query' => [
+              'category[' . $term->id() . ']' => $term->id(),
+              'close' => TRUE,
+            ],
+          ];
+          $url->setOptions($options);
+          $event->setResponse(new CacheableRedirectResponse($url->toString()));
           break;
 
       }
-      $options = [
-        'query' => [
-          'category[' . $term->id() . ']' => $term->id(),
-          'close' => TRUE,
-        ],
-      ];
-      $url->setOptions($options);
-      $event->setResponse(new CacheableRedirectResponse($url->toString()));
     }
   }
 
