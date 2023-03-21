@@ -815,3 +815,6 @@ if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 }
 
 $settings['config_sync_directory'] = '../config/sync';
+
+// IndexNow verification key.
+$settings['simple_sitemap_engines.index_now.key'] = '2483bf80-3f5e-4066-9c07-efeebacbabd7';

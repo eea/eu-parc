@@ -22,10 +22,12 @@ main {
 }
 
 .card-styled-border {
-  transform: translateY(50%);
+  transform: translateY(45%);
   align-self: flex-start;
+  width: 100%;
 
   svg {
+    width: 100%;
     max-width: 100%;
     height: auto;
   }
