@@ -5,11 +5,13 @@ dependencies:
   config:
     - field.field.node.thematic_areas.body
     - field.field.node.thematic_areas.field_categories
+    - field.field.node.thematic_areas.field_link
     - node.type.thematic_areas
     - system.menu.main
   module:
     - layout_builder
     - layout_discovery
+    - link
     - system
     - text
     - user
@@ -115,6 +117,29 @@ third_party_settings:
                   class: ''
                   style: ''
                   data: ''
+          74978221-f18a-4388-b77d-2c6cb92ab217:
+            uuid: 74978221-f18a-4388-b77d-2c6cb92ab217
+            region: second
+            configuration:
+              id: 'field_block:node:thematic_areas:field_link'
+              label: Link
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: link
+                label: hidden
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: '0'
+                  target: '0'
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
         third_party_settings: {  }
 id: node.thematic_areas.default
 targetEntityType: node
@@ -135,6 +160,18 @@ content:
       link: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 103
     region: content
   links:
     settings: {  }

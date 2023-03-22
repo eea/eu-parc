@@ -1,0 +1,8 @@
+.paragraph--card--default {
+  background-color: var(--c-gray-100);
+  transition: var(--transition-base);
+
+  &:hover {
+    background-color: var(--c-gray-300);
+  }
+}

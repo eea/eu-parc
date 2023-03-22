@@ -216,13 +216,6 @@ header {
     max-width: fit-content;
     position: relative;
 
-    span.nav-link {
-      font-size: 10px;
-      margin-bottom: 14px;
-      margin-top: 15px;
-      color: #999898;
-    }
-
     .text-muted {
       display: block;
       font-size: 10px;

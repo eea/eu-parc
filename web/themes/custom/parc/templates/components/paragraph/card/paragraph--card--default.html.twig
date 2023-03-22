@@ -7,6 +7,7 @@
 
 {{ attach_library('edwt/collapse') }}
 {{ attach_library('parc/card') }}
+{{ attach_library('parc/p--card') }}
 
 {% set collpaseID = 'wwd--card--' ~ paragraph.id() %}
 
@@ -17,7 +18,6 @@
     view_mode ? 'paragraph--' ~ paragraph.bundle|clean_class ~ '--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
     'card',
-    'bg-gray',
     'border-0',
     'position-relative',
   ]
