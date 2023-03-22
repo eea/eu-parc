@@ -2,4 +2,9 @@
   :where(h1, h2, h3, h4, h5, h6) {
     color: var(--tta--c-heading);
   }
+
+  .field--name-field-link {
+    padding-top: 3rem;
+    margin-inline: 8.3333% 16.6666%;
+  }
 }

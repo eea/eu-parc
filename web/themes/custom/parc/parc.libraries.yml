@@ -264,6 +264,11 @@ p--media:
     component:
       css/components/paragraph/media/style.css: {}
 
+p--card:
+  css:
+    component:
+      css/components/paragraph/card/style.css: {}
+
 # Section.
 s--header:
   css:
