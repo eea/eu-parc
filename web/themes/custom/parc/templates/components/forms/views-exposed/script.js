@@ -6,13 +6,6 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.viewsExposedForm = {
     attach: function (context, settings) {
-      var btn = $("#js-order-btn", context);
-      if (window.location.href.indexOf("_DESC") > -1) {
-        btn.addClass("arrow-up");
-      } else {
-        btn.removeClass("arrow-up");
-      }
-
       $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;
         var labelClass = label.toLowerCase().replace(" ", "-");
@@ -28,6 +21,8 @@
         }
 
       });
+
+
       $(context).find("#js-selected-category label").each(function () {
         $(this).on('click', function () {
           let idAttr = $(this).attr('for');
@@ -36,28 +31,11 @@
         });
       });
 
-      $(context).find('#js-order-btn').on('click', function () {
-        var fieldSet = $('fieldset[data-drupal-selector="edit-sort-bef-combine"]', context);
-
-        fieldSet.each(function () {
-          if (window.location.href.indexOf("_DESC") > -1) {
-            var inputUncheck = $(this).find("input[value='created_ASC']");
-          } else {
-            var inputUncheck = $(this).find("input[value='created_DESC']");
-          }
-
-          inputUncheck.prop("checked", true).trigger("change");
-        });
+      $(context).find('label.option').once('viewsExposedForm').on('click', function () {
+        const input = $('.js-second-exposed-filter input[type="radio"]:not(:checked)');
+        input.trigger("change");
+        console.log(input);
       });
-
-      // $('body').once('viewsExposedForm').on('click', '#js-order-btn', function() {
-      //   var fieldSet = $('fieldset[data-drupal-selector="edit-sort-bef-combine"]', context)
-
-      //   fieldSet.each(function () {
-      //     let inputUncheck = $(this).find('input:not(:checked)');
-      //     inputUncheck.trigger( "click" );
-      //   });
-      // });
     }
   };
 

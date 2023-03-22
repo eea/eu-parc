@@ -655,7 +655,7 @@ display:
               plugin_id: bef
               advanced:
                 combine: true
-                combine_rewrite: "Date Asc|Oldest first\r\nDate Desc|Newest first"
+                combine_rewrite: "Date Asc|Date\r\nDate Desc|Date"
                 reset: false
                 reset_label: ''
                 collapsible: false

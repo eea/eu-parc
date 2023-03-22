@@ -144,7 +144,7 @@ display:
               plugin_id: bef
               advanced:
                 combine: true
-                combine_rewrite: "Date Asc|Oldest first\r\nDate Desc|Newest first"
+                combine_rewrite: "Date Asc|Date\r\nDate Desc|Date"
                 reset: false
                 reset_label: ''
                 collapsible: false
@@ -290,7 +290,7 @@ display:
           query_tags: {  }
       relationships: {  }
       css_class: ''
-      use_ajax: true
+      use_ajax: false
       group_by: false
       header:
         area:
@@ -361,7 +361,7 @@ display:
               plugin_id: bef
               advanced:
                 combine: true
-                combine_rewrite: "Date past Asc|Oldest first\r\nDate past Desc|Newest first"
+                combine_rewrite: "Date past Asc|Date\r\nDate past Desc|Date"
                 reset: false
                 reset_label: ''
                 collapsible: false
@@ -584,7 +584,7 @@ display:
         arguments: false
         filters: false
         filter_groups: false
-      css_class: mb-parc
+      css_class: 'mb-parc js-second-exposed-filter'
       display_description: ''
       exposed_block: false
       display_extenders:
@@ -863,7 +863,7 @@ display:
           plugin_id: date
           order: ASC
           expose:
-            label: 'Date - End'
+            label: Date
             field_identifier: field_date_value
           exposed: true
           granularity: second
@@ -1060,15 +1060,15 @@ display:
         filter_groups: false
         header: false
       relationships: {  }
-      css_class: mb-parc
-      use_ajax: true
+      css_class: 'mb-parc js-first-exposed-filters'
+      use_ajax: false
       group_by: false
       display_description: ''
       header: {  }
       exposed_block: true
       display_extenders:
         ajax_history:
-          enable_history: true
+          enable_history: false
         simple_sitemap_display_extender:
           variants:
             default:
