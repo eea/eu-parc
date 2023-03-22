@@ -46,7 +46,7 @@ content:
       placeholder_url: ''
       placeholder_title: ''
       link_class_mode: force_class
-      link_class_force: 'btn btn-clear btn-arrow'
+      link_class_force: 'btn btn-clear'
       link_class_select: ''
     third_party_settings: {  }
   path:

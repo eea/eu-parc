@@ -3,6 +3,10 @@
     color: var(--tta--c-heading);
   }
 
+  .btn-clear {
+    --link-color: var(--c-publications);
+  }
+
   .field--name-field-link {
     padding-top: 3rem;
 
