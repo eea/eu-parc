@@ -170,10 +170,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_topics:
-    type: options_buttons
+    type: entity_reference_autocomplete
     weight: 1
     region: content
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_updated_date:
     type: datetime_default
