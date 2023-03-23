@@ -2,16 +2,4 @@
   :where(h1, h2, h3, h4, h5, h6) {
     color: var(--tta--c-heading);
   }
-
-  .btn-clear {
-    --link-color: var(--c-publications);
-  }
-
-  .field--name-field-link {
-    padding-top: 3rem;
-
-    @media (--lg) {
-      margin-inline: 8.3333% 16.6666%;
-    }
-  }
 }

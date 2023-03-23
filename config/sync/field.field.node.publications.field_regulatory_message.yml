@@ -1,0 +1,21 @@
+uuid: 9c5bf354-ec0e-4c32-a076-8bea5d689492
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_regulatory_message
+    - node.type.publications
+  module:
+    - text
+id: node.publications.field_regulatory_message
+field_name: field_regulatory_message
+entity_type: node
+bundle: publications
+label: 'Regulatory message'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

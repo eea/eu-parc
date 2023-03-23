@@ -5,10 +5,8 @@ dependencies:
   config:
     - field.field.node.thematic_areas.body
     - field.field.node.thematic_areas.field_categories
-    - field.field.node.thematic_areas.field_link
     - node.type.thematic_areas
   module:
-    - link_class
     - path
     - text
 id: node.thematic_areas.default
@@ -37,17 +35,6 @@ content:
     weight: 1
     region: content
     settings: {  }
-    third_party_settings: {  }
-  field_link:
-    type: link_class_field_widget
-    weight: 3
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-      link_class_mode: force_class
-      link_class_force: 'btn btn-clear'
-      link_class_select: ''
     third_party_settings: {  }
   path:
     type: path

@@ -30,7 +30,9 @@
     </svg>
   </button>
 
-  <div id="{{ itemID }}" class="collapse">
+  <div id="{{ itemID }}" class="collapse w--collapse">
     {{- content -}}
-  </div>
-</article>
+    <a href={{ url }} class="btn btn-clear">
+      {{- 'Read more'|t -}}
+    </a>
+  </article>
