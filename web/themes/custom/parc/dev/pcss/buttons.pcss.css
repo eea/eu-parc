@@ -172,6 +172,13 @@ fieldset:disabled .btn {
     margin-left: 6px;
   }
 
+  &.btn-arrow--black {
+    --link-color: var(--body-color);
+    --link-h-color: var(--body-color);
+
+    --btn-arrow-url: url("data:image/svg+xml,%3Csvg width='6' height='11' viewBox='0 0 6 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath class='arrow-color' d='M1.2417 1.63867L4.77723 5.17421C5.16776 5.56473 5.16776 6.1979 4.77723 6.58842L1.2417 10.124' stroke='%23000000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E%0A");
+  }
+
   &[aria-expanded="true"] {
     .less {
       display: block;
