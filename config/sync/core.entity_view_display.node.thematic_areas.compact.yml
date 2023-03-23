@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.compact
     - field.field.node.thematic_areas.body
     - field.field.node.thematic_areas.field_categories
-    - field.field.node.thematic_areas.field_link
     - node.type.thematic_areas
   module:
     - layout_builder
@@ -31,5 +30,4 @@ content:
 hidden:
   addtoany: true
   field_categories: true
-  field_link: true
   links: true

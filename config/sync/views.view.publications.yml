@@ -5,7 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - node.type.publications
-    - taxonomy.vocabulary.publications
+    - taxonomy.vocabulary.publications_topics
   module:
     - better_exposed_filters
     - datetime
@@ -132,7 +132,7 @@ display:
                 collapsible_label: 'Sort options'
                 is_secondary: false
             filter:
-              field_key_words_target_id:
+              field_topics_target_id:
                 plugin_id: bef
                 advanced:
                   sort_options: false
@@ -193,10 +193,10 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        field_key_words_target_id:
-          id: field_key_words_target_id
-          table: node__field_key_words
-          field: field_key_words_target_id
+        field_topics_target_id:
+          id: field_topics_target_id
+          table: node__field_topics
+          field: field_topics_target_id
           relationship: none
           group_type: group
           admin_label: ''
@@ -206,11 +206,11 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_key_words_target_id_op
+            operator_id: field_topics_target_id_op
             label: 'All publications'
             description: ''
             use_operator: false
-            operator: field_key_words_target_id_op
+            operator: field_topics_target_id_op
             operator_limit_selection: false
             operator_list: {  }
             identifier: category
@@ -236,11 +236,11 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: true
-          vid: publications
+          vid: publications_topics
           type: select
           hierarchy: false
           limit: true
-          error_message: false
+          error_message: true
       style:
         type: default
       row:

@@ -16,7 +16,9 @@ dependencies:
     - field.field.node.publications.field_key_words
     - field.field.node.publications.field_pages
     - field.field.node.publications.field_publication_date
+    - field.field.node.publications.field_regulatory_message
     - field.field.node.publications.field_text_color
+    - field.field.node.publications.field_topics
     - field.field.node.publications.field_updated_date
     - field.field.node.publications.field_volume
     - field.field.node.publications.field_zenodo_id
@@ -36,6 +38,7 @@ third_party_settings:
       children:
         - group_details
         - field_key_messages
+        - field_regulatory_message
         - group_section_bo
         - addtoany
       label: 'Dropdown content'
@@ -81,7 +84,7 @@ third_party_settings:
       label: Abstract
       parent_name: group_dropdown_content
       region: content
-      weight: 6
+      weight: 7
       format_type: html_element
       format_settings:
         classes: 'node--section node--section--body'
@@ -109,7 +112,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 1
     region: content
   field_background_color:
     type: color_field_formatter_text
@@ -175,6 +178,13 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
+  field_regulatory_message:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_text_color:
     type: color_field_formatter_text
     label: hidden
@@ -189,6 +199,7 @@ hidden:
   field_download_link: true
   field_issue: true
   field_pages: true
+  field_topics: true
   field_updated_date: true
   field_volume: true
   field_zenodo_id: true

@@ -37,11 +37,18 @@
     }
   }
 
-  .field--name-body {
+  .w--collapse {
+    --link-color: var(--pt-color);
+    --link-h-color: var(--pt-color);
+    --btn-font-size: 14px;
     font-size: 14px;
     font-weight: var(--font-weight-normal);
     padding-inline: 1.25rem;
     padding-bottom: 1rem;
     line-height: 125%;
+  }
+
+  .btn-clear {
+    margin-top: 4px;
   }
 }
