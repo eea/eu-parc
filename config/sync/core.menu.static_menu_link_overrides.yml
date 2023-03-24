@@ -3,91 +3,199 @@ _core:
 definitions:
   contact__site_page:
     menu_name: footer
-    parent: ''
+    parent: ""
     weight: -44
     expanded: false
     enabled: false
   standard__front_page:
+    weight: -51
     menu_name: main
-    parent: ''
-    weight: -50
-    expanded: false
+    parent: ""
     enabled: false
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__16':
+    expanded: false
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__16":
     menu_name: main
-    parent: 'views_view:views.content_events.page_events'
+    parent: "views_view:views.content_events.page_events"
     weight: -49
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__17':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__17":
     menu_name: main
-    parent: 'views_view:views.content_events.page_events'
+    parent: "views_view:views.content_events.page_events"
     weight: -48
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__18':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__18":
     menu_name: main
-    parent: 'views_view:views.content_events.page_events'
+    parent: "views_view:views.content_events.page_events"
     weight: -47
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__19':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__19":
     menu_name: main
-    parent: 'views_view:views.content_events.page_events'
+    parent: "views_view:views.content_events.page_events"
     weight: -46
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__22':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__22":
     menu_name: main
-    parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
     weight: -49
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__20':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__20":
     menu_name: main
-    parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
     weight: -48
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__23':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__23":
     menu_name: main
-    parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
     weight: -47
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__21':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__21":
     menu_name: main
-    parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
     weight: -46
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__10':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__10":
     menu_name: main
-    parent: 'views_view:views.news_events.page_news'
+    parent: "views_view:views.news_events.page_news"
     weight: -48
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__9':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__9":
     menu_name: main
-    parent: 'views_view:views.news_events.page_news'
+    parent: "views_view:views.news_events.page_news"
     weight: -47
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__11':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__11":
     menu_name: main
-    parent: 'views_view:views.news_events.page_news'
+    parent: "views_view:views.news_events.page_news"
     weight: -46
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__8':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__8":
     menu_name: main
-    parent: 'views_view:views.news_events.page_news'
+    parent: "views_view:views.news_events.page_news"
     weight: -45
     expanded: false
     enabled: true
-  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__12':
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__12":
     menu_name: main
-    parent: 'views_view:views.news_events.page_news'
+    parent: "views_view:views.news_events.page_news"
     weight: -44
     expanded: false
     enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__91":
+    weight: -46
+    menu_name: main
+    parent: "views_view:views.content_events.page_events"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__92":
+    weight: -47
+    menu_name: main
+    parent: "views_view:views.content_events.page_events"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__93":
+    weight: -49
+    menu_name: main
+    parent: "views_view:views.content_events.page_events"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__94":
+    weight: -48
+    menu_name: main
+    parent: "views_view:views.content_events.page_events"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__95":
+    weight: -45
+    menu_name: main
+    parent: "views_view:views.content_events.page_events"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__96":
+    weight: -44
+    menu_name: main
+    parent: "views_view:views.content_events.page_events"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__58":
+    weight: -49
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    enabled: true
+    expanded: false
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__59":
+    weight: -48
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__60":
+    weight: -47
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__61":
+    weight: -46
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__90":
+    weight: -45
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__89":
+    weight: -44
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__88":
+    weight: -43
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__87":
+    weight: -42
+    menu_name: main
+    parent: "views_view:views.news_events.page_news"
+    expanded: false
+    enabled: true
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__99":
+    weight: -47
+    menu_name: main
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
+    expanded: false
+    enabled: false
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__97":
+    weight: -49
+    menu_name: main
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
+    enabled: false
+    expanded: false
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__100":
+    weight: -46
+    menu_name: main
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
+    expanded: false
+    enabled: false
+  "taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__98":
+    weight: -48
+    menu_name: main
+    parent: "menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad"
+    expanded: false
+    enabled: false
