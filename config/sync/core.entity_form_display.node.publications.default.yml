@@ -33,6 +33,19 @@ dependencies:
 third_party_settings:
   field_group:
     group_colors:
+      children: {  }
+      label: Messages
+      region: hidden
+      parent_name: ''
+      weight: 24
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: "The text and background colors of the 'Key messages' have default values, which can be changed for this publication\r\nfrom the fields below."
+        required_fields: true
+    group_messages:
       children:
         - field_text_color
         - field_background_color
@@ -42,12 +55,13 @@ third_party_settings:
       region: content
       parent_name: ''
       weight: 18
-      format_type: fieldset
+      format_type: details
       format_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        description: ''
+        open: true
+        description: 'The text and background colors of the ''Key messages'' have default values, which can be changed for this publication from the fields below.'
         required_fields: true
 id: node.publications.default
 targetEntityType: node
@@ -80,7 +94,7 @@ content:
     third_party_settings: {  }
   field_background_color:
     type: color_field_widget_html5
-    weight: 25
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -125,7 +139,7 @@ content:
     third_party_settings: {  }
   field_key_messages:
     type: text_textarea
-    weight: 27
+    weight: 24
     region: content
     settings:
       rows: 5
@@ -157,7 +171,7 @@ content:
     third_party_settings: {  }
   field_regulatory_message:
     type: text_textarea
-    weight: 26
+    weight: 23
     region: content
     settings:
       rows: 5
@@ -165,7 +179,7 @@ content:
     third_party_settings: {  }
   field_text_color:
     type: color_field_widget_html5
-    weight: 24
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }

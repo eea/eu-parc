@@ -37,8 +37,7 @@ third_party_settings:
     group_dropdown_content:
       children:
         - group_details
-        - field_key_messages
-        - field_regulatory_message
+        - group_carousel
         - group_section_bo
         - addtoany
       label: 'Dropdown content'
@@ -62,6 +61,7 @@ third_party_settings:
         - field_journal
         - field_publication_date
         - field_key_words
+        - field_authors
       label: Details
       parent_name: group_dropdown_content
       region: content
@@ -84,13 +84,33 @@ third_party_settings:
       label: Abstract
       parent_name: group_dropdown_content
       region: content
-      weight: 7
+      weight: 6
       format_type: html_element
       format_settings:
         classes: 'node--section node--section--body'
         show_empty_fields: false
         id: ''
         element: section
+        show_label: true
+        label_element: label
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_carousel:
+      children:
+        - field_key_messages
+        - field_regulatory_message
+      label: 'Key Messages'
+      parent_name: group_dropdown_content
+      region: content
+      weight: 5
+      format_type: html_element
+      format_settings:
+        classes: w--carosuel-scroll
+        show_empty_fields: false
+        id: ''
+        element: div
         show_label: true
         label_element: label
         label_element_classes: ''
@@ -105,7 +125,7 @@ content:
   addtoany:
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 7
     region: content
   body:
     type: text_default
@@ -113,6 +133,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_authors:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
     region: content
   field_background_color:
     type: color_field_formatter_text
@@ -159,15 +187,15 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   field_key_words:
     type: entity_reference_label
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 9
+    weight: 6
     region: content
   field_publication_date:
     type: datetime_default
@@ -176,14 +204,14 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 8
+    weight: 5
     region: content
   field_regulatory_message:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_text_color:
     type: color_field_formatter_text
@@ -195,7 +223,6 @@ content:
     weight: 3
     region: content
 hidden:
-  field_authors: true
   field_download_link: true
   field_issue: true
   field_pages: true

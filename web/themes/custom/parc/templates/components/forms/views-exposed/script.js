@@ -19,17 +19,15 @@
         } else {
           $(context).find("#js-selected-category label[class*='bg--" + labelClass + "']").remove();
         }
-
       });
 
-
-      $(context).find("#js-selected-category label").each(function () {
-        $(this).on('click', function () {
-          let idAttr = $(this).attr('for');
-          $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input#" + idAttr).prop("checked", false).trigger("change");
-          $(this).remove();
-        });
-      });
+      // $(context).find("#js-selected-category label").each(function () {
+      //   $(this).on('click', function () {
+      //     let idAttr = $(this).attr('for');
+      //     $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input#" + idAttr).prop("checked", false).trigger("change");
+      //     $(this).remove();
+      //   });
+      // });
 
       $(context).find('label.option').once('viewsExposedForm').on('click', function () {
         const input = $('.js-second-exposed-filter input[type="radio"]:not(:checked)');

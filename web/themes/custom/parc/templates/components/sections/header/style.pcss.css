@@ -28,7 +28,7 @@ header {
     }
   }
 
-  @media (--xl) {
+  @media (--xxl) {
     .menu--main {
       padding-right: 220px;
     }

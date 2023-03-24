@@ -27,12 +27,17 @@
   <div class="news-container">
     <div class="row">
       <div class="col-auto col-sp-img">
-        {{content.field_cover}}
+        {% if content.field_cover.0 %}
+          {{content.field_cover}}
+        {% else %}
+          <img src="{{ base_path ~ directory }}/img/sp-default.png" alt="Default scientific publications image"/>
+        {% endif %}
       </div>
 
       <div class="col col-sp-content">
         <a href="{{ content.field_doi_link.0 }}" class="node--title">
           {{- label -}}
+
           <svg width="9" height="9" viewbox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.79956 1H6.32454C6.96259 1 7.56587 1.57529 7.56587 2.18374L7.56587 5.76558" stroke="#040404" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="4.8999" y1="4.161" x2="1.06066" y2="8.00024" stroke="#040404" stroke-width="1.5" stroke-linecap="round"/>
@@ -49,6 +54,7 @@
               {{- 'Read less'|t -}}
             </span>
           </button>
+
           <div class="bb"></div>
         </div>
       </div>
