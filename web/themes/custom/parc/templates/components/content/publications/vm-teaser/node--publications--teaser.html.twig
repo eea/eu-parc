@@ -27,7 +27,11 @@
   <div class="news-container">
     <div class="row">
       <div class="col-auto col-sp-img">
-        {{content.field_cover}}
+        {% if content.field_cover.0 %}
+          {{content.field_cover}}
+        {% else %}
+          <img src="{{ base_path ~ directory }}/img/sp-default.png" alt="Default scientific publications image"/>
+        {% endif %}
       </div>
 
       <div class="col col-sp-content">
