@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a field.
+ */
+#}
+
+<div class="node--section">
+  <{{wrapper_element}} {{ attributes }}>
+    {% if title %}
+      <{{title_element}}{{title_attributes.addClass('mb-4')}}>
+        {{- title }}
+      </{{title_element}}>
+    {% endif %}
+
+    <div class="carousel-scroll">
+      {{- children -}}
+    </div>
+
+    <button class="d-none d-lg-block slider__arrow slider__arrow-prev js-slider-prev">
+      {{- '&#8249;'|t -}}
+    </button>
+
+    <button class="d-none d-lg-block slider__arrow slider__arrow-next js-slider-next">
+      {{- '&#8250;'|t -}}
+    </button>
+  </{{wrapper_element}}>
+</div>

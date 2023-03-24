@@ -7,6 +7,8 @@ dependencies:
     - media.type.image
     - media.type.vector
     - node.type.publications
+  content:
+    - 'media:image:2810ec79-d7b9-4d0d-b989-81da33149e54'
 id: node.publications.field_cover
 field_name: field_cover
 entity_type: node
@@ -15,7 +17,10 @@ label: Cover
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: 2810ec79-d7b9-4d0d-b989-81da33149e54
+    weight: 0
 default_value_callback: ''
 settings:
   handler: 'default:media'
