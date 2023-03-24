@@ -1,0 +1,28 @@
+uuid: bb419a41-3761-439b-ba63-0906e527b7c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.plain_text
+  module:
+    - ckeditor
+format: plain_text
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+  plugins: {  }
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null
