@@ -163,7 +163,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: datetime
-          order: ASC
+          order: DESC
           expose:
             label: 'Publication Date'
             field_identifier: field_publication_date_value
