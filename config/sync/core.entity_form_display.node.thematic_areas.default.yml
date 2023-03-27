@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.thematic_areas.body
     - field.field.node.thematic_areas.field_categories
+    - field.field.node.thematic_areas.field_seo_keyword
     - node.type.thematic_areas
   module:
     - path
@@ -35,6 +36,16 @@ content:
     weight: 1
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_seo_keyword:
+    type: entity_reference_autocomplete
+    weight: 26
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   path:
     type: path

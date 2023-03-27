@@ -1,0 +1,29 @@
+uuid: bd510207-b858-4787-8973-f4a886ef474f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_seo_keyword
+    - node.type.publications
+    - taxonomy.vocabulary.seo_keywords
+id: node.publications.field_seo_keyword
+field_name: field_seo_keyword
+entity_type: node
+bundle: publications
+label: 'Seo keywords'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      seo_keywords: seo_keywords
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

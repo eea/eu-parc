@@ -1,0 +1,29 @@
+uuid: 8d08d665-f765-49a1-bc0b-ee68d7fa5496
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_seo_keywords
+    - taxonomy.vocabulary.seo_keywords
+    - taxonomy.vocabulary.thematic_areas
+id: taxonomy_term.thematic_areas.field_seo_keywords
+field_name: field_seo_keywords
+entity_type: taxonomy_term
+bundle: thematic_areas
+label: 'Seo keywords'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      seo_keywords: seo_keywords
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

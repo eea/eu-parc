@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.thematic_areas.body
     - field.field.node.thematic_areas.field_categories
+    - field.field.node.thematic_areas.field_seo_keyword
     - node.type.thematic_areas
     - system.menu.main
   module:
@@ -35,8 +36,8 @@ third_party_settings:
             remove_horizontal_paddings: 0
             remove_vertical_paddings: 0
         components:
-          dc28dd9b-e63e-4c7b-bfea-82d12f1acc71:
-            uuid: dc28dd9b-e63e-4c7b-bfea-82d12f1acc71
+          bbd329d3-ec4f-4f99-8e78-d2b923e080f4:
+            uuid: bbd329d3-ec4f-4f99-8e78-d2b923e080f4
             region: content
             configuration:
               id: 'field_block:node:thematic_areas:field_categories'
@@ -135,6 +136,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_seo_keyword:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
     region: content
   links:
     settings: {  }
