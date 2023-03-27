@@ -21,7 +21,7 @@
 <article{{attributes.addClass(classes)}}>
   {{ title_prefix }}
   {{ title_suffix }}
-
+  <div id="publication-anchor-{{ node.id() }}"></div>
   <div class="w--img">
     {% if content.field_cover.0 %}
       {{content.field_cover}}

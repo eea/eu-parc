@@ -23,6 +23,7 @@ function parc_zenodo_api_cron() {
     foreach ($depositions as $page => $records) {
       foreach ($records['hits']['hits'] as $key => $deposition) {
         $deposition_id = $deposition['id'];
+
         // Check if Publications exists on local and if the Updated Date field is changed.
         $results = \Drupal::entityTypeManager()
           ->getStorage('node')
@@ -122,9 +123,14 @@ function getFieldValues($deposition) {
       }
     }
   }
-
-  $altered_publication_date = explode('.', $deposition['created']);
-  $altered_modified_date = explode('.', $deposition['updated']);
+  $altered_publication_date = $deposition['metadata']['publication_date'] . 'T12:00:00';
+  if (str_contains($deposition['metadata']['publication_date'], '.')) {
+    $altered_publication_date = explode('.', $deposition['metadata']['publication_date'])[0];
+  }
+  $altered_modified_date = $deposition['updated'];
+  if (str_contains($deposition['updated'], '.')) {
+    $altered_modified_date = explode('.', $deposition['updated'])[0];
+  }
   $values = [
     'title' => !empty($deposition['metadata']['title']) ? $deposition['metadata']['title'] : 'Untitled',
     'body' => [
@@ -139,8 +145,10 @@ function getFieldValues($deposition) {
     'field_journal' => $deposition['metadata']['journal']['title'] ?? '',
     'field_pages' => $deposition['metadata']['journal']['pages'] ?? '',
     'field_key_words' => $keywords,
-    'field_publication_date' => $deposition['created'] ? $altered_publication_date[0] : '',
-    'field_updated_date' => $deposition['updated'] ? $altered_modified_date[0] : '',
+    'field_publication_date' => $deposition['metadata']['publication_date'] ? $altered_publication_date : date('Y-m-d\TH:i:s', time()),
+    'created' => strtotime($deposition['metadata']['publication_date']),
+    'field_updated_date' => $deposition['updated'] ? $altered_modified_date : date('Y-m-d\TH:i:s', time()),
+    'changed' => $deposition['updated'] ? strtotime($altered_modified_date) : time(),
     'field_zenodo_id' => $deposition['id'] ? : '',
     'status' => 1,
   ];
