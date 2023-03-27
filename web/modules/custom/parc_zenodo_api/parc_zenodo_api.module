@@ -123,7 +123,7 @@ function getFieldValues($deposition) {
       }
     }
   }
-  $altered_publication_date = date('Y-m-d\TH:i:s', strtotime($deposition['metadata']['publication_date']));
+  $altered_publication_date = $deposition['metadata']['publication_date'] . 'T12:00:00';
   if (str_contains($deposition['metadata']['publication_date'], '.')) {
     $altered_publication_date = explode('.', $deposition['metadata']['publication_date'])[0];
   }
