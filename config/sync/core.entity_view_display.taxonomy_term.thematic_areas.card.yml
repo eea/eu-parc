@@ -7,6 +7,7 @@ dependencies:
     - field.field.taxonomy_term.thematic_areas.field_bg_color
     - field.field.taxonomy_term.thematic_areas.field_color
     - field.field.taxonomy_term.thematic_areas.field_icon
+    - field.field.taxonomy_term.thematic_areas.field_seo_keywords
     - field.field.taxonomy_term.thematic_areas.field_teaser_icon
     - taxonomy.vocabulary.thematic_areas
   module:
@@ -43,3 +44,4 @@ hidden:
   description: true
   field_bg_color: true
   field_icon: true
+  field_seo_keywords: true

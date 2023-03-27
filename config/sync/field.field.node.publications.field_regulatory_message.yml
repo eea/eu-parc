@@ -6,12 +6,7 @@ dependencies:
     - field.storage.node.field_regulatory_message
     - node.type.publications
   module:
-    - allowed_formats
     - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats:
-      - plain_text
 id: node.publications.field_regulatory_message
 field_name: field_regulatory_message
 entity_type: node
