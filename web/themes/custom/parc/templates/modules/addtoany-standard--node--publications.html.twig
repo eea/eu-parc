@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Parc theme implementation of standard AddToAny share buttons.
+ */
+#}
+
+{{ attach_library('parc/o--share') }}
+{% set string_array = link_url|split('/') %}
+{% set link_url = url('<current>')|render ~ '#publication-anchor-' ~ string_array|last %}
+{% apply spaceless %}
+{% if button_setting != 'none' %}
+  {% set universal_button %}
+  <a class="a2a_dd addtoany_share" href="https://www.addtoany.com/share#url={{ link_url|url_encode }}&amp;title={{ link_title|url_encode }}">
+    <svg width="12" height="17" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 11L6 1M6 1L3 3.64M6 1L9 3.64" stroke="black" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4.54167 6H2C1.44772 6 1 6.44772 1 7V15C1 15.5523 1.44772 16 2 16H10C10.5523 16 11 15.5523 11 15V7C11 6.44772 10.5523 6 10 6H7.66667" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  {% endset  %}
+{% endif %}
+
+<div class="btn_wrap">
+  <span class="btn-share-label">Share</span>
+  <span class="a2a_kit a2a_kit_size_{{ buttons_size }} addtoany_list" data-a2a-url="{{ link_url }}" data-a2a-title="{{ link_title }}">
+    {% if universal_button_placement == 'before' %}
+      {{ universal_button }}
+    {% endif %}
+
+    {% if addtoany_html %}
+      {{ addtoany_html|raw }}
+    {% endif %}
+
+    {% if universal_button_placement == 'after' %}
+      {{ universal_button }}
+    {% endif %}
+  </span>
+</div>
+{% endapply %}
