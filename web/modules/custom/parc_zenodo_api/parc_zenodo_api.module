@@ -123,7 +123,7 @@ function getFieldValues($deposition) {
       }
     }
   }
-  $altered_publication_date = date('Y-m-d\TH:i:s', strtotime($deposition['metadata']['publication_date']));
+  $altered_publication_date = $deposition['metadata']['publication_date'] . 'T12:00:00';
   if (str_contains($deposition['metadata']['publication_date'], '.')) {
     $altered_publication_date = explode('.', $deposition['metadata']['publication_date'])[0];
   }
@@ -145,7 +145,7 @@ function getFieldValues($deposition) {
     'field_journal' => $deposition['metadata']['journal']['title'] ?? '',
     'field_pages' => $deposition['metadata']['journal']['pages'] ?? '',
     'field_key_words' => $keywords,
-    'field_publication_date' => $deposition['metadata']['publication_date'] ? $altered_publication_date : date('Y-m-d\TH:i:s', time()),
+    'field_publication_date' => $deposition['metadata']['publication_date'] ? $altered_publication_date : date('Y-m-d\T H:i:s', time()),
     'created' => strtotime($deposition['metadata']['publication_date']),
     'field_updated_date' => $deposition['updated'] ? $altered_modified_date : date('Y-m-d\TH:i:s', time()),
     'changed' => $deposition['updated'] ? strtotime($altered_modified_date) : time(),
