@@ -176,9 +176,9 @@
     --cs-svg-c: var(--cs--item-c);
     background: var(--cs--item-bg);
     color: var(--cs--item-c);
-    flex: 1 0 400px;
-    max-width: 80%;
-    min-height: 350px;
+    flex: 1 0 clamp(350px, 80%, 400px);
+    max-width: 400px;
+    min-height: 400px;
     scroll-snap-align: start;
     position: relative;
     padding: 10px;
@@ -207,6 +207,18 @@
 
     &.field-regulatory-message {
       --cs--item-bg: #f5e9ca;
+    }
+  }
+
+  .comma-divider {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 0.3em;
+
+    & > .field:not(:last-child) {
+      &:after {
+        content: ", ";
+      }
     }
   }
 

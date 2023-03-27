@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.publications.field_pages
     - field.field.node.publications.field_publication_date
     - field.field.node.publications.field_regulatory_message
+    - field.field.node.publications.field_seo_keyword
     - field.field.node.publications.field_text_color
     - field.field.node.publications.field_topics
     - field.field.node.publications.field_updated_date
@@ -144,6 +145,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 14
+    region: content
+  field_seo_keyword:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 18
     region: content
   field_text_color:
     type: color_field_formatter_text

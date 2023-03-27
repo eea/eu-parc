@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.thematic_areas.field_bg_color
     - field.field.taxonomy_term.thematic_areas.field_color
     - field.field.taxonomy_term.thematic_areas.field_icon
+    - field.field.taxonomy_term.thematic_areas.field_seo_keywords
     - field.field.taxonomy_term.thematic_areas.field_teaser_icon
     - system.menu.main
     - taxonomy.vocabulary.thematic_areas
@@ -113,12 +114,6 @@ third_party_settings:
             weight: 1
             additional: {  }
         third_party_settings: {  }
-      -
-        layout_id: layout_onecol
-        layout_settings:
-          label: ''
-        components: {  }
-        third_party_settings: {  }
 id: taxonomy_term.thematic_areas.default
 targetEntityType: taxonomy_term
 bundle: thematic_areas
@@ -157,6 +152,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_seo_keywords:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_teaser_icon:
     type: entity_reference_entity_view

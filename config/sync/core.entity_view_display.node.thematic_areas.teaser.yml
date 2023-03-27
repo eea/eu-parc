@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.thematic_areas.body
     - field.field.node.thematic_areas.field_categories
+    - field.field.node.thematic_areas.field_seo_keyword
     - node.type.thematic_areas
   module:
     - text
@@ -26,4 +27,5 @@ content:
 hidden:
   addtoany: true
   field_categories: true
+  field_seo_keyword: true
   links: true
