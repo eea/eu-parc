@@ -11,12 +11,15 @@
   }
 
   .col-sp-img {
-    width: 95px;
-    aspect-ratio: 95 / 142;
+    width: max(95px, 18vw);
+    aspect-ratio: 94 / 140;
+    align-self: flex-start;
+
     img {
       object-fit: cover;
       width: 100%;
       height: 100%;
+      border-radius: var(--border-radius);
     }
   }
 
@@ -30,6 +33,11 @@
     line-height: 22px;
     display: block;
     text-decoration: none;
+    flex-grow: 1;
+
+    svg {
+      margin-left: 5px;
+    }
 
     &:hover {
       text-decoration: underline;
@@ -40,6 +48,7 @@
     margin-top: auto;
     border-top: 1px solid black;
     padding-block: 6px;
+    margin-top: 1em;
     position: relative;
 
     .bb {
@@ -83,6 +92,16 @@
     }
   }
 
+  .field-authors {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-top: 1rem;
+
+    .f-label {
+      font-weight: 700;
+    }
+  }
+
   .field-key-messages {
     border-bottom: 1px solid #cccccc;
     padding-bottom: 1rem;
@@ -94,24 +113,8 @@
   }
 
   .node--section--details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: var(--gutter-x);
-    row-gap: 8px;
-    border-bottom: 1px solid #cccccc;
-
-    label {
-      grid-area: 1 / 1 / 2 / 3;
-    }
-    .field-journal {
-      grid-area: 2 / 1 / 3 / 2;
-    }
-    .field--name-field-publication-date {
-      grid-area: 2 / 2 / 3 / 3;
-    }
-    .field-key-words {
-      /* grid-area: 3 / 2 / 4 / 3; */
-      grid-area: 3 / 1 / 4 / 2;
+    section + .field {
+      margin-top: 1em;
     }
   }
 
@@ -147,11 +150,11 @@
   .slider__arrow {
     position: absolute;
     inset-block: 0;
-    width: 15%;
+    width: 10%;
     max-width: 80px;
     background: none;
     border: none;
-    color: transparent;
+    /* color: transparent; */
     font-size: 32px;
     transition: var(--transition-base);
 
@@ -173,9 +176,9 @@
     --cs-svg-c: var(--cs--item-c);
     background: var(--cs--item-bg);
     color: var(--cs--item-c);
-    flex: 1 0 clamp(350px, 80%, 400px);
+    flex: 1 0 clamp(300px, 80%, 400px);
     max-width: 400px;
-    min-height: 400px;
+    min-height: 280px;
     scroll-snap-align: start;
     position: relative;
     padding: 10px;
@@ -230,27 +233,37 @@
     margin-bottom: 24px;
 
     .col-sp-img {
-      width: 286px;
       aspect-ratio: 286 / 292;
+      width: 286px;
+    }
+
+    .cs--item {
+      flex: 1 0 clamp(300px, 40%, 400px);
     }
 
     .node--title {
       line-height: 44px;
-      flex-grow: 1;
-      margin-bottom: 1rem;
 
       svg {
         width: 18px;
+        margin-left: 8px;
       }
     }
 
+    .field-authors {
+      font-size: 16px;
+    }
+
     .w--btn {
-      margin-top: 1em;
       padding-block: 12px;
     }
 
     .collpase-row {
       margin-left: 274px;
+    }
+
+    .node--section--body {
+      padding-right: 16%;
     }
   }
 }

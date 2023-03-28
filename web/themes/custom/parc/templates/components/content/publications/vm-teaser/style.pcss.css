@@ -41,9 +41,12 @@
     line-height: 33px;
     display: block;
     text-decoration: none;
-  }
-  &:hover {
-    .node--title {
+
+    svg {
+      margin-left: 6px;
+    }
+
+    &:hover {
       text-decoration: underline;
     }
   }

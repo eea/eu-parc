@@ -22,7 +22,10 @@
   {{ title_suffix }}
 
   {{- content|without('field_paragraphs', 'field_row_classes') -}}
-  <div class="row g-4 {{ content.field_row_classes|render|striptags|trim }}">
-    {{content.field_paragraphs}}
-  </div>
+
+  {% if content.field_paragraphs.0 %}
+    <div class="row g-4 {{ content.field_row_classes|render|striptags|trim }}">
+      {{content.field_paragraphs}}
+    </div>
+  {% endif %}
 </div>
