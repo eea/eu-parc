@@ -1,11 +1,9 @@
-uuid: ae8adbb1-b5fc-4236-9594-2c6343c72bf0
+uuid: 3a57728e-20a9-4b2b-b772-57bb241e55c3
 langcode: en
 status: true
 dependencies: {  }
-_core:
-  default_config_hash: rpwvgyEURXLz_JjgMCrkS1rUv-0k3L79BpO-ReN7fDI
-id: node
-label: Content
+id: node__publications
+label: 'Content: Publications'
 tags:
   canonical_url: '[node:url]'
   description: '[node:summary]'
@@ -20,10 +18,8 @@ tags:
   robots: 'index, follow'
   title: '[node:title] | [site:name]'
   twitter_cards_creator: '@PARC_chemicals'
-  twitter_cards_image: '[site:url]themes/custom/parc/img/parc.png'
-  twitter_cards_image_alt: 'Partnership for the Assessment of Risks from Chemicals'
-  twitter_cards_image_height: '315'
-  twitter_cards_image_width: '851'
-  twitter_cards_page_url: '[current-page:url]'
+  twitter_cards_image: '[node:field_cover:entity:url]'
+  twitter_cards_page_url: '[site:url]/scientific-publications#parc--publications-[node:nid]'
   twitter_cards_site: '@PARC_chemicals'
+  twitter_cards_title: '[node:title]'
   twitter_cards_type: summary_large_image

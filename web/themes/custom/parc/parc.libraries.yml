@@ -235,12 +235,17 @@ n--thematic-areas--card-item:
     component:
       css/components/content/thematic-areas/vm-card-item/style.css: {}
 
+n--publications:
+  css:
+    component:
+      css/components/content/publications/vm-default/style.css: {}
+  js:
+    templates/components/content/publications/vm-default/script.js: {}
+
 n--publications-teaser:
   css:
     component:
       css/components/content/publications/vm-teaser/style.css: {}
-  js:
-    templates/components/content/publications/vm-teaser/script.js: {}
 
 # Block.
 b--carousel:

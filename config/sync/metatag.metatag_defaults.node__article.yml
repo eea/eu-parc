@@ -18,9 +18,12 @@ tags:
   og_url: '[current-page:url]'
   robots: 'index, follow'
   title: '[node:title] | [site:name]'
+  twitter_cards_creator: '@PARC_chemicals'
   twitter_cards_image: '[node:field_image:social_share:url]'
   twitter_cards_image_alt: '[node:field_image:alt]'
   twitter_cards_image_height: '[node:field_image:social_share:height]'
   twitter_cards_image_width: '[node:field_image:social_share:width]'
   twitter_cards_page_url: '[current-page:url]'
+  twitter_cards_site: '@PARC_chemicals'
   twitter_cards_title: '[node:title]'
+  twitter_cards_type: summary_large_image
