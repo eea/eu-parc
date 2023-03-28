@@ -34,9 +34,9 @@ dependencies:
 third_party_settings:
   field_group:
     group_dropdown_content:
-      children: {}
-      label: "Dropdown content"
-      parent_name: ""
+      children: {  }
+      label: 'Dropdown content'
+      parent_name: ''
       region: hidden
       weight: 2
       format_type: html_element
@@ -52,9 +52,9 @@ third_party_settings:
         effect: collapsible
         speed: slow
     group_details:
-      children: {}
+      children: {  }
       label: Details
-      parent_name: ""
+      parent_name: ''
       region: hidden
       weight: 3
       format_type: html_element
@@ -70,9 +70,9 @@ third_party_settings:
         effect: none
         speed: fast
     group_section_bo:
-      children: {}
+      children: {  }
       label: Abstract
-      parent_name: ""
+      parent_name: ''
       region: hidden
       weight: 25
       format_type: html_element
@@ -88,9 +88,9 @@ third_party_settings:
         effect: none
         speed: fast
     group_carousel:
-      children: {}
-      label: "Key Messages"
-      parent_name: ""
+      children: {  }
+      label: 'Key Messages'
+      parent_name: ''
       region: hidden
       weight: 24
       format_type: html_element
@@ -106,9 +106,9 @@ third_party_settings:
         effect: none
         speed: fast
     group_journal:
-      children: {}
+      children: {  }
       label: Journal
-      parent_name: ""
+      parent_name: ''
       region: hidden
       weight: 4
       format_type: html_element
@@ -168,5 +168,6 @@ hidden:
   field_text_color: true
   field_topics: true
   field_updated_date: true
+  field_volume: true
   field_zenodo_id: true
   links: true
