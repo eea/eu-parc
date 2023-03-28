@@ -41,14 +41,14 @@ third_party_settings:
       weight: 2
       format_type: html_element
       format_settings:
-        classes: ""
+        classes: ''
         show_empty_fields: false
-        id: ""
+        id: ''
         element: div
         show_label: false
         label_element: h3
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: collapsible
         speed: slow
     group_details:
@@ -59,14 +59,14 @@ third_party_settings:
       weight: 3
       format_type: html_element
       format_settings:
-        classes: "node--section node--section--details"
+        classes: 'node--section node--section--details'
         show_empty_fields: false
-        id: ""
+        id: ''
         element: section
         show_label: true
         label_element: label
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: none
         speed: fast
     group_section_bo:
@@ -77,14 +77,14 @@ third_party_settings:
       weight: 25
       format_type: html_element
       format_settings:
-        classes: "node--section node--section--body"
+        classes: 'node--section node--section--body'
         show_empty_fields: false
-        id: ""
+        id: ''
         element: section
         show_label: true
         label_element: label
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: none
         speed: fast
     group_carousel:
@@ -97,12 +97,12 @@ third_party_settings:
       format_settings:
         classes: w--carosuel-scroll
         show_empty_fields: false
-        id: ""
+        id: ''
         element: div
         show_label: true
         label_element: label
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: none
         speed: fast
     group_journal:
@@ -113,14 +113,14 @@ third_party_settings:
       weight: 4
       format_type: html_element
       format_settings:
-        classes: ""
+        classes: ''
         show_empty_fields: false
-        id: ""
+        id: ''
         element: section
         show_label: true
         label_element: div
         label_element_classes: f-label
-        attributes: ""
+        attributes: ''
         effect: none
         speed: fast
 id: node.publications.teaser
@@ -132,11 +132,11 @@ content:
     type: media_thumbnail
     label: hidden
     settings:
-      image_link: ""
+      image_link: ''
       image_style: large
       image_loading:
         attribute: lazy
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 0
     region: content
   field_doi_link:
@@ -146,9 +146,9 @@ content:
       trim_length: 80
       url_only: true
       url_plain: true
-      rel: "0"
+      rel: '0'
       target: _blank
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 1
     region: content
 hidden:
