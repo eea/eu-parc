@@ -18,7 +18,6 @@ dependencies:
     - field.field.node.publications.field_publication_date
     - field.field.node.publications.field_regulatory_message
     - field.field.node.publications.field_seo_keyword
-    - field.field.node.publications.field_seo_keyword
     - field.field.node.publications.field_text_color
     - field.field.node.publications.field_topics
     - field.field.node.publications.field_updated_date
@@ -168,6 +167,5 @@ hidden:
   field_text_color: true
   field_topics: true
   field_updated_date: true
-  field_volume: true
   field_zenodo_id: true
   links: true

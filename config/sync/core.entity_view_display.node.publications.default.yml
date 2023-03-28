@@ -250,6 +250,14 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
+  field_seo_keyword:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 18
+    region: content
   field_text_color:
     type: color_field_formatter_text
     label: hidden
