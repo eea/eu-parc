@@ -144,11 +144,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: datetime
-          order: DESC
+          order: ASC
           expose:
             label: 'Date of publication (field_publication_date)'
             field_identifier: field_publication_date_value
-          exposed: true
+          exposed: false
           granularity: second
       arguments: {  }
       filters:
@@ -407,7 +407,28 @@ display:
         simple_sitemap_display_extender:
           variants: {  }
         metatag_display_extender:
-          metatags: {  }
+          metatags:
+            title: '[node:title] | [site:name]'
+            description: '[node:summary]'
+            keywords: '[node:field_seo_keyword]'
+            robots: 'index, follow'
+            og_url: '[current-page:url]'
+            og_title: '[node:title]'
+            og_description: '[node:summary]'
+            og_image: '[node:field_cover:entity:url]'
+            og_image_url: '[node:field_cover:entity:url]'
+            og_image_width: '851'
+            og_image_height: '315'
+            og_image_alt: 'Partnership for the Assessment of Risks from Chemicals'
+            twitter_cards_type: summary_large_image
+            twitter_cards_site: '@PARC_chemicals'
+            twitter_cards_title: '[node:title]'
+            twitter_cards_creator: '@PARC_chemicals'
+            twitter_cards_page_url: '[current-page:url]##parc--publications-[node:nid]'
+            twitter_cards_image: '[node:field_cover:entity:url]'
+            twitter_cards_image_alt: 'Partnership for the Assessment of Risks from Chemicals'
+            twitter_cards_image_height: '315'
+            twitter_cards_image_width: '851'
           tokenize: false
       path: scientific-publications
     cache_metadata:
