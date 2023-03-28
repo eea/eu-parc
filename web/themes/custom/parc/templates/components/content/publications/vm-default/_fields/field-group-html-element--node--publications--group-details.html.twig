@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a field.
+ */
+#}
+
+<{{wrapper_element}} {{ attributes }}>
+  {% if title %}
+    <{{title_element}}{{title_attributes.addClass('mb-2')}}>
+      {{- title }}
+    </{{title_element}}>
+  {% endif %}
+
+  <div class="row">
+    {% if element.field_key_words.0 %}
+      <div class="col-6">
+        {{ element.field_key_words }}
+      </div>
+    {% endif %}
+
+    <div class="col-6">
+      {{ element.group_journal }}
+      {{ element.field_publication_date }}
+    </div>
+  </div>
+</{{wrapper_element}}>
