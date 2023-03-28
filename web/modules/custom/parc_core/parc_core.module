@@ -6,7 +6,9 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\Entity\Node;
+  use Drupal\Core\Url;
+  use Drupal\file\Entity\File;
+  use Drupal\node\Entity\Node;
 use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\parc_core\ParcCoreViews;
 use Drupal\views\ViewExecutable;
@@ -70,3 +72,82 @@ function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) 
     $form['#attached']['library'][] = 'parc_core/edit_node_event';
   }
 }
+
+  /**
+   * Implement hook_metatags_attachments_alter().
+   * @param $attachements
+   *
+   * @return void
+   */
+  function parc_core_metatags_attachments_alter($attachements) {
+    $currentRouteMatchService = \Drupal::service('current_route_match');
+    $routeName = $currentRouteMatchService->getRouteName();
+    if ($routeName == 'view.publications.page_publications') {
+      $pathCurrentService = \Drupal::service('path.current');
+      $current_path = $pathCurrentService->getPath();
+      $request = \Drupal::request();
+      $queryParameters = $request->query->all();
+      if ($current_path == '/scientific-publications') {
+        if ($attachements['#attached'] && $attachements['#attached']['html_head']) {
+          if ($queryParameters['publication-anchor']) {
+            $nid = $queryParameters['publication-anchor'];
+            $node = Node::load($nid);
+            $image_full_url = '';
+            $body = '';
+            $title = '';
+            $base_url = \Drupal::request()->getSchemeAndHttpHost();
+            if ($node) {
+              if ($node->hasField('field_cover') && !$node->get('field_cover')->isEmpty())
+              $image_media = $node->field_cover->entity;
+              $fid = $image_media->getSource()->getSourceFieldValue($image_media);
+              $file = File::load($fid);
+              if ($file) {
+                $uri = $file->getFileUri();
+                $url = \Drupal::service('file_url_generator')->generateString($uri);
+                $image_full_url = $base_url . $url;
+              } else {
+                $image_full_url = $base_url . '/themes/custom/parc/img/sp-default.png';
+              }
+              $title = $node->getTitle();
+              if ($node->hasField('body') && !empty($node->get('body')->getValue())) {
+                $body = $node->body->getValue()[0]['value'];
+              }
+              $full_node_share_url = $base_url . $current_path . '?publication-anchor=' . $nid . '#publication-anchor-' . $nid;
+              foreach ($attachements['#attached']['html_head'] as $key => $attachement) {
+                switch ($attachement[1]) {
+                  case 'title':
+                    $attachements['#attached']['html_head'][$key][0]['#attributes']['content'] = $title . $attachements['#attached']['html_head'][$key][0]['#attributes']['content'];
+                    break;
+                  case 'twitter_cards_page_url':
+                  case 'og_url':
+                    $attachements['#attached']['html_head'][$key][0]['#attributes']['content'] = $full_node_share_url;
+                    break;
+                }
+              }
+              $count = count($attachements['#attached']['html_head']);
+              $attachements['#attached']['html_head'][$count] = [
+                0 => [
+                  '#tag' => 'meta',
+                  '#attributes' => [
+                    'name' => 'twitter:image',
+                    'content' => $image_full_url
+                  ],
+                ],
+                1 => 'twitter_cards_image'
+              ];
+              $attachements['#attached']['html_head'][$count+1] = [
+                0 => [
+                  '#tag' => 'meta',
+                  '#attributes' => [
+                    'name' => 'og:image',
+                    'content' => $image_full_url
+                  ],
+                ],
+                1 => 'og_image'
+              ];
+            }
+          }
+        }
+      }
+    }
+  }
