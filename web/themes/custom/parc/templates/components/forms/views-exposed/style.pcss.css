@@ -4,11 +4,12 @@
   position: relative;
 
   details {
-    width: 310px;
+    width: min(480px, 100%);
     background-color: rgba(255, 255, 255, 0.9);
     position: relative;
     isolation: isolate;
     z-index: 1;
+    white-space: nowrap;
 
     & > div {
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.08);

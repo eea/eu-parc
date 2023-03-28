@@ -144,12 +144,30 @@ header {
         }
       }
 
+      a.nav-link-level-0 {
+        display: none;
+      }
+
       .d-lg-none {
-        transform: rotate(0deg);
-        transition: transform 0.3s linear;
+        text-decoration: none;
+        padding: 14px 16px 14px 0;
+        color: var(--c-white);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 28px;
+        font-weight: 700;
+
+        svg {
+          transform: rotate(0deg);
+          transition: transform 0.3s linear;
+        }
 
         &.collapsed {
-          transform: rotate(-90deg);
+          svg {
+            transform: rotate(-90deg);
+          }
         }
       }
     }
