@@ -7,7 +7,7 @@
 
 {{ attach_library('parc/o--share') }}
 {% set string_array = link_url|split('/') %}
-{% set link_url = url('<current>')|render ~ '#publication-anchor-' ~ string_array|last %}
+{% set link_url = url('<current>')|render ~ '?publication-anchor='~ string_array|last ~ '#publication-anchor-' ~ string_array|last %}
 {% apply spaceless %}
 {% if button_setting != 'none' %}
   {% set universal_button %}
