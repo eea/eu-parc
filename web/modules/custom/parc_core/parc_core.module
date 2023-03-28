@@ -142,7 +142,7 @@ function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) 
                     break;
                   case 'description':
                   case 'og_description':
-                    $metatags[$key] = $body;
+                    $metatags[$key] = substr($body, 0, strpos($body, ' ', 196)) . ' ...';
                     break;
                   case 'og_image':
                   case 'og_image_url':
