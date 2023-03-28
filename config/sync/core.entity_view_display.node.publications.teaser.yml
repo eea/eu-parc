@@ -51,23 +51,11 @@ third_party_settings:
         effect: collapsible
         speed: slow
     group_details:
-<<<<<<< HEAD
       children: {  }
       label: Details
       parent_name: ''
       region: hidden
       weight: 3
-=======
-      children:
-        - group_journal
-        - field_publication_date
-        - field_key_words
-        - field_authors
-      label: Details
-      parent_name: group_dropdown_content
-      region: content
-      weight: 8
->>>>>>> 5f746f054f18b761ae74a1147c1d8dfff8a2ca0a
       format_type: html_element
       format_settings:
         classes: 'node--section node--section--details'
@@ -83,15 +71,9 @@ third_party_settings:
     group_section_bo:
       children: {  }
       label: Abstract
-<<<<<<< HEAD
       parent_name: ''
       region: hidden
       weight: 25
-=======
-      parent_name: group_dropdown_content
-      region: content
-      weight: 11
->>>>>>> 5f746f054f18b761ae74a1147c1d8dfff8a2ca0a
       format_type: html_element
       format_settings:
         classes: 'node--section node--section--body'
@@ -107,15 +89,9 @@ third_party_settings:
     group_carousel:
       children: {  }
       label: 'Key Messages'
-<<<<<<< HEAD
       parent_name: ''
       region: hidden
       weight: 24
-=======
-      parent_name: group_dropdown_content
-      region: content
-      weight: 9
->>>>>>> 5f746f054f18b761ae74a1147c1d8dfff8a2ca0a
       format_type: html_element
       format_settings:
         classes: w--carosuel-scroll
@@ -129,23 +105,11 @@ third_party_settings:
         effect: none
         speed: fast
     group_journal:
-<<<<<<< HEAD
       children: {  }
       label: Journal
       parent_name: ''
       region: hidden
       weight: 4
-=======
-      children:
-        - field_journal
-        - field_volume
-        - field_issue
-        - field_pages
-      label: Journal
-      parent_name: group_details
-      region: content
-      weight: 7
->>>>>>> 5f746f054f18b761ae74a1147c1d8dfff8a2ca0a
       format_type: html_element
       format_settings:
         classes: ''
@@ -163,38 +127,6 @@ targetEntityType: node
 bundle: publications
 mode: teaser
 content:
-<<<<<<< HEAD
-=======
-  addtoany:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 12
-    region: content
-  body:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
-    region: content
-  field_authors:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 11
-    region: content
-  field_background_color:
-    type: color_field_formatter_text
-    label: hidden
-    settings:
-      format: hex
-      opacity: true
-    third_party_settings: {  }
-    weight: 4
-    region: content
->>>>>>> 5f746f054f18b761ae74a1147c1d8dfff8a2ca0a
   field_cover:
     type: media_thumbnail
     label: hidden
@@ -218,88 +150,12 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-<<<<<<< HEAD
-=======
-  field_issue:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 10
-    region: content
-  field_journal:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 8
-    region: content
-  field_key_messages:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 6
-    region: content
-  field_key_words:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 9
-    region: content
-  field_pages:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 11
-    region: content
-  field_publication_date:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 8
-    region: content
-  field_regulatory_message:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_text_color:
-    type: color_field_formatter_text
-    label: hidden
-    settings:
-      format: hex
-      opacity: true
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_volume:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 9
-    region: content
->>>>>>> 5f746f054f18b761ae74a1147c1d8dfff8a2ca0a
 hidden:
   addtoany: true
   body: true
   field_authors: true
   field_background_color: true
   field_download_link: true
-<<<<<<< HEAD
   field_issue: true
   field_journal: true
   field_key_messages: true
@@ -309,9 +165,6 @@ hidden:
   field_regulatory_message: true
   field_seo_keyword: true
   field_text_color: true
-=======
-  field_seo_keyword: true
->>>>>>> 5f746f054f18b761ae74a1147c1d8dfff8a2ca0a
   field_topics: true
   field_updated_date: true
   field_zenodo_id: true
