@@ -106,7 +106,7 @@ display:
               plugin_id: bef
               advanced:
                 combine: true
-                combine_rewrite: "Publication Date Asc|Date\r\nPublication Date Desc|Date"
+                combine_rewrite: "Date Asc|Date\r\nDate Desc|Date"
                 reset: false
                 reset_label: ''
                 collapsible: false
@@ -124,6 +124,9 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
+                options_show_only_used: 1
+                options_show_only_used_filtered: 0
+                options_hide_when_empty: 0
       access:
         type: perm
         options:
@@ -141,11 +144,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: datetime
-          order: ASC
+          order: DESC
           expose:
-            label: 'Publication Date'
+            label: 'Date of publication (field_publication_date)'
             field_identifier: field_publication_date_value
-          exposed: false
+          exposed: true
           granularity: second
       arguments: {  }
       filters:
@@ -264,6 +267,8 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -288,7 +293,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: datetime
-          order: ASC
+          order: DESC
           expose:
             label: 'Publication Date'
             field_identifier: field_publication_date_value
@@ -372,10 +377,26 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      sorts:
+        field_publication_date_value:
+          id: field_publication_date_value
+          table: node__field_publication_date
+          field: field_publication_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: DESC
+          expose:
+            label: Date
+            field_identifier: field_publication_date_value
+          exposed: true
+          granularity: second
       defaults:
         use_more: false
         use_more_always: false
         use_more_text: false
+        sorts: false
       display_description: ''
       use_more: false
       use_more_always: false
@@ -395,6 +416,8 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions
