@@ -183,6 +183,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    font-size: 18px;
 
     &:not(.field-regulatory-message):hover {
       --cs-svg-c: var(--cs--item-bg);
