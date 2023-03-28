@@ -34,8 +34,11 @@
     display: block;
     text-decoration: none;
     flex-grow: 1;
+    padding-right: 24px;
 
     svg {
+      position: absolute;
+      padding-top: 7px;
       margin-left: 5px;
     }
 
@@ -247,6 +250,7 @@
       svg {
         width: 18px;
         margin-left: 8px;
+        padding-top: 15px;
       }
     }
 

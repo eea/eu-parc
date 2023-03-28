@@ -36,9 +36,6 @@ third_party_settings:
       children: {}
       label: "Dropdown content"
       parent_name: ""
-      children: {}
-      label: "Dropdown content"
-      parent_name: ""
       region: hidden
       weight: 2
       format_type: html_element
@@ -72,7 +69,6 @@ third_party_settings:
         effect: none
         speed: fast
     group_section_bo:
-      children: {}
       children: {}
       label: Abstract
       parent_name: ""
