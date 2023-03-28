@@ -43,7 +43,7 @@ third_party_settings:
       label: 'Dropdown content'
       parent_name: ''
       region: content
-      weight: 2
+      weight: 3
       format_type: html_element
       format_settings:
         classes: ''
@@ -61,7 +61,6 @@ third_party_settings:
         - group_journal
         - field_publication_date
         - field_key_words
-        - field_authors
       label: Details
       parent_name: group_dropdown_content
       region: content
@@ -162,7 +161,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 9
+    weight: 2
     region: content
   field_background_color:
     type: color_field_formatter_text
@@ -171,7 +170,7 @@ content:
       format: hex
       opacity: true
     third_party_settings: {  }
-    weight: 6
+    weight: 5
     region: content
   field_cover:
     type: media_thumbnail
@@ -251,14 +250,6 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
-  field_seo_keyword:
-    type: entity_reference_label
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 18
-    region: content
   field_text_color:
     type: color_field_formatter_text
     label: hidden
@@ -266,7 +257,7 @@ content:
       format: hex
       opacity: true
     third_party_settings: {  }
-    weight: 5
+    weight: 4
     region: content
   field_volume:
     type: string
