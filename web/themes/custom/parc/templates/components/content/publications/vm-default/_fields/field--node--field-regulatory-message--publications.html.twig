@@ -13,9 +13,11 @@
   ]
 %}
 
+{% set count = items|length %}
 
 <div{{attributes.addClass(classes)}}>
   {%- for item in items -%}
+    <div class="count">{{ loop.index }}/{{ count }}</div>
     <div class="field--content">{{ item.content }}</div>
     <div class="km--bottom d-flex justify-content-between mt-auto">
       <svg width="66" height="16" viewbox="0 0 66 16" fill="none" xmlns="http://www.w3.org/2000/svg">
