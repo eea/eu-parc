@@ -13,7 +13,7 @@
   'position-relative',
   'container-content',
   'node--content-pb',
-  'mb-parc',
+  attributes.hasClass('mb-0') ? 'mb-0' : 'mb-parc',
 ] %}
 
 {% if content %}
@@ -21,7 +21,7 @@
     <div class="row">
       {% if content.first or content.menu %}
         <div class='col-12 col-lg col-menu d-flex flex-column'>
-          <div{{region_attributes.menu.addClass('col-menu-sticky','flex-grow-1','mb-4')}}>
+          <div{{region_attributes.menu.addClass('col-menu-sticky','flex-grow-1')}}>
             <div class="sticky-top">
               {{ content.menu }}
             </div>

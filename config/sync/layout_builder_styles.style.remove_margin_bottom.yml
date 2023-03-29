@@ -1,0 +1,13 @@
+uuid: dfa020b8-b778-4d8e-a8aa-189b00c80c42
+langcode: en
+status: true
+dependencies: {  }
+id: remove_margin_bottom
+label: 'Remove margin bottom'
+classes: mb-0
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions:
+  - parc_content
+weight: 0
