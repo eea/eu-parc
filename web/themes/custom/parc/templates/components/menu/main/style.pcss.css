@@ -87,8 +87,10 @@
       --nav-link-font-size: 18px;
     }
 
-    .mm-collapse-0 {
-      display: block;
+    @media (--lg) {
+      .mm-collapse-0 {
+        display: block;
+      }
     }
   }
 }

@@ -5,6 +5,22 @@
     margin-bottom: 32px;
   }
 
+  .col-menu-sticky {
+    .block-menu {
+      padding-bottom: 2rem;
+    }
+  }
+
+  /* temp for event content mega change */
+  .col-content {
+    display: flex;
+    flex-direction: column;
+
+    & > .lr--second {
+      flex-grow: 1;
+    }
+  }
+
   @media (--lg) {
     align-items: stretch;
 
@@ -57,12 +73,23 @@
     .nav-main {
       margin-left: 48px;
 
+      svg {
+        width: 10px;
+      }
+      path {
+        stroke: black;
+      }
+
       .nav-link {
         --nav-link-padding-y: 0;
         font-size: 16px;
         font-weight: var(--fw-normal);
         line-height: 1.4em;
         padding-block: 8px;
+
+        &.nav-link-level-0 {
+          display: none;
+        }
       }
     }
   }

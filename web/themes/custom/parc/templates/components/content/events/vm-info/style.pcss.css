@@ -1,12 +1,17 @@
 .section--events--info {
   font-weight: var(--font-weight-normal);
 
+  .field + .field {
+    .f-label {
+      margin-top: 20px;
+    }
+  }
+
   .f-label {
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-top: 20px;
   }
 
   .f-item + .f-item {
