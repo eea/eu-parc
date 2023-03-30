@@ -13,14 +13,14 @@
   {% endif %}
 
   <div class="row">
-    {% if element.field_key_words.0 %}
+    {% if element.field_key_words or element.group_journal %}
       <div class="col-6">
+        {{ element.group_journal }}
         {{ element.field_key_words }}
       </div>
     {% endif %}
 
     <div class="col-6">
-      {{ element.group_journal }}
       {{ element.field_publication_date }}
     </div>
   </div>
