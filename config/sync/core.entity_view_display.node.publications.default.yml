@@ -36,14 +36,12 @@ third_party_settings:
   field_group:
     group_dropdown_content:
       children:
-        - group_details
-        - group_key_messages
         - group_abstract
         - addtoany
       label: 'Dropdown content'
       parent_name: ''
       region: content
-      weight: 3
+      weight: 5
       format_type: html_element
       format_settings:
         classes: ''
@@ -62,7 +60,7 @@ third_party_settings:
         - field_publication_date
         - field_key_words
       label: Details
-      parent_name: group_dropdown_content
+      parent_name: ''
       region: content
       weight: 3
       format_type: html_element
@@ -104,7 +102,7 @@ third_party_settings:
         - field_key_messages
         - field_regulatory_message
       label: 'Key Messages'
-      parent_name: group_dropdown_content
+      parent_name: ''
       region: content
       weight: 4
       format_type: html_element
@@ -170,7 +168,7 @@ content:
       format: hex
       opacity: true
     third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
   field_cover:
     type: media_thumbnail
@@ -256,7 +254,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 18
+    weight: 8
     region: content
   field_text_color:
     type: color_field_formatter_text
@@ -265,7 +263,7 @@ content:
       format: hex
       opacity: true
     third_party_settings: {  }
-    weight: 4
+    weight: 6
     region: content
   field_volume:
     type: string
@@ -277,7 +275,6 @@ content:
     region: content
 hidden:
   field_download_link: true
-  field_seo_keyword: true
   field_topics: true
   field_updated_date: true
   field_zenodo_id: true
