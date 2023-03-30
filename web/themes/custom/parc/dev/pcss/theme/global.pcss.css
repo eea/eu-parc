@@ -116,8 +116,12 @@ main {
     width: auto;
   }
 
+  .bg-gray & {
+    padding-top: 0;
+  }
+
   @media (--md) {
-    padding-block: 80px;
+    padding-block: var(--p-parc);
     justify-content: center;
     max-height: inherit;
 

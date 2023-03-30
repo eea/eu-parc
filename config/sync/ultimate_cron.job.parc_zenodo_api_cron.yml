@@ -1,0 +1,30 @@
+uuid: 3842ead8-6dc1-48e1-abdd-ca0399112088
+langcode: en
+status: true
+dependencies:
+  module:
+    - parc_zenodo_api
+title: 'Parc Zenodo Api CRON'
+id: parc_zenodo_api_cron
+weight: 0
+module: parc_zenodo_api
+callback: parc_zenodo_api_cron
+scheduler:
+  id: crontab
+  configuration:
+    rules:
+      - '0 0 23 * *'
+    catch_up: 0
+launcher:
+  id: serial
+  configuration:
+    timeouts:
+      lock_timeout: 3600
+    launcher:
+      thread: 0
+logger:
+  id: database
+  configuration:
+    method: '3'
+    expire: 1209600
+    retain: 1000
