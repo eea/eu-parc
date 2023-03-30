@@ -39,19 +39,21 @@ function parc_zenodo_api_cron() {
             \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
           }
         }
-        else {
-          foreach ($results as $val) {
-            $node = $val;
-          }
-          if (checkPublicationUpdated($deposition['modified'], $node)) {
-            try {
-              updatePublication($deposition, $node);
-            }
-            catch (Exception $e) {
-              \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
-            }
-          }
-        }
+        // Remove the Update of the Publications, to pull the latest ones created.
+        // And not to update the ones existing in Drupal already.
+//        else {
+//          foreach ($results as $val) {
+//            $node = $val;
+//          }
+//          if (checkPublicationUpdated($deposition['modified'], $node)) {
+//            try {
+//              updatePublication($deposition, $node);
+//            }
+//            catch (Exception $e) {
+//              \Drupal::logger('parc_zenodo_api')->error($e->getMessage());
+//            }
+//          }
+//        }
       }
     }
   }
