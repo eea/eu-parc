@@ -1,0 +1,17 @@
+uuid: 5694e4b6-61cc-46f4-af06-b5fe0a579c83
+langcode: en
+status: true
+dependencies:
+  module:
+    - simple_sitemap_engines
+title: 'Default cron handler'
+id: simple_sitemap_engines_cron
+weight: 0
+module: simple_sitemap_engines
+callback: simple_sitemap_engines_cron
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database
