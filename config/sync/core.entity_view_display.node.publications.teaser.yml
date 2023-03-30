@@ -33,93 +33,93 @@ dependencies:
 third_party_settings:
   field_group:
     group_dropdown_content:
-      children: {}
-      label: "Dropdown content"
-      parent_name: ""
+      children: {  }
+      label: 'Dropdown content'
+      parent_name: ''
       region: hidden
       weight: 2
       format_type: html_element
       format_settings:
-        classes: ""
+        classes: ''
         show_empty_fields: false
-        id: ""
+        id: ''
         element: div
         show_label: false
         label_element: h3
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: collapsible
         speed: slow
     group_details:
-      children: {}
+      children: {  }
       label: Details
-      parent_name: ""
+      parent_name: ''
       region: hidden
       weight: 3
       format_type: html_element
       format_settings:
-        classes: "node--section node--section--details"
+        classes: 'node--section node--section--details'
         show_empty_fields: false
-        id: ""
+        id: ''
         element: section
         show_label: true
         label_element: label
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: none
         speed: fast
     group_section_bo:
-      children: {}
+      children: {  }
       label: Abstract
-      parent_name: ""
+      parent_name: ''
       region: hidden
       weight: 25
       format_type: html_element
       format_settings:
-        classes: "node--section node--section--body"
+        classes: 'node--section node--section--body'
         show_empty_fields: false
-        id: ""
+        id: ''
         element: section
         show_label: true
         label_element: label
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: none
         speed: fast
     group_carousel:
-      children: {}
-      label: "Key Messages"
-      parent_name: ""
+      children: {  }
+      label: 'Key Messages'
+      parent_name: ''
       region: hidden
       weight: 24
       format_type: html_element
       format_settings:
         classes: w--carosuel-scroll
         show_empty_fields: false
-        id: ""
+        id: ''
         element: div
         show_label: true
         label_element: label
-        label_element_classes: ""
-        attributes: ""
+        label_element_classes: ''
+        attributes: ''
         effect: none
         speed: fast
     group_journal:
-      children: {}
+      children: {  }
       label: Journal
-      parent_name: ""
+      parent_name: ''
       region: hidden
       weight: 4
       format_type: html_element
       format_settings:
-        classes: ""
+        classes: ''
         show_empty_fields: false
-        id: ""
+        id: ''
         element: section
         show_label: true
         label_element: div
         label_element_classes: f-label
-        attributes: ""
+        attributes: ''
         effect: none
         speed: fast
 id: node.publications.teaser
@@ -128,15 +128,15 @@ bundle: publications
 mode: teaser
 content:
   addtoany:
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
     weight: 12
     region: content
   body:
     type: text_default
     label: hidden
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
     weight: 1
     region: content
   field_authors:
@@ -144,7 +144,7 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 11
     region: content
   field_background_color:
@@ -153,18 +153,18 @@ content:
     settings:
       format: hex
       opacity: true
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 4
     region: content
   field_cover:
     type: media_thumbnail
     label: hidden
     settings:
-      image_link: ""
+      image_link: ''
       image_style: large
       image_loading:
         attribute: lazy
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 0
     region: content
   field_doi_link:
@@ -174,9 +174,9 @@ content:
       trim_length: 80
       url_only: true
       url_plain: true
-      rel: "0"
+      rel: '0'
       target: _blank
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 1
     region: content
   field_issue:
@@ -184,7 +184,7 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 10
     region: content
   field_journal:
@@ -192,14 +192,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 8
     region: content
   field_key_messages:
     type: text_default
     label: above
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
     weight: 6
     region: content
   field_key_words:
@@ -207,7 +207,7 @@ content:
     label: above
     settings:
       link: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 9
     region: content
   field_pages:
@@ -215,23 +215,23 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 11
     region: content
   field_publication_date:
     type: datetime_default
     label: above
     settings:
-      timezone_override: ""
+      timezone_override: ''
       format_type: medium
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 8
     region: content
   field_regulatory_message:
     type: text_default
     label: hidden
-    settings: {}
-    third_party_settings: {}
+    settings: {  }
+    third_party_settings: {  }
     weight: 7
     region: content
   field_text_color:
@@ -240,7 +240,7 @@ content:
     settings:
       format: hex
       opacity: true
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 3
     region: content
   field_volume:
@@ -248,7 +248,7 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 9
     region: content
 hidden:
