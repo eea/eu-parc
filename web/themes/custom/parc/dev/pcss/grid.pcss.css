@@ -944,6 +944,16 @@
   }
 }
 
+.grid-sm {
+  --grid-min: 200px;
+  display: grid;
+  gap: var(--gutter);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(var(--grid-min), 100%), 1fr)
+  );
+}
+
 .grid--auto-fill {
   display: grid;
   gap: var(--gutter);
