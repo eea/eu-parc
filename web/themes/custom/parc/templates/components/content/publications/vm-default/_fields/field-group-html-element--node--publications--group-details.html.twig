@@ -13,7 +13,7 @@
   {% endif %}
 
   <div class="row">
-    {% if element.field_key_words or element.group_journal %}
+    {% if element.field_key_words['#markup'] is not empty or element.element.group_journal['#markup'] is not empty %}
       <div class="col-6">
         {{ element.group_journal }}
         {{ element.field_key_words }}
