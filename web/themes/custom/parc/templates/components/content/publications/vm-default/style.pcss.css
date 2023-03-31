@@ -169,6 +169,10 @@
     font-size: 32px;
     transition: var(--transition-base);
 
+    @media (hover: hover) {
+      display: block;
+    }
+
     &:hover {
       color: var(--c-body);
       background: rgba(255, 255, 255, 0.1);
@@ -312,11 +316,7 @@
 
   @media (--md) {
     .cs--item {
-      flex: 1 0 clamp(250px, 33%, 400px);
-
-      @media (hover: hover) {
-        flex: 1 0 clamp(250px, calc((100% - 1.25rem * 2) / 3), 400px);
-      }
+      flex: 1 0 clamp(250px, calc((100% - 6%) / 3 - 1.25rem), 400px);
     }
   }
 

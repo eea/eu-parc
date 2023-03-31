@@ -57,7 +57,15 @@
   Drupal.behaviors.publicationUrl = {
     attach: function (context,) {
       hash = window.location.hash;
-      $(context).find(hash).once('publicationUrl').parents('.collapse').addClass('show');
+
+      if (hash.indexOf('key--messages') !== -1) {
+        $(context).find(hash).once('publicationUrl').parents('.collapse').addClass('show');
+      }
+
+      if (hash.indexOf('scientific-publications-') !== -1) {
+        const node = hash + ' .collapse';
+        $(context).find(node).once('publicationUrl').addClass('show');
+      }
 
       $('.js-copy-to-clipboard').click(function (e) {
         var btn = $(this);
