@@ -274,6 +274,11 @@ p--card:
     component:
       css/components/paragraph/card/style.css: {}
 
+p--newsletter:
+  css:
+    component:
+      css/components/paragraph/newsletter/style.css: {}
+
 # Section.
 s--header:
   css:
