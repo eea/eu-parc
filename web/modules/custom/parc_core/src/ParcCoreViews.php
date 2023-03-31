@@ -90,11 +90,9 @@ class ParcCoreViews implements ContainerInjectionInterface {
     ) {
 
       if (
-
-
           $view->current_display === 'page_events' ||
-          $view->current_display === 'block_1'
-
+          $view->current_display === 'block_1' ||
+          $view->current_display === 'block_events_front_page'
       ) {
       $defaultOverlay = '#8631A7';
       $this->getOverlaysOrder(
@@ -129,7 +127,6 @@ class ParcCoreViews implements ContainerInjectionInterface {
     string $fieldOverlay,
     string $defaultOverlay
   ) {
-
     $terms =$this->entityTypeManager->getStorage('taxonomy_term')
       ->loadTree($vocabulary, 0, NULL, TRUE);
 
@@ -168,7 +165,6 @@ class ParcCoreViews implements ContainerInjectionInterface {
         $overlays[$term->id()]['max'] = 0;
       }
     }
-
 
     // Assign the overlays value for theming.
     foreach ($view->result as &$result) {
