@@ -129,6 +129,14 @@
   /* Carousel classes */
   .w--carosuel-scroll {
     position: relative;
+
+    &:hover {
+      @media (hover: hover) {
+        .slider__arrow {
+          display: block;
+        }
+      }
+    }
   }
 
   .carousel-scroll {
@@ -156,6 +164,7 @@
     max-width: 80px;
     background: none;
     border: none;
+    display: none;
     /* color: transparent; */
     font-size: 32px;
     transition: var(--transition-base);
@@ -230,38 +239,6 @@
     }
   }
 
-  @media (--downLg) {
-    box-shadow: 0 0 0 100vmax #fafafa;
-    clip-path: inset(0 -100vmax);
-    position: relative;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: -20px;
-
-      height: 1px;
-      width: 150vh;
-      background-color: #e4e3e3;
-    }
-
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: -20px;
-
-      height: 1px;
-      width: 150vh;
-      background-color: #e4e3e3;
-    }
-
-    .col-sp-img {
-      padding-right: 0;
-    }
-  }
-
   .btn-copy-to-clipboard {
     padding: 0 0.3rem;
     text-decoration: none !important;
@@ -301,6 +278,48 @@
     }
   }
 
+  @media (--downLg) {
+    box-shadow: 0 0 0 100vmax #fafafa;
+    clip-path: inset(0 -100vmax);
+    position: relative;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -20px;
+
+      height: 1px;
+      width: 150vh;
+      background-color: #e4e3e3;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: -20px;
+
+      height: 1px;
+      width: 150vh;
+      background-color: #e4e3e3;
+    }
+
+    .col-sp-img {
+      padding-right: 0;
+    }
+  }
+
+  @media (--md) {
+    .cs--item {
+      flex: 1 0 clamp(250px, 33%, 400px);
+
+      @media (hover: hover) {
+        flex: 1 0 clamp(250px, calc((100% - 1.25rem * 2) / 3), 400px);
+      }
+    }
+  }
+
   @media (--lg) {
     --npt--title-fs: 2rem;
     margin-bottom: 24px;
@@ -311,11 +330,6 @@
     .col-sp-img {
       aspect-ratio: 286 / 292;
       width: 286px;
-    }
-
-    .cs--item {
-      flex: 1 0 clamp(50px, calc((100% - 10% - 1.25rem) / 3), 400px);
-      max-width: calc((100% - 1.25rem) / 3);
     }
 
     .node--title {
