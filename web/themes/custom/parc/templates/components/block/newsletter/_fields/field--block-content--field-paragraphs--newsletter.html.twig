@@ -7,6 +7,12 @@
 
 <div class="grid-sm">
   {%- for item in items -%}
-    {{- item.content -}}
+    <div class="position-relative">
+      <div class="paragraph--count">
+        #{{ items|length - loop.index0 -}}
+      </div>
+
+      {{- item.content -}}
+    </div>
   {%- endfor -%}
 </div>

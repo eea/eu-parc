@@ -1,0 +1,55 @@
+uuid: fb24b513-9408-481a-9222-44126e48ba45
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.newsletter
+    - field.storage.block_content.field_paragraphs
+    - paragraphs.paragraphs_type.newsletter
+  module:
+    - entity_reference_revisions
+id: block_content.newsletter.field_paragraphs
+field_name: field_paragraphs
+entity_type: block_content
+bundle: newsletter
+label: Paragraphs
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      newsletter: newsletter
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 10
+        enabled: false
+      card:
+        weight: 11
+        enabled: false
+      carousel_item:
+        weight: 12
+        enabled: false
+      grid:
+        weight: 13
+        enabled: false
+      links_list:
+        weight: 14
+        enabled: false
+      media:
+        weight: 15
+        enabled: false
+      newsletter:
+        weight: 16
+        enabled: true
+      svg_text:
+        weight: 17
+        enabled: false
+      what_we_do:
+        weight: 18
+        enabled: false
+field_type: entity_reference_revisions

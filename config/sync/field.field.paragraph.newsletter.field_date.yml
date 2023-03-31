@@ -1,0 +1,24 @@
+uuid: b4166977-93ad-484e-a070-be5952f3118a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_date
+    - paragraphs.paragraphs_type.newsletter
+  module:
+    - datetime
+id: paragraph.newsletter.field_date
+field_name: field_date
+entity_type: paragraph
+bundle: newsletter
+label: Date
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime
