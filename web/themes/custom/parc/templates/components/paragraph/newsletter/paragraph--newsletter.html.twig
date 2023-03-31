@@ -15,12 +15,16 @@
     'paragraph--' ~ paragraph.bundle|clean_class,
     view_mode ? 'paragraph--' ~ paragraph.bundle|clean_class ~ '--' ~ view_mode|clean_class,
     not paragraph.isPublished() ? 'paragraph--unpublished',
-    'position-relative',
   ]
 %}
 
+
 <div{{attributes.addClass(classes)}}>
-  {{ content.field_date }}
-  {{ content.field_svg }}
+  <div class="wrap">
+    <div class="d-flex justify-content-end">
+      {{ content.field_date }}
+    </div>
+    {{ content.field_svg }}
+  </div>
   {{ content|without('field_svg', 'field_date') }}
 </div>

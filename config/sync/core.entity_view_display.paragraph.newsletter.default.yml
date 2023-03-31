@@ -1,0 +1,52 @@
+uuid: 05ad1acd-7818-4f96-add1-b0a49da21381
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.newsletter.field_date
+    - field.field.paragraph.newsletter.field_link_one
+    - field.field.paragraph.newsletter.field_svg
+    - image.style.newsletter
+    - paragraphs.paragraphs_type.newsletter
+  module:
+    - datetime
+    - link
+    - media
+id: paragraph.newsletter.default
+targetEntityType: paragraph
+bundle: newsletter
+mode: default
+content:
+  field_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: newsletter
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_link_one:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: _blank
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_svg:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: newsletter
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

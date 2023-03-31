@@ -1,0 +1,31 @@
+uuid: 4fc69f54-a941-415a-be2b-4f4db8a0f832
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_svg
+    - media.type.image
+    - media.type.vector
+    - paragraphs.paragraphs_type.newsletter
+id: paragraph.newsletter.field_svg
+field_name: field_svg
+entity_type: paragraph
+bundle: newsletter
+label: Image
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

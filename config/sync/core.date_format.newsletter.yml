@@ -1,0 +1,8 @@
+uuid: d6dbe3e6-7450-4465-9bb8-0cbcd77491d2
+langcode: en
+status: true
+dependencies: {  }
+id: newsletter
+label: Newsletter
+locked: false
+pattern: 'F Y'
