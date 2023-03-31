@@ -44,20 +44,18 @@
     }
   }
 
-  $.fn.isInViewport = function() {
-    var elementTop = $(this).offset().top;
-    var elementBottom = elementTop + $(this).outerHeight();
-
-    var viewportTop = $(window).scrollTop();
-    var viewportBottom = viewportTop + $(window).height();
-
-    return elementBottom > viewportTop && elementTop < viewportBottom;
-};
-
   Drupal.behaviors.publicationUrl = {
     attach: function (context,) {
       hash = window.location.hash;
-      $(context).find(hash).once('publicationUrl').parents('.collapse').addClass('show');
+
+      if (hash.indexOf('key--messages')) {
+        $(context).find(hash).once('publicationUrl').parents('.collapse').addClass('show');
+      }
+
+      if (hash.indexOf('scientific-publications')) {
+        const node = hash + ' .collapse';
+        $(context).find(node).once('publicationUrl').addClass('show');
+      }
 
       $('.js-copy-to-clipboard').click(function (e) {
         var btn = $(this);
