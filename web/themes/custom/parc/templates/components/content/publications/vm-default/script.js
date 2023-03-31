@@ -19,14 +19,40 @@
   function updateSlidePosition(func, direction) {
     let cs = func.currentTarget.parentNode.querySelector(".carousel-scroll");
     const firstSlideWidth = cs.querySelector(".cs--item").offsetWidth;
-    console.log(firstSlideWidth);
+    const parentWidth = cs.offsetWidth;
+    const count = cs.childElementCount;
+
+    let btnNext = cs.parentElement.querySelector(".js-slider-next");
+    let btnPrev = cs.parentElement.querySelector(".js-slider-prev");
 
     if (direction === "prev") {
+      btnNext.classList.remove('d-none');
+      if (cs.scrollLeft - firstSlideWidth <= 21) {
+        btnPrev.classList.add('d-none');
+      } else {
+        btnPrev.classList.remove('d-none');
+      }
       cs.scrollLeft -= firstSlideWidth;
     } else {
+      btnPrev.classList.remove('d-none');
+      if (cs.scrollLeft + firstSlideWidth > count * firstSlideWidth - parentWidth) {
+        btnNext.classList.add('d-none');
+      } else {
+        btnNext.classList.remove('d-none');
+      }
       cs.scrollLeft += firstSlideWidth;
     }
   }
+
+  $.fn.isInViewport = function() {
+    var elementTop = $(this).offset().top;
+    var elementBottom = elementTop + $(this).outerHeight();
+
+    var viewportTop = $(window).scrollTop();
+    var viewportBottom = viewportTop + $(window).height();
+
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
 
   Drupal.behaviors.publicationUrl = {
     attach: function (context,) {
