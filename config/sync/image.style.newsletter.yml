@@ -1,0 +1,15 @@
+uuid: a8f6345a-5a81-43af-98e3-e55d61d839ed
+langcode: en
+status: true
+dependencies: {  }
+name: newsletter
+label: Newsletter
+effects:
+  24c38424-3132-47ec-bdc0-70ba4b9dc68c:
+    uuid: 24c38424-3132-47ec-bdc0-70ba4b9dc68c
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 136
+      anchor: center-center

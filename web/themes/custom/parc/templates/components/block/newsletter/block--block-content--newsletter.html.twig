@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Parc override to display a block.
+ */
+#}
+
+{% extends "block.html.twig" %}
+
+{% block content %}
+  <div{{content_attributes.addClass('parc-container')}}>
+    {{- content -}}
+  </div>
+{% endblock %}

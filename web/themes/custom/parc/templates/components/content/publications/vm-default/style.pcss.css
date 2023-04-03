@@ -129,6 +129,14 @@
   /* Carousel classes */
   .w--carosuel-scroll {
     position: relative;
+
+    &:hover {
+      @media (hover: hover) {
+        .slider__arrow {
+          display: block;
+        }
+      }
+    }
   }
 
   .carousel-scroll {

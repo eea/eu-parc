@@ -18,6 +18,11 @@
   max-width: 1920px;
 }
 
+.parc-container {
+  max-width: 644px;
+  margin-inline: auto;
+}
+
 @media (--sm) {
   .container,
   .container-sm {
