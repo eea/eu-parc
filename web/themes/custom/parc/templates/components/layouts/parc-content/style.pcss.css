@@ -71,7 +71,14 @@
     }
 
     .nav-main {
-      margin-left: 48px;
+      .btn {
+        text-align: left;
+        padding-inline: 0;
+      }
+
+      .second-level {
+        padding-left: 0;
+      }
 
       svg {
         width: 10px;

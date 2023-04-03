@@ -10,7 +10,7 @@ id: node.publications.field_key_words
 field_name: field_key_words
 entity_type: node
 bundle: publications
-label: 'Key Words'
+label: Keywords
 description: ''
 required: false
 translatable: false
