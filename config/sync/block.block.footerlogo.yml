@@ -1,9 +1,9 @@
-uuid: 82083ae4-b089-4da0-bab1-e3a7059c73f4
+uuid: 94a4e826-52ff-418b-9fef-c2a5c6f16a4e
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:b9b04c14-1324-4f08-998a-f57b13df6c9d'
+    - "block_content:basic:a5c1fe42-76d3-45ee-8134-719bf5d08d54"
   module:
     - block_content
   theme:
@@ -13,13 +13,13 @@ theme: parc
 region: prefooter
 weight: -12
 provider: null
-plugin: 'block_content:b9b04c14-1324-4f08-998a-f57b13df6c9d'
+plugin: "block_content:a5c1fe42-76d3-45ee-8134-719bf5d08d54"
 settings:
-  id: 'block_content:b9b04c14-1324-4f08-998a-f57b13df6c9d'
-  label: 'Footer Logo'
-  label_display: '0'
+  id: "block_content:a5c1fe42-76d3-45ee-8134-719bf5d08d54"
+  label: "Footer Logo"
+  label_display: "0"
   provider: block_content
   status: true
-  info: ''
+  info: ""
   view_mode: full
-visibility: {  }
+visibility: {}
