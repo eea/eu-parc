@@ -44,7 +44,7 @@
 
   Drupal.behaviors.mainNav = {
     attach: function (context, settings) {
-      let mainSidebar = $('#mainSidebar', context);
+      let mainSidebar = $('.region-nav-main #mainSidebar', context);
 
       mainSidebar.on('show.bs.collapse', function () {
         $('body').addClass('overlay-is-navbar-collapse');
