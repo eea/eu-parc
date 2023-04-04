@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   content:
-    - "block_content:basic:fb33541d-4495-4163-8179-76d58163e0d6"
+    - 'block_content:basic:fb33541d-4495-4163-8179-76d58163e0d6'
   module:
     - block_class
     - block_content
@@ -11,19 +11,19 @@ dependencies:
     - parc
 third_party_settings:
   block_class:
-    classes: "block-parc rf-block-top"
+    classes: 'block-parc rf-block-top'
 id: parcslogat
 theme: parc
 region: prefooter
 weight: -11
 provider: null
-plugin: "block_content:fb33541d-4495-4163-8179-76d58163e0d6"
+plugin: 'block_content:fb33541d-4495-4163-8179-76d58163e0d6'
 settings:
-  id: "block_content:fb33541d-4495-4163-8179-76d58163e0d6"
-  label: "Parc slogat"
-  label_display: "0"
+  id: 'block_content:fb33541d-4495-4163-8179-76d58163e0d6'
+  label: 'Parc slogat'
+  label_display: '0'
   provider: block_content
   status: true
-  info: ""
+  info: ''
   view_mode: full
-visibility: {}
+visibility: {  }

@@ -1,0 +1,29 @@
+uuid: 6f4f2202-2491-4b60-93d7-9e99639c60dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_type_of_partner
+    - node.type.map
+    - taxonomy.vocabulary.partner
+id: node.map.field_type_of_partner
+field_name: field_type_of_partner
+entity_type: node
+bundle: map
+label: 'Type of partner'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      partner: partner
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
