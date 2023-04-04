@@ -39,6 +39,9 @@
         "drupal/edwt": "2.1.4",
         "drupal/extlink": "^1.7",
         "drupal/field_group": "^3.4",
+        "drupal/geocoder": "^3.32",
+        "drupal/geofield": "^1.52",
+        "drupal/geolocation": "^3.12",
         "drupal/ics_link_field": "^1.0@alpha",
         "drupal/image_field_caption": "^1.2",
         "drupal/layout_builder_admin_theme": "^1.1",
@@ -79,7 +82,8 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "cweagans/composer-patches": true
+            "cweagans/composer-patches": true,
+            "php-http/discovery": true
         },
         "sort-packages": true,
         "platform-check": false
