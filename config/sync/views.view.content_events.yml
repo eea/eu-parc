@@ -939,6 +939,98 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_date'
+  embed_1:
+    id: embed_1
+    display_title: Embed
+    display_plugin: embed
+    position: 4
+    display_options:
+      title: 'Events Front page'
+      pager:
+        type: some
+        options:
+          offset: 0
+          items_per_page: 4
+      sorts:
+        field_date_end_value:
+          id: field_date_end_value
+          table: node__field_date
+          field: field_date_end_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          entity_type: node
+          entity_field: status
+          plugin_id: boolean
+          value: '1'
+          group: 1
+          expose:
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            events: events
+          expose:
+            operator_limit_selection: false
+            operator_list: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      defaults:
+        title: false
+        pager: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
+        sorts: false
+        filters: false
+        filter_groups: false
+        header: false
+      display_description: ''
+      use_more: true
+      use_more_always: true
+      use_more_text: 'All events'
+      link_display: page_events
+      link_url: ''
+      header: {  }
+      display_extenders:
+        ajax_history: {  }
+        simple_sitemap_display_extender: {  }
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_date'
   page_events:
     id: page_events
     display_title: Events
