@@ -1,0 +1,14 @@
+uuid: 95e04e03-d064-4141-a69a-b4168e76490e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.partner
+id: taxonomy_vocabulary_partner
+entity_type_id: taxonomy_vocabulary
+entity_id: partner
+action: display_page
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied

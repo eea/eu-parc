@@ -1,0 +1,38 @@
+uuid: 8d522463-2697-4c01-927b-48cfa9eb3fa3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_coordinates
+    - node.type.map
+  module:
+    - geocoder_field
+    - geolocation
+third_party_settings:
+  geocoder_field:
+    method: geocode
+    weight: 0
+    field: field_address
+    skip_not_empty_value: false
+    disabled: false
+    hidden: false
+    providers:
+      - random
+    dumper: geolocation
+    delta_handling: s_to_m
+    failure:
+      handling: preserve
+      status_message: true
+      log: true
+id: node.map.field_coordinates
+field_name: field_coordinates
+entity_type: node
+bundle: map
+label: Coordinates
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geolocation
