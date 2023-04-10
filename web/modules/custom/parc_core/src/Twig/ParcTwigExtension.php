@@ -149,8 +149,9 @@ class ParcTwigExtension extends AbstractExtension {
         $media->hasField('field_media_image') &&
         !$media->get('field_media_image')->isEmpty()
       ) {
-        $uri = $media->get('field_media_image')->entity->getFileUri();
-        if (file_exists($uri)) {
+        $logo = $media->get('field_media_image')->entity->createFileUrl();
+        
+        if (file_exists($logo)) {
           $svg = $media->get('field_media_image')->entity->createFileUrl();
         }
       }
