@@ -294,7 +294,7 @@
 
         map.on('click', (e) => {
           const coordinate = e.coordinate;
-          const hdms = ol.toStringHDMS(toLonLat(coordinate));
+          const hdms = ol.coordinate.toStringHDMS(ol.proj.toLonLat(coordinate));
           // popup.setPosition(coordinate);
           // let popover = bootstrap.Popover.getInstance(element);
           // if (popover) {
@@ -309,7 +309,7 @@
           //   title: 'Welcome to OpenLayers',
           // });
           // popover.show();
-          ///
+          //
 
           clusters.getFeatures(e.pixel).then((clickedFeatures) => {
             if (clickedFeatures.length) {
