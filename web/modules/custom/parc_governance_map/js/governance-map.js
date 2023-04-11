@@ -294,7 +294,7 @@
 
         map.on('click', (e) => {
           const coordinate = e.coordinate;
-          const hdms = toStringHDMS(toLonLat(coordinate));
+          const hdms = ol.toStringHDMS(toLonLat(coordinate));
           // popup.setPosition(coordinate);
           // let popover = bootstrap.Popover.getInstance(element);
           // if (popover) {
