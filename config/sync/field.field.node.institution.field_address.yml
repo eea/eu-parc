@@ -1,20 +1,20 @@
-uuid: 235c8f7a-201b-4dc4-8027-e9785f2651ee
+uuid: 99e9b6a7-7b17-488a-b7bc-1a524e086c1d
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_address
-    - node.type.map
+    - node.type.institution
   module:
     - address
-id: node.map.field_address
+id: node.institution.field_address
 field_name: field_address
 entity_type: node
-bundle: map
+bundle: institution
 label: Address
 description: ''
-required: true
-translatable: false
+required: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -29,7 +29,15 @@ settings:
       override: hidden
     organization:
       override: hidden
+    addressLine2:
+      override: hidden
+    postalCode:
+      override: hidden
+    sortingCode:
+      override: hidden
     dependentLocality:
-      override: optional
+      override: hidden
+    administrativeArea:
+      override: hidden
   fields: {  }
 field_type: address

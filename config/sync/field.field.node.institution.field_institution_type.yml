@@ -1,16 +1,16 @@
-uuid: 6f4f2202-2491-4b60-93d7-9e99639c60dd
+uuid: 6dbd46c5-6ebd-414d-84f6-4cef0f875c49
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_type_of_partner
-    - node.type.map
-    - taxonomy.vocabulary.partner
-id: node.map.field_type_of_partner
-field_name: field_type_of_partner
+    - field.storage.node.field_institution_type
+    - node.type.institution
+    - taxonomy.vocabulary.institution_types
+id: node.institution.field_institution_type
+field_name: field_institution_type
 entity_type: node
-bundle: map
-label: 'Type of partner'
+bundle: institution
+label: 'Institution type'
 description: ''
 required: false
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      partner: partner
+      institution_types: institution_types
     sort:
       field: name
       direction: asc

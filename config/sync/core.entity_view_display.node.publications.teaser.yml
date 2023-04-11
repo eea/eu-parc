@@ -26,9 +26,12 @@ dependencies:
     - image.style.large
     - node.type.publications
   module:
+    - color_field
+    - datetime
     - field_group
     - link
     - media
+    - text
     - user
 third_party_settings:
   field_group:

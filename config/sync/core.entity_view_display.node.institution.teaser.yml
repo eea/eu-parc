@@ -5,7 +5,16 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.institution.body
+    - field.field.node.institution.field_abbreviation
+    - field.field.node.institution.field_address
     - field.field.node.institution.field_coordinates
+    - field.field.node.institution.field_institution_type
+    - field.field.node.institution.field_media_image
+    - field.field.node.institution.field_nhcp_email
+    - field.field.node.institution.field_nhcp_name
+    - field.field.node.institution.field_original_abbreviation
+    - field.field.node.institution.field_original_name
+    - field.field.node.institution.field_website
     - node.type.institution
   module:
     - text
@@ -30,4 +39,13 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_abbreviation: true
+  field_address: true
   field_coordinates: true
+  field_institution_type: true
+  field_media_image: true
+  field_nhcp_email: true
+  field_nhcp_name: true
+  field_original_abbreviation: true
+  field_original_name: true
+  field_website: true

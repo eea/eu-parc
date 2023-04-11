@@ -1,0 +1,19 @@
+uuid: bb4faaac-e230-4dee-ac13-ea044728194b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_abbreviation
+    - node.type.institution
+id: node.institution.field_abbreviation
+field_name: field_abbreviation
+entity_type: node
+bundle: institution
+label: Abbreviation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

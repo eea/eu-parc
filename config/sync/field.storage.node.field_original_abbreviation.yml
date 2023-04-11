@@ -1,11 +1,11 @@
-uuid: 083b1a26-07ff-468b-bd2b-5aa01efc570e
+uuid: e1fc66b8-d8d0-4e4f-91e0-e67801df63e4
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_long_name
-field_name: field_long_name
+id: node.field_original_abbreviation
+field_name: field_original_abbreviation
 entity_type: node
 type: string
 settings:

@@ -1,0 +1,8 @@
+uuid: 2eb6f7fe-018d-4321-a7af-e7bc5556d572
+langcode: en
+status: true
+dependencies: {  }
+name: 'Institution types'
+vid: institution_types
+description: ''
+weight: 0

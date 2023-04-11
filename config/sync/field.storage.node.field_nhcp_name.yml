@@ -1,19 +1,20 @@
-uuid: 75b7295b-5b1f-4f7b-b244-7a9a5185717d
+uuid: d824247e-b23c-4442-aa3a-63a676191441
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - taxonomy
-id: node.field_type_of_partner
-field_name: field_type_of_partner
+id: node.field_nhcp_name
+field_name: field_nhcp_name
 entity_type: node
-type: entity_reference
+type: string
 settings:
-  target_type: taxonomy_term
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
