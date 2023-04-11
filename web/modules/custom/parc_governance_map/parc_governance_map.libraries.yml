@@ -1,0 +1,11 @@
+openlayers:
+  remote: https://openlayers.org/
+  version: 7.3.0
+  license:
+    name: Openlayers-License
+    url: https://opensource.org/license/bsd-2-clause/
+    gpl-compatible: true
+  js:
+    https://cdn.jsdelivr.net/npm/ol@7.3.0/dist/ol.js: {type: external, minified: true }
+  css:
+    https://cdn.jsdelivr.net/npm/ol@7.3.0/ol.css: {type: external, minified: true }
