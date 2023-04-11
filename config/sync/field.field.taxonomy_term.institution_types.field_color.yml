@@ -1,0 +1,22 @@
+uuid: 212f6c1a-6cf1-4e95-a129-89c94e8c481e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_color
+    - taxonomy.vocabulary.institution_types
+  module:
+    - color_field
+id: taxonomy_term.institution_types.field_color
+field_name: field_color
+entity_type: taxonomy_term
+bundle: institution_types
+label: Color
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

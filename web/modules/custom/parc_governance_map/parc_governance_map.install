@@ -1,0 +1,49 @@
+<?php
+
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_install().
+ */
+function parc_governance_map_install() {
+  parc_governance_map_update_9001();
+}
+
+/**
+ * Delete partner vocabulary terms, create institution types.
+ */
+function parc_governance_map_update_9001() {
+  if (Vocabulary::load('partner')) {
+    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
+      'vid' => 'partner',
+    ]);
+    foreach ($terms as $term) {
+      $term->delete();
+    }
+  }
+
+  if (!Vocabulary::load('institution_types')) {
+    throw new Exception('Institution types vocabulary not yet created');
+  }
+
+  $terms = [
+    'EU Hubs' => '#54d8c3',
+    'National Hubs' => '#f0879c',
+    'University' => '#3375ff',
+    'Laboratory' => '#6d0692',
+    'Research Labs' => '#327d70',
+  ];
+
+  foreach ($terms as $name => $color) {
+    $term = Term::create([
+      'name' => $name,
+      'vid' => 'institution_types',
+      'field_color' => [
+        'color' => strtoupper($color),
+        'opacity' => NULL,
+      ],
+    ]);
+    $term->save();
+  }
+}

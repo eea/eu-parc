@@ -24,6 +24,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class GovernanceMap extends StylePluginBase {
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * The node view builder.
    *
    * @var \Drupal\node\NodeViewBuilder $nodeViewBuilder
@@ -54,6 +61,7 @@ class GovernanceMap extends StylePluginBase {
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, RendererInterface $renderer) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
+    $this->entityTypeManager = $entity_type_manager;
     $this->nodeViewBuilder = $entity_type_manager->getViewBuilder('node');
     $this->renderer = $renderer;
   }
@@ -120,6 +128,21 @@ class GovernanceMap extends StylePluginBase {
       ];
     }
 
+    $all_institution_types = [];
+    $institution_terms = $this->entityTypeManager
+      ->getStorage('taxonomy_term')
+      ->loadByProperties([
+        'vid' => 'institution_types',
+      ]);
+
+    foreach ($institution_terms as $term) {
+      $all_institution_types[] = [
+        'id' => $term->id(),
+        'color' => $term->get('field_color')->color,
+        'name' => $term->label(),
+      ];
+    }
+
     return [
       '#theme' => 'parc_governance_map',
       '#map_id' => $map_id,
@@ -132,6 +155,7 @@ class GovernanceMap extends StylePluginBase {
             $map_id => [
               'institutions' => $institutions,
             ],
+            'institution_types' => $all_institution_types,
           ],
         ],
       ],

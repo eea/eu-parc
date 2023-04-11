@@ -23,48 +23,7 @@
         var clusterUids = [];
         var clusterPaths = [];
 
-        var categories = [
-          {
-            id: 1,
-            name: 'EU Hubs',
-            color: '#54d8c3'
-          },
-          {
-            id: 2,
-            name: 'National Hubs',
-            color: '#f0879c'
-          },
-          {
-            id: 3,
-            name: 'University',
-            color: '#3375ff'
-          },
-          {
-            id: 4,
-            name: 'Laboratory',
-            color: '#6d0692'
-          },
-          {
-            id: 5,
-            name: 'Research Labs',
-            color: '#327d70'
-          },
-          {
-            id: 6,
-            name: 'National Hubs 1',
-            color: '#d56149'
-          },
-          {
-            id: 7,
-            name: 'University 1',
-            color: '#c593fc'
-          },
-          {
-            id: 8,
-            name: 'Laboratory 1',
-            color: '#dcb436'
-          }
-        ];
+        var categories = settings.parc_governance_map.institution_types;
         bootstrap.Tooltip.Default.allowList['*'].push('style');
 
         var map_id = $(this).data('map-id');

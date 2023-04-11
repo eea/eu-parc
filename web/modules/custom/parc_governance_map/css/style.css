@@ -21,14 +21,12 @@
   --popover-font-size: 0.875rem;
   --popover-bg: #fff;
   --popover-border-width: 1px;
-  --popover-border-color: var(--border-color-translucent);
   --popover-border-radius: 0.5rem;
   --popover-inner-border-radius: calc(0.5rem - 1px);
   --popover-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   --popover-header-padding-x: 1rem;
   --popover-header-padding-y: 0.5rem;
   --popover-header-font-size: 1rem;
-  --popover-header-color: ;
   --popover-header-bg: #f0f0f0;
   --popover-body-padding-x: 1rem;
   --popover-body-padding-y: 1rem;
@@ -39,7 +37,6 @@
   z-index: var(--popover-zindex);
   display: block;
   max-width: var(--popover-max-width);
-  font: normal 400 var(--popover-font-size) / 1.5 var(--font-sans-serif);
   text-align: left;
   text-decoration: none;
   text-shadow: none;
