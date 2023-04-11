@@ -69,6 +69,7 @@
 
         var map_id = $(this).data('map-id');
         var institutions = settings.parc_governance_map[map_id].institutions;
+        console.log(institutions);
 
         const count = 100;
         const features = new Array(institutions.length);
@@ -100,7 +101,6 @@
 //         features[100] = myFeature;
 //
 
-        console.log(ol);
         const source = new ol.source.Vector({
           features: features,
         });
@@ -313,7 +313,7 @@
 
           clusters.getFeatures(e.pixel).then((clickedFeatures) => {
             if (clickedFeatures.length) {
-              console.log(clickedFeatures[0]);
+              // console.log(clickedFeatures[0]);
               // Get clustered Coordinates
               const features = clickedFeatures[0].get('features');
               // console.log(features.length)
@@ -393,10 +393,10 @@
               //servet todo
               if (addPath) {
                 features.forEach(element => {
-                  console.log(element);
+                  // console.log(element);
                   foundPath.ctx = ctx;
                   foundPath.paths.push({ path: path, categoryId: element.get('categoryId'), name: element.get('name') });
-                  console.log(clusterPaths);
+                  // console.log(clusterPaths);
                 });
               }
 

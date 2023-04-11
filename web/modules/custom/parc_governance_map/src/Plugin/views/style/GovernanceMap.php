@@ -99,13 +99,24 @@ class GovernanceMap extends StylePluginBase {
       $full_render = $this->nodeViewBuilder->view($institution);
       $full_render = $this->renderer->renderRoot($full_render);
 
+      $institution_types = [];
+      foreach ($institution->get('field_institution_type')->referencedEntities() as $term) {
+        /** @var \Drupal\taxonomy\TermInterface $term */
+        $institution_types[$term->id()] = [
+          'id' => $term->id(),
+          'label' => $term->label(),
+        ];
+      }
+
       $institutions[] = [
+        'id' => $institution->id(),
         'lat' => (float) $institution->get('field_coordinates')->lat,
         'long' => (float) $institution->get('field_coordinates')->lng,
         'title' => $institution->getTitle(),
         'render_teaser' => $teaser_render,
         'render_full' => $full_render,
-        'id' => $institution->id(),
+        'institution_types' => $institution_types,
+        'country' => $institution->get('field_address')->country_code,
       ];
     }
 
