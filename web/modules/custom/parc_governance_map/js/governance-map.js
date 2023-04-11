@@ -42,7 +42,7 @@
           features[i].setProperties(
             {
               'countryId': randomIntFromInterval(1, 10),
-              'categoryId': randomIntFromInterval(1, 4),
+              'categoryId': institutions[i].institution_type,
               'name': institutions[i].title,
             }
           );

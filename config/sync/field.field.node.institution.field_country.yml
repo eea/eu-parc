@@ -1,0 +1,29 @@
+uuid: e35436b0-882a-422e-91eb-6b5e963430a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - node.type.institution
+    - taxonomy.vocabulary.countries
+id: node.institution.field_country
+field_name: field_country
+entity_type: node
+bundle: institution
+label: Country
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      countries: countries
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

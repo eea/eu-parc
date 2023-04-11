@@ -5,6 +5,7 @@ namespace Drupal\parc_governance_map\Plugin\views\style;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -102,18 +103,15 @@ class GovernanceMap extends StylePluginBase {
       }
 
       $teaser_render = $this->nodeViewBuilder->view($institution, 'teaser');
-      $teaser_render = $this->renderer->renderRoot($teaser_render);
+      $teaser_render = $this->renderer->render($teaser_render);
 
       $full_render = $this->nodeViewBuilder->view($institution);
-      $full_render = $this->renderer->renderRoot($full_render);
+      $full_render = $this->renderer->render($full_render);
 
-      $institution_types = [];
-      foreach ($institution->get('field_institution_type')->referencedEntities() as $term) {
-        /** @var \Drupal\taxonomy\TermInterface $term */
-        $institution_types[$term->id()] = [
-          'id' => $term->id(),
-          'label' => $term->label(),
-        ];
+      $country_iso2 = NULL;
+      $country = $institution->get('field_country')->entity;
+      if ($country instanceof TermInterface) {
+        $country_iso2 = $country->get('field_iso2')->value;
       }
 
       $institutions[] = [
@@ -123,8 +121,8 @@ class GovernanceMap extends StylePluginBase {
         'title' => $institution->getTitle(),
         'render_teaser' => $teaser_render,
         'render_full' => $full_render,
-        'institution_types' => $institution_types,
-        'country' => $institution->get('field_address')->country_code,
+        'institution_type' => $institution->get('field_institution_type')->target_id,
+        'country' => $country_iso2,
       ];
     }
 

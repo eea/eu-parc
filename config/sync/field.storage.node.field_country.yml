@@ -1,16 +1,17 @@
-uuid: dd20869c-ad83-4806-9171-ea2e8a47227d
+uuid: 4521a915-dbb2-498a-a668-89d9c1fa0cc0
 langcode: en
 status: true
 dependencies:
   module:
-    - address
     - node
-id: node.field_address
-field_name: field_address
+    - taxonomy
+id: node.field_country
+field_name: field_country
 entity_type: node
-type: address
-settings: {  }
-module: address
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: 1
 translatable: true

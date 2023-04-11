@@ -153,6 +153,9 @@
         "patches": {
             "drupal/color_field": {
                 "3064418 HTML5 widget for unlimited values needs improvements":"https://www.drupal.org/files/issues/2020-12-12/3064418-12--color-field-html5-widget-clear.patch"
+            },
+            "drupal/facets": {
+                "Facets with AJAX not working in most of situations": "https://www.drupal.org/files/issues/2023-02-07/facets-with-ajax-not-working-in-most-of-situations-3052574-174.patch"
             }
         }
     },

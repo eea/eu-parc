@@ -5,8 +5,11 @@ dependencies:
   config:
     - field.field.node.institution.body
     - field.field.node.institution.field_abbreviation
-    - field.field.node.institution.field_address
+    - field.field.node.institution.field_address_data
+    - field.field.node.institution.field_city
     - field.field.node.institution.field_coordinates
+    - field.field.node.institution.field_country
+    - field.field.node.institution.field_institution_roles
     - field.field.node.institution.field_institution_type
     - field.field.node.institution.field_media_image
     - field.field.node.institution.field_nhcp_email
@@ -17,7 +20,6 @@ dependencies:
     - image.style.large
     - node.type.institution
   module:
-    - address
     - geolocation
     - link
     - media
@@ -43,12 +45,20 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
-  field_address:
-    type: address_default
-    label: inline
+  field_address_data:
+    type: text_default
+    label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 107
+    weight: 114
+    region: content
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 115
     region: content
   field_coordinates:
     type: geolocation_latlng
@@ -56,6 +66,22 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_country:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_institution_roles:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 116
     region: content
   field_institution_type:
     type: entity_reference_label
@@ -126,3 +152,4 @@ content:
     region: content
 hidden:
   addtoany: true
+  search_api_excerpt: true

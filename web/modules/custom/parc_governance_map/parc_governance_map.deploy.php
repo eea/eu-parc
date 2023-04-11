@@ -4,25 +4,9 @@ use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 
 /**
- * Implements hook_install().
- */
-function parc_governance_map_install() {
-  parc_governance_map_update_9001();
-}
-
-/**
  * Delete partner vocabulary terms, create institution types.
  */
-function parc_governance_map_update_9001() {
-  if (Vocabulary::load('partner')) {
-    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
-      'vid' => 'partner',
-    ]);
-    foreach ($terms as $term) {
-      $term->delete();
-    }
-  }
-
+function parc_governance_map_deploy_9001() {
   if (!Vocabulary::load('institution_types')) {
     throw new Exception('Institution types vocabulary not yet created');
   }
@@ -43,6 +27,24 @@ function parc_governance_map_update_9001() {
         'color' => strtoupper($color),
         'opacity' => NULL,
       ],
+    ]);
+    $term->save();
+  }
+}
+
+/**
+ * Create countries.
+ */
+function parc_governance_map_deploy_9002() {
+  $data = file_get_contents("https://raw.githubusercontent.com/cristiroma/countries/master/data/countries.json");
+  $items = json_decode($data, TRUE);
+  foreach ($items as $item) {
+    $term = Term::create([
+      'name' => $item['name'],
+      'vid' => 'countries',
+      'field_official_name' => $item['name_official'],
+      'field_iso2' => $item['code2l'],
+      'field_iso3' => $item['code3l'],
     ]);
     $term->save();
   }

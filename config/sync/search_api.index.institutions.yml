@@ -3,6 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_country
+    - field.storage.node.field_institution_type
     - search_api.server.database
   module:
     - search_api
@@ -11,11 +13,27 @@ id: institutions
 name: Institutions
 description: ''
 read_only: false
-field_settings: {  }
+field_settings:
+  field_country:
+    label: Country
+    datasource_id: 'entity:node'
+    property_path: field_country
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_country
+  field_institution_type:
+    label: 'Institution type'
+    datasource_id: 'entity:node'
+    property_path: field_institution_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_institution_type
 datasource_settings:
   'entity:node':
     bundles:
-      default: true
+      default: false
       selected:
         - institution
     languages:

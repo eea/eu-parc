@@ -1,0 +1,14 @@
+uuid: 72bb46f7-9a14-4eca-94be-bae23059ce56
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.institution_roles
+id: taxonomy_vocabulary_institution_roles
+entity_type_id: taxonomy_vocabulary
+entity_id: institution_roles
+action: page_not_found
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied
