@@ -2,6 +2,4 @@ name: Parc Governance Map Module
 description: Open Layers map presenting all the different bodies that belongs to the governance of PARC.
 package: PARC Custom
 type: module
-version: 1.0
 core_version_requirement: ^8 || ^9 || ^10
-core: 9.x

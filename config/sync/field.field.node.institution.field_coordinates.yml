@@ -1,0 +1,21 @@
+uuid: 3f7b0ddf-4b3e-4389-b118-388461bf36aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_coordinates
+    - node.type.institution
+  module:
+    - geolocation
+id: node.institution.field_coordinates
+field_name: field_coordinates
+entity_type: node
+bundle: institution
+label: Coordinates
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: geolocation
