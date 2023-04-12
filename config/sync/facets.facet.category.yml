@@ -1,4 +1,4 @@
-uuid: d9bf8bbb-977c-474c-9e29-f7a405b66782
+uuid: 7b904430-f9a8-4a92-9a28-b5f93548a0b3
 langcode: en
 status: true
 dependencies:
@@ -7,7 +7,7 @@ dependencies:
     - views.view.institutions
   module:
     - search_api
-id: institution_type
+id: category
 name: Category
 weight: 0
 min_count: 0
@@ -15,7 +15,7 @@ missing: false
 missing_label: others
 url_alias: institution_type
 facet_source_id: 'search_api:views_block__institutions__governance_map'
-field_identifier: field_institution_type
+field_identifier: field_institution_roles
 query_operator: or
 hard_limit: 0
 exclude: false

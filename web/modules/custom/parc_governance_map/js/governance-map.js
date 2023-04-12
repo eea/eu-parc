@@ -23,7 +23,7 @@
         var clusterUids = [];
         var clusterPaths = [];
 
-        var categories = settings.parc_governance_map.institution_types;
+        var categories = settings.parc_governance_map.categories;
         bootstrap.Tooltip.Default.allowList['*'].push('style');
 
         var map_id = $(this).data('map-id');
@@ -42,7 +42,7 @@
           features[i].setProperties(
             {
               'countryId': randomIntFromInterval(1, 10),
-              'categoryId': institutions[i].institution_type,
+              'categoryId': institutions[i].category,
               'name': institutions[i].title,
             }
           );

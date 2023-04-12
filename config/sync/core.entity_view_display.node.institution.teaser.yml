@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.institution.field_coordinates
     - field.field.node.institution.field_country
     - field.field.node.institution.field_institution_roles
-    - field.field.node.institution.field_institution_type
     - field.field.node.institution.field_media_image
     - field.field.node.institution.field_nhcp_email
     - field.field.node.institution.field_nhcp_name
@@ -48,7 +47,6 @@ hidden:
   field_coordinates: true
   field_country: true
   field_institution_roles: true
-  field_institution_type: true
   field_media_image: true
   field_nhcp_email: true
   field_nhcp_name: true

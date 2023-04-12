@@ -4,25 +4,28 @@ use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 
 /**
- * Delete partner vocabulary terms, create institution types.
+ * Delete partner vocabulary terms, create institution roles.
  */
 function parc_governance_map_deploy_9001() {
-  if (!Vocabulary::load('institution_types')) {
-    throw new Exception('Institution types vocabulary not yet created');
+  if (!Vocabulary::load('institution_roles')) {
+    throw new Exception('Institution roles vocabulary not yet created');
   }
 
   $terms = [
-    'EU Hubs' => '#54d8c3',
-    'National Hubs' => '#f0879c',
-    'University' => '#3375ff',
-    'Laboratory' => '#6d0692',
-    'Research Labs' => '#327d70',
+    'Grant Signatory' => '#54d8c3',
+    'National Hub Contact Point' => '#f0879c',
+    'Work Package Co-leading Organization' => '#3375ff',
+    'Coordinator' => '#6d0692',
+
+    'Beneficiary' => '#327d70',
+    'Affiliated Partner' => '#d56149',
+    'Associated Partner' => '#c593fc',
   ];
 
   foreach ($terms as $name => $color) {
     $term = Term::create([
       'name' => $name,
-      'vid' => 'institution_types',
+      'vid' => 'institution_roles',
       'field_color' => [
         'color' => strtoupper($color),
         'opacity' => NULL,

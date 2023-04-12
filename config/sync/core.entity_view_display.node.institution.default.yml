@@ -10,7 +10,6 @@ dependencies:
     - field.field.node.institution.field_coordinates
     - field.field.node.institution.field_country
     - field.field.node.institution.field_institution_roles
-    - field.field.node.institution.field_institution_type
     - field.field.node.institution.field_media_image
     - field.field.node.institution.field_nhcp_email
     - field.field.node.institution.field_nhcp_name
@@ -82,14 +81,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 116
-    region: content
-  field_institution_type:
-    type: entity_reference_label
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    weight: 109
     region: content
   field_media_image:
     type: media_thumbnail

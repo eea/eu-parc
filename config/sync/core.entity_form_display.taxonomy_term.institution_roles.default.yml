@@ -1,17 +1,17 @@
-uuid: b3cf8335-03ba-4a63-831c-a6eea0c2c41e
+uuid: 05c7f7d4-7e55-47f1-bfb6-d14cc17eeb5d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.institution_types.field_color
-    - taxonomy.vocabulary.institution_types
+    - field.field.taxonomy_term.institution_roles.field_color
+    - taxonomy.vocabulary.institution_roles
   module:
     - color_field
     - path
     - text
-id: taxonomy_term.institution_types.default
+id: taxonomy_term.institution_roles.default
 targetEntityType: taxonomy_term
-bundle: institution_types
+bundle: institution_roles
 mode: default
 content:
   description:

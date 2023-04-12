@@ -121,22 +121,22 @@ class GovernanceMap extends StylePluginBase {
         'title' => $institution->getTitle(),
         'render_teaser' => $teaser_render,
         'render_full' => $full_render,
-        'institution_type' => $institution->get('field_institution_type')->target_id,
+        'category' => $institution->get('field_institution_roles')->target_id,
         'country' => $country_iso2,
       ];
     }
 
-    $all_institution_types = [];
-    $institution_terms = $this->entityTypeManager
+    $all_categories = [];
+    $category_terms = $this->entityTypeManager
       ->getStorage('taxonomy_term')
       ->loadByProperties([
-        'vid' => 'institution_types',
+        'vid' => 'institution_roles',
       ]);
 
-    foreach ($institution_terms as $term) {
-      $all_institution_types[] = [
+    foreach ($category_terms as $term) {
+      $all_categories[] = [
         'id' => $term->id(),
-        'color' => $term->get('field_color')->color,
+        'color' => $term->get('field_color')->color ?? '#000000',
         'name' => $term->label(),
       ];
     }
@@ -153,7 +153,7 @@ class GovernanceMap extends StylePluginBase {
             $map_id => [
               'institutions' => $institutions,
             ],
-            'institution_types' => $all_institution_types,
+            'categories' => $all_categories,
           ],
         ],
       ],
