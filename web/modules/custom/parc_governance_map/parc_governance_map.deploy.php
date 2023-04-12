@@ -12,14 +12,12 @@ function parc_governance_map_deploy_9001() {
   }
 
   $terms = [
+    'Coordinator' => '#6d0692',
     'Grant Signatory' => '#54d8c3',
+    'Affiliated Entity' => '#d56149',
+    'Associated Partner' => '#c593fc',
     'National Hub Contact Point' => '#f0879c',
     'Work Package Co-leading Organization' => '#3375ff',
-    'Coordinator' => '#6d0692',
-
-    'Beneficiary' => '#327d70',
-    'Affiliated Partner' => '#d56149',
-    'Associated Partner' => '#c593fc',
   ];
 
   foreach ($terms as $name => $color) {
