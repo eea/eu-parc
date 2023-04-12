@@ -121,7 +121,7 @@ class GovernanceMap extends StylePluginBase {
       $role = $institution->get('field_institution_roles')->entity;
       if (!empty($role)) {
         $category = $role->id();
-        $color = $role->get('field_color')->value ?? '#000000';
+        $color = $role->get('field_color')->color ?? '#000000';
       }
 
       $institutions[] = [
@@ -201,7 +201,9 @@ class GovernanceMap extends StylePluginBase {
       ->getStorage('image_style')
       ->load('thumbnail');
     $small_image = $image_style->buildUri($file->getFileUri());
-    $image_style->createDerivative($file->getFileUri(), $small_image);
+    if (!file_exists($small_image)) {
+      $image_style->createDerivative($file->getFileUri(), $small_image);
+    }
 
     // Encode the image in base64 to speed up loading times.
     $image_binary = fread(fopen($small_image, 'r'), filesize($small_image));
