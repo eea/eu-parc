@@ -4,6 +4,7 @@ namespace Drupal\parc_governance_map\Plugin\views\style;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\views\Plugin\views\style\StylePluginBase;
@@ -114,6 +115,15 @@ class GovernanceMap extends StylePluginBase {
         $country_iso2 = $country->get('field_iso2')->value;
       }
 
+      $color = '#000000';
+      $category = NULL;
+      /** @var \Drupal\taxonomy\TermInterface $role */
+      $role = $institution->get('field_institution_roles')->entity;
+      if (!empty($role)) {
+        $category = $role->id();
+        $color = $role->get('field_color')->value ?? '#000000';
+      }
+
       $institutions[] = [
         'id' => $institution->id(),
         'lat' => (float) $institution->get('field_coordinates')->lat,
@@ -121,8 +131,10 @@ class GovernanceMap extends StylePluginBase {
         'title' => $institution->getTitle(),
         'render_teaser' => $teaser_render,
         'render_full' => $full_render,
-        'category' => $institution->get('field_institution_roles')->target_id,
+        'category' => $category,
         'country' => $country_iso2,
+        'color' => $color,
+        'image' => $this->getInstitutionImage($institution),
       ];
     }
 
@@ -158,6 +170,44 @@ class GovernanceMap extends StylePluginBase {
         ],
       ],
     ];
+  }
+
+  /**
+   * Retrieve the base64 image of an institution.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The institution.
+   *
+   * @return string
+   *   The image base64.
+   */
+  protected function getInstitutionImage(NodeInterface $node) {
+    $media = $node->get('field_media_image')->entity;
+    if (empty($media)) {
+      return NULL;
+    }
+
+    /** @var \Drupal\file\FileInterface $file */
+    $file = $media->get('field_media_image')->entity;
+    if (empty($file)) {
+      return NULL;
+    }
+
+    if (!file_exists($file->getFileUri())) {
+      return;
+    }
+
+    $image_style = $this->entityTypeManager
+      ->getStorage('image_style')
+      ->load('thumbnail');
+    $small_image = $image_style->buildUri($file->getFileUri());
+    $image_style->createDerivative($file->getFileUri(), $small_image);
+
+    // Encode the image in base64 to speed up loading times.
+    $image_binary = fread(fopen($small_image, 'r'), filesize($small_image));
+    $file_type = mime_content_type($small_image);
+    $image_base64 = 'data:' . $file_type . ';base64,' . base64_encode($image_binary);
+    return $image_base64;
   }
 
   /**
