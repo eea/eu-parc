@@ -9,7 +9,7 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:menu_link_content:00dc0524-a390-4ec0-937d-c03ed9c371cc'
-name: 'Interactive map'
+name: 'PARC Partner'
 type: map
 description: ''
 help: ''
