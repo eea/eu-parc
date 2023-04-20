@@ -12,3 +12,25 @@
 .popover-arrow {
   margin: 5px !important;
 }
+
+.ol-control {
+  background-color: transparent;
+}
+
+.ol-zoom {
+  right: 0.5em;
+  left: auto;
+}
+
+.ol-zoom .ol-zoom-in {
+  border-radius: 50%;
+}
+
+.ol-zoom .ol-zoom-out {
+  border-radius: 50%;
+}
+
+.ol-control button {
+  margin: 5px;
+  color: black;
+}
