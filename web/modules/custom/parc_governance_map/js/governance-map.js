@@ -10,16 +10,13 @@
 
         var map_id = $(this).data('map-id');
         var institutions = settings.parc_governance_map[map_id].institutions;
+        // TODO: Remove console log
         console.log(institutions);
 
         const features = new Array(institutions.length);
-        const e = 450000;
-        for (i = 0; i < institutions.length; i++) {
-          // const coordinates = [2 * e * Math.random() * 5 - e, 2 * e * Math.random() * 5 - e];
+        for (let i = 0; i < institutions.length; i++) {
           const coordinates = [institutions[i].lat * 100000, institutions[i].long * 100000];
           features[i] = new ol.Feature(new ol.geom.Point(coordinates));
-
-          console.log('HERE', institutions[i]);
 
           // add custom features
           features[i].setProperties(
@@ -245,7 +242,7 @@
             if (clickedFeatures.length) {
               // Get clustered Coordinates
               const features = clickedFeatures[0].get('features');
-              // console.log(features.length)
+
               if (features.length > 1) {
                 const extent = ol.extent.boundingExtent(
                   features.map((r) => r.getGeometry().getCoordinates())
@@ -327,10 +324,11 @@
 
                 if (addPath) {
                   features.forEach(element => {
-                    console.log(element);
+                    // TODO: remove console.log
+                    // console.log(element);
                     foundPath.ctx = ctx;
                     foundPath.paths.push({ path: path, categoryId: element.get('categoryId'), name: element.get('name') });
-                    console.log(clusterPaths);
+                    // console.log(clusterPaths);
                   });
                 }
 
