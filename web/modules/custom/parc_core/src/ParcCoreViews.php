@@ -81,7 +81,7 @@ class ParcCoreViews implements ContainerInjectionInterface {
           'field_tags',
           'field_overlay',
           $defaultOverlay
-       );
+        );
       }
     }
 
@@ -92,18 +92,22 @@ class ParcCoreViews implements ContainerInjectionInterface {
       if (
           $view->current_display === 'page_events' ||
           $view->current_display === 'block_1' ||
-          $view->current_display === 'block_events_front_page'
+          $view->current_display === 'block_events_front_page' ||
+          $view->current_display === 'block_related_events' ||
+          $view->current_display == 'embed_1'
       ) {
-      $defaultOverlay = '#8631A7';
-      $this->getOverlaysOrder(
+
+        $defaultOverlay = '#8631A7';
+
+        $this->getOverlaysOrder(
         $view,
         'events_category',
         'field_categories',
         'field_colors',
         $defaultOverlay
-      );
+        );
+      }
     }
-  }
 
   }
 
@@ -118,7 +122,6 @@ class ParcCoreViews implements ContainerInjectionInterface {
    *   Field overlay Id.
    * @param string $defaultOverlay
    *   Default Overlay.
-   *
    */
   public function getOverlaysOrder(
     ViewExecutable &$view,
@@ -127,7 +130,7 @@ class ParcCoreViews implements ContainerInjectionInterface {
     string $fieldOverlay,
     string $defaultOverlay
   ) {
-    $terms =$this->entityTypeManager->getStorage('taxonomy_term')
+    $terms = $this->entityTypeManager->getStorage('taxonomy_term')
       ->loadTree($vocabulary, 0, NULL, TRUE);
 
     // Get the overlays data.
@@ -173,7 +176,6 @@ class ParcCoreViews implements ContainerInjectionInterface {
         !$result->_entity->get($category)->isEmpty()
       ) {
         $termId = $result->_entity->get($category)->entity->id();
-
         // Get the overlay value for the current content.
         if ($overlays[$termId]['current'] > $overlays[$termId]['max']) {
           $overlay = 0;
@@ -184,8 +186,7 @@ class ParcCoreViews implements ContainerInjectionInterface {
         }
 
         // Assing the overlay value.
-        $result->_entity->overlay = isset($overlays[$termId]['overlays'][$overlay]) ?
-          $overlays[$termId]['overlays'][$overlay] :
+        $result->_entity->overlay = $overlays[$termId]['overlays'][$overlay] ??
           $defaultOverlay;
       }
       else {

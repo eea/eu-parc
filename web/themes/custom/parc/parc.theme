@@ -89,6 +89,9 @@ function parc_preprocess_node(&$variables) {
     // dump($variables['elements']['field_journal']['0']['#context']['value']);
     // dump($node);
   }
+  if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'events') {
+    $variables['#cache']['max-age'] = 0;
+  }
 }
 
 /**

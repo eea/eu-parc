@@ -72,7 +72,7 @@ class ParcTwigExtension extends AbstractExtension {
       $color = $term->get('field_colors')->getValue();
     }
 
-    return isset($color[0]['color']) ? $color[0]['color'] : '#6E009A';
+    return $color[0]['color'] ?? '#6E009A';
   }
 
   /**
