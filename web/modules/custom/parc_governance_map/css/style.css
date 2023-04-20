@@ -277,3 +277,7 @@
   background-color: var(--tooltip-bg);
   border-radius: var(--tooltip-border-radius);
 }
+
+.popover-arrow {
+  margin-left: 5px !important;
+}
