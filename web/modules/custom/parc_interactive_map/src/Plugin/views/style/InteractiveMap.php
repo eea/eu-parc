@@ -1,10 +1,9 @@
 <?php
 
-namespace Drupal\parc_governance_map\Plugin\views\style;
+namespace Drupal\parc_interactive_map\Plugin\views\style;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\views\Plugin\views\style\StylePluginBase;
@@ -16,14 +15,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @ingroup views_style_plugins
  *
  * @ViewsStyle(
- *   id = "governance_map",
- *   title = @Translation("Governance map"),
+ *   id = "interactive_map",
+ *   title = @Translation("Interactive map"),
  *   help = @Translation("Display results as a map"),
- *   theme = "views_view_governance_map",
+ *   theme = "views_view_interactive_map",
  *   display_types = {"normal"}
  * )
  */
-class GovernanceMap extends StylePluginBase {
+class InteractiveMap extends StylePluginBase {
 
   /**
    * The entity type manager.
@@ -47,7 +46,7 @@ class GovernanceMap extends StylePluginBase {
   protected $renderer;
 
   /**
-   * Constructs a GovernanceMap object.
+   * Constructs a InteractiveMap object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -154,14 +153,14 @@ class GovernanceMap extends StylePluginBase {
     }
 
     return [
-      '#theme' => 'parc_governance_map',
+      '#theme' => 'parc_interactive_map',
       '#map_id' => $map_id,
       '#attached' => [
         'library' => [
-          'parc_governance_map/governance_map',
+          'parc_interactive_map/interactive_map',
         ],
         'drupalSettings' => [
-          'parc_governance_map' => [
+          'parc_interactive_map' => [
             $map_id => [
               'institutions' => $institutions,
             ],

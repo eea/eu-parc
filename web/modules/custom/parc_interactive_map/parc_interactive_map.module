@@ -5,9 +5,9 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_theme().
  */
-function parc_governance_map_theme() {
+function parc_interactive_map_theme() {
   return [
-    'parc_governance_map' => [
+    'parc_interactive_map' => [
       'variables' => [
         'map_id' => FALSE,
       ],

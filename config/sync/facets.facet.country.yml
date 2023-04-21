@@ -9,12 +9,12 @@ dependencies:
     - search_api
 id: country
 name: Country
-weight: 0
+weight: -1
 min_count: 0
 missing: false
 missing_label: others
 url_alias: country
-facet_source_id: 'search_api:views_block__institutions__governance_map'
+facet_source_id: 'search_api:views_block__institutions__institution_map'
 field_identifier: field_country
 query_operator: or
 hard_limit: 0

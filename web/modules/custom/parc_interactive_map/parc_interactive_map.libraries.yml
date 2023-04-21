@@ -15,13 +15,13 @@ openlayers:
       https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css: { type: external, minified: true }
       https://cdn.jsdelivr.net/npm/ol@7.3.0/ol.css: { type: external, minified: true }
 
-governance_map:
+interactive_map:
   css:
     component:
       css/style.css: {}
   js:
-    js/governance-map.js: {}
+    js/interactive-map.js: {}
   dependencies:
-    - parc_governance_map/openlayers
+    - parc_interactive_map/openlayers
     - core/jquery
     - core/jquery.once

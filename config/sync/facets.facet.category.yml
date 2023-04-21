@@ -8,13 +8,13 @@ dependencies:
   module:
     - search_api
 id: category
-name: Category
+name: 'Institution roles'
 weight: 0
 min_count: 0
 missing: false
 missing_label: others
 url_alias: institution_type
-facet_source_id: 'search_api:views_block__institutions__governance_map'
+facet_source_id: 'search_api:views_block__institutions__institution_map'
 field_identifier: field_institution_roles
 query_operator: or
 hard_limit: 0

@@ -1,15 +1,15 @@
 (function ($, Drupal, drupalSettings) {
-  Drupal.behaviors.governanceMap = {
+  Drupal.behaviors.interactiveMap = {
     attach: function (context, settings) {
-      $('.governance-map', context).once('governanceMap').each(function () {
+      $('.interactive-map', context).once('interactiveMap').each(function () {
         var clusterUids = [];
         var clusterPaths = [];
 
-        var categories = settings.parc_governance_map.categories;
+        var categories = settings.parc_interactive_map.categories;
         bootstrap.Tooltip.Default.allowList['*'].push('style');
 
         var map_id = $(this).data('map-id');
-        var institutions = settings.parc_governance_map[map_id].institutions;
+        var institutions = settings.parc_interactive_map[map_id].institutions;
         // TODO: Remove console log
         console.log(institutions);
 

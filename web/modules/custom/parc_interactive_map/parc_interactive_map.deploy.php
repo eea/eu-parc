@@ -6,7 +6,7 @@ use Drupal\taxonomy\Entity\Term;
 /**
  * Delete partner vocabulary terms, create institution roles.
  */
-function parc_governance_map_deploy_9001() {
+function parc_interactive_map_deploy_9001() {
   if (!Vocabulary::load('institution_roles')) {
     throw new Exception('Institution roles vocabulary not yet created');
   }
@@ -36,7 +36,7 @@ function parc_governance_map_deploy_9001() {
 /**
  * Create countries.
  */
-function parc_governance_map_deploy_9002() {
+function parc_interactive_map_deploy_9002() {
   $data = file_get_contents("https://raw.githubusercontent.com/cristiroma/countries/master/data/countries.json");
   $items = json_decode($data, TRUE);
   foreach ($items as $item) {

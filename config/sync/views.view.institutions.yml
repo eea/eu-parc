@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_country
     - search_api.index.institutions
   module:
-    - parc_governance_map
+    - parc_interactive_map
     - search_api
     - user
 id: institutions
@@ -23,7 +23,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Governance Map'
+      title: 'Interactive Map'
       fields:
         field_country:
           id: field_country
@@ -124,7 +124,7 @@ display:
       arguments: {  }
       filters: {  }
       style:
-        type: governance_map
+        type: interactive_map
       row:
         type: fields
       query:
@@ -150,16 +150,15 @@ display:
         - 'config:field.storage.node.field_country'
         - 'config:search_api.index.institutions'
         - 'search_api_list:institutions'
-  governance_map:
-    id: governance_map
-    display_title: 'Governance Map'
+  institution_map:
+    id: institution_map
+    display_title: 'Interactive Map'
     display_plugin: block
-    position: 1
+    position: 2
     display_options:
       display_description: ''
       display_extenders:
-        ajax_history:
-          enable_history: false
+        ajax_history: {  }
         simple_sitemap_display_extender: {  }
         metatag_display_extender:
           metatags: {  }
