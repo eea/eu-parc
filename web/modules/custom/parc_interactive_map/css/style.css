@@ -37,9 +37,13 @@
 
 .results {
   position: absolute;
-  z-index: 999;
-  margin: 15px;
+  z-index: 5;
   max-width: 300px;
+  background: #FCFAFA;
+}
+
+.results.open {
+  height: 100%;
 }
 
 #resultsParent {
@@ -53,4 +57,27 @@
   border-radius: 5px;
   padding: 5px;
   display: none;
+}
+
+.interactive-map .accordion-item {
+  border: none !important;
+  margin: 10px;
+
+}
+
+.interactive-map .accordion-header button {
+  font-weight: normal;
+  font-size: 16px;
+  color: #000;
+  outline: 0 !important;
+  padding: 10px;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.interactive-map .accordion-header button:after {
+  width: 10px;
+  height: 9px;
+  background-position: center;
+  margin-left: 10px;
 }

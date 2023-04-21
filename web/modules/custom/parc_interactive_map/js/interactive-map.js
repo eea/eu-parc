@@ -1,6 +1,14 @@
 (function ($, Drupal, drupalSettings) {
   Drupal.behaviors.interactiveMap = {
     attach: function (context, settings) {
+      $('.interactive-map .accordion-collapse').once('mapInstitutionDetailsOpen').on('show.bs.collapse', function () {
+        $(this).closest('.results').addClass('open');
+      });
+
+      $('.interactive-map .accordion-collapse').once('mapInstitutionDetailsClose').on('show.bs.collapse', function () {
+        $(this).closest('.results').removeClass('open');
+      });
+
       $('.interactive-map', context).once('interactiveMap').each(function () {
         var clusterUids = [];
         var clusterPaths = [];
