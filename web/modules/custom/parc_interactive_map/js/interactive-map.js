@@ -277,7 +277,7 @@
               } else {
                 document.getElementById('identifyParent').style.display = 'block';
                 // document.querySelector('#selectedFeatureParent').innerHTML = `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(features[0].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${features[0].get('name')}</span></p>`;
-                document.querySelector('#selectedFeatureParent').innerHTML = `<p><span>${features[0].get('render_teaser')}</span></p>`;
+                document.querySelector('#selectedFeatureParent').innerHTML = `${features[0].get('render_teaser')}`;
                 $('.interactive-map .accordion-collapse').collapse('hide');
               }
             } else {
@@ -334,7 +334,9 @@
 
                 resolve(canvas)
               };
-              image.src = features[0].get("image");
+              if (features[0].get("image")) {
+                image.src = features[0].get("image");
+              }
 
             } else {
               let allEqualCategoryId = features.every((val, i, arr) => val.get('categoryId') === arr[0].get('categoryId'));

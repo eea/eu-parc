@@ -60,6 +60,11 @@
   margin-top: -15px;
 }
 
+#identifyParent .node--institution {
+  max-height: 600px;
+  overflow: auto;
+}
+
 #selectedFeatureParent {
   background: #fff;
   border-radius: 5px;
@@ -94,28 +99,34 @@
   background-position: center;
   margin-left: 10px;
 }
-.interactive-map .accordion-body::-webkit-scrollbar {
+
+.interactive-map .accordion-body::-webkit-scrollbar,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
-.interactive-map .accordion-body::-webkit-scrollbar-track {
+.interactive-map .accordion-body::-webkit-scrollbar-track,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #dadbdc;
 }
 
-.interactive-map .accordion-body::-webkit-scrollbar-thumb {
+.interactive-map .accordion-body::-webkit-scrollbar-thumb,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #505459;
 }
-.interactive-map .accordion-body::-webkit-scrollbar-thumb:hover {
+.interactive-map .accordion-body::-webkit-scrollbar-thumb:hover,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #6d7177;
 }
-.interactive-map .accordion-body::-webkit-scrollbar-thumb:window-inactive {
+.interactive-map .accordion-body::-webkit-scrollbar-thumb:window-inactive,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive {
   background: #505459;
 }
 
