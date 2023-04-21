@@ -123,6 +123,14 @@ class InteractiveMap extends StylePluginBase {
         $color = $role->get('field_color')->color ?? '#000000';
       }
 
+      $roles = [];
+      foreach ($institution->get('field_institution_roles')->referencedEntities() as $role) {
+        $roles[] = [
+          'label' => $role->label(),
+          'color' => $role->get('field_color')->color ?? '#000000',
+        ];
+      }
+
       $institutions[] = [
         'id' => $institution->id(),
         'lat' => (float) $institution->get('field_coordinates')->lat,
@@ -134,6 +142,7 @@ class InteractiveMap extends StylePluginBase {
         'country' => $country_iso2,
         'color' => $color,
         'image' => $this->getInstitutionImage($institution),
+        'roles' => $roles,
       ];
     }
 
