@@ -58,22 +58,22 @@
 #identifyParent {
   margin-left: 20px;
   margin-top: -15px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
 }
 
 #identifyParent .node--institution {
-  max-height: 600px;
+  max-height: 700px;
   overflow: auto;
+  border: none !important;
 }
 
-#selectedFeatureParent {
-  background: #fff;
-  border-radius: 5px;
-}
 
 .interactive-map .accordion-item {
   border: none !important;
   margin: 20px;
-
 }
 
 .interactive-map .accordion-header {

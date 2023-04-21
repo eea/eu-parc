@@ -334,9 +334,7 @@
 
                 resolve(canvas)
               };
-              if (features[0].get("image")) {
-                image.src = features[0].get("image");
-              }
+              image.src = features[0].get("image");
 
             } else {
               let allEqualCategoryId = features.every((val, i, arr) => val.get('categoryId') === arr[0].get('categoryId'));
