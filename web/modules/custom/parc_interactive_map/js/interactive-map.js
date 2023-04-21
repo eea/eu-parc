@@ -275,7 +275,8 @@
                 document.getElementById('identifyParent').style.display = 'none';
               } else {
                 document.getElementById('identifyParent').style.display = 'block';
-                document.querySelector('#selectedFeatureParent').innerHTML = `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(features[0].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${features[0].get('name')}</span></p>`;
+                // document.querySelector('#selectedFeatureParent').innerHTML = `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(features[0].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${features[0].get('name')}</span></p>`;
+                document.querySelector('#selectedFeatureParent').innerHTML = `<p><span>${features[0].get('render_teaser')}</span></p>`;
               }
             } else {
               document.getElementById('identifyParent').style.display = 'none';
