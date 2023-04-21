@@ -1,20 +1,33 @@
 <div class="governance-map" data-map-id="{{ map_id }}" id="governance-map-{{ map_id }}" style="position: relative; height: 1000px;">
-  <div style="position: absolute; z-index: 999; margin: 15px; max-width: 300px;">
+  <div class="results">
     <div class="accordion" id="accordionInfo">
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
-          <button id="showResultsButton" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <button
+            id="showResultsButton"
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+          >
+          &nbsp;
           </button>
         </h2>
-        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionInfo">
-          <div class="accordion-body" id="resultsParent" style="max-height: 300px; overflow: auto;">
+        <div
+          id="collapseOne"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionInfo"
+        >
+          <div class="accordion-body" id="resultsParent">
           </div>
         </div>
       </div>
     </div>
 
-
-    <div style="margin-top: 5px; background-color: white; border-radius: 5px; padding: 5px; display: none;" id="identifyParent">
+    <div id="identifyParent">
       <h5>Selected feature</h5>
       <div id="selectedFeatureParent">
       </div>

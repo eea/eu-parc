@@ -34,3 +34,23 @@
   margin: 5px;
   color: black;
 }
+
+.results {
+  position: absolute;
+  z-index: 999;
+  margin: 15px;
+  max-width: 300px;
+}
+
+#resultsParent {
+  max-height: 900px;
+  overflow: auto;
+}
+
+#identifyParent {
+  margin-top: 5px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  display: none;
+}
