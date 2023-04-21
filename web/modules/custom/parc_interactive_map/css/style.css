@@ -81,3 +81,23 @@
   background-position: center;
   margin-left: 10px;
 }
+
+.accordion-body::-webkit-scrollbar {
+  width: 20px;
+}
+
+.accordion-body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.accordion-body::-webkit-scrollbar-thumb {
+  background-color: #dadbdc;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+.accordion-body::-webkit-scrollbar-thumb:hover {
+  background-color: #dadbdc;
+}
+
