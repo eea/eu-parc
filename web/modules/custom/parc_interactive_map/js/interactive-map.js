@@ -6,7 +6,7 @@
         var clusterPaths = [];
 
         var categories = settings.parc_interactive_map.categories;
-        bootstrap.Tooltip.Default.allowList['*'].push('style');
+        Tooltip.Default.allowList['*'].push('style');
 
         var map_id = $(this).data('map-id');
         var institutions = settings.parc_interactive_map[map_id].institutions;
@@ -128,7 +128,7 @@
         });
         map.addOverlay(popup);
         const element = popup.getElement();
-        let popover = bootstrap.Popover.getInstance(element);
+        let popover = Popover.getInstance(element);
 
         map.on('moveend', (e) => {
           var output = [];
@@ -167,7 +167,7 @@
                 if (popover) {
                   popover.dispose();
                 }
-                popover = new bootstrap.Popover(element, {
+                popover = new Popover(element, {
                   animation: false,
                   container: element,
                   content: `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(features[0].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${features[0].get('name')}</span></p>`,
@@ -198,7 +198,7 @@
                       if (popover) {
                         popover.dispose();
                       }
-                      popover = new bootstrap.Popover(element, {
+                      popover = new Popover(element, {
                         animation: false,
                         container: element,
                         content: `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(path.categoryId)}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${path.name}</span></p>`,
@@ -221,7 +221,7 @@
                     if (popover) {
                       popover.dispose();
                     }
-                    popover = new bootstrap.Popover(element, {
+                    popover = new Popover(element, {
                       animation: false,
                       container: element,
                       content: content,
