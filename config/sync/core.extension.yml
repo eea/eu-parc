@@ -108,6 +108,7 @@ module:
   update: 0
   user: 0
   views_ajax_history: 0
+  views_custom_cache_tag: 0
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0

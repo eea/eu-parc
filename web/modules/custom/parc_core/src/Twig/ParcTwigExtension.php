@@ -72,7 +72,7 @@ class ParcTwigExtension extends AbstractExtension {
       $color = $term->get('field_colors')->getValue();
     }
 
-    return isset($color[0]['color']) ? $color[0]['color'] : '#6E009A';
+    return $color[0]['color'] ?? '#6E009A';
   }
 
   /**
@@ -149,14 +149,12 @@ class ParcTwigExtension extends AbstractExtension {
         $media->hasField('field_media_image') &&
         !$media->get('field_media_image')->isEmpty()
       ) {
-        $logo = $media->get('field_media_image')->entity->createFileUrl();
-
-        if (file_exists($logo)) {
+        $uri = $media->get('field_media_image')->entity->getFileUri();
+        if (file_exists($uri)) {
           $svg = $media->get('field_media_image')->entity->createFileUrl();
         }
       }
     }
-
     return rawurldecode($svg);
   }
 
