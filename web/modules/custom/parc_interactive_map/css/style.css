@@ -83,21 +83,25 @@
 }
 
 .accordion-body::-webkit-scrollbar {
-  width: 20px;
+  width: 5px;
 }
 
 .accordion-body::-webkit-scrollbar-track {
-  background-color: transparent;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #dadbdc;
 }
 
 .accordion-body::-webkit-scrollbar-thumb {
-  background-color: #dadbdc;
+  -webkit-border-radius: 20px;
   border-radius: 20px;
-  border: 6px solid transparent;
-  background-clip: content-box;
+  background: #505459;
 }
-
 .accordion-body::-webkit-scrollbar-thumb:hover {
-  background-color: #dadbdc;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #6d7177;
 }
-
+.accordion-body::-webkit-scrollbar-thumb:window-inactive {
+  background: #505459;
+}
