@@ -38,7 +38,7 @@
 .results {
   position: absolute;
   z-index: 5;
-  max-width: 300px;
+  max-width: 400px;
   background: #FCFAFA;
 }
 
@@ -49,6 +49,8 @@
 #resultsParent {
   max-height: 900px;
   overflow: auto;
+  padding-top: 0;
+  margin-top: 15px;
 }
 
 #identifyParent {
@@ -84,6 +86,7 @@
 
 .accordion-body::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 .accordion-body::-webkit-scrollbar-track {

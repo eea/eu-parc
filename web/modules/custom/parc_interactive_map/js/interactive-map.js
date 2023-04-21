@@ -155,7 +155,7 @@
                 for(let j = 0; j < currentFeaturesInCluster.length; j++) {
                   output.push(currentFeaturesInCluster[j].get('name'));
                   // document.querySelector('#resultsParent').innerHTML += `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(currentFeaturesInCluster[j].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${currentFeaturesInCluster[j].get('name')}</span></p>`;
-                  document.querySelector('#resultsParent').innerHTML += `<p><span>${currentFeaturesInCluster[j].get('render_teaser')}</span></p>`;
+                  document.querySelector('#resultsParent').innerHTML += `${currentFeaturesInCluster[j].get('render_teaser')}`;
                 }
               }
             }
@@ -179,7 +179,7 @@
                 if (popover) {
                   popover.dispose();
                 }
-                
+
                 let title = features[0].get('name');
                 let title_txt = `<p>${title}</p>`
                 let roles = features[0].get('roles');
@@ -190,7 +190,7 @@
                 }
 
                 role_txt += '</ul>';
-                
+
                 popover = new Popover(element, {
                   animation: false,
                   container: element,

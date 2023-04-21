@@ -22,7 +22,13 @@
     margin-bottom: 15px;
   }
 
+  .left {
+    max-width: 50%;
+    overflow: hidden;
+  }
+
   .bottom {
+    margin-top: 15px;
     margin-bottom: 15px;
 
     > *:not(:last-child) {
