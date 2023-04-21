@@ -176,6 +176,17 @@ n--article-teaser:
     - core/drupal
     - core/jquery
 
+n--institution-teaser:
+  css:
+    component:
+      css/components/content/institution/teaser/style.css: {}
+  js:
+    templates/components/content/institution/teaser/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
 n--article-archive:
   css:
     component:

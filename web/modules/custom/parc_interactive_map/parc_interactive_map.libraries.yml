@@ -21,4 +21,4 @@ interactive_map:
   dependencies:
     - parc_interactive_map/openlayers
     - core/jquery
-    - core/jquery.once
+    - core/once

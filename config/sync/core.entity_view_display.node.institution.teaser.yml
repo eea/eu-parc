@@ -17,8 +17,11 @@ dependencies:
     - field.field.node.institution.field_original_abbreviation
     - field.field.node.institution.field_original_name
     - field.field.node.institution.field_website
+    - image.style.medium
     - node.type.institution
   module:
+    - link
+    - media
     - text
     - user
 id: node.institution.teaser
@@ -27,30 +30,73 @@ bundle: institution
 mode: teaser
 content:
   body:
-    type: text_summary_or_trimmed
+    type: text_default
     label: hidden
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    weight: 101
-    region: content
-  links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 1
+    region: content
+  field_address_data:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_city:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_country:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_institution_roles:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_media_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_website:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 4
     region: content
 hidden:
   addtoany: true
   field_abbreviation: true
-  field_address_data: true
-  field_city: true
   field_coordinates: true
-  field_country: true
-  field_institution_roles: true
-  field_media_image: true
   field_nhcp_email: true
   field_nhcp_name: true
   field_original_abbreviation: true
   field_original_name: true
-  field_website: true
+  links: true
   search_api_excerpt: true

@@ -16,7 +16,7 @@ id: node.institution.body
 field_name: body
 entity_type: node
 bundle: institution
-label: Description
+label: 'Profile summary'
 description: ''
 required: false
 translatable: true

@@ -93,6 +93,24 @@ function parc_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'events') {
     $variables['#cache']['max-age'] = 0;
   }
+
+  if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'institution') {
+    foreach ($node->get('field_institution_roles')->referencedEntities() as $term) {
+      /** @var \Drupal\taxonomy\TermInterface $term */
+      $color = $term->get('field_color')->color ?? '#000000';
+      $variables['roles'][] = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="role" style="color: {{ color }};">{{ label }}</div>',
+        '#context' => [
+          'label' => $term->label(),
+          'color' => $color,
+        ],
+      ];
+      if (empty($variables['color'])) {
+        $variables['color'] = $color;
+      }
+    }
+  }
 }
 
 /**

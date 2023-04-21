@@ -78,29 +78,47 @@
   ]
 %}
 
+{{ attach_library('parc/n--institution-teaser') }}
+
 <article{{attributes.addClass(classes)}}>
-  {{ title_prefix }}
-  {% if label and not page %}
-    <h2{{title_attributes}}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
-
-  {% if display_submitted %}
-    <footer class="node__meta">
-      {{ author_picture }}
-      <div{{author_attributes.addClass('node__submitted')}}>
-        {% trans %}Submitted by
-        {{ author_name }}
-        on
-        {{ date }}{% endtrans %}
-        {{ metadata }}
+  <div class="top-row">
+    <div class="left">
+      <div class="roles">
+        {{ roles }}
       </div>
-    </footer>
-  {% endif %}
 
-  <div{{content_attributes.addClass('node__content')}}>
-    {{ content }}
+      <div class="title">
+        {{ label }}
+      </div>
+
+      <div class="address">
+        <div class="to-expand hidden">
+          {{ content.field_address }}
+          {{ content.field_city }}
+        </div>
+        <div class="country">
+          {{ content.field_country }}
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="image" style="border-color: {{ color }}; background-color: {{ color }};">
+        {{ content.field_media_image }}
+      </div>
+    </div>
+  </div>
+
+  <div class="to-expand hidden bottom">
+    {{ content.body }}
+    {{ content.field_website }}
+  </div>
+
+  <div class="expand">
+    <a class="expand-link" href="#" style="color: {{ color }};">
+      {{ "Details" | t }}
+      <svg width="4" height="6" viewBox="0 0 4 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1.55836 0.812901L3.02387 2.41975C3.32534 2.75029 3.33739 3.17241 3.05354 3.45845L1.46012 5.06413" stroke="{{ color }}" stroke-linecap="round"/>
+      </svg>
+    </a>
   </div>
 </article>
