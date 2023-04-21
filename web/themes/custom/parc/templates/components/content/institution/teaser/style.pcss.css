@@ -4,7 +4,11 @@
   border-radius: 5px;
   font-size: 14px;
   line-height: 17px;
-  margin-bottom: 15px;
+  background: #fff;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
 
   .roles {
     font-size: 10px;
@@ -63,6 +67,7 @@
 
   .top-row {
     display: flex;
+    gap: 15px;
 
     .right {
       margin-left: auto;

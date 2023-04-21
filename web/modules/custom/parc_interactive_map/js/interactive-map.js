@@ -2,10 +2,11 @@
   Drupal.behaviors.interactiveMap = {
     attach: function (context, settings) {
       $('.interactive-map .accordion-collapse').once('mapInstitutionDetailsOpen').on('show.bs.collapse', function () {
+        document.getElementById('identifyParent').style.display = 'none';
         $(this).closest('.results').addClass('open');
       });
 
-      $('.interactive-map .accordion-collapse').once('mapInstitutionDetailsClose').on('show.bs.collapse', function () {
+      $('.interactive-map .accordion-collapse').once('mapInstitutionDetailsClose').on('hide.bs.collapse', function () {
         $(this).closest('.results').removeClass('open');
       });
 
@@ -181,12 +182,12 @@
                 }
 
                 let title = features[0].get('name');
-                let title_txt = `<p>${title}</p>`
+                let title_txt = `<div class="title">${title}</div>`
                 let roles = features[0].get('roles');
                 let role_txt = '<ul>';
 
                 for (let i = 0; i < roles.length; i++) {
-                  role_txt += `<li><span className="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${roles[i].label}</span></li>`;
+                  role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;
                 }
 
                 role_txt += '</ul>';
@@ -225,7 +226,7 @@
                       popover = new Popover(element, {
                         animation: false,
                         container: element,
-                        content: `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(path.categoryId)}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${path.name}</span></p>`,
+                        content: `<div class="institution-item-list-item"><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(path.categoryId)}"></span><span>${path.name}</span></div>`,
                         html: true,
                         placement: 'top',
                         title: 'Selected feature(s)',
@@ -240,7 +241,7 @@
 
                     let content = '';
                     cluster.paths.forEach(path => {
-                      content += `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(path.categoryId)}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${path.name}</span></p>`;
+                      content += `<div class="institution-item-list-item"><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(path.categoryId)}"></span><span>${path.name}</span></div>`;
                     })
                     if (popover) {
                       popover.dispose();
@@ -277,6 +278,7 @@
                 document.getElementById('identifyParent').style.display = 'block';
                 // document.querySelector('#selectedFeatureParent').innerHTML = `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(features[0].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${features[0].get('name')}</span></p>`;
                 document.querySelector('#selectedFeatureParent').innerHTML = `<p><span>${features[0].get('render_teaser')}</span></p>`;
+                $('.interactive-map .accordion-collapse').collapse('hide');
               }
             } else {
               document.getElementById('identifyParent').style.display = 'none';
