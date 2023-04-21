@@ -12,7 +12,6 @@
 
 .layout__region {
   box-sizing: border-box;
-  margin: 10px 0;
 }
 
 .layout__region--top {
