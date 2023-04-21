@@ -14,6 +14,7 @@ global-styling:
       css/transitions.css: {}
       css/helpers.css: {}
       css/theme/global.css: {}
+      css/theme/layout.css: {}
       css/theme/block.css: {}
   js:
     js/script.js: {}
@@ -341,3 +342,8 @@ o--share:
   css:
     component:
       css/other/share.css: {}
+
+facets:
+  css:
+    component:
+      css/components/facets.css: {}
