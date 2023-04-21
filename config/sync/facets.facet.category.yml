@@ -8,7 +8,7 @@ dependencies:
   module:
     - search_api
 id: category
-name: 'Institution roles'
+name: Consortium
 weight: 0
 min_count: 0
 missing: false
