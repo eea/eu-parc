@@ -33,6 +33,9 @@
               'categoryId': institutions[i].category,
               'name': institutions[i].title,
               'image': institutions[i].image,
+              'roles': institutions[i].roles,
+              'render_teaser': institutions[i].render_teaser,
+              'render_full': institutions[i].render_full
             }
           );
         }
@@ -151,7 +154,8 @@
                 let currentFeaturesInCluster = feature.get('features');
                 for(let j = 0; j < currentFeaturesInCluster.length; j++) {
                   output.push(currentFeaturesInCluster[j].get('name'));
-                  document.querySelector('#resultsParent').innerHTML += `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(currentFeaturesInCluster[j].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${currentFeaturesInCluster[j].get('name')}</span></p>`;
+                  // document.querySelector('#resultsParent').innerHTML += `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(currentFeaturesInCluster[j].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${currentFeaturesInCluster[j].get('name')}</span></p>`;
+                  document.querySelector('#resultsParent').innerHTML += `<p><span>${currentFeaturesInCluster[j].get('render_teaser')}</span></p>`;
                 }
               }
             }
