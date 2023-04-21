@@ -179,10 +179,22 @@
                 if (popover) {
                   popover.dispose();
                 }
+                
+                let title = features[0].get('name');
+                let title_txt = `<p>${title}</p>`
+                let roles = features[0].get('roles');
+                let role_txt = '<ul>';
+
+                for (let i = 0; i < roles.length; i++) {
+                  role_txt += `<li><span className="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${roles[i].label}</span></li>`;
+                }
+
+                role_txt += '</ul>';
+                
                 popover = new Popover(element, {
                   animation: false,
                   container: element,
-                  content: `<p><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(features[0].get('categoryId'))}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>${features[0].get('name')}</span></p>`,
+                  content: `<div>${title_txt} ${role_txt}</div>`,
                   html: true,
                   placement: 'top',
                   title: 'Selected feature(s)',
