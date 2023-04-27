@@ -24,7 +24,7 @@
 
         const features = new Array(institutions.length);
         for (let i = 0; i < institutions.length; i++) {
-          const coordinates = [institutions[i].lat * 100000, institutions[i].long * 100000];
+          const coordinates = ol.proj.fromLonLat([institutions[i].long, institutions[i].lat]);
           features[i] = new ol.Feature(new ol.geom.Point(coordinates));
 
           // add custom features
@@ -131,7 +131,13 @@
           ],
           view: new ol.View({
             center: [0, 0],
-            zoom: 2
+            zoom: 2,
+            extent: [
+              -6319125.804807394,
+              3070702.923644739,
+              9584655.106275197,
+              12091128.659149397,
+            ],
           })
         });
 
