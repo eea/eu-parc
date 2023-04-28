@@ -259,6 +259,11 @@ n--publications-teaser:
     component:
       css/components/content/publications/vm-teaser/style.css: {}
 
+n--deliverables--teaser:
+  css:
+    component:
+      css/components/content/deliverables/vm--teaser/style.css: {}
+
 # Block.
 b--carousel:
   css:
@@ -320,6 +325,11 @@ t--thematic-areas--card:
     component:
       css/components/taxonomy/thematic-areas/vm-card/style.css: {}
 
+t--deliverables--header:
+  css:
+    component:
+      css/components/taxonomy/deliverables/vm--header/style.css: {}
+
 # Layout.
 l--parc-content:
   css:
@@ -336,6 +346,30 @@ m--sidebar-dropdown:
   css:
     component:
       css/components/menu/sidebar-dropdown/style.css: {}
+
+# Media.
+me--download-link:
+  css:
+    component:
+      css/components/media/vm--download-link/style.css: {}
+  js:
+    templates/components/media/vm--download-link/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+
+# Views.
+v--deliverables:
+  css:
+    component:
+      css/components/views/deliverables/style.css: {}
+  js:
+    templates/components/views/deliverables/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
 
 # Other.
 f--views-exposed:

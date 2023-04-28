@@ -1,0 +1,29 @@
+uuid: 5fc05914-f7ac-4263-946f-5e20e48a2a40
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_categories
+    - node.type.deliverables
+    - taxonomy.vocabulary.deliverables
+id: node.deliverables.field_categories
+field_name: field_categories
+entity_type: node
+bundle: deliverables
+label: 'Category '
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      deliverables: deliverables
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

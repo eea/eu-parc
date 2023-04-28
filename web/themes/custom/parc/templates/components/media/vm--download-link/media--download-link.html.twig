@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Parc theme implementation to present a media item.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ attach_library('parc/me--download-link') }}
+
+<div{{attributes}}>
+  {{ title_suffix.contextual_links }}
+  {{ content }}
+</div>

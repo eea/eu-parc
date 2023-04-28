@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="w--wp">
+  {% if title %}
+    {{ title }}
+  {% endif %}
+
+  <div class="w--scroll g-hide">
+    <div class="grid--deliverables">
+      {% for row in rows %}
+        {{- row.content -}}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if rows|length <=2 %}
+    {% set rclass = 'd-none' %}
+  {% elseif rows|length <5 %}
+    {% set rclass = 'btn-wp-sm' %}
+  {% elseif rows|length <7 %}
+    {% set rclass = 'btn-wp-md' %}
+  {% elseif rows|length <9 %}
+    {% set rclass = 'btn-wp-lg' %}
+  {% elseif rows|length <11 %}
+    {% set rclass = 'btn-wp-xl' %}
+  {% elseif rows|length <13 %}
+    {% set rclass = 'btn-wp-xxl' %}
+  {% endif %}
+
+  <button class="btn btn-clear btn-wp mx-auto mt-4 {{ rclass }}">
+    {{- 'Show all deliverables for ' -}}
+  </button>
+</div>

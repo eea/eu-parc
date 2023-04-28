@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Parc override to display a taxonomy term.
+ */
+#}
+
+{{ attach_library('parc/t--deliverables--header') }}
+
+{%
+  set classes = [
+    't-term',
+    't-term--' ~ term.bundle|clean_class,
+    view_mode ? 't-term--' ~ term.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  ]
+%}
+
+{% set nameCamelC = '' %}
+{% set expload = name.0|render|split(' ') %}
+{% for item in expload %}
+  {% set nameCamelC = nameCamelC ~ item|first|upper %}
+{% endfor %}
+
+<div{{attributes.addclass(classes).setAttribute('id','taxonomy-term-'~term.id).setAttribute('data-ttshort',nameCamelC)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {{ content}}
+</div>

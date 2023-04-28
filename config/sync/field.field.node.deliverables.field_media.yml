@@ -1,0 +1,29 @@
+uuid: 3a2b6b9a-c375-4a34-a8ae-9fe83d7da0c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media
+    - media.type.document
+    - node.type.deliverables
+id: node.deliverables.field_media
+field_name: field_media
+entity_type: node
+bundle: deliverables
+label: Media
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: document
+field_type: entity_reference
