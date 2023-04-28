@@ -1,0 +1,19 @@
+uuid: a5edbe4a-f676-4263-bf41-0f72788bdd65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_order
+    - taxonomy.vocabulary.deliverables
+id: taxonomy_term.deliverables.field_order
+field_name: field_order
+entity_type: taxonomy_term
+bundle: deliverables
+label: Order
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

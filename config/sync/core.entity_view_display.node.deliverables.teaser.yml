@@ -1,0 +1,39 @@
+uuid: 2d062618-aeea-4a9d-8ef3-2340637694a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.deliverables.body
+    - field.field.node.deliverables.field_categories
+    - field.field.node.deliverables.field_d_date
+    - field.field.node.deliverables.field_media
+    - field.field.node.deliverables.field_order
+    - node.type.deliverables
+  module:
+    - text
+    - user
+id: node.deliverables.teaser
+targetEntityType: node
+bundle: deliverables
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  field_categories: true
+  field_d_date: true
+  field_media: true
+  field_order: true

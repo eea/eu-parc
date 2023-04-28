@@ -1,0 +1,10 @@
+.field-media--download-link {
+  .btn-download {
+    font-size: var(--fm-dl--fz, 10px);
+    font-weight: 400;
+
+    svg {
+      margin-left: 6px;
+    }
+  }
+}
