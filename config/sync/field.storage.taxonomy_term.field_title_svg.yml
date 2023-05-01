@@ -1,0 +1,20 @@
+uuid: a8343e62-f0f4-465d-a714-b9505ea20f1a
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - taxonomy
+id: taxonomy_term.field_title_svg
+field_name: field_title_svg
+entity_type: taxonomy_term
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

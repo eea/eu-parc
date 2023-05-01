@@ -11,29 +11,43 @@ dependencies:
     - field.field.node.deliverables.field_order
     - node.type.deliverables
   module:
-    - text
+    - datetime
     - user
 id: node.deliverables.teaser
 targetEntityType: node
 bundle: deliverables
 mode: teaser
 content:
-  body:
-    type: text_summary_or_trimmed
+  field_d_date:
+    type: datetime_default
     label: hidden
     settings:
-      trim_length: 600
+      timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
-  links:
-    settings: {  }
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: download_link
+      link: false
     third_party_settings: {  }
-    weight: 100
+    weight: 2
+    region: content
+  field_order:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
     region: content
 hidden:
   addtoany: true
+  body: true
   field_categories: true
-  field_d_date: true
-  field_media: true
-  field_order: true
+  links: true
+  search_api_excerpt: true

@@ -7,8 +7,15 @@ dependencies:
     - field.storage.node.field_categories
     - node.type.deliverables
     - system.menu.main
+    - taxonomy.vocabulary.deliverables
+  content:
+    - 'taxonomy_term:deliverables:03068133-b196-4a09-8c3f-f652396ae606'
+    - 'taxonomy_term:deliverables:246c1813-c505-4949-a227-dc6c2bb7d4bc'
+    - 'taxonomy_term:deliverables:7098b2e2-b3d7-4b42-8a03-545b15ad26d2'
+    - 'taxonomy_term:deliverables:d8ba6d8a-0c48-4985-9c9d-3a52955265a4'
   module:
     - node
+    - taxonomy
     - user
 id: deliverables
 label: Deliverables
@@ -26,53 +33,6 @@ display:
     display_options:
       title: 'Deliverables page'
       fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: field
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            trim: false
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
         field_categories:
           id: field_categories
           table: node__field_categories
@@ -137,23 +97,9 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: mini
+        type: none
         options:
           offset: 0
-          items_per_page: 12
-          total_pages: null
-          id: 0
-          tags:
-            next: ››
-            previous: ‹‹
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
       exposed_form:
         type: basic
         options:
@@ -173,22 +119,34 @@ display:
         options: {  }
       empty: {  }
       sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          relationship: none
+        weight:
+          id: weight
+          table: taxonomy_term_field_data
+          field: weight
+          relationship: field_categories
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: created
-          plugin_id: date
-          order: DESC
+          entity_type: taxonomy_term
+          entity_field: weight
+          plugin_id: standard
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
           exposed: false
-          granularity: second
+        field_order_value:
+          id: field_order_value
+          table: node__field_order
+          field: field_order_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
       arguments: {  }
       filters:
         status:
@@ -216,6 +174,55 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_categories_target_id:
+          id: field_categories_target_id
+          table: node__field_categories
+          field: field_categories_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value:
+            97: 97
+            98: 98
+            139: 139
+            148: 148
+          group: 1
+          exposed: false
+          expose:
+            operator_id: field_categories_target_id_op
+            label: 'Category  (field_categories)'
+            description: null
+            use_operator: false
+            operator: field_categories_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: field_categories_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: deliverables
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       style:
         type: default
         options:
@@ -240,7 +247,16 @@ display:
           distinct: false
           replica: false
           query_tags: {  }
-      relationships: {  }
+      relationships:
+        field_categories:
+          id: field_categories
+          table: node__field_categories
+          field: field_categories
+          relationship: none
+          group_type: group
+          admin_label: 'field_categories: Taxonomy term'
+          plugin_id: standard
+          required: false
       header:
         area:
           id: area
@@ -262,13 +278,13 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:
         - 'config:field.storage.node.field_categories'
-  page_1:
-    id: page_1
+  page_deliverables:
+    id: page_deliverables
     display_title: Deliverables
     display_plugin: page
     position: 1
@@ -292,7 +308,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags:

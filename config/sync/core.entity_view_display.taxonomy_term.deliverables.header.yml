@@ -1,52 +1,42 @@
-uuid: ee190911-9a17-4994-91d4-78bf77faa542
+uuid: 66d830bf-6082-447d-a030-1b6c494fb00d
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.taxonomy_term.header
     - field.field.taxonomy_term.deliverables.field_color
     - field.field.taxonomy_term.deliverables.field_order
     - field.field.taxonomy_term.deliverables.field_title_svg
     - taxonomy.vocabulary.deliverables
   module:
-    - color_field
+    - layout_builder
     - text
-id: taxonomy_term.deliverables.default
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.deliverables.header
 targetEntityType: taxonomy_term
 bundle: deliverables
-mode: default
+mode: header
 content:
   description:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 0
-    region: content
-  field_color:
-    type: color_field_formatter_text
-    label: above
-    settings:
-      format: hex
-      opacity: true
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_order:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
     weight: 1
     region: content
   field_title_svg:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 3
+    weight: 0
     region: content
 hidden:
+  field_color: true
+  field_order: true
   search_api_excerpt: true

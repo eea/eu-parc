@@ -5,9 +5,11 @@ dependencies:
   config:
     - field.field.taxonomy_term.deliverables.field_color
     - field.field.taxonomy_term.deliverables.field_order
+    - field.field.taxonomy_term.deliverables.field_title_svg
     - taxonomy.vocabulary.deliverables
   module:
     - color_field
+    - media_library
     - path
     - text
 id: taxonomy_term.deliverables.default
@@ -36,6 +38,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_title_svg:
+    type: media_library_widget
+    weight: 8
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   name:
     type: string_textfield
