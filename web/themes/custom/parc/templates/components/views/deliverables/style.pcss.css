@@ -54,15 +54,19 @@
   grid-template-columns: repeat(2, calc((100% - var(--grig-right-s)) / 2));
   gap: var(--grid-d--gap);
 
+  & > article {
+    align-self: stretch;
+    max-width: 100%;
+  }
+
   @media (--md) {
     gap: 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(286px, 1fr));
-    grid-auto-flow: row dense;
     grid-column-gap: var(--grid-d--gap);
     margin-bottom: calc(var(--grid-d--gap) * -1);
 
-    & > .node {
+    & > article {
       margin-bottom: var(--grid-d--gap);
     }
   }
