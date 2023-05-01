@@ -236,7 +236,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: taxonomy_index_tid
-          operator: or
+          operator: 'not empty'
           value:
             97: 97
             98: 98
