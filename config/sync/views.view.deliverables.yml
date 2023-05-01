@@ -14,6 +14,8 @@ dependencies:
     - 'taxonomy_term:deliverables:7098b2e2-b3d7-4b42-8a03-545b15ad26d2'
     - 'taxonomy_term:deliverables:d8ba6d8a-0c48-4985-9c9d-3a52955265a4'
   module:
+    - better_exposed_filters
+    - datetime
     - node
     - taxonomy
     - user
@@ -101,7 +103,7 @@ display:
         options:
           offset: 0
       exposed_form:
-        type: basic
+        type: bef
         options:
           submit_button: Apply
           reset_button: false
@@ -110,6 +112,44 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          text_input_required: 'Select any filter and click on Apply to see results'
+          text_input_required_format: full_html
+          bef:
+            general:
+              autosubmit: true
+              autosubmit_exclude_textfield: true
+              autosubmit_textfield_delay: 500
+              autosubmit_hide: true
+              input_required: false
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              secondary_open: false
+              reset_button_always_show: false
+            sort:
+              plugin_id: bef
+              advanced:
+                combine: true
+                combine_rewrite: "Date Asc|Date\r\nDate Desc|Date"
+                reset: false
+                reset_label: ''
+                collapsible: false
+                collapsible_label: 'Sort options'
+                is_secondary: false
+            filter:
+              field_categories_target_id_1:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                  collapsible: true
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: false
+                options_show_only_used: 1
+                options_show_only_used_filtered: 0
+                options_hide_when_empty: 0
       access:
         type: perm
         options:
@@ -147,6 +187,20 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
+        field_d_date_value:
+          id: field_d_date_value
+          table: node__field_d_date
+          field: field_d_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: ASC
+          expose:
+            label: Date
+            field_identifier: field_d_date_value
+          exposed: true
+          granularity: second
       arguments: {  }
       filters:
         status:
@@ -223,6 +277,54 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        field_categories_target_id_1:
+          id: field_categories_target_id_1
+          table: node__field_categories
+          field: field_categories_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_categories_target_id_1_op
+            label: Category
+            description: ''
+            use_operator: false
+            operator: field_categories_target_id_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: category
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              content_editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: deliverables
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       style:
         type: default
         options:
@@ -278,6 +380,9 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions
@@ -308,6 +413,9 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions

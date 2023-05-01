@@ -9,7 +9,6 @@
       const btn = $(context).find('.btn-wp');
       btn.once('viewDeliverables').each(function() {
         var addText = $(this).siblings('.t-term--deliverables').data('ttshort');
-        console.log(addText);
         $(this).append(addText);
       }).on('click', function (e) {
         $(this).toggleClass('d-none');
