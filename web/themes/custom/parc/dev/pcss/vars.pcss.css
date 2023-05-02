@@ -27,7 +27,7 @@
   --border-color: var(--c-gray-300);
   --border-style: solid;
   --border-radius: 6px;
-  --border-radius-sm: 0.25rem;
+  --border-radius-sm: 4px;
   --border-radius-lg: 0.5rem;
 
   --hr-margin-y: var(--spacer);

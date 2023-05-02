@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--deliverables--teaser') }}
+
+{% set color = node.field_categories.entity.field_color.value.0.color %}
+{% set order = node.field_categories.entity.field_order.0.value %}
+{% set fullOrder %}
+{{- order }}.{{ content.field_order.0 -}}
+{% endset %}
+
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{attributes.addClass(classes).setAttribute('style','--n-bg:'~color~';')}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="node--head d-flex justify-content-between align-items-center mb-2 mb-md-3">
+    <div class="node--order">
+      {{- fullOrder|replace({' ': ''}) -}}
+    </div>
+
+    {{ content.field_d_date }}
+  </div>
+
+  <h5{{title_attributes.addClass('flex-grow-1')}}>
+    {{ label }}
+  </h5>
+
+  <div{{content_attributes.addClass('node--cotent')}}>
+    {{ content|without('field_order', 'field_d_date') }}
+  </div>
+</article>

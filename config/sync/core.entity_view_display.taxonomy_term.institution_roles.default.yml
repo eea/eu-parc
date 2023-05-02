@@ -1,0 +1,33 @@
+uuid: 319711df-f928-46ff-8121-946a75234d8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.institution_roles.field_color
+    - taxonomy.vocabulary.institution_roles
+  module:
+    - color_field
+    - text
+id: taxonomy_term.institution_roles.default
+targetEntityType: taxonomy_term
+bundle: institution_roles
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,77 @@
+.node--institution--teaser {
+  border: 1px solid #CCCCCC;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 17px;
+  background: #fff;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  .roles {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 15px;
+    margin-bottom: 15px;
+  }
+
+  .title {
+    font-weight: bold;
+  }
+
+  .address {
+    margin-bottom: 15px;
+  }
+
+  .left {
+    max-width: 50%;
+    overflow: hidden;
+  }
+
+  .bottom {
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    > *:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  .f-label {
+    font-weight: bold;
+  }
+
+  .expand-link {
+    text-decoration: none;
+  }
+
+  .image {
+    width: 150px;
+    height: 150px;
+    border: 8px solid;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+    }
+  }
+
+  .top-row {
+    display: flex;
+    gap: 15px;
+
+    .right {
+      margin-left: auto;
+      min-width: 150px;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<?php
+
+use Drupal\taxonomy\Entity\Vocabulary;
+
+/**
+ * Delete partner vocabulary terms, create institution types.
+ */
+function parc_core_update_9001() {
+  if (Vocabulary::load('partner')) {
+    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
+      'vid' => 'partner',
+    ]);
+    foreach ($terms as $term) {
+      $term->delete();
+    }
+  }
+}

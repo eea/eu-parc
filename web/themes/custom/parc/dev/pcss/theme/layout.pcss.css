@@ -5,3 +5,53 @@
     margin-bottom: var(--p-parc);
   }
 }
+
+/* Layout builder padding issue*/
+/*https://www.drupal.org/project/drupal/issues/3061987*/
+/* XXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+.layout__region {
+  box-sizing: border-box;
+}
+
+.layout__region--top {
+  margin-top: 0;
+}
+
+.layout__region--bottom {
+  margin-bottom: 0;
+}
+
+[class*="layout__region--first"] {
+  padding-right: 15px;
+}
+
+[dir="rtl"] [class*="layout__region--first"] {
+  padding-right: 0;
+  padding-left: 15px;
+}
+
+[class*="layout__region--second"] {
+  padding-left: 15px;
+}
+
+[dir="rtl"] [class*="layout__region--second"] {
+  padding-right: 15px;
+  padding-left: 0;
+}
+
+.layout__region--third {
+  padding-left: 30px;
+}
+
+[dir="rtl"] .layout__region--third {
+  padding-right: 30px;
+  padding-left: 0;
+}
+
+@media screen and (max-width: 40em) {
+  .layout__region {
+    padding: 0;
+  }
+}
+

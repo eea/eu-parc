@@ -1,0 +1,69 @@
+uuid: 457b0b81-b0f2-49ee-bb32-b7adadf84cf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.deliverables.body
+    - field.field.node.deliverables.field_categories
+    - field.field.node.deliverables.field_d_date
+    - field.field.node.deliverables.field_media
+    - field.field.node.deliverables.field_order
+    - node.type.deliverables
+  module:
+    - datetime
+    - text
+    - user
+id: node.deliverables.default
+targetEntityType: node
+bundle: deliverables
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_categories:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_d_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_order:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true

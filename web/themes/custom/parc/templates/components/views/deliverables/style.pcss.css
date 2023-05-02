@@ -1,0 +1,107 @@
+.w--wp {
+  border-top: 1px solid var(--c-black);
+  padding-block: 24px;
+
+  & > .t-term--deliverables {
+    margin-bottom: 36px;
+  }
+}
+
+.w--scroll {
+  --grid-d--gap: 20px;
+  --grig-right-s: 60px;
+
+  &.g-hide {
+    @media (--downMd) {
+      margin-inline: calc(var(--grid-d--gap) * -1);
+
+      .grid--deliverables {
+        display: flex;
+        flex-wrap: nowrap;
+
+        padding-inline: var(--grid-d--gap);
+
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--grid-d--gap);
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        & > .node {
+          min-width: calc((100% - var(--grig-right-s)) / 2);
+          scroll-snap-align: start;
+        }
+      }
+    }
+
+    @media (--md) {
+      .grid--deliverables {
+        overflow: hidden;
+        grid-template-rows: auto auto;
+        grid-auto-rows: 0px;
+      }
+    }
+  }
+}
+
+.grid--deliverables {
+  display: grid;
+  grid-template-columns: repeat(2, calc((100% - var(--grig-right-s)) / 2));
+  gap: var(--grid-d--gap);
+
+  & > article {
+    align-self: stretch;
+    max-width: 100%;
+  }
+
+  @media (--md) {
+    gap: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(286px, 1fr));
+    grid-column-gap: var(--grid-d--gap);
+    margin-bottom: calc(var(--grid-d--gap) * -1);
+
+    & > article {
+      margin-bottom: var(--grid-d--gap);
+    }
+  }
+}
+
+.btn-wp {
+  display: block;
+
+  @media (min-width: 767px) {
+    &.btn-wp-sm {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 945px) {
+    &.btn-wp-md {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 1247px) {
+    &.btn-wp-lg {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 1549px) {
+    &.btn-wp-xl {
+      display: none !important;
+    }
+  }
+
+  @media (min-width: 1851px) {
+    &.btn-wp-xxl {
+      display: none !important;
+    }
+  }
+}

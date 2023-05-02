@@ -1,0 +1,53 @@
+uuid: 2d062618-aeea-4a9d-8ef3-2340637694a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.deliverables.body
+    - field.field.node.deliverables.field_categories
+    - field.field.node.deliverables.field_d_date
+    - field.field.node.deliverables.field_media
+    - field.field.node.deliverables.field_order
+    - node.type.deliverables
+  module:
+    - datetime
+    - user
+id: node.deliverables.teaser
+targetEntityType: node
+bundle: deliverables
+mode: teaser
+content:
+  field_d_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: download_link
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_order:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  body: true
+  field_categories: true
+  links: true
+  search_api_excerpt: true

@@ -29,9 +29,11 @@ module:
   datetime: 0
   datetime_range: 0
   dblog: 0
+  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
+  facets: 0
   field: 0
   field_group: 0
   field_ui: 0
@@ -79,12 +81,15 @@ module:
   options: 0
   panelbutton: 0
   parc_core: 0
+  parc_interactive_map: 0
   parc_zenodo_api: 0
   path: 0
   path_alias: 0
   rabbit_hole: 0
   rh_taxonomy: 0
   search: 0
+  search_api: 0
+  search_api_db: 0
   shortcut: 0
   simple_sitemap: 0
   simple_sitemap_engines: 0

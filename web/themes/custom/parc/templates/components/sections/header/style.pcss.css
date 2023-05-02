@@ -144,8 +144,7 @@ header {
         }
       }
 
-      span.nav-link-level-0,
-      a.nav-link-level-0 {
+      .nav-link-level-0.dropdown-toggle {
         display: none;
       }
 

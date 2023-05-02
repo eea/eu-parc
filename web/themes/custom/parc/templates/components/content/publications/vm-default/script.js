@@ -45,7 +45,7 @@
   }
 
   Drupal.behaviors.publicationUrl = {
-    attach: function (context,) {
+    attach: function (context) {
       hash = window.location.hash;
 
       if (hash.indexOf('messages') !== -1) {

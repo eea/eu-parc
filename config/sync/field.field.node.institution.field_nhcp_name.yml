@@ -1,0 +1,19 @@
+uuid: a26f0ad5-3920-4045-a5f1-7c69ace747ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nhcp_name
+    - node.type.institution
+id: node.institution.field_nhcp_name
+field_name: field_nhcp_name
+entity_type: node
+bundle: institution
+label: 'NHCP name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

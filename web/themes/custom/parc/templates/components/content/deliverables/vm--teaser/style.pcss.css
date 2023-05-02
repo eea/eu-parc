@@ -1,0 +1,78 @@
+.node--deliverables--teaser {
+  --link-color: var(--c-white);
+  --link-h-color: var(--c-white);
+  --link-decoration: none;
+  --link-h-decoration: underline;
+  --h5-font-size: 13px;
+
+  background-color: var(--n-bg);
+  border-radius: var(--border-radius-sm);
+  padding: 1rem;
+  color: var(--c-white);
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1;
+  position: relative;
+  isolation: isolate;
+
+  &:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: var(--transition-base);
+  }
+
+  .node--head {
+    font-weight: var(--fw-bolder);
+    line-height: 1em;
+  }
+
+  .node--order {
+    font-size: var(--ndt-fs--order, 10px);
+  }
+
+  .field--name-field-d-date {
+    font-size: var(--ndt-fs--date, 8px);
+  }
+
+  .field--name-field-media {
+    margin-top: var(--ndt-fs--media, 12px);
+  }
+
+  .btn-download svg {
+    max-width: 8px;
+  }
+
+  .btn--d--clipboard svg {
+    max-width: 10px;
+  }
+
+  .btn-download,
+  .btn--d--clipboard {
+    line-height: 1em;
+  }
+
+  @media (--md) {
+    --ndt-fs--date: 11px;
+    --ndt-fs--media: 24px;
+    --ndt-fs--order: 16px;
+    --fm-dl--fz: 18px;
+    --h5-font-size: 24px;
+
+    .btn-download,
+    .btn--d--clipboard {
+      svg {
+        max-width: inherit;
+      }
+    }
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+    }
+  }
+}

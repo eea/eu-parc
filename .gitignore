@@ -26,7 +26,6 @@
 
 # Ignore sensitive information
 /web/sites/*/settings.local.php
-/web/sites/default/development.services.yml
 /web/sites/default/default.services.yml
 /web/sites/*/services*.yml
 /source-data/

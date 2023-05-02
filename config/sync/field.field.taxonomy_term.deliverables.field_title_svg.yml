@@ -1,0 +1,29 @@
+uuid: 7b996d4e-0336-4e62-9998-10ce0b7d15c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_title_svg
+    - media.type.vector
+    - taxonomy.vocabulary.deliverables
+id: taxonomy_term.deliverables.field_title_svg
+field_name: field_title_svg
+entity_type: taxonomy_term
+bundle: deliverables
+label: 'Title SVG'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

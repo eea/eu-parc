@@ -1,0 +1,28 @@
+uuid: 6762e9bd-12b8-41de-94be-4a0b9de9e454
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.institution
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - full_html
+id: node.institution.body
+field_name: body
+entity_type: node
+bundle: institution
+label: 'Profile summary'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

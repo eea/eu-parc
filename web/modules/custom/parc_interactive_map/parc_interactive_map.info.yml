@@ -1,0 +1,5 @@
+name: Parc Interactive Map
+description: Open Layers map presenting all the different bodies that belong to the governance of PARC.
+package: PARC Custom
+type: module
+core_version_requirement: ^8 || ^9 || ^10

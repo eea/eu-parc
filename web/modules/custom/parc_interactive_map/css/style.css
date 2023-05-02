@@ -1,0 +1,202 @@
+.popover-body {
+  min-width: 276px;
+}
+
+.identify-rectangle-span {
+  width: 25px;
+  height: 15px;
+  display: inline;
+  margin-right: 10px;
+}
+
+.popover-arrow {
+  margin: 5px !important;
+}
+
+.ol-control {
+  background-color: transparent;
+}
+
+.ol-zoom {
+  right: 0.5em;
+  left: auto;
+}
+
+.ol-zoom .ol-zoom-in {
+  border-radius: 50%;
+}
+
+.ol-zoom .ol-zoom-out {
+  border-radius: 50%;
+}
+
+.ol-control button {
+  margin: 5px;
+  color: black;
+}
+
+.results {
+  position: absolute;
+  z-index: 5;
+  max-width: 400px;
+}
+
+.results.open {
+  height: 100%;
+  background: #FCFAFA;
+  max-height: 100%;
+  overflow: auto;
+}
+
+#resultsParent {
+  max-height: 700px;
+  overflow: auto;
+  padding-top: 0;
+  margin-top: 15px;
+}
+
+#identifyParent {
+  margin-left: 20px;
+  margin-top: -15px;
+  background: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+#identifyParent .node--institution {
+  max-height: 700px;
+  overflow: auto;
+  border: none !important;
+}
+
+
+.interactive-map .accordion-item {
+  border: none !important;
+  margin: 20px;
+}
+
+.interactive-map .accordion-header {
+  background: #FCFAFA;
+  border-radius: 20px;
+  padding: 0 5px;
+  display: inline-block;
+}
+
+.interactive-map .accordion-header button {
+  font-weight: normal;
+  font-size: 16px;
+  color: #000;
+  outline: 0 !important;
+  padding: 10px;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.interactive-map .accordion-header button:after {
+  width: 10px;
+  height: 9px;
+  background-position: center;
+  margin-left: 10px;
+}
+
+.interactive-map .accordion-body::-webkit-scrollbar,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.interactive-map .accordion-body::-webkit-scrollbar-track,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #dadbdc;
+}
+
+.interactive-map .accordion-body::-webkit-scrollbar-thumb,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #505459;
+}
+.interactive-map .accordion-body::-webkit-scrollbar-thumb:hover,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  background: #6d7177;
+}
+.interactive-map .accordion-body::-webkit-scrollbar-thumb:window-inactive,
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive {
+  background: #505459;
+}
+
+.interactive-map .popover-body ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.interactive-map .popover-body ul li {
+  display: flex;
+  align-items: center;
+}
+
+.interactive-map .identify-rectangle-span {
+  width: 10px;
+  min-width: 10px;
+  max-width: 10px;
+  font-size: 0;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.interactive-map .popover-header {
+  display: none;
+}
+
+.interactive-map .popover p {
+  margin-bottom: 0;
+}
+
+.interactive-map .popover {
+  background: #fff;
+  opacity: .8;
+  border: 1px solid #CCCCCC;
+  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  font-size: 14px;
+}
+
+.interactive-map .popover-body {
+  padding: 10px;
+}
+
+.interactive-map .popover .title {
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 17px;
+  margin-bottom: 10px;
+}
+
+.interactive-map .popover li {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.interactive-map .popover li:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.interactive-map .institution-item-list-item {
+  display: flex;
+  align-items: baseline;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.ol-overlaycontainer-stopevent {
+  z-index: 10 !important;
+}

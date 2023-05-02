@@ -1,0 +1,8 @@
+uuid: 30087ba5-0d75-4664-b1eb-f910d2ca85a3
+langcode: en
+status: true
+dependencies: {  }
+name: 'Institution roles'
+vid: institution_roles
+description: ''
+weight: 0

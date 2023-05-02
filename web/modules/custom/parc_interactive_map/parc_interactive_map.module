@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function parc_interactive_map_theme() {
+  return [
+    'parc_interactive_map' => [
+      'variables' => [
+        'map_id' => FALSE,
+      ],
+    ],
+  ];
+}

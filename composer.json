@@ -38,6 +38,7 @@
         "drupal/devel": "^5.1",
         "drupal/edwt": "2.1.4",
         "drupal/extlink": "^1.7",
+        "drupal/facets": "^2.0",
         "drupal/field_group": "^3.4",
         "drupal/geocoder": "^3.32",
         "drupal/geofield": "^1.52",
@@ -56,6 +57,7 @@
         "drupal/paragraphs": "^1.15",
         "drupal/pathauto": "^1.11",
         "drupal/rabbit_hole": "^1.0@beta",
+        "drupal/search_api": "^1.29",
         "drupal/selective_better_exposed_filters": "^3.0@beta",
         "drupal/simple_sitemap": "^4.1",
         "drupal/smart_date": "^4.0@alpha",
@@ -93,6 +95,9 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/sites/development.services.yml": false
             }
         },
         "installer-paths": {
@@ -149,6 +154,9 @@
         "patches": {
             "drupal/color_field": {
                 "3064418 HTML5 widget for unlimited values needs improvements":"https://www.drupal.org/files/issues/2020-12-12/3064418-12--color-field-html5-widget-clear.patch"
+            },
+            "drupal/facets": {
+                "Facets with AJAX not working in most of situations": "https://www.drupal.org/files/issues/2023-02-07/facets-with-ajax-not-working-in-most-of-situations-3052574-174.patch"
             }
         }
     },

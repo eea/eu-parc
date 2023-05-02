@@ -1,0 +1,55 @@
+uuid: 72ca6c82-5181-4192-9dec-7ce11b757bf0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - field.storage.node.field_institution_roles
+    - search_api.server.database
+  module:
+    - search_api
+    - node
+id: institutions
+name: Institutions
+description: ''
+read_only: false
+field_settings:
+  field_country:
+    label: Country
+    datasource_id: 'entity:node'
+    property_path: field_country
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_country
+  field_institution_roles:
+    label: 'Institution roles'
+    datasource_id: 'entity:node'
+    property_path: field_institution_roles
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_institution_roles
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - institution
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database

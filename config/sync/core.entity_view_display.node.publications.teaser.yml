@@ -26,9 +26,12 @@ dependencies:
     - image.style.large
     - node.type.publications
   module:
+    - color_field
+    - datetime
     - field_group
     - link
     - media
+    - text
     - user
 third_party_settings:
   field_group:
@@ -262,3 +265,4 @@ hidden:
   field_updated_date: true
   field_zenodo_id: true
   links: true
+  search_api_excerpt: true
