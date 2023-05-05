@@ -15,10 +15,8 @@
       max-width: 100%;
       display: inline-block;
 
-      &:not(:last-child) {
-        padding-bottom: 15px;
-        border-bottom: 1px solid var(--c-gray-400);
-      }
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--c-gray-400);
 
       .btn {
         padding: 0;
