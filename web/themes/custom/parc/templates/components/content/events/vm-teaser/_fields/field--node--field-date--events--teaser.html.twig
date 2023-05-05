@@ -87,21 +87,25 @@
   {% endif %}
 </div>
 <div class="date-meta">
-  {%- for item in items -%}
-    {% set itemContent = item.content %}
+  {% if items|length <= 1 %}
+    {%- for item in items -%}
+      <div class="item">
+        {% set itemContent = item.content %}
 
-    {% if item.content.end %}
-      {% set AllDay = item.content.end.time['#markup'] %}
-    {% else %}
-      {% set AllDay = item.content.start.time['#markup'] %}
-    {% endif %}
+        {% if item.content.end %}
+          {% set AllDay = item.content.end.time['#markup'] %}
+        {% else %}
+          {% set AllDay = item.content.start.time['#markup'] %}
+        {% endif %}
 
-    {% if AllDay %}
-      {{ AllDay }}
-    {% else %}
-      {{- itemContent.start.time.value['#markup'] -}}
-      {{- ' — ' -}}
-      {{- itemContent.end.time.value['#markup'] -}}
-    {% endif %}
-  {%- endfor -%}
+        {% if AllDay %}
+          {{ AllDay }}
+        {% else %}
+          {{- itemContent.start.time.value['#markup'] -}}
+          {{- ' — ' -}}
+          {{- itemContent.end.time.value['#markup'] -}}
+        {% endif %}
+      </div>
+    {%- endfor -%}
+  {% endif %}
 </div>
