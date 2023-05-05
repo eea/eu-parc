@@ -8,7 +8,6 @@ dependencies:
     - taxonomy.vocabulary.news_category
   module:
     - color_field
-    - media_library
     - path
     - text
 id: taxonomy_term.news_category.default
@@ -30,13 +29,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_overlay:
-    type: media_library_widget
-    weight: 5
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -52,12 +44,12 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap:
-    weight: 10
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 130
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -68,4 +60,5 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_overlay: true

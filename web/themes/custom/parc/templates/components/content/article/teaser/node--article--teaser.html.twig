@@ -64,15 +64,14 @@
         <div class="mini-content show"></div>
       {% endif %}
 
-      <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
-        <span class="more">
+      <div class="w d-flex justify-content-between">
+        <a class="btn btn-clear btn-arrow me-auto stretched-link" href="{{ url }}">
           {{- 'Read more'|t -}}
-        </span>
-
-        <span class="less">
-          {{- 'Read less'|t -}}
-        </span>
-      </button>
+        </a>
+        <div class="field-date d-md-none">
+          {{- date -}}
+        </div>
+      </div>
     </div>
   </div>
 

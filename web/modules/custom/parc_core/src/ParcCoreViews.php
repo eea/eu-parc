@@ -65,27 +65,6 @@ class ParcCoreViews implements ContainerInjectionInterface {
    */
   public function viewsPreRender(ViewExecutable &$view) {
     if (
-      $view->id() === 'news_events'
-
-    ) {
-      if (
-        $view->current_display === 'page_news' ||
-        $view->current_display === 'block_related_news'
-      ) {
-        // Default overlay if none is defined.
-        $defaultOverlay = '/' . $this->themeManager->getActiveTheme()->getPath();
-        $defaultOverlay .= '/img/ovelay-default.svg';
-        $this->getOverlaysOrder(
-          $view,
-          'news_category',
-          'field_tags',
-          'field_overlay',
-          $defaultOverlay
-        );
-      }
-    }
-
-    if (
       $view->id() === 'content_events'
     ) {
 
