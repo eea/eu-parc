@@ -1,6 +1,35 @@
 .section--events--info {
   font-weight: var(--font-weight-normal);
 
+  .field-date {
+    display: inline-flex;
+    flex-direction: column;
+
+    .date-value {
+      margin-bottom: 15px;
+    }
+
+    .date-item {
+      margin-bottom: 15px;
+      width: 200px;
+      max-width: 100%;
+      display: inline-block;
+
+      &:not(:last-child) {
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--c-gray-400);
+      }
+
+      .btn {
+        padding: 0;
+      }
+
+      .collapse {
+        margin-top: 15px;
+      }
+    }
+  }
+
   .field + .field {
     .f-label {
       margin-top: 20px;

@@ -9,3 +9,10 @@ edit_node_event:
   css:
     component:
       assets/css/edit-node-event.css: {}
+
+admin:
+  css:
+    component:
+      css/admin.css: {}
+  js:
+    js/admin.js: {}

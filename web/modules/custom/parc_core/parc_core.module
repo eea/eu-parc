@@ -157,3 +157,13 @@ function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) 
       }
     }
   }
+
+/**
+ * Implements hook_page_attachments().
+ */
+function parc_core_page_attachments(array &$attachments) {
+  // Add custom CSS to admin pages.
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    $attachments['#attached']['library'][] = 'parc_core/admin';
+  }
+}
