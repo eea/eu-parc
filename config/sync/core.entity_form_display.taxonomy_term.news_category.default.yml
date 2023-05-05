@@ -8,6 +8,7 @@ dependencies:
     - taxonomy.vocabulary.news_category
   module:
     - color_field
+    - media_library
     - path
     - text
 id: taxonomy_term.news_category.default
@@ -44,12 +45,12 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap:
-    weight: 5
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 6
+    weight: 130
     region: content
     settings: {  }
     third_party_settings: {  }

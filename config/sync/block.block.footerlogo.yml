@@ -1,9 +1,9 @@
-uuid: 94a4e826-52ff-418b-9fef-c2a5c6f16a4e
+uuid: b1f76bec-9c1e-454d-a742-9f2a74cc81cd
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:a5c1fe42-76d3-45ee-8134-719bf5d08d54'
+    - 'block_content:basic:b9b04c14-1324-4f08-998a-f57b13df6c9d'
   module:
     - block_content
   theme:
@@ -11,11 +11,11 @@ dependencies:
 id: footerlogo
 theme: parc
 region: prefooter
-weight: -12
+weight: -11
 provider: null
-plugin: 'block_content:a5c1fe42-76d3-45ee-8134-719bf5d08d54'
+plugin: 'block_content:b9b04c14-1324-4f08-998a-f57b13df6c9d'
 settings:
-  id: 'block_content:a5c1fe42-76d3-45ee-8134-719bf5d08d54'
+  id: 'block_content:b9b04c14-1324-4f08-998a-f57b13df6c9d'
   label: 'Footer Logo'
   label_display: '0'
   provider: block_content
