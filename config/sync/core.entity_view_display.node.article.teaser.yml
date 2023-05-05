@@ -38,7 +38,7 @@ content:
       more_aria_label: 'Read more about [node:title]'
       summary_handler: full
       trim_options:
-        text: false
+        text: true
         trim_zero: false
         replace_tokens: false
     third_party_settings: {  }
@@ -76,3 +76,4 @@ hidden:
   field_metatags: true
   field_seo_keyword: true
   links: true
+  search_api_excerpt: true
