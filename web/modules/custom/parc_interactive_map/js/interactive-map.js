@@ -287,7 +287,7 @@
             let delta = 0.2;
             let radiusSingle = 15;//25;
             let radiusEqualCategoryId = 20;
-            let radiusCluster = 26;
+            let radiusCluster = 20;
             let deltaDouble = 0.15;
 
             if (features.length === 1) {
