@@ -14,74 +14,44 @@
 <div{{attributes.addClass(classes)}}>
   {% if items|length > 1 %}
     {% set count = items|length %}
-    {% set dsd = items[0].content['#value']|date('d') %}
-    {% set dsm = items[0].content['#value']|date('m') %}
-    {% set dsy = items[0].content['#value']|date('Y') %}
-    {% set ded = items[count-1].content['#end_value']|date('d') %}
-    {% set dem = items[count-1].content['#end_value']|date('m') %}
-    {% set dey = items[count-1].content['#end_value']|date('Y') %}
-    {% if dsy != dey %}
-      {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
-      {{ ded }}.{{ dem }}.{{ dey }}
-    {% elseif dsm != dem %}
-      {{ ded }}.{{ dsm }}{{ ' — ' }}
-      {{ ded }}.{{ dem }}.{{ dey }}
-    {% elseif dsd != ded %}
-      {{ dsd }}{{ ' — ' }}
-      {{ ded }}.{{ dem }}.{{ dey }}
+    {% set ds = items[0].content.start.date.value['#markup']|split('.') %}
+    {% set de = items[count-1].content.start.date.value['#markup']|split('.') %}
+
+    {% if ds.2 != de.2 %}
+      {{ ds.0 }}.{{ ds.1 }}.{{ ds.2 }}{{ ' — ' }}
+      {{ de.0 }}.{{ de.1 }}.{{ de.2 }}
+    {% elseif ds.1 != de.1 %}
+      {{ ds.0 }}.{{ ds.1 }}{{ ' — ' }}
+      {{ de.0 }}.{{ de.1 }}.{{ de.2 }}
+    {% elseif ds.0 != de.0 %}
+      {{ ds.0 }}{{ ' — ' }}
+      {{ de.0 }}.{{ de.1 }}.{{ de.2 }}
     {% endif %}
   {% else %}
     {%- for item in items -%}
       {% set start = item.content.start.date.value['#markup'] %}
       {% set end = item.content.end.date.value['#markup'] %}
-      {% set AllDay = item.content.end.time['#markup'] == 'All Day' %}
-
-
       {% set dsd = start|split('.').0 %}
       {% set dsm = start|split('.').1 %}
       {% set dsy = start|split('.').2 %}
 
-      {% if AllDay %}
-        {% set ds = start|trim('.') %}
-        {% if end %}
-          {% set ded = end|split('.').0 %}
-          {% set dem = end|split('.').1 %}
-          {% set dey = end|split('.').2 %}
+      {% if end %}
+        {% set ded = end|split('.').0 %}
+        {% set dem = end|split('.').1 %}
+        {% set dey = end|split('.').2 %}
 
-          {% if dsy != dey %}
-            {{ ds }}{{ ' — ' }}
-            {{ ded }}.{{ dem }}.{{ dey }}
-          {% elseif dsm != dem %}
-            v2
-            {{ ds }}{{ ' — ' }}
-            {{ ded }}.{{ dem }}.{{ dey }}
-          {% elseif dsd != ded %}
-            v3
-            {{ ds }}{{ ' — ' }}
-            {{ ded }}.{{ dsm }}.{{ dsy }}
-          {% endif %}
-        {% else %}
-          {{ ds }}
+        {% if dsy != dey %}
+          {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
+          {{ ded }}.{{ dem }}.{{ dey }}
+        {% elseif dsm != dem %}
+          {{ ded }}.{{ dsm }}{{ ' — ' }}
+          {{ ded }}.{{ dem }}.{{ dey }}
+        {% elseif dsd != ded %}
+          {{ dsd }}{{ ' — ' }}
+          {{ ded }}.{{ dsm }}.{{ dey }}
         {% endif %}
       {% else %}
-        {% if end %}
-          {% set ded = end|split('.').0 %}
-          {% set dem = end|split('.').1 %}
-          {% set dey = end|split('.').2 %}
-
-          {% if dsy != dey %}
-            {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
-            {{ ded }}.{{ dem }}.{{ dey }}
-          {% elseif dsm != dem %}
-            {{ ded }}.{{ dsm }}{{ ' — ' }}
-            {{ ded }}.{{ dem }}.{{ dey }}
-          {% elseif dsd != ded %}
-            {{ dsd }}{{ ' — ' }}
-            {{ ded }}.{{ dsm }}.{{ dsy }}
-          {% endif %}
-        {% else %}
-          {{ dsd }}.{{ dsm }}.{{ dsy }}
-        {% endif %}
+        {{ dsd }}.{{ dsm }}.{{ dsy }}
       {% endif %}
     {%- endfor -%}
   {% endif %}
