@@ -33,7 +33,6 @@
               'countryId': institutions[i].country,
               'categoryId': institutions[i].category,
               'name': institutions[i].title,
-              'image': institutions[i].image,
               'roles': institutions[i].roles,
               'render_teaser': institutions[i].render_teaser,
               'render_full': institutions[i].render_full
@@ -92,7 +91,7 @@
                     anchorYUnits: "pixels",
                   }),
                   text: new ol.style.Text({
-                    text: /*feature.ol_uid.toString(),//*/size.toString(),
+                    text: size.toString(),
                     fill: new ol.style.Fill({
                       color: '#000',
                     }),
@@ -240,28 +239,6 @@
                       popover.show();
                     }
                   });
-
-                  if (!isSingle) {
-                    const coordinate = e.coordinate;
-                    popup.setPosition(coordinate);
-
-                    let content = '';
-                    cluster.paths.forEach(path => {
-                      content += `<div class="institution-item-list-item"><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(path.categoryId)}"></span><span>${path.name}</span></div>`;
-                    })
-                    if (popover) {
-                      popover.dispose();
-                    }
-                    popover = new Popover(element, {
-                      animation: false,
-                      container: element,
-                      content: content,
-                      html: true,
-                      placement: 'top',
-                      title: 'Selected feature(s)',
-                    });
-                    popover.show();
-                  }
                 }
               }
             }
@@ -317,31 +294,24 @@
               canvas.setAttribute('width', 2 * radiusSingle + 6);
               canvas.setAttribute('height', 2 * radiusSingle + 16);
 
-              var image = new Image();
-              image.crossOrigin = "anonymous"
-              image.onload = function () {
+              ctx.beginPath();
+              ctx.arc(radiusSingle + 3, radiusSingle + 3, radiusSingle, 0, Math.PI * 2);
+              ctx.closePath();
+              ctx.strokeStyle = getColorByCategoryId(features[0].get('categoryId'));
+              ctx.lineWidth = 5;
+              ctx.stroke();
 
-                ctx.beginPath();
-                ctx.arc(radiusSingle + 3, radiusSingle + 3, radiusSingle, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.strokeStyle = getColorByCategoryId(features[0].get('categoryId'));
-                ctx.lineWidth = 5;
-                ctx.stroke();
+              ctx.restore();
+              ctx.beginPath();
+              ctx.moveTo(radiusSingle + 8, 2 * radiusSingle + 1);
+              ctx.lineTo(radiusSingle + 3, 2 * radiusSingle + 10);
+              ctx.lineTo(radiusSingle - 2, 2 * radiusSingle + 1);
 
-                ctx.restore();
-                ctx.beginPath();
-                ctx.moveTo(radiusSingle + 8, 2 * radiusSingle + 1);
-                ctx.lineTo(radiusSingle + 3, 2 * radiusSingle + 10);
-                ctx.lineTo(radiusSingle - 2, 2 * radiusSingle + 1);
+              ctx.strokeStyle = getColorByCategoryId(features[0].get('categoryId'));
+              ctx.lineWidth = 5;
+              ctx.stroke();
 
-                ctx.strokeStyle = getColorByCategoryId(features[0].get('categoryId'));
-                ctx.lineWidth = 5;
-                ctx.stroke();
-
-                resolve(canvas)
-              };
-              image.src = features[0].get("image");
-
+              resolve(canvas)
             } else {
               let allEqualCategoryId = features.every((val, i, arr) => val.get('categoryId') === arr[0].get('categoryId'));
               if (allEqualCategoryId) {
