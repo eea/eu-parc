@@ -12,6 +12,10 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/stefanbutura/svg-sanitizer.git"
         }
     ],
     "require": {
@@ -72,6 +76,7 @@
         "drupal/viewsreference": "^2.0@beta",
         "drush/drush": "^11.4",
         "eaudeweb/heavy-lifter": "^2.0",
+        "enshrined/svg-sanitize": "dev-master as 0.16.0",
         "symfony/css-selector": "^5.4"
     },
     "conflict": {

@@ -593,7 +593,7 @@ display:
           table: node__field_date
           field: field_date_end_value
           relationship: none
-          group_type: group
+          group_type: max
           admin_label: ''
           plugin_id: date
           order: DESC
@@ -788,11 +788,13 @@ display:
         title: false
         css_class: false
         exposed_form: false
+        group_by: false
         sorts: false
         arguments: false
         filters: false
         filter_groups: false
       css_class: 'mb-parc js-second-exposed-filter'
+      group_by: true
       display_description: ''
       exposed_block: false
       display_extenders:
@@ -834,7 +836,7 @@ display:
           table: node__field_date
           field: field_date_end_value
           relationship: none
-          group_type: group
+          group_type: max
           admin_label: ''
           plugin_id: date
           order: DESC
@@ -881,10 +883,12 @@ display:
         use_more_text: false
         link_display: false
         link_url: false
+        group_by: false
         sorts: false
         filters: false
         filter_groups: false
         header: false
+      group_by: true
       display_description: ''
       use_more: true
       use_more_always: true
@@ -1267,7 +1271,7 @@ display:
           table: node__field_date
           field: field_date_end_value
           relationship: none
-          group_type: group
+          group_type: min
           admin_label: ''
           plugin_id: date
           order: ASC
@@ -1471,7 +1475,7 @@ display:
       relationships: {  }
       css_class: 'mb-parc js-first-exposed-filters'
       use_ajax: false
-      group_by: false
+      group_by: true
       display_description: ''
       header: {  }
       exposed_block: true
