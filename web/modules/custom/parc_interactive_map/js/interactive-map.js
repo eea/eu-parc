@@ -33,7 +33,6 @@
               'countryId': institutions[i].country,
               'categoryId': institutions[i].category,
               'name': institutions[i].title,
-              'image': institutions[i].image,
               'roles': institutions[i].roles,
               'render_teaser': institutions[i].render_teaser,
               'render_full': institutions[i].render_full
@@ -240,28 +239,6 @@
                       popover.show();
                     }
                   });
-
-                  if (!isSingle) {
-                    const coordinate = e.coordinate;
-                    popup.setPosition(coordinate);
-
-                    let content = '';
-                    cluster.paths.forEach(path => {
-                      content += `<div class="institution-item-list-item"><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(path.categoryId)}"></span><span>${path.name}</span></div>`;
-                    })
-                    if (popover) {
-                      popover.dispose();
-                    }
-                    popover = new Popover(element, {
-                      animation: false,
-                      container: element,
-                      content: content,
-                      html: true,
-                      placement: 'top',
-                      title: 'Selected feature(s)',
-                    });
-                    popover.show();
-                  }
                 }
               }
             }
