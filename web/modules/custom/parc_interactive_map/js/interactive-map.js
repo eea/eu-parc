@@ -253,21 +253,12 @@
                     popover.dispose();
                   }
 
-                  let title = features[0].get("name");
-                  let title_txt = `<div class="title">${title}</div>`;
-                  let roles = features[0].get("roles");
-                  let role_txt = "<ul>";
-
-                  for (let i = 0; i < roles.length; i++) {
-                    role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;
-                  }
-
-                  role_txt += "</ul>";
+                  let info = getFeatureDetails(features[0], false);
 
                   popover = new Popover(element, {
                     animation: false,
                     container: element,
-                    content: `<div>${title_txt} ${role_txt}</div>`,
+                    content: `<div>${info.title} ${info.role}</div>`,
                     html: true,
                     placement: "top",
                     title: "Selected feature(s)",
@@ -299,15 +290,15 @@
                         const coordinate = e.coordinate;
                         popup.setPosition(coordinate);
 
+                        let info = getFeatureDetails(path, true);
+
                         if (popover) {
                           popover.dispose();
                         }
                         popover = new Popover(element, {
                           animation: false,
                           container: element,
-                          content: `<div class="institution-item-list-item"><span class="identify-rectangle-span" style="background-color: ${getColorByCategoryId(
-                            path.categoryId
-                          )}"></span><span>${path.name}</span></div>`,
+                          content: `<div>${info.title} ${info.role}</div>`,
                           html: true,
                           placement: "top",
                           title: "Selected feature(s)",
@@ -421,6 +412,7 @@
                   featuresToDraw.push({
                     categoryId: features[i].get("categoryId"),
                     name: features[i].get("name"),
+                    roles: features[i].get("roles"),
                     children: [features[i]],
                   });
                 }
@@ -450,6 +442,7 @@
                       path: path,
                       categoryId: featuresToDraw[i].categoryId,
                       name: featuresToDraw[i].name,
+                      roles: featuresToDraw[i].roles,
                     });
                   }
                 }
@@ -457,6 +450,27 @@
               }
             });
           }
+
+          function getFeatureDetails(feature, isPath) {
+            let markup = {
+              "title": `<div class="title">${isPath ? feature.name : feature.get("name")}</div>`,
+              "role": ""
+            }
+
+            let roles = isPath ? feature.roles : feature.get("roles");
+            let role_txt = "<ul>";
+
+            for (let i = 0; i < roles.length; i++) {
+              role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;
+            }
+
+            role_txt += "</ul>";
+
+            markup.role = role_txt;
+
+            return markup;
+          }
+
           function compare(a, b) {
             if (a.categoryId < b.categoryId) {
               return -1;
