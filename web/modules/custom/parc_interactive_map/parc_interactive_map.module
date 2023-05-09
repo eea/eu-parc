@@ -12,5 +12,16 @@ function parc_interactive_map_theme() {
         'map_id' => FALSE,
       ],
     ],
+    'facets_result_item_with_children' => [
+      'variables' => [
+        'facet' => NULL,
+        'raw_value' => '',
+        'value' => '',
+        'show_count' => FALSE,
+        'count' => NULL,
+        'is_active' => FALSE,
+        'parent_id' => NULL,
+      ],
+    ],
   ];
 }

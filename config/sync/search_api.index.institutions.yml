@@ -43,6 +43,11 @@ processor_settings:
   add_url: {  }
   aggregated_field: {  }
   entity_type: {  }
+  hierarchy:
+    weights:
+      preprocess_index: -45
+    fields:
+      field_country: taxonomy_term-parent
   language_with_fallback: {  }
   rendered_item: {  }
 tracker_settings:

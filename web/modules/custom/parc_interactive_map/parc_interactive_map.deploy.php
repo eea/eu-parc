@@ -131,3 +131,76 @@ function parc_interactive_map_deploy_9003() {
     $node->save();
   }
 }
+
+function parc_interactive_map_deploy_9004() {
+  $grouped_countries = [
+    'Member States' => [
+      'Austria',
+      'Belgium',
+      'Croatia',
+      'Cyprus',
+      'Czechia',
+      'Denmark',
+      'Estonia',
+      'Finland',
+      'France',
+      'Germany',
+      'Greece',
+      'Hungary',
+      'Italy',
+      'Latvia',
+      'Lithuania',
+      'Luxembourg',
+      'Netherlands',
+      'Poland',
+      'Portugal',
+      'Slovakia',
+      'Slovenia',
+      'Spain',
+      'Sweden',
+    ],
+    'Associated countries' => [
+      'Iceland',
+      'Israel',
+      'Norway',
+      'United Kingdom',
+    ],
+    'Non-associated third country' => [],
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $weight = 0;
+  foreach ($grouped_countries as $group => $countries) {
+    if (empty($countries)) {
+      $non_associated_countries = $term_storage->loadByProperties([
+        'vid' => 'countries',
+      ]);
+      foreach ($non_associated_countries as $country) {
+        if (empty($country->get('parent')->entity) && !empty($country->get('field_iso2')->value)) {
+          $countries[] = $country->label();
+        }
+      }
+    }
+
+    $group = $term_storage->create([
+      'name' => $group,
+      'vid' => 'countries',
+      'weight' => ++$weight,
+    ]);
+    $group->save();
+
+    foreach ($countries as $idx => $country) {
+      $country_term = $term_storage->loadByProperties([
+        'name' => $country,
+      ]);
+      if (empty($country_term)) {
+        continue;
+      }
+
+      $country_term = reset($country_term);
+      $country_term->set('parent', $group);
+      $country_term->set('weight', $idx);
+      $country_term->save();
+    }
+  }
+}
