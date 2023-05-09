@@ -2,6 +2,9 @@
 
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
 
 /**
  * Delete partner vocabulary terms, create institution roles.
@@ -132,6 +135,9 @@ function parc_interactive_map_deploy_9003() {
   }
 }
 
+/**
+ * Group PARC countries.
+ */
 function parc_interactive_map_deploy_9004() {
   $grouped_countries = [
     'Member States' => [
@@ -203,4 +209,34 @@ function parc_interactive_map_deploy_9004() {
       $country_term->save();
     }
   }
+}
+
+/**
+ * Create default institution image.
+ */
+function parc_interactive_map_deploy_9005() {
+  $image_path = \Drupal::service('extension.list.module')
+    ->getPath('parc_interactive_map') . '/assets/default-image.png';
+
+  /** @var \Drupal\Core\File\FileSystemInterface $fileSystem */
+  $fileSystem = \Drupal::service('file_system');
+
+  $destination = 'public://default-image.png';
+  $fileSystem->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
+
+  $file = File::create([
+    'uid' => 1,
+    'filename' => 'default-image.png',
+    'uri' => $destination,
+    'status' => 1,
+  ]);
+  $file->save();
+
+  $media = Media::create([
+    'bundle' => 'image',
+    'name' => 'Placeholder institution image',
+    'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
+    'field_media_image' => $file,
+  ]);
+  $media->save();
 }

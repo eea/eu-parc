@@ -6,6 +6,8 @@ dependencies:
     - field.storage.node.field_media_image
     - media.type.image
     - node.type.institution
+  content:
+    - 'media:image:bb036496-e2f0-4322-ab80-e9c69c2177e8'
 id: node.institution.field_media_image
 field_name: field_media_image
 entity_type: node
@@ -14,7 +16,10 @@ label: Logo
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    target_uuid: 15f79f08-9928-44f7-a909-8ff476217a2e
+    weight: 0
 default_value_callback: ''
 settings:
   handler: 'default:media'
