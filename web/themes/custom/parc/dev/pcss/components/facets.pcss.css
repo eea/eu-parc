@@ -41,6 +41,12 @@
       display: flex;
       font-size: 20px;
       width: 100%;
+
+      &:hover {
+        .facet-item__value {
+          text-decoration: underline;
+        }
+      }
     }
 
     .facet-item__count {
