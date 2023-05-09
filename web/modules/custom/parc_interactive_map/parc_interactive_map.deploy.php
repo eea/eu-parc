@@ -2,6 +2,9 @@
 
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
 
 /**
  * Delete partner vocabulary terms, create institution roles.
@@ -130,4 +133,110 @@ function parc_interactive_map_deploy_9003() {
     ]);
     $node->save();
   }
+}
+
+/**
+ * Group PARC countries.
+ */
+function parc_interactive_map_deploy_9004() {
+  $grouped_countries = [
+    'Member States' => [
+      'Austria',
+      'Belgium',
+      'Croatia',
+      'Cyprus',
+      'Czechia',
+      'Denmark',
+      'Estonia',
+      'Finland',
+      'France',
+      'Germany',
+      'Greece',
+      'Hungary',
+      'Italy',
+      'Latvia',
+      'Lithuania',
+      'Luxembourg',
+      'Netherlands',
+      'Poland',
+      'Portugal',
+      'Slovakia',
+      'Slovenia',
+      'Spain',
+      'Sweden',
+    ],
+    'Associated countries' => [
+      'Iceland',
+      'Israel',
+      'Norway',
+      'United Kingdom',
+    ],
+    'Non-associated third country' => [],
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $weight = 0;
+  foreach ($grouped_countries as $group => $countries) {
+    if (empty($countries)) {
+      $non_associated_countries = $term_storage->loadByProperties([
+        'vid' => 'countries',
+      ]);
+      foreach ($non_associated_countries as $country) {
+        if (empty($country->get('parent')->entity) && !empty($country->get('field_iso2')->value)) {
+          $countries[] = $country->label();
+        }
+      }
+    }
+
+    $group = $term_storage->create([
+      'name' => $group,
+      'vid' => 'countries',
+      'weight' => ++$weight,
+    ]);
+    $group->save();
+
+    foreach ($countries as $idx => $country) {
+      $country_term = $term_storage->loadByProperties([
+        'name' => $country,
+      ]);
+      if (empty($country_term)) {
+        continue;
+      }
+
+      $country_term = reset($country_term);
+      $country_term->set('parent', $group);
+      $country_term->set('weight', $idx);
+      $country_term->save();
+    }
+  }
+}
+
+/**
+ * Create default institution image.
+ */
+function parc_interactive_map_deploy_9005() {
+  $image_path = \Drupal::service('extension.list.module')
+    ->getPath('parc_interactive_map') . '/assets/default-image.png';
+
+  /** @var \Drupal\Core\File\FileSystemInterface $fileSystem */
+  $fileSystem = \Drupal::service('file_system');
+
+  $destination = 'public://default-image.png';
+  $fileSystem->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
+
+  $file = File::create([
+    'uid' => 1,
+    'filename' => 'default-image.png',
+    'uri' => $destination,
+    'status' => 1,
+  ]);
+  $file->save();
+
+  $media = Media::create([
+    'bundle' => 'image',
+    'name' => 'Placeholder institution image',
+    'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
+    'field_media_image' => $file,
+  ]);
+  $media->save();
 }

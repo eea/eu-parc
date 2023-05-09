@@ -192,7 +192,15 @@ class InteractiveMap extends StylePluginBase {
   protected function getInstitutionImage(NodeInterface $node) {
     $media = $node->get('field_media_image')->entity;
     if (empty($media)) {
-      return NULL;
+      $media = $this->entityTypeManager
+        ->getStorage('media')
+        ->loadByProperties([
+          'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
+        ]);
+      if (empty($media)) {
+        return NULL;
+      }
+      $media = reset($media);
     }
 
     /** @var \Drupal\file\FileInterface $file */

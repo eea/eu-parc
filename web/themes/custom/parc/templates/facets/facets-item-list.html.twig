@@ -48,24 +48,24 @@
   {% endif %}
 
   {% if items or empty %}
-    {%- if title is not empty -%}
-      <a class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse{{ facet.id }}" role="button" aria-expanded="true" aria-controls="collapse{{ facet.id }}">
-        <h3 class="facets-title">{{ title }}</h3>
-      </a>
-    {%- endif -%}
+  {%- if title is not empty -%}
+    <a class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse{{ facet.id }}" role="button" aria-expanded="true" aria-controls="collapse{{ facet.id }}">
+      <h3 class="facets-title">{{ title }}</h3>
+    </a>
+  {%- endif -%}
 
-    <div class="collapse show" id="collapse{{ facet.id }}">
-      {%- if items -%}
-      <{{ list_type }}{{ attributes }}>
-      {%- for item in items -%}
-        <li{{ item.attributes }}>{{ item.value }}</li>
-      {%- endfor -%}
-    </{{ list_type }}>
+  <div class="collapse show" id="collapse{{ facet.id }}">
+    {%- if items -%}
+    <{{ list_type }}{{ attributes }}>
+    {%- for item in items -%}
+      <li{{ item.attributes }}>{{ item.value }}</li>
+    {%- endfor -%}
+  </{{ list_type }}>
   {%- else -%}
     {{- empty -}}
   {%- endif -%}
-    </div>
-  {%- endif %}
+</div>
+{%- endif %}
 
 {% if facet.widget.type == "dropdown" %}
   <label id="facet_{{ facet.id }}_label">{{ 'Facet'|t }} {{ facet.label }}</label>

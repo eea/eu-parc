@@ -141,6 +141,15 @@
   align-items: center;
 }
 
+.interactive-map .bs-popover-auto[data-popper-placement^="top"] > .popover-arrow {
+  bottom: -14px;
+}
+
+.interactive-map .bs-popover-top > .popover-arrow::before,
+.interactive-map .bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::before {
+  border-top-color: #CCC;
+}
+
 .interactive-map .identify-rectangle-span {
   width: 10px;
   min-width: 10px;

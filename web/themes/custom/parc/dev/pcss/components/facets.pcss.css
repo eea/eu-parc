@@ -4,7 +4,8 @@
   padding-bottom: 10px;
 }
 
-.facets-widget-checkbox {
+.facets-widget-checkbox,
+.facets-widget-parc_checkbox {
   a.facets-soft-limit-link {
     font-size: 16px;
   }
@@ -41,12 +42,50 @@
       display: flex;
       font-size: 20px;
       width: 100%;
+
+      &:hover {
+        .facet-item__value {
+          text-decoration: underline;
+        }
+      }
     }
 
     .facet-item__count {
       margin-left: auto;
       color: #999898;
       font-size: 10px;
+    }
+  }
+
+  .facet-subtitle {
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .accordion-button::after {
+    background-size: 15px;
+    background-position: center;
+    margin-left: 10px;
+  }
+
+  .accordion-button[aria-expanded="true"]::after {
+    margin-top: -3px;
+  }
+
+  .facet-item__value {
+    position: relative;
+
+    .facets-collapse {
+      position: absolute;
+      right: -30px;
+      top: 10px;
+      padding: 0;
+      margin: 0;
+      width: auto;
+
+      &[aria-expanded="false"] {
+        top: 5px;
+      }
     }
   }
 }

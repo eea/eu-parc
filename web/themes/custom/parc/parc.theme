@@ -9,6 +9,7 @@ use Drupal\block\Entity\Block;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\parc\ParcThemeProcess;
 use Drupal\taxonomy\TermInterface;
+use Drupal\facets\FacetInterface;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -195,9 +196,11 @@ function _parc_get_query_from_url($url , $parameter_name) {
  * Implements hook_preprocess_HOOK() for facets_item_list.
  */
 function parc_preprocess_facets_item_list(&$variables) {
-
   /** @var \Drupal\facets\Entity\Facet $facet */
   $facet = $variables['facet'];
+  if (!$facet instanceof FacetInterface) {
+    return;
+  }
   if ($facet->id() == 'category') {
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     $items = $variables['items'];
