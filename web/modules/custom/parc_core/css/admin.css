@@ -1,0 +1,9 @@
+.node-events-form .all-day-selected .time-end.form-date,
+.node-events-edit-form .all-day-selected .time-end.form-date {
+  visibility: hidden !important;
+}
+
+.node-events-form .all-day-selected .smartdate--separator,
+.node-events-edit-form .all-day-selected .smartdate--separator {
+  display: none !important;
+}

@@ -30,13 +30,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_overlay:
-    type: media_library_widget
-    weight: 5
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
   name:
     type: string_textfield
     weight: 0
@@ -68,4 +61,5 @@ content:
     settings:
       display_label: true
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_overlay: true

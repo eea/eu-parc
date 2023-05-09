@@ -48,31 +48,20 @@
 
     <div class="article-content mini d-flex flex-grow-1 flex-column justify-content-between align-items-start">
       <h4 class="card-title fw-bold" {{ content.field_label_color.0 ? 'style=--news-c-title:' ~ content.field_label_color|render|striptags|trim ~ ';' }}>
-
         {{- label.0 -}}
       </h4>
 
       {% if content.body.0 %}
-        <div class="collapse multi-collapse-{{ collpaseID }} show grow-1 mini-content" id="{{ collpaseID }}-second">
+        <div class="grow-1 mini-content">
           {{- content.body -}}
         </div>
-
-        <div class="collapse multi-collapse-{{ collpaseID }} mb-lg-3" id="{{ collpaseID }}">
-          {{ body_full }}
-        </div>
-      {% else %}
-        <div class="mini-content show"></div>
       {% endif %}
 
-      <button class="btn btn-clear btn-arrow stretched-link" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse-{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }} {{ collpaseID }}-second">
-        <span class="more">
+      <div class="w d-flex justify-content-between">
+        <a class="btn btn-clear btn-arrow me-auto stretched-link" href="{{ url }}">
           {{- 'Read more'|t -}}
-        </span>
-
-        <span class="less">
-          {{- 'Read less'|t -}}
-        </span>
-      </button>
+        </a>
+      </div>
     </div>
   </div>
 

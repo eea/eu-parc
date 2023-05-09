@@ -104,6 +104,7 @@ content:
         custom
       show_extra: false
       hide_date: true
+      allday: true
       separator: to
     third_party_settings: {  }
   field_event_format:

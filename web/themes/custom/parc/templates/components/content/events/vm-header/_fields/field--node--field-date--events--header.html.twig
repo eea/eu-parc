@@ -17,15 +17,15 @@
     {% set ds = items[0].content.start.date.value['#markup']|split('.') %}
     {% set de = items[count-1].content.start.date.value['#markup']|split('.') %}
 
-    {% if ds.0 != de.0 %}
-      {{ ds.2 }}.{{ ds.1 }}{{ ' — ' }}
-      {{ de.2 }}.{{ de.1 }}
+    {% if ds.2 != de.2 %}
+      {{ ds.0 }}.{{ ds.1 }}.{{ ds.2 }}{{ ' — ' }}
+      {{ de.0 }}.{{ de.1 }}.{{ de.2 }}
     {% elseif ds.1 != de.1 %}
-      {{ de.2 }}.{{ ds.1 }}{{ ' — ' }}
-      {{ de.2 }}.{{ de.1 }}
-    {% elseif ds.2 != de.2 %}
-      {{ ds.2 }}{{ ' — ' }}
-      {{ de.2 }}.{{ de.1 }}
+      {{ ds.0 }}.{{ ds.1 }}{{ ' — ' }}
+      {{ de.0 }}.{{ de.1 }}.{{ de.2 }}
+    {% elseif ds.0 != de.0 %}
+      {{ ds.0 }}{{ ' — ' }}
+      {{ de.0 }}.{{ de.1 }}.{{ de.2 }}
     {% endif %}
   {% else %}
     {%- for item in items -%}
@@ -57,14 +57,12 @@
   {% endif %}
 </div>
 <div class="only-year">
-  {%- for item in items -%}
-    {% set s = item.content.start.date.value['#markup']|split('.').2 %}
-    {% set e = item.content.end.date.value['#markup']|split('.').2 %}
+  {% set s = items[0].content.start.date.value['#markup']|split('.').2 %}
+  {% set e = items[count-1].content.start.date.value['#markup']|split('.').2 %}
 
-    {% if not e or s == e %}
-      {{- s -}}
-    {% else %}
-      {{- s -}}{{ ' — ' }}{{- e -}}
-    {% endif %}
-  {% endfor %}
+  {% if not e or s == e %}
+    {{- s -}}
+  {% else %}
+    {{- s -}}{{ ' — ' }}{{- e -}}
+  {% endif %}
 </div>

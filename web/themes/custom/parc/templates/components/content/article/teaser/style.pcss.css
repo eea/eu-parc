@@ -30,6 +30,7 @@
       inset: 0;
       max-width: 100%;
       height: auto;
+      z-index: 5;
     }
   }
 
@@ -148,46 +149,3 @@
   --news-c-title: var(--purple);
 }
 
-.node--article--teaser {
-  .svg-news--effect {
-    .line1 {
-      stroke-dashoffset: 30;
-      stroke-dasharray: 100;
-      stroke-width: 15;
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: newsDashIn !important;
-      animation-duration: 250ms;
-    }
-  }
-
-  &:hover {
-    .svg-news--effect {
-      .line1 {
-        animation-fill-mode: forwards;
-        animation-name: newsDashOut !important;
-      }
-    }
-  }
-
-  @keyframes newsDashIn {
-    0% {
-      stroke-dashoffset: 100;
-    }
-
-    100% {
-      stroke-dashoffset: 30;
-    }
-  }
-
-  @keyframes newsDashOut {
-    0% {
-      stroke-dashoffset: 30;
-    }
-
-    100% {
-      stroke-dashoffset: 100;
-    }
-  }
-}

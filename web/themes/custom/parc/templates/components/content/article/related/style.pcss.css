@@ -107,7 +107,7 @@
   --news-c-title: var(--purple);
 }
 
-.node--article--teaser {
+.node--article--archive {
   .svg-news--effect {
     .line1 {
       stroke-dashoffset: 30;

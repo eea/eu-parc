@@ -9,10 +9,10 @@ dependencies:
     - system.menu.main
     - taxonomy.vocabulary.deliverables
   content:
-    - 'taxonomy_term:deliverables:03068133-b196-4a09-8c3f-f652396ae606'
-    - 'taxonomy_term:deliverables:246c1813-c505-4949-a227-dc6c2bb7d4bc'
-    - 'taxonomy_term:deliverables:7098b2e2-b3d7-4b42-8a03-545b15ad26d2'
-    - 'taxonomy_term:deliverables:d8ba6d8a-0c48-4985-9c9d-3a52955265a4'
+    - 'taxonomy_term:publications_topics:9431262e-e164-4d5e-8a32-0963de1df655'
+    - 'taxonomy_term:publications_topics:a38b15be-f004-4d74-950d-0d36f5e43fc0'
+    - 'taxonomy_term:thematic_areas:8a25d320-c51e-462a-a69c-7aed785ea072'
+    - 'taxonomy_term:thematic_areas:e1c8db6c-bd3c-4fd6-870f-98a0cb4043cc'
   module:
     - better_exposed_filters
     - datetime
@@ -201,19 +201,6 @@ display:
             label: ''
             field_identifier: ''
           exposed: false
-        field_order_value:
-          id: field_order_value
-          table: node__field_order
-          field: field_order_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: standard
-          order: ASC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
       arguments: {  }
       filters:
         status:
@@ -373,7 +360,6 @@ display:
           plugin_id: standard
           required: false
       use_ajax: true
-      use_ajax: true
       header:
         area:
           id: area
@@ -422,8 +408,10 @@ display:
       menu:
         type: normal
         title: Deliverables
+        weight: -56
+        enabled: true
         menu_name: main
-        parent: 'menu_link_content:186a7743-6ff2-44a2-a727-a893d1db2a78'
+        parent: 'menu_link_content:691b6db4-ca44-46f2-b847-4389577e9d04'
     cache_metadata:
       max-age: -1
       contexts:

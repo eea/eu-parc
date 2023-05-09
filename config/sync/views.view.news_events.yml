@@ -787,7 +787,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: archive
+          view_mode: teaser
       defaults:
         title: false
         use_ajax: false
