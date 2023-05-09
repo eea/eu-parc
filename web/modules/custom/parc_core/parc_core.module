@@ -12,6 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\parc_core\ParcCoreViews;
 use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
 
 /**
  * Implements hook_preprocess_page().
@@ -165,5 +166,26 @@ function parc_core_page_attachments(array &$attachments) {
   // Add custom CSS to admin pages.
   if (\Drupal::service('router.admin_context')->isAdminRoute()) {
     $attachments['#attached']['library'][] = 'parc_core/admin';
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  // Views queries with GROUP BY date are bugged
+  // and do not interpret NOW as the current date.
+  // Replace 'now' string in queries with time().
+  if ($view->id() == 'content_events') {
+    foreach ($query->having as &$group) {
+      foreach ($group['conditions'] as &$condition) {
+        foreach ($condition['value'] as &$value) {
+          if ($value == 'now') {
+            $value = time();
+            return;
+          }
+        }
+      }
+    }
   }
 }
