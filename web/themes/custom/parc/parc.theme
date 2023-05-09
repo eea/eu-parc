@@ -10,6 +10,7 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\parc\ParcThemeProcess;
 use Drupal\taxonomy\TermInterface;
 use Drupal\facets\FacetInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -221,5 +222,16 @@ function parc_preprocess_facets_item_list(&$variables) {
       $attributes = $item['attributes'];
       $attributes->setAttribute('style', "color: $color");
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function parc_preprocess_html(&$variables) {
+  // Add node id to the body class.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface && $node->hasField('field_custom_classes')) {
+    $variables['attributes']['class'][] = $node->get('field_custom_classes')->value;
   }
 }

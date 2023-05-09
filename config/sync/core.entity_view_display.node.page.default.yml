@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_custom_classes
     - field.field.node.page.field_metatags
     - field.field.node.page.field_seo_keyword
     - field.field.node.page.layout_builder__layout
@@ -49,22 +50,6 @@ third_party_settings:
                 entity: layout_builder.entity
             weight: 1
             additional: {  }
-          5a6be183-e0aa-4291-9f92-5330298d1bd0:
-            uuid: 5a6be183-e0aa-4291-9f92-5330298d1bd0
-            region: content
-            configuration:
-              id: 'field_block:node:page:field_seo_keyword'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: entity_reference_label
-                label: above
-                settings:
-                  link: true
-                third_party_settings: {  }
-            weight: 2
-            additional: {  }
           b3ff1fd8-afc8-4a59-a6c5-1d08add01505:
             uuid: b3ff1fd8-afc8-4a59-a6c5-1d08add01505
             region: content
@@ -95,6 +80,14 @@ content:
     third_party_settings: {  }
     weight: 100
     region: content
+  field_custom_classes:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
   field_metatags:
     type: metatag_empty_formatter
     label: above
@@ -118,3 +111,4 @@ content:
 hidden:
   addtoany: true
   layout_builder__layout: true
+  search_api_excerpt: true

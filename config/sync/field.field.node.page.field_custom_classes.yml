@@ -1,0 +1,19 @@
+uuid: 98c13bff-4e43-4a8b-aa01-e7dfc409d633
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_custom_classes
+    - node.type.page
+id: node.page.field_custom_classes
+field_name: field_custom_classes
+entity_type: node
+bundle: page
+label: 'Custom CSS classes'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
