@@ -22,6 +22,7 @@ dependencies:
     - link
     - media_library
     - path
+    - select2
     - text
 id: node.institution.default
 targetEntityType: node
@@ -81,10 +82,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_institution_roles:
-    type: options_select
+    type: select2_entity_reference
     weight: 20
     region: content
-    settings: {  }
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
     third_party_settings: {  }
   field_media_image:
     type: media_library_widget
