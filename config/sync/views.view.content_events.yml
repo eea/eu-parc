@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.storage.node.field_date
     - node.type.events
     - system.menu.main
     - taxonomy.vocabulary.events_category
@@ -36,7 +37,7 @@ display:
           table: node__field_date
           field: field_date
           relationship: none
-          group_type: min
+          group_type: group
           admin_label: ''
           plugin_id: field
           label: ''
@@ -312,6 +313,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
@@ -320,209 +322,8 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
-  attachment_no_results:
-    id: attachment_no_results
-    display_title: 'Attch no results'
-    display_plugin: attachment
-    position: 4
-    display_options:
-      title: 'Related Events'
-      pager:
-        type: some
-        options:
-          offset: 0
-          items_per_page: 4
-      exposed_form:
-        type: basic
-        options:
-          submit_button: Apply
-          reset_button: false
-          reset_button_label: Reset
-          exposed_sorts_label: 'Sort by'
-          expose_sort_order: false
-          sort_asc_label: Asc
-          sort_desc_label: Desc
-      sorts:
-        field_date_end_value:
-          id: field_date_end_value
-          table: node__field_date
-          field: field_date_end_value
-          relationship: none
-          group_type: max
-          admin_label: ''
-          plugin_id: date
-          order: DESC
-          expose:
-            label: ''
-            field_identifier: ''
-          exposed: false
-          granularity: second
-      arguments: {  }
-      filters:
-        status:
-          id: status
-          table: node_field_data
-          field: status
-          entity_type: node
-          entity_field: status
-          plugin_id: boolean
-          value: '1'
-          group: 1
-          expose:
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-        type:
-          id: type
-          table: node_field_data
-          field: type
-          entity_type: node
-          entity_field: type
-          plugin_id: bundle
-          value:
-            events: events
-          expose:
-            operator_limit_selection: false
-            operator_list: {  }
-        field_categories_target_id:
-          id: field_categories_target_id
-          table: node__field_categories
-          field: field_categories_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: taxonomy_index_tid
-          operator: 'not empty'
-          value: {  }
-          group: 1
-          exposed: false
-          expose:
-            operator_id: field_categories_target_id_op
-            label: Categories
-            description: ''
-            use_operator: false
-            operator: field_categories_target_id_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: field_categories_target_id
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              content_editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          vid: events_category
-          type: select
-          hierarchy: false
-          limit: true
-          error_message: true
-        field_date_end_value:
-          id: field_date_end_value
-          table: node__field_date
-          field: field_date_end_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: date
-          operator: '>='
-          value:
-            min: ''
-            max: ''
-            value: now
-            type: date
-            granularity: second
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            min_placeholder: ''
-            max_placeholder: ''
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
-      defaults:
-        title: false
-        use_ajax: false
-        pager: false
-        exposed_form: false
-        sorts: false
-        arguments: false
-        filters: false
-        filter_groups: false
-        header: false
-      use_ajax: false
-      display_description: 'Attachment no results for related content'
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: text
-          empty: false
-          content:
-            value: '<h2 class="block--title d-inline-flex">Upcoming events</h2>'
-            format: full_html
-          tokenize: false
-      display_extenders:
-        ajax_history: {  }
-        simple_sitemap_display_extender: {  }
-        metatag_display_extender:
-          metatags: {  }
-          tokenize: false
-    cache_metadata:
-      max-age: -1
-      contexts:
-        - 'languages:language_interface'
-        - user
-        - 'user.node_grants:view'
-        - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_date'
   block_1:
     id: block_1
     display_title: 'Past Events'
@@ -586,7 +387,7 @@ display:
           table: node__field_date
           field: field_date_end_value
           relationship: none
-          group_type: max
+          group_type: min
           admin_label: ''
           plugin_id: date
           order: DESC
@@ -781,13 +582,11 @@ display:
         title: false
         css_class: false
         exposed_form: false
-        group_by: false
         sorts: false
         arguments: false
         filters: false
         filter_groups: false
       css_class: 'mb-parc js-second-exposed-filter'
-      group_by: true
       display_description: ''
       exposed_block: false
       display_extenders:
@@ -800,6 +599,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
@@ -808,12 +608,13 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_date'
   block_events_front_page:
     id: block_events_front_page
     display_title: 'Events Front page'
     display_plugin: block
-    position: 5
+    position: 4
     display_options:
       title: 'Events Front page'
       pager:
@@ -822,15 +623,15 @@ display:
           offset: 0
           items_per_page: 4
       sorts:
-        field_date_end_value:
-          id: field_date_end_value
+        field_date_value:
+          id: field_date_value
           table: node__field_date
-          field: field_date_end_value
+          field: field_date_value
           relationship: none
           group_type: max
           admin_label: ''
           plugin_id: date
-          order: DESC
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
@@ -862,6 +663,52 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_date_end_value:
+          id: field_date_end_value
+          table: node__field_date
+          field: field_date_end_value
+          relationship: none
+          group_type: min
+          admin_label: ''
+          plugin_id: date
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: now
+            type: date
+            granularity: second
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       filter_groups:
         operator: AND
         groups:
@@ -874,12 +721,10 @@ display:
         use_more_text: false
         link_display: false
         link_url: false
-        group_by: false
         sorts: false
         filters: false
         filter_groups: false
         header: false
-      group_by: true
       display_description: ''
       use_more: true
       use_more_always: true
@@ -897,11 +742,13 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_date'
   block_related_events:
     id: block_related_events
     display_title: 'Related content'
@@ -924,28 +771,16 @@ display:
           expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
-      empty:
-        view:
-          id: view
-          table: views
-          field: view
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: view
-          empty: true
-          view_to_insert: 'content_events:attachment_no_results'
-          inherit_arguments: false
       sorts:
-        field_date_end_value:
-          id: field_date_end_value
+        field_date_value:
+          id: field_date_value
           table: node__field_date
-          field: field_date_end_value
+          field: field_date_value
           relationship: none
-          group_type: max
+          group_type: min
           admin_label: ''
           plugin_id: date
-          order: DESC
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
@@ -1116,7 +951,7 @@ display:
             min: ''
             max: ''
             value: now
-            type: offset
+            type: date
             granularity: second
           group: 1
           exposed: false
@@ -1154,7 +989,6 @@ display:
         groups:
           1: AND
       defaults:
-        empty: false
         title: false
         use_ajax: false
         pager: false
@@ -1184,25 +1018,24 @@ display:
         ajax_history:
           enable_history: false
         simple_sitemap_display_extender: {  }
-        metatag_display_extender:
-          metatags: {  }
-          tokenize: false
       block_description: 'Related Events'
       block_hide_empty: true
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_date'
   embed_1:
     id: embed_1
     display_title: Embed
     display_plugin: embed
-    position: 6
+    position: 4
     display_options:
       title: 'Events Front page'
       pager:
@@ -1211,15 +1044,15 @@ display:
           offset: 0
           items_per_page: 4
       sorts:
-        field_date_end_value:
-          id: field_date_end_value
+        field_date_value:
+          id: field_date_value
           table: node__field_date
-          field: field_date_end_value
+          field: field_date_value
           relationship: none
-          group_type: max
+          group_type: min
           admin_label: ''
           plugin_id: date
-          order: DESC
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
@@ -1251,6 +1084,52 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
+        field_date_end_value:
+          id: field_date_end_value
+          table: node__field_date
+          field: field_date_end_value
+          relationship: none
+          group_type: max
+          admin_label: ''
+          plugin_id: date
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: now
+            type: date
+            granularity: second
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            min_placeholder: ''
+            max_placeholder: ''
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
       filter_groups:
         operator: AND
         groups:
@@ -1283,11 +1162,13 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_date'
   page_events:
     id: page_events
     display_title: Events
@@ -1494,7 +1375,7 @@ display:
       defaults:
         css_class: false
         use_ajax: false
-        group_by: false
+        group_by: true
         relationships: false
         sorts: false
         arguments: false
@@ -1504,7 +1385,6 @@ display:
       relationships: {  }
       css_class: 'mb-parc js-first-exposed-filters'
       use_ajax: false
-      group_by: true
       display_description: ''
       header: {  }
       exposed_block: true
@@ -1535,6 +1415,7 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
+        - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
@@ -1543,4 +1424,5 @@ display:
         - user
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_date'
