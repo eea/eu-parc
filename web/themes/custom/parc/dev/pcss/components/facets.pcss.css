@@ -55,4 +55,19 @@
       font-size: 10px;
     }
   }
+
+  .facet-subtitle {
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .accordion-button::after {
+    background-size: 15px;
+    background-position: center;
+    margin-left: 10px;
+  }
+
+  .accordion-button[aria-expanded="true"]::after {
+    margin-top: -3px;
+  }
 }
