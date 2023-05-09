@@ -245,6 +245,7 @@
 
                 const features = clickedFeatures[0].get("features");
                 if (features.length === 1) {
+                  highlightSource.addFeature(features[0]);
                   const coordinate = e.coordinate;
                   popup.setPosition(coordinate);
 
