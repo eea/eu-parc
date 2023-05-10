@@ -45,6 +45,7 @@
 
             // add custom features
             features[i].setProperties({
+              id: institutions[i].id,
               countryId: institutions[i].country,
               categoryId: institutions[i].category,
               name: institutions[i].title,
@@ -229,14 +230,42 @@
                   }
                 }
               }
+
+              for (var i = 0; i < allClusterFeatures.length; i++) {
+                let feature = allClusterFeatures[i];
+                if (ol.extent.containsExtent(mapExtent, feature.getGeometry().getExtent())) {
+                  let currentFeaturesInCluster = feature.get("features");
+                  for (let j = 0; j < currentFeaturesInCluster.length; j++) {
+                    let currentFeature = currentFeaturesInCluster[j];
+                    let id = currentFeature.get('id');
+                    let element = document.getElementById(`institution-${id}`);
+                    element.addEventListener("click",
+                      function () {
+                        highlightFeature(id);
+                      },
+                      false);
+                  }
+                }
+              }
+
+              if (selectedFeature) {
+                if (featureInCluster(selectedFeature.get("id")).result) {
+                  clearSelection();
+                }
+              }
             }
 
             document.querySelector("#showResultsButton").innerHTML =
               output.length + " results";
           });
 
+          let selectedFeature;
           map.on("pointermove", (e) => {
             highlightSource.clear();
+            if (selectedFeature) {
+              highlightSource.addFeature(selectedFeature);
+            }
+            highlightSource.changed();
             clusters.getFeatures(e.pixel).then((clickedFeatures) => {
               popup.setPosition(0, 0);
 
@@ -245,7 +274,11 @@
 
                 const features = clickedFeatures[0].get("features");
                 if (features.length === 1) {
-                  highlightSource.addFeature(features[0]);
+                  if (!highlightSource.hasFeature(features[0])) {
+                    highlightSource.addFeature(features[0]);
+                    highlightSource.changed();
+                  }
+
                   const coordinate = e.coordinate;
                   popup.setPosition(coordinate);
 
@@ -328,16 +361,10 @@
                   document.getElementById("identifyParent").style.display =
                     "none";
                 } else {
-                  document.getElementById("identifyParent").style.display =
-                    "block";
-                  document.querySelector(
-                    "#selectedFeatureParent"
-                  ).innerHTML = `${features[0].get("render_teaser")}`;
-                  $(".interactive-map .accordion-collapse").collapse("hide");
+                  selectFeature(features[0]);
                 }
               } else {
-                document.getElementById("identifyParent").style.display =
-                  "none";
+                clearSelection();
               }
             });
           });
@@ -450,7 +477,44 @@
               }
             });
           }
-
+          function selectFeature(featureToSelect) {
+            highlightSource.clear();
+            selectedFeature = featureToSelect;
+            highlightSource.addFeature(selectedFeature);
+            document.getElementById("identifyParent").style.display = "block";
+            document.querySelector(
+              "#selectedFeatureParent"
+            ).innerHTML = `${featureToSelect.get("render_teaser")}`;
+            $(".interactive-map .accordion-collapse").collapse("hide");
+            setTimeout(()=> {
+              highlightSource.changed();
+            }, 50)
+          }
+          function clearSelection() {
+            document.getElementById("identifyParent").style.display = "none";
+            selectedFeature = null;
+            highlightSource.clear();
+            highlightSource.changed();
+          }
+          function featureInCluster(featureId) {
+            let allClusterFeatures = clusters.getSource().getFeatures();
+            for (var i = 0; i < allClusterFeatures.length; i++) {
+              var feature = allClusterFeatures[i];
+              let currentFeaturesInCluster = feature.get("features");
+              for (let j = 0; j < currentFeaturesInCluster.length; j++) {
+                if (currentFeaturesInCluster[j].get("id") === featureId) {
+                  return { result: currentFeaturesInCluster.length > 1 ? true : false, feature: currentFeaturesInCluster[j] };
+                }
+              }
+            }
+            return false;
+          }
+          function highlightFeature(featureId) {
+            let isInCluster = featureInCluster(featureId);
+            if (isInCluster.result === false) {
+              selectFeature(isInCluster.feature);
+            }
+          }
           function getFeatureDetails(feature, isPath) {
             let markup = {
               "title": `<div class="title">${isPath ? feature.name : feature.get("name")}</div>`,
