@@ -38,7 +38,9 @@
 .results {
   position: absolute;
   z-index: 5;
-  max-width: 400px;
+  width: calc(33.3333% + 10px);
+  max-width: calc(33.3333% + 10px);
+  min-width: 300px;
 }
 
 .results.open {
@@ -49,9 +51,10 @@
 }
 
 #resultsParent {
-  max-height: 700px;
+  max-height: 1220px;
   overflow: auto;
-  padding-top: 0;
+  padding: 0;
+  padding-right: 10px;
   margin-top: 15px;
 }
 
@@ -208,4 +211,35 @@
 
 .ol-overlaycontainer-stopevent {
   z-index: 10 !important;
+}
+
+.map-page footer {
+  display: none;
+}
+
+.map-page .layout__region {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.map-page .node--page--full .layout {
+  padding-top: 40px;
+}
+
+@media screen and (min-width: 40.0001em) {
+  .map-page .px-0 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .interactive-map {
+    max-height: 400px;
+  }
+
+  .map-page .px-0 > div:first-child {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }

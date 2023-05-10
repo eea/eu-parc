@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
+    - field.field.node.page.field_custom_classes
     - field.field.node.page.field_metatags
     - field.field.node.page.field_seo_keyword
     - field.field.node.page.layout_builder__layout
@@ -35,9 +36,17 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_custom_classes:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
-    weight: 11
+    weight: 12
     region: content
     settings:
       sidebar: true
@@ -45,7 +54,7 @@ content:
     third_party_settings: {  }
   field_seo_keyword:
     type: entity_reference_autocomplete
-    weight: 9
+    weight: 10
     region: content
     settings:
       match_operator: CONTAINS
@@ -72,7 +81,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
