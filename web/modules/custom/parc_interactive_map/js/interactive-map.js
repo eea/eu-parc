@@ -239,9 +239,19 @@
                     let currentFeature = currentFeaturesInCluster[j];
                     let id = currentFeature.get('id');
                     let element = document.getElementById(`institution-${id}`);
-                    element.addEventListener("click",
+
+                    element.addEventListener("mouseover",
                       function () {
+                        let card = document.getElementById(`institution-${id}`);
+                        card.getElementsByClassName("title")[0].style.textDecoration = 'underline';
+
                         highlightFeature(id);
+                      },
+                      false);
+                    element.addEventListener("mouseout",
+                      function () {
+                        let card = document.getElementById(`institution-${id}`);
+                        card.getElementsByClassName("title")[0].style.textDecoration = 'none';
                       },
                       false);
                   }
@@ -485,7 +495,7 @@
             document.querySelector(
               "#selectedFeatureParent"
             ).innerHTML = `${featureToSelect.get("render_teaser")}`;
-            $(".interactive-map .accordion-collapse").collapse("hide");
+            // $(".interactive-map .accordion-collapse").collapse("hide");
             setTimeout(()=> {
               highlightSource.changed();
             }, 50)
