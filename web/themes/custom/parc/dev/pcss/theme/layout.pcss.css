@@ -53,5 +53,12 @@
   .layout__region {
     padding: 0;
   }
-}
 
+  .mobile-invert {
+    gap: calc(var(--p-parc) / 2);
+
+    > :last-child {
+      order: -1;
+    }
+  }
+}

@@ -37,21 +37,27 @@ function parc_interactive_map_preprocess_node(&$variables) {
     return;
   }
 
-  if ($node->hasField('field_media_image')
-    && $node->get('field_media_image')->isEmpty()
-    && $node->bundle() == 'institution'
-    && $variables['view_mode'] == 'teaser') {
-    $default_media = \Drupal::entityTypeManager()
-      ->getStorage('media')
-      ->loadByProperties([
-        'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
-      ]);
-    $default_media = reset($default_media);
+  if ($node->bundle() !== 'institution') {
+    return;
+  }
 
-    // Intentionally not saving the node, we only want to temporarily set
-    // the placeholder image so that we can render it.
-    $node->set('field_media_image', $default_media);
-    $placeholderImage = $node->get('field_media_image')->view('teaser');
-    $variables['content']['field_media_image'] = $placeholderImage;
+  if ($variables['view_mode'] == 'teaser') {
+    $variables['attributes']['id'] = 'institution-' . $node->id();
+
+    if ($node->hasField('field_media_image')
+      && $node->get('field_media_image')->isEmpty()) {
+      $default_media = \Drupal::entityTypeManager()
+        ->getStorage('media')
+        ->loadByProperties([
+          'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
+        ]);
+      $default_media = reset($default_media);
+
+      // Intentionally not saving the node, we only want to temporarily set
+      // the placeholder image so that we can render it.
+      $node->set('field_media_image', $default_media);
+      $placeholderImage = $node->get('field_media_image')->view('teaser');
+      $variables['content']['field_media_image'] = $placeholderImage;
+    }
   }
 }
