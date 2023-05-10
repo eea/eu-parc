@@ -257,19 +257,11 @@
     width: 100%;
     max-width: 100%;
     z-index: 50;
-  }
-
-  .interactive-map .accordion {
-    height: 100%;
+    height: auto;
   }
 
   .interactive-map .accordion-item {
     margin: 0;
-    height: 100%;
-  }
-
-  .interactive-map .accordion-collapse {
-    height: calc(100% - 75px);
   }
 
   .interactive-map .accordion-header button:after {
@@ -288,9 +280,15 @@
 
   .interactive-map #resultsParent {
     padding: 0 10px;
-    height: 100%;
     margin-right: 10px;
     margin-top: 0;
+    display: flex;
+    gap: 20px;
+  }
+
+  .interactive-map .node--institution--teaser {
+    min-width: 85vw;
+    max-width: 85vw;
   }
 
   .interactive-map #identifyParent {
@@ -298,5 +296,9 @@
     bottom: 70px;
     width: calc(100% - 20px);
     left: -10px;
+  }
+
+  .interactive-map .node--institution--teaser:last-child {
+    margin-bottom: 15px;
   }
 }

@@ -5,6 +5,8 @@
   font-size: 14px;
   line-height: 17px;
   background: #fff;
+  display: flex;
+  flex-direction: column;
 
   &:not(:last-child) {
     margin-bottom: 15px;
@@ -44,7 +46,9 @@
     font-weight: bold;
   }
 
-  .expand-link {
+  .expand-link,
+  .expand {
+    margin-top: auto;
     text-decoration: none;
   }
 
@@ -72,6 +76,31 @@
     .right {
       margin-left: auto;
       min-width: 150px;
+    }
+  }
+
+  @media (max-width: 40em) {
+    .top-row {
+      .left {
+        max-width: 66.66%;
+        min-width: 66.66%;
+      }
+
+      .right {
+        max-width: 33.33%;
+        min-width: 33.33%;
+      }
+    }
+
+    .image {
+      width: auto;
+      height: auto;
+      max-width: calc(100% - 20px);
+
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
   }
 }
