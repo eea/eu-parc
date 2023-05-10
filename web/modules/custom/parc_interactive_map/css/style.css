@@ -231,6 +231,15 @@
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
   }
+
+  .map-page .layout {
+    background: #fcfafa;
+  }
+
+  .map-page .layout > :first-child {
+    background: #fcfafa;
+    padding-top: 20px;
+  }
 }
 
 @media screen and (max-width: 40em) {
