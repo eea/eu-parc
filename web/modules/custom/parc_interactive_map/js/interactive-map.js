@@ -211,6 +211,7 @@
               let allClusterFeatures = clusters.getSource().getFeatures();
               let mapExtent = map.getView().calculateExtent();
 
+              let resultsHTML = "";
               for (var i = 0; i < allClusterFeatures.length; i++) {
                 var feature = allClusterFeatures[i];
                 if (
@@ -222,14 +223,16 @@
                   let currentFeaturesInCluster = feature.get("features");
                   for (let j = 0; j < currentFeaturesInCluster.length; j++) {
                     output.push(currentFeaturesInCluster[j].get("name"));
-                    document.querySelector(
-                      "#resultsParent"
-                    ).innerHTML += `${currentFeaturesInCluster[j].get(
+                    resultsHTML += `${currentFeaturesInCluster[j].get(
                       "render_teaser"
                     )}`;
                   }
                 }
               }
+
+              document.querySelector(
+                "#resultsParent"
+              ).innerHTML = resultsHTML;
 
               for (var i = 0; i < allClusterFeatures.length; i++) {
                 let feature = allClusterFeatures[i];
