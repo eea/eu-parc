@@ -26,6 +26,8 @@
 
           var clusterUids = [];
           var clusterPaths = [];
+          var lastHoverFeature;
+          var isAnyClusterHovered;
 
           var categories = settings.parc_interactive_map.categories;
           Tooltip.Default.allowList["*"].push("style");
@@ -81,8 +83,8 @@
               }
 
               let style = styleCache[ol.util.getUid(feature)];
-              if (!style) {
-                getClusterImage(feature.get("features"), feature.ol_uid).then(
+              if (!style || isAnyClusterHovered) {
+                getClusterImage(feature.get("features"), feature.ol_uid, feature).then(
                   (canvas) => {
                     var image = new Image();
                     image.crossOrigin = "anonymous";
@@ -205,76 +207,17 @@
           let popover = Popover.getInstance(element);
 
           map.on("moveend", (e) => {
-            var output = [];
-            document.querySelector("#resultsParent").innerHTML = "";
-            if (clusters) {
-              let allClusterFeatures = clusters.getSource().getFeatures();
-              let mapExtent = map.getView().calculateExtent();
-
-              let resultsHTML = "";
-              for (var i = 0; i < allClusterFeatures.length; i++) {
-                var feature = allClusterFeatures[i];
-                if (
-                  ol.extent.containsExtent(
-                    mapExtent,
-                    feature.getGeometry().getExtent()
-                  )
-                ) {
-                  let currentFeaturesInCluster = feature.get("features");
-                  for (let j = 0; j < currentFeaturesInCluster.length; j++) {
-                    output.push(currentFeaturesInCluster[j].get("name"));
-                    resultsHTML += `${currentFeaturesInCluster[j].get(
-                      "render_teaser"
-                    )}`;
-                  }
-                }
-              }
-
-              document.querySelector(
-                "#resultsParent"
-              ).innerHTML = resultsHTML;
-
-              for (var i = 0; i < allClusterFeatures.length; i++) {
-                let feature = allClusterFeatures[i];
-                if (ol.extent.containsExtent(mapExtent, feature.getGeometry().getExtent())) {
-                  let currentFeaturesInCluster = feature.get("features");
-                  for (let j = 0; j < currentFeaturesInCluster.length; j++) {
-                    let currentFeature = currentFeaturesInCluster[j];
-                    let id = currentFeature.get('id');
-                    let element = document.getElementById(`institution-${id}`);
-
-                    element.addEventListener("mouseover",
-                      function () {
-                        let card = document.getElementById(`institution-${id}`);
-                        card.getElementsByClassName("title")[0].style.textDecoration = 'underline';
-
-                        highlightFeature(id, true);
-                      },
-                      false);
-                    element.addEventListener("mouseout",
-                      function () {
-                        let card = document.getElementById(`institution-${id}`);
-                        card.getElementsByClassName("title")[0].style.textDecoration = 'none';
-                        clearSelection();
-                      },
-                      false);
-                  }
-                }
-              }
-
-              if (selectedFeature) {
-                if (featureInCluster(selectedFeature.get("id")).result) {
-                  clearSelection();
-                }
-              }
-            }
-
-            document.querySelector("#showResultsButton").innerHTML =
-              output.length + " results";
+            fillResultsList();
           });
 
           let selectedFeature;
           map.on("pointermove", (e) => {
+            if(isAnyClusterHovered) {
+              lastHoverFeature.setProperties({highlight: 0});
+              lastHoverFeature.setStyle(lastHoverFeature.getStyle());
+              isAnyClusterHovered = false;
+            }
+
             highlightSource.clear();
             if (selectedFeature) {
               highlightSource.addFeature(selectedFeature);
@@ -375,15 +318,21 @@
                   document.getElementById("identifyParent").style.display =
                     "none";
                 } else {
-                  selectFeature(features[0], false);
+                  selectFeature(features[0]);
                 }
               } else {
                 clearSelection();
               }
             });
           });
-          function getClusterImage(features, featureId) {
+          function getClusterImage(features, featureId, clusterFeature) {
             return new Promise((resolve) => {
+              let newLineWidth = lineWidth;
+
+              if(clusterFeature.get('highlight') === 1) {
+                newLineWidth += 3;
+              }
+
               let addPath = false;
               let foundPath = clusterPaths.find((el) => el.id === featureId);
 
@@ -402,11 +351,11 @@
                 canvas.setAttribute("width", 2 * radiusSingle + 6);
                 canvas.setAttribute(
                   "height",
-                  2 * radiusSingle + singleFeatureOffsetY + lineWidth + 1
+                  2 * radiusSingle + singleFeatureOffsetY + newLineWidth + 1
                 );
 
                 // TODO: remove debugging helpers
-                //ctx.rect(0, 0, 2 * radiusSingle + lineWidth + 1, 2 * radiusSingle + singleFeatureOffsetY + lineWidth + 1);
+                //ctx.rect(0, 0, 2 * radiusSingle + newLineWidth + 1, 2 * radiusSingle + singleFeatureOffsetY + newLineWidth + 1);
                 //ctx.stroke();
 
                 ctx.beginPath();
@@ -421,7 +370,7 @@
                 ctx.strokeStyle = getColorByCategoryId(
                   features[0].get("categoryId")
                 );
-                ctx.lineWidth = lineWidth;
+                ctx.lineWidth = newLineWidth;
                 ctx.stroke();
 
                 ctx.restore();
@@ -436,15 +385,15 @@
                 ctx.strokeStyle = getColorByCategoryId(
                   features[0].get("categoryId")
                 );
-                ctx.lineWidth = lineWidth;
+                ctx.lineWidth = newLineWidth;
                 ctx.stroke();
 
                 resolve(canvas);
               } else {
-                canvas.setAttribute("width", 2 * radiusCluster + lineWidth + 1);
+                canvas.setAttribute("width", 2 * radiusCluster + newLineWidth + 1);
                 canvas.setAttribute(
                   "height",
-                  2 * radiusCluster + lineWidth + 1
+                  2 * radiusCluster + newLineWidth + 1
                 );
 
                 let featuresToDraw = [];
@@ -461,22 +410,39 @@
                 featuresToDraw = featuresToDraw.sort(compare);
 
                 let interval = (2 * Math.PI) / featuresToDraw.length;
+                let drawDelta = delta;
+                if (delta > interval) {
+                  drawDelta = interval;
+                }
 
                 for (let i = 0; i < featuresToDraw.length; i++) {
-                  ctx.lineWidth = lineWidth;
+                  ctx.lineWidth = newLineWidth;
                   ctx.lineCap = "round";
                   let path = new Path2D();
-                  path.arc(
-                    radiusCluster + 3,
-                    radiusCluster + 3,
-                    radiusCluster,
-                    i * interval + delta,
-                    (i + 1) * interval - delta
-                  );
+
+                  if ((i * interval + drawDelta) > ((i + 1) * interval - drawDelta)) {
+                    path.arc(
+                      radiusCluster + (newLineWidth + 1) / 2,
+                      radiusCluster + (newLineWidth + 1) / 2,
+                      radiusCluster,
+                      i * interval + drawDelta,
+                      (i + 1) * interval + drawDelta
+                    );
+                  } else {
+                    path.arc(
+                      radiusCluster + (newLineWidth + 1) / 2,
+                      radiusCluster + (newLineWidth + 1) / 2,
+                      radiusCluster,
+                      i * interval + drawDelta,
+                      (i + 1) * interval - drawDelta
+                    );
+                  }
+
                   ctx.strokeStyle = getColorByCategoryId(
                     featuresToDraw[i].categoryId
                   );
                   ctx.stroke(path);
+
                   if (addPath) {
                     foundPath.ctx = ctx;
                     foundPath.paths.push({
@@ -491,19 +457,87 @@
               }
             });
           }
-          function selectFeature(featureToSelect, hover) {
+
+          async function fillResultsList() {
+            var output = [];
+            document.querySelector("#resultsParent").innerHTML = "";
+            if (clusters) {
+              let allClusterFeatures = clusters.getSource().getFeatures();
+              let mapExtent = map.getView().calculateExtent();
+
+              let resultsHTML = "";
+              for (var i = 0; i < allClusterFeatures.length; i++) {
+                var feature = allClusterFeatures[i];
+                if (
+                  ol.extent.containsExtent(
+                    mapExtent,
+                    feature.getGeometry().getExtent()
+                  )
+                ) {
+                  let currentFeaturesInCluster = feature.get("features");
+                  for (let j = 0; j < currentFeaturesInCluster.length; j++) {
+                    output.push(currentFeaturesInCluster[j].get("name"));
+                    resultsHTML += `${currentFeaturesInCluster[j].get(
+                      "render_teaser"
+                    )}`;
+                  }
+                }
+              }
+
+              document.querySelector(
+                "#resultsParent"
+              ).innerHTML = resultsHTML;
+
+              for (var i = 0; i < allClusterFeatures.length; i++) {
+                let feature = allClusterFeatures[i];
+                if (ol.extent.containsExtent(mapExtent, feature.getGeometry().getExtent())) {
+                  let currentFeaturesInCluster = feature.get("features");
+                  for (let j = 0; j < currentFeaturesInCluster.length; j++) {
+                    let currentFeature = currentFeaturesInCluster[j];
+                    let id = currentFeature.get('id');
+                    let element = document.getElementById(`institution-${id}`);
+
+                    if (element) {
+                      element.addEventListener("mouseover",
+                        function () {
+                          let card = document.getElementById(`institution-${id}`);
+                          card.getElementsByClassName("title")[0].style.textDecoration = 'underline';
+
+                          hoverFeature(id);
+                        },
+                        false);
+                      element.addEventListener("mouseout",
+                        function () {
+                          let card = document.getElementById(`institution-${id}`);
+                          card.getElementsByClassName("title")[0].style.textDecoration = 'none';
+                        },
+                        false);
+                    }
+                  }
+                }
+              }
+
+              if (selectedFeature) {
+                if (featureInCluster(selectedFeature.get("id")).result) {
+                  clearSelection();
+                }
+              }
+            }
+
+            document.querySelector("#showResultsButton").innerHTML =
+              output.length + " results";
+          }
+          function selectFeature(featureToSelect) {
             highlightSource.clear();
             selectedFeature = featureToSelect;
             highlightSource.addFeature(selectedFeature);
-            if (hover) {
-              document.getElementById("identifyParent").style.display = "none";
-            } else {
-              document.getElementById("identifyParent").style.display = "block";
-              document.querySelector(
-                "#selectedFeatureParent"
-              ).innerHTML = `${featureToSelect.get("render_teaser")}`;
-              $(".interactive-map .accordion-collapse").collapse("hide");
-            }
+
+            document.getElementById("identifyParent").style.display = "block";
+            document.querySelector(
+              "#selectedFeatureParent"
+            ).innerHTML = `${featureToSelect.get("render_teaser")}`;
+            $(".interactive-map .accordion-collapse").collapse("hide");
+
             setTimeout(()=> {
               highlightSource.changed();
             }, 50)
@@ -521,17 +555,29 @@
               let currentFeaturesInCluster = feature.get("features");
               for (let j = 0; j < currentFeaturesInCluster.length; j++) {
                 if (currentFeaturesInCluster[j].get("id") === featureId) {
-                  return { result: currentFeaturesInCluster.length > 1 ? true : false, feature: currentFeaturesInCluster[j] };
+                  return { result: currentFeaturesInCluster.length > 1 ? true : false, feature:currentFeaturesInCluster[j], cluster: feature };
                 }
               }
             }
             return false;
           }
-          function highlightFeature(featureId, hover) {
-            let isInCluster = featureInCluster(featureId);
-            if (isInCluster.result === false) {
-              selectFeature(isInCluster.feature, hover);
+          function hoverFeature(featureId) {
+            highlightSource.clear();
+            if(isAnyClusterHovered) {
+              lastHoverFeature.setProperties({highlight: 0});
+              lastHoverFeature.setStyle(lastHoverFeature.getStyle());
             }
+            let isInCluster = featureInCluster(featureId);
+            if(isInCluster.result === false) {
+              highlightSource.addFeature(isInCluster.feature);
+            } else{
+              isInCluster.cluster.setProperties({highlight: 1});
+              lastHoverFeature = isInCluster.cluster;
+              isAnyClusterHovered = true;
+            }
+
+            highlightSource.changed();
+            isInCluster.cluster.setStyle(isInCluster.cluster.getStyle())
           }
           function getFeatureDetails(feature, isPath) {
             let markup = {
