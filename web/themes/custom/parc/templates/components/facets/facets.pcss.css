@@ -89,4 +89,14 @@
       }
     }
   }
+
+  .facets-section-title {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #999898;
+    margin-bottom: 10px;
+  }
 }
