@@ -21,7 +21,7 @@
 {% endif %}
 <span class="facet-item__value">
   {{ value }}
-  <button class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse-children-{{ facet.id }}-{{ parent_id }}" role="button" aria-expanded="false" aria-controls="collapse-children-{{ facet.id }}-{{ parent_id }}"></button>
+  <button class="facets-collapse accordion-button collapsed" data-bs-toggle="collapse" href="#collapse-children-{{ facet.id }}-{{ parent_id }}" role="button" aria-expanded="false" aria-controls="collapse-children-{{ facet.id }}-{{ parent_id }}"></button>
 </span>
 {% if show_count %}
   <span class="facet-item__count">{{ count }}</span>

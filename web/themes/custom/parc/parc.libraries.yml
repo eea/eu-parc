@@ -389,4 +389,12 @@ o--share:
 facets:
   css:
     component:
-      css/components/facets.css: {}
+      css/components/facets/facets.css: {}
+
+facets_ajax:
+  js:
+    templates/components/facets/facets-ajax.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

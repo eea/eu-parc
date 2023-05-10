@@ -74,6 +74,7 @@
 
   .facet-item__value {
     position: relative;
+    max-width: calc(100% - 20px);
 
     .facets-collapse {
       position: absolute;
