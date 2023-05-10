@@ -245,13 +245,14 @@
                         let card = document.getElementById(`institution-${id}`);
                         card.getElementsByClassName("title")[0].style.textDecoration = 'underline';
 
-                        highlightFeature(id);
+                        highlightFeature(id, true);
                       },
                       false);
                     element.addEventListener("mouseout",
                       function () {
                         let card = document.getElementById(`institution-${id}`);
                         card.getElementsByClassName("title")[0].style.textDecoration = 'none';
+                        clearSelection();
                       },
                       false);
                   }
@@ -371,7 +372,7 @@
                   document.getElementById("identifyParent").style.display =
                     "none";
                 } else {
-                  selectFeature(features[0]);
+                  selectFeature(features[0], false);
                 }
               } else {
                 clearSelection();
@@ -487,15 +488,19 @@
               }
             });
           }
-          function selectFeature(featureToSelect) {
+          function selectFeature(featureToSelect, hover) {
             highlightSource.clear();
             selectedFeature = featureToSelect;
             highlightSource.addFeature(selectedFeature);
-            document.getElementById("identifyParent").style.display = "block";
-            document.querySelector(
-              "#selectedFeatureParent"
-            ).innerHTML = `${featureToSelect.get("render_teaser")}`;
-            // $(".interactive-map .accordion-collapse").collapse("hide");
+            if (hover) {
+              document.getElementById("identifyParent").style.display = "none";
+            } else {
+              document.getElementById("identifyParent").style.display = "block";
+              document.querySelector(
+                "#selectedFeatureParent"
+              ).innerHTML = `${featureToSelect.get("render_teaser")}`;
+              $(".interactive-map .accordion-collapse").collapse("hide");
+            }
             setTimeout(()=> {
               highlightSource.changed();
             }, 50)
@@ -519,10 +524,10 @@
             }
             return false;
           }
-          function highlightFeature(featureId) {
+          function highlightFeature(featureId, hover) {
             let isInCluster = featureInCluster(featureId);
             if (isInCluster.result === false) {
-              selectFeature(isInCluster.feature);
+              selectFeature(isInCluster.feature, hover);
             }
           }
           function getFeatureDetails(feature, isPath) {
