@@ -25,6 +25,7 @@
  */
 #}
 {{ attach_library('parc/facets') }}
+{{ attach_library('parc/facets_ajax') }}
 {{ attach_library('edwt/collapse') }}
 {{ attach_library('edwt/accordion') }}
 
@@ -56,7 +57,7 @@
       </a>
     {%- endif -%}
 
-    <div class="collapse show" id="collapse{{ facet.id }}">
+    <div {% if facet.id %}class="collapse show" id="collapse{{ facet.id }}"{% endif %}>
       {%- if items -%}
       <{{ list_type }}{{ attributes }}>
       {%- for item in items -%}
@@ -67,7 +68,7 @@
           <li{{ item.attributes }}>
             {{ item.value | without('children') }}
           </li>
-          <li class="collapse show" id="collapse-children-{{ facet.id }}-{{ item.value['#attributes']['data-drupal-facet-item-value'] }}">
+          <li class="collapse" id="collapse-children-{{ facet.id }}-{{ item.value['#attributes']['data-drupal-facet-item-value'] }}">
             {{ item.value.children }}
           </li>
         {% endif %}

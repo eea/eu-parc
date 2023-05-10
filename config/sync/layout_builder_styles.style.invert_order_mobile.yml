@@ -1,0 +1,13 @@
+uuid: 83aefc66-45b5-47bc-9b09-765d27e080f0
+langcode: en
+status: true
+dependencies: {  }
+id: invert_order_mobile
+label: 'Invert column order on mobile'
+classes: mobile-invert
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions:
+  - layout_twocol_section
+weight: 0
