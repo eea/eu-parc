@@ -348,6 +348,11 @@
   .map-page .node--page {
     overflow-x: hidden;
   }
+
+  .results {
+    width: calc(33.3333% - 40px);
+    max-width: calc(33.3333% - 40px);
+  }
 }
 
 .map-page main {
