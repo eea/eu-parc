@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.institution_roles.field_color
+    - field.field.taxonomy_term.institution_roles.field_role_type
     - taxonomy.vocabulary.institution_roles
   module:
     - color_field
+    - options
     - text
 id: taxonomy_term.institution_roles.default
 targetEntityType: taxonomy_term
@@ -28,6 +30,13 @@ content:
       opacity: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_role_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden:
   search_api_excerpt: true

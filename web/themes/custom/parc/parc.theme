@@ -221,6 +221,13 @@ function parc_preprocess_facets_item_list(&$variables) {
       /** @var \Drupal\Core\Template\Attribute $attributes */
       $attributes = $item['attributes'];
       $attributes->setAttribute('style', "color: $color");
+
+      if ($term->get('field_role_type')->value == 'main_secondary') {
+        $variables['items_main'][] = $item;
+      }
+      else {
+        $variables['items_additional'][] = $item;
+      }
     }
   }
 }

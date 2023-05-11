@@ -240,3 +240,34 @@ function parc_interactive_map_deploy_9005() {
   ]);
   $media->save();
 }
+
+/**
+ * Set field_role_type for institution roles.
+ */
+function parc_interactive_map_deploy_9006() {
+  if (!Vocabulary::load('institution_roles')) {
+    throw new Exception('Institution roles vocabulary not yet created');
+  }
+
+  $terms = [
+    'Coordinator' => 'main_secondary',
+    'Grant Signatory' => 'main_secondary',
+    'Affiliated Entity' => 'main_secondary',
+    'Associated Partner' => 'main_secondary',
+    'National Hub Contact Point' => 'additional',
+    'Work Package Co-leading Organization' => 'additional',
+  ];
+
+  foreach ($terms as $name => $type) {
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
+      'name' => $name,
+    ]);
+    if (empty ($term)) {
+      continue;
+    }
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($term);
+    $term->get('field_role_type')->value = $type;
+    $term->save();
+  }
+}
