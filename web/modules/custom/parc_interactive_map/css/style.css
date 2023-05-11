@@ -98,9 +98,11 @@
 
 .interactive-map .accordion-header button:after {
   width: 10px;
-  height: 9px;
+  height: 10px;
   background-position: center;
   margin-left: 10px;
+  margin-bottom: -2px;
+  transform: rotate(-90deg);
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar,
@@ -226,10 +228,6 @@
   padding-top: 40px;
 }
 
-.map-page .px-0 {
-  margin-bottom: 1.25rem;
-}
-
 @media screen and (min-width: 40.0001em) {
   .map-page .px-0 {
     padding-left: 1.25rem !important;
@@ -246,9 +244,29 @@
   }
 }
 
+.interactive-map {
+  max-height: calc(100vh - 96px);
+}
+
 @media screen and (max-width: 40em) {
+  .map-page .block-facets:not(:last-child) {
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+
+  .map-page .facets-widget-checkbox .facets-collapse,
+  .map-page .facets-widget-parc_checkbox .facets-collapse {
+    text-decoration: none;
+    padding-bottom: 5px;
+  }
+
+  .map-page .px-0 {
+    gap: 15px;
+  }
+
   .interactive-map {
-    max-height: 600px;
+    max-height: calc(100vh - 210px);
   }
 
   .map-page .px-0 > :first-child {
@@ -266,10 +284,6 @@
 
   .interactive-map .accordion-item {
     margin: 0;
-  }
-
-  .interactive-map .accordion-header button:after {
-    transform: var(--a-btn-icon-transform);
   }
 
   .interactive-map .accordion-header button:not(.collapsed):after {

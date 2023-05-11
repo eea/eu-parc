@@ -65,7 +65,8 @@
   .accordion-button::after {
     background-size: 15px;
     background-position: center;
-    margin-left: 10px;
+    margin-bottom: 4px;
+    margin-left: 5px;
   }
 
   .accordion-button[aria-expanded="true"]::after {
@@ -78,14 +79,14 @@
 
     .facets-collapse {
       position: absolute;
-      right: -30px;
+      right: -25px;
       top: 10px;
       padding: 0;
       margin: 0;
       width: auto;
 
       &[aria-expanded="false"] {
-        top: 5px;
+        top: 6px;
       }
     }
   }
@@ -98,5 +99,13 @@
     text-transform: uppercase;
     color: #999898;
     margin-bottom: 10px;
+  }
+
+  .accordion-button::after {
+    transform: rotate(-90deg);
+  }
+
+  .accordion-button:not(.collapsed)::after {
+    transform: rotate(0deg);
   }
 }
