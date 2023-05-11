@@ -14,6 +14,19 @@
           $(this).closest(".results").removeClass("open");
         });
 
+      $('.interactive-map').on('click', '#showResultsButton', function () {
+        let count = $(this).attr('data-result-count');
+        if ($(this).attr('data-open') == 'open') {
+          $(this).attr('data-open', 'closed');
+          $(this).text('Show ' + count + ' results');
+        }
+        else {
+          $(this).text('Hide ' + count + ' results');
+          $(this).attr('data-open', 'open');
+        }
+
+      })
+
       $(".interactive-map", context)
         .once("interactiveMap")
         .each(function () {
@@ -525,7 +538,8 @@
             }
 
             document.querySelector("#showResultsButton").innerHTML =
-              output.length + " results";
+              "Show " + output.length + " results";
+            document.querySelector("#showResultsButton").setAttribute('data-result-count', output.length);
           }
           function selectFeature(featureToSelect) {
             highlightSource.clear();

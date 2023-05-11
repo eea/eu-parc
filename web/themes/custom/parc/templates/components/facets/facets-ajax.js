@@ -26,6 +26,14 @@
           });
         }
       });
+
+      $(document).ready(function(){
+        var windowWidth = jQuery(window).width();
+        if (windowWidth <= 767) {
+          $('#collapsecountry').collapse('hide');
+          $('#collapsecategory').collapse('hide');
+        }
+      });
     },
   };
 })(jQuery, Drupal, drupalSettings);
