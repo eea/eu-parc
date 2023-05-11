@@ -314,7 +314,7 @@
                   );
                   map
                     .getView()
-                    .fit(extent, { duration: 1000, padding: [50, 50, 50, 50] });
+                    .fit(extent, { duration: 1000, padding: [100, 100, 100, 100] });
                   document.getElementById("identifyParent").style.display =
                     "none";
                 } else {
