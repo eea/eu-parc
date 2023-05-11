@@ -51,11 +51,12 @@
 }
 
 #resultsParent {
-  max-height: 1220px;
+  max-height: calc(100vh - 190px);
   overflow: auto;
   padding: 0;
   padding-right: 10px;
   margin-top: 15px;
+  padding-bottom: 10px;
 }
 
 #identifyParent {
