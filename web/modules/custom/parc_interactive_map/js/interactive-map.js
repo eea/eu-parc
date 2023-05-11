@@ -205,12 +205,17 @@
             view: new ol.View({
               center: [0, 0],
               zoom: 2,
-              extent: [
-                -6319125.804807394, 3070702.923644739, 9584655.106275197,
-                12091128.659149397,
-              ],
+              // extent: [
+              //   -6319125.804807394, 3070702.923644739, 9584655.106275197,
+              //   12091128.659149397,
+              // ],
             }),
           });
+
+          let extent = source.getExtent();
+          let geom = ol.geom.Polygon.fromExtent(extent)
+          geom.scale(1.2);
+          map.getView().fit(geom, map.getSize());
 
           const popup = new ol.Overlay({
             element: document.getElementById("popup"),
@@ -600,17 +605,29 @@
             }
 
             let roles = isPath ? feature.roles : feature.get("roles");
-            let role_txt = "<ul>";
 
-            for (let i = 0; i < roles.length; i++) {
-              role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;
-            }
+            let role_main_txt = getRolesMarkup(roles.main_secondary, "Main & secondary roles");
+            let role_additional_txt = getRolesMarkup(roles.additional, "Additional roles");
 
-            role_txt += "</ul>";
-
-            markup.role = role_txt;
+            markup.role = role_main_txt + role_additional_txt;
 
             return markup;
+          }
+
+          function getRolesMarkup(roles, title) {
+            let role_txt = "";
+
+            if (roles.length > 0) {
+              role_txt = `<span class='identify-role-span'>${title}</span>`;
+              role_txt += "<ul>";
+              for (let i = 0; i < roles.length; i++) {
+                role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;
+              }
+
+              role_txt += "</ul>";
+            }
+
+            return role_txt;
           }
 
           function compare(a, b) {
