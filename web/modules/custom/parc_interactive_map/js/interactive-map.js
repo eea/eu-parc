@@ -205,12 +205,17 @@
             view: new ol.View({
               center: [0, 0],
               zoom: 2,
-              extent: [
-                -6319125.804807394, 3070702.923644739, 9584655.106275197,
-                12091128.659149397,
-              ],
+              // extent: [
+              //   -6319125.804807394, 3070702.923644739, 9584655.106275197,
+              //   12091128.659149397,
+              // ],
             }),
           });
+
+          let extent = source.getExtent();
+          let geom = ol.geom.Polygon.fromExtent(extent)
+          geom.scale(1.2);
+          map.getView().fit(geom, map.getSize());
 
           const popup = new ol.Overlay({
             element: document.getElementById("popup"),
