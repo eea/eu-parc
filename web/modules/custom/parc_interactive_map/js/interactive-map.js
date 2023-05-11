@@ -605,17 +605,29 @@
             }
 
             let roles = isPath ? feature.roles : feature.get("roles");
-            let role_txt = "<ul>";
 
-            for (let i = 0; i < roles.length; i++) {
-              role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;
-            }
+            let role_main_txt = getRolesMarkup(roles.main_secondary, "Main & secondary roles");
+            let role_additional_txt = getRolesMarkup(roles.additional, "Additional roles");
 
-            role_txt += "</ul>";
-
-            markup.role = role_txt;
+            markup.role = role_main_txt + role_additional_txt;
 
             return markup;
+          }
+
+          function getRolesMarkup(roles, title) {
+            let role_txt = "";
+
+            if (roles.length > 0) {
+              role_txt = `<span class='identify-role-span'>${title}</span>`;
+              role_txt += "<ul>";
+              for (let i = 0; i < roles.length; i++) {
+                role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;
+              }
+
+              role_txt += "</ul>";
+            }
+
+            return role_txt;
           }
 
           function compare(a, b) {
