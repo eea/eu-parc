@@ -1,0 +1,23 @@
+uuid: 204bc187-4f69-49f4-87b7-4fcad27c8a54
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_role_type
+    - taxonomy.vocabulary.institution_roles
+  module:
+    - options
+id: taxonomy_term.institution_roles.field_role_type
+field_name: field_role_type
+entity_type: taxonomy_term
+bundle: institution_roles
+label: 'Role type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: primary
+default_value_callback: ''
+settings: {  }
+field_type: list_string

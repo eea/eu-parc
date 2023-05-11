@@ -22,6 +22,11 @@
 
   .title {
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 5px;
+    line-height: 19px;
   }
 
   .address {

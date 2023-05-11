@@ -1,0 +1,27 @@
+uuid: d5e62a3d-e420-4b28-9a11-4302afc2159e
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - taxonomy
+id: taxonomy_term.field_role_type
+field_name: field_role_type
+entity_type: taxonomy_term
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: main_secondary
+      label: 'Main/secondary role'
+    -
+      value: additional
+      label: 'Additional role'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

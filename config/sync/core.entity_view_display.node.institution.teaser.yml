@@ -78,15 +78,23 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
+  field_original_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
   field_website:
     type: link
     label: inline
     settings:
-      trim_length: 80
+      trim_length: 40
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
+      rel: '0'
+      target: _blank
     third_party_settings: {  }
     weight: 4
     region: content
@@ -97,6 +105,5 @@ hidden:
   field_nhcp_email: true
   field_nhcp_name: true
   field_original_abbreviation: true
-  field_original_name: true
   links: true
   search_api_excerpt: true

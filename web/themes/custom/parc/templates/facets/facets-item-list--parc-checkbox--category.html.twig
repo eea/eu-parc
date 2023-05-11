@@ -48,27 +48,38 @@
   {% endif %}
 
   {% if items or empty %}
-    {%- if title is not empty -%}
-      <div class="facets-section-title">{{ "Filter" | t }}</div>
-      <a class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse{{ facet.id }}" role="button" aria-expanded="true" aria-controls="collapse{{ facet.id }}">
-        <h3 class="facets-title">{{ title }}</h3>
-      </a>
+  {%- if title is not empty -%}
+    <div class="facets-section-title">{{ "Filter" | t }}</div>
+    <a class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse{{ facet.id }}" role="button"
+       aria-expanded="true" aria-controls="collapse{{ facet.id }}">
+      <h3 class="facets-title">{{ title }}</h3>
+    </a>
+  {%- endif -%}
+
+  <div class="collapse show" id="collapse{{ facet.id }}">
+    {%- if items_main -%}
+      <span class="facet-subtitle">{{ "Main & secondary roles" | t }}</span>
+      <{{ list_type }}{{ attributes }}>
+        {%- for item in items_main -%}
+          <li{{ item.attributes }}>{{ item.value }}</li>
+        {%- endfor -%}
+      </{{ list_type }}>
+    {%- else -%}
+      {{- empty -}}
     {%- endif -%}
 
-    <div class="collapse show" id="collapse{{ facet.id }}">
-      <span class="facet-subtitle">{{ "Main & secondary roles" | t }}</span>
-
-      {%- if items -%}
+    {%- if items_additional -%}
+      <span class="facet-subtitle">{{ "Additional roles" | t }}</span>
       <{{ list_type }}{{ attributes }}>
-      {%- for item in items -%}
-        <li{{ item.attributes }}>{{ item.value }}</li>
-      {%- endfor -%}
-    </{{ list_type }}>
-  {%- else -%}
-    {{- empty -}}
-  {%- endif -%}
-    </div>
-  {%- endif %}
+        {%- for item in items_additional -%}
+          <li{{ item.attributes }}>{{ item.value }}</li>
+        {%- endfor -%}
+      </{{ list_type }}>
+    {%- else -%}
+      {{- empty -}}
+    {%- endif -%}
+  </div>
+{%- endif %}
 
 {% if facet.widget.type == "dropdown" %}
   <label id="facet_{{ facet.id }}_label">{{ 'Facet'|t }} {{ facet.label }}</label>

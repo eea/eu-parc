@@ -51,11 +51,12 @@
 }
 
 #resultsParent {
-  max-height: 1220px;
+  max-height: calc(100vh - 190px);
   overflow: auto;
   padding: 0;
   padding-right: 10px;
   margin-top: 15px;
+  padding-bottom: 10px;
 }
 
 #identifyParent {
@@ -106,32 +107,37 @@
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar,
+.map-page .layout > div:first-child::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-track,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track,
+.map-page .layout > div:first-child::-webkit-scrollbar-track {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #dadbdc;
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-thumb,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb,
+.map-page .layout > div:first-child::-webkit-scrollbar-thumb {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #505459;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:hover,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover,
+.map-page .layout > div:first-child::-webkit-scrollbar-thumb:hover {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #6d7177;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:window-inactive,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive,
+.map-page .layout > div:first-child::-webkit-scrollbar-thumb:window-inactive {
   background: #505459;
 }
 
@@ -231,7 +237,7 @@
 @media screen and (min-width: 40.0001em) {
   .map-page .px-0 {
     padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    padding-right: 0 !important;
   }
 
   .map-page .layout {
@@ -240,7 +246,10 @@
 
   .map-page .layout > :first-child {
     background: #fcfafa;
-    padding-top: 20px;
+    max-height: calc(100vh - 140px);
+    overflow: auto;
+    padding-top: 0;
+    margin-top: 20px;
   }
 }
 
@@ -319,4 +328,28 @@
   .interactive-map .node--institution--teaser:last-child {
     margin-bottom: 15px;
   }
+}
+
+@media (min-width: 1921px) {
+  .map-page .px-0 > :last-child {
+    position: relative;
+  }
+
+  .map-page .px-0 > :last-child > div {
+    width: calc(75vw);
+    position: absolute;
+    left: 0;
+  }
+
+  .map-page .px-0 {
+    height: calc(100vh - 96px);
+  }
+
+  .map-page .node--page {
+    overflow-x: hidden;
+  }
+}
+
+.map-page main {
+  background: #fcfafa;
 }
