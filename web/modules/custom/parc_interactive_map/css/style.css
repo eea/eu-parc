@@ -231,7 +231,7 @@
 @media screen and (min-width: 40.0001em) {
   .map-page .px-0 {
     padding-left: 1.25rem !important;
-    padding-right: 1.25rem !important;
+    padding-right: 0 !important;
   }
 
   .map-page .layout {
@@ -319,4 +319,28 @@
   .interactive-map .node--institution--teaser:last-child {
     margin-bottom: 15px;
   }
+}
+
+@media (min-width: 1921px) {
+  .map-page .px-0 > :last-child {
+    position: relative;
+  }
+
+  .map-page .px-0 > :last-child > div {
+    width: calc(75vw);
+    position: absolute;
+    left: 0;
+  }
+
+  .map-page .px-0 {
+    height: calc(100vh - 96px);
+  }
+
+  .map-page .node--page {
+    overflow-x: hidden;
+  }
+}
+
+.map-page main {
+  background: #fcfafa;
 }
