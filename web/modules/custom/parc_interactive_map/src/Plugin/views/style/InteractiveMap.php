@@ -123,7 +123,10 @@ class InteractiveMap extends StylePluginBase {
         $color = $role->get('field_color')->color ?? '#000000';
       }
 
-      $roles = [];
+      $roles = [
+        'main_secondary' => [],
+        'additional' => [],
+      ];
       foreach ($institution->get('field_institution_roles')->referencedEntities() as $role) {
         $role_type = $role->get('field_role_type')->value;
         if (empty($role_type)) {
