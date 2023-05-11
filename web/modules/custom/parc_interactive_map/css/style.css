@@ -106,32 +106,37 @@
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar,
+.map-page .layout > div:first-child::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-track,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track,
+.map-page .layout > div:first-child::-webkit-scrollbar-track {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #dadbdc;
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-thumb,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb,
+.map-page .layout > div:first-child::-webkit-scrollbar-thumb {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #505459;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:hover,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover,
+.map-page .layout > div:first-child::-webkit-scrollbar-thumb:hover {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #6d7177;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:window-inactive,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive {
+.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive,
+.map-page .layout > div:first-child::-webkit-scrollbar-thumb:window-inactive {
   background: #505459;
 }
 
@@ -240,7 +245,10 @@
 
   .map-page .layout > :first-child {
     background: #fcfafa;
-    padding-top: 20px;
+    max-height: calc(100vh - 140px);
+    overflow: auto;
+    padding-top: 0;
+    margin-top: 20px;
   }
 }
 

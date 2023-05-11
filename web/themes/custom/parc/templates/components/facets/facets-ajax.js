@@ -34,6 +34,14 @@
           $('#collapsecategory').collapse('hide');
         }
       });
+
+      $('.facets-widget-parc_checkbox li.collapse').once('facetCollapseExpand').on('shown.bs.collapse', function () {
+        $(this).prev().addClass('facet-collapse-expanded');
+      });
+
+      $('.facets-widget-parc_checkbox li.collapse').once('facetCollapseCollapse').on('hidden.bs.collapse', function () {
+        $(this).prev().removeClass('facet-collapse-expanded');
+      });
     },
   };
 })(jQuery, Drupal, drupalSettings);

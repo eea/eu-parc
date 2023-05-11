@@ -15,13 +15,17 @@
   }
 
   .facets-collapse {
-    text-decoration: underline;
+    text-decoration: none;
     padding: 0;
     background: transparent;
     color: #000;
     box-shadow: none;
     border: none;
     padding-bottom: 10px;
+
+    &[aria-expanded="true"] {
+      text-decoration: underline;
+    }
   }
 
   .collapse {
@@ -108,5 +112,15 @@
 
   .accordion-button:not(.collapsed)::after {
     transform: rotate(0deg);
+  }
+
+  .facet-collapse-expanded .facet-item__value {
+    text-decoration: underline;
+  }
+
+  li.collapse {
+    ul {
+      margin-bottom: 0;
+    }
   }
 }
