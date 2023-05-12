@@ -149,7 +149,6 @@ class InteractiveMap extends StylePluginBase {
         'category' => $category,
         'country' => $country_iso2,
         'color' => $color,
-        'image' => $this->getInstitutionImage($institution),
         'roles' => $roles,
       ];
     }
@@ -186,54 +185,6 @@ class InteractiveMap extends StylePluginBase {
         ],
       ],
     ];
-  }
-
-  /**
-   * Retrieve the base64 image of an institution.
-   *
-   * @param \Drupal\node\NodeInterface $node
-   *   The institution.
-   *
-   * @return string
-   *   The image base64.
-   */
-  protected function getInstitutionImage(NodeInterface $node) {
-    $media = $node->get('field_media_image')->entity;
-    if (empty($media)) {
-      $media = $this->entityTypeManager
-        ->getStorage('media')
-        ->loadByProperties([
-          'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
-        ]);
-      if (empty($media)) {
-        return NULL;
-      }
-      $media = reset($media);
-    }
-
-    /** @var \Drupal\file\FileInterface $file */
-    $file = $media->get('field_media_image')->entity;
-    if (empty($file)) {
-      return NULL;
-    }
-
-    if (!file_exists($file->getFileUri())) {
-      return;
-    }
-
-    $image_style = $this->entityTypeManager
-      ->getStorage('image_style')
-      ->load('thumbnail');
-    $small_image = $image_style->buildUri($file->getFileUri());
-    if (!file_exists($small_image)) {
-      $image_style->createDerivative($file->getFileUri(), $small_image);
-    }
-
-    // Encode the image in base64 to speed up loading times.
-    $image_binary = fread(fopen($small_image, 'r'), filesize($small_image));
-    $file_type = mime_content_type($small_image);
-    $image_base64 = 'data:' . $file_type . ';base64,' . base64_encode($image_binary);
-    return $image_base64;
   }
 
   /**

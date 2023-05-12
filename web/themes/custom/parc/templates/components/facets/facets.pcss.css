@@ -71,7 +71,7 @@
     transform: rotate(-90deg);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12.155' height='10.056' viewBox='0 0 12.155 10.056'%3E%3Cg id='Group_1' data-name='Group 1' transform='translate(-597.944 -456.944)'%3E%3Cpath id='Path_6' data-name='Path 6' d='M11.043,1.243l-4.384,5.3a.8.8,0,0,1-1.274,0L1,1.243' transform='translate(598 456.757)' fill='none' stroke='%23000' stroke-linecap='round' stroke-width='1.5'/%3E%3Crect id='Rectangle_1' data-name='Rectangle 1' width='12' height='10' transform='translate(598 457)' fill='none'/%3E%3C/g%3E%3C/svg%3E%0A");
     background-position: center;
-    margin-top: -5px;
+    margin-top: -7px;
     background-size: auto;
     margin-left: 10px;
   }

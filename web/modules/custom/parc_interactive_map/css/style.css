@@ -337,6 +337,21 @@
   .interactive-map .node--institution--teaser:last-child {
     margin-bottom: 15px;
   }
+
+  .map-page .px-0 {
+    position: relative;
+  }
+
+  .map-page .px-0 > :first-child {
+    position: fixed;
+    bottom: 0;
+    z-index: 123;
+    background: #fcfafa;
+    padding-top: 10px;
+    width: 100vw;
+    max-height: calc(100vh - 96px);
+    overflow: auto;
+  }
 }
 
 @media (min-width: 1921px) {
