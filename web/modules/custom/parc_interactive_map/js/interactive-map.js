@@ -14,18 +14,16 @@
           $(this).closest(".results").removeClass("open");
         });
 
-      $('.interactive-map').on('click', '#showResultsButton', function () {
-        let count = $(this).attr('data-result-count');
-        if ($(this).attr('data-open') == 'open') {
-          $(this).attr('data-open', 'closed');
-          $(this).text('Show ' + count + ' results');
+      $(".interactive-map").on("click", "#showResultsButton", function () {
+        let count = $(this).attr("data-result-count");
+        if ($(this).attr("data-open") == "open") {
+          $(this).attr("data-open", "closed");
+          $(this).text("Show " + count + " results");
+        } else {
+          $(this).text("Hide " + count + " results");
+          $(this).attr("data-open", "open");
         }
-        else {
-          $(this).text('Hide ' + count + ' results');
-          $(this).attr('data-open', 'open');
-        }
-
-      })
+      });
 
       $(".interactive-map", context)
         .once("interactiveMap")
@@ -36,6 +34,7 @@
           let lineWidth = 5;
           let lineWidthHighlight = 8;
           let singleFeatureOffsetY = 10;
+          let maxClusterSize = 24;
 
           var clusterUids = [];
           var clusterPaths = [];
@@ -95,42 +94,47 @@
 
               let style = styleCache[ol.util.getUid(feature)];
               if (!style || isAnyClusterHovered) {
-                getClusterImage(feature.get("features"), feature.ol_uid, feature).then(
-                  (canvas) => {
-                    var image = new Image();
-                    image.crossOrigin = "anonymous";
-                    image.src = canvas.toDataURL("image/png");
+                getClusterImage(
+                  feature.get("features"),
+                  feature.ol_uid,
+                  feature
+                ).then((canvas) => {
+                  var image = new Image();
+                  image.crossOrigin = "anonymous";
+                  image.src = canvas.toDataURL("image/png");
 
-                    let anchor = [];
-                    let offsetY = 0;
+                  let anchor = [];
+                  let offsetY = 0;
 
-                    if (feature.get("features").length === 1) {
-                      anchor = [canvas.width / 2, canvas.height];
-                      offsetY = -28;
-                    } else {
-                      anchor = [canvas.width / 2, canvas.height / 2];
-                    }
-
-                    let style = new ol.style.Style({
-                      image: new ol.style.Icon({
-                        img: image,
-                        imgSize: [canvas.width, canvas.height],
-                        anchor: anchor,
-                        anchorXUnits: "pixels",
-                        anchorYUnits: "pixels",
-                      }),
-                      text: new ol.style.Text({
-                        text: size.toString(),
-                        fill: new ol.style.Fill({
-                          color: "#000",
-                        }),
-                        font: "15px sans-serif",
-                        offsetY: offsetY,
-                      }),
-                    });
-                    styleCache[ol.util.getUid(feature)] = style;
+                  if (feature.get("features").length === 1) {
+                    anchor = [canvas.width / 2, canvas.height];
+                    offsetY = -28;
+                  } else {
+                    anchor = [canvas.width / 2, canvas.height / 2];
                   }
-                );
+
+                  let style = new ol.style.Style({
+                    image: new ol.style.Icon({
+                      img: image,
+                      imgSize: [canvas.width, canvas.height],
+                      anchor: anchor,
+                      anchorXUnits: "pixels",
+                      anchorYUnits: "pixels",
+                    }),
+                    text: new ol.style.Text({
+                      text:
+                        size > maxClusterSize
+                          ? maxClusterSize + "+"
+                          : size.toString(),
+                      fill: new ol.style.Fill({
+                        color: "#000",
+                      }),
+                      font: "15px sans-serif",
+                      offsetY: offsetY,
+                    }),
+                  });
+                  styleCache[ol.util.getUid(feature)] = style;
+                });
               }
               return style;
             },
@@ -213,7 +217,7 @@
           if (features.length > 0) {
             extent = source.getExtent();
           }
-          let geom = ol.geom.Polygon.fromExtent(extent)
+          let geom = ol.geom.Polygon.fromExtent(extent);
           geom.scale(1.2);
           map.getView().fit(geom, map.getSize());
 
@@ -230,8 +234,8 @@
 
           let selectedFeature;
           map.on("pointermove", (e) => {
-            if(isAnyClusterHovered) {
-              lastHoverFeature.setProperties({highlight: 0});
+            if (isAnyClusterHovered) {
+              lastHoverFeature.setProperties({ highlight: 0 });
               lastHoverFeature.setStyle(lastHoverFeature.getStyle());
               isAnyClusterHovered = false;
             }
@@ -287,6 +291,8 @@
                     (el) => el.id === hoverCluster.ol_uid
                   );
                   if (cluster) {
+                    let isSingle = false;
+
                     cluster.paths.forEach((path) => {
                       if (
                         cluster.ctx.isPointInStroke(
@@ -295,14 +301,17 @@
                           relativeY
                         )
                       ) {
+                        isSingle = true;
+
                         const coordinate = e.coordinate;
                         popup.setPosition(coordinate);
-
-                        let info = getFeatureDetails(path, true);
 
                         if (popover) {
                           popover.dispose();
                         }
+
+                        let info = getFeatureDetails(path, true);
+
                         popover = new Popover(element, {
                           animation: false,
                           container: element,
@@ -314,6 +323,27 @@
                         popover.show();
                       }
                     });
+
+                    if (!isSingle & (cluster.paths.length > maxClusterSize)) {
+                      const coordinate = e.coordinate;
+                      popup.setPosition(coordinate);
+
+                      if (popover) {
+                        popover.dispose();
+                      }
+
+                      let content = `<p><span>This cluster contains ${cluster.paths.length} institutes, please zoom in to inspect in detail.</span></p>`;
+
+                      popover = new Popover(element, {
+                        animation: false,
+                        container: element,
+                        content: content,
+                        html: true,
+                        placement: "top",
+                        title: "Selected feature(s)",
+                      });
+                      popover.show();
+                    }
                   }
                 }
               }
@@ -330,9 +360,10 @@
                   const extent = ol.extent.boundingExtent(
                     features.map((r) => r.getGeometry().getCoordinates())
                   );
-                  map
-                    .getView()
-                    .fit(extent, { duration: 1000, padding: [100, 100, 100, 100] });
+                  map.getView().fit(extent, {
+                    duration: 1000,
+                    padding: [100, 100, 100, 100],
+                  });
                   document.getElementById("identifyParent").style.display =
                     "none";
                 } else {
@@ -347,7 +378,7 @@
             return new Promise((resolve) => {
               let newLineWidth = lineWidth;
 
-              if(clusterFeature.get('highlight') === 1) {
+              if (clusterFeature.get("highlight") === 1) {
                 newLineWidth += 3;
               }
 
@@ -408,7 +439,10 @@
 
                 resolve(canvas);
               } else {
-                canvas.setAttribute("width", 2 * radiusCluster + newLineWidth + 1);
+                canvas.setAttribute(
+                  "width",
+                  2 * radiusCluster + newLineWidth + 1
+                );
                 canvas.setAttribute(
                   "height",
                   2 * radiusCluster + newLineWidth + 1
@@ -417,6 +451,10 @@
                 let featuresToDraw = [];
 
                 for (let i = 0; i < features.length; i++) {
+                  if (i > maxClusterSize) {
+                    continue;
+                  }
+
                   featuresToDraw.push({
                     categoryId: features[i].get("categoryId"),
                     name: features[i].get("name"),
@@ -438,7 +476,10 @@
                   ctx.lineCap = "round";
                   let path = new Path2D();
 
-                  if ((i * interval + drawDelta) > ((i + 1) * interval - drawDelta)) {
+                  if (
+                    i * interval + drawDelta >
+                    (i + 1) * interval - drawDelta
+                  ) {
                     path.arc(
                       radiusCluster + (newLineWidth + 1) / 2,
                       radiusCluster + (newLineWidth + 1) / 2,
@@ -502,34 +543,49 @@
                 }
               }
 
-              document.querySelector(
-                "#resultsParent"
-              ).innerHTML = resultsHTML;
+              document.querySelector("#resultsParent").innerHTML = resultsHTML;
 
               for (var i = 0; i < allClusterFeatures.length; i++) {
                 let feature = allClusterFeatures[i];
-                if (ol.extent.containsExtent(mapExtent, feature.getGeometry().getExtent())) {
+                if (
+                  ol.extent.containsExtent(
+                    mapExtent,
+                    feature.getGeometry().getExtent()
+                  )
+                ) {
                   let currentFeaturesInCluster = feature.get("features");
                   for (let j = 0; j < currentFeaturesInCluster.length; j++) {
                     let currentFeature = currentFeaturesInCluster[j];
-                    let id = currentFeature.get('id');
+                    let id = currentFeature.get("id");
                     let element = document.getElementById(`institution-${id}`);
 
                     if (element) {
-                      element.addEventListener("mouseover",
+                      element.addEventListener(
+                        "mouseover",
                         function () {
-                          let card = document.getElementById(`institution-${id}`);
-                          card.getElementsByClassName("title")[0].style.textDecoration = 'underline';
+                          let card = document.getElementById(
+                            `institution-${id}`
+                          );
+                          card.getElementsByClassName(
+                            "title"
+                          )[0].style.textDecoration = "underline";
 
                           hoverFeature(id);
                         },
-                        false);
-                      element.addEventListener("mouseout",
+                        false
+                      );
+                      element.addEventListener(
+                        "mouseout",
                         function () {
-                          let card = document.getElementById(`institution-${id}`);
-                          card.getElementsByClassName("title")[0].style.textDecoration = 'none';
+                          let card = document.getElementById(
+                            `institution-${id}`
+                          );
+                          card.getElementsByClassName(
+                            "title"
+                          )[0].style.textDecoration = "none";
                         },
-                        false);
+                        false
+                      );
                     }
                   }
                 }
@@ -544,7 +600,9 @@
 
             document.querySelector("#showResultsButton").innerHTML =
               "Show " + output.length + " results";
-            document.querySelector("#showResultsButton").setAttribute('data-result-count', output.length);
+            document
+              .querySelector("#showResultsButton")
+              .setAttribute("data-result-count", output.length);
           }
           function selectFeature(featureToSelect) {
             highlightSource.clear();
@@ -557,9 +615,9 @@
             ).innerHTML = `${featureToSelect.get("render_teaser")}`;
             $(".interactive-map .accordion-collapse").collapse("hide");
 
-            setTimeout(()=> {
+            setTimeout(() => {
               highlightSource.changed();
-            }, 50)
+            }, 50);
           }
           function clearSelection() {
             document.getElementById("identifyParent").style.display = "none";
@@ -574,7 +632,11 @@
               let currentFeaturesInCluster = feature.get("features");
               for (let j = 0; j < currentFeaturesInCluster.length; j++) {
                 if (currentFeaturesInCluster[j].get("id") === featureId) {
-                  return { result: currentFeaturesInCluster.length > 1 ? true : false, feature:currentFeaturesInCluster[j], cluster: feature };
+                  return {
+                    result: currentFeaturesInCluster.length > 1 ? true : false,
+                    feature: currentFeaturesInCluster[j],
+                    cluster: feature,
+                  };
                 }
               }
             }
@@ -582,32 +644,40 @@
           }
           function hoverFeature(featureId) {
             highlightSource.clear();
-            if(isAnyClusterHovered) {
-              lastHoverFeature.setProperties({highlight: 0});
+            if (isAnyClusterHovered) {
+              lastHoverFeature.setProperties({ highlight: 0 });
               lastHoverFeature.setStyle(lastHoverFeature.getStyle());
             }
             let isInCluster = featureInCluster(featureId);
-            if(isInCluster.result === false) {
+            if (isInCluster.result === false) {
               highlightSource.addFeature(isInCluster.feature);
-            } else{
-              isInCluster.cluster.setProperties({highlight: 1});
+            } else {
+              isInCluster.cluster.setProperties({ highlight: 1 });
               lastHoverFeature = isInCluster.cluster;
               isAnyClusterHovered = true;
             }
 
             highlightSource.changed();
-            isInCluster.cluster.setStyle(isInCluster.cluster.getStyle())
+            isInCluster.cluster.setStyle(isInCluster.cluster.getStyle());
           }
           function getFeatureDetails(feature, isPath) {
             let markup = {
-              "title": `<div class="title">${isPath ? feature.name : feature.get("name")}</div>`,
-              "role": ""
-            }
+              title: `<div class="title">${
+                isPath ? feature.name : feature.get("name")
+              }</div>`,
+              role: "",
+            };
 
             let roles = isPath ? feature.roles : feature.get("roles");
 
-            let role_main_txt = getRolesMarkup(roles.main_secondary, "Main & secondary roles");
-            let role_additional_txt = getRolesMarkup(roles.additional, "Additional roles");
+            let role_main_txt = getRolesMarkup(
+              roles.main_secondary,
+              "Main & secondary roles"
+            );
+            let role_additional_txt = getRolesMarkup(
+              roles.additional,
+              "Additional roles"
+            );
 
             markup.role = role_main_txt + role_additional_txt;
 
