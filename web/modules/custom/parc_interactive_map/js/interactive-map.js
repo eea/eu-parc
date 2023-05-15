@@ -291,6 +291,8 @@
                     (el) => el.id === hoverCluster.ol_uid
                   );
                   if (cluster) {
+                    let isSingle = false;
+
                     cluster.paths.forEach((path) => {
                       if (
                         cluster.ctx.isPointInStroke(
@@ -299,14 +301,17 @@
                           relativeY
                         )
                       ) {
+                        isSingle = true;
+
                         const coordinate = e.coordinate;
                         popup.setPosition(coordinate);
-
-                        let info = getFeatureDetails(path, true);
 
                         if (popover) {
                           popover.dispose();
                         }
+
+                        let info = getFeatureDetails(path, true);
+
                         popover = new Popover(element, {
                           animation: false,
                           container: element,
@@ -318,6 +323,27 @@
                         popover.show();
                       }
                     });
+
+                    if (!isSingle & (cluster.paths.length > maxClusterSize)) {
+                      const coordinate = e.coordinate;
+                      popup.setPosition(coordinate);
+
+                      if (popover) {
+                        popover.dispose();
+                      }
+
+                      let content = `<p><span>This cluster contains ${cluster.paths.length} institutes, please zoom in to inspect in detail.</span></p>`;
+
+                      popover = new Popover(element, {
+                        animation: false,
+                        container: element,
+                        content: content,
+                        html: true,
+                        placement: "top",
+                        title: "Selected feature(s)",
+                      });
+                      popover.show();
+                    }
                   }
                 }
               }
