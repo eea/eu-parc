@@ -332,7 +332,7 @@
                         popover.dispose();
                       }
 
-                      let content = `<p><span>This cluster contains ${cluster.paths.length} institutes, please zoom in to inspect in detail.</span></p>`;
+                      let content = `<p><span>This cluster contains more than 24 institutes, please zoom in to inspect in detail.</span></p>`;
 
                       popover = new Popover(element, {
                         animation: false,
