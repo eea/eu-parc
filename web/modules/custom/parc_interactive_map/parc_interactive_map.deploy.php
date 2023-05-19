@@ -15,12 +15,12 @@ function parc_interactive_map_deploy_9001() {
   }
 
   $terms = [
-    'Coordinator' => '#6d0692',
-    'Grant Signatory' => '#54d8c3',
-    'Affiliated Entity' => '#d56149',
-    'Associated Partner' => '#c593fc',
-    'National Hub Contact Point' => '#f0879c',
-    'Work Package Co-leading Organization' => '#3375ff',
+    'Coordinator' => '#8631a7',
+    'Grant Signatory' => '#31d9c4',
+    'Affiliated Entity' => '#e45c4d',
+    'Associated Partner' => '#f5d475',
+    'National Hub Contact Point' => '#f58296',
+    'Work Package Co-leading Organization' => '#1c85ff',
   ];
 
   foreach ($terms as $name => $color) {
