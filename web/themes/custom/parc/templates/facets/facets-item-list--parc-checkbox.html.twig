@@ -68,7 +68,7 @@
           <li{{ item.attributes }}>
             {{ item.value | without('children') }}
           </li>
-          <li class="collapse" id="collapse-children-{{ facet.id }}-{{ item.value['#attributes']['data-drupal-facet-item-value'] }}">
+          <li class="collapse show" id="collapse-children-{{ facet.id }}-{{ item.value['#attributes']['data-drupal-facet-item-value'] }}">
             {{ item.value.children }}
           </li>
         {% endif %}
