@@ -4,6 +4,6 @@ parc_zenodo_api.admin_settings_form:
     _form: '\Drupal\parc_zenodo_api\Form\ZenodoApiToken'
     _title: 'Zenodo Api Token Admin Form'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'administer site configuration'
   options:
     _admin_route: TRUE
