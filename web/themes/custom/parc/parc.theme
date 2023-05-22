@@ -11,6 +11,7 @@ use Drupal\parc\ParcThemeProcess;
 use Drupal\taxonomy\TermInterface;
 use Drupal\facets\FacetInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Render\Markup;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -240,5 +241,37 @@ function parc_preprocess_html(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof NodeInterface && $node->hasField('field_custom_classes')) {
     $variables['attributes']['class'][] = $node->get('field_custom_classes')->value;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field__media__vector.
+ */
+function parc_preprocess_field__media__vector(&$variables) {
+  // Vector medias are SVGs that contain ID attributes
+  // and have animations based on those IDs.
+  // If the same SVG is used multiple times in one page,
+  // the animation will only work for the first SVG.
+  // This code ensures that SVGs will have unique IDs every time they are rendered.
+  foreach ($variables['items'] as $idx => $item) {
+    if (empty($item['content']['#markup'])) {
+      continue;
+    }
+
+    $markup = $item['content']['#markup'];
+    // Get all the IDs from the markup.
+    preg_match_all('/id="([^"]+)"/', $markup, $matches);
+    if (empty($matches[1])) {
+      continue;
+    }
+
+    foreach ($matches[1] as $id) {
+      $unique_id = uniqid("{$id}_");
+      // Replace the HTML ID attribute (e.g. <g id="id1">).
+      $markup = str_replace("\"$id\"", "\"$unique_id\"", $markup);
+      // Replace the ID in the <animate> tags (e.g. <animate begin="id1.mouseenter"">)
+      $markup = str_replace("$id.", "$unique_id.", $markup);
+    }
+    $variables['items'][$idx]['content']['#markup'] = Markup::create($markup);
   }
 }
