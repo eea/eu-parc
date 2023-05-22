@@ -586,8 +586,23 @@ display:
         arguments: false
         filters: false
         filter_groups: false
+        header: false
       css_class: 'mb-parc js-second-exposed-filter'
       display_description: ''
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: false
+          content:
+            value: '<div class="mb-5 mt-5">Past events</div>'
+            format: full_html
+          tokenize: false
       exposed_block: false
       display_extenders:
         ajax_history:
@@ -596,6 +611,7 @@ display:
         metatag_display_extender:
           metatags: {  }
           tokenize: false
+      block_hide_empty: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -1083,6 +1099,20 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'No results found.'
+            format: full_html
+          tokenize: false
       sorts:
         field_date_end_value:
           id: field_date_end_value
@@ -1281,6 +1311,7 @@ display:
         groups:
           1: AND
       defaults:
+        empty: false
         css_class: false
         use_ajax: false
         group_by: true

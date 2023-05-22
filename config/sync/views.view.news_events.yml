@@ -135,7 +135,20 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: 'No results found.'
+            format: full_html
+          tokenize: false
       sorts:
         created:
           id: created
@@ -286,6 +299,7 @@ display:
         options:
           offset: 0
           items_per_page: 0
+      empty: {  }
       arguments:
         nid:
           id: nid
@@ -456,6 +470,7 @@ display:
           relationship: none
           view_mode: teaser
       defaults:
+        empty: false
         title: false
         pager: false
         style: false
@@ -496,6 +511,7 @@ display:
         options:
           offset: 0
           items_per_page: 4
+      empty: {  }
       sorts:
         created:
           id: created
@@ -530,6 +546,7 @@ display:
           relationship: none
           view_mode: archive
       defaults:
+        empty: false
         pager: false
         use_more: false
         use_more_always: false
