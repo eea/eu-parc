@@ -157,17 +157,21 @@ function parc_theme($existing, $type, $theme, $path) {
  * Implements hook_preprocess_details().
  */
 function parc_preprocess_details(&$variables) {
-//  $request = \Drupal::request();
-//  // Getting the referer.
-//  $referer = $request->headers->get('referer');
-//  $query_args = $request->query->all();
-//  if (!empty($query_args['category']) && $referer) {
-//    $currentCategories = $query_args['category'];
-//    $refCategory = _parc_get_query_from_url($referer, 'category');
-//    if (count($currentCategories) !== count($refCategory) && empty($query_args['close'])) {
-//      $variables['open'] = TRUE;
-//    }
-//  }
+  if (\Drupal::routeMatch()->getRouteName() != 'views.ajax') {
+    return;
+  }
+
+  $request = \Drupal::request();
+  // Getting the referer.
+  $referer = $request->headers->get('referer');
+  $query_args = $request->query->all();
+  if (!empty($query_args['category']) && $referer) {
+    $currentCategories = $query_args['category'];
+    $refCategory = _parc_get_query_from_url($referer, 'category');
+    if (count($currentCategories) !== count($refCategory) && empty($query_args['close'])) {
+      $variables['open'] = TRUE;
+    }
+  }
 }
 
 /**
