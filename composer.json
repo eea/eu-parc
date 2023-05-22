@@ -163,6 +163,9 @@
             },
             "drupal/facets": {
                 "Facets with AJAX not working in most of situations": "https://www.drupal.org/files/issues/2023-02-07/facets-with-ajax-not-working-in-most-of-situations-3052574-174.patch"
+            },
+            "drupal/selective_better_exposed_filters": {
+                "#3361917 - Already selected filters should not be removed from the allowed values": "https://www.drupal.org/files/issues/2023-05-22/3361917-allow-already-selected-values-2.patch"
             }
         }
     },
