@@ -188,4 +188,10 @@ function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $quer
       }
     }
   }
+
+  // Remove duplicates from this view by grouping by nid.
+  if ($view->id() == 'news_events') {
+    $query->addField('', 'nid', '', ['function' => 'groupby']);
+    $query->addGroupBy('nid');
+  }
 }

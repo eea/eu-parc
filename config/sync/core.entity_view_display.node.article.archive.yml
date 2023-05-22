@@ -14,6 +14,7 @@ dependencies:
     - node.type.article
   module:
     - layout_builder
+    - smart_trim
     - svg_image
     - user
 third_party_settings:
@@ -27,6 +28,27 @@ targetEntityType: node
 bundle: article
 mode: archive
 content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 30
+      trim_type: words
+      trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_image:
     type: image_url
     label: hidden
@@ -34,6 +56,15 @@ content:
       image_style: news_teaser
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_svg_hover:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_tags:
     type: entity_reference_entity_view
@@ -46,10 +77,8 @@ content:
     region: content
 hidden:
   addtoany: true
-  body: true
   comment: true
   field_metatags: true
   field_seo_keyword: true
-  field_svg_hover: true
   links: true
   search_api_excerpt: true

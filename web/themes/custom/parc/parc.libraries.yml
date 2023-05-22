@@ -185,11 +185,6 @@ n--institution-teaser:
     - core/jquery
     - core/once
 
-n--article-archive:
-  css:
-    component:
-      css/components/content/article/archive/style.css: {}
-
 n--article-full:
   css:
     component:

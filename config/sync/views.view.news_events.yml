@@ -454,7 +454,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: archive
+          view_mode: teaser
       defaults:
         title: false
         pager: false
@@ -528,7 +528,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: teaser
+          view_mode: archive
       defaults:
         pager: false
         use_more: false
@@ -547,6 +547,10 @@ display:
       link_url: ''
       display_extenders:
         ajax_history: {  }
+        simple_sitemap_display_extender: {  }
+        metatag_display_extender:
+          metatags: {  }
+          tokenize: false
     cache_metadata:
       max-age: -1
       contexts:

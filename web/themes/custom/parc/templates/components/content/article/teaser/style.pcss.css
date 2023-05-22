@@ -139,6 +139,16 @@
       margin-bottom: 14px;
     }
   }
+
+  @media (--lg) {
+    .max-2-lines {
+      overflow: hidden;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
 }
 
 .news-green {
