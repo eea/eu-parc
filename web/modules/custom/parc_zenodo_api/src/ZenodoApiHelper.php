@@ -122,14 +122,17 @@ class ZenodoApiHelper {
   public function processKeywords(array $keywords) {
     $final_keywords = [];
     foreach ($keywords as $keyword) {
-      if (strpos($keyword, ',') !== NULL) {
+      if (strpos($keyword, ',') !== FALSE) {
         $final_keywords = array_merge($final_keywords, explode(',', $keyword));
       }
-      elseif (strpos($keyword, '·') !== NULL) {
+      elseif (strpos($keyword, '·') !== FALSE) {
         $final_keywords = array_merge($final_keywords, explode(' · ', $keyword));
       }
+      elseif (strpos($keyword, ';') !== FALSE) {
+        $final_keywords = array_merge($final_keywords, explode(';', $keyword));
+      }
       else {
-        $final_keywords[] = $keywords;
+        $final_keywords[] = $keyword;
       }
     }
 
@@ -137,7 +140,7 @@ class ZenodoApiHelper {
       $keyword = trim($keyword);
       $keyword = ucfirst($keyword);
     }
-    $final_keywords = array_unique($keywords);
+    $final_keywords = array_unique($final_keywords);
 
     $keyword_terms = [];
     foreach ($final_keywords as $keyword) {
