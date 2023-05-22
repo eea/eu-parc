@@ -360,9 +360,9 @@
   }
 
   .map-page .px-0 > :last-child > div {
-    width: calc(75vw);
+    width: calc(75vw - 10px);
     position: absolute;
-    left: 0;
+    left: 10px;
   }
 
   .map-page .px-0 {
