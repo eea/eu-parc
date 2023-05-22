@@ -13,7 +13,7 @@ scheduler:
   id: crontab
   configuration:
     rules:
-      - '0 0 23 * *'
+      - '0 0 * * MON'
     catch_up: 0
 launcher:
   id: serial
