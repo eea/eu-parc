@@ -136,9 +136,9 @@ class ZenodoApiHelper {
       }
     }
 
-    foreach ($final_keywords as &$keyword) {
-      $keyword = trim($keyword);
-      $keyword = ucfirst($keyword);
+    foreach ($final_keywords as &$final_keyword) {
+      $final_keyword = trim($final_keyword);
+      $final_keyword = ucfirst($final_keyword);
     }
     $final_keywords = array_unique($final_keywords);
 
@@ -162,15 +162,17 @@ class ZenodoApiHelper {
    * @return \Drupal\taxonomy\TermInterface|null
    *   The term.
    */
-  public function getTermByName(string $name, string $vid, bool $create = TRUE) {
+  public function getTermByName(string $name, string $vid, bool $create = TRUE, $case_sensitive = FALSE) {
     /** @var \Drupal\taxonomy\TermStorageInterface $term_storage */
     $term_storage = $this->entityTypeManager->getStorage('taxonomy_term');
 
+    $operator = !$case_sensitive ? '=' : 'LIKE BINARY';
+    $terms = $term_storage->getQuery()
+      ->condition('vid', $vid)
+      ->condition('name', $name, $operator)
+      ->execute();
     /** @var \Drupal\taxonomy\TermInterface[] $term */
-    $term = $term_storage->loadByProperties([
-      'vid' => $vid,
-      'name' => $name,
-    ]);
+    $term = $term_storage->loadMultiple($terms);
 
     if (!empty($term)) {
       $term = reset($term);
