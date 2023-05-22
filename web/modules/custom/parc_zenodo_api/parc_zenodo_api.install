@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * Clean up publication tags.
+ */
+function parc_zenodo_api_update_9001() {
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties([
+    'type' => 'publications'
+  ]);
+  foreach ($nodes as $node) {
+    $final_keywords = [];
+    foreach ($node->get('field_key_words')->referencedEntities() as $term) {
+      /** @var \Drupal\taxonomy\TermInterface $term */
+      $keyword = $term->label();
+      if (strpos($keyword, ',') !== FALSE) {
+        $final_keywords = array_merge($final_keywords, explode(',', $keyword));
+      }
+      elseif (strpos($keyword, '·') !== FALSE) {
+        $final_keywords = array_merge($final_keywords, explode(' · ', $keyword));
+      }
+      elseif (strpos($keyword, ';') !== FALSE) {
+        $final_keywords = array_merge($final_keywords, explode(';', $keyword));
+      }
+      else {
+        $final_keywords[] = $keyword;
+      }
+    }
+
+    foreach ($final_keywords as &$final_keyword) {
+      $final_keyword = trim($final_keyword);
+      $final_keyword = ucfirst($final_keyword);
+    }
+    $final_keywords = array_unique($final_keywords);
+
+    /** @var \Drupal\parc_zenodo_api\ZenodoApiHelper $zenodo_api */
+    $zenodo_api = \Drupal::service('parc_zenodo_api.helper');
+    $keyword_terms = [];
+    foreach ($final_keywords as $keyword) {
+      $keyword_terms[] = $zenodo_api->getTermByName($keyword, 'publications', TRUE, TRUE);
+    }
+
+    $node->set('field_key_words', $keyword_terms);
+    $node->save();
+  }
+
+  /** @var \Drupal\taxonomy\TermInterface[] $terms */
+  $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadByProperties([
+    'vid' => 'publications',
+  ]);
+  foreach ($terms as $term) {
+    if ($term->label() == '-') {
+      $tagged_nodes = \Drupal::entityTypeManager()->getStorage('node')
+        ->loadByProperties([
+          'type' => 'publications',
+          'field_key_words' => $term->id()
+        ]);
+      foreach ($tagged_nodes as $tagged_node) {
+        $tags = $tagged_node->get('field_key_words')->getValue();
+        foreach ($tags as $idx => $tag) {
+          if ($tag['target_id'] == $term->id()) {
+            unset($tags[$idx]);
+          }
+        }
+        $tagged_node->set('field_key_words', $tags);
+        $tagged_node->save();
+      }
+      $term->delete();
+    }
+
+    $tagged_nodes = \Drupal::entityTypeManager()->getStorage('node')
+      ->loadByProperties([
+        'type' => 'publications',
+        'field_key_words' => $term->id()
+      ]);
+
+    if (empty($tagged_nodes)) {
+      $term->delete();
+    }
+  }
+}
