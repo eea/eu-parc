@@ -152,7 +152,7 @@ function getFieldValues($deposition) {
     'field_updated_date' => $deposition['updated'] ? $altered_modified_date : date('Y-m-d\TH:i:s', time()),
     'changed' => $deposition['updated'] ? strtotime($altered_modified_date) : time(),
     'field_zenodo_id' => $deposition['id'] ? : '',
-    'status' => 1,
+    'status' => 0,
   ];
   return $values;
 }
