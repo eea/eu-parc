@@ -278,4 +278,8 @@ function parc_preprocess_field__media__vector(&$variables) {
     }
     $variables['items'][$idx]['content']['#markup'] = Markup::create($markup);
   }
+
+  // Disable caching so that the media item
+  // is rendered differently each time.
+  $variables['#cache']['max-age'] = 0;
 }
