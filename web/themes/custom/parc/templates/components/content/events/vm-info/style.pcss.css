@@ -16,7 +16,7 @@
     overflow: hidden;
 
     .f-label {
-      padding: 20px 10px;
+      padding: 10px 10px 20px 10px;
     }
 
     .morning,
@@ -54,7 +54,7 @@
 
     .cs--item {
       background: #fff;
-      height: 230px;
+      height: 360px;
       min-height: unset;
       flex: 1 0 42%;
       display: flex;
