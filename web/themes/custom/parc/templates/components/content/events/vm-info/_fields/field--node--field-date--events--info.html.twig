@@ -74,11 +74,13 @@
       </div>
     {%- endfor -%}
   </div>
-  <button class="slider__arrow slider__arrow-prev js-slider-prev d-none">
-    {{- '&#8249;' -}}
-  </button>
+  {% if items.2 %}
+    <button class="slider__arrow slider__arrow-prev js-slider-prev d-none">
+      {{- '&#8249;' -}}
+    </button>
 
-  <button class="slider__arrow slider__arrow-next js-slider-next">
-    {{- '&#8250;' -}}
-  </button>
+    <button class="slider__arrow slider__arrow-next js-slider-next">
+      {{- '&#8250;' -}}
+    </button>
+  {% endif %}
 </div>
