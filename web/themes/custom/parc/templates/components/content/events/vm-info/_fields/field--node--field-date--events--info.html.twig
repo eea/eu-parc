@@ -11,105 +11,74 @@
   ]
 %}
 
-{%
-  set title_classes = [
-    'f-label'
-  ]
-%}
-
 {{ attach_library('edwt/collapse') }}
+{{ attach_library('parc/carousel_scroll') }}
 
 <div{{attributes.addClass(classes)}}>
-  {%- for item in items -%}
-    <div class="date-item">
-      {% set itemID = "date-item-" ~ loop.index %}
-      <button class="btn link-ta collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ itemID }}" aria-expanded="true" aria-controls="{{ itemID }}">
-        {{ "Day" | t }} {{ loop.index }}
-        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewbox="0 0 8 8">
-          <line x2="6" transform="translate(1 4)" fill="none" stroke="#008475" stroke-linecap="round" stroke-width="2"/>
-          <line class="second-line" y1="6" transform="translate(4 1)" fill="none" stroke="#008475" stroke-linecap="round" stroke-width="2"/>
-        </svg>
-      </button>
-      <div id="{{ itemID }}" class="collapse w--collapse {% if loop.first %}open show {% endif %}">
-        <div{{title_attributes.addClass(title_classes)}}>
-          {{- label -}}
-        </div>
-        <div class="date-value">
-          {% set start = item.content.start.date.value['#markup'] %}
-          {% set end = item.content.end.date.value['#markup'] %}
-          {% set AllDay = item.content.end.time['#markup'] == 'All Day' %}
+  <div class="f-label">{{ "Programme" | t }}</div>
+  <div class="carousel-scroll">
+    {%- for item in items -%}
+      {% set start = item.content.start.date.value['#markup'] %}
+      {% set end = item.content.end.date.value['#markup'] %}
 
+      {% set start_hour = item.content.start.time.value['#markup'] | split('.').0 | number_format %}
+      {% set start_minute = item.content.start.time.value['#markup'] | split('.').1 | number_format %}
+      {% set start_timestamp = start_hour * 60 + start_minute %}
 
-          {% set dsd = start|split('.').0 %}
-          {% set dsm = start|split('.').1 %}
-          {% set dsy = start|split('.').2 %}
+      {% set end_hour = item.content.end.time.value['#markup'] | split('.').0 | number_format %}
+      {% set end_minute = item.content.end.time.value['#markup'] | split('.').1 | number_format %}
+      {% set end_timestamp = end_hour * 60 + end_minute %}
 
-          {% if AllDay %}
-            {% set ds = start|trim('.') %}
-            {% if end %}
-              {% set ded = end|split('.').0 %}
-              {% set dem = end|split('.').1 %}
-              {% set dey = end|split('.').2 %}
+      {% set empty_top_height = start_timestamp * 100 / (60 * 24) %}
+      {% if empty_top_height > 80 %}
+        {% set empty_top_height = 80 %}
+      {% endif %}
 
-              {% if dsy != dey %}
-                {{ ds }}{{ ' — ' }}
-                {{ ded }}.{{ dem }}.{{ dey }}
-              {% elseif dsm != dem %}
-                v2
-                {{ ds }}{{ ' — ' }}
-                {{ ded }}.{{ dem }}.{{ dey }}
-              {% elseif dsd != ded %}
-                v3
-                {{ ds }}{{ ' — ' }}
-                {{ ded }}.{{ dsm }}.{{ dsy }}
+      {% set fill_height = (end_timestamp - start_timestamp) * 100 / (60 * 24) %}
+      {% if fill_height < 20 %}
+        {% set fill_height = 20 %}
+      {% endif %}
+
+      {% if item.content.end %}
+        {% set AllDay = item.content.end.time['#markup'] %}
+      {% else %}
+        {% set empty_top_height = 0 %}
+        {% set fill_height = 100 %}
+        {% set AllDay = item.content.start.time['#markup'] %}
+      {% endif %}
+      <div class="cs--item">
+        <div class="calendar-item">
+          <div class="day">
+            {{ start }}
+          </div>
+          <div class="time">
+            <div class="morning">
+              {{ "Morning" | t }}
+            </div>
+            <div class="afternoon">
+              {{ "Afternoon" | t }}
+            </div>
+            <div class="empty" style="height: {{ empty_top_height }}%">
+            </div>
+            <div class="fill" style="height: {{ fill_height }}%">
+              {% if AllDay %}
+                {{- "All day" |t -}}
+              {% else %}
+                {{- item.content.start.time.value['#markup'] -}}
+                {{- ' - ' -}}
+                {{- item.content.end.time.value['#markup'] -}}
               {% endif %}
-            {% else %}
-              {{ ds }}
-            {% endif %}
-          {% else %}
-            {% if end %}
-              {% set ded = end|split('.').0 %}
-              {% set dem = end|split('.').1 %}
-              {% set dey = end|split('.').2 %}
-
-              {% if dsy != dey %}
-                {{ dsd }}.{{ dsm }}.{{ dsy }}{{ ' — ' }}
-                {{ ded }}.{{ dem }}.{{ dey }}
-              {% elseif dsm != dem %}
-                {{ ded }}.{{ dsm }}{{ ' — ' }}
-                {{ ded }}.{{ dem }}.{{ dey }}
-              {% elseif dsd != ded %}
-                {{ dsd }}{{ ' — ' }}
-                {{ ded }}.{{ dsm }}.{{ dsy }}
-              {% endif %}
-            {% else %}
-              {{ dsd }}.{{ dsm }}.{{ dsy }}
-            {% endif %}
-          {% endif %}
-        </div>
-
-        <div{{title_attributes.addClass(title_classes)}}>
-          {{- 'Time'|t -}}
-        </div>
-
-        <div class="time-value">
-          {% set itemContent = item.content %}
-
-          {% if item.content.end %}
-            {% set AllDay = item.content.end.time['#markup'] %}
-          {% else %}
-            {% set AllDay = item.content.start.time['#markup'] %}
-          {% endif %}
-
-          {% if AllDay %}
-            {{- "All day"|t -}}
-          {% else %}
-            {{- itemContent.start.time.value['#markup'] -}}
-            {{- ' — ' -}}
-            {{- itemContent.end.time.value['#markup'] -}}
-          {% endif %}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  {%- endfor -%}
+    {%- endfor -%}
+  </div>
+  <button class="slider__arrow slider__arrow-prev js-slider-prev d-none">
+    {{- '&#8249;' -}}
+  </button>
+
+  <button class="slider__arrow slider__arrow-next js-slider-next">
+    {{- '&#8250;' -}}
+  </button>
 </div>

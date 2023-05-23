@@ -1,0 +1,82 @@
+.w--carosuel-scroll {
+  position: relative;
+
+  &:hover {
+    @media (hover: hover) {
+      .slider__arrow {
+        display: block;
+      }
+    }
+  }
+}
+
+.carousel-scroll {
+  display: flex;
+  overflow-x: scroll;
+  flex-flow: row nowrap;
+  margin-bottom: 24px;
+  gap: 20px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.slider__arrow {
+  position: absolute;
+  inset-block: 0;
+  width: 6%;
+  max-width: 80px;
+  background: none;
+  border: none;
+  display: none;
+  /* color: transparent; */
+  font-size: 32px;
+  transition: var(--transition-base);
+
+  @media (hover: hover) {
+    display: block;
+  }
+
+  &:hover {
+    color: var(--c-body);
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.slider__arrow-prev {
+  left: 0;
+}
+
+.slider__arrow-next {
+  right: 0;
+}
+
+.cs--item {
+  --cs-svg-c: var(--cs--item-c);
+  background: var(--cs--item-bg);
+  color: var(--cs--item-c);
+  flex: 1 0 clamp(300px, 80%, 400px);
+  max-width: 400px;
+  min-height: 280px;
+  scroll-snap-align: start;
+  position: relative;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  font-size: 18px;
+}
+
+@media (--md) {
+  .cs--item {
+    flex: 1 0 clamp(250px, calc((100% - 6%) / 3 - 1.25rem), 400px);
+  }
+}

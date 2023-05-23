@@ -1,0 +1,15 @@
+uuid: a0de0dec-3819-4bc3-8010-85694d7e86df
+langcode: en
+status: true
+dependencies: {  }
+id: minimal
+label: Minimal
+date_format: d.m
+time_format: 'G:i'
+time_hour_format: 'G:i'
+allday_label: 'All Day'
+separator: ' - '
+join: ', '
+ampm_reduce: '1'
+date_first: '1'
+site_time_toggle: '1'

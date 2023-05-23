@@ -4,6 +4,94 @@
   .field-date {
     display: inline-flex;
     flex-direction: column;
+    max-width: 100%;
+    width: 100%;
+    background: var(--c-gray-200);
+    border: 1px solid var(--c-gray-400);
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 15px;
+    margin-left: -10px;
+    margin-right: -10px;
+    overflow: hidden;
+
+    .f-label {
+      padding: 20px 10px;
+    }
+
+    .morning,
+    .afternoon {
+      position: absolute;
+      padding: 5px;
+      height: 50%;
+      opacity: .3;
+    }
+
+    .morning {
+      top: 0;
+    }
+
+    .afternoon {
+      top: 50%;
+    }
+
+    .carousel-scroll {
+      margin-bottom: 0;
+      gap: 10px;
+    }
+
+    .calendar-item {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding-bottom: 30px;
+    }
+
+    .empty {
+      z-index: -2;
+      position: relative;
+    }
+
+    .cs--item {
+      background: #fff;
+      height: 230px;
+      min-height: unset;
+      flex: 1 0 42%;
+      display: flex;
+      padding: 0;
+    }
+
+    .day {
+      font-weight: bold;
+      font-size: 20px;
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid var(--c-gray-400);
+      padding: 10px;
+    }
+
+    .time {
+      height: 100%;
+      position: relative;
+
+      .fill {
+        background: var(--ne-c-cat);
+        color: #fff;
+        padding: 5px;
+        line-height: 1;
+        display: flex;
+        border-radius: 5px;
+        z-index: 2;
+        position: relative;
+      }
+    }
+
+    .slider__arrow {
+      height: 30px;
+      top: 50%;
+      margin: 0 5px;
+      z-index: 3;
+    }
 
     .date-value {
       margin-bottom: 15px;

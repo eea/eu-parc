@@ -393,3 +393,14 @@ facets_ajax:
     - core/drupal
     - core/jquery
     - core/once
+
+carousel_scroll:
+  js:
+    templates/components/carousel/carousel-scroll.js: { }
+  css:
+    component:
+      css/components/carousel/carousel-scroll.css: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
