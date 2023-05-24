@@ -225,7 +225,7 @@ content:
     weight: 101
     region: content
   field_add_to_calendar:
-    type: ics_link_field_formatter
+    type: parc_ics_link_field_formatter
     label: above
     settings:
       link_label: 'Add to Calendar'

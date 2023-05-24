@@ -5,3 +5,15 @@ parc_core.ajax_link:
     _title: 'Ajax links'
   requirements:
     _permission: 'access content'
+
+parc_core_ics_link_field.download:
+  path: '/add-to-calendar-ics/{entity_type}/{field_name}/{entity}'
+  defaults:
+    _controller: '\Drupal\parc_core\Controller\AddToCalendarController::icsDownload'
+  requirements:
+    _permission: 'access content'
+    _entity_access: 'entity.view'
+  options:
+    parameters:
+      entity:
+        type: entity:{entity_type}
