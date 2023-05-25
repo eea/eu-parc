@@ -19,12 +19,12 @@ dependencies:
   module:
     - addtoany
     - ctools
-    - ics_link_field
     - layout_builder
     - link
     - menu_block
     - metatag
     - options
+    - parc_core
     - smart_date
     - text
     - user
@@ -318,3 +318,4 @@ content:
 hidden:
   addtoany: true
   field_categories: true
+  search_api_excerpt: true

@@ -1,0 +1,66 @@
+uuid: 38f14fd8-93f1-4370-8e00-7ce797666bb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.events.body
+    - field.field.node.events.field_add_to_calendar
+    - field.field.node.events.field_address_data
+    - field.field.node.events.field_categories
+    - field.field.node.events.field_city
+    - field.field.node.events.field_date
+    - field.field.node.events.field_event_format
+    - field.field.node.events.field_metatags
+    - field.field.node.events.field_registration
+    - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_website
+    - node.type.events
+  module:
+    - layout_builder
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.events.search_teaser
+targetEntityType: node
+bundle: events
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: trim
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_add_to_calendar: true
+  field_address_data: true
+  field_categories: true
+  field_city: true
+  field_date: true
+  field_event_format: true
+  field_metatags: true
+  field_registration: true
+  field_seo_keyword: true
+  field_website: true
+  links: true
+  search_api_excerpt: true

@@ -1,0 +1,50 @@
+uuid: 65b7a4d1-2724-4ac1-879d-74c0bba5d9eb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.thematic_areas.body
+    - field.field.node.thematic_areas.field_categories
+    - field.field.node.thematic_areas.field_seo_keyword
+    - node.type.thematic_areas
+  module:
+    - layout_builder
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.thematic_areas.search_teaser
+targetEntityType: node
+bundle: thematic_areas
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: trim
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_categories: true
+  field_seo_keyword: true
+  links: true
+  search_api_excerpt: true

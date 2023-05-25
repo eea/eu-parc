@@ -195,3 +195,10 @@ function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $quer
     $query->addGroupBy('nid');
   }
 }
+
+/**
+ * Implements hook_block_alter().
+ */
+function parc_core_block_alter(&$definitions) {
+  $definitions['views_block:search-block_1']['class'] = 'Drupal\parc_core\Plugin\Block\ParcSearchResultsBlock';
+}
