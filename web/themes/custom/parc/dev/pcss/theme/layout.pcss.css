@@ -62,3 +62,9 @@
     }
   }
 }
+
+.layout.py-0 {
+  > div:first-child {
+    padding-top: 0;
+  }
+}

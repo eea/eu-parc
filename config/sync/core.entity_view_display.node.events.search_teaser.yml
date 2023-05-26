@@ -11,13 +11,16 @@ dependencies:
     - field.field.node.events.field_city
     - field.field.node.events.field_date
     - field.field.node.events.field_event_format
+    - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
     - field.field.node.events.field_website
+    - image.style.thumbnail
     - node.type.events
   module:
     - layout_builder
+    - media
     - smart_trim
     - user
 third_party_settings:
@@ -49,6 +52,17 @@ content:
         replace_tokens: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_media_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   addtoany: true

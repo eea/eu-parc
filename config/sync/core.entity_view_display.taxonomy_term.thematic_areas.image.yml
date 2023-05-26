@@ -1,0 +1,43 @@
+uuid: b3b09e83-1601-4fca-83ca-22ea41899810
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.image
+    - field.field.taxonomy_term.thematic_areas.field_bg_color
+    - field.field.taxonomy_term.thematic_areas.field_color
+    - field.field.taxonomy_term.thematic_areas.field_icon
+    - field.field.taxonomy_term.thematic_areas.field_seo_keywords
+    - field.field.taxonomy_term.thematic_areas.field_teaser_icon
+    - image.style.thumbnail
+    - taxonomy.vocabulary.thematic_areas
+  module:
+    - layout_builder
+    - media
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: taxonomy_term.thematic_areas.image
+targetEntityType: taxonomy_term
+bundle: thematic_areas
+mode: image
+content:
+  field_teaser_icon:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  description: true
+  field_bg_color: true
+  field_color: true
+  field_icon: true
+  field_seo_keywords: true
+  search_api_excerpt: true

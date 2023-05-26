@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.events.field_city
     - field.field.node.events.field_date
     - field.field.node.events.field_event_format
+    - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
@@ -275,6 +276,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 111
+    region: first
+  field_media_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 117
     region: first
   field_metatags:
     type: metatag_empty_formatter

@@ -11,15 +11,16 @@ dependencies:
     - field.field.node.events.field_city
     - field.field.node.events.field_date
     - field.field.node.events.field_event_format
+    - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
     - field.field.node.events.field_website
     - node.type.events
   module:
-    - ics_link_field
     - layout_builder
     - link
+    - parc_core
     - smart_date
     - text
     - user
@@ -102,6 +103,7 @@ hidden:
   body: true
   field_categories: true
   field_event_format: true
+  field_media_image: true
   field_metatags: true
   field_seo_keyword: true
   links: true

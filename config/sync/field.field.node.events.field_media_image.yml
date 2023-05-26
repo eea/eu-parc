@@ -1,0 +1,34 @@
+uuid: 83b7a5df-5220-4433-aa92-55a91a5df824
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_image
+    - media.type.image
+    - node.type.events
+  content:
+    - 'media:image:8b7d7c71-5927-4114-a87c-5c68bdea69d3'
+id: node.events.field_media_image
+field_name: field_media_image
+entity_type: node
+bundle: events
+label: Image
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    target_uuid: 8b7d7c71-5927-4114-a87c-5c68bdea69d3
+    weight: 0
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

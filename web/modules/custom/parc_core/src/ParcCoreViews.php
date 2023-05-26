@@ -88,6 +88,10 @@ class ParcCoreViews implements ContainerInjectionInterface {
       }
     }
 
+    $full_results = !empty(\Drupal::request()->query->get('full_results'));
+    if ($view->id() == 'search' && !$full_results) {
+      $view->setAjaxEnabled(FALSE);
+    }
   }
 
   /**

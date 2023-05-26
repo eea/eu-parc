@@ -202,3 +202,51 @@ function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $quer
 function parc_core_block_alter(&$definitions) {
   $definitions['views_block:search-block_1']['class'] = 'Drupal\parc_core\Plugin\Block\ParcSearchResultsBlock';
 }
+
+function parc_core_preprocess_views_view__search(&$variables) {
+  $variables['cache']['contexts'][] = 'url';
+
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+  $options = $view->getDisplay()->options;
+  $bundles = $options['bundles'];
+  $route_match = \Drupal::routeMatch();
+  $full_page_link = Url::fromRoute($route_match->getRouteName(), $route_match->getRawParameters()->all(), [
+    'query' => [
+      'full_results' => TRUE,
+      'type' => $bundles,
+    ],
+  ]);
+  $variables['footer']['link'] = [
+    '#type' => 'link',
+    '#url' => $full_page_link,
+    '#title' => t('All results in @title', [
+      '@title' => $options['view_title'],
+    ]),
+  ];
+
+  $query = \Drupal::request()->query->all();
+  if (!empty($query['full_results'])) {
+    unset($query['full_results']);
+    unset($query['type']);
+    $back_url = Url::fromRoute($route_match->getRouteName(), $route_match->getRawParameters()->all(), ['query' => $query]);
+    $variables['back_url'] = [
+      '#type' => 'link',
+      '#url' => $back_url,
+      '#title' => t('Back to full results'),
+    ];
+  }
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function parc_core_views_pre_view(ViewExecutable $view) {
+  $full_results = !empty(\Drupal::request()->query->get('full_results'));
+  if ($view->id() == 'search' && $full_results) {
+    $pager_options = $view->display_handler->getOption('pager');
+    $pager_options['type'] = 'infinite_scroll';
+    $pager_options['options']['views_infinite_scroll']['automatically_load_content'] = TRUE;
+    $view->display_handler->setOption('pager', $pager_options);
+  }
+}

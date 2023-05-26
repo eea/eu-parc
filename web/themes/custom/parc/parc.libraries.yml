@@ -257,6 +257,11 @@ n--deliverables--teaser:
     component:
       css/components/content/deliverables/vm--teaser/style.css: {}
 
+n--search-teaser:
+  css:
+    component:
+      css/components/content/search-teaser/style.css: {}
+
 # Block.
 b--carousel:
   css:
@@ -363,6 +368,11 @@ v--deliverables:
     - core/drupal
     - core/jquery
     - core/once
+
+v--search:
+  css:
+    component:
+      css/components/views/search/style.css: {}
 
 # Other.
 f--views-exposed:

@@ -7,6 +7,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\Context\ContextDefinition;
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\views\Plugin\Block\ViewsBlock;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -46,7 +47,6 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
   public function defaultConfiguration() {
     return [
       'bundles' => [],
-      'style' => 'teaser',
     ] + parent::defaultConfiguration();
   }
 
@@ -54,7 +54,6 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['bundles'] = $form_state->getValue('bundles');
     $this->configuration['bundles'] = $form_state->getValue('bundles');
     parent::blockSubmit($form, $form_state);
   }
@@ -78,22 +77,6 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
       '#options' => $types,
     ];
 
-    $form['style'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Results style'),
-      '#default_value' => $this->getConfiguration()['style'],
-      '#options' => [
-        'teaser' => 'Teaser, 4 results',
-        'full' => 'Full results, paginated'
-      ],
-    ];
-
-    $form['title'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Title'),
-      '#default_value' => $this->getConfiguration()['title'],
-    ];
-
     return $form;
   }
 
@@ -101,13 +84,21 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
    * {@inheritdoc}
    */
   public function build() {
+    $query_bundles = $this->request->query->get('type');
     $bundles = $this->getConfiguration()['bundles'];
+    $bundles = array_filter($bundles, function ($bundle) {
+      return !empty($bundle);
+    });
     $bundles = !empty($bundles)
       ? implode('+', $bundles)
       : 'all';
+    if (!empty($query_bundles) && $query_bundles != $bundles) {
+      return [];
+    }
     $this->context['type'] = new Context(new ContextDefinition(), $bundles);
 
-    $title = '<div class="subview-title">' . $this->getConfiguration()['views_label'] . '</div>';
+    $view_title = $this->getConfiguration()['views_label'];
+    $title = '<div class="subview-title">' . $view_title . '</div>';
 
     if (!$this->isFullPage()) {
       $this->view->getPager()->setItemsPerPage(4);
@@ -115,9 +106,11 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
     $build = parent::build();
     /** @var \Drupal\views\Plugin\views\area\TextCustom $header */
     $header = $this->view->getDisplay()->handlers['header']['area_text_custom'];
-    $header->options['content'] = $title;
+    $header->options['content'] = $this->t($title);
+    $this->view->getDisplay()->options['bundles'] = $bundles;
+    $this->view->getDisplay()->options['view_title'] = $view_title;
     if (!$this->isFullPage()) {
-      $build['#attributes']['class'][] = 'hide-pager';
+      $build['#attributes']['class'][] = 'teaser-view';
     }
     return $build;
   }

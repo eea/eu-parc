@@ -36,3 +36,10 @@
     height: 100%;
   }
 }
+
+.align-center {
+  .field-media {
+    display: flex;
+    justify-content: center;
+  }
+}

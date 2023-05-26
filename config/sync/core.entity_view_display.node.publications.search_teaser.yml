@@ -36,9 +36,9 @@ third_party_settings:
     group_dropdown_content:
       children:
         - field_authors
+        - addtoany
         - group_key_messages
         - group_abstract
-        - addtoany
       label: 'Dropdown content'
       parent_name: ''
       region: hidden
@@ -57,9 +57,9 @@ third_party_settings:
         speed: slow
     group_details:
       children:
-        - group_journal
-        - field_publication_date
         - field_key_words
+        - field_publication_date
+        - group_journal
       label: Details
       parent_name: ''
       region: hidden
@@ -78,10 +78,10 @@ third_party_settings:
         speed: fast
     group_journal:
       children:
-        - field_journal
-        - field_volume
         - field_issue
+        - field_journal
         - field_pages
+        - field_volume
       label: Journal
       parent_name: group_details
       region: hidden
@@ -169,7 +169,7 @@ content:
     type: media_thumbnail
     label: hidden
     settings:
-      image_link: content
+      image_link: ''
       image_style: thumbnail
       image_loading:
         attribute: lazy
