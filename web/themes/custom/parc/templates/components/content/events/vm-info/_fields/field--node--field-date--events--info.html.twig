@@ -21,8 +21,9 @@
       {% set start = item.content.start.date.value['#markup'] %}
       {% set end = item.content.end.date.value['#markup'] %}
 
-      {% set start_hour = item.content.start.time.value['#markup'] | split('.').0 | number_format %}
-      {% set start_minute = item.content.start.time.value['#markup'] | split('.').1 | number_format %}
+      {% set start_hour = item.content.start.time.value['#markup'] | split(':').0 | number_format %}
+      {% set start_minute = item.content.start.time.value['#markup'] | split(':').1 | number_format %}
+
       {% set start_timestamp = start_hour * 60 + start_minute %}
 
       {% set end_hour = item.content.end.time.value['#markup'] | split('.').0 | number_format %}
