@@ -1,0 +1,23 @@
+uuid: 14346898-1d94-447e-82ec-2ede747047ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.search
+  module:
+    - views
+  theme:
+    - parc
+id: exposedformsearchblock_1
+theme: parc
+region: nav_additional
+weight: -12
+provider: null
+plugin: 'views_exposed_filter_block:search-block_1'
+settings:
+  id: 'views_exposed_filter_block:search-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+visibility: {  }

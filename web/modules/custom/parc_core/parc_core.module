@@ -205,11 +205,15 @@ function parc_core_block_alter(&$definitions) {
 
 function parc_core_preprocess_views_view__search(&$variables) {
   $variables['cache']['contexts'][] = 'url';
-
   /** @var \Drupal\views\ViewExecutable $view */
   $view = $variables['view'];
   $options = $view->getDisplay()->options;
   $bundles = $options['bundles'];
+
+  if ($bundles == 'all') {
+    return;
+  }
+
   $route_match = \Drupal::routeMatch();
   $full_page_link = Url::fromRoute($route_match->getRouteName(), $route_match->getRawParameters()->all(), [
     'query' => [
@@ -226,7 +230,10 @@ function parc_core_preprocess_views_view__search(&$variables) {
   ];
 
   $query = \Drupal::request()->query->all();
-  if (!empty($query['full_results'])) {
+  if ($bundles == 'all') {
+    $variables['rows'] = [];
+  }
+  if (!empty($query['full_results']) && $bundles != 'all') {
     unset($query['full_results']);
     unset($query['type']);
     $back_url = Url::fromRoute($route_match->getRouteName(), $route_match->getRawParameters()->all(), ['query' => $query]);
@@ -243,10 +250,44 @@ function parc_core_preprocess_views_view__search(&$variables) {
  */
 function parc_core_views_pre_view(ViewExecutable $view) {
   $full_results = !empty(\Drupal::request()->query->get('full_results'));
+
   if ($view->id() == 'search' && $full_results) {
     $pager_options = $view->display_handler->getOption('pager');
     $pager_options['type'] = 'infinite_scroll';
     $pager_options['options']['views_infinite_scroll']['automatically_load_content'] = TRUE;
     $view->display_handler->setOption('pager', $pager_options);
+  }
+}
+
+/**
+ * Implements hook_search_api_autocomplete_suggestions_alter().
+ */
+function parc_core_search_api_autocomplete_suggestions_alter(array &$suggestions, array $alter_params) {
+  if (empty($suggestions)) {
+    return;
+  }
+
+  $types = [];
+  $content_types = \Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple();
+  foreach ($content_types as $content_type) {
+    $types[$content_type->id()] = $content_type->label();
+  }
+  foreach ($suggestions as $suggestion) {
+    /** @var \Drupal\search_api_autocomplete\Suggestion\Suggestion $suggestion */
+    if ($suggestion->getUrl()->getRouteName() != 'entity.node.canonical') {
+      continue;
+    }
+
+    $node = $suggestion->getUrl()->getRouteParameters()['node'];
+    $node = Node::load($node);
+    $suggestion->setRender([
+      '#type' => 'inline_template',
+      '#template' => '{{ text }} <span class="bundle">in {{ bundle }}</span>',
+      '#context' => [
+        // First 6 words.
+        'text' => $suggestion->getLabel(),
+        'bundle' => $types[$node->bundle()],
+      ],
+    ]);
   }
 }

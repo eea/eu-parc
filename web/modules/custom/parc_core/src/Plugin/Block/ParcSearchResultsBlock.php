@@ -103,6 +103,7 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
     if (!$this->isFullPage()) {
       $this->view->getPager()->setItemsPerPage(4);
     }
+
     $build = parent::build();
     /** @var \Drupal\views\Plugin\views\area\TextCustom $header */
     $header = $this->view->getDisplay()->handlers['header']['area_text_custom'];
@@ -110,6 +111,12 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
     $this->view->getDisplay()->options['bundles'] = $bundles;
     $this->view->getDisplay()->options['view_title'] = $view_title;
     if (!$this->isFullPage()) {
+      if (empty($this->view->total_rows) && $bundles != 'all') {
+        return [];
+      }
+      if ($bundles == 'all' && !empty($this->view->total_rows)) {
+        return [];
+      }
       $build['#attributes']['class'][] = 'teaser-view';
     }
     return $build;

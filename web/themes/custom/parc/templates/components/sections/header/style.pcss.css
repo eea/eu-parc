@@ -442,3 +442,88 @@ header {
     display: block;
   }
 }
+
+.block-views-exposed-filter-blocksearch-block-1 {
+  display: none;
+  position: relative;
+
+  input[type="text"] {
+    font-size: 12px;
+    color: var(--c-gray-700) !important;
+    background-color: var(--c-gray-200);
+    background-image: none !important;
+    border: 1px solid var(--c-gray-borders);
+    box-shadow: none !important;
+    outline: 0 !important;
+    letter-spacing: 0.03em;
+    border-radius: 10px;
+    font-family: var(--body-font-family);
+    padding-right: 26px;
+    margin: 0;
+    width: 100%;
+
+    @media (--md) {
+      width: 196px;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    background-image: url("data:image/svg+xml,%3Csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3.23828' cy='3.29175' r='2.1' stroke='%23999898' stroke-width='0.8'/%3E%3Cline x1='5.61842' y1='5.79175' x2='8.05273' y2='8.22606' stroke='%23999898' stroke-width='0.8' stroke-linecap='round'/%3E%3C/svg%3E");
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 8px;
+    right: 8px;
+  }
+
+  .form-actions {
+    display: none;
+  }
+}
+
+.search-api-autocomplete-search {
+  padding-top: 4px;
+  background: var(--c-gray-200);
+  border: 1px solid var(--c-gray-borders) !important;
+  border-radius: 0 0 10px 10px;
+  border-top: none !important;
+  width: calc(100vw - 120px) !important;
+
+  @media (--md) {
+    width: 196px !important;
+    top: 110px !important;
+  }
+
+  .bundle {
+    font-weight: bold;
+  }
+
+  .ui-menu-item {
+    &:hover {
+      background: transparent;
+    }
+
+    a {
+      display: block !important;
+      line-height: 14px !important;
+      padding: 5px 10px !important;
+      font-size: 12px !important;
+      color: var(--c-gray-700) !important;
+      letter-spacing: 0.03em !important;
+      font-family: var(--body-font-family) !important;
+      background: transparent !important;
+      font-weight: 400 !important;
+
+      &.ui-state-active {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.search-link {
+  cursor: pointer;
+}

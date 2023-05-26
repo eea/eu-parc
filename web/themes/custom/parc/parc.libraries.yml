@@ -301,6 +301,10 @@ s--header:
       css/components/sections/header/style.css: {}
   js:
     templates/components/sections/header/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
 
 s--footer:
   css:

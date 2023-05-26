@@ -15,7 +15,7 @@ third_party_settings:
 id: social_2
 theme: parc
 region: nav_additional
-weight: -7
+weight: -10
 provider: null
 plugin: 'block_content:3d1bf4a3-4164-478c-89cf-e6628c73b8bd'
 settings:

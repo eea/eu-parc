@@ -36,21 +36,25 @@
 
 {% set classes = [
   dom_id ? 'js-view-dom-id-' ~ dom_id,
+  not rows ? 'view-no-results',
+  'views-view',
 ] %}
 
 <div{{ attributes.addClass(classes) }}>
   <div class="row">
-    <div class="col-md-2">
-      <header class="view-header">
-        {{ header }}
-        {% if back_url %}
-          <div class="back-url">
-            {{ back_url }}
-          </div>
-        {% endif %}
-      </header>
-    </div>
-    <div class="col-md-10">
+    {% if rows %}
+      <div class="col-md-2">
+        <header class="view-header">
+          {{ header }}
+          {% if back_url %}
+            <div class="back-url">
+              {{ back_url }}
+            </div>
+          {% endif %}
+        </header>
+      </div>
+    {% endif %}
+    <div class="{% if rows %}col-md-10{% else %}col-md-12{% endif %}">
       {{ exposed }}
       {{ attachment_before }}
 
