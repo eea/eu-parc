@@ -6,13 +6,14 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-  use Drupal\Core\Url;
-  use Drupal\file\Entity\File;
-  use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\parc_core\ParcCoreViews;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\taxonomy_menu\Plugin\Menu\TaxonomyMenuMenuLink;
 
 /**
  * Implements hook_preprocess_page().
@@ -51,6 +52,50 @@ function parc_core_preprocess_menu(&$variables) {
           'nid' => $nid ?? NULL,
         ] + $options['attributes'];
         $item['url']->setOption('attributes', $attributes);
+      }
+    }
+  }
+
+  // Hide links to news/events terms if there are no nodes
+  // tagged with them.
+  if ($variables['menu_name'] == 'main') {
+    // The links need to appear again if a tag is added to a node.
+    $variables['#cache']['tags'][] = 'node_list';
+
+    $entity_type_manager = \Drupal::entityTypeManager();
+    $node_storage = $entity_type_manager->getStorage('node');
+    $items = $variables['items'];
+    foreach ($items as $key => &$item) {
+      if (!$item['original_link'] instanceof TaxonomyMenuMenuLink) {
+        continue;
+      }
+
+      /** @var \Drupal\Core\Url $url */
+      $url = $item['url'];
+      if ($url->getRouteName() != 'entity.taxonomy_term.canonical') {
+        continue;
+      }
+
+      $term = $url->getRouteParameters()['taxonomy_term'];
+      $term = $entity_type_manager->getStorage('taxonomy_term')->load($term);
+
+      if ($term->bundle() == 'events_category') {
+        $results = $node_storage->getQuery()
+          ->condition('field_categories', $term->id())
+          ->accessCheck()
+          ->execute();
+        if (empty($results)) {
+          unset($variables['items'][$key]);
+        }
+      }
+      elseif ($term->bundle() == 'news_category') {
+        $results = $node_storage->getQuery()
+          ->condition('field_tags', $term->id())
+          ->accessCheck()
+          ->execute();
+        if (empty($results)) {
+          unset($variables['items'][$key]);
+        }
       }
     }
   }
