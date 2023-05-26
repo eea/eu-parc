@@ -30,6 +30,15 @@ function parc_core_preprocess_page(&$variables) {
  * Implements template_preprocess_menu().
  */
 function parc_core_preprocess_menu(&$variables) {
+  // Hide links to news/events terms if there are no nodes
+  // tagged with them.
+  if ($variables['menu_name'] == 'main') {
+    // The links need to appear again if a tag is added to a node.
+    $variables['#cache']['tags'][] = 'node_list';
+    $items = &$variables['items'];
+    _parc_core_preprocess_menu_alter_category_links($items);
+  }
+
   $items = $variables['items'];
   foreach ($items as $item) {
     /** @var \Drupal\Core\Menu\MenuLinkInterface $menu_link */
@@ -55,47 +64,54 @@ function parc_core_preprocess_menu(&$variables) {
       }
     }
   }
+}
 
-  // Hide links to news/events terms if there are no nodes
-  // tagged with them.
-  if ($variables['menu_name'] == 'main') {
-    // The links need to appear again if a tag is added to a node.
-    $variables['#cache']['tags'][] = 'node_list';
+/**
+ * Recursive function used to hide links to category terms.
+ *
+ * @see parc_core_preprocess_menu().
+ */
+function _parc_core_preprocess_menu_alter_category_links(array &$items) {
+  if (empty($items)) {
+    return;
+  }
 
-    $entity_type_manager = \Drupal::entityTypeManager();
-    $node_storage = $entity_type_manager->getStorage('node');
-    $items = $variables['items'];
-    foreach ($items as $key => &$item) {
-      if (!$item['original_link'] instanceof TaxonomyMenuMenuLink) {
-        continue;
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $node_storage = $entity_type_manager->getStorage('node');
+  foreach ($items as $key => &$item) {
+    if (!empty($item['below'])) {
+      _parc_core_preprocess_menu_alter_category_links($item['below']);
+    }
+
+    if (!$item['original_link'] instanceof TaxonomyMenuMenuLink) {
+      continue;
+    }
+
+    /** @var \Drupal\Core\Url $url */
+    $url = $item['url'];
+    if ($url->getRouteName() != 'entity.taxonomy_term.canonical') {
+      continue;
+    }
+
+    $term = $url->getRouteParameters()['taxonomy_term'];
+    $term = $entity_type_manager->getStorage('taxonomy_term')->load($term);
+
+    if ($term->bundle() == 'events_category') {
+      $results = $node_storage->getQuery()
+        ->condition('field_categories', $term->id())
+        ->accessCheck()
+        ->execute();
+      if (empty($results)) {
+        unset($items[$key]);
       }
-
-      /** @var \Drupal\Core\Url $url */
-      $url = $item['url'];
-      if ($url->getRouteName() != 'entity.taxonomy_term.canonical') {
-        continue;
-      }
-
-      $term = $url->getRouteParameters()['taxonomy_term'];
-      $term = $entity_type_manager->getStorage('taxonomy_term')->load($term);
-
-      if ($term->bundle() == 'events_category') {
-        $results = $node_storage->getQuery()
-          ->condition('field_categories', $term->id())
-          ->accessCheck()
-          ->execute();
-        if (empty($results)) {
-          unset($variables['items'][$key]);
-        }
-      }
-      elseif ($term->bundle() == 'news_category') {
-        $results = $node_storage->getQuery()
-          ->condition('field_tags', $term->id())
-          ->accessCheck()
-          ->execute();
-        if (empty($results)) {
-          unset($variables['items'][$key]);
-        }
+    }
+    elseif ($term->bundle() == 'news_category') {
+      $results = $node_storage->getQuery()
+        ->condition('field_tags', $term->id())
+        ->accessCheck()
+        ->execute();
+      if (empty($results)) {
+        unset($items[$key]);
       }
     }
   }
