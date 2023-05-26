@@ -280,15 +280,18 @@ function parc_core_preprocess_views_view__search(&$variables) {
     'query' => [
       'full_results' => TRUE,
       'type' => $bundles,
+      'text' => \Drupal::request()->query->get('text'),
     ],
   ]);
-  $variables['footer']['link'] = [
-    '#type' => 'link',
-    '#url' => $full_page_link,
-    '#title' => t('All results in @title', [
-      '@title' => $options['view_title'],
-    ]),
-  ];
+  if ($view->total_rows > 4) {
+    $variables['footer']['link'] = [
+      '#type' => 'link',
+      '#url' => $full_page_link,
+      '#title' => t('All results in @title', [
+        '@title' => $options['view_title'],
+      ]),
+    ];
+  }
 
   $query = \Drupal::request()->query->all();
   if ($bundles == 'all') {
