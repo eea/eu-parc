@@ -1,0 +1,23 @@
+uuid: 30c6f143-820a-474b-9156-024b2fbac4e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.newsletter
+    - field.storage.block_content.field_show_season
+id: block_content.newsletter.field_show_season
+field_name: field_show_season
+entity_type: block_content
+bundle: newsletter
+label: 'Display season instead of month'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

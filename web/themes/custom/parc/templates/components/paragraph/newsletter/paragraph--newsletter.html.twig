@@ -22,7 +22,13 @@
 <div{{attributes.addClass(classes)}}>
   <div class="wrap">
     <div class="d-flex justify-content-end">
-      {{ content.field_date }}
+      {% if show_season %}
+        <div class="field field--name-field-date text-uppercase mb-2">
+          {{ newsletter_date }}
+        </div>
+      {% else %}
+        {{ content.field_date }}
+      {% endif %}
     </div>
     {{ content.field_svg }}
   </div>

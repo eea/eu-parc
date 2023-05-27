@@ -6,6 +6,7 @@ dependencies:
     - block_content.type.newsletter
     - field.field.block_content.newsletter.body
     - field.field.block_content.newsletter.field_paragraphs
+    - field.field.block_content.newsletter.field_show_season
   module:
     - paragraphs
 id: block_content.newsletter.default
@@ -15,7 +16,7 @@ mode: default
 content:
   field_paragraphs:
     type: paragraphs
-    weight: 26
+    weight: 2
     region: content
     settings:
       title: Newsletter
@@ -31,6 +32,13 @@ content:
         add_above: '0'
         collapse_edit_all: collapse_edit_all
         duplicate: duplicate
+    third_party_settings: {  }
+  field_show_season:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   info:
     type: string_textfield
