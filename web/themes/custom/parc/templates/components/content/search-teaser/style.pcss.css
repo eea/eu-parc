@@ -1,6 +1,10 @@
 .node--search-teaser {
   margin-bottom: 30px;
 
+  .image {
+    min-width: 36px;
+  }
+
   img {
     min-width: 36px;
     width: 36px;
