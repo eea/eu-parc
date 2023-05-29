@@ -85,8 +85,11 @@
   Drupal.behaviors.thematicAreas = {
     attach: function (context, settings) {
       var section_id;
+
+      var page = $('html,body');
+
       $('.governance-svg').once('governanceSvgClick').click(function (e) {
-        section_id = $(this).attr('data-section-id');
+        section_id = $(this).attr('data-section-id') + '-section';
         history.pushState(null,null, section_id);
         e.preventDefault();
         $(this).parent().find('.governance-svg.active').removeClass('active');
@@ -94,7 +97,8 @@
 
         $('.governance-content').removeClass('show');
         $(section_id).addClass('show');
-        $('html,body').animate({scrollTop: $('.governance-title').offset().top - 80}, 400);
+
+        scrollPageToTitle();
       });
 
       $(document).once('scrollToGovernance').ready(function () {
@@ -107,23 +111,26 @@
         scrollToGovernanceItem();
       });
 
+      function scrollPageToTitle() {
+        page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function () {
+          page.stop();
+        });
+
+        page.animate({scrollTop: $('.governance-title').offset().top - 80}, 400, function(){
+          page.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
+        });
+      }
+
       function scrollToGovernanceItem() {
         var hash = window.location.hash.substring(1);
 
         $('.governance-content').removeClass('show');
-        $('#' + hash).addClass('show');
+        $('#' + hash + '-section').addClass('show');
 
         $('.governance-svg.active').removeClass('active');
         $('[data-section-id="#' + hash + '"]').addClass('active');
 
-        var governanceTitle = $('.governance-title');
-        if (governanceTitle.length) {
-          var scrollTop = $('.governance-title').offset().top - 80;
-          window.scrollTo(0, scrollTop);
-          setTimeout(function () {
-            window.scrollTo(0, scrollTop);
-          }, 1);
-        }
+        scrollPageToTitle();
       }
     }
   };
