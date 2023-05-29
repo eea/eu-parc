@@ -86,15 +86,43 @@
     attach: function (context, settings) {
       var section_id;
       $('.governance-svg').once('governanceSvgClick').click(function (e) {
-         e.preventDefault();
-         section_id = $(this).attr('data-section-id');
-         $(this).parent().find('.governance-svg.active').removeClass('active');
-         $(this).addClass('active');
+        section_id = $(this).attr('data-section-id');
+        history.pushState(null,null, section_id);
+        e.preventDefault();
+        $(this).parent().find('.governance-svg.active').removeClass('active');
+        $(this).addClass('active');
 
-         $('.governance-content').removeClass('show');
-         $(section_id).addClass('show');
-         $('html,body').animate({scrollTop: $('.governance-title').offset().top}, 800);
-      })
+        $('.governance-content').removeClass('show');
+        $(section_id).addClass('show');
+        $('html,body').animate({scrollTop: $('.governance-title').offset().top - 80}, 400);
+      });
+
+      if (window.location.hash) {
+        scrollToGovernanceItem();
+      }
+
+      $(window).on('hashchange', function() {
+        scrollToGovernanceItem();
+      });
+
+      function scrollToGovernanceItem() {
+        var hash = window.location.hash.substring(1);
+
+        $('.governance-svg.active').removeClass('active');
+        $('[data-section-id="#' + hash + '"]').addClass('active');
+
+        var governanceTitle = $('.governance-title');
+        if (governanceTitle.length) {
+          var scrollTop = $('.governance-title').offset().top - 80;
+          window.scrollTo(0, scrollTop);
+          setTimeout(function () {
+            window.scrollTo(0, scrollTop);
+          }, 1);
+        }
+
+        $('.governance-content').removeClass('show');
+        $('#' + hash).addClass('show');
+      }
     }
   };
 })(jQuery, Drupal, once);
