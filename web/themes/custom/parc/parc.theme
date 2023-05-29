@@ -265,6 +265,10 @@ function parc_preprocess_field__media__vector(&$variables) {
     }
 
     $markup = $item['content']['#markup'];
+    if (!str_contains($markup, '<animate')) {
+      continue;
+    }
+
     // Get all the IDs from the markup.
     preg_match_all('/ id="([^"]+)"/', $markup, $matches);
     if (empty($matches[1])) {
