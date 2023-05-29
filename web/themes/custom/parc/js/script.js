@@ -85,12 +85,12 @@
   Drupal.behaviors.thematicAreas = {
     attach: function (context, settings) {
       var section_id;
-
       var page = $('html,body');
 
       $('.governance-svg').once('governanceSvgClick').click(function (e) {
-        section_id = $(this).attr('data-section-id') + '-section';
+        section_id = $(this).attr('data-section-id');
         history.pushState(null,null, section_id);
+        section_id = section_id + '-section';
         e.preventDefault();
         $(this).parent().find('.governance-svg.active').removeClass('active');
         $(this).addClass('active');
@@ -101,23 +101,23 @@
         scrollPageToTitle();
       });
 
-      $(document).once('scrollToGovernance').ready(function () {
-        if (window.location.hash) {
+      if (window.location.hash) {
+        $('.governance-title').once('scrollToPageTitle').each(function () {
           scrollToGovernanceItem();
-        }
-      })
+        });
+      }
 
       $(window).on('hashchange', function() {
         scrollToGovernanceItem();
       });
 
       function scrollPageToTitle() {
-        page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function () {
+        page.once('governanceScrollOn').on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function () {
           page.stop();
         });
 
         page.animate({scrollTop: $('.governance-title').offset().top - 80}, 400, function(){
-          page.off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
+          page.once('governanceScrollOff').off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
         });
       }
 
