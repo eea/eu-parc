@@ -97,9 +97,11 @@
         $('html,body').animate({scrollTop: $('.governance-title').offset().top - 80}, 400);
       });
 
-      if (window.location.hash) {
-        scrollToGovernanceItem();
-      }
+      $(document).once('scrollToGovernance').ready(function () {
+        if (window.location.hash) {
+          scrollToGovernanceItem();
+        }
+      })
 
       $(window).on('hashchange', function() {
         scrollToGovernanceItem();
@@ -107,6 +109,9 @@
 
       function scrollToGovernanceItem() {
         var hash = window.location.hash.substring(1);
+
+        $('.governance-content').removeClass('show');
+        $('#' + hash).addClass('show');
 
         $('.governance-svg.active').removeClass('active');
         $('[data-section-id="#' + hash + '"]').addClass('active');
@@ -119,9 +124,6 @@
             window.scrollTo(0, scrollTop);
           }, 1);
         }
-
-        $('.governance-content').removeClass('show');
-        $('#' + hash).addClass('show');
       }
     }
   };
