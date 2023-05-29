@@ -93,8 +93,15 @@
 
          $('.governance-content').removeClass('show');
          $(section_id).addClass('show');
-         $('html,body').animate({scrollTop: $('.governance-title').offset().top}, 800);
-      })
+         window.location.hash = section_id; // update the page URL
+         $('html,body').animate({scrollTop: $('.governance-title').offset().top}, 400);
+      });
+
+      if (window.location.hash) {
+        var hash = window.location.hash.substring(1);
+        document.getElementsByClassName('governance-title')[0].scrollIntoView(); 
+        $('#' + hash).addClass('show'); 
+       }
     }
   };
 })(jQuery, Drupal, once);
