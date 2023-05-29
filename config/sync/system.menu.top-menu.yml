@@ -1,7 +1,12 @@
 uuid: c7ce7482-d4df-4117-a233-fffe86e9eec2
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - menu_trail_by_path
+third_party_settings:
+  menu_trail_by_path:
+    trail_source: ''
 id: top-menu
 label: 'Top menu'
 description: ''
