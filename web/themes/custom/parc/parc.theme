@@ -266,7 +266,7 @@ function parc_preprocess_field__media__vector(&$variables) {
 
     $markup = $item['content']['#markup'];
     // Get all the IDs from the markup.
-    preg_match_all('/id="([^"]+)"/', $markup, $matches);
+    preg_match_all('/ id="([^"]+)"/', $markup, $matches);
     if (empty($matches[1])) {
       continue;
     }
@@ -274,7 +274,7 @@ function parc_preprocess_field__media__vector(&$variables) {
     foreach ($matches[1] as $id) {
       $unique_id = uniqid("{$id}_");
       // Replace the HTML ID attribute (e.g. <g id="id1">).
-      $markup = str_replace("\"$id\"", "\"$unique_id\"", $markup);
+      $markup = str_replace(" id=\"$id\"", " id=\"$unique_id\"", $markup);
       // Replace the ID in the <animate> tags (e.g. <animate begin="id1.mouseenter"">)
       $markup = str_replace("$id.", "$unique_id.", $markup);
     }
