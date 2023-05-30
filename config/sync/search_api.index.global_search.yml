@@ -41,6 +41,23 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
+  rendered_item:
+    label: 'Rendered HTML output'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        - anonymous
+      view_mode:
+        'entity:node':
+          article: ''
+          basic_page: ''
+          deliverables: ''
+          events: ''
+          institution: ''
+          page: default
+          publications: ''
+          thematic_areas: ''
   status:
     label: Published
     datasource_id: 'entity:node'
@@ -69,7 +86,7 @@ field_settings:
       module:
         - node
   uid:
-    label: null
+    label: uid
     datasource_id: 'entity:node'
     property_path: uid
     type: integer
@@ -84,7 +101,11 @@ datasource_settings:
       default: false
       selected:
         - article
+        - basic_page
+        - deliverables
         - events
+        - institution
+        - page
         - publications
         - thematic_areas
     languages:

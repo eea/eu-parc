@@ -9,3 +9,7 @@ services:
     arguments: ["@entity_type.manager"]
     tags:
       - { name: event_subscriber }
+
+  parc_core.search_manager:
+    class: Drupal\parc_core\ParcSearchManager
+    arguments: [ '@entity_type.manager', '@request_stack', '@current_route_match' ]

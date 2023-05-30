@@ -275,14 +275,11 @@ function parc_core_preprocess_views_view__search(&$variables) {
     return;
   }
 
+  /** @var \Drupal\parc_core\ParcSearchManager $search_manager */
+  $search_manager = \Drupal::service('parc_core.search_manager');
+
   $route_match = \Drupal::routeMatch();
-  $full_page_link = Url::fromRoute($route_match->getRouteName(), $route_match->getRawParameters()->all(), [
-    'query' => [
-      'full_results' => TRUE,
-      'type' => $bundles,
-      'text' => \Drupal::request()->query->get('text'),
-    ],
-  ]);
+  $full_page_link = $search_manager->getFullSearchLinkForBundle($bundles);
   if ($view->total_rows > 4) {
     $variables['footer']['link'] = [
       '#type' => 'link',
@@ -331,11 +328,9 @@ function parc_core_search_api_autocomplete_suggestions_alter(array &$suggestions
     return;
   }
 
-  $types = [];
-  $content_types = \Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple();
-  foreach ($content_types as $content_type) {
-    $types[$content_type->id()] = $content_type->label();
-  }
+  /** @var \Drupal\parc_core\ParcSearchManager $search_manager */
+  $search_manager = \Drupal::service('parc_core.search_manager');
+
   foreach ($suggestions as $suggestion) {
     /** @var \Drupal\search_api_autocomplete\Suggestion\Suggestion $suggestion */
     if ($suggestion->getUrl()->getRouteName() != 'entity.node.canonical') {
@@ -344,13 +339,14 @@ function parc_core_search_api_autocomplete_suggestions_alter(array &$suggestions
 
     $node = $suggestion->getUrl()->getRouteParameters()['node'];
     $node = Node::load($node);
+    $suggestion->setUrl($search_manager->getNodeUrl($node));
     $suggestion->setRender([
       '#type' => 'inline_template',
-      '#template' => '{{ text }} <span class="bundle">in {{ bundle }}</span>',
+      '#template' => '{{ text }} <span class="bundle">{{ "in" | t }} {{ bundle }}</span>',
       '#context' => [
         // First 6 words.
         'text' => $suggestion->getLabel(),
-        'bundle' => $types[$node->bundle()],
+        'bundle' => $search_manager->getContentTypeAutocompleteLabel($node->bundle()),
       ],
     ]);
   }
@@ -365,4 +361,15 @@ function parc_core_form_views_exposed_form_alter(array &$form, FormStateInterfac
     // Change the ID to disable AJAX for this search form.
     $form['#id'] = 'views-form-search-block-1';
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for search_teaser.
+ */
+function parc_core_preprocess_node__search_teaser(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  /** @var \Drupal\parc_core\ParcSearchManager $search_manager */
+  $search_manager = \Drupal::service('parc_core.search_manager');
+  $variables['url'] = $search_manager->getNodeUrl($node)->toString();
 }
