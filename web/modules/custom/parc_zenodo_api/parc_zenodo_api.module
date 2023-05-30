@@ -16,6 +16,10 @@ function parc_zenodo_api_cron() {
   if ($depositions !== NULL && !empty($depositions)) {
     foreach ($depositions as $records) {
       foreach ($records['hits']['hits'] as $deposition) {
+        if ($deposition['metadata']['resource_type']['type'] != 'publication') {
+          continue;
+        }
+
         $deposition_id = $deposition['id'];
 
         // Check if Publications exists on local
