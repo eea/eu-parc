@@ -113,3 +113,4 @@ content:
 hidden:
   addtoany: true
   links: true
+  search_api_excerpt: true

@@ -114,29 +114,36 @@ class ParcSearchManager {
     }
   }
 
+  /**
+   * Get the URL to the full search page.
+   *
+   * @param string $content_type
+   *   The content type.
+   *
+   * @return \Drupal\Core\Url
+   *   The URL.
+   */
   public function getFullSearchLinkForBundle(string $content_type) {
-    switch ($content_type) {
-      case 'events':
-        return Url::fromUserInput('/events');
-      case 'article':
-        return Url::fromUserInput('/news');
-      case 'thematic_areas':
-        return Url::fromUserInput('/thematic-areas');
-      case 'publications':
-        return Url::fromUserInput('/scientific-publications');
+    return Url::fromRoute($this->routeMatch->getRouteName(),
+      $this->routeMatch->getRawParameters()->all(),
+      [
+        'query' => [
+          'full_results' => TRUE,
+          'type' => $content_type,
+          'text' => $this->request->query->get('text'),
+        ],
+      ]
+    );
+  }
 
-      default:
-        return Url::fromRoute($this->routeMatch->getRouteName(),
-          $this->routeMatch->getRawParameters()->all(),
-          [
-            'query' => [
-              'full_results' => TRUE,
-              'type' => $content_type,
-              'text' => $this->request->query->get('text'),
-            ],
-          ]
-        );
-    }
+  /**
+   * Check if we are displaying the full results of the search page.
+   *
+   * @return bool
+   *   True if we are displaying the full results.
+   */
+  public function isFullResultsPage() {
+    return !empty($this->request->query->get('full_results'));
   }
 
 }

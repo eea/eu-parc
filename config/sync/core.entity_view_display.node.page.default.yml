@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.page.body
     - field.field.node.page.field_custom_classes
+    - field.field.node.page.field_media_image
     - field.field.node.page.field_metatags
     - field.field.node.page.field_seo_keyword
     - field.field.node.page.layout_builder__layout
@@ -87,6 +88,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 104
+    region: content
+  field_media_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
     region: content
   field_metatags:
     type: metatag_empty_formatter

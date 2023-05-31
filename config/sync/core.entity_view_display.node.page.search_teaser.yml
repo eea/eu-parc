@@ -1,0 +1,70 @@
+uuid: 09f38612-8637-4eae-b6f7-2f5f592ea471
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.page.body
+    - field.field.node.page.field_custom_classes
+    - field.field.node.page.field_media_image
+    - field.field.node.page.field_metatags
+    - field.field.node.page.field_seo_keyword
+    - field.field.node.page.layout_builder__layout
+    - image.style.thumbnail
+    - node.type.page
+  module:
+    - layout_builder
+    - media
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+_core:
+  default_config_hash: M_Y8L5tfmhx7DR143E05YyZSpvgil6VFvqcfBWykalg
+id: node.page.search_teaser
+targetEntityType: node
+bundle: page
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: chars
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: trim
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_media_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_custom_classes: true
+  field_metatags: true
+  field_seo_keyword: true
+  layout_builder__layout: true
+  links: true
+  search_api_excerpt: true

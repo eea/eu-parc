@@ -2,20 +2,24 @@
 
 namespace Drupal\parc_core\Plugin\Block;
 
-use Drupal\Component\Plugin\Context\Context;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Plugin\Context\ContextDefinition;
-use Drupal\Core\Url;
-use Drupal\node\NodeInterface;
-use Drupal\views\Plugin\Block\ViewsBlock;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\parc_core\ParcSearchManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a search results block.
+ * Provides a block to display the search results.
+ *
+ * @Block(
+ *   id = "parc_search_results",
+ *   admin_label = @Translation("Search results"),
+ *   category = @Translation("PARC"),
+ * )
  */
-class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPluginInterface {
+class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * The entity type manager.
@@ -32,98 +36,125 @@ class ParcSearchResultsBlock extends ViewsBlock implements ContainerFactoryPlugi
   protected $request;
 
   /**
+   * The Search Manager.
+   *
+   * @var \Drupal\parc_core\ParcSearchManager
+   */
+  protected $searchManager;
+
+  /**
+   * Creates a ParcSearchResultsBlock object.
+   *
+   * @param array $configuration
+   *   The plugin configuration, i.e. an array with configuration values keyed
+   *   by configuration option name. The special key 'context' may be used to
+   *   initialize the defined contexts by setting it to an array of context
+   *   values keyed by context names.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\Routing\CurrentRouteMatch $route_match
+   *   The current route match.
+   * @param \Drupal\Core\Http\RequestStack $request_stack
+   *   The request stack.
+   * @param \Drupal\parc_core\ParcSearchManager $parc_search_manager
+   *   The search manager.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, RouteMatchInterface $route_match, RequestStack $request_stack, ParcSearchManager $parc_search_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+    $this->entityTypeManager = $entity_type_manager;
+    $this->routeMatch = $route_match;
+    $this->request = $request_stack->getCurrentRequest();
+    $this->searchManager = $parc_search_manager;
+  }
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
-    $instance->entityTypeManager = $container->get('entity_type.manager');
-    $instance->request = $container->get('request_stack')->getCurrentRequest();
-    return $instance;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function defaultConfiguration() {
-    return [
-      'bundles' => [],
-    ] + parent::defaultConfiguration();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['bundles'] = $form_state->getValue('bundles');
-    parent::blockSubmit($form, $form_state);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function blockForm($form, FormStateInterface $form_state) {
-    $form = parent::blockForm($form, $form_state);
-
-    $types = [];
-    $content_types = $this->entityTypeManager->getStorage('node_type')->loadMultiple();
-    foreach ($content_types as $content_type) {
-      $types[$content_type->id()] = $content_type->label();
-    }
-
-    $form['bundles'] = [
-      '#type' => 'checkboxes',
-      '#title' => $this->t('Content types'),
-      '#default_value' => $this->getConfiguration()['bundles'],
-      '#options' => $types,
-    ];
-
-    return $form;
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('current_route_match'),
+      $container->get('request_stack'),
+      $container->get('parc_core.search_manager')
+    );
   }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
-    $query_bundles = $this->request->query->get('type');
-    $bundles = $this->getConfiguration()['bundles'];
-    $bundles = array_filter($bundles, function ($bundle) {
-      return !empty($bundle);
-    });
-    $bundles = !empty($bundles)
-      ? implode('+', $bundles)
-      : 'all';
-    if (!empty($query_bundles) && $query_bundles != $bundles) {
-      return [];
+    $current_node = $this->routeMatch->getRawParameter('node');
+    $filter_bundle = $this->request->query->get('type');
+    if ($filter_bundle) {
+      $views[] = [
+        '#type' => 'view',
+        '#name' => 'search',
+        '#display_id' => 'block_1',
+        '#arguments' => [$filter_bundle, $current_node],
+      ];
+
+      return [
+        'views' => $views,
+        '#attributes' => [
+          'class' => [
+            'full-view',
+          ],
+        ]
+      ];
     }
-    $this->context['type'] = new Context(new ContextDefinition(), $bundles);
 
-    $view_title = $this->getConfiguration()['views_label'];
-    $title = '<div class="subview-title">' . $view_title . '</div>';
-
-    if (!$this->isFullPage()) {
-      $this->view->getPager()->setItemsPerPage(4);
-    }
-
-    $build = parent::build();
-    /** @var \Drupal\views\Plugin\views\area\TextCustom $header */
-    $header = $this->view->getDisplay()->handlers['header']['area_text_custom'];
-    $header->options['content'] = $this->t($title);
-    $this->view->getDisplay()->options['bundles'] = $bundles;
-    $this->view->getDisplay()->options['view_title'] = $view_title;
-    if (!$this->isFullPage()) {
-      if (empty($this->view->total_rows) && $bundles != 'all') {
-        return [];
+    $content_types = $this->entityTypeManager->getStorage('node_type')->loadMultiple();
+    $bundles = [];
+    foreach ($content_types as $content_type) {
+      $bundle = $content_type->id();
+      if ($bundle == 'page') {
+        continue;
       }
-      if ($bundles == 'all' && !empty($this->view->total_rows)) {
-        return [];
+
+      if ($bundle == 'basic_page') {
+        $bundles[] = 'basic_page';
+        continue;
       }
-      $build['#attributes']['class'][] = 'teaser-view';
+
+      $bundles[] = $bundle;
     }
-    return $build;
+
+    $views = [];
+    foreach ($bundles as $bundle) {
+      $views[] = [
+        '#type' => 'view',
+        '#name' => 'search',
+        '#display_id' => 'block_1',
+        '#arguments' => [$bundle, $current_node],
+      ];
+    }
+
+    $views[] = [
+      '#type' => 'view',
+      '#name' => 'search',
+      '#display_id' => 'block_1',
+      '#arguments' => ['all', $current_node],
+    ];
+
+    return [
+      'views' => $views,
+      '#attributes' => [
+        'class' => [
+          $this->searchManager->isFullResultsPage() ? 'full-view' : 'teaser-view',
+        ],
+      ]
+    ];
   }
 
   /**
-   * Decide if we should dispaly the full results.
+   * Decide if we should display the full results.
    *
    * @return bool
    *   True if we should display the full results.

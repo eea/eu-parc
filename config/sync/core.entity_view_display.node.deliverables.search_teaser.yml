@@ -1,0 +1,66 @@
+uuid: 50a62765-1aa5-4ada-9a73-344b1c44e5a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.deliverables.body
+    - field.field.node.deliverables.field_categories
+    - field.field.node.deliverables.field_d_date
+    - field.field.node.deliverables.field_media
+    - field.field.node.deliverables.field_order
+    - image.style.thumbnail
+    - node.type.deliverables
+  module:
+    - layout_builder
+    - media
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.deliverables.search_teaser
+targetEntityType: node
+bundle: deliverables
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_media:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  addtoany: true
+  field_categories: true
+  field_d_date: true
+  field_order: true
+  links: true
+  search_api_excerpt: true

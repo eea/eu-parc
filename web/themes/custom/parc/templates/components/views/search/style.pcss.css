@@ -1,9 +1,8 @@
-.block-views-blocksearch-block-1 {
+.block-parc-search-results {
   &.teaser-view {
     .views-view {
-      padding-top: 30px;
-
       &:not(.view-no-results) {
+        padding-top: 30px;
         border-top: 1px solid var(--c-gray-borders);
       }
     }

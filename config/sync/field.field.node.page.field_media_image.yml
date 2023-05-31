@@ -1,24 +1,24 @@
-uuid: 9cb534ec-8bbb-4fdf-997e-24a6d8740022
+uuid: 646016c1-67dd-4a27-8aef-d47e5f0b7e6a
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_media_image
     - media.type.image
-    - node.type.institution
+    - node.type.page
   content:
-    - 'media:image:15f79f08-9928-44f7-a909-8ff476217a2e'
-id: node.institution.field_media_image
+    - 'media:image:ad776013-14da-4a86-ab4f-0c0ef3cecff4'
+id: node.page.field_media_image
 field_name: field_media_image
 entity_type: node
-bundle: institution
-label: Logo
+bundle: page
+label: Image
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value:
   -
-    target_uuid: 15f79f08-9928-44f7-a909-8ff476217a2e
+    target_uuid: ad776013-14da-4a86-ab4f-0c0ef3cecff4
     weight: 0
 default_value_callback: ''
 settings:

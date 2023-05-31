@@ -322,6 +322,10 @@ function parc_preprocess_node__search_teaser(&$variables) {
     'thematic_areas' => 'field_categories',
     'publications' => 'field_cover',
     'events' => 'field_media_image',
+    'page' => 'field_media_image',
+    'basic_page' => 'field_banner',
+    'deliverables' => 'field_media',
+    'institution' => 'field_media_image',
   ];
 
   /** @var \Drupal\node\NodeInterface $node */

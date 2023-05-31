@@ -1,0 +1,74 @@
+uuid: 28379283-24b3-46c8-ae0c-ff683881ce3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_banner
+    - field.field.node.basic_page.field_metatags
+    - field.field.node.basic_page.field_paragraphs
+    - field.field.node.basic_page.field_paragraphs_in
+    - field.field.node.basic_page.field_seo_keyword
+    - field.field.node.basic_page.field_svg_title
+    - field.field.node.basic_page.field_views_reference
+    - field.field.node.basic_page.field_views_reference_bottom
+    - image.style.thumbnail
+    - node.type.basic_page
+  module:
+    - layout_builder
+    - media
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.basic_page.search_teaser
+targetEntityType: node
+bundle: basic_page
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more_link: false
+      more_class: more-link
+      more_text: More
+      more_aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_banner:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_metatags: true
+  field_paragraphs: true
+  field_paragraphs_in: true
+  field_seo_keyword: true
+  field_svg_title: true
+  field_views_reference: true
+  field_views_reference_bottom: true
+  links: true
+  search_api_excerpt: true

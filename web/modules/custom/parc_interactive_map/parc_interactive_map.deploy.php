@@ -271,3 +271,26 @@ function parc_interactive_map_deploy_9006() {
     $term->save();
   }
 }
+
+/**
+ * Add default image to institutions.
+ */
+function parc_interactive_map_deploy_9007() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $results = $node_storage->getQuery()
+    ->condition('type', 'institution')
+    ->notExists('field_media_image')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+    'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
+  ]);
+  $media = reset($media);
+
+  foreach ($results as $result) {
+    $node = $node_storage->load($result);
+    $node->set('field_media_image', $media);
+    $node->save();
+  }
+}

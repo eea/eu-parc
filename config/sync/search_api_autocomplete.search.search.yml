@@ -21,7 +21,11 @@ suggester_settings:
     view_modes:
       'entity:node':
         article: ''
+        basic_page: ''
+        deliverables: ''
         events: ''
+        institution: ''
+        page: ''
         publications: ''
         thematic_areas: ''
 suggester_weights:

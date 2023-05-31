@@ -1,0 +1,61 @@
+uuid: d55cf7c5-ab9a-42a9-acae-c82878bfeb01
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.institution.body
+    - field.field.node.institution.field_abbreviation
+    - field.field.node.institution.field_address_data
+    - field.field.node.institution.field_city
+    - field.field.node.institution.field_coordinates
+    - field.field.node.institution.field_country
+    - field.field.node.institution.field_institution_roles
+    - field.field.node.institution.field_media_image
+    - field.field.node.institution.field_nhcp_email
+    - field.field.node.institution.field_nhcp_name
+    - field.field.node.institution.field_original_abbreviation
+    - field.field.node.institution.field_original_name
+    - field.field.node.institution.field_website
+    - image.style.thumbnail
+    - node.type.institution
+  module:
+    - layout_builder
+    - media
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.institution.search_teaser
+targetEntityType: node
+bundle: institution
+mode: search_teaser
+content:
+  field_media_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  body: true
+  field_abbreviation: true
+  field_address_data: true
+  field_city: true
+  field_coordinates: true
+  field_country: true
+  field_institution_roles: true
+  field_nhcp_email: true
+  field_nhcp_name: true
+  field_original_abbreviation: true
+  field_original_name: true
+  field_website: true
+  links: true
+  search_api_excerpt: true
