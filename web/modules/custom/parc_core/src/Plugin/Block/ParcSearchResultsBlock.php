@@ -153,14 +153,4 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
     ];
   }
 
-  /**
-   * Decide if we should display the full results.
-   *
-   * @return bool
-   *   True if we should display the full results.
-   */
-  protected function isFullPage() {
-    return !empty($this->request->query->get('full_results'));
-  }
-
 }
