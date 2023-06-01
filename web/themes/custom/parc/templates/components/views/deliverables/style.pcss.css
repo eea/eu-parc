@@ -34,6 +34,7 @@
 
         & > .node {
           min-width: calc((100% - var(--grig-right-s)) / 2);
+          max-width: calc((100% - var(--grig-right-s)) / 2);
           scroll-snap-align: start;
         }
       }
