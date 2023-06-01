@@ -3,6 +3,7 @@
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
+use Drupal\node\Entity\Node;
 
 /**
  * Create default event image.
@@ -40,5 +41,68 @@ function parc_core_deploy_9001() {
   foreach ($events as $event) {
     $event->set('field_media_image', $media);
     $event->save();
+  }
+}
+
+/**
+ * Create default image for publication, page, landing page.
+ */
+function parc_core_deploy_9002() {
+  $bundles = [
+    'publication' => [
+      'media' => '1b0167ab-b3b6-4fdc-a745-0182feabb2f4',
+      'field' => 'field_cover',
+      'title' => 'Publication default cover',
+      'uuid' => '096ec8be-f5d2-4021-96dc-ece0243bc80d',
+    ],
+    'basic_page' => [
+      'media' => 'ad776013-14da-4a86-ab4f-0c0ef3cecff4',
+      'field' => 'field_banner',
+      'title' => 'Basic page default banner',
+      'uuid' => '67db440f-2181-4526-8e7e-ad1633ce9c56',
+    ],
+    'page' => [
+      'media' => 'ad776013-14da-4a86-ab4f-0c0ef3cecff4',
+      'field' => 'field_media_image',
+      'title' => 'Landing page default image',
+      'uuid' => '1b631bd0-31f7-4c77-b319-65c41ea6afb7',
+    ],
+  ];
+
+  foreach ($bundles as $bundle => $info) {
+    $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+      'uuid' => $info['media'],
+    ]);
+
+    if (empty($media)) {
+      continue;
+    }
+
+    /** @var \Drupal\media\MediaInterface $media */
+    $media = reset($media);
+
+    $new_media = Media::create([
+      'bundle' => 'image',
+      'name' => $info['title'],
+      'field_media_image' => $media->get('field_media_image')->entity,
+      'uuid' => $info['uuid'],
+    ]);
+    $new_media->save();
+
+    $nodes = \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+      ->condition('type', $bundle)
+      ->accessCheck(FALSE)
+      ->notExists($info['field'])
+      ->execute();
+
+    foreach ($nodes as $node) {
+      $node = Node::load($node);
+      if (!$node) {
+        continue;
+      }
+
+      $node->set($info['field'], $new_media);
+      $node->save();
+    }
   }
 }

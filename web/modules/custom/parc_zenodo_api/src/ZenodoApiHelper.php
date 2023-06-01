@@ -44,6 +44,13 @@ class ZenodoApiHelper {
   protected $logger;
 
   /**
+   * The default cover image.
+   *
+   * @var \Drupal\media\MediaInterface|null
+   */
+  protected $defaultCover;
+
+  /**
    * Constructs a ZenodoApiHelper object.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
@@ -255,6 +262,7 @@ class ZenodoApiHelper {
       'field_updated_date' => $deposition['updated'] ? $altered_modified_date : date('Y-m-d\TH:i:s', time()),
       'changed' => $deposition['updated'] ? strtotime($altered_modified_date) : time(),
       'field_zenodo_id' => $deposition['id'] ?: '',
+      'field_cover' => $this->getDefaultCoverImage(),
       'status' => 0,
     ];
     return $values;
@@ -295,6 +303,30 @@ class ZenodoApiHelper {
       $node->set($field_name, $value);
     }
     $node->save();
+  }
+
+  /**
+   * Get the default cover image.
+   *
+   * @return \Drupal\media\MediaInterface|null
+   *   The default media entity.
+   */
+  protected function getDefaultCoverImage() {
+    if (!empty($this->defaultCover)) {
+      return $this->defaultCover;
+    }
+
+    $default_uuid = '096ec8be-f5d2-4021-96dc-ece0243bc80d';
+    $media = $this->entityTypeManager->getStorage('media')->loadByProperties([
+      'uuid' => $default_uuid,
+    ]);
+    if (empty($media)) {
+      return NULL;
+    }
+
+    $media = reset($media);
+    $this->defaultCover = $media;
+    return $media;
   }
 
 }

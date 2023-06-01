@@ -19,7 +19,7 @@ required: false
 translatable: false
 default_value:
   -
-    target_uuid: 1b0167ab-b3b6-4fdc-a745-0182feabb2f4
+    target_uuid: 096ec8be-f5d2-4021-96dc-ece0243bc80d
     weight: 0
 default_value_callback: ''
 settings:

@@ -18,7 +18,7 @@ required: false
 translatable: true
 default_value:
   -
-    target_uuid: ad776013-14da-4a86-ab4f-0c0ef3cecff4
+    target_uuid: 1b631bd0-31f7-4c77-b319-65c41ea6afb7
     weight: 0
 default_value_callback: ''
 settings:
