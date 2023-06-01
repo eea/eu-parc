@@ -183,12 +183,19 @@
 }
 
 .section--events--info {
-  .parc-event-calendar,
-  .field-add-to-calendar {
+  .parc-event-calendar {
     display: none !important;
 
     @media (--lg) {
       display: block !important;
+    }
+  }
+
+  .field-add-to-calendar {
+    display: none !important;
+
+    @media (--lg) {
+      display: flex !important;
     }
   }
 }
