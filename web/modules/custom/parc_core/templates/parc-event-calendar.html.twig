@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ */
+#}
+<div class="parc-event-calendar">
+  <div class="field field-date">
+    <div class="f-label">{{ "Programme" | t }}</div>
+    <div class="carousel-scroll">
+      {%- for item in entries -%}
+        <div class="cs--item">
+          <div class="calendar-item">
+            <div class="day">
+              {{ item.day }}
+            </div>
+            <div class="time">
+              <div class="morning">
+                {{ "Morning" | t }}
+              </div>
+              <div class="afternoon">
+                {{ "Afternoon" | t }}
+              </div>
+              {% for day_entry in item.day_entries %}
+                <div class="fill" style="height: {{ day_entry.fill_height }}%; top: {{ day_entry.empty_top_height }}%;">
+                  {% if day_entry.all_day %}
+                    {{- "All day" |t -}}
+                  {% else %}
+                    {{ day_entry.time }}
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+    {% if entries|length > 2 %}
+      <button class="slider__arrow slider__arrow-prev js-slider-prev d-none">
+        {{- '&#8249;' -}}
+      </button>
+
+      <button class="slider__arrow slider__arrow-next js-slider-next">
+        {{- '&#8250;' -}}
+      </button>
+    {% endif %}
+  </div>
+</div>

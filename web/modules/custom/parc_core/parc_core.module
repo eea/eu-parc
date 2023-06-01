@@ -16,6 +16,17 @@ use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\taxonomy_menu\Plugin\Menu\TaxonomyMenuMenuLink;
 
 /**
+ * Implements hook_theme().
+ */
+function parc_core_theme() {
+  return [
+    'parc_event_calendar' => [
+      'variables' => ['entries' => []],
+    ],
+  ];
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function parc_core_preprocess_page(&$variables) {

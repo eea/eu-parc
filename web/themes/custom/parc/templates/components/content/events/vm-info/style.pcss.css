@@ -1,7 +1,8 @@
-.section--events--info {
+.section--events--info,
+.node--events--full .col-content {
   font-weight: var(--font-weight-normal);
 
-  .field-date {
+  .parc-event-calendar .field-date {
     display: inline-flex;
     flex-direction: column;
     max-width: 100%;
@@ -22,7 +23,7 @@
     .morning,
     .afternoon {
       position: absolute;
-      padding: 5px;
+      padding: 0 5px;
       height: 50%;
       opacity: .3;
     }
@@ -32,7 +33,7 @@
     }
 
     .afternoon {
-      top: 50%;
+      top: 33.33%;
     }
 
     .carousel-scroll {
@@ -54,7 +55,7 @@
 
     .cs--item {
       background: #fff;
-      height: 360px;
+      height: 400px;
       min-height: unset;
       flex: 1 0 42%;
       display: flex;
@@ -83,7 +84,8 @@
         display: flex;
         border-radius: 5px;
         z-index: 2;
-        position: relative;
+        position: absolute;
+        width: 100%;
       }
     }
 
@@ -158,6 +160,35 @@
       align-items: center;
       margin-right: 4px;
       font-weight: var(--fw-bold);
+    }
+  }
+}
+
+.node--events--full .col-content {
+  .parc-event-calendar {
+    margin-top: 15px;
+
+    @media (--lg) {
+      display: none;
+    }
+  }
+
+  .field-add-to-calendar {
+    margin-top: 0;
+
+    @media (--lg) {
+      display: none !important;
+    }
+  }
+}
+
+.section--events--info {
+  .parc-event-calendar,
+  .field-add-to-calendar {
+    display: none !important;
+
+    @media (--lg) {
+      display: block !important;
     }
   }
 }
