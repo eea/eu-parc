@@ -494,7 +494,6 @@ header {
 
   @media (--md) {
     width: 196px !important;
-    top: 110px !important;
   }
 
   .bundle {

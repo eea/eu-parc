@@ -134,5 +134,12 @@
       }
     }
   };
+
+  Drupal.behaviors.parcSearchApiAutocomplete = {
+    attach: function (context, settings) {
+      var $autocomplete = $(once('parcAutocomplete', '.block-views-exposed-filter-blocksearch-block-1 input.form-autocomplete', context));
+      $autocomplete.autocomplete( "option", "position", { my : "right top-7", at: "right bottom" } );
+    }
+  };
 })(jQuery, Drupal, once);
 
