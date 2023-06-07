@@ -21,6 +21,7 @@ global-styling:
   dependencies:
     - core/drupal
     - core/jquery
+    - core/once
     - core/jquery.once
 
 parc-popper:
