@@ -85,7 +85,13 @@
   <a href="{{ url }}">
     <div{{content_attributes.addClass('node__content')}}>
       <div class="image">
-        {{ content[image_field] }}
+        {% if node.bundle == 'deliverables' %}
+          <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.95 31.5H24.05V28.5H7.95V31.5ZM7.95 23H24.05V20H7.95V23ZM3 40C2.2 40 1.5 39.7 0.9 39.1C0.3 38.5 0 37.8 0 37V3C0 2.2 0.3 1.5 0.9 0.9C1.5 0.3 2.2 0 3 0H21.05L32 10.95V37C32 37.8 31.7 38.5 31.1 39.1C30.5 39.7 29.8 40 29 40H3ZM19.55 12.3V3H3V37H29V12.3H19.55Z" fill="black"/>
+          </svg>
+        {% else %}
+          {{ content[image_field] }}
+        {% endif %}
       </div>
       <div class="text">
         {% if node.bundle == 'thematic_areas' and not node.field_categories.isEmpty %}

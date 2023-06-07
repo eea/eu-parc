@@ -305,7 +305,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: search_api_fulltext
-          operator: or
+          operator: and
           value: ''
           group: 1
           exposed: true
@@ -345,6 +345,7 @@ display:
           min_length: null
           fields:
             - body
+            - rendered_item
             - title
       style:
         type: default

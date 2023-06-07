@@ -5,7 +5,7 @@
     min-width: 36px;
   }
 
-  img {
+  img, svg {
     min-width: 36px;
     width: 36px;
     height: 36px;
@@ -14,6 +14,10 @@
 
   > a {
     text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .node__content {
@@ -32,7 +36,9 @@
     line-clamp: 2;
     -webkit-box-orient: vertical;
     font-size: 16px;
-    line-height: 23px;
+    line-height: 1.45;
+
+    @mixin lhCrop 1.45;
 
     > * {
       display: inline;
