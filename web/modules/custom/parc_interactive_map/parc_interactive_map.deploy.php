@@ -294,3 +294,28 @@ function parc_interactive_map_deploy_9007() {
     $node->save();
   }
 }
+
+/**
+ * Update institution address and text.
+ */
+function parc_interactive_map_deploy_9008() {
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_interactive_map');
+  $rows = json_decode(file_get_contents($module_path . '/data/partners.json'), TRUE);
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  foreach ($rows as $row) {
+    $title = $row['name_en'];
+    $node = $node_storage->loadByProperties([
+      'title' => $title,
+      'type' => 'institution',
+    ]);
+    if (empty($node)) {
+      continue;
+    }
+
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = reset($node);
+    $node->body->value = '';
+    $node->set('field_address_data', $row['address']);
+    $node->save();
+  }
+}

@@ -58,7 +58,7 @@
 
   <div class="collapse show" id="collapse{{ facet.id }}">
     {%- if items_main -%}
-      <span class="facet-subtitle">{{ "Main & secondary roles" | t }}</span>
+      <span class="facet-subtitle">{{ "Main roles" | t }}</span>
       <{{ list_type }}{{ attributes }}>
         {%- for item in items_main -%}
           <li{{ item.attributes }}>{{ item.value }}</li>

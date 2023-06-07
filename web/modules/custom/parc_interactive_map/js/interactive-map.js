@@ -672,7 +672,7 @@
 
             let role_main_txt = getRolesMarkup(
               roles.main_secondary,
-              "Main & secondary roles"
+              "Main roles"
             );
             let role_additional_txt = getRolesMarkup(
               roles.additional,

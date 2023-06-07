@@ -96,7 +96,7 @@
 
       <div class="address">
         <div class="to-expand hidden">
-          {{ content.field_address }}
+          {{ content.field_address_data }}
           {{ content.field_city }}
         </div>
         <div class="country">
@@ -117,7 +117,7 @@
 
   <div class="expand">
     <a class="expand-link" href="#" style="color: {{ color }};">
-      {{ "Details" | t }}
+      <span class="expand-link-text">{{ "Details" | t }}</span>
       <svg width="4" height="6" viewBox="0 0 4 6" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1.55836 0.812901L3.02387 2.41975C3.32534 2.75029 3.33739 3.17241 3.05354 3.45845L1.46012 5.06413" stroke="{{ color }}" stroke-linecap="round"/>
       </svg>
