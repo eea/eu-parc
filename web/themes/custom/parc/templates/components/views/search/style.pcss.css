@@ -1,8 +1,14 @@
 .block-parc-search-results {
+  .views-row {
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+
   &.teaser-view {
     .views-view {
       &:not(.view-no-results) {
-        padding-top: 30px;
+        padding: 40px 0;
         border-top: 1px solid var(--c-gray-borders);
       }
     }
@@ -42,7 +48,6 @@
   header {
     display: flex;
     flex-direction: column-reverse;
-    padding-bottom: 20px;
   }
 
   .subview-results {
@@ -63,10 +68,11 @@
     text-align: center;
     font-size: 16px;
     padding-top: 0;
-    padding-bottom: 15px;
+    padding-bottom: 0;
+    line-height: 1;
 
     @media (--md) {
-      padding: 20px 0;
+      padding-top: 20px;
     }
 
     a {
