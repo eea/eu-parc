@@ -990,6 +990,10 @@
   &.gaf--events {
     grid-template-columns: repeat(2, 1fr);
 
+    @media (max-width: 450px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
     @media (--md) {
       grid-template-columns: repeat(
         auto-fill,
