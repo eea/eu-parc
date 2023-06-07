@@ -3,10 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.field_address_data
     - field.storage.node.body
+    - field.storage.node.field_city
+    - field.storage.node.field_country
     - search_api.server.database
   module:
     - node
+    - taxonomy
     - search_api
 id: global_search
 name: 'Global search'
@@ -29,10 +33,36 @@ field_settings:
     dependencies:
       module:
         - node
+  field_address_data:
+    label: Address
+    datasource_id: 'entity:node'
+    property_path: field_address_data
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_address_data
+  field_city:
+    label: City
+    datasource_id: 'entity:node'
+    property_path: field_city
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_city
   language_with_fallback:
     label: 'Language (with fallback)'
     property_path: language_with_fallback
     type: string
+  name:
+    label: 'Country » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_country:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_country
+      module:
+        - taxonomy
   nid:
     label: ID
     datasource_id: 'entity:node'

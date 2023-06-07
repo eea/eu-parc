@@ -41,5 +41,16 @@
     > * {
       display: inline;
     }
+
+    p {
+      display: inline;
+    }
+
+    .field--name-field-address-data:not(:last-child),
+    .field--name-field-city:not(:last-child) {
+      &:after {
+        content: ', ';
+      }
+    }
   }
 }

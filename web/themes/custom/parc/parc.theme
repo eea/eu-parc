@@ -333,6 +333,12 @@ function parc_preprocess_node__search_teaser(&$variables) {
   if (!empty($image_fields[$node->bundle()])) {
     $variables['image_field'] = $image_fields[$node->bundle()];
   }
+
+  if ($node->bundle() == 'institution' && !$node->get('field_address_data')->isEmpty()) {
+    $variables['content']['field_address_data'] = [
+      '#markup' => $node->get('field_address_data')->value,
+    ];
+  }
 }
 
 /**
