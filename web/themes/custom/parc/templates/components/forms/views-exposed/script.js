@@ -35,4 +35,43 @@
       });
     }
   };
+
+
+  Drupal.behaviors.parcViewsFilterDetailsAjax = {
+    attach: function (context, settings) {
+      const views_ajax_url = '/views/ajax';
+
+      window.viewsFilterCollapseSettings = window.viewsFilterCollapseSettings || {};
+
+      // Store views filter collapse information in a variable.
+      $(document).ajaxSend(function(e, xhr, settings) {
+        if (settings.url.startsWith(views_ajax_url)) {
+          $('form.bef-exposed-form details').each(function () {
+            let id = $(this).attr('id');
+            window.viewsFilterCollapseSettings[id] = $(this).attr('open');
+          });
+        }
+      });
+
+      // On views filter AJAX complete, apply previously stored collapse information.
+      $(document).once('parcViewsDetailsCollapse').ajaxComplete(function(e, xhr, settings) {
+        if (settings.url.startsWith(views_ajax_url)) {
+          $.each(window.viewsFilterCollapseSettings, function (key, value) {
+            let id = key.split('--')[0];
+            let element = $('form.bef-exposed-form details[id^="' + id + '"]');
+
+            if (value === 'open') {
+              element.attr('open', 'open');
+            }
+
+            setTimeout(function () {
+              if (!element.is(':hover')) {
+                element.removeAttr('open');
+              }
+            }, 0)
+          });
+        }
+      });
+    },
+  };
 })(jQuery, Drupal, once);
