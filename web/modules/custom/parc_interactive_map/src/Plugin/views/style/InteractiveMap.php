@@ -2,6 +2,7 @@
 
 namespace Drupal\parc_interactive_map\Plugin\views\style;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\node\NodeInterface;
@@ -46,6 +47,13 @@ class InteractiveMap extends StylePluginBase {
   protected $renderer;
 
   /**
+   * The module config.
+   *
+   * @var \Drupal\Core\Config\ImmutableConfig
+   */
+  protected $config;
+
+  /**
    * Constructs a InteractiveMap object.
    *
    * @param array $configuration
@@ -58,13 +66,16 @@ class InteractiveMap extends StylePluginBase {
    *   The entity type manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer service.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, RendererInterface $renderer) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, RendererInterface $renderer, ConfigFactoryInterface $config_factory) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->entityTypeManager = $entity_type_manager;
     $this->nodeViewBuilder = $entity_type_manager->getViewBuilder('node');
     $this->renderer = $renderer;
+    $this->config = $config_factory->get('parc_interactive_map.settings');
   }
 
   /**
@@ -76,7 +87,8 @@ class InteractiveMap extends StylePluginBase {
       $plugin_id,
       $plugin_definition,
       $container->get('entity_type.manager'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('config.factory')
     );
   }
 
@@ -181,6 +193,7 @@ class InteractiveMap extends StylePluginBase {
               'institutions' => $institutions,
             ],
             'categories' => $all_categories,
+            'map_api_key' => $this->config->get('map_api_key'),
           ],
         ],
       ],

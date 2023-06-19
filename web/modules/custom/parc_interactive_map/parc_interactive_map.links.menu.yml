@@ -1,0 +1,6 @@
+parc_interactive_map.config_form:
+  title: 'PARC Interactive Map'
+  route_name: parc_interactive_map.config_form
+  description: 'PARC Interactive Map configuration'
+  parent: system.admin_config_services
+  weight: 100
