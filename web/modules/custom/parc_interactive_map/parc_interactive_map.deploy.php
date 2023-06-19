@@ -395,6 +395,8 @@ function parc_interactive_map_deploy_9010() {
       $file_name = basename($image_path);
 
       $destination = 'public://2023-06/' . $file_name;
+      $destination_dir = dirname($destination);
+      $file_system->prepareDirectory($destination_dir, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
       $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
 
       $file = $entity_type_manager->getStorage('file')->create([
