@@ -14,12 +14,6 @@
               {{ item.day }}
             </div>
             <div class="time">
-              <div class="morning">
-                {{ "Morning" | t }}
-              </div>
-              <div class="afternoon">
-                {{ "Afternoon" | t }}
-              </div>
               {% for day_entry in item.day_entries %}
                 <div class="fill" style="height: {{ day_entry.fill_height }}%; top: {{ day_entry.empty_top_height }}%;">
                   {% if day_entry.all_day %}
