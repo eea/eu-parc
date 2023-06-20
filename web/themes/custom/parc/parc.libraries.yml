@@ -16,6 +16,7 @@ global-styling:
       css/theme/global.css: {}
       css/theme/layout.css: {}
       css/theme/block.css: {}
+      css/components/table.css: {}
   js:
     js/script.js: {}
   dependencies:
