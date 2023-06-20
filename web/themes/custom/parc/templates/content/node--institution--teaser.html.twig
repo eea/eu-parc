@@ -75,6 +75,7 @@
     node.isPromoted() ? 'node--promoted',
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
+    has_placeholder_image ? 'placeholder-image',
   ]
 %}
 
@@ -105,7 +106,7 @@
       </div>
     </div>
     <div class="right">
-      <div class="image" style="border-color: {{ color }}; background-color: {{ color }};">
+      <div class="image" style="border-color: {{ color }}">
         {{ content.field_media_image }}
       </div>
     </div>

@@ -319,3 +319,123 @@ function parc_interactive_map_deploy_9008() {
     $node->save();
   }
 }
+
+/**
+ * Re-import partners.
+ */
+function parc_interactive_map_deploy_9010() {
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_interactive_map');
+  if (!file_exists($module_path . '/data/partners-import/partners_19_06_2023.json')) {
+    return;
+  }
+  $entity_type_manager = \Drupal::entityTypeManager();
+  $term_storage = $entity_type_manager->getStorage('taxonomy_term');
+  $node_storage = $entity_type_manager->getStorage('node');
+  /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+  $file_system = \Drupal::service('file_system');
+
+  $past_institutions = $node_storage->loadByProperties([
+    'type' => 'institution',
+  ]);
+  foreach ($past_institutions as $node) {
+    $node->delete();
+  }
+
+  $default_role = $term_storage->loadByProperties([
+    'vid' => 'institution_roles',
+    'name' => 'Affiliated Entity',
+  ]);
+  $default_role = reset($default_role);
+
+  $country_map = [
+    'Luxemburg' => 'Luxembourg',
+    'Czech Republic' => 'Czechia',
+  ];
+
+  $default_media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+    'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
+  ]);
+  $default_media = reset($default_media);
+
+  $rows = json_decode(file_get_contents($module_path . '/data/partners-import/partners_19_06_2023.json'), TRUE);
+  foreach ($rows as $row) {
+    $country = $term_storage->loadByProperties([
+      'name' => $country_map[$row['country']] ?? $row['country'],
+      'vid' => 'countries',
+    ]);
+    $country = reset($country);
+
+    $roles = [];
+    for ($i = 1; $i <= 5; $i++) {
+      if (empty($row["role_$i"])) {
+        continue;
+      }
+
+      $role = $term_storage->loadByProperties([
+        'vid' => 'institution_roles',
+        'name' => $row["role_$i"],
+      ]);
+      if (!empty($role)) {
+        $role = reset($role);
+        $roles[] = $role;
+      }
+    }
+
+    if (empty($roles)) {
+      $roles[] = $default_role;
+    }
+
+    [$lat, $long] = explode(',', $row['coordinates']);
+    $lat = trim($lat);
+    $long = trim($long);
+
+    $media = $default_media;
+    if (!empty($row['logo_path'])) {
+      $image_path = $module_path . '/data/partners-import/' . $row['logo_path'];
+      $file_name = basename($image_path);
+
+      $destination = 'public://2023-06/' . $file_name;
+      $destination_dir = dirname($destination);
+      $file_system->prepareDirectory($destination_dir, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+      $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
+
+      $file = $entity_type_manager->getStorage('file')->create([
+        'uid' => 1,
+        'filename' => $file_name,
+        'uri' => $destination,
+        'status' => 1,
+      ]);
+      $file->save();
+
+      $media = $entity_type_manager->getStorage('media')->create([
+        'bundle' => 'image',
+        'name' => $row['name_en'] . ' logo',
+        'field_media_image' => $file,
+      ]);
+      $media->save();
+    }
+
+    $node = $node_storage->create([
+      'type' => 'institution',
+      'title' => $row['name_en'],
+      'field_abbreviation' => $row['abbr_en'],
+      'field_original_name' => $row['name_nl'],
+      'field_original_abbreviation' => $row['abbr_nl'],
+      'field_country' => $country,
+      'field_city' => $row['city'],
+      'field_address_data' => $row['address'],
+      'field_coordinates' => [
+        'lat' => $lat,
+        'lng' => $long,
+      ],
+      'field_institution_roles' => $roles,
+      'field_website' => [
+        'uri' => $row['website'],
+      ],
+      'field_nhcp_name' => $row['nhcp_name'],
+      'field_nhcp_email' => $row['nhcp_email'],
+      'field_media_image' => $media,
+    ]);
+    $node->save();
+  }
+}
