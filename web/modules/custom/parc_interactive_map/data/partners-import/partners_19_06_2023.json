@@ -3636,7 +3636,7 @@
     "country": "United Kingdom",
     "city": "Lowestoft",
     "address": "Pakefield Rd,  NR33 0HT",
-    "coordinates": "52.752501572256996, 1.7836607302370882",
+    "coordinates": "50.60603, -2.45058",
     "website": "https://www.cefas.co.uk/",
     "role_1": "Associated Partner",
     "role_2": "",
@@ -3705,7 +3705,7 @@
     "logo_path": "./inputs/Logos/United Kingdom/IOM/iom-logo.png"
   },
   {
-    "name_en": "UK Centre fo Ecology & Hydrology",
+    "name_en": "UK Centre for Ecology & Hydrology",
     "abbr_en": "UKCEH",
     "name_nl": "",
     "abbr_nl": "",
