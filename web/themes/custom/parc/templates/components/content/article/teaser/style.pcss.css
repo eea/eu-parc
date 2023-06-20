@@ -7,15 +7,14 @@
 
   & .card-img {
     overflow: hidden;
-    border-radius: var(--border-radius);
     margin: 8px;
     min-width: 28%;
     max-width: 28%;
-    aspect-ratio: 1 / 1;
     position: relative;
-    align-self: flex-start;
+    aspect-ratio: 1 / 1;
 
     .img {
+      aspect-ratio: 455 / 285;
       position: absolute;
       inset: 0;
       filter: grayscale(100%);
@@ -23,6 +22,11 @@
       background-position: center;
       background-repeat: no-repeat;
       transition: all 200ms ease-in-out;
+      border-radius: var(--border-radius);
+
+      @media (--lg) {
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+      }
     }
 
     svg {
