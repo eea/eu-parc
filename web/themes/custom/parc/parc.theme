@@ -14,6 +14,7 @@ use Drupal\node\NodeInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\views\ViewExecutable;
 use Drupal\block_content\Entity\BlockContent;
+use Drupal\media\MediaInterface;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -126,6 +127,11 @@ function parc_preprocess_node(&$variables) {
   }
 
   if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'institution') {
+    $media = $node->get('field_media_image')->entity;
+    if ($media instanceof MediaInterface && $media->uuid() == '15f79f08-9928-44f7-a909-8ff476217a2e') {
+      $variables['has_placeholder_image'] = TRUE;
+    }
+
     foreach ($node->get('field_institution_roles')->referencedEntities() as $term) {
       /** @var \Drupal\taxonomy\TermInterface $term */
       $color = $term->get('field_color')->color ?? '#000000';

@@ -144,8 +144,7 @@
             source: new ol.source.OSM(),
           });
 
-          // TODO: replace API key when received from client - this is a test API key created by EAU DE WEB
-          const key = "s2nf4NvYtz2XEYAiCGP8";
+          const key = settings.parc_interactive_map.map_api_key;
 
           const maptilerSrc = new ol.source.TileJSON({
             url: `https://api.maptiler.com/maps/dataviz-light/tiles.json?key=${key}`, // source URL

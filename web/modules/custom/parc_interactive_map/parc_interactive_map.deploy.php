@@ -325,6 +325,9 @@ function parc_interactive_map_deploy_9008() {
  */
 function parc_interactive_map_deploy_9010() {
   $module_path = \Drupal::service('extension.list.module')->getPath('parc_interactive_map');
+  if (!file_exists($module_path . '/data/partners-import/partners_19_06_2023.json')) {
+    return;
+  }
   $entity_type_manager = \Drupal::entityTypeManager();
   $term_storage = $entity_type_manager->getStorage('taxonomy_term');
   $node_storage = $entity_type_manager->getStorage('node');
@@ -349,18 +352,18 @@ function parc_interactive_map_deploy_9010() {
     'Czech Republic' => 'Czechia',
   ];
 
-  $rows = json_decode(file_get_contents($module_path . '/data/partners.json'), TRUE);
+  $default_media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+    'uuid' => '15f79f08-9928-44f7-a909-8ff476217a2e',
+  ]);
+  $default_media = reset($default_media);
+
+  $rows = json_decode(file_get_contents($module_path . '/data/partners-import/partners_19_06_2023.json'), TRUE);
   foreach ($rows as $row) {
     $country = $term_storage->loadByProperties([
       'name' => $country_map[$row['country']] ?? $row['country'],
       'vid' => 'countries',
     ]);
-    if (!empty($country)) {
-      $country = reset($country);
-    }
-    else {
-      var_dump($country);
-    }
+    $country = reset($country);
 
     $roles = [];
     for ($i = 1; $i <= 5; $i++) {
@@ -386,27 +389,31 @@ function parc_interactive_map_deploy_9010() {
     $lat = trim($lat);
     $long = trim($long);
 
-    $media = NULL;
-    $image_path = $module_path . '/data/' . $row['image_path'];
-    $file_name = basename($row['image_path']);
+    $media = $default_media;
+    if (!empty($row['logo_path'])) {
+      $image_path = $module_path . '/data/partners-import/' . $row['logo_path'];
+      $file_name = basename($image_path);
 
-    $destination = 'public://2023-06/' . $file_name;
-    $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
+      $destination = 'public://2023-06/' . $file_name;
+      $destination_dir = dirname($destination);
+      $file_system->prepareDirectory($destination_dir, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+      $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
 
-    $file = $entity_type_manager->getStorage('file')->create([
-      'uid' => 1,
-      'filename' => $file_name,
-      'uri' => $destination,
-      'status' => 1,
-    ]);
-    $file->save();
+      $file = $entity_type_manager->getStorage('file')->create([
+        'uid' => 1,
+        'filename' => $file_name,
+        'uri' => $destination,
+        'status' => 1,
+      ]);
+      $file->save();
 
-    $media = $entity_type_manager->getStorage('media')->create([
-      'bundle' => 'image',
-      'name' => $row['name_en'] . ' logo',
-      'field_media_image' => $file,
-    ]);
-    $media->save();
+      $media = $entity_type_manager->getStorage('media')->create([
+        'bundle' => 'image',
+        'name' => $row['name_en'] . ' logo',
+        'field_media_image' => $file,
+      ]);
+      $media->save();
+    }
 
     $node = $node_storage->create([
       'type' => 'institution',

@@ -1,0 +1,9 @@
+parc_interactive_map.config_form:
+  path: '/admin/config/services/parc-interactive-map'
+  defaults:
+    _form: '\Drupal\parc_interactive_map\Form\ParcInteractiveMapConfigForm'
+    _title: 'PARC Interactive Map'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE
