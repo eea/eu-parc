@@ -73,7 +73,8 @@ class ParcCoreViews implements ContainerInjectionInterface {
           $view->current_display === 'block_1' ||
           $view->current_display === 'block_events_front_page' ||
           $view->current_display === 'block_related_events' ||
-          $view->current_display == 'embed_1'
+          $view->current_display == 'embed_1' ||
+          $view->current_display == 'related_events_no_conditions'
       ) {
 
         $defaultOverlay = '#8631A7';

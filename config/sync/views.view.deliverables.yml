@@ -291,7 +291,7 @@ display:
           exposed: true
           expose:
             operator_id: field_categories_target_id_1_op
-            label: Category
+            label: 'All deliverables'
             description: ''
             use_operator: false
             operator: field_categories_target_id_1_op
