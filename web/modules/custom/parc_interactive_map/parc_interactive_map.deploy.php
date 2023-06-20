@@ -349,6 +349,7 @@ function parc_interactive_map_deploy_9011() {
 
   $country_map = [
     'Luxemburg' => 'Luxembourg',
+    'Czechia' => 'Czech Republic',
   ];
 
   $default_media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
