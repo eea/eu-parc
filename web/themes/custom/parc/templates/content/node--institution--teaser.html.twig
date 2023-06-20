@@ -114,6 +114,19 @@
 
   <div class="to-expand hidden bottom">
     {{ content.field_website }}
+
+    {% if not node.field_nhcp_name.isEmpty %}
+      <div class="field field--label-inline">
+        <div class="f-label">{{ "National Hub Contact Point" | t }}</div>
+        {{ content.field_nhcp_name }}
+      </div>
+    {% endif %}
+    {% if not node.field_nhcp_email.isEmpty %}
+      <div class="field field--label-inline">
+        <div class="f-label">{{ "E-mail" | t }}</div>
+        {{ content.field_nhcp_email }}
+      </div>
+    {% endif %}
   </div>
 
   <div class="expand">

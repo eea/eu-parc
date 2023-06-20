@@ -43,12 +43,21 @@
     margin-bottom: 15px;
 
     > *:not(:last-child) {
-      margin-bottom: 15px;
+      margin-bottom: 7px;
+    }
+
+    .field > div {
+      display: inline;
+    }
+
+    .f-label:after {
+      content: ': ';
     }
   }
 
   .f-label {
     font-weight: bold;
+    display: inline-block;
   }
 
   .expand-link,

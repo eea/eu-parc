@@ -78,6 +78,21 @@ content:
     third_party_settings: {  }
     weight: 6
     region: content
+  field_nhcp_email:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_nhcp_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 9
+    region: content
   field_original_name:
     type: string
     label: hidden
@@ -102,8 +117,6 @@ hidden:
   addtoany: true
   field_abbreviation: true
   field_coordinates: true
-  field_nhcp_email: true
-  field_nhcp_name: true
   field_original_abbreviation: true
   links: true
   search_api_excerpt: true
