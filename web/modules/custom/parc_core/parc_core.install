@@ -15,3 +15,15 @@ function parc_core_update_9001() {
     }
   }
 }
+
+/**
+ * Set all users timezone to Copenhagen.
+ */
+function parc_core_update_9002() {
+  /** @var \Drupal\user\Entity\User[] $users */
+  $users = \Drupal::entityTypeManager()->getStorage('user')->loadByProperties([]);
+  foreach ($users as $user) {
+    $user->timezone->value = 'Europe/Copenhagen';
+    $user->save();
+  }
+}

@@ -174,7 +174,7 @@ function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) 
       $queryParameters = $request->query->all();
       if ($current_path == '/scientific-publications') {
         if ($metatags) {
-          if ($queryParameters['publication-anchor']) {
+          if (!empty($queryParameters['publication-anchor'])) {
             $nid = $queryParameters['publication-anchor'];
             $node = Node::load($nid);
             $image_full_url = '';
@@ -291,6 +291,18 @@ function parc_core_preprocess_views_view__search(&$variables) {
   $route_match = \Drupal::routeMatch();
   $full_page_link = $search_manager->getFullSearchLinkForBundle($bundles);
 
+  $variables['header']['result_count'] = [
+    '#type' => 'inline_template',
+    '#template' => '<div class="subview-results">{{ result_count }}</div>',
+    '#context' => [
+      'result_count' => \Drupal::translation()->formatPlural(
+        $view->total_rows,
+        '1 result',
+        '@count results'
+      ),
+    ],
+  ];
+
   $variables['header']['title'] = [
     '#type' => 'inline_template',
     '#template' => '<div class="subview-title">{{ title }}</div>',
@@ -363,7 +375,7 @@ function parc_core_search_api_autocomplete_suggestions_alter(array &$suggestions
 
     $node = $suggestion->getUrl()->getRouteParameters()['node'];
     $node = Node::load($node);
-    $suggestion->setUrl($search_manager->getNodeUrl($node));
+    $suggestion->setUrl($search_manager->getNodeAutocompleteUrl($node));
     $suggestion->setRender([
       '#type' => 'inline_template',
       '#template' => '{{ text }} <span class="bundle">{{ "in" | t }} {{ bundle }}</span>',
@@ -385,6 +397,25 @@ function parc_core_form_views_exposed_form_alter(array &$form, FormStateInterfac
     // Change the ID to disable AJAX for this search form.
     $form['#id'] = 'views-form-search-block-1';
   }
+
+  // For the events view, the filter should only display used event categories.
+  // We cannot use the BEF plugin for this because on the same page there are
+  // actually 2 views - upcoming and past events.
+  if ($form['#id'] == 'views-exposed-form-content-events-page-events') {
+    if (!empty($form['category'])) {
+      $used_categories = \Drupal::database()
+        ->select('node__field_categories', 'f')
+        ->fields('f', ['field_categories_target_id'])
+        ->condition('f.bundle', 'events')
+        ->distinct()
+        ->execute()
+        ->fetchCol();
+
+      $form['category']['#options'] = array_filter($form['category']['#options'], function ($value, $key) use ($used_categories) {
+        return in_array($key, $used_categories);
+      }, ARRAY_FILTER_USE_BOTH);
+    }
+  }
 }
 
 /**
@@ -395,5 +426,10 @@ function parc_core_preprocess_node__search_teaser(&$variables) {
   $node = $variables['node'];
   /** @var \Drupal\parc_core\ParcSearchManager $search_manager */
   $search_manager = \Drupal::service('parc_core.search_manager');
-  $variables['url'] = $search_manager->getNodeUrl($node)->toString();
+  $variables['url'] = $search_manager->getNodeSearchTeaserUrl($node)->toString();
+
+  $variables['url_target'] = '_self';
+  if ($node->bundle() == 'deliverables') {
+    $variables['url_target'] = '_blank';
+  }
 }

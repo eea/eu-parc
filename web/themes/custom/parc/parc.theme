@@ -84,6 +84,7 @@ function parc_theme_suggestions_alter(
  * Implements hook_preprocess_node().
  */
 function parc_preprocess_node(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'article') {
     $variables['body_full'] = $node->body->view('default');
@@ -97,6 +98,31 @@ function parc_preprocess_node(&$variables) {
   }
   if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'events') {
     $variables['#cache']['max-age'] = 0;
+
+    $color = '#8631A7';
+    if (!empty($node->overlay)) {
+      $color = $node->overlay;
+    }
+    $variables['url'] = $node->toUrl('canonical', [
+      'query' => [
+        'color' => $color,
+      ],
+    ])->toString();
+  }
+
+  if ($variables['view_mode'] == 'full' && $node->bundle() == 'events') {
+    $variables['#cache']['contexts'][] = 'url:query_args:color';
+
+    $color = \Drupal::request()->query->get('color');
+    if (empty($color) || !preg_match('/^#[a-f0-9]{6}$/i', $color)) {
+      $color = '#8631A7';
+      $category = $node->get('field_categories')->entity;
+      if ($category instanceof TermInterface) {
+        $color = $category->get('field_colors')->color;
+      }
+    }
+
+    $variables['color'] = $color;
   }
 
   if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'institution') {
@@ -153,27 +179,6 @@ function parc_theme($existing, $type, $theme, $path) {
       'render element' => 'form',
     ],
   ];
-}
-
-/**
- * Implements hook_preprocess_details().
- */
-function parc_preprocess_details(&$variables) {
-  if (\Drupal::routeMatch()->getRouteName() != 'views.ajax') {
-    return;
-  }
-
-  $request = \Drupal::request();
-  // Getting the referer.
-  $referer = $request->headers->get('referer');
-  $query_args = $request->query->all();
-  if (!empty($query_args['category']) && $referer) {
-    $currentCategories = $query_args['category'];
-    $refCategory = _parc_get_query_from_url($referer, 'category');
-    if (count($currentCategories) !== count($refCategory) && empty($query_args['close'])) {
-      $variables['open'] = TRUE;
-    }
-  }
 }
 
 /**

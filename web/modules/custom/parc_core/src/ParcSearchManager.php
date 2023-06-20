@@ -7,6 +7,8 @@ use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
+use Drupal\file\FileInterface;
+use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
@@ -56,7 +58,7 @@ class ParcSearchManager {
   }
 
   /**
-   * Get the URL to a node page.
+   * Get the URL to a node page in the search teaser.
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node.
@@ -64,10 +66,21 @@ class ParcSearchManager {
    * @return \Drupal\Core\Url
    *   The URL to the node.
    */
-  public function getNodeUrl(NodeInterface $node) {
+  public function getNodeSearchTeaserUrl(NodeInterface $node) {
     switch ($node->bundle()) {
       case 'deliverables':
-        return Url::fromUserInput('/deliverables');
+        $url = Url::fromUserInput('/deliverables');
+        $media = $node->get('field_media')->entity;
+        if (!$media instanceof MediaInterface) {
+          return $url;
+        }
+
+        $file = $media->get('field_media_document')->entity;
+        if (!$file instanceof FileInterface) {
+          return $url;
+        }
+
+        return Url::fromUserInput($file->createFileUrl());
       case 'institution':
         return Url::fromUserInput('/institutions-interactive-map');
       case 'publications':
@@ -78,6 +91,23 @@ class ParcSearchManager {
       default:
         return $node->toUrl();
     }
+  }
+
+  /**
+   * Get the URL to a node page in an autocomplete widget.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node.
+   *
+   * @return \Drupal\Core\Url
+   *   The URL to the node.
+   */
+  public function getNodeAutocompleteUrl(NodeInterface $node) {
+    if ($node->bundle() == 'deliverables') {
+      return Url::fromUserInput('/deliverables');
+    }
+
+    return $this->getNodeSearchTeaserUrl($node);
   }
 
   /**

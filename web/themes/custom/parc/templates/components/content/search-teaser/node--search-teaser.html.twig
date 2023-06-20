@@ -82,7 +82,7 @@
 %}
 
 <article{{attributes.addClass(classes)}}>
-  <a href="{{ url }}">
+  <a href="{{ url }}" target="{{ url_target | default('_self') }}">
     <div{{content_attributes.addClass('node__content')}}>
       <div class="image">
         {% if node.bundle == 'deliverables' %}
