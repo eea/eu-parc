@@ -174,7 +174,7 @@ function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) 
       $queryParameters = $request->query->all();
       if ($current_path == '/scientific-publications') {
         if ($metatags) {
-          if ($queryParameters['publication-anchor']) {
+          if (!empty($queryParameters['publication-anchor'])) {
             $nid = $queryParameters['publication-anchor'];
             $node = Node::load($nid);
             $image_full_url = '';
