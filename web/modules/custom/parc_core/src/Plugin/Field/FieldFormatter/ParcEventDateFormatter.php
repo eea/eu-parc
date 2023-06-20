@@ -29,9 +29,9 @@ class ParcEventDateFormatter extends SmartDateFormatterBase {
       $entry_timestamp = $element['#value'];
 
       $day = $element['start']['date']['value']['#markup'];
-      [$start_hour, $start_minute] = explode(':', $element['start']['time']['value']['#markup']);
+      [$start_hour, $start_minute] = explode(':', $element['start']['time']['value']['#markup'] ?? '00:00');
       $start_hour = (int) $start_hour;
-      [$end_hour, $end_minute] = explode(':', $element['end']['time']['value']['#markup']);
+      [$end_hour, $end_minute] = explode(':', $element['end']['time']['value']['#markup'] ?? '00:00');
       $end_hour = (int) $end_hour;
 
       $start_timestamp = max($start_hour * 60 + $start_minute - 8 * 60, 0);
@@ -55,11 +55,14 @@ class ParcEventDateFormatter extends SmartDateFormatterBase {
 
       $entries[$day]['timestamp'] = $entry_timestamp;
       $entries[$day]['day'] = $day;
+      $time = !empty($element['start']['time']['value']['#markup'])
+        ? $element['start']['time']['value']['#markup'] . ' - ' . $element['end']['time']['value']['#markup']
+        : '';
       $entries[$day]['day_entries'][] = [
         'empty_top_height' => $empty_top_height,
         'fill_height' => $fill_height,
         'all_day' => $all_day,
-        'time' => $element['start']['time']['value']['#markup'] . ' - ' . $element['end']['time']['value']['#markup'],
+        'time' => $time,
       ];
     }
 
