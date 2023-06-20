@@ -50,6 +50,10 @@
       display: inline;
     }
 
+    .field--name-field-nhcp-email > div:not(:last-child):after {
+      content: '; ';
+    }
+
     .f-label:after {
       content: ': ';
     }

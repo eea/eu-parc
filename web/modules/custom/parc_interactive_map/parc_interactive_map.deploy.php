@@ -323,7 +323,7 @@ function parc_interactive_map_deploy_9008() {
 /**
  * Re-import partners.
  */
-function parc_interactive_map_deploy_9010() {
+function parc_interactive_map_deploy_9011() {
   $module_path = \Drupal::service('extension.list.module')->getPath('parc_interactive_map');
   if (!file_exists($module_path . '/data/partners-import/partners_19_06_2023.json')) {
     return;
@@ -415,6 +415,11 @@ function parc_interactive_map_deploy_9010() {
       $media->save();
     }
 
+    $emails = explode(';', $row['nhcp_email'] ?? []);
+    foreach ($emails as &$email) {
+      $email = trim($email);
+    }
+
     $node = $node_storage->create([
       'type' => 'institution',
       'title' => $row['name_en'],
@@ -433,7 +438,7 @@ function parc_interactive_map_deploy_9010() {
         'uri' => $row['website'],
       ],
       'field_nhcp_name' => $row['nhcp_name'],
-      'field_nhcp_email' => $row['nhcp_email'],
+      'field_nhcp_email' => $emails,
       'field_media_image' => $media,
     ]);
     $node->save();

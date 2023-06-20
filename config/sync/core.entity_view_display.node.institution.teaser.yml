@@ -79,7 +79,7 @@ content:
     weight: 6
     region: content
   field_nhcp_email:
-    type: basic_string
+    type: email_mailto
     label: hidden
     settings: {  }
     third_party_settings: {  }
