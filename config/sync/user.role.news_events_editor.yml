@@ -17,6 +17,7 @@ dependencies:
     - taxonomy.vocabulary.events_category
     - taxonomy.vocabulary.news_category
     - taxonomy.vocabulary.seo_keywords
+    - taxonomy.vocabulary.tags
   module:
     - comment
     - media
@@ -40,6 +41,7 @@ permissions:
   - 'create terms in events_category'
   - 'create terms in news_category'
   - 'create terms in seo_keywords'
+  - 'create terms in tags'
   - 'create vector media'
   - 'delete any events content'
   - 'delete media'

@@ -14,7 +14,9 @@ dependencies:
     - media.type.video
     - node.type.publications
     - taxonomy.vocabulary.publications
+    - taxonomy.vocabulary.publications_topics
     - taxonomy.vocabulary.seo_keywords
+    - taxonomy.vocabulary.tags
   module:
     - comment
     - media
@@ -36,7 +38,9 @@ permissions:
   - 'create media'
   - 'create publications content'
   - 'create terms in publications'
+  - 'create terms in publications_topics'
   - 'create terms in seo_keywords'
+  - 'create terms in tags'
   - 'delete media'
   - 'delete own audio media'
   - 'delete own card_footer_overlay media'
