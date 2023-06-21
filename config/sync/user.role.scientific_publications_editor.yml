@@ -25,7 +25,7 @@ dependencies:
     - toolbar
 id: scientific_publications_editor
 label: 'Scientific publications editor'
-weight: 5
+weight: -7
 is_admin: null
 permissions:
   - 'access content overview'
