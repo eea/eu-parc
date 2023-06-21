@@ -1,0 +1,14 @@
+uuid: e95403b8-9e8c-47e0-bc52-6ae5707e7dff
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.scientific_publications_editor
+  module:
+    - user
+id: user_remove_role_action.scientific_publications_editor
+label: 'Remove the Scientific publications editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: scientific_publications_editor

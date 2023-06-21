@@ -1,0 +1,73 @@
+uuid: 4695ade3-a5bb-4430-b25a-98e58f8e535b
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.audio
+    - media.type.card_footer_overlay
+    - media.type.document
+    - media.type.image
+    - media.type.overlay
+    - media.type.remote_video
+    - media.type.thematic_areas
+    - media.type.vector
+    - media.type.video
+    - node.type.article
+    - node.type.events
+    - taxonomy.vocabulary.events_category
+    - taxonomy.vocabulary.news_category
+    - taxonomy.vocabulary.seo_keywords
+  module:
+    - comment
+    - media
+    - node
+    - publishcontent
+    - system
+    - taxonomy
+    - toolbar
+id: news_events_editor
+label: 'News/events editor'
+weight: 4
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'create article content'
+  - 'create events content'
+  - 'create image media'
+  - 'create media'
+  - 'create terms in events_category'
+  - 'create terms in news_category'
+  - 'create terms in seo_keywords'
+  - 'create vector media'
+  - 'delete any events content'
+  - 'delete media'
+  - 'delete own article content'
+  - 'delete own audio media'
+  - 'delete own card_footer_overlay media'
+  - 'delete own document media'
+  - 'delete own image media'
+  - 'delete own overlay media'
+  - 'delete own remote_video media'
+  - 'delete own thematic_areas media'
+  - 'delete own vector media'
+  - 'delete own video media'
+  - 'edit own article content'
+  - 'edit own audio media'
+  - 'edit own card_footer_overlay media'
+  - 'edit own comments'
+  - 'edit own document media'
+  - 'edit own events content'
+  - 'edit own image media'
+  - 'edit own overlay media'
+  - 'edit own remote_video media'
+  - 'edit own thematic_areas media'
+  - 'edit own vector media'
+  - 'edit own video media'
+  - 'publish editable node type events'
+  - 'unpublish editable node type events'
+  - 'update media'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'

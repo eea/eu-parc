@@ -1,0 +1,14 @@
+uuid: 57e35a71-d966-440d-8b27-dbd3ecc4a4dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.news_events_editor
+  module:
+    - user
+id: user_remove_role_action.news_events_editor
+label: 'Remove the News/events editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: news_events_editor

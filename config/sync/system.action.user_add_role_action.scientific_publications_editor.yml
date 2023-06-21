@@ -1,0 +1,14 @@
+uuid: 0d8981dc-8ab8-43d2-aec3-be247119ab21
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.scientific_publications_editor
+  module:
+    - user
+id: user_add_role_action.scientific_publications_editor
+label: 'Add the Scientific publications editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: scientific_publications_editor

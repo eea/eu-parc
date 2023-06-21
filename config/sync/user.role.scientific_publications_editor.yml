@@ -1,0 +1,67 @@
+uuid: 5bad4b30-b58f-4473-8641-0c3e9f1f02c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.audio
+    - media.type.card_footer_overlay
+    - media.type.document
+    - media.type.image
+    - media.type.overlay
+    - media.type.remote_video
+    - media.type.thematic_areas
+    - media.type.vector
+    - media.type.video
+    - node.type.publications
+    - taxonomy.vocabulary.publications
+    - taxonomy.vocabulary.seo_keywords
+  module:
+    - comment
+    - media
+    - node
+    - publishcontent
+    - system
+    - taxonomy
+    - toolbar
+id: scientific_publications_editor
+label: 'Scientific publications editor'
+weight: 5
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'create document media'
+  - 'create image media'
+  - 'create media'
+  - 'create publications content'
+  - 'create terms in publications'
+  - 'create terms in seo_keywords'
+  - 'delete media'
+  - 'delete own audio media'
+  - 'delete own card_footer_overlay media'
+  - 'delete own document media'
+  - 'delete own image media'
+  - 'delete own overlay media'
+  - 'delete own publications content'
+  - 'delete own remote_video media'
+  - 'delete own thematic_areas media'
+  - 'delete own vector media'
+  - 'delete own video media'
+  - 'edit own audio media'
+  - 'edit own card_footer_overlay media'
+  - 'edit own comments'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own overlay media'
+  - 'edit own publications content'
+  - 'edit own remote_video media'
+  - 'edit own thematic_areas media'
+  - 'edit own vector media'
+  - 'edit own video media'
+  - 'publish editable node type publications'
+  - 'unpublish editable node type publications'
+  - 'update media'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'

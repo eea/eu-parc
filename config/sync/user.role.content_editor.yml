@@ -3,15 +3,42 @@ langcode: en
 status: true
 dependencies:
   config:
+    - media.type.audio
+    - media.type.card_footer_overlay
+    - media.type.document
+    - media.type.image
+    - media.type.overlay
+    - media.type.remote_video
+    - media.type.thematic_areas
+    - media.type.vector
+    - media.type.video
     - node.type.article
+    - node.type.basic_page
+    - node.type.deliverables
+    - node.type.events
+    - node.type.institution
     - node.type.page
+    - node.type.publications
+    - node.type.thematic_areas
+    - taxonomy.vocabulary.countries
+    - taxonomy.vocabulary.deliverables
+    - taxonomy.vocabulary.events_category
+    - taxonomy.vocabulary.institution_roles
+    - taxonomy.vocabulary.news_category
+    - taxonomy.vocabulary.publications
+    - taxonomy.vocabulary.publications_topics
+    - taxonomy.vocabulary.seo_keywords
     - taxonomy.vocabulary.tags
+    - taxonomy.vocabulary.thematic_areas
   module:
     - comment
     - contextual
     - file
+    - layout_builder
+    - media
     - node
     - path
+    - publishcontent
     - system
     - taxonomy
     - toolbar
@@ -27,22 +54,158 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
+  - 'access media overview'
+  - 'access taxonomy overview'
   - 'access toolbar'
   - 'access tour'
+  - 'administer nodes'
   - 'administer url aliases'
+  - 'create and edit custom blocks'
   - 'create article content'
+  - 'create audio media'
+  - 'create basic_page content'
+  - 'create card_footer_overlay media'
+  - 'create deliverables content'
+  - 'create document media'
+  - 'create events content'
+  - 'create image media'
+  - 'create institution content'
+  - 'create media'
+  - 'create overlay media'
   - 'create page content'
+  - 'create publications content'
+  - 'create remote_video media'
+  - 'create terms in countries'
+  - 'create terms in deliverables'
+  - 'create terms in events_category'
+  - 'create terms in institution_roles'
+  - 'create terms in news_category'
+  - 'create terms in publications'
+  - 'create terms in publications_topics'
+  - 'create terms in seo_keywords'
   - 'create terms in tags'
+  - 'create terms in thematic_areas'
+  - 'create thematic_areas content'
+  - 'create thematic_areas media'
   - 'create url aliases'
-  - 'delete article revisions'
+  - 'create vector media'
+  - 'create video media'
+  - 'delete any article content'
+  - 'delete any audio media'
+  - 'delete any basic_page content'
+  - 'delete any card_footer_overlay media'
+  - 'delete any deliverables content'
+  - 'delete any document media'
+  - 'delete any events content'
+  - 'delete any image media'
+  - 'delete any institution content'
+  - 'delete any media'
+  - 'delete any overlay media'
+  - 'delete any page content'
+  - 'delete any publications content'
+  - 'delete any remote_video media'
+  - 'delete any thematic_areas content'
+  - 'delete any thematic_areas media'
+  - 'delete any vector media'
+  - 'delete any video media'
+  - 'delete basic_page revisions'
+  - 'delete media'
   - 'delete own article content'
+  - 'delete own audio media'
+  - 'delete own basic_page content'
+  - 'delete own card_footer_overlay media'
+  - 'delete own deliverables content'
+  - 'delete own document media'
+  - 'delete own events content'
+  - 'delete own image media'
+  - 'delete own institution content'
+  - 'delete own overlay media'
   - 'delete own page content'
-  - 'delete page revisions'
+  - 'delete own publications content'
+  - 'delete own remote_video media'
+  - 'delete own thematic_areas content'
+  - 'delete own thematic_areas media'
+  - 'delete own vector media'
+  - 'delete own video media'
+  - 'delete terms in countries'
+  - 'delete terms in deliverables'
+  - 'delete terms in events_category'
+  - 'delete terms in institution_roles'
+  - 'delete terms in news_category'
+  - 'delete terms in publications'
+  - 'delete terms in publications_topics'
+  - 'delete terms in seo_keywords'
+  - 'delete terms in tags'
+  - 'delete terms in thematic_areas'
+  - 'edit any article content'
+  - 'edit any audio media'
+  - 'edit any basic_page content'
+  - 'edit any card_footer_overlay media'
+  - 'edit any deliverables content'
+  - 'edit any document media'
+  - 'edit any events content'
+  - 'edit any image media'
+  - 'edit any institution content'
+  - 'edit any overlay media'
+  - 'edit any page content'
+  - 'edit any publications content'
+  - 'edit any remote_video media'
+  - 'edit any thematic_areas content'
+  - 'edit any thematic_areas media'
+  - 'edit any vector media'
+  - 'edit any video media'
   - 'edit own article content'
+  - 'edit own audio media'
+  - 'edit own basic_page content'
+  - 'edit own card_footer_overlay media'
   - 'edit own comments'
+  - 'edit own deliverables content'
+  - 'edit own document media'
+  - 'edit own events content'
+  - 'edit own image media'
+  - 'edit own institution content'
+  - 'edit own overlay media'
   - 'edit own page content'
+  - 'edit own publications content'
+  - 'edit own remote_video media'
+  - 'edit own thematic_areas content'
+  - 'edit own thematic_areas media'
+  - 'edit own vector media'
+  - 'edit own video media'
+  - 'edit terms in countries'
+  - 'edit terms in deliverables'
+  - 'edit terms in events_category'
+  - 'edit terms in institution_roles'
+  - 'edit terms in news_category'
+  - 'edit terms in publications'
+  - 'edit terms in publications_topics'
+  - 'edit terms in seo_keywords'
   - 'edit terms in tags'
+  - 'edit terms in thematic_areas'
+  - 'publish any content'
+  - 'publish editable content'
   - 'revert all revisions'
+  - 'revert article revisions'
+  - 'revert basic_page revisions'
+  - 'revert deliverables revisions'
+  - 'revert events revisions'
+  - 'revert institution revisions'
+  - 'revert page revisions'
+  - 'revert publications revisions'
+  - 'revert thematic_areas revisions'
+  - 'unpublish any content'
+  - 'unpublish editable content'
+  - 'update any media'
+  - 'update media'
   - 'view all revisions'
+  - 'view article revisions'
+  - 'view basic_page revisions'
+  - 'view deliverables revisions'
+  - 'view events revisions'
+  - 'view institution revisions'
   - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view page revisions'
+  - 'view publications revisions'
   - 'view the administration theme'
+  - 'view thematic_areas revisions'

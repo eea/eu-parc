@@ -1,0 +1,14 @@
+uuid: 6b91af67-0b41-4183-92d5-e72e8ffa8dd0
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.news_events_editor
+  module:
+    - user
+id: user_add_role_action.news_events_editor
+label: 'Add the News/events editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: news_events_editor
