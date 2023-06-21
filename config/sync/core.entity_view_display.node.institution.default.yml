@@ -22,6 +22,7 @@ dependencies:
     - geolocation
     - link
     - media
+    - spamspan
     - text
     - user
 id: node.institution.default
@@ -94,9 +95,18 @@ content:
     weight: 110
     region: content
   field_nhcp_email:
-    type: basic_string
+    type: email_spamspan
     label: inline
-    settings: {  }
+    settings:
+      spamspan_at: ' [at] '
+      spamspan_use_graphic: 0
+      spamspan_dot_enable: 0
+      spamspan_dot: ' [dot] '
+      spamspan_use_form: 0
+      spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
+      spamspan_form_default_url: contact
+      spamspan_form_default_displaytext: 'contact form'
+      spamspan_parse_dom: 0
     third_party_settings: {  }
     weight: 112
     region: content

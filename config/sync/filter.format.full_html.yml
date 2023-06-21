@@ -5,6 +5,7 @@ dependencies:
   module:
     - editor
     - media
+    - spamspan
 _core:
   default_config_hash: WNeK5FbcY8pXgEpbD_KgRzlF1-5PL3BJXwqaBctPTqw
 name: 'Full HTML'
@@ -55,3 +56,17 @@ filters:
       allowed_media_types:
         image: image
         vector: vector
+  filter_spamspan:
+    id: filter_spamspan
+    provider: spamspan
+    status: true
+    weight: 0
+    settings:
+      spamspan_at: ' [at] '
+      spamspan_use_graphic: '1'
+      spamspan_dot_enable: '1'
+      spamspan_dot: ' [dot] '
+      spamspan_use_form: '0'
+      spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
+      spamspan_form_default_url: contact
+      spamspan_form_default_displaytext: 'contact form'
