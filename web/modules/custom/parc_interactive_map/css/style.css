@@ -354,7 +354,20 @@
   }
 }
 
+.interactive-map #popup {
+  margin-bottom: 10px;
+}
+
 @media (min-width: 1921px) {
+  .map-page .px-0 > :last-child,
+  .map-page .px-0 > :last-child > div,
+  .map-page .px-0 > :last-child > div > div,
+  .map-page .px-0 > :last-child > div > div > div,
+  .map-page .px-0 > :last-child > div > div > div > div,
+  .map-page .px-0 > :last-child > div > div > div > div > div {
+    height: 100% !important;
+  }
+
   .map-page .px-0 > :last-child {
     position: relative;
   }
