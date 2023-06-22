@@ -164,9 +164,32 @@
   bottom: -14px;
 }
 
-.interactive-map .bs-popover-top > .popover-arrow::before,
+.interactive-map .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow {
+  top: -14px;
+}
+
+.interactive-map .bs-popover-auto[data-popper-placement^="left"] > .popover-arrow {
+  right: -14px;
+}
+
+.interactive-map .bs-popover-auto[data-popper-placement^="right"] > .popover-arrow {
+  left: -14px;
+}
+
 .interactive-map .bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::before {
   border-top-color: #CCC;
+}
+
+.interactive-map .bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::before {
+  border-bottom-color: #CCC;
+}
+
+.interactive-map .bs-popover-auto[data-popper-placement^="left"] > .popover-arrow::before {
+  border-left-color: #CCC;
+}
+
+.interactive-map .bs-popover-auto[data-popper-placement^="right"] > .popover-arrow::before {
+  border-right-color: #CCC;
 }
 
 .interactive-map .identify-rectangle-span {
@@ -354,8 +377,20 @@
   }
 }
 
-.interactive-map #popup {
-  margin-bottom: 10px;
+.interactive-map .popover[data-popper-placement="top"] {
+  margin-bottom: 10px !important;
+}
+
+.interactive-map .popover[data-popper-placement="bottom"] {
+  margin-top: 10px !important;
+}
+
+.interactive-map .popover[data-popper-placement="left"] {
+  margin-right: 10px !important;
+}
+
+.interactive-map .popover[data-popper-placement="right"] {
+  margin-left: 10px !important;
 }
 
 @media (min-width: 1921px) {
