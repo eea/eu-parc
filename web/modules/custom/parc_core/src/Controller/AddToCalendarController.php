@@ -96,4 +96,14 @@ class AddToCalendarController extends ServiceController {
     return $response;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  protected function createEvent(array $field_settings, \DateTime $dtStart, \DateTime $dtEnd, bool $noTime = FALSE) {
+    $event = parent::createEvent($field_settings, $dtStart, $dtEnd, $noTime);
+    $event->setDescriptionHTML($event->getDescription());
+    $event->setDescription(strip_tags($event->getDescription()));
+    return $event;
+  }
+
 }
