@@ -173,4 +173,4 @@ $config['parc_zenodo_api.adminsettings']['token'] = 'YOUR_ZENODO_API_TOKEN';
 
 $config['parc_interactive_map.settings']['map_api_key'] = 'YOUR_MAP_API_KEY';
 
-$config['google_analytics']['account'] = 'YOUR_GAKEY';
+$config['google_analytics.settings']['account'] = 'YOUR_GAKEY';
