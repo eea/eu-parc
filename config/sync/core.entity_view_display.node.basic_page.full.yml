@@ -38,8 +38,13 @@ third_party_settings:
           layout_builder_styles_style:
             background_green: 0
             background_grey: 0
+            remove_top_padding: remove_top_padding
             container: 0
+            container_fluid: 0
+            margin_bottom_5: 0
             no_paddings: 0
+            remove_horizontal_paddings: 0
+            remove_vertical_paddings: 0
         components:
           1ad73864-177c-46ff-8f9a-46237922177e:
             uuid: 1ad73864-177c-46ff-8f9a-46237922177e
@@ -282,3 +287,4 @@ hidden:
   field_views_reference_bottom: true
   layout_builder__layout: true
   links: true
+  search_api_excerpt: true

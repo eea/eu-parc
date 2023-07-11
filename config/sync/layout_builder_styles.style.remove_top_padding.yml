@@ -1,0 +1,12 @@
+uuid: e4236121-d5ac-4ed4-a35f-b23223cf3ac6
+langcode: en
+status: true
+dependencies: {  }
+id: remove_top_padding
+label: 'Remove top padding'
+classes: pt-0
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 0

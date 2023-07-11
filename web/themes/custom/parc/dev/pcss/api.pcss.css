@@ -3623,3 +3623,11 @@ div[class*="border-"] {
     display: none !important;
   }
 }
+
+.pt-0 {
+  padding-top: 0 !important;
+
+  > .layout__region {
+    padding-top: 0 !important;
+  }
+}
