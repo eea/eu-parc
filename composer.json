@@ -47,6 +47,7 @@
         "drupal/geocoder": "^3.32",
         "drupal/geofield": "^1.52",
         "drupal/geolocation": "^3.12",
+        "drupal/google_analytics": "^4.0",
         "drupal/ics_link_field": "^1.0@alpha",
         "drupal/image_field_caption": "^1.2",
         "drupal/layout_builder_admin_theme": "^1.1",
