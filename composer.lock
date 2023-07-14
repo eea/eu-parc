@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06a34a04e1aaed68cb44975d8004e09a",
+    "content-hash": "a7c83dfcb6fc16d1c35b09d47148e5ec",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3299,6 +3299,70 @@
             }
         },
         {
+            "name": "drupal/edw_healthcheck",
+            "version": "1.20.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/edw_healthcheck.git",
+                "reference": "8.x-1.20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/edw_healthcheck-8.x-1.20.zip",
+                "reference": "8.x-1.20",
+                "shasum": "383160eb7c873a4f697dc85721a50647bdc62d80"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.20",
+                    "datestamp": "1686830358",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "badeadrian",
+                    "homepage": "https://www.drupal.org/user/3719785"
+                },
+                {
+                    "name": "cristiroma",
+                    "homepage": "https://www.drupal.org/user/2267390"
+                },
+                {
+                    "name": "Kopezaur",
+                    "homepage": "https://www.drupal.org/user/3580286"
+                },
+                {
+                    "name": "leontin",
+                    "homepage": "https://www.drupal.org/user/3599349"
+                },
+                {
+                    "name": "paula_iuga",
+                    "homepage": "https://www.drupal.org/user/3724292"
+                },
+                {
+                    "name": "stefan.butura",
+                    "homepage": "https://www.drupal.org/user/3535177"
+                }
+            ],
+            "description": "Check the status and versioning of a Drupal application and its modules",
+            "homepage": "https://www.drupal.org/project/edw_healthcheck",
+            "support": {
+                "source": "https://git.drupalcode.org/project/edw_healthcheck"
+            }
+        },
+        {
             "name": "drupal/edwt",
             "version": "2.1.4",
             "source": {
@@ -5643,27 +5707,31 @@
         },
         {
             "name": "drupal/smart_trim",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/smart_trim.git",
-                "reference": "2.0.0"
+                "reference": "2.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/smart_trim-2.0.0.zip",
-                "reference": "2.0.0",
-                "shasum": "d917ad4d78b50cf535f3a292a2e09cc73b87bf4f"
+                "url": "https://ftp.drupal.org/files/projects/smart_trim-2.1.0.zip",
+                "reference": "2.1.0",
+                "shasum": "874b4cbddc4833f1b9adc76a8398377903fd73ee"
             },
             "require": {
                 "drupal/core": "^8 || ^9 || ^10",
-                "drupal/token": "^1.0"
+                "drupal/token": "^1.0",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "drupal/token_filter": "^2.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.0.0",
-                    "datestamp": "1666374010",
+                    "version": "2.1.0",
+                    "datestamp": "1686152417",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5681,12 +5749,14 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "ultimike",
-                    "homepage": "https://www.drupal.org/user/51132"
+                    "name": "AmyJune Hineline (volkswagenchick)",
+                    "homepage": "https://www.drupal.org/u/volkswagenchick",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "volkswagenchick",
-                    "homepage": "https://www.drupal.org/user/3332522"
+                    "name": "Michael Anello (ultimike)",
+                    "homepage": "https://www.drupal.org/u/ultimike",
+                    "role": "Maintainer"
                 }
             ],
             "description": "Provides a more robust alternative to 'summary or trimmed' textfield format.",
@@ -5698,26 +5768,26 @@
         },
         {
             "name": "drupal/spamspan",
-            "version": "1.3.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/spamspan.git",
-                "reference": "8.x-1.3"
+                "reference": "3.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/spamspan-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "fa3a4b8b18bcf0c51b740d0b3697d097305ad385"
+                "url": "https://ftp.drupal.org/files/projects/spamspan-3.1.1.zip",
+                "reference": "3.1.1",
+                "shasum": "259bfd4b0d8d6d9156e5f1e38cdd0f9f8a24537f"
             },
             "require": {
-                "drupal/core": "~8.1 || ^9"
+                "drupal/core": "^9.5 || ^10"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1663789807",
+                    "version": "3.1.1",
+                    "datestamp": "1689321177",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -5730,12 +5800,24 @@
             ],
             "authors": [
                 {
-                    "name": "lakka",
-                    "homepage": "https://www.drupal.org/user/63367"
+                    "name": "Anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
+                {
+                    "name": "Grevil",
+                    "homepage": "https://www.drupal.org/user/3668491"
+                },
+                {
+                    "name": "joevagyok",
+                    "homepage": "https://www.drupal.org/user/2876343"
                 },
                 {
                     "name": "peterx",
                     "homepage": "https://www.drupal.org/user/23516"
+                },
+                {
+                    "name": "thomas.frobieter",
+                    "homepage": "https://www.drupal.org/user/409335"
                 },
                 {
                     "name": "vitalie",
@@ -12131,5 +12213,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
