@@ -129,7 +129,7 @@ class InteractiveMap extends StylePluginBase {
       $color = '#000000';
       $category = NULL;
       /** @var \Drupal\taxonomy\TermInterface $role */
-      $role = $institution->get('field_institution_roles')->entity;
+      $role = $this->getInstitutionDisplayedRole($institution);
       if (!empty($role)) {
         $category = $role->id();
         $color = $role->get('field_color')->color ?? '#000000';
@@ -198,6 +198,64 @@ class InteractiveMap extends StylePluginBase {
         ],
       ],
     ];
+  }
+
+  /**
+   * Retrieve an institution's displayed role.
+   *
+   * If there is a filter on the "institution type" facet,
+   * we will display one of the selected filters as the role.
+   * Otherwise, we will display the first role of the institution.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The institution.
+   *
+   * @return \Drupal\taxonomy\TermInterface
+   *   The main role.
+   */
+  protected function getInstitutionDisplayedRole(NodeInterface $node) {
+    $query = \Drupal::request()->query->get('f');
+
+    // If there is no query, return the first role.
+    if (empty($query)) {
+      return $this->getInstitutionDefaultRole($node);
+    }
+
+    // Check filtered roles.
+    $filtered_institution_roles = [];
+    foreach ($query as $filter) {
+      if (strpos($filter, 'institution_type:') === FALSE) {
+        continue;
+      }
+
+      $institution_type = str_replace('institution_type:', '', $filter);
+      $filtered_institution_roles[] = $institution_type;
+    }
+
+    // If there are no filtered roles, return the first institution role.
+    if (empty($filtered_institution_roles)) {
+      return $this->getInstitutionDefaultRole($node);
+    }
+
+    // Return the first institution role that matches one of the filters.
+    foreach ($node->get('field_institution_roles')->referencedEntities() as $role) {
+      if (in_array($role->id(), $filtered_institution_roles)) {
+        return $role;
+      }
+    }
+  }
+
+  /**
+   * Retrieve an institution's default role.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The institution.
+   *
+   * @return \Drupal\taxonomy\TermInterface
+   *   The default role.
+   */
+  protected function getInstitutionDefaultRole(NodeInterface $node) {
+    return $node->get('field_institution_roles')->entity;
   }
 
   /**
