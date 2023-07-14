@@ -14,7 +14,9 @@
     text-decoration: none;
 
     &:hover {
-      text-decoration: underline;
+      span {
+        text-decoration: underline;
+      }
     }
   }
 
