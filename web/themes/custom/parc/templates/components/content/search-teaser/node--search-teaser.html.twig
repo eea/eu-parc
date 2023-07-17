@@ -105,7 +105,15 @@
             {% endfor %}
           </div>
         {% endif %}
-        <div class="title">{{ label }}</div>
+        <div class="title">
+          {{ label }}
+          {% if node.bundle == 'deliverables' %}
+            <svg width="8" height="6" viewBox="10 -8 8 30" fill=" none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.849609 11.1204H10.8496H0.849609ZM9.31115 5.3113L5.84961 8.38671L9.31115 5.3113ZM5.84961 8.38671L2.38807 5.3113L5.84961 8.38671ZM5.84961 8.38671C5.84961 8.38671 5.84961 5.76692 5.84961 0.527344V8.38671Z" fill="black"></path>
+              <path d="M0.849609 11.1204H10.8496M9.31115 5.3113L5.84961 8.38671M5.84961 8.38671L2.38807 5.3113M5.84961 8.38671C5.84961 8.38671 5.84961 5.76692 5.84961 0.527344" stroke="#000" stroke-width="1"></path>
+            </svg>
+          {% endif %}
+        </div>
         {{ content|without(image_field) }}
       </div>
     </div>

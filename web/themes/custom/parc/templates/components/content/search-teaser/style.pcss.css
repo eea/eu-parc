@@ -14,13 +14,16 @@
     text-decoration: none;
 
     &:hover {
-      text-decoration: underline;
+      span {
+        text-decoration: underline;
+      }
     }
   }
 
   .node__content {
     display: flex;
     gap: 10px;
+    align-items: center;
   }
 
   .title {

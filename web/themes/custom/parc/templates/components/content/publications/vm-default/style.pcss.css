@@ -30,19 +30,26 @@
   .node--title {
     font-size: var(--npt--title-fs);
     line-height: 22px;
-    display: block;
+    display: inline;
     text-decoration: none;
     flex-grow: 1;
-    padding-right: 24px;
 
     svg {
-      position: absolute;
-      padding-top: 7px;
-      margin-left: 5px;
+      margin-left: 3px;
+      margin-top: -2px;
     }
 
-    &:hover {
+    &:hover span {
       text-decoration: underline;
+    }
+  }
+
+  .btn-copy-to-clipboard {
+    svg {
+      width: 10px;
+      position: static;
+      padding: 0;
+      margin-top: 0;
     }
   }
 
@@ -250,10 +257,6 @@
     color: var(--c-white);
     max-width: fit-content;
 
-    svg {
-      opacity: 0.5;
-    }
-
     span {
       opacity: 0;
       pointer-events: none;
@@ -312,6 +315,15 @@
     .col-sp-img {
       padding-right: 0;
     }
+
+    .read-more-copy-btn {
+      svg {
+        margin-top: 0 !important;
+        width: 0.7rem !important;
+        margin-left: -4px !important;
+      }
+    }
+
   }
 
   @media (--md) {
@@ -337,8 +349,22 @@
 
       svg {
         width: 18px;
-        margin-left: 8px;
-        padding-top: 15px;
+      }
+    }
+
+    .btn-copy-to-clipboard {
+      svg {
+        width: 18px;
+        margin-top: -7px;
+      }
+    }
+
+    .read-more-copy-btn {
+      svg {
+        width: 12px;
+        height: 12px;
+        margin-top: 0px;
+        margin-left: -2px;
       }
     }
 

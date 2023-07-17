@@ -7,6 +7,7 @@ module:
   admin_toolbar_tools: 0
   allowed_formats: 0
   automated_cron: 0
+  basic_auth: 0
   better_exposed_filters: 0
   big_pipe: 0
   block: 0
@@ -31,6 +32,7 @@ module:
   dblog: 0
   dynamic_page_cache: 0
   editor: 0
+  edw_healthcheck: 0
   entity_reference_revisions: 0
   facets: 0
   field: 0
