@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - editor
+    - filter_external_link_icon
     - spamspan
 _core:
   default_config_hash: RjoJPQLCAE8u1Ys_yCKubpkYlRz_Oy12a5qCVeNIHJ8
@@ -51,10 +52,17 @@ filters:
     weight: 0
     settings:
       spamspan_at: ' [at] '
-      spamspan_use_graphic: '1'
-      spamspan_dot_enable: '1'
+      spamspan_use_graphic: true
+      spamspan_dot_enable: true
       spamspan_dot: ' [dot] '
-      spamspan_use_form: '0'
+      spamspan_use_form: false
       spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
       spamspan_form_default_url: contact
       spamspan_form_default_displaytext: 'contact form'
+  filter_external_link_icon:
+    id: filter_external_link_icon
+    provider: filter_external_link_icon
+    status: true
+    weight: 0
+    settings:
+      icon: ↗
