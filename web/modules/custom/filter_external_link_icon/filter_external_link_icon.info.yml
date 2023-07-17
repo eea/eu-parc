@@ -1,0 +1,7 @@
+name: Filter External Link Icon
+type: module
+description: Filter External Link Icon module
+package: Input filters
+dependencies:
+  - drupal:filter
+core_version_requirement: ^8 || ^9 || ^10
