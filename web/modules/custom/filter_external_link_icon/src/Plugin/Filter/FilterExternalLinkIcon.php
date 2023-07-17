@@ -15,10 +15,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Filter(
  *   id = "filter_external_link_icon",
- *   title = @Translation("External Link Icon Filter"),
+ *   title = @Translation("Mark External Links"),
+ *   description = @Translation("Append a span to external links to mark them with an icon."),
  *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE,
  *   settings = {
- *     "icon" = {},
+ *     "icon" = "↗",
  *   },
  *   weight = 0
  * )
@@ -70,10 +71,18 @@ class FilterExternalLinkIcon extends FilterBase implements ContainerFactoryPlugi
     foreach ($anchors as $anchor) {
       $current_domain = parse_url($this->request->getSchemeAndHttpHost(), PHP_URL_HOST);
       $current_domain = preg_replace('/^www\./', '', $current_domain);
-      $href = parse_url($anchor->getAttribute('href'), PHP_URL_HOST);
 
-      if ($href && $href != $current_domain) {
-        $anchor->nodeValue = $anchor->nodeValue . ' ' . $this->settings['icon'];
+      $href = parse_url($anchor->getAttribute('href'), PHP_URL_HOST);
+      if (!$href) {
+        continue;
+      }
+
+      $href = preg_replace('/^www\./', '', $href);
+      if ($href != $current_domain) {
+        $span = $dom->createElement('span');
+        $span->setAttribute('class', 'external-link-mark');
+        $span->nodeValue = $this->settings['icon'];
+        $anchor->appendChild($span);
       }
     }
     return new FilterProcessResult(Html::serialize($dom));
@@ -87,7 +96,7 @@ class FilterExternalLinkIcon extends FilterBase implements ContainerFactoryPlugi
       '#type' => 'textfield',
       '#title' => $this->t('Icon'),
       '#default_value' => $this->settings['icon'],
-      '#description' => $this->t('Enter the icon to use for external links.'),
+      '#description' => $this->t('Enter the icon character to use for external links. Leave empty and edit the CSS for the external-link-mark span class to add an SVG icon.'),
     ];
     return $form;
   }

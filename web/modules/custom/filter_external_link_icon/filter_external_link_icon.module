@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Contains hooks and custom functions for Filter External Link Icon module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function filter_external_link_icon_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the filter_external_link_icon module.
+    case 'help.page.filter_external_link_icon':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module contains a text filter plugin to mark external links.') . '</p>';
+      $output .= '<p>' . t('The module can be configured on text formats and editors admin page. It appends a span at the end of anchor tags with external links.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
