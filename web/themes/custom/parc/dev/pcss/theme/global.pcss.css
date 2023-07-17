@@ -225,3 +225,7 @@ main {
     stroke-dasharray: 45;
   }
 }
+
+.external-link-mark {
+  font-size: 17px;
+}
