@@ -44,6 +44,7 @@
         "drupal/extlink": "^1.7",
         "drupal/facets": "^2.0",
         "drupal/field_group": "^3.4",
+        "drupal/filter_external_link_icon": "^1.0.1",
         "drupal/geocoder": "^3.32",
         "drupal/geofield": "^1.52",
         "drupal/geolocation": "^3.12",

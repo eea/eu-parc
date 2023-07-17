@@ -1,7 +1,0 @@
-name: Filter External Link Icon
-type: module
-description: 'Provides a text filter plugin to mark external links with an icon.'
-package: Input filters
-dependencies:
-  - drupal:filter
-core_version_requirement: ^8 || ^9 || ^10
