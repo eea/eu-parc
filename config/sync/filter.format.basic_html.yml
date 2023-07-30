@@ -52,10 +52,10 @@ filters:
     weight: 0
     settings:
       spamspan_at: ' [at] '
-      spamspan_use_graphic: true
-      spamspan_dot_enable: true
+      spamspan_use_graphic: '1'
+      spamspan_dot_enable: '1'
       spamspan_dot: ' [dot] '
-      spamspan_use_form: false
+      spamspan_use_form: ''
       spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
       spamspan_form_default_url: contact
       spamspan_form_default_displaytext: 'contact form'
