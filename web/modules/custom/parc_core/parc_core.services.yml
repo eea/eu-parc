@@ -13,3 +13,7 @@ services:
   parc_core.search_manager:
     class: Drupal\parc_core\ParcSearchManager
     arguments: [ '@entity_type.manager', '@request_stack', '@current_route_match' ]
+
+  parc_core.menu_link_tree:
+    class: Drupal\parc_core\ParcMenuLinkTree
+    arguments: [ '@menu.tree_storage', '@plugin.manager.menu.link', '@router.route_provider', '@menu.active_trail', '@controller_resolver', '@entity_type.manager' ]
