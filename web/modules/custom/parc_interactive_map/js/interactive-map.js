@@ -361,7 +361,7 @@
                   );
                   map.getView().fit(extent, {
                     duration: 1000,
-                    padding: [100, 100, 100, 100],
+                    padding: [300, 300, 300, 300],
                   });
                   document.getElementById("identifyParent").style.display =
                     "none";
