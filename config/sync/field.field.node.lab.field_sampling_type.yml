@@ -1,0 +1,29 @@
+uuid: 5303de28-f5d8-4ac7-9af7-7f2339809abb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sampling_type
+    - node.type.lab
+    - taxonomy.vocabulary.sampling_types
+id: node.lab.field_sampling_type
+field_name: field_sampling_type
+entity_type: node
+bundle: lab
+label: 'Sampling type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sampling_types: sampling_types
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

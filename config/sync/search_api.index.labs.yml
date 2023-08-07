@@ -1,0 +1,73 @@
+uuid: 775e3cda-dac0-4435-8bc7-598ea0d818c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - field.storage.node.field_lab_type
+    - field.storage.node.field_sampling_type
+    - field.storage.node.field_substance_type
+    - search_api.server.database
+  module:
+    - search_api
+    - node
+id: labs
+name: Labs
+description: ''
+read_only: false
+field_settings:
+  field_country:
+    label: Country
+    datasource_id: 'entity:node'
+    property_path: field_country
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_country
+  field_lab_type:
+    label: 'Lab type'
+    datasource_id: 'entity:node'
+    property_path: field_lab_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_lab_type
+  field_sampling_type:
+    label: 'Sampling type'
+    datasource_id: 'entity:node'
+    property_path: field_sampling_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_sampling_type
+  field_substance_type:
+    label: 'Substance type'
+    datasource_id: 'entity:node'
+    property_path: field_substance_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_substance_type
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - lab
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database

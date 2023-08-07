@@ -1,0 +1,29 @@
+uuid: 4e9e3a21-d615-4757-bd27-61b7af42efe9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_substance_type
+    - node.type.lab
+    - taxonomy.vocabulary.substance_types
+id: node.lab.field_substance_type
+field_name: field_substance_type
+entity_type: node
+bundle: lab
+label: 'Substance type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      substance_types: substance_types
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

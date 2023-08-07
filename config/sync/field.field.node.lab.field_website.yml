@@ -1,0 +1,23 @@
+uuid: 6817a970-dedd-41a4-bb18-95552f158210
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_website
+    - node.type.lab
+  module:
+    - link
+id: node.lab.field_website
+field_name: field_website
+entity_type: node
+bundle: lab
+label: Website
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

@@ -1,0 +1,8 @@
+uuid: 3544ae8b-2663-48c1-bc21-dcccde50730c
+langcode: en
+status: true
+dependencies: {  }
+name: '[Lab] Substance types'
+vid: substance_types
+description: ''
+weight: 0

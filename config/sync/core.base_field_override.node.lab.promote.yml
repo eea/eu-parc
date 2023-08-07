@@ -1,0 +1,22 @@
+uuid: 9cc6d282-81c1-412d-8b2e-588cd8fb8948
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.lab
+id: node.lab.promote
+field_name: promote
+entity_type: node
+bundle: lab
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

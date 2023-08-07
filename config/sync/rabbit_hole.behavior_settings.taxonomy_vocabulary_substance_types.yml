@@ -1,0 +1,14 @@
+uuid: 0d5fcc2d-bfc1-4e8f-bc47-da30e4250ca1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.substance_types
+id: taxonomy_vocabulary_substance_types
+entity_type_id: taxonomy_vocabulary
+entity_id: substance_types
+action: page_not_found
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied
