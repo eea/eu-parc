@@ -687,7 +687,9 @@
             let role_txt = "";
 
             if (roles.length > 0) {
-              role_txt = `<span class='identify-role-span'>${title}</span>`;
+              if (title && roles[0].show_type) {
+                role_txt = `<span class='identify-role-span'>${title}</span>`;
+              }
               role_txt += "<ul>";
               for (let i = 0; i < roles.length; i++) {
                 role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;

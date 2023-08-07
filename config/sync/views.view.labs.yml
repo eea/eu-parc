@@ -126,6 +126,7 @@ display:
         type: interactive_map
         options:
           uses_fields: false
+          category_field: field_lab_type
       row:
         type: fields
       query:

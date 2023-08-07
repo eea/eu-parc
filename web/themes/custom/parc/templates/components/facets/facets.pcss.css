@@ -127,3 +127,15 @@
     }
   }
 }
+
+.facet-tooltip {
+  color: #fff;
+  width: 12px;
+  height: 12px;
+  font-size: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 8px;
+}

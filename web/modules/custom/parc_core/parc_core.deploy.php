@@ -4,6 +4,8 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Vocabulary;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Create default event image.
@@ -103,6 +105,79 @@ function parc_core_deploy_9002() {
 
       $node->set($info['field'], $new_media);
       $node->save();
+    }
+  }
+}
+
+/**
+ * Create lab terms.
+ */
+function parc_core_deploy_9003() {
+  if (!Vocabulary::load('lab_types')) {
+    throw new Exception('Lab types vocabulary not yet created');
+  }
+
+  $terms = [
+    'PARC qualified' => [
+      'color' => '#008475',
+      'weight' => 0,
+      'description' => 'Lorem ipsum dolor sit amet',
+    ],
+    'PARC Non-qualified' => [
+      'color' => '#E45C4D',
+      'weight' => 1,
+      'description' => 'Lorem ipsum dolor sit amet',
+    ]
+  ];
+
+  foreach ($terms as $name => $data) {
+    $term = Term::create([
+      'name' => $name,
+      'description' => [
+        'format' => 'full_html',
+        'value' => $data['description'],
+      ],
+      'vid' => 'lab_types',
+      'field_color' => [
+        'color' => strtoupper($data['color']),
+        'opacity' => NULL,
+      ],
+      'weight' => $data['weight'],
+    ]);
+    $term->save();
+  }
+
+  $terms = [
+    'sampling_types' => [
+      'Urine',
+      'Blood',
+      'Serum',
+      'Plasma',
+      'Nails',
+      'Hair',
+      'Saliva',
+    ],
+    'substance_types' => [
+      'Aniline family',
+      'Bisphenols',
+      'Cadmium and chromium VI',
+      'Chemical mixtures',
+      'Emerging substances',
+      'Flame retardants',
+      'Polycyclic Aromatic',
+      'Hydrocarbons (PAHs)',
+      'Per-/poly-fluorinated',
+    ]
+  ];
+
+  foreach ($terms as $vid => $names) {
+    foreach ($names as $idx => $name) {
+      $term = Term::create([
+        'vid' => $vid,
+        'name' => $name,
+        'weight' => $idx,
+      ]);
+      $term->save();
     }
   }
 }

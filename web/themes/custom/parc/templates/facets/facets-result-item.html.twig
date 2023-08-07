@@ -19,7 +19,13 @@
 {% if is_active %}
   <span class="facet-item__status js-facet-deactivate">(-)</span>
 {% endif %}
-<span class="facet-item__value">{{ value }}</span>
+<span class="facet-item__value">
+  {{ value }}
+  {% if tooltip %}
+    {{ attach_library('edwt/tooltip') }}
+    <div {% if tooltip.background %}style="background-color: {{ tooltip.background }}"{% endif%} class="facet-tooltip" data-bs-html="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tooltip.text }}"><span>?</span></div>
+  {% endif %}
+</span>
 {% if show_count %}
   <span class="facet-item__count">{{ count }}</span>
 {% endif %}
