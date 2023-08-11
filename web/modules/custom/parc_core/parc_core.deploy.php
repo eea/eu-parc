@@ -4,6 +4,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Create default event image.
@@ -104,5 +105,39 @@ function parc_core_deploy_9002() {
       $node->set($info['field'], $new_media);
       $node->save();
     }
+  }
+}
+
+/**
+ * Set deliverable nodes type to deliverable type D.
+ */
+function parc_core_deploy_9003() {
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+    ->condition('type', 'deliverables')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  foreach ($nodes as $node) {
+    $node = Node::load($node);
+    if (!$node) {
+      continue;
+    }
+
+    $node->set('field_deliverable_type', 'D');
+    $node->save();
+  }
+}
+
+/**
+ * Remove 'D' from deliverable order.
+ */
+function parc_core_deploy_9004() {
+  $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('deliverables');
+  foreach ($terms as $term) {
+    $term = Term::load($term->tid);
+    $order = $term->get('field_order')->value;
+    $order = str_replace("D", "", $order);
+    $term->set('field_order', $order);
+    $term->save();
   }
 }

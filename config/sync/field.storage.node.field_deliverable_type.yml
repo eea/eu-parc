@@ -1,0 +1,27 @@
+uuid: 408a4adf-5a34-4529-aea5-c14428b4e112
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_deliverable_type
+field_name: field_deliverable_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: D
+      label: Deliverable
+    -
+      value: AD
+      label: 'Additional deliverable'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -10,7 +10,12 @@
     {{ form.category_collapsible }}
   </div>
 
-  <div class="col-12 col-md-8 me-auto order-2 mt-3 mt-md-0 parc-col--categories">
+  <div class="col col-md-3 order-1">
+    {{ form.field_deliverable_type_value_1_collapsible }}
+  </div>
+
+
+  <div class="col-12 col-md-5 me-auto order-2 mt-3 mt-md-0 parc-col--categories">
     <div id="js-selected-category" class="w--labels d-flex gap-2"></div>
   </div>
 
@@ -19,4 +24,6 @@
   </div>
 </div>
 
-{{ form|without('sort_bef_combine', 'category_collapsible') }}
+
+
+{{ form|without('sort_bef_combine', 'category_collapsible', 'field_deliverable_type_value_1_collapsible') }}

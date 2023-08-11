@@ -7,10 +7,11 @@ dependencies:
     - field.field.node.thematic_areas.field_categories
     - field.field.node.thematic_areas.field_seo_keyword
     - node.type.thematic_areas
+    - system.menu.main
   module:
     - layout_builder
     - layout_discovery
-    - parc_core
+    - system
     - text
     - user
   theme:
@@ -85,20 +86,36 @@ third_party_settings:
                 third_party_settings: {  }
             weight: 0
             additional: {  }
-          ea3fba18-ca77-4ae3-8e13-4921f8e0e25f:
-            uuid: ea3fba18-ca77-4ae3-8e13-4921f8e0e25f
+          ede4084c-2d67-4413-a3c7-849f6d9b9236:
+            uuid: ede4084c-2d67-4413-a3c7-849f6d9b9236
             region: menu
             configuration:
-              id: parc_thematic_areas_menu
-              label: 'Thematic Areas Menu'
+              id: 'system_menu_block:main'
+              label: 'Main navigation'
               label_display: '0'
-              provider: parc_core
+              provider: system
               context_mapping: {  }
-              level: '2'
-              depth: '0'
-              expand_all_items: 1
-            weight: 1
-            additional: {  }
+              level: 2
+              depth: 0
+              expand_all_items: true
+            weight: 0
+            additional:
+              component_attributes:
+                block_attributes:
+                  id: ''
+                  class: menu--sidebar--multilevel
+                  style: ''
+                  data: ''
+                block_title_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
+                block_content_attributes:
+                  id: ''
+                  class: ''
+                  style: ''
+                  data: ''
         third_party_settings: {  }
 id: node.thematic_areas.default
 targetEntityType: node
