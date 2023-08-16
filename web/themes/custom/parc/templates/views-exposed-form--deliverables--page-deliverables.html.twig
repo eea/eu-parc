@@ -5,25 +5,28 @@
  */
 #}
 
-<div class="row align-items-center flex-wrap flex-md-nowrap justify-content-md-start align-items-md-start">
-  <div class="col col-md-3 order-1">
-    {{ form.category_collapsible }}
-  </div>
+<div class="deliverables-filters">
+  <div class="d-flex filters-row">
+    <div class="filters flex-grow-1 d-flex">
+      <div>
+        {{ form.category_collapsible }}
+      </div>
 
-  <div class="col col-md-3 order-1">
-    {{ form.field_deliverable_type_value_1_collapsible }}
-  </div>
+      <div>
+        {{ form.deliverable_type_collapsible }}
+      </div>
+    </div>
 
-
-  <div class="col-12 col-md-5 me-auto order-2 mt-3 mt-md-0 parc-col--categories">
-    <div id="js-selected-category" class="w--labels d-flex gap-2"></div>
-  </div>
-
-  <div class="col-auto col-auto order-1 order-md-3 d-flex justify-content-end w--sort-by">
-    {{ form.sort_bef_combine }}
+    <div class="col-auto col-auto order-1 order-md-3 d-flex justify-content-end w--sort-by">
+      {{ form.sort_bef_combine }}
+    </div>
   </div>
 </div>
 
+<div class="row">
+  <div class="col-12 me-auto order-2 mt-3 mt-md-3 parc-col--categories">
+    <div id="js-selected-category" class="w--labels d-flex gap-2"></div>
+  </div>
+</div>
 
-
-{{ form|without('sort_bef_combine', 'category_collapsible', 'field_deliverable_type_value_1_collapsible') }}
+{{ form|without('sort_bef_combine', 'category_collapsible', 'deliverable_type_collapsible') }}

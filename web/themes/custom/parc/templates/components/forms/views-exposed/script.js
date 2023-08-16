@@ -6,7 +6,7 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.viewsExposedForm = {
     attach: function (context, settings) {
-      $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input").each(function () {
+      $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input, details[data-drupal-selector='edit-deliverable-type-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;
         var labelClass = label.toLowerCase().replace(" ", "-");
         var itemId = $(this).attr('id');

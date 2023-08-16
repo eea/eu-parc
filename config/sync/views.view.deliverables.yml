@@ -354,7 +354,7 @@ display:
             operator: field_deliverable_type_value_1_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_deliverable_type_value_1
+            identifier: deliverable_type
             required: false
             remember: false
             multiple: true
