@@ -156,6 +156,8 @@ tooltip:
   css:
     component:
       css/components/tooltip.css: {}
+  js:
+    js/tooltip.js: {}
 
 # Node.
 n--vm-teaser:

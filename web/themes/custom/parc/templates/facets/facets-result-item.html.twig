@@ -16,14 +16,24 @@
  * @ingroup themeable
  */
 #}
+{% set tooltip_background = '#000000' %}
+{% if tooltip and tooltip.background %}
+  {% set tooltip_background = tooltip.background %}
+{% endif %}
+
 {% if is_active %}
   <span class="facet-item__status js-facet-deactivate">(-)</span>
 {% endif %}
 <span class="facet-item__value">
-  {{ value }}
+  <span class="value">{{ value }}</span>
   {% if tooltip %}
     {{ attach_library('edwt/tooltip') }}
-    <div {% if tooltip.background %}style="background-color: {{ tooltip.background }}"{% endif%} class="facet-tooltip" data-bs-html="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tooltip.text }}"><span>?</span></div>
+    <div class="facet-tooltip" data-bs-html="true" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tooltip.text }}">
+      <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.99963 11.9993C9.31313 11.9993 11.9993 9.31313 11.9993 5.99963C11.9993 2.68613 9.31313 0 5.99963 0C2.68613 0 0 2.68613 0 5.99963C0 9.31313 2.68613 11.9993 5.99963 11.9993Z" fill="{{ tooltip_background }}"/>
+        <path d="M6.016 7.48798V7.28798C6.016 6.87998 6.304 6.62398 6.728 6.31998C7.192 5.984 7.736 5.576 7.736 4.736C7.736 3.72 7.032 3 5.896 3C4.816 3 4 3.792 4 4.856H4.776C4.776 4.2 5.248 3.704 5.88 3.704C6.536 3.704 6.944 4.16 6.944 4.776C6.944 5.304 6.584 5.6 6.192 5.904C5.76 6.24 5.32 6.60798 5.32 7.28798V7.48798H6.016ZM5.704 8.99998C6.008 8.99998 6.272 8.73598 6.272 8.43198C6.272 8.12798 6.008 7.86398 5.704 7.86398C5.384 7.86398 5.128 8.11998 5.128 8.43198C5.128 8.74398 5.384 8.99998 5.704 8.99998Z" fill="white"/>
+      </svg>
+    </div>
   {% endif %}
 </span>
 {% if show_count %}
