@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.deliverables.body
     - field.field.node.deliverables.field_categories
     - field.field.node.deliverables.field_d_date
+    - field.field.node.deliverables.field_deliverable_type
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
     - node.type.deliverables
@@ -37,6 +38,12 @@ content:
   field_d_date:
     type: datetime_default
     weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_deliverable_type:
+    type: options_select
+    weight: 26
     region: content
     settings: {  }
     third_party_settings: {  }

@@ -229,3 +229,7 @@ main {
 .external-link-mark {
   font-size: 17px;
 }
+
+body {
+  overflow-x: hidden;
+}

@@ -6,11 +6,13 @@ dependencies:
     - field.field.node.deliverables.body
     - field.field.node.deliverables.field_categories
     - field.field.node.deliverables.field_d_date
+    - field.field.node.deliverables.field_deliverable_type
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
     - node.type.deliverables
   module:
     - datetime
+    - options
     - text
     - user
 id: node.deliverables.default
@@ -41,6 +43,13 @@ content:
       format_type: medium
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_deliverable_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
     region: content
   field_media:
     type: entity_reference_entity_view

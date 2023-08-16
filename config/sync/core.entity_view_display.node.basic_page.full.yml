@@ -197,7 +197,11 @@ third_party_settings:
             background_grey: 0
             container: container
             margin_bottom_5: margin_bottom_5
+            remove_top_padding: remove_top_padding
+            container_fluid: 0
             no_paddings: 0
+            remove_horizontal_paddings: 0
+            remove_vertical_paddings: 0
         components:
           1dba7603-5762-4e67-8437-aa7693095df0:
             uuid: 1dba7603-5762-4e67-8437-aa7693095df0

@@ -1,0 +1,23 @@
+uuid: 87edf1a1-9e5d-4d24-851d-0752fcbadf2d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_deliverable_type
+    - node.type.deliverables
+  module:
+    - options
+id: node.deliverables.field_deliverable_type
+field_name: field_deliverable_type
+entity_type: node
+bundle: deliverables
+label: 'Deliverable type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: D
+default_value_callback: ''
+settings: {  }
+field_type: list_string

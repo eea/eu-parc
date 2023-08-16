@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.deliverables.body
     - field.field.node.deliverables.field_categories
     - field.field.node.deliverables.field_d_date
+    - field.field.node.deliverables.field_deliverable_type
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
     - node.type.deliverables
@@ -49,5 +50,6 @@ hidden:
   addtoany: true
   body: true
   field_categories: true
+  field_deliverable_type: true
   links: true
   search_api_excerpt: true

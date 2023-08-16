@@ -28,7 +28,7 @@
 
   <div class="node--head d-flex justify-content-between align-items-center mb-2 mb-md-3">
     <div class="node--order">
-      {{- fullOrder|replace({' ': ''}) -}}
+        {{ node.field_deliverable_type.value | default('D') }}{{- fullOrder|replace({' ': ''}) -}}
     </div>
 
     {{ content.field_d_date }}

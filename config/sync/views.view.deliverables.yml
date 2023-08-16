@@ -8,15 +8,11 @@ dependencies:
     - node.type.deliverables
     - system.menu.main
     - taxonomy.vocabulary.deliverables
-  content:
-    - 'taxonomy_term:publications_topics:9431262e-e164-4d5e-8a32-0963de1df655'
-    - 'taxonomy_term:publications_topics:a38b15be-f004-4d74-950d-0d36f5e43fc0'
-    - 'taxonomy_term:thematic_areas:8a25d320-c51e-462a-a69c-7aed785ea072'
-    - 'taxonomy_term:thematic_areas:e1c8db6c-bd3c-4fd6-870f-98a0cb4043cc'
   module:
     - better_exposed_filters
     - datetime
     - node
+    - options
     - taxonomy
     - user
 id: deliverables
@@ -150,6 +146,20 @@ display:
                 options_show_only_used: 1
                 options_show_only_used_filtered: 0
                 options_hide_when_empty: 0
+              field_deliverable_type_value_1:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: "Deliverable|All deliverables\r\nAdditional deliverable|All additional deliverables"
+                  collapsible: true
+                  is_secondary: true
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: false
+                options_show_only_used: false
+                options_show_only_used_filtered: false
+                options_hide_when_empty: false
       access:
         type: perm
         options:
@@ -237,11 +247,7 @@ display:
           admin_label: ''
           plugin_id: taxonomy_index_tid
           operator: 'not empty'
-          value:
-            97: 97
-            98: 98
-            139: 139
-            148: 148
+          value: {  }
           group: 1
           exposed: false
           expose:
@@ -291,7 +297,7 @@ display:
           exposed: true
           expose:
             operator_id: field_categories_target_id_1_op
-            label: 'All deliverables'
+            label: 'Work package'
             description: ''
             use_operator: false
             operator: field_categories_target_id_1_op
@@ -304,8 +310,11 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              news_events_editor: '0'
+              scientific_publications_editor: '0'
               content_editor: '0'
               administrator: '0'
+              edw_healthcheck_role: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -325,6 +334,52 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        field_deliverable_type_value_1:
+          id: field_deliverable_type_value_1
+          table: node__field_deliverable_type
+          field: field_deliverable_type_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: list_field
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_deliverable_type_value_1_op
+            label: 'All documents'
+            description: ''
+            use_operator: false
+            operator: field_deliverable_type_value_1_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: deliverable_type
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              news_events_editor: '0'
+              scientific_publications_editor: '0'
+              content_editor: '0'
+              administrator: '0'
+              edw_healthcheck_role: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
       style:
         type: default
         options:

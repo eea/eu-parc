@@ -110,9 +110,43 @@ function parc_core_deploy_9002() {
 }
 
 /**
- * Create lab terms.
+ * Set deliverable nodes type to deliverable type D.
  */
 function parc_core_deploy_9003() {
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->getQuery()
+    ->condition('type', 'deliverables')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  foreach ($nodes as $node) {
+    $node = Node::load($node);
+    if (!$node) {
+      continue;
+    }
+
+    $node->set('field_deliverable_type', 'D');
+    $node->save();
+  }
+}
+
+/**
+ * Remove 'D' from deliverable order.
+ */
+function parc_core_deploy_9004() {
+  $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('deliverables');
+  foreach ($terms as $term) {
+    $term = Term::load($term->tid);
+    $order = $term->get('field_order')->value;
+    $order = str_replace("D", "", $order);
+    $term->set('field_order', $order);
+    $term->save();
+  }
+}
+
+/**
+ * Create lab terms.
+ */
+function parc_core_deploy_9005() {
   if (!Vocabulary::load('lab_types')) {
     throw new Exception('Lab types vocabulary not yet created');
   }
