@@ -16,7 +16,7 @@
   attributes.hasClass('mb-0') ? 'mb-0' : 'mb-parc',
 ] %}
 
-{% if content %}
+{% if content|render|raw|striptags|trim %}
   <div{{attributes.addClass(classes).setAttribute('id',id)}}>
     <div class="row">
       {% if content.first or content.menu %}
