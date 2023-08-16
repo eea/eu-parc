@@ -1,4 +1,4 @@
-uuid: 5160db99-6ee2-4bd3-8340-6844f71e9591
+uuid: de69685d-44bc-439e-b995-2be64da4ac51
 langcode: en
 status: true
 dependencies:
@@ -9,8 +9,8 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: Lab
-type: lab
+name: Laboratory
+type: laboratory
 description: ''
 help: ''
 new_revision: true

@@ -150,10 +150,10 @@ class InteractiveMap extends StylePluginBase {
       $full_render = $this->nodeViewBuilder->view($node);
       $full_render = $this->renderer->render($full_render);
 
-      $country_iso2 = NULL;
+      $country_label = NULL;
       $country = $node->get('field_country')->entity;
       if ($country instanceof TermInterface) {
-        $country_iso2 = $country->get('field_iso2')->value;
+        $country_label = $country->label();
       }
 
       $color = '#000000';
@@ -191,9 +191,10 @@ class InteractiveMap extends StylePluginBase {
         'render_teaser' => $teaser_render,
         'render_full' => $full_render,
         'category' => $category_id,
-        'country' => $country_iso2,
+        'country' => $country_label,
         'color' => $color,
         'roles' => $roles,
+        'content_type' => $node->bundle(),
       ];
     }
 

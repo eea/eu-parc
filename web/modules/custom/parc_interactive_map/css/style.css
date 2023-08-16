@@ -231,6 +231,10 @@
   margin-bottom: 10px;
 }
 
+.interactive-map .popover .country {
+  margin-top: -10px;
+}
+
 .interactive-map .popover li {
   font-weight: bold;
   font-size: 12px;
@@ -370,7 +374,7 @@
     bottom: 0;
     z-index: 123;
     background: #fcfafa;
-    padding-top: 10px;
+    padding-top: 10px !important;
     width: 100vw;
     max-height: calc(100vh - 96px);
     overflow: auto;

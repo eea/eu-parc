@@ -1,26 +1,26 @@
-uuid: 5303de28-f5d8-4ac7-9af7-7f2339809abb
+uuid: 0dd664d7-52bf-4b1a-981b-81d18a8cdd0c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_sampling_type
-    - node.type.lab
-    - taxonomy.vocabulary.sampling_types
-id: node.lab.field_sampling_type
-field_name: field_sampling_type
+    - field.storage.node.field_country
+    - node.type.laboratory
+    - taxonomy.vocabulary.countries
+id: node.laboratory.field_country
+field_name: field_country
 entity_type: node
-bundle: lab
-label: 'Sampling type'
+bundle: laboratory
+label: Country
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      sampling_types: sampling_types
+      countries: countries
     sort:
       field: name
       direction: asc

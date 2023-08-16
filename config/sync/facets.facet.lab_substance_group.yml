@@ -1,4 +1,4 @@
-uuid: 76328d4a-a541-4ae0-93bc-c899d9365d60
+uuid: 00414dbc-473a-4905-8df4-8ac31482d39d
 langcode: en
 status: true
 dependencies:
@@ -7,15 +7,15 @@ dependencies:
     - views.view.labs
   module:
     - search_api
-id: lab_substance_type
-name: 'Substance type'
+id: lab_substance_group
+name: 'Substance group'
 weight: 0
 min_count: 0
 missing: false
 missing_label: others
-url_alias: lab_substance_type
+url_alias: substance_group
 facet_source_id: 'search_api:views_block__labs__labs_map'
-field_identifier: field_substance_type
+field_identifier: field_substance_group
 query_operator: or
 hard_limit: 0
 exclude: false

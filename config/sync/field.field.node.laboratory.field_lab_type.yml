@@ -1,15 +1,15 @@
-uuid: 3034f4d4-1ac5-452d-9770-4ddb4ee462d7
+uuid: 66133ac3-f62b-4c19-9fee-aec76a2a3530
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_lab_type
-    - node.type.lab
+    - node.type.laboratory
     - taxonomy.vocabulary.lab_types
-id: node.lab.field_lab_type
+id: node.laboratory.field_lab_type
 field_name: field_lab_type
 entity_type: node
-bundle: lab
+bundle: laboratory
 label: 'Lab type'
 description: ''
 required: false

@@ -1,4 +1,5 @@
-.node--institution--teaser {
+.node--institution--teaser,
+.node--laboratory--teaser {
   border: 1px solid #CCCCCC;
   padding: 10px;
   border-radius: 5px;

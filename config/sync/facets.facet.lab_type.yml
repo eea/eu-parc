@@ -8,7 +8,7 @@ dependencies:
   module:
     - search_api
 id: lab_type
-name: Labs
+name: 'Type of laboratory'
 weight: 0
 min_count: 0
 missing: false

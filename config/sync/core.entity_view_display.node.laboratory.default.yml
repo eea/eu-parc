@@ -1,35 +1,27 @@
-uuid: 0dd5221b-c44b-4587-bf17-6efaaf843c90
+uuid: d608d4c0-9593-404d-8588-20c25b6af22f
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.lab.body
-    - field.field.node.lab.field_address_data
-    - field.field.node.lab.field_city
-    - field.field.node.lab.field_coordinates
-    - field.field.node.lab.field_country
-    - field.field.node.lab.field_lab_type
-    - field.field.node.lab.field_sampling_type
-    - field.field.node.lab.field_substance_type
-    - field.field.node.lab.field_website
-    - node.type.lab
+    - field.field.node.laboratory.field_address_data
+    - field.field.node.laboratory.field_city
+    - field.field.node.laboratory.field_coordinates
+    - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_lab_type
+    - field.field.node.laboratory.field_sampling_type
+    - field.field.node.laboratory.field_substance_group
+    - field.field.node.laboratory.field_website
+    - node.type.laboratory
   module:
     - geolocation
     - link
     - text
     - user
-id: node.lab.default
+id: node.laboratory.default
 targetEntityType: node
-bundle: lab
+bundle: laboratory
 mode: default
 content:
-  body:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 101
-    region: content
   field_address_data:
     type: text_default
     label: above
@@ -76,13 +68,13 @@ content:
     third_party_settings: {  }
     weight: 109
     region: content
-  field_substance_type:
+  field_substance_group:
     type: entity_reference_label
     label: above
     settings:
       link: true
     third_party_settings: {  }
-    weight: 110
+    weight: 111
     region: content
   field_website:
     type: link

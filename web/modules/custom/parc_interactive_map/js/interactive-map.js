@@ -58,7 +58,8 @@
             // add custom features
             features[i].setProperties({
               id: institutions[i].id,
-              countryId: institutions[i].country,
+              countryName: institutions[i].country,
+              contentType: institutions[i].content_type,
               categoryId: institutions[i].category,
               name: institutions[i].title,
               roles: institutions[i].roles,
@@ -668,15 +669,25 @@
             };
 
             let roles = isPath ? feature.roles : feature.get("roles");
+            let country = isPath ? feature.countryName : feature.get("countryName");
+            let contentType = isPath ? feature.contentType : feature.get("contentType");
 
-            let role_main_txt = getRolesMarkup(
-              roles.main_secondary,
-              "Main roles"
-            );
-            let role_additional_txt = getRolesMarkup(
-              roles.additional,
-              "Additional roles"
-            );
+            let role_main_txt = '';
+            let role_additional_txt = '';
+
+            if (contentType === 'institution') {
+              role_main_txt = getRolesMarkup(
+                roles.main_secondary,
+                "Main roles"
+              );
+              role_additional_txt = getRolesMarkup(
+                roles.additional,
+                "Additional roles"
+              );
+            }
+            else if (contentType === 'laboratory') {
+              role_main_txt = '<div class="country">' + country + '</div>';
+            }
 
             markup.role = role_main_txt + role_additional_txt;
 

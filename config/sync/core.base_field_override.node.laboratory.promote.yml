@@ -1,13 +1,13 @@
-uuid: 9cc6d282-81c1-412d-8b2e-588cd8fb8948
+uuid: 8b95aecb-8d95-4b26-83d9-8fe5d0f4705d
 langcode: en
 status: true
 dependencies:
   config:
-    - node.type.lab
-id: node.lab.promote
+    - node.type.laboratory
+id: node.laboratory.promote
 field_name: promote
 entity_type: node
-bundle: lab
+bundle: laboratory
 label: 'Promoted to front page'
 description: ''
 required: false

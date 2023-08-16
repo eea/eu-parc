@@ -1,0 +1,8 @@
+uuid: 7e81a086-c4f4-4839-9944-7403ade60ae1
+langcode: en
+status: true
+dependencies: {  }
+name: '[Lab] Substance groups'
+vid: substance_groups
+description: ''
+weight: 0

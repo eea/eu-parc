@@ -6,7 +6,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.institutionTeaser = {
     attach: function (context, settings) {
-      $(document).once('expandInstitutionTeaser').on('click', '.node--institution .expand-link', function (e) {
+      $(document).once('expandInstitutionTeaser').on('click', '.node .expand-link', function (e) {
         e.preventDefault();
         $(this).toggleClass('expanded');
         if ($(this).hasClass('expanded')) {
@@ -15,7 +15,7 @@
         else {
           $(this).find('.expand-link-text').text(Drupal.t('Details'));
         }
-        $(this).closest('.node--institution').find('.to-expand').toggleClass('hidden');
+        $(this).closest('.node').find('.to-expand').toggleClass('hidden');
       })
     }
   };

@@ -1,10 +1,10 @@
-uuid: a09b46fc-3e09-4a9e-8192-f48f8ed16dad
+uuid: 74c3051f-c7e6-4196-a381-44660b916332
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_address_data
-    - node.type.lab
+    - node.type.laboratory
   module:
     - allowed_formats
     - text
@@ -12,10 +12,10 @@ third_party_settings:
   allowed_formats:
     allowed_formats:
       - full_html
-id: node.lab.field_address_data
+id: node.laboratory.field_address_data
 field_name: field_address_data
 entity_type: node
-bundle: lab
+bundle: laboratory
 label: Address
 description: ''
 required: false

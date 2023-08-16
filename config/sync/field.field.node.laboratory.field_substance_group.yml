@@ -1,26 +1,26 @@
-uuid: 7be09644-d138-4569-a9dc-e2206a837a25
+uuid: 69e78e81-7166-4f7e-861d-1e179f6cea9d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_country
-    - node.type.lab
-    - taxonomy.vocabulary.countries
-id: node.lab.field_country
-field_name: field_country
+    - field.storage.node.field_substance_group
+    - node.type.laboratory
+    - taxonomy.vocabulary.substance_groups
+id: node.laboratory.field_substance_group
+field_name: field_substance_group
 entity_type: node
-bundle: lab
-label: Country
+bundle: laboratory
+label: 'Substance group'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      countries: countries
+      substance_groups: substance_groups
     sort:
       field: name
       direction: asc

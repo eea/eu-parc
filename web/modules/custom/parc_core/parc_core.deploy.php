@@ -152,15 +152,15 @@ function parc_core_deploy_9005() {
   }
 
   $terms = [
-    'PARC qualified' => [
+    'PARC member' => [
       'color' => '#008475',
       'weight' => 0,
-      'description' => 'Lorem ipsum dolor sit amet',
+      'description' => 'PARC qualified laboratories for the biomarkers indicated',
     ],
-    'PARC Non-qualified' => [
+    'External laboratory' => [
       'color' => '#E45C4D',
       'weight' => 1,
-      'description' => 'Lorem ipsum dolor sit amet',
+      'description' => 'External laboratories for the biomarkers indicated',
     ]
   ];
 
@@ -184,24 +184,44 @@ function parc_core_deploy_9005() {
   $terms = [
     'sampling_types' => [
       'Urine',
-      'Blood',
+      'Whole Blood',
       'Serum',
       'Plasma',
-      'Nails',
+      'Cord blood',
+      'Dried blood spot samples',
+      'Breast milk',
       'Hair',
+      'Nails',
+      'Placenta',
+      'Meconium',
       'Saliva',
+      'Semen',
+      'Faeces',
+      'Adipose tissue',
+      'Volumetric absorptive microsamples',
     ],
-    'substance_types' => [
-      'Aniline family',
+    'substance_groups' => [
+      'Acrylamide',
+      'Aprotic solvents',
+      'Aromatic amines',
       'Bisphenols',
-      'Cadmium and chromium VI',
-      'Chemical mixtures',
-      'Emerging substances',
+      'Cotinine',
+      'Diisocyanates',
+      'DINH',
+      'Dioxins',
       'Flame retardants',
-      'Polycyclic Aromatic',
-      'Hydrocarbons (PAHs)',
-      'Per-/poly-fluorinated',
-    ]
+      'Furans',
+      'Metals and trace elements',
+      'Musks',
+      'Mycotoxins',
+      'Parabens',
+      'Pesticides',
+      'Per- and polyfluoroalkyl substances (PFAS)',
+      'Phthalates',
+      'Polychlorinated biphenyls (PCBs)',
+      'Polycyclic aromatic hydrocarbons (PAHs)',
+      'UV filters-benzophenones',
+    ],
   ];
 
   foreach ($terms as $vid => $names) {

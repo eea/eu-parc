@@ -1,16 +1,16 @@
-uuid: 837dc02e-e09c-410e-ba73-06130a659961
+uuid: 41a578cb-b784-40ab-b0cf-c4943d1b659f
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_coordinates
-    - node.type.lab
+    - node.type.laboratory
   module:
     - geolocation
-id: node.lab.field_coordinates
+id: node.laboratory.field_coordinates
 field_name: field_coordinates
 entity_type: node
-bundle: lab
+bundle: laboratory
 label: Coordinates
 description: ''
 required: false

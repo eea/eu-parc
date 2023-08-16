@@ -1,12 +1,12 @@
-uuid: 1e1435dc-8983-4927-855d-5eafd9de6ee3
+uuid: f113bb10-d4a9-4854-841a-6804019eb842
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - taxonomy
-id: node.field_substance_type
-field_name: field_substance_type
+id: node.field_substance_group
+field_name: field_substance_group
 entity_type: node
 type: entity_reference
 settings:

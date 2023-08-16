@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_country
     - field.storage.node.field_lab_type
     - field.storage.node.field_sampling_type
-    - field.storage.node.field_substance_type
+    - field.storage.node.field_substance_group
     - search_api.server.database
   module:
     - search_api
@@ -40,20 +40,20 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_sampling_type
-  field_substance_type:
-    label: 'Substance type'
+  field_substance_group:
+    label: 'Substance group'
     datasource_id: 'entity:node'
-    property_path: field_substance_type
+    property_path: field_substance_group
     type: integer
     dependencies:
       config:
-        - field.storage.node.field_substance_type
+        - field.storage.node.field_substance_group
 datasource_settings:
   'entity:node':
     bundles:
       default: false
       selected:
-        - lab
+        - laboratory
     languages:
       default: true
       selected: {  }

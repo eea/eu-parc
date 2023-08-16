@@ -148,6 +148,24 @@ function parc_preprocess_node(&$variables) {
       }
     }
   }
+
+  if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'laboratory') {
+    $lab_type = $node->get('field_lab_type')->entity;
+    $color = '#000000';
+    if (!empty($lab_type)) {
+      /** @var \Drupal\taxonomy\TermInterface $term */
+      $color = $lab_type->get('field_color')->color ?? '#000000';
+      $variables['roles'][] = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="role" style="color: {{ color }};">{{ label }}</div>',
+        '#context' => [
+          'label' => $lab_type->label(),
+          'color' => $color,
+        ],
+      ];
+    }
+    $variables['color'] = $color;
+  }
 }
 
 /**

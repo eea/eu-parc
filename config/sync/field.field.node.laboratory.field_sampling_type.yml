@@ -1,16 +1,16 @@
-uuid: 4e9e3a21-d615-4757-bd27-61b7af42efe9
+uuid: de5bd62d-aba1-48d2-abea-39fdcaaa83bd
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_substance_type
-    - node.type.lab
-    - taxonomy.vocabulary.substance_types
-id: node.lab.field_substance_type
-field_name: field_substance_type
+    - field.storage.node.field_sampling_type
+    - node.type.laboratory
+    - taxonomy.vocabulary.sampling_types
+id: node.laboratory.field_sampling_type
+field_name: field_sampling_type
 entity_type: node
-bundle: lab
-label: 'Substance type'
+bundle: laboratory
+label: 'Sampling type'
 description: ''
 required: false
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      substance_types: substance_types
+      sampling_types: sampling_types
     sort:
       field: name
       direction: asc
