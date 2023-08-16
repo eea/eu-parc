@@ -151,7 +151,7 @@ display:
                 advanced:
                   sort_options: false
                   rewrite:
-                    filter_rewrite_values: ''
+                    filter_rewrite_values: "Deliverable|All deliverables\r\nAdditional deliverable|All additional deliverables"
                   collapsible: true
                   is_secondary: true
                 select_all_none: false
