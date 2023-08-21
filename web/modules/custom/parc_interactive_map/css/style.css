@@ -68,8 +68,7 @@
   border: 1px solid #ccc;
 }
 
-#identifyParent .node--institution,
-#identifyParent .node--laboratory {
+#identifyParent .node {
   max-height: 700px;
   overflow: auto;
   border: none !important;
@@ -116,14 +115,14 @@
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar,
+.interactive-map #identifyParent .node::-webkit-scrollbar,
 .map-page .layout > div:first-child::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-track,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track,
+.interactive-map #identifyParent .node::-webkit-scrollbar-track,
 .map-page .layout > div:first-child::-webkit-scrollbar-track {
   -webkit-border-radius: 20px;
   border-radius: 20px;
@@ -131,21 +130,21 @@
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-thumb,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb,
+.interactive-map #identifyParent .node::-webkit-scrollbar-thumb,
 .map-page .layout > div:first-child::-webkit-scrollbar-thumb {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #505459;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:hover,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover,
+.interactive-map #identifyParent .node::-webkit-scrollbar-thumb:hover,
 .map-page .layout > div:first-child::-webkit-scrollbar-thumb:hover {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #6d7177;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:window-inactive,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive,
+.interactive-map #identifyParent .node::-webkit-scrollbar-thumb:window-inactive,
 .map-page .layout > div:first-child::-webkit-scrollbar-thumb:window-inactive {
   background: #505459;
 }
@@ -366,7 +365,7 @@
     left: -10px;
   }
 
-  .interactive-map .node--institution--teaser:last-child {
+  .interactive-map .node:last-child {
     margin-bottom: 15px;
   }
 
