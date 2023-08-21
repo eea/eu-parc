@@ -1,0 +1,96 @@
+.matrix-table {
+  display: grid;
+  grid-template-columns: auto auto;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  margin-bottom: 50px;
+
+  .table-cell {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow-wrap: anywhere;
+
+    &:not(.last) {
+      border-bottom: 1px solid #CCC;
+    }
+  }
+
+  .substance-qualified {
+    display: flex;
+    height: 100%;
+  }
+
+  .qualified-in-parc-tooltip {
+    color: #008475;
+    position: absolute;
+    bottom: -40px;
+    left: 40px;
+  }
+
+  .qualified-in-parc-arrow {
+    position: absolute;
+    bottom: -24px;
+    left: 15px;
+  }
+
+  .matrix-item {
+    justify-content: center;
+    display: flex;
+  }
+
+  .table-cell-header {
+    background-color: #F5F5F5;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 20px 10px;
+  }
+
+  .table-cell-header:nth-child(1) {
+    border-radius: 5px 0 0 0;
+  }
+
+  .table-cell-header:nth-child(2) {
+    border-radius: 0 5px 0 0;
+    padding-left: 45px;
+  }
+
+  .matrix-item {
+    border-right: 1px solid #CCC;
+  }
+
+  .qualified {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    margin-right: 20px;
+
+    width: 13px;
+    max-width: 13px;
+    min-width: 13px;
+
+    &:after {
+      content: '';
+      height: calc(100% + 20px);
+      width: 1px;
+      background: #CCC;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+    }
+  }
+
+  .not-qualified-svg {
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+
+  .substance {
+    display: inline-block;
+  }
+}

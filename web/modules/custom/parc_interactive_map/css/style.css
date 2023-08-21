@@ -68,7 +68,8 @@
   border: 1px solid #ccc;
 }
 
-#identifyParent .node--institution {
+#identifyParent .node--institution,
+#identifyParent .node--laboratory {
   max-height: 700px;
   overflow: auto;
   border: none !important;
@@ -313,6 +314,10 @@
     max-height: calc(100vh - 210px);
   }
 
+  .interactive-map.laboratory {
+    max-height: calc(100vh - 230px);
+  }
+
   .map-page .px-0 > :first-child {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
@@ -349,7 +354,7 @@
     gap: 20px;
   }
 
-  .interactive-map .node--institution--teaser {
+  .interactive-map .node {
     min-width: 85vw;
     max-width: 85vw;
   }

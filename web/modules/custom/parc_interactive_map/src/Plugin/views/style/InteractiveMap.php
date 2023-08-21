@@ -136,6 +136,7 @@ class InteractiveMap extends StylePluginBase {
     $institutions = [];
 
     $map_id = uniqid();
+    $node_bundle = 'institution';
 
     foreach ($this->view->result as $item) {
       $node = $item->_entity;
@@ -144,6 +145,7 @@ class InteractiveMap extends StylePluginBase {
         continue;
       }
 
+      $node_bundle = $node->bundle();
       $teaser_render = $this->nodeViewBuilder->view($node, 'teaser');
       $teaser_render = $this->renderer->render($teaser_render);
 
@@ -225,6 +227,7 @@ class InteractiveMap extends StylePluginBase {
     return [
       '#theme' => 'parc_interactive_map',
       '#map_id' => $map_id,
+      '#map_type' => $node_bundle,
       '#attached' => [
         'library' => [
           'parc_interactive_map/interactive_map',

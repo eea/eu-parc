@@ -422,3 +422,8 @@ carousel_scroll:
     - core/drupal
     - core/jquery
     - core/once
+
+lab_matrix:
+  css:
+    component:
+      css/components/parc/lab-matrix.css: { }

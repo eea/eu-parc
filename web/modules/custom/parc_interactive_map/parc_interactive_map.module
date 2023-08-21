@@ -10,6 +10,7 @@ function parc_interactive_map_theme() {
     'parc_interactive_map' => [
       'variables' => [
         'map_id' => FALSE,
+        'map_type' => 'institution',
       ],
     ],
     'facets_result_item_with_children' => [

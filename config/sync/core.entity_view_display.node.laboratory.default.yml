@@ -10,11 +10,13 @@ dependencies:
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_sampling_type
     - field.field.node.laboratory.field_substance_group
+    - field.field.node.laboratory.field_substances_matrix
     - field.field.node.laboratory.field_website
     - node.type.laboratory
   module:
     - geolocation
     - link
+    - parc_core
     - text
     - user
 id: node.laboratory.default
@@ -75,6 +77,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 111
+    region: content
+  field_substances_matrix:
+    type: parc_lab_matrix
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 113
     region: content
   field_website:
     type: link

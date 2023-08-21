@@ -1,0 +1,42 @@
+uuid: 10363ec3-cfcc-40a2-9f61-4321b66ce186
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.lab_matrix.field_qualified
+    - field.field.paragraph.lab_matrix.field_sampling_type
+    - field.field.paragraph.lab_matrix.field_substance_group
+    - paragraphs.paragraphs_type.lab_matrix
+id: paragraph.lab_matrix.default
+targetEntityType: paragraph
+bundle: lab_matrix
+mode: default
+content:
+  field_qualified:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_sampling_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_substance_group:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

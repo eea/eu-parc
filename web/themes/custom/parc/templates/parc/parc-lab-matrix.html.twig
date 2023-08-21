@@ -1,0 +1,40 @@
+{{ attach_library('parc/lab_matrix') }}
+
+<div class="matrix-table">
+  <div class="table-cell table-cell-header">{{ "Matrix" | t }}</div>
+  <div class="table-cell table-cell-header">{{ "Substance group" | t }}</div>
+  {% for sample_type, substance_group in substances %}
+    <div class="table-cell matrix-item {% if loop.last %}last{% endif %}">{{ sample_type }}</div>
+    <div class="table-cell {% if loop.last %}last{% endif %}">
+      {% for substance, qualified in substance_group %}
+        <div class="substance-qualified">
+          <div class="qualified">
+            {% if qualified %}
+              <svg width="13" height="9" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.14844 4.45886L4.63023 7.94066L11.7747 0.796387" stroke="#008475" stroke-width="0.960253"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            {% else %}
+              <svg class="not-qualified-svg" width="9" height="9" viewBox="0 0 9 9" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.14844 1.21533L8.19019 8.25708" stroke="#F58296" stroke-width="0.960253"
+                      stroke-linecap="round"/>
+                <path d="M8.19092 1.43481L1.14917 8.47656" stroke="#F58296" stroke-width="0.960253"
+                      stroke-linecap="round"/>
+              </svg>
+            {% endif %}
+          </div>
+          <div class="substance">{{ substance }}</div>
+        </div>
+      {% endfor %}
+      {% if loop.last %}
+        <div class="qualified-in-parc-arrow">
+          <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.851562 0.480469V18.54C0.851562 20.1969 2.19471 21.54 3.85156 21.54H19.0969" stroke="#CCCCCC"/>
+          </svg>
+        </div>
+        <div class="qualified-in-parc-tooltip">{{ "Qualified in PARC" | t }}</div>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
