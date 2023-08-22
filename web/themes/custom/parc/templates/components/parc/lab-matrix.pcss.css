@@ -28,8 +28,10 @@
   .qualified-in-parc-tooltip {
     color: #008475;
     position: absolute;
-    bottom: -40px;
+    bottom: -13px;
     left: 40px;
+    font-size: 12px;
+    height: 0;
   }
 
   .qualified-in-parc-arrow {
