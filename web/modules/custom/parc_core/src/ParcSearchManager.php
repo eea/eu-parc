@@ -12,9 +12,7 @@ use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 
 /**
- * Defines a class for reacting to preprocess Views.
- *
- * @internal
+ * Useful functions for the search page.
  */
 class ParcSearchManager {
 
@@ -82,7 +80,7 @@ class ParcSearchManager {
 
         return Url::fromUserInput($file->createFileUrl());
       case 'institution':
-        return Url::fromUserInput('/institutions-interactive-map');
+        return Url::fromUserInput('/partners');
       case 'publications':
         return Url::fromUserInput('/scientific-publications', [
           'fragment' => 'article-' . $node->id(),
@@ -140,7 +138,7 @@ class ParcSearchManager {
         return $this->t('Publications')->__toString();
 
       default:
-        return $this->t('Pages')->__toString();
+        return $this->t('Other content')->__toString();
     }
   }
 
