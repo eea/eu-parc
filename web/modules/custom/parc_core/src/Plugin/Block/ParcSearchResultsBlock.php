@@ -110,21 +110,16 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
       ];
     }
 
-    $content_types = $this->entityTypeManager->getStorage('node_type')->loadMultiple();
-    $bundles = [];
-    foreach ($content_types as $content_type) {
-      $bundle = $content_type->id();
-      if ($bundle == 'page') {
-        continue;
-      }
 
-      if ($bundle == 'basic_page') {
-        $bundles[] = 'basic_page';
-        continue;
-      }
-
-      $bundles[] = $bundle;
-    }
+    $bundles = [
+      'article',
+      'events',
+      'thematic_areas',
+      'publications',
+      'institution',
+      'basic_page',
+//      'deliverables',
+    ];
 
     $views = [];
     foreach ($bundles as $bundle) {
