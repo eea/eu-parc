@@ -56,6 +56,7 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--c-gray-500);
+    margin-bottom: 30px;
   }
 
   .subview-title {
