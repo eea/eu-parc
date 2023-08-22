@@ -216,9 +216,24 @@
           if (features.length > 0) {
             extent = source.getExtent();
           }
+
           let geom = ol.geom.Polygon.fromExtent(extent);
           geom.scale(1.2);
-          map.getView().fit(geom, map.getSize());
+
+          if (features.length > 0 && features.length == 1) {
+            map.getView().fit(geom, {
+              size: map.getSize(),
+              duration: 1000,
+              padding: [300, 300, 300, 300],
+              maxZoom:6,
+            });
+          } else {
+            map.getView().fit(geom, {
+              size: map.getSize(),
+              duration: 1000,
+              padding: [300, 300, 300, 300],
+            });
+          }
 
           const popup = new ol.Overlay({
             element: document.getElementById("popup"),
