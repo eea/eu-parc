@@ -132,7 +132,7 @@ class ParcSearchManager {
         return $this->t('Deliverables')->__toString();
 
       case 'institution':
-        return $this->t('Institutions')->__toString();
+        return $this->t('Partners')->__toString();
 
       case 'publications':
         return $this->t('Publications')->__toString();
