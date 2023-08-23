@@ -68,3 +68,13 @@
     padding-top: 0;
   }
 }
+
+.region-nav-additional {
+  display: flex !important;
+
+  @media (--lg) {
+    .block-social {
+      height: 35px;
+    }
+  }
+}
