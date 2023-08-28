@@ -16,11 +16,12 @@
   }
 
   .roles {
-    font-size: 10px;
     font-weight: bold;
     text-transform: uppercase;
     line-height: 15px;
     margin-bottom: 15px;
+    font-size: 12px;
+    letter-spacing: 1.2px;
   }
 
   .title {
