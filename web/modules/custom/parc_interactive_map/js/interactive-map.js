@@ -221,18 +221,18 @@
           let geom = ol.geom.Polygon.fromExtent(extent);
           geom.scale(1.2);
 
-          if (features.length > 0 && features.length == 1) {
+          if (features.length == 1) {
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [300, 300, 300, 300],
-              maxZoom:6,
+              padding: [350, 350, 350, 350],
+              maxZoom: 2,
             });
           } else {
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [300, 300, 300, 300],
+              padding: [350, 350, 350, 350],
             });
           }
 
@@ -377,7 +377,7 @@
                   );
                   map.getView().fit(extent, {
                     duration: 1000,
-                    padding: [300, 300, 300, 300],
+                    padding: [350, 350, 350, 350],
                   });
                   document.getElementById("identifyParent").style.display =
                     "none";

@@ -160,7 +160,7 @@ function parc_core_deploy_9005() {
     'External laboratory' => [
       'color' => '#E45C4D',
       'weight' => 1,
-      'description' => 'External laboratories for the biomarkers indicated',
+      'description' => '',
     ]
   ];
 

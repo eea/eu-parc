@@ -446,3 +446,18 @@
   line-height: 16px;
   letter-spacing: 0.08em;
 }
+
+button.ol-zoom-out {
+  color: #fff !important;
+  position: relative;
+}
+
+button.ol-zoom-out:after {
+  content: '-';
+  position: absolute;
+  color: #000;
+  font-size: 32px;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -26,7 +26,10 @@ function parc_core_theme() {
       'variables' => ['entries' => []],
     ],
     'parc_lab_matrix' => [
-      'variables' => ['substances' => []],
+      'variables' => [
+        'substances' => [],
+        'show_qualified_in_parc' => FALSE,
+      ],
     ],
   ];
 }

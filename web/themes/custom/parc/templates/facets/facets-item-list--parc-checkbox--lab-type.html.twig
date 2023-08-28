@@ -53,10 +53,7 @@
 
   {% if items or empty %}
   {%- if title is not empty -%}
-    <div class="facets-section-title">{{ "Filter" | t }}</div>
-    <a class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse{{ facet.id }}" role="button" aria-expanded="true" aria-controls="collapse{{ facet.id }}">
-      <h3 class="facets-title">{{ title }}</h3>
-    </a>
+    {{ title }}
   {%- endif -%}
 
   <div {% if facet.id %}class="collapse show" id="collapse{{ facet.id }}"{% endif %}>
