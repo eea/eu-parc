@@ -448,11 +448,13 @@ button.ol-zoom-out {
 }
 
 button.ol-zoom-out:after {
-  content: '-';
-  position: absolute;
-  color: #000;
   font-size: 32px;
-  top: 46%;
+  content: '';
+  position: absolute;
+  top: 51%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 10px;
+  height: 2px;
+  background: #000;
 }
