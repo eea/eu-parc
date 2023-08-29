@@ -332,7 +332,9 @@ function parc_core_deploy_9007() {
 
     /** @var \Drupal\Core\File\FileSystemInterface $file_system */
     $file_system = \Drupal::service('file_system');
-    $destination = 'public://2029-08/default-laboratory-image.png';
+    $destination = 'public://2023-08/default-laboratory-image.png';
+    $directory = 'public://2023-08';
+    $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
     $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
 
     $file = File::create([
