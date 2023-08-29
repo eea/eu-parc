@@ -1,0 +1,33 @@
+uuid: 284370a8-2333-4556-936e-91c07a44c7a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_image
+    - media.type.image
+    - node.type.laboratory
+  content:
+    - 'media:image:69f46146-cf01-42d6-b34f-29638e19b8bf'
+id: node.laboratory.field_media_image
+field_name: field_media_image
+entity_type: node
+bundle: laboratory
+label: Image
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    target_uuid: 69f46146-cf01-42d6-b34f-29638e19b8bf
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

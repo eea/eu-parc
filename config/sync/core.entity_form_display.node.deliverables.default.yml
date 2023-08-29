@@ -14,6 +14,7 @@ dependencies:
     - datetime
     - media_library
     - path
+    - select2
 id: node.deliverables.default
 targetEntityType: node
 bundle: deliverables
@@ -26,14 +27,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_categories:
-    type: entity_reference_autocomplete
+    type: select2_entity_reference
     weight: 1
     region: content
     settings:
+      width: 100%
+      autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_d_date:
     type: datetime_default

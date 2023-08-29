@@ -144,9 +144,74 @@ function parc_core_deploy_9004() {
 }
 
 /**
- * Create lab terms.
+ * Set field_alternate_color for deliverables taxonomy.
  */
 function parc_core_deploy_9005() {
+  $colors = [
+    '1' => [
+      'color' => '#00564C',
+      'alternate_color' => '#028475',
+    ],
+    '2' => [
+      'color' => '#F98555',
+      'alternate_color' => '#F49C77',
+    ],
+    '3' => [
+      'color' => '#480363',
+      'alternate_color' => '#870FB6',
+    ],
+    '4' => [
+      'color' => '#B43D18',
+      'alternate_color' => '#D97150',
+    ],
+    '5' => [
+      'color' => '#1E2094',
+      'alternate_color' => '#5658E7',
+    ],
+    '6' => [
+      'color' => '#1B90B1',
+      'alternate_color' => '#6CBFD7',
+    ],
+    '7' => [
+      'color' => '#890223',
+      'alternate_color' => '#C04B67',
+    ],
+    '8' => [
+      'color' => '#D21A46',
+      'alternate_color' => '#F57896',
+    ],
+    '9' => [
+      'color' => '#605601',
+      'alternate_color' => '#9B8D0C',
+    ],
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($colors as $work_package => $settings) {
+    $term = $term_storage->loadByProperties([
+      'vid' => 'deliverables',
+      'name' => "Work Package $work_package",
+    ]);
+    if (empty($term)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($term);
+    $term->set('field_color', [
+      'color' => $settings['color'],
+    ]);
+    $term->set('field_alternate_color', [
+      'color' => $settings['alternate_color'],
+    ]);
+    $term->save();
+  }
+}
+
+/**
+ * Create lab terms.
+ */
+function parc_core_deploy_9006() {
   if (!Vocabulary::load('lab_types')) {
     throw new Exception('Lab types vocabulary not yet created');
   }
@@ -155,7 +220,7 @@ function parc_core_deploy_9005() {
     'PARC member' => [
       'color' => '#008475',
       'weight' => 0,
-      'description' => 'PARC qualified laboratories for the biomarkers indicated',
+      'description' => '',
     ],
     'External laboratory' => [
       'color' => '#E45C4D',
@@ -164,7 +229,16 @@ function parc_core_deploy_9005() {
     ]
   ];
 
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
   foreach ($terms as $name => $data) {
+    $existing_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $name,
+    ]);
+    if (!empty($existing_term)) {
+      continue;
+    }
+
     $term = Term::create([
       'name' => $name,
       'description' => [
@@ -226,6 +300,14 @@ function parc_core_deploy_9005() {
 
   foreach ($terms as $vid => $names) {
     foreach ($names as $idx => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'name' => $name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
       $term = Term::create([
         'vid' => $vid,
         'name' => $name,
@@ -233,5 +315,53 @@ function parc_core_deploy_9005() {
       ]);
       $term->save();
     }
+  }
+}
+
+/**
+ * Add default image to laboratories.
+ */
+function parc_core_deploy_9007() {
+  $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+    'uuid' => '69f46146-cf01-42d6-b34f-29638e19b8bf',
+  ]);
+  $media = reset($media);
+  if (empty($media)) {
+    $image_path = \Drupal::service('extension.list.module')
+        ->getPath('parc_core') . '/assets/default-laboratory-image.png';
+
+    /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+    $file_system = \Drupal::service('file_system');
+    $destination = 'public://2029-08/default-laboratory-image.png';
+    $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
+
+    $file = File::create([
+      'uid' => 1,
+      'filename' => 'default-laboratory-image.png',
+      'uri' => $destination,
+      'status' => 1,
+    ]);
+    $file->save();
+
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => 'Placeholder laboratory image',
+      'uuid' => '69f46146-cf01-42d6-b34f-29638e19b8bf',
+      'field_media_image' => $file,
+    ]);
+    $media->save();
+  }
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $results = $node_storage->getQuery()
+    ->condition('type', 'laboratory')
+    ->notExists('field_media_image')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  foreach ($results as $result) {
+    $node = $node_storage->load($result);
+    $node->set('field_media_image', $media);
+    $node->save();
   }
 }

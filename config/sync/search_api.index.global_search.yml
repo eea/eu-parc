@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_address_data
     - field.storage.node.body
+    - field.storage.node.field_address_data
     - field.storage.node.field_city
     - field.storage.node.field_country
     - search_api.server.database
@@ -142,6 +142,7 @@ datasource_settings:
         - deliverables
         - events
         - institution
+        - laboratory
         - page
         - publications
         - thematic_areas

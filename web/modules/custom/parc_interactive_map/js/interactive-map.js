@@ -1,6 +1,21 @@
 (function ($, Drupal, drupalSettings) {
   Drupal.behaviors.interactiveMap = {
     attach: function (context, settings) {
+      var positionOlZoom = function () {
+        var map_left = $('.interactive-map').offset().left;
+        var window_width = $(window).width();
+        var left = window_width - map_left - 50;
+        $('.ol-zoom').css('left', left);
+      }
+
+      $(window).on('resize', function(){
+        positionOlZoom();
+      });
+
+      $(document).ready(function () {
+        positionOlZoom();
+      });
+
       $(".interactive-map .accordion-collapse")
         .once("mapInstitutionDetailsOpen")
         .on("show.bs.collapse", function () {

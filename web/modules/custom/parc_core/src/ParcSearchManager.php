@@ -80,7 +80,9 @@ class ParcSearchManager {
 
         return Url::fromUserInput($file->createFileUrl());
       case 'institution':
-        return Url::fromUserInput('/partners');
+        return Url::fromUserInput('/partners?focus=' . $node->id());
+      case 'laboratory':
+        return Url::fromUserInput('/laboratories?focus=' . $node->id());
       case 'publications':
         return Url::fromUserInput('/scientific-publications', [
           'fragment' => 'article-' . $node->id(),
@@ -133,6 +135,9 @@ class ParcSearchManager {
 
       case 'institution':
         return $this->t('Partners')->__toString();
+
+      case 'laboratory':
+        return $this->t('Laboratories')->__toString();
 
       case 'publications':
         return $this->t('Publications')->__toString();
