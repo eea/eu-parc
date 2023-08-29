@@ -146,7 +146,7 @@ function parc_core_deploy_9004() {
 /**
  * Create lab terms.
  */
-function parc_core_deploy_9005() {
+function parc_core_deploy_9006() {
   if (!Vocabulary::load('lab_types')) {
     throw new Exception('Lab types vocabulary not yet created');
   }
@@ -155,7 +155,7 @@ function parc_core_deploy_9005() {
     'PARC member' => [
       'color' => '#008475',
       'weight' => 0,
-      'description' => 'PARC qualified laboratories for the biomarkers indicated',
+      'description' => '',
     ],
     'External laboratory' => [
       'color' => '#E45C4D',
@@ -164,7 +164,16 @@ function parc_core_deploy_9005() {
     ]
   ];
 
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
   foreach ($terms as $name => $data) {
+    $existing_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $name,
+    ]);
+    if (!empty($existing_term)) {
+      continue;
+    }
+
     $term = Term::create([
       'name' => $name,
       'description' => [
@@ -226,6 +235,14 @@ function parc_core_deploy_9005() {
 
   foreach ($terms as $vid => $names) {
     foreach ($names as $idx => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'name' => $name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
       $term = Term::create([
         'vid' => $vid,
         'name' => $name,
