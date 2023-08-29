@@ -1,9 +1,9 @@
-uuid: 6c8a4ae0-a735-4944-b823-08be4da0cf41
+uuid: 16ad18b9-51f9-47b8-b2be-7fbd41588702
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.search_teaser
     - field.field.node.laboratory.field_address_data
     - field.field.node.laboratory.field_city
     - field.field.node.laboratory.field_coordinates
@@ -16,25 +16,40 @@ dependencies:
     - field.field.node.laboratory.field_website
     - node.type.laboratory
   module:
-    - geolocation
     - layout_builder
-    - link
-    - parc_core
-    - text
+    - smart_trim
     - user
 third_party_settings:
   layout_builder:
     enabled: false
     allow_custom: false
-id: node.laboratory.teaser
+id: node.laboratory.search_teaser
 targetEntityType: node
 bundle: laboratory
-mode: teaser
+mode: search_teaser
 content:
   field_address_data:
-    type: text_default
+    type: smart_trim
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 0
+      trim_type: chars
+      trim_suffix: ''
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+        token_browser: ''
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
     third_party_settings: {  }
     weight: 3
     region: content
@@ -46,13 +61,6 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-  field_coordinates:
-    type: geolocation_latlng
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 4
-    region: content
   field_country:
     type: entity_reference_label
     label: hidden
@@ -61,49 +69,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_lab_type:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 6
-    region: content
-  field_sampling_type:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_substance_group:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 8
-    region: content
-  field_substances_matrix:
-    type: parc_lab_matrix
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 9
-    region: content
-  field_website:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 5
-    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -111,5 +76,11 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_coordinates: true
+  field_lab_type: true
   field_media_image: true
+  field_sampling_type: true
+  field_substance_group: true
+  field_substances_matrix: true
+  field_website: true
   search_api_excerpt: true

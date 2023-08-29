@@ -317,3 +317,51 @@ function parc_core_deploy_9006() {
     }
   }
 }
+
+/**
+ * Add default image to laboratories.
+ */
+function parc_core_deploy_9007() {
+  $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+    'uuid' => '69f46146-cf01-42d6-b34f-29638e19b8bf',
+  ]);
+  $media = reset($media);
+  if (empty($media)) {
+    $image_path = \Drupal::service('extension.list.module')
+        ->getPath('parc_core') . '/assets/default-laboratory-image.png';
+
+    /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+    $file_system = \Drupal::service('file_system');
+    $destination = 'public://2029-08/default-laboratory-image.png';
+    $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
+
+    $file = File::create([
+      'uid' => 1,
+      'filename' => 'default-laboratory-image.png',
+      'uri' => $destination,
+      'status' => 1,
+    ]);
+    $file->save();
+
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => 'Placeholder laboratory image',
+      'uuid' => '69f46146-cf01-42d6-b34f-29638e19b8bf',
+      'field_media_image' => $file,
+    ]);
+    $media->save();
+  }
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $results = $node_storage->getQuery()
+    ->condition('type', 'laboratory')
+    ->notExists('field_media_image')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  foreach ($results as $result) {
+    $node = $node_storage->load($result);
+    $node->set('field_media_image', $media);
+    $node->save();
+  }
+}

@@ -117,6 +117,7 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
       'thematic_areas',
       'publications',
       'institution',
+      'laboratory',
       'basic_page',
 //      'deliverables',
     ];
