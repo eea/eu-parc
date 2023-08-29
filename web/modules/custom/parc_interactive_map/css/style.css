@@ -17,11 +17,6 @@
   background-color: transparent;
 }
 
-.ol-zoom {
-  right: 0.5em;
-  left: auto;
-}
-
 .ol-zoom .ol-zoom-in {
   border-radius: 50%;
 }
@@ -426,7 +421,7 @@
   }
 
   .map-page .node--page {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .results {
