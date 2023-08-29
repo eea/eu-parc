@@ -80,7 +80,7 @@ class ParcSearchManager {
 
         return Url::fromUserInput($file->createFileUrl());
       case 'institution':
-        return Url::fromUserInput('/partners');
+        return Url::fromUserInput('/partners?focus=' . $node->id());
       case 'publications':
         return Url::fromUserInput('/scientific-publications', [
           'fragment' => 'article-' . $node->id(),
