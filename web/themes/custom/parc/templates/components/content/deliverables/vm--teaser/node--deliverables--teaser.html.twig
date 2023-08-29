@@ -8,6 +8,9 @@
 {{ attach_library('parc/n--deliverables--teaser') }}
 
 {% set color = node.field_categories.entity.field_color.value.0.color %}
+{% if node.field_deliverable_type.value == 'AD' %}
+  {% set color = node.field_categories.entity.field_alternate_color.value.0.color %}
+{% endif %}
 {% set order = node.field_categories.entity.field_order.0.value %}
 {% set fullOrder %}
 {{- order }}.{{ content.field_order.0 -}}

@@ -1,0 +1,22 @@
+uuid: eacbff9d-cefe-45ec-a457-27c024e91785
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_alternate_color
+    - taxonomy.vocabulary.deliverables
+  module:
+    - color_field
+id: taxonomy_term.deliverables.field_alternate_color
+field_name: field_alternate_color
+entity_type: taxonomy_term
+bundle: deliverables
+label: 'Alternate color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type
