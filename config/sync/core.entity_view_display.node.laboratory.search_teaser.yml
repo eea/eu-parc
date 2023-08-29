@@ -14,9 +14,11 @@ dependencies:
     - field.field.node.laboratory.field_substance_group
     - field.field.node.laboratory.field_substances_matrix
     - field.field.node.laboratory.field_website
+    - image.style.thumbnail
     - node.type.laboratory
   module:
     - layout_builder
+    - media
     - smart_trim
     - user
 third_party_settings:
@@ -51,7 +53,7 @@ content:
         trim_zero: false
         replace_tokens: false
     third_party_settings: {  }
-    weight: 3
+    weight: 1
     region: content
   field_city:
     type: string
@@ -67,7 +69,18 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 3
+    region: content
+  field_media_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 4
     region: content
   links:
     settings: {  }
@@ -78,7 +91,6 @@ hidden:
   addtoany: true
   field_coordinates: true
   field_lab_type: true
-  field_media_image: true
   field_sampling_type: true
   field_substance_group: true
   field_substances_matrix: true
