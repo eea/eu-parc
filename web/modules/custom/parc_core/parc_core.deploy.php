@@ -144,6 +144,71 @@ function parc_core_deploy_9004() {
 }
 
 /**
+ * Set field_alternate_color for deliverables taxonomy.
+ */
+function parc_core_deploy_9005() {
+  $colors = [
+    '1' => [
+      'color' => '#00564C',
+      'alternate_color' => '#028475',
+    ],
+    '2' => [
+      'color' => '#F98555',
+      'alternate_color' => '#F49C77',
+    ],
+    '3' => [
+      'color' => '#480363',
+      'alternate_color' => '#870FB6',
+    ],
+    '4' => [
+      'color' => '#B43D18',
+      'alternate_color' => '#D97150',
+    ],
+    '5' => [
+      'color' => '#1E2094',
+      'alternate_color' => '#5658E7',
+    ],
+    '6' => [
+      'color' => '#1B90B1',
+      'alternate_color' => '#6CBFD7',
+    ],
+    '7' => [
+      'color' => '#890223',
+      'alternate_color' => '#C04B67',
+    ],
+    '8' => [
+      'color' => '#D21A46',
+      'alternate_color' => '#F57896',
+    ],
+    '9' => [
+      'color' => '#605601',
+      'alternate_color' => '#9B8D0C',
+    ],
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($colors as $work_package => $settings) {
+    $term = $term_storage->loadByProperties([
+      'vid' => 'deliverables',
+      'name' => "Work Package $work_package",
+    ]);
+    if (empty($term)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($term);
+    $term->set('field_color', [
+      'color' => $settings['color'],
+    ]);
+    $term->set('field_alternate_color', [
+      'color' => $settings['alternate_color'],
+    ]);
+    $term->save();
+  }
+}
+
+/**
  * Create lab terms.
  */
 function parc_core_deploy_9006() {

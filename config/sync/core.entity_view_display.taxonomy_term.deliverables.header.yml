@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.taxonomy_term.header
+    - field.field.taxonomy_term.deliverables.field_alternate_color
     - field.field.taxonomy_term.deliverables.field_color
     - field.field.taxonomy_term.deliverables.field_order
     - field.field.taxonomy_term.deliverables.field_title_svg
@@ -37,6 +38,7 @@ content:
     weight: 0
     region: content
 hidden:
+  field_alternate_color: true
   field_color: true
   field_order: true
   search_api_excerpt: true
