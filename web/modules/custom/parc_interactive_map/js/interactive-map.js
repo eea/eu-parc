@@ -47,6 +47,16 @@
           var map_id = $(this).data("map-id");
           var institutions = settings.parc_interactive_map[map_id].institutions;
 
+          const searchParams = new URLSearchParams(window.location.search);
+          let zoomOnFeatureId = -1;
+          let zoomOnFeature = null;
+
+          if (searchParams.has('focus')) {
+              zoomOnFeatureId = searchParams.get('focus');
+          } else {
+              zoomOnFeatureId = -1;
+          }
+
           const features = new Array(institutions.length);
           for (let i = 0; i < institutions.length; i++) {
             const coordinates = ol.proj.fromLonLat([
@@ -65,6 +75,10 @@
               render_teaser: institutions[i].render_teaser,
               render_full: institutions[i].render_full,
             });
+
+            if (zoomOnFeatureId === institutions[i].id) {
+              zoomOnFeature = features[i];
+            }
           }
 
           const source = new ol.source.Vector({
@@ -247,6 +261,19 @@
           });
 
           let selectedFeature;
+
+          if (zoomOnFeature) {
+            let ext = zoomOnFeature.getGeometry().getExtent();
+            map.getView().fit(ext, {
+                size: map.getSize(),
+                maxZoom:16,
+            });
+            selectFeature(zoomOnFeature, true);
+            searchParams.delete('focus');
+            zoomOnFeatureId = -1;
+            zoomOnFeature = null;
+          }
+
           map.on("pointermove", (e) => {
             if (isAnyClusterHovered) {
               lastHoverFeature.setProperties({ highlight: 0 });
@@ -381,7 +408,7 @@
                   document.getElementById("identifyParent").style.display =
                     "none";
                 } else {
-                  selectFeature(features[0]);
+                  selectFeature(features[0], false);
                 }
               } else {
                 clearSelection();
@@ -618,7 +645,7 @@
               .querySelector("#showResultsButton")
               .setAttribute("data-result-count", output.length);
           }
-          function selectFeature(featureToSelect) {
+          function selectFeature(featureToSelect, focus) {
             highlightSource.clear();
             selectedFeature = featureToSelect;
             highlightSource.addFeature(selectedFeature);
@@ -627,7 +654,9 @@
             document.querySelector(
               "#selectedFeatureParent"
             ).innerHTML = `${featureToSelect.get("render_teaser")}`;
-            $(".interactive-map .accordion-collapse").collapse("hide");
+            if (!focus) {
+              $(".interactive-map .accordion-collapse").collapse("hide");
+            }
 
             setTimeout(() => {
               highlightSource.changed();
