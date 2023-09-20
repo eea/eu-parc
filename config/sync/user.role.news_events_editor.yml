@@ -26,6 +26,7 @@ dependencies:
     - system
     - taxonomy
     - toolbar
+    - view_unpublished
 id: news_events_editor
 label: 'News/events editor'
 weight: -8
@@ -43,6 +44,7 @@ permissions:
   - 'create terms in seo_keywords'
   - 'create terms in tags'
   - 'create vector media'
+  - 'delete any article content'
   - 'delete any events content'
   - 'delete media'
   - 'delete own article content'
@@ -55,6 +57,8 @@ permissions:
   - 'delete own thematic_areas media'
   - 'delete own vector media'
   - 'delete own video media'
+  - 'edit any article content'
+  - 'edit any events content'
   - 'edit own article content'
   - 'edit own audio media'
   - 'edit own card_footer_overlay media'
@@ -67,9 +71,16 @@ permissions:
   - 'edit own thematic_areas media'
   - 'edit own vector media'
   - 'edit own video media'
+  - 'publish any node type events'
+  - 'publish editable content'
   - 'publish editable node type events'
+  - 'unpublish any node type events'
+  - 'unpublish editable content'
   - 'unpublish editable node type events'
+  - 'unpublish own node type events'
   - 'update media'
+  - 'view any unpublished article content'
+  - 'view any unpublished events content'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view the administration theme'

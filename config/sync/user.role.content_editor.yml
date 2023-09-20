@@ -43,6 +43,7 @@ dependencies:
     - taxonomy
     - toolbar
     - tour
+    - view_unpublished
 _core:
   default_config_hash: Wur9kcEOwY1Jal81NssKnz3RhVJxAvBwyWQBGcA_1Go
 id: content_editor
@@ -198,6 +199,7 @@ permissions:
   - 'update any media'
   - 'update media'
   - 'view all revisions'
+  - 'view any unpublished content'
   - 'view article revisions'
   - 'view basic_page revisions'
   - 'view deliverables revisions'

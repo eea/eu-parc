@@ -25,11 +25,13 @@ dependencies:
     - system
     - taxonomy
     - toolbar
+    - view_unpublished
 id: scientific_publications_editor
 label: 'Scientific publications editor'
 weight: -7
 is_admin: null
 permissions:
+  - 'access content'
   - 'access content overview'
   - 'access media overview'
   - 'access toolbar'
@@ -41,6 +43,7 @@ permissions:
   - 'create terms in publications_topics'
   - 'create terms in seo_keywords'
   - 'create terms in tags'
+  - 'delete any publications content'
   - 'delete media'
   - 'delete own audio media'
   - 'delete own card_footer_overlay media'
@@ -52,6 +55,11 @@ permissions:
   - 'delete own thematic_areas media'
   - 'delete own vector media'
   - 'delete own video media'
+  - 'delete publications revisions'
+  - 'delete terms in publications'
+  - 'delete terms in publications_topics'
+  - 'delete terms in seo_keywords'
+  - 'edit any publications content'
   - 'edit own audio media'
   - 'edit own card_footer_overlay media'
   - 'edit own comments'
@@ -63,9 +71,20 @@ permissions:
   - 'edit own thematic_areas media'
   - 'edit own vector media'
   - 'edit own video media'
+  - 'edit terms in publications'
+  - 'edit terms in publications_topics'
+  - 'edit terms in seo_keywords'
+  - 'publish any node type publications'
+  - 'publish editable content'
   - 'publish editable node type publications'
+  - 'publish own node type publications'
+  - 'revert publications revisions'
+  - 'unpublish any node type publications'
+  - 'unpublish editable content'
   - 'unpublish editable node type publications'
+  - 'unpublish own node type publications'
   - 'update media'
+  - 'view any unpublished publications content'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view the administration theme'
