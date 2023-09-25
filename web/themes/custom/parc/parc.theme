@@ -15,6 +15,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\views\ViewExecutable;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\media\MediaInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -220,9 +221,24 @@ function parc_preprocess_facets_item_list(&$variables) {
   if (!$facet instanceof FacetInterface) {
     return;
   }
+
+  $items = $variables['items'];
+  // Remove 'focus' query parameter from facets.
+  foreach ($items as $item) {
+    /** @var \Drupal\Core\Url $url */
+    $url = $item['value']['#url'] ?? NULL;
+
+    if (!$url instanceof Url) {
+      continue;
+    }
+
+    $query = $url->getOption('query');
+    unset($query['focus']);
+    $url->setOption('query', $query);
+  }
+
   if ($facet->id() == 'category') {
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-    $items = $variables['items'];
     foreach ($items as $item) {
       $tid = $item['value']['#title']['#raw_value'];
       $term = $term_storage->load($tid);
