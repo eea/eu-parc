@@ -224,7 +224,7 @@ function parc_preprocess_facets_item_list(&$variables) {
 
   $items = $variables['items'];
   // Remove 'focus' query parameter from facets.
-  foreach ($items as $item) {
+  foreach ($items as $idx => $item) {
     /** @var \Drupal\Core\Url $url */
     $url = $item['value']['#url'] ?? NULL;
 
@@ -235,6 +235,7 @@ function parc_preprocess_facets_item_list(&$variables) {
     $query = $url->getOption('query');
     unset($query['focus']);
     $url->setOption('query', $query);
+    $items[$idx]['value']['#url'] = $url;
   }
 
   if ($facet->id() == 'category') {
