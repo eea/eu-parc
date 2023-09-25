@@ -2,6 +2,7 @@
 
 namespace Drupal\parc_interactive_map\Plugin\facets\widget;
 
+use Drupal\Core\Url;
 use Drupal\facets\FacetInterface;
 use Drupal\facets\Plugin\facets\widget\CheckboxWidget;
 use Drupal\facets\Result\ResultInterface;
@@ -33,6 +34,18 @@ class ParcCheckboxWidget extends CheckboxWidget {
 
   protected function buildListItems(FacetInterface $facet, ResultInterface $result) {
     $build = parent::buildListItems($facet, $result);
+
+    /** @var \Drupal\Core\Url $url */
+    $url = $build['#url'] ?? NULL;
+
+    if (!$url instanceof Url) {
+      return $build;
+    }
+
+    $query = $url->getOption('query');
+    unset($query['focus']);
+    $url->setOption('query', $query);
+    $build['#url'] = $url;
 
     return $build;
   }
