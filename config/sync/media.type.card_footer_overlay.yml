@@ -4,7 +4,7 @@ status: true
 dependencies: {  }
 id: card_footer_overlay
 label: 'Card Footer Overlay'
-description: 'Used to store card footer''s overlays'
+description: "Used to store card footer's overlays"
 source: image
 queue_thumbnail_downloads: false
 new_revision: true
