@@ -37,12 +37,17 @@
     margin-left: 10px;
     width: 20px;
     height: 20px;
+    transition: none;
   }
 
   .accordion-button:not(.collapsed)::after {
     transform: rotate(0deg);
     margin-left: 10px;
     margin-top: 0;
+  }
+
+  .accordion-button.collapsed::after {
+    margin-top: -3px !important;
   }
 }
 
@@ -102,7 +107,7 @@
 
   .facet-item__value {
     position: relative;
-    max-width: calc(100% - 20px);
+    max-width: calc(100% - 50px);
 
     .facets-collapse {
       position: absolute;
@@ -113,7 +118,7 @@
       width: auto;
 
       &[aria-expanded="false"] {
-        top: 6px;
+        //top: 6px;
       }
     }
   }
