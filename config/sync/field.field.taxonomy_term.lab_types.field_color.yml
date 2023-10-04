@@ -18,7 +18,7 @@ translatable: true
 default_value:
   -
     color: '#000000'
-    opacity: !!float 1
+    opacity: 1.0
 default_value_callback: ''
 settings:
   opacity: 0

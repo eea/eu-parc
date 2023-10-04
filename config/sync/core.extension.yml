@@ -84,6 +84,7 @@ module:
   path_alias: 0
   publishcontent: 0
   rabbit_hole: 0
+  raven: 0
   rh_taxonomy: 0
   search_api: 0
   search_api_autocomplete: 0
