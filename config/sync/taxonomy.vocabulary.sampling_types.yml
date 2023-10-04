@@ -1,0 +1,8 @@
+uuid: b51e43e9-6270-4247-a156-00ba39f98838
+langcode: en
+status: true
+dependencies: {  }
+name: '[Lab] Sampling types'
+vid: sampling_types
+description: ''
+weight: 0

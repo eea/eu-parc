@@ -1,6 +1,21 @@
 (function ($, Drupal, drupalSettings, once) {
   Drupal.behaviors.interactiveMap = {
     attach: function (context, settings) {
+      var positionOlZoom = function () {
+        var map_left = $('.interactive-map').offset().left;
+        var window_width = $(window).width();
+        var left = window_width - map_left - 50;
+        $('.ol-zoom').css('left', left);
+      }
+
+      $(window).on('resize', function(){
+        positionOlZoom();
+      });
+
+      $(document).ready(function () {
+        positionOlZoom();
+      });
+
       $(once("mapInstitutionDetailsOpen", ".interactive-map .accordion-collapse"))
         .on("show.bs.collapse", function () {
           document.getElementById("identifyParent").style.display = "none";
@@ -65,7 +80,8 @@
             // add custom features
             features[i].setProperties({
               id: institutions[i].id,
-              countryId: institutions[i].country,
+              countryName: institutions[i].country,
+              contentType: institutions[i].content_type,
               categoryId: institutions[i].category,
               name: institutions[i].title,
               roles: institutions[i].roles,
@@ -231,18 +247,18 @@
           let geom = ol.geom.Polygon.fromExtent(extent);
           geom.scale(1.2);
 
-          if (features.length > 0 && features.length == 1) {
+          if (features.length == 1) {
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [300, 300, 300, 300],
-              maxZoom:6,
+              padding: [350, 350, 350, 350],
+              maxZoom: 2,
             });
           } else {
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [300, 300, 300, 300],
+              padding: [350, 350, 350, 350],
             });
           }
 
@@ -400,7 +416,7 @@
                   );
                   map.getView().fit(extent, {
                     duration: 1000,
-                    padding: [300, 300, 300, 300],
+                    padding: [350, 350, 350, 350],
                   });
                   document.getElementById("identifyParent").style.display =
                     "none";
@@ -709,15 +725,25 @@
             };
 
             let roles = isPath ? feature.roles : feature.get("roles");
+            let country = isPath ? feature.countryName : feature.get("countryName");
+            let contentType = isPath ? feature.contentType : feature.get("contentType");
 
-            let role_main_txt = getRolesMarkup(
-              roles.main_secondary,
-              "Main roles"
-            );
-            let role_additional_txt = getRolesMarkup(
-              roles.additional,
-              "Additional roles"
-            );
+            let role_main_txt = '';
+            let role_additional_txt = '';
+
+            if (contentType === 'institution') {
+              role_main_txt = getRolesMarkup(
+                roles.main_secondary,
+                "Main roles"
+              );
+              role_additional_txt = getRolesMarkup(
+                roles.additional,
+                "Additional roles"
+              );
+            }
+            else if (contentType === 'laboratory') {
+              role_main_txt = '<div class="country">' + country + '</div>';
+            }
 
             markup.role = role_main_txt + role_additional_txt;
 
@@ -728,7 +754,9 @@
             let role_txt = "";
 
             if (roles.length > 0) {
-              role_txt = `<span class='identify-role-span'>${title}</span>`;
+              if (title && roles[0].show_type) {
+                role_txt = `<span class='identify-role-span'>${title}</span>`;
+              }
               role_txt += "<ul>";
               for (let i = 0; i < roles.length; i++) {
                 role_txt += `<li><span class="identify-rectangle-span" style="background-color: ${roles[i].color}">&nbsp;</span><span style="color: ${roles[i].color};">${roles[i].label}</span></li>`;

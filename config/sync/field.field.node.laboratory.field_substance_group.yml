@@ -1,0 +1,29 @@
+uuid: 69e78e81-7166-4f7e-861d-1e179f6cea9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_substance_group
+    - node.type.laboratory
+    - taxonomy.vocabulary.substance_groups
+id: node.laboratory.field_substance_group
+field_name: field_substance_group
+entity_type: node
+bundle: laboratory
+label: 'Substance group'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      substance_groups: substance_groups
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

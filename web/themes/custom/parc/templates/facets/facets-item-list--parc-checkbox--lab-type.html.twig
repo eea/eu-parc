@@ -1,0 +1,85 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a facets item list.
+ *
+ * Available variables:
+ * - items: A list of items. Each item contains:
+ *   - attributes: HTML attributes to be applied to each list item.
+ *   - value: The content of the list element.
+ * - title: The title of the list.
+ * - list_type: The tag for list element ("ul" or "ol").
+ * - wrapper_attributes: HTML attributes to be applied to the list wrapper.
+ * - attributes: HTML attributes to be applied to the list.
+ * - empty: A message to display when there are no items. Allowed value is a
+ *   string or render array.
+ * - context: A list of contextual data associated with the list. May contain:
+ *   - list_style: The ID of the widget plugin this facet uses.
+ * - facet: The facet for this result item.
+ *   - id: the machine name for the facet.
+ *   - label: The facet label.
+ *
+ * @see facets_preprocess_facets_item_list()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('parc/tooltip') }}
+{{ attach_library('parc/facets') }}
+{{ attach_library('parc/facets_ajax') }}
+{{ attach_library('edwt/collapse') }}
+{{ attach_library('edwt/accordion') }}
+
+{% set is_child = facet.widget.type is empty %}
+
+{% if cache_hash %}
+  <!-- facets cacheable metadata
+    hash: {{ cache_hash }}
+  {% if cache_contexts %}
+    contexts: {{ cache_contexts }}
+  {%- endif %}
+  {% if cache_tags %}
+    tags: {{ cache_tags }}
+  {%- endif %}
+  {% if cache_max_age %}
+    max age: {{ cache_max_age }}
+  {%- endif %}
+  -->
+{%- endif %}
+<div class="accordion facets-widget- {{- facet.widget.type -}} {% if is_child %}facet-children{% endif %}">
+  {% if facet.widget.type %}
+    {%- set attributes = attributes.addClass('item-list__' ~ facet.widget.type) %}
+  {% endif %}
+
+  {% if items or empty %}
+  {%- if title is not empty -%}
+    {{ title }}
+  {%- endif -%}
+
+  <div {% if facet.id %}class="collapse show" id="collapse{{ facet.id }}"{% endif %}>
+    {%- if items -%}
+    <{{ list_type }}{{ attributes }}>
+    {%- for item in items -%}
+      {% set has_children = item.value.children is not empty %}
+      {% if not has_children %}
+        <li{{ item.attributes }}>{{ item.value }}</li>
+      {% else %}
+        <li{{ item.attributes }}>
+          {{ item.value | without('children') }}
+        </li>
+        <li class="collapse show" id="collapse-children-{{ facet.id }}-{{ item.value['#attributes']['data-drupal-facet-item-value'] }}">
+          {{ item.value.children }}
+        </li>
+      {% endif %}
+    {%- endfor -%}
+  </{{ list_type }}>
+  {%- else -%}
+    {{- empty -}}
+  {%- endif -%}
+</div>
+{%- endif %}
+
+{% if facet.widget.type == "dropdown" %}
+  <label id="facet_{{ facet.id }}_label">{{ 'Facet'|t }} {{ facet.label }}</label>
+{%- endif %}
+</div>

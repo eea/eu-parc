@@ -359,6 +359,7 @@ display:
               deliverables: search_teaser
               events: search_teaser
               institution: search_teaser
+              laboratory: search_teaser
               page: search_teaser
               publications: search_teaser
               thematic_areas: search_teaser

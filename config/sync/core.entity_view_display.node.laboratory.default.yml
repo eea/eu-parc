@@ -1,0 +1,116 @@
+uuid: d608d4c0-9593-404d-8588-20c25b6af22f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.laboratory.field_address_data
+    - field.field.node.laboratory.field_city
+    - field.field.node.laboratory.field_coordinates
+    - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_lab_type
+    - field.field.node.laboratory.field_media_image
+    - field.field.node.laboratory.field_sampling_type
+    - field.field.node.laboratory.field_substance_group
+    - field.field.node.laboratory.field_substances_matrix
+    - field.field.node.laboratory.field_website
+    - node.type.laboratory
+  module:
+    - geolocation
+    - link
+    - parc_core
+    - text
+    - user
+id: node.laboratory.default
+targetEntityType: node
+bundle: laboratory
+mode: default
+content:
+  field_address_data:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_coordinates:
+    type: geolocation_latlng
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_country:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_lab_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_media_image:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_sampling_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_substance_group:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_substances_matrix:
+    type: parc_lab_matrix
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_website:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  search_api_excerpt: true

@@ -1,0 +1,14 @@
+uuid: ba094667-c5ad-47e1-8b82-bb6e03f05190
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.lab_types
+id: taxonomy_vocabulary_lab_types
+entity_type_id: taxonomy_vocabulary
+entity_id: lab_types
+action: page_not_found
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied

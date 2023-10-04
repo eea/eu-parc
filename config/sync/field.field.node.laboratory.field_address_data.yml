@@ -1,0 +1,26 @@
+uuid: 74c3051f-c7e6-4196-a381-44660b916332
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address_data
+    - node.type.laboratory
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - full_html
+id: node.laboratory.field_address_data
+field_name: field_address_data
+entity_type: node
+bundle: laboratory
+label: Address
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

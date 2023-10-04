@@ -1,0 +1,8 @@
+uuid: 9c0d2e95-00c7-4c39-82d7-1355481ffad7
+langcode: en
+status: true
+dependencies: {  }
+name: '[Lab] Lab types'
+vid: lab_types
+description: ''
+weight: 0

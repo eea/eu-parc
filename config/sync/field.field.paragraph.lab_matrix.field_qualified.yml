@@ -1,0 +1,23 @@
+uuid: 3f81efad-68a4-4002-b386-ed81bb1a0f12
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_qualified
+    - paragraphs.paragraphs_type.lab_matrix
+id: paragraph.lab_matrix.field_qualified
+field_name: field_qualified
+entity_type: paragraph
+bundle: lab_matrix
+label: 'Qualified in PARC'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

@@ -4,6 +4,7 @@ namespace Drupal\parc_interactive_map\Plugin\views\style;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
@@ -54,6 +55,18 @@ class InteractiveMap extends StylePluginBase {
   protected $config;
 
   /**
+   * {@inheritdoc}
+   */
+  public $usesFields = FALSE;
+
+  /**
+   * The category field.
+   *
+   * @var string
+   */
+  protected $categoryField;
+
+  /**
    * Constructs a InteractiveMap object.
    *
    * @param array $configuration
@@ -95,94 +108,126 @@ class InteractiveMap extends StylePluginBase {
   /**
    * {@inheritdoc}
    */
-  public function usesFields() {
-    return FALSE;
+  protected function defineOptions() {
+    $options = parent::defineOptions();
+    $options['category_field'] = ['default' => 'field_institution_roles'];
+
+    return $options;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildOptionsForm(&$form, FormStateInterface $form_state) {
+    parent::buildOptionsForm($form, $form_state);
+    $form['category_field'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Category field'),
+      '#default_value' => $this->options['category_field'] ?? 'field_institution_roles',
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function render() {
+    $this->categoryField = $this->options['category_field'];
+
     $institutions = [];
 
     $map_id = uniqid();
+    $node_bundle = 'institution';
 
     foreach ($this->view->result as $item) {
-      $institution = $item->_entity;
+      $node = $item->_entity;
 
-      if (!$institution instanceof NodeInterface) {
+      if (!$node instanceof NodeInterface) {
         continue;
       }
 
-      $teaser_render = $this->nodeViewBuilder->view($institution, 'teaser');
+      $node_bundle = $node->bundle();
+      $teaser_render = $this->nodeViewBuilder->view($node, 'teaser');
       $teaser_render = $this->renderer->render($teaser_render);
 
-      $full_render = $this->nodeViewBuilder->view($institution);
+      $full_render = $this->nodeViewBuilder->view($node);
       $full_render = $this->renderer->render($full_render);
 
-      $country_iso2 = NULL;
-      $country = $institution->get('field_country')->entity;
+      $country_label = NULL;
+      $country = $node->get('field_country')->entity;
       if ($country instanceof TermInterface) {
-        $country_iso2 = $country->get('field_iso2')->value;
+        $country_label = $country->label();
       }
 
       $color = '#000000';
-      $category = NULL;
-      /** @var \Drupal\taxonomy\TermInterface $role */
-      $role = $this->getInstitutionDisplayedRole($institution);
-      if (!empty($role)) {
-        $category = $role->id();
-        $color = $role->get('field_color')->color ?? '#000000';
+      $category_id = NULL;
+      /** @var \Drupal\taxonomy\TermInterface $category */
+      $category = $this->getDisplayedCategory($node);
+      if (!empty($category)) {
+        $category_id = $category->id();
+        $color = $category->get('field_color')->color ?? '#000000';
       }
 
       $roles = [
         'main_secondary' => [],
         'additional' => [],
       ];
-      foreach ($institution->get('field_institution_roles')->referencedEntities() as $role) {
-        $role_type = $role->get('field_role_type')->value;
-        if (empty($role_type)) {
-          $role_type = 'main_secondary';
+      foreach ($node->get($this->categoryField)->referencedEntities() as $category) {
+        $role_type = 'main_secondary';
+        if ($category->hasField('field_role_type') && !$category->get('field_role_type')
+            ->isEmpty()) {
+          $role_type = $category->get('field_role_type')->value;
         }
         $roles[$role_type][] = [
-          'label' => $role->label(),
-          'color' => $role->get('field_color')->color ?? '#000000',
-          'type' => $role->get('field_role_type')->value,
+          'label' => $category->label(),
+          'color' => $category->get('field_color')->color ?? '#000000',
+          'type' => $role_type,
+          'show_type' => $this->categoryField == 'field_institution_roles',
         ];
       }
 
       $institutions[] = [
-        'id' => $institution->id(),
-        'lat' => (float) $institution->get('field_coordinates')->lat,
-        'long' => (float) $institution->get('field_coordinates')->lng,
-        'title' => $institution->getTitle(),
+        'id' => $node->id(),
+        'lat' => (float) $node->get('field_coordinates')->lat,
+        'long' => (float) $node->get('field_coordinates')->lng,
+        'title' => $node->getTitle(),
         'render_teaser' => $teaser_render,
         'render_full' => $full_render,
-        'category' => $category,
-        'country' => $country_iso2,
+        'category' => $category_id,
+        'country' => $country_label,
         'color' => $color,
         'roles' => $roles,
+        'content_type' => $node->bundle(),
       ];
     }
 
     $all_categories = [];
-    $category_terms = $this->entityTypeManager
-      ->getStorage('taxonomy_term')
-      ->loadByProperties([
-        'vid' => 'institution_roles',
-      ]);
 
-    foreach ($category_terms as $term) {
-      $all_categories[] = [
-        'id' => $term->id(),
-        'color' => $term->get('field_color')->color ?? '#000000',
-        'name' => $term->label(),
-      ];
+    if (!empty($node)) {
+      $target_bundle = $node->get($this->categoryField)
+        ->getFieldDefinition()
+        ->getSetting('handler_settings')['target_bundles'];
+      $target_bundle = reset($target_bundle);
+
+      if (!empty($target_bundle)) {
+        $category_terms = $this->entityTypeManager->getStorage('taxonomy_term')
+          ->loadByProperties([
+            'vid' => $target_bundle,
+          ]);
+
+        foreach ($category_terms as $term) {
+          $all_categories[] = [
+            'id' => $term->id(),
+            'color' => $term->get('field_color')->color ?? '#000000',
+            'name' => $term->label(),
+          ];
+        }
+      }
     }
 
     return [
       '#theme' => 'parc_interactive_map',
       '#map_id' => $map_id,
+      '#map_type' => $node_bundle,
       '#attached' => [
         'library' => [
           'parc_interactive_map/interactive_map',
@@ -201,24 +246,28 @@ class InteractiveMap extends StylePluginBase {
   }
 
   /**
-   * Retrieve an institution's displayed role.
+   * Retrieve a node's displayed role.
    *
    * If there is a filter on the "institution type" facet,
    * we will display one of the selected filters as the role.
    * Otherwise, we will display the first role of the institution.
    *
    * @param \Drupal\node\NodeInterface $node
-   *   The institution.
+   *   The node.
    *
    * @return \Drupal\taxonomy\TermInterface
    *   The main role.
    */
-  protected function getInstitutionDisplayedRole(NodeInterface $node) {
-    $query = \Drupal::request()->query->get('f');
+  protected function getDisplayedCategory(NodeInterface $node) {
+    if ($this->categoryField != 'field_institution_roles') {
+      return $this->getDefaultCategory($node);
+    }
+
+    $query = \Drupal::request()->query->all()['f'] ?? [];
 
     // If there is no query, return the first role.
     if (empty($query)) {
-      return $this->getInstitutionDefaultRole($node);
+      return $this->getDefaultCategory($node);
     }
 
     // Check filtered roles.
@@ -234,7 +283,7 @@ class InteractiveMap extends StylePluginBase {
 
     // If there are no filtered roles, return the first institution role.
     if (empty($filtered_institution_roles)) {
-      return $this->getInstitutionDefaultRole($node);
+      return $this->getDefaultCategory($node);
     }
 
     // Return the first institution role that matches one of the filters.
@@ -254,8 +303,8 @@ class InteractiveMap extends StylePluginBase {
    * @return \Drupal\taxonomy\TermInterface
    *   The default role.
    */
-  protected function getInstitutionDefaultRole(NodeInterface $node) {
-    return $node->get('field_institution_roles')->entity;
+  protected function getDefaultCategory(NodeInterface $node) {
+    return $node->get($this->categoryField)->entity;
   }
 
   /**

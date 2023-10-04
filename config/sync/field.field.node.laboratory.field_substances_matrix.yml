@@ -1,0 +1,58 @@
+uuid: 8cedb954-fdfa-4f08-ab8c-c178ca91bd65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_substances_matrix
+    - node.type.laboratory
+    - paragraphs.paragraphs_type.lab_matrix
+  module:
+    - entity_reference_revisions
+id: node.laboratory.field_substances_matrix
+field_name: field_substances_matrix
+entity_type: node
+bundle: laboratory
+label: 'Substances matrix'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      lab_matrix: lab_matrix
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 11
+        enabled: false
+      card:
+        weight: 12
+        enabled: false
+      carousel_item:
+        weight: 13
+        enabled: false
+      grid:
+        weight: 14
+        enabled: false
+      lab_matrix:
+        weight: 15
+        enabled: true
+      links_list:
+        weight: 16
+        enabled: false
+      media:
+        weight: 17
+        enabled: false
+      newsletter:
+        weight: 18
+        enabled: false
+      svg_text:
+        weight: 19
+        enabled: false
+      what_we_do:
+        weight: 20
+        enabled: false
+field_type: entity_reference_revisions

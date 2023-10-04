@@ -1,0 +1,115 @@
+uuid: 6c8a4ae0-a735-4944-b823-08be4da0cf41
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.laboratory.field_address_data
+    - field.field.node.laboratory.field_city
+    - field.field.node.laboratory.field_coordinates
+    - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_lab_type
+    - field.field.node.laboratory.field_media_image
+    - field.field.node.laboratory.field_sampling_type
+    - field.field.node.laboratory.field_substance_group
+    - field.field.node.laboratory.field_substances_matrix
+    - field.field.node.laboratory.field_website
+    - node.type.laboratory
+  module:
+    - geolocation
+    - layout_builder
+    - link
+    - parc_core
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.laboratory.teaser
+targetEntityType: node
+bundle: laboratory
+mode: teaser
+content:
+  field_address_data:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_city:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_coordinates:
+    type: geolocation_latlng
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_country:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_lab_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_sampling_type:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_substance_group:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_substances_matrix:
+    type: parc_lab_matrix
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_website:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_media_image: true
+  search_api_excerpt: true

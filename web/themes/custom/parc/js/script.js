@@ -112,13 +112,16 @@
       });
 
       function scrollPageToTitle() {
-        $(once('governanceScrollOn', 'html,body')).on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function () {
-          page.stop();
-        });
+        let governance_title = $('.governance-title');
+        if (governance_title) {
+          $(once('governanceScrollOn', 'html,body')).on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function () {
+            page.stop();
+          });
 
-        page.animate({scrollTop: $('.governance-title').offset().top - 80}, 400, function(){
-          $(once('governanceScrollOff', 'html,body')).off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
-        });
+          page.animate({scrollTop: governance_title.offset().top - 80}, 400, function () {
+            $(once('governanceScrollOff', 'html,body')).off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
+          });
+        }
       }
 
       function scrollToGovernanceItem() {

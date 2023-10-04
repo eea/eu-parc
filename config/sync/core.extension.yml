@@ -106,7 +106,6 @@ module:
   tour: 0
   ultimate_cron: 0
   update: 0
-  upgrade_status: 0
   user: 0
   view_unpublished: 0
   views_ajax_history: 0

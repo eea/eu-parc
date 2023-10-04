@@ -1,0 +1,18 @@
+uuid: de69685d-44bc-439e-b995-2be64da4ac51
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Laboratory
+type: laboratory
+description: ''
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

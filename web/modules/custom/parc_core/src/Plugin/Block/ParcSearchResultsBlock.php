@@ -118,6 +118,7 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
       'publications',
       'deliverables',
       'institution',
+      'laboratory',
       'basic_page',
     ];
 

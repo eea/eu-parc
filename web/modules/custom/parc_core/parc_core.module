@@ -14,6 +14,8 @@ use Drupal\parc_core\ParcCoreViews;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\taxonomy_menu\Plugin\Menu\TaxonomyMenuMenuLink;
+use Drupal\node\NodeInterface;
+use Drupal\paragraphs\ParagraphInterface;
 
 /**
  * Implements hook_theme().
@@ -22,6 +24,12 @@ function parc_core_theme() {
   return [
     'parc_event_calendar' => [
       'variables' => ['entries' => []],
+    ],
+    'parc_lab_matrix' => [
+      'variables' => [
+        'substances' => [],
+        'show_qualified_in_parc' => FALSE,
+      ],
     ],
   ];
 }
@@ -431,5 +439,36 @@ function parc_core_preprocess_node__search_teaser(&$variables) {
   $variables['url_target'] = '_self';
   if ($node->bundle() == 'deliverables') {
     $variables['url_target'] = '_blank';
+  }
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function parc_core_node_presave(NodeInterface $node) {
+  switch ($node->bundle()) {
+    case 'laboratory':
+      if (!$node->get('field_substances_matrix')->isEmpty()) {
+        $substance_groups = [];
+        $sampling_types = [];
+
+        foreach ($node->get('field_substances_matrix')->referencedEntities() as $paragraph) {
+
+          if (!$paragraph instanceof ParagraphInterface) {
+            continue;
+          }
+
+          $substance_groups[] = $paragraph->get('field_substance_group')->target_id;
+          $sampling_types[] = $paragraph->get('field_sampling_type')->target_id;
+        }
+
+        $substance_groups = array_unique($substance_groups);
+        $sampling_types = array_unique($sampling_types);
+
+        $node->set('field_substance_group', $substance_groups);
+        $node->set('field_sampling_type', $sampling_types);
+      }
+
+      break;
   }
 }

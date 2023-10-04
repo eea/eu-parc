@@ -17,11 +17,6 @@
   background-color: transparent;
 }
 
-.ol-zoom {
-  right: 0.5em;
-  left: auto;
-}
-
 .ol-zoom .ol-zoom-in {
   border-radius: 50%;
 }
@@ -68,7 +63,7 @@
   border: 1px solid #ccc;
 }
 
-#identifyParent .node--institution {
+#identifyParent .node {
   max-height: 700px;
   overflow: auto;
   border: none !important;
@@ -115,14 +110,14 @@
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar,
+.interactive-map #identifyParent .node::-webkit-scrollbar,
 .map-page .layout > div:first-child::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-track,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-track,
+.interactive-map #identifyParent .node::-webkit-scrollbar-track,
 .map-page .layout > div:first-child::-webkit-scrollbar-track {
   -webkit-border-radius: 20px;
   border-radius: 20px;
@@ -130,21 +125,21 @@
 }
 
 .interactive-map .accordion-body::-webkit-scrollbar-thumb,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb,
+.interactive-map #identifyParent .node::-webkit-scrollbar-thumb,
 .map-page .layout > div:first-child::-webkit-scrollbar-thumb {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #505459;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:hover,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:hover,
+.interactive-map #identifyParent .node::-webkit-scrollbar-thumb:hover,
 .map-page .layout > div:first-child::-webkit-scrollbar-thumb:hover {
   -webkit-border-radius: 20px;
   border-radius: 20px;
   background: #6d7177;
 }
 .interactive-map .accordion-body::-webkit-scrollbar-thumb:window-inactive,
-.interactive-map #identifyParent .node--institution::-webkit-scrollbar-thumb:window-inactive,
+.interactive-map #identifyParent .node::-webkit-scrollbar-thumb:window-inactive,
 .map-page .layout > div:first-child::-webkit-scrollbar-thumb:window-inactive {
   background: #505459;
 }
@@ -231,6 +226,10 @@
   margin-bottom: 10px;
 }
 
+.interactive-map .popover .country {
+  margin-top: -10px;
+}
+
 .interactive-map .popover li {
   font-weight: bold;
   font-size: 12px;
@@ -309,6 +308,10 @@
     max-height: calc(100vh - 210px);
   }
 
+  .interactive-map.laboratory {
+    max-height: calc(100vh - 230px);
+  }
+
   .map-page .px-0 > :first-child {
     padding-left: 1.25rem !important;
     padding-right: 1.25rem !important;
@@ -345,7 +348,7 @@
     gap: 20px;
   }
 
-  .interactive-map .node--institution--teaser {
+  .interactive-map .node {
     min-width: 85vw;
     max-width: 85vw;
   }
@@ -357,7 +360,7 @@
     left: -10px;
   }
 
-  .interactive-map .node--institution--teaser:last-child {
+  .interactive-map .node:last-child {
     margin-bottom: 15px;
   }
 
@@ -370,7 +373,7 @@
     bottom: 0;
     z-index: 123;
     background: #fcfafa;
-    padding-top: 10px;
+    padding-top: 10px !important;
     width: 100vw;
     max-height: calc(100vh - 96px);
     overflow: auto;
@@ -418,7 +421,7 @@
   }
 
   .map-page .node--page {
-    overflow-x: hidden;
+    overflow: hidden;
   }
 
   .results {
@@ -437,4 +440,21 @@
   font-size: 10px;
   line-height: 16px;
   letter-spacing: 0.08em;
+}
+
+button.ol-zoom-out {
+  color: #fff !important;
+  position: relative;
+}
+
+button.ol-zoom-out:after {
+  font-size: 32px;
+  content: '';
+  position: absolute;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 2px;
+  background: #000;
 }

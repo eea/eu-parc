@@ -1,0 +1,19 @@
+uuid: 3ec197d4-05c2-4a94-a282-0c2d5f38d2a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city
+    - node.type.laboratory
+id: node.laboratory.field_city
+field_name: field_city
+entity_type: node
+bundle: laboratory
+label: City
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

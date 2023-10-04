@@ -28,10 +28,13 @@
       });
 
       $(document).ready(function(){
-        var windowWidth = jQuery(window).width();
+        var windowWidth = $(window).width();
         if (windowWidth <= 767) {
           $('#collapsecountry').collapse('hide');
           $('#collapsecategory').collapse('hide');
+          $('#collapselab_type').collapse('hide');
+          $('#collapselab_sampling_type').collapse('hide');
+          $('#collapselab_substance_group').collapse('hide');
         }
       });
 

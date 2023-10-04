@@ -1,0 +1,10 @@
+uuid: 8c6eda8e-b11b-4768-b9e9-707475b42b14
+langcode: en
+status: true
+dependencies: {  }
+id: lab_matrix
+label: 'Lab matrix'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

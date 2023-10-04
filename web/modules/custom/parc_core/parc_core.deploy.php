@@ -4,6 +4,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 
 /**
@@ -204,5 +205,165 @@ function parc_core_deploy_9005() {
       'color' => $settings['alternate_color'],
     ]);
     $term->save();
+  }
+}
+
+/**
+ * Create lab terms.
+ */
+function parc_core_deploy_9006() {
+  if (!Vocabulary::load('lab_types')) {
+    throw new Exception('Lab types vocabulary not yet created');
+  }
+
+  $terms = [
+    'PARC member' => [
+      'color' => '#008475',
+      'weight' => 0,
+      'description' => '',
+    ],
+    'External laboratory' => [
+      'color' => '#E45C4D',
+      'weight' => 1,
+      'description' => '',
+    ]
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($terms as $name => $data) {
+    $existing_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $name,
+    ]);
+    if (!empty($existing_term)) {
+      continue;
+    }
+
+    $term = Term::create([
+      'name' => $name,
+      'description' => [
+        'format' => 'full_html',
+        'value' => $data['description'],
+      ],
+      'vid' => 'lab_types',
+      'field_color' => [
+        'color' => strtoupper($data['color']),
+        'opacity' => NULL,
+      ],
+      'weight' => $data['weight'],
+    ]);
+    $term->save();
+  }
+
+  $terms = [
+    'sampling_types' => [
+      'Urine',
+      'Whole Blood',
+      'Serum',
+      'Plasma',
+      'Cord blood',
+      'Dried blood spot samples',
+      'Breast milk',
+      'Hair',
+      'Nails',
+      'Placenta',
+      'Meconium',
+      'Saliva',
+      'Semen',
+      'Faeces',
+      'Adipose tissue',
+      'Volumetric absorptive microsamples',
+    ],
+    'substance_groups' => [
+      'Acrylamide',
+      'Aprotic solvents',
+      'Aromatic amines',
+      'Bisphenols',
+      'Cotinine',
+      'Diisocyanates',
+      'DINH',
+      'Dioxins',
+      'Flame retardants',
+      'Furans',
+      'Metals and trace elements',
+      'Musks',
+      'Mycotoxins',
+      'Parabens',
+      'Pesticides',
+      'Per- and polyfluoroalkyl substances (PFAS)',
+      'Phthalates',
+      'Polychlorinated biphenyls (PCBs)',
+      'Polycyclic aromatic hydrocarbons (PAHs)',
+      'UV filters-benzophenones',
+    ],
+  ];
+
+  foreach ($terms as $vid => $names) {
+    foreach ($names as $idx => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'name' => $name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
+      $term = Term::create([
+        'vid' => $vid,
+        'name' => $name,
+        'weight' => $idx,
+      ]);
+      $term->save();
+    }
+  }
+}
+
+/**
+ * Add default image to laboratories.
+ */
+function parc_core_deploy_9007() {
+  $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties([
+    'uuid' => '69f46146-cf01-42d6-b34f-29638e19b8bf',
+  ]);
+  $media = reset($media);
+  if (empty($media)) {
+    $image_path = \Drupal::service('extension.list.module')
+        ->getPath('parc_core') . '/assets/default-laboratory-image.png';
+
+    /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+    $file_system = \Drupal::service('file_system');
+    $destination = 'public://2023-08/default-laboratory-image.png';
+    $directory = 'public://2023-08';
+    $file_system->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+    $file_system->copy($image_path, $destination, FileSystemInterface::EXISTS_REPLACE);
+
+    $file = File::create([
+      'uid' => 1,
+      'filename' => 'default-laboratory-image.png',
+      'uri' => $destination,
+      'status' => 1,
+    ]);
+    $file->save();
+
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => 'Placeholder laboratory image',
+      'uuid' => '69f46146-cf01-42d6-b34f-29638e19b8bf',
+      'field_media_image' => $file,
+    ]);
+    $media->save();
+  }
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $results = $node_storage->getQuery()
+    ->condition('type', 'laboratory')
+    ->notExists('field_media_image')
+    ->accessCheck(FALSE)
+    ->execute();
+
+  foreach ($results as $result) {
+    $node = $node_storage->load($result);
+    $node->set('field_media_image', $media);
+    $node->save();
   }
 }

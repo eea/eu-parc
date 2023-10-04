@@ -1,0 +1,29 @@
+uuid: 712765f4-43f0-4e48-b88e-41fa02dc631c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_substance_group
+    - paragraphs.paragraphs_type.lab_matrix
+    - taxonomy.vocabulary.substance_groups
+id: paragraph.lab_matrix.field_substance_group
+field_name: field_substance_group
+entity_type: paragraph
+bundle: lab_matrix
+label: 'Substance group'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      substance_groups: substance_groups
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

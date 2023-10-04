@@ -149,6 +149,24 @@ function parc_preprocess_node(&$variables) {
       }
     }
   }
+
+  if ($variables['view_mode'] == 'teaser' && $node->bundle() == 'laboratory') {
+    $lab_type = $node->get('field_lab_type')->entity;
+    $color = '#000000';
+    if (!empty($lab_type)) {
+      /** @var \Drupal\taxonomy\TermInterface $term */
+      $color = $lab_type->get('field_color')->color ?? '#000000';
+      $variables['roles'][] = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="role" style="color: {{ color }};">{{ label }}</div>',
+        '#context' => [
+          'label' => $lab_type->label(),
+          'color' => $color,
+        ],
+      ];
+    }
+    $variables['color'] = $color;
+  }
 }
 
 /**
@@ -243,7 +261,8 @@ function parc_preprocess_facets_item_list(&$variables) {
     $items[$idx]['value']['#url'] = $url;
   }
 
-  if ($facet->id() == 'category') {
+  if ($facet->id() == 'category'
+    || $facet->id() == 'lab_type') {
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     foreach ($items as $item) {
       $tid = $item['value']['#title']['#raw_value'];
@@ -262,12 +281,30 @@ function parc_preprocess_facets_item_list(&$variables) {
       $attributes = $item['attributes'];
       $attributes->setAttribute('style', "color: $color");
 
-      if ($term->get('field_role_type')->value == 'main_secondary') {
-        $variables['items_main'][] = $item;
+      if ($term->hasField('field_role_type')) {
+        if ($term->get('field_role_type')->value == 'main_secondary') {
+          $variables['items_main'][] = $item;
+        }
+        else {
+          $variables['items_additional'][] = $item;
+        }
       }
-      else {
-        $variables['items_additional'][] = $item;
-      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for facets_result_item.
+ */
+function parc_preprocess_facets_result_item(&$variables) {
+  $tid = $variables['raw_value'];
+  if (is_numeric($tid)) {
+    $term = Term::load($tid);
+    if ($term instanceof TermInterface && !empty($term->getDescription())) {
+      $variables['tooltip'] = [
+        'text' => $term->getDescription(),
+        'background' => $term->get('field_color')->color,
+      ];
     }
   }
 }
@@ -359,6 +396,7 @@ function parc_preprocess_node__search_teaser(&$variables) {
     'basic_page' => 'field_banner',
     'deliverables' => 'field_media',
     'institution' => 'field_media_image',
+    'laboratory' => 'field_media_image',
   ];
 
   /** @var \Drupal\node\NodeInterface $node */
@@ -367,7 +405,7 @@ function parc_preprocess_node__search_teaser(&$variables) {
     $variables['image_field'] = $image_fields[$node->bundle()];
   }
 
-  if ($node->bundle() == 'institution' && !$node->get('field_address_data')->isEmpty()) {
+  if ($node->hasField('field_address_data') && !$node->get('field_address_data')->isEmpty()) {
     $variables['content']['field_address_data'] = [
       '#markup' => $node->get('field_address_data')->value,
     ];

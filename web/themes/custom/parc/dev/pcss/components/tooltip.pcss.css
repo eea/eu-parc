@@ -95,3 +95,112 @@
   background-color: var(--tooltip-bg);
   border-radius: var(--tooltip-border-radius);
 }
+
+
+.tooltip.bs-tooltip-auto {
+  --tooltip-opacity: 1;
+  --popover-border-width: 1px;
+  --popover-arrow-height: 0.5rem;
+  --popover-arrow-width: 1rem;
+  --tooltip-bg: #FFF;
+  --popover-arrow-border: #CCC;
+}
+
+.tooltip-inner {
+  padding: 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  font-size: 14px;
+  line-height: 16px;
+
+  --tooltip-bg: #FFFFFF;
+  --tooltip-color: var(--body-color);
+}
+
+.tooltip .tooltip-arrow {
+  bottom: -1px !important;
+  z-index: 1;
+}
+
+.tooltip-arrow::before,
+.tooltip-arrow::after {
+  position: absolute;
+  display: block;
+  content: "";
+  border: 0 solid transparent;
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="top"] > .tooltip-arrow {
+  bottom: calc((var(--popover-arrow-height))*-1 - var(--popover-border-width));
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="top"] > .tooltip-arrow::before,
+.tooltip.bs-tooltip-auto[data-popper-placement^="top"] > .tooltip-arrow::after {
+  border-width: var(--popover-arrow-height) calc(var(--popover-arrow-width)*0.5) 0;
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="top"] > .tooltip-arrow::before {
+  bottom: 0;
+  border-top-color: var(--popover-arrow-border);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="top"] > .tooltip-arrow::after {
+  bottom: var(--popover-border-width);
+  border-top-color: var(--tooltip-bg);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="right"] > .tooltip-arrow {
+  left: calc((var(--popover-arrow-height))*-1 - var(--popover-border-width));
+  width: var(--popover-arrow-height);
+  height: var(--popover-arrow-width);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="right"] > .tooltip-arrow::before,
+.tooltip.bs-tooltip-auto[data-popper-placement^="right"] > .tooltip-arrow::after {
+  border-width: calc(var(--popover-arrow-width)*0.5) var(--popover-arrow-height) calc(var(--popover-arrow-width)*0.5) 0;
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="right"] > .tooltip-arrow::before {
+  left: 0;
+  border-right-color: var(--popover-arrow-border);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="right"] > .tooltip-arrow::after {
+  left: var(--popover-border-width);
+  border-right-color: var(--tooltip-bg);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="bottom"] > .tooltip-arrow {
+  top: calc((var(--popover-arrow-height))*-1 - var(--popover-border-width));
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="bottom"] > .tooltip-arrow::before,
+.tooltip.bs-tooltip-auto[data-popper-placement^="bottom"] > .tooltip-arrow::after {
+  border-width: 0 calc(var(--popover-arrow-width)*0.5) var(--popover-arrow-height);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="bottom"] > .tooltip-arrow::before {
+  top: 0;
+  border-bottom-color: var(--popover-arrow-border);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="bottom"] > .tooltip-arrow::after {
+  top: var(--popover-border-width);
+  border-bottom-color: var(--tooltip-bg);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="bottom"] .popover-header::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: block;
+  width: var(--popover-arrow-width);
+  margin-left: calc(var(--popover-arrow-width)*-0.5);
+  content: "";
+  border-bottom: solid;
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="left"] > .tooltip-arrow {
+  right: calc((var(--popover-arrow-height))*-1 - var(--popover-border-width));
+  width: var(--popover-arrow-height);
+  height: var(--popover-arrow-width);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="left"] > .tooltip-arrow::before,
+.tooltip.bs-tooltip-auto[data-popper-placement^="left"] > .tooltip-arrow::after {
+  border-width: calc(var(--popover-arrow-width)*0.5) 0 calc(var(--popover-arrow-width)*0.5) var(--popover-arrow-height);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="left"] > .tooltip-arrow::before {
+  right: 0;
+  border-left-color: var(--popover-arrow-border);
+}
+.tooltip.bs-tooltip-auto[data-popper-placement^="left"] > .tooltip-arrow::after {
+  right: var(--popover-border-width);
+  border-left-color: var(--tooltip-bg);
+}

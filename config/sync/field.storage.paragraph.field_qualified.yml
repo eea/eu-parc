@@ -1,0 +1,18 @@
+uuid: ed0c827d-323f-4499-9f9b-79b42f936e86
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_qualified
+field_name: field_qualified
+entity_type: paragraph
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
