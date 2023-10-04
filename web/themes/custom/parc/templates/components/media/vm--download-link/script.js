@@ -6,7 +6,7 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.mediaLink = {
     attach: function (context) {
-      $(context).find('.btn--d--clipboard').once('mediaLink').on('click', function (e) {
+      $(once('mediaLink', '.btn--d--clipboard', context)).on('click', function (e) {
         e.preventDefault();
         var btn = $(this);
         var copyText = window.location.origin + btn.data('clipboard');

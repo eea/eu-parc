@@ -14,14 +14,10 @@ module:
   block_class: 0
   block_content: 0
   breakpoint: 0
-  ckeditor: 0
   ckeditor5: 0
+  ckeditor5_font: 0
   ckeditor_bs_grid: 0
-  ckeditor_media_embed: 0
-  ckeditor_templates: 0
-  ckeditor_templates_ui: 0
   color_field: 0
-  colorbutton: 0
   comment: 0
   config: 0
   contact: 0
@@ -59,7 +55,6 @@ module:
   jquery_ui_slider: 0
   jquery_ui_touch_punch: 0
   layout_builder: 0
-  layout_builder_admin_theme: 0
   layout_builder_component_attributes: 0
   layout_builder_modal: 0
   layout_builder_styles: 0
@@ -82,7 +77,6 @@ module:
   mysql: 0
   node: 0
   options: 0
-  panelbutton: 0
   parc_core: 0
   parc_interactive_map: 0
   parc_zenodo_api: 0
@@ -112,6 +106,7 @@ module:
   tour: 0
   ultimate_cron: 0
   update: 0
+  upgrade_status: 0
   user: 0
   view_unpublished: 0
   views_ajax_history: 0

@@ -21,7 +21,7 @@ window.addEventListener('scroll', function() {
 (function ($, Drupal, once) {
   Drupal.behaviors.searchReveal = {
     attach: function (context, settings) {
-      $('.menu--top-menu .search-link').once('searchReveal').click(function () {
+      $(once('searchReveal', '.menu--top-menu .search-link')).click(function () {
         var search_block = $(this).closest('header').find('.block-views-exposed-filter-blocksearch-block-1');
         var input = search_block.find('input[type="text"]');
         if (search_block.is(':visible')) {

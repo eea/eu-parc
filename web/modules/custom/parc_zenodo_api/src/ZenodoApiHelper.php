@@ -175,6 +175,7 @@ class ZenodoApiHelper {
 
     $operator = !$case_sensitive ? '=' : 'LIKE BINARY';
     $terms = $term_storage->getQuery()
+      ->accessCheck(FALSE)
       ->condition('vid', $vid)
       ->condition('name', $name, $operator)
       ->execute();

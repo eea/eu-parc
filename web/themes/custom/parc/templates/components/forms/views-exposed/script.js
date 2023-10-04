@@ -21,7 +21,7 @@
         }
       });
 
-      $(context).find('label.option').once('viewsExposedForm').on('click', function () {
+      $(once('viewsExposedForm', 'label.option', context)).on('click', function () {
         const input = $('.js-second-exposed-filter input[type="radio"]:not(:checked)');
         input.trigger("change");
       });
@@ -54,7 +54,7 @@
       });
 
       // On views filter AJAX complete, apply previously stored collapse information.
-      $(document).once('parcViewsDetailsCollapse').ajaxComplete(function(e, xhr, settings) {
+      $(document).ajaxComplete(function(e, xhr, settings) {
         if (settings.url.startsWith(views_ajax_url)) {
           $.each(window.viewsFilterCollapseSettings, function (key, value) {
             let id = key.split('--')[0];

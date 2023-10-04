@@ -6,11 +6,11 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.keyMessagesCarousel = {
     attach: function (context) {
-      $(context).find('.js-slider-prev').once('keyMessagesCarousel').on('click', function (e) {
+      $(once('keyMessagesCarousel', '.js-slider-prev', context)).on('click', function (e) {
         updateSlidePosition(e, "prev");
       });
 
-      $(context).find('.js-slider-next').once('keyMessagesCarousel').on('click', function (e) {
+      $(once('keyMessagesCarousel', '.js-slider-next', context)).on('click', function (e) {
         updateSlidePosition(e, "next");
       });
     }
@@ -49,12 +49,12 @@
       hash = window.location.hash;
 
       if (hash.indexOf('messages') !== -1) {
-        $(context).find(hash).once('publicationUrl').parents('.collapse').addClass('show');
+        $(once('publicationUrl', hash, context)).parents('.collapse').addClass('show');
       }
 
       if (hash.indexOf('article-') !== -1) {
         const node = hash + ' .collapse';
-        $(context).find(node).once('publicationUrl').addClass('show');
+        $(once('publicationUrl', node, context)).addClass('show');
       }
 
       $('.js-copy-to-clipboard').click(function (e) {
