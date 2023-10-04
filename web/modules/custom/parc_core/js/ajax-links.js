@@ -133,7 +133,7 @@
       }
 
       // Execute the ajax link on click and prevent access to this link.
-      $(context).find('a.ajax-link').once('ajax').on('click', function (e) {
+      $(once('ajax', 'a.ajax-link', context)).on('click', function (e) {
         e.preventDefault();
         e.stopImmediatePropagation();
 
@@ -143,7 +143,7 @@
       });
 
       // Initialise auto ajax links based on their class.
-      $(context).find('a.ajax-link-auto').once('ajaxLinkAuto').each(function () {
+      $(once('ajaxLinkAuto', 'a.ajax-link-auto', context)).each(function () {
         // The current link.
         let $ajaxLinkLink = $(this);
         let ajaxLinkLink = $ajaxLinkLink.get(0);

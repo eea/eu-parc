@@ -43,7 +43,7 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: '<div class> <blockquote class="news-blockquote"> <strong> <em> <a href> <li> <ol> <img src alt data-entity-type data-entity-uuid data-align data-caption> <drupal-media data-entity-type data-entity-uuid data-view-mode data-align data-caption alt title> <ul class="content-container-sm small"> <p class="small content-container-sm small"> <h1> <h2> <h3> <h4> <h5> <h6> <pre> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <hr> <u> <s> <span>'
+      allowed_html: '<blockquote class="news-blockquote">'
       filter_html_help: true
       filter_html_nofollow: false
   media_embed:
@@ -64,10 +64,10 @@ filters:
     weight: 0
     settings:
       spamspan_at: ' [at] '
-      spamspan_use_graphic: '1'
-      spamspan_dot_enable: '1'
+      spamspan_use_graphic: true
+      spamspan_dot_enable: true
       spamspan_dot: ' [dot] '
-      spamspan_use_form: ''
+      spamspan_use_form: false
       spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
       spamspan_form_default_url: contact
       spamspan_form_default_displaytext: 'contact form'

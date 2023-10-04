@@ -4,6 +4,7 @@ ajax_links:
   dependencies:
     - core/jquery
     - core/drupal.ajax
+    - core/once
 
 edit_node_event:
   css:
@@ -16,3 +17,5 @@ admin:
       css/admin.css: {}
   js:
     js/admin.js: {}
+  dependencies:
+    - core/once

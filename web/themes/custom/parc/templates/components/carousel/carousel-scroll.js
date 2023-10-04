@@ -6,11 +6,11 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.carouselScroll = {
     attach: function (context) {
-      $(context).find('.js-slider-prev').once('carouselScroll').on('click', function (e) {
+      $(once('carouselScroll', '.js-slider-prev', context)).on('click', function (e) {
         updateCarouselSlidePosition(e, "prev");
       });
 
-      $(context).find('.js-slider-next').once('carouselScroll').on('click', function (e) {
+      $(once('carouselScroll', '.js-slider-next', context)).on('click', function (e) {
         updateCarouselSlidePosition(e, "next");
       });
     }

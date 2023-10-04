@@ -18,7 +18,7 @@ filters:
     status: false
     weight: -10
     settings:
-      allowed_html: '<cite> <dl> <dt> <dd> <blockquote cite> <ul type> <ol start type> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <strong> <em> <a hreflang href> <li> <img src alt data-entity-type data-entity-uuid data-align data-caption>'
+      allowed_html: ''
       filter_html_help: false
       filter_html_nofollow: false
   filter_align:
@@ -52,10 +52,10 @@ filters:
     weight: 0
     settings:
       spamspan_at: ' [at] '
-      spamspan_use_graphic: '1'
-      spamspan_dot_enable: '1'
+      spamspan_use_graphic: true
+      spamspan_dot_enable: true
       spamspan_dot: ' [dot] '
-      spamspan_use_form: ''
+      spamspan_use_form: false
       spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
       spamspan_form_default_url: contact
       spamspan_form_default_displaytext: 'contact form'

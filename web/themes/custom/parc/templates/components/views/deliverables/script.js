@@ -6,8 +6,7 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.viewDeliverables = {
     attach: function (context) {
-      const btn = $(context).find('.btn-wp');
-      btn.once('viewDeliverables').each(function() {
+      $(once('viewDeliverables', '.btn-wp', context)).each(function() {
         var addText = $(this).siblings('.t-term--deliverables').data('ttshort');
         $(this).append(addText);
       }).on('click', function (e) {

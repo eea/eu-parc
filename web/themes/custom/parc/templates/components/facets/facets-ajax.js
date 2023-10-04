@@ -15,7 +15,7 @@
       });
 
       // On facets AJAX complete, apply previously stored collapse information.
-      $(document).once('parcFacetsCollapse').ajaxComplete(function(e, xhr, settings) {
+      $(document).ajaxComplete(function(e, xhr, settings) {
         if (settings.url.startsWith(facetsAjaxUrl)) {
           $.each(window.facetsCollapseSettings, function (key, value) {
             let show = 'hide';
@@ -35,11 +35,11 @@
         }
       });
 
-      $('.facets-widget-parc_checkbox li.collapse').once('facetCollapseExpand').on('shown.bs.collapse', function () {
+      $(once('facetCollapseExpand', '.facets-widget-parc_checkbox li.collapse')).on('shown.bs.collapse', function () {
         $(this).prev().addClass('facet-collapse-expanded');
       });
 
-      $('.facets-widget-parc_checkbox li.collapse').once('facetCollapseCollapse').on('hidden.bs.collapse', function () {
+      $(once('facetCollapseCollapse', '.facets-widget-parc_checkbox li.collapse')).on('hidden.bs.collapse', function () {
         $(this).prev().removeClass('facet-collapse-expanded');
       });
     },

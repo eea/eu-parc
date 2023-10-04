@@ -40,9 +40,7 @@ class ParcTwigExtension extends AbstractExtension {
   }
 
   /**
-   * Declare your custom twig filter here.
-   *
-   * @return array|\Twig_SimpleFilter[]
+   * {@inheritdoc}
    */
   public function getFunctions() {
     return [

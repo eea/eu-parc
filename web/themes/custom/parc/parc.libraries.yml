@@ -23,7 +23,6 @@ global-styling:
     - core/drupal
     - core/jquery
     - core/once
-    - core/jquery.once
 
 parc-popper:
   remote: https://cdnjs.cloudflare.com/ajax/libs/popper.js
@@ -248,6 +247,8 @@ n--publications:
       css/components/content/publications/vm-default/style.css: {}
   js:
     templates/components/content/publications/vm-default/script.js: {}
+  dependencies:
+    - core/once
 
 n--publications-teaser:
   css:
@@ -390,7 +391,7 @@ f--views-exposed:
   dependencies:
     - core/drupal
     - core/jquery
-    - core/jquery.once
+    - core/once
 
 o--share:
   css:
