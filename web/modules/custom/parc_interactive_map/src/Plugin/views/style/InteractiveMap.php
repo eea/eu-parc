@@ -214,7 +214,7 @@ class InteractiveMap extends StylePluginBase {
    *   The main role.
    */
   protected function getInstitutionDisplayedRole(NodeInterface $node) {
-    $query = \Drupal::request()->query->get('f');
+    $query = \Drupal::request()->query->all()['f'] ?? [];
 
     // If there is no query, return the first role.
     if (empty($query)) {
