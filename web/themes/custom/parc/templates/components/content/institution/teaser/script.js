@@ -6,7 +6,7 @@
 (function ($, Drupal, once) {
   Drupal.behaviors.institutionTeaser = {
     attach: function (context, settings) {
-      $(once('expandInstitutionTeaser', 'body')).on('click', '.node--institution .expand-link', function (e) {
+      $(once('expandInstitutionTeaser', 'body')).on('click', '.node .expand-link', function (e) {
         e.preventDefault();
         $(this).toggleClass('expanded');
         if ($(this).hasClass('expanded')) {
