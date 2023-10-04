@@ -1,73 +1,77 @@
-uuid: 3708cac4-61fe-4843-a0b4-42c43aeb9809
+uuid: ffa95245-e3ff-4898-b7e6-85f45ede3993
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.full_html
   module:
-    - ckeditor
+    - ckeditor5
 format: full_html
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Format
-            - Styles
-            - TextColor
-            - BGColor
-            - Bold
-            - Italic
-            - Underline
-            - Strike
-            - RemoveFormat
-            - JustifyLeft
-            - JustifyCenter
-            - JustifyRight
-            - JustifyBlock
-            - Cut
-            - Outdent
-            - Indent
-            - Paste
-            - PasteText
-            - PasteFromWord
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - Blockquote
-            - DrupalImage
-            - DrupalMediaLibrary
-            - Table
-            - HorizontalRule
-        -
-          name: Tools
-          items:
-            - Source
-            - Maximize
-            - IndentParagraph
+    items:
+      - heading
+      - codeBlock
+      - style
+      - fontColor
+      - fontBackgroundColor
+      - bold
+      - italic
+      - underline
+      - strikethrough
+      - removeFormat
+      - alignment
+      - outdent
+      - indent
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - blockQuote
+      - drupalInsertImage
+      - drupalMedia
+      - insertTable
+      - horizontalLine
+      - '|'
+      - sourceEditing
   plugins:
-    stylescombo:
-      styles: 'blockquote.news-blockquote|News blockquote'
-    colorbutton:
-      colors: ''
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_style:
+      styles:
+        -
+          label: 'News blockquote'
+          element: '<blockquote class="news-blockquote">'
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+    ckeditor5_list:
+      reversed: true
+      startIndex: true
+    ckeditor5_alignment:
+      enabled_alignments:
+        - left
+        - center
+        - right
+        - justify
+    ckeditor5_imageResize:
+      allow_resize: true
+    media_media:
+      allow_view_mode_override: false
+    ckeditor5_font_colors:
+      colors: '[]'
 image_upload:
   status: false
   scheme: public
   directory: inline-images
   max_size: ''
   max_dimensions:
-    width: null
-    height: null
+    width: 0
+    height: 0
