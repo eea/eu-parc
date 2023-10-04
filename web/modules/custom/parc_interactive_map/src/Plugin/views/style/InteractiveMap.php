@@ -263,7 +263,7 @@ class InteractiveMap extends StylePluginBase {
       return $this->getDefaultCategory($node);
     }
 
-    $query = \Drupal::request()->query->get('f');
+    $query = \Drupal::request()->query->all()['f'] ?? [];
 
     // If there is no query, return the first role.
     if (empty($query)) {
