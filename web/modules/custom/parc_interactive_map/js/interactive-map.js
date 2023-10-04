@@ -1,15 +1,13 @@
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal, drupalSettings, once) {
   Drupal.behaviors.interactiveMap = {
     attach: function (context, settings) {
-      $(".interactive-map .accordion-collapse")
-        .once("mapInstitutionDetailsOpen")
+      $(once("mapInstitutionDetailsOpen", ".interactive-map .accordion-collapse"))
         .on("show.bs.collapse", function () {
           document.getElementById("identifyParent").style.display = "none";
           $(this).closest(".results").addClass("open");
         });
 
-      $(".interactive-map .accordion-collapse")
-        .once("mapInstitutionDetailsClose")
+      $(once("mapInstitutionDetailsClose", ".interactive-map .accordion-collapse"))
         .on("hide.bs.collapse", function () {
           $(this).closest(".results").removeClass("open");
         });
@@ -25,8 +23,7 @@
         }
       });
 
-      $(".interactive-map", context)
-        .once("interactiveMap")
+      $(once("interactiveMap", ".interactive-map", context))
         .each(function () {
           let delta = 0.1;
           let radiusSingle = 15;
@@ -761,4 +758,4 @@
         });
     },
   };
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal, drupalSettings, once);

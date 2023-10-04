@@ -22,3 +22,4 @@ interactive_map:
     - parc_interactive_map/openlayers
     - core/jquery
     - core/once
+    - core/drupalSettings

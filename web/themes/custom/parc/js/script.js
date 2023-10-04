@@ -87,7 +87,7 @@
       var section_id;
       var page = $('html,body');
 
-      $('.governance-svg').once('governanceSvgClick').click(function (e) {
+      $(once('governanceSvgClick', '.governance-svg')).click(function (e) {
         section_id = $(this).attr('data-section-id');
         history.pushState(null,null, section_id);
         section_id = section_id + '-section';
@@ -102,7 +102,7 @@
       });
 
       if (window.location.hash) {
-        $('.governance-title').once('scrollToPageTitle').each(function () {
+        $(once('scrollToPageTitle', '.governance-title')).each(function () {
           scrollToGovernanceItem();
         });
       }
@@ -112,12 +112,12 @@
       });
 
       function scrollPageToTitle() {
-        page.once('governanceScrollOn').on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function () {
+        $(once('governanceScrollOn', 'html,body')).on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function () {
           page.stop();
         });
 
         page.animate({scrollTop: $('.governance-title').offset().top - 80}, 400, function(){
-          page.once('governanceScrollOff').off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
+          $(once('governanceScrollOff', 'html,body')).off("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove");
         });
       }
 
