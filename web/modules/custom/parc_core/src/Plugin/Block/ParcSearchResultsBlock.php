@@ -4,11 +4,11 @@ namespace Drupal\parc_core\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Http\RequestStack;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\parc_core\ParcSearchManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Provides a block to display the search results.
@@ -58,7 +58,7 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
    *   The entity type manager.
    * @param \Drupal\Core\Routing\CurrentRouteMatch $route_match
    *   The current route match.
-   * @param \Drupal\Core\Http\RequestStack $request_stack
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack.
    * @param \Drupal\parc_core\ParcSearchManager $parc_search_manager
    *   The search manager.
