@@ -101,10 +101,6 @@ class ParcSearchManager {
    *   The URL to the node.
    */
   public function getNodeAutocompleteUrl(NodeInterface $node) {
-    if ($node->bundle() == 'deliverables') {
-      return Url::fromUserInput('/deliverables');
-    }
-
     return $this->getNodeSearchTeaserUrl($node);
   }
 
