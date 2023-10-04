@@ -43,6 +43,10 @@ class ParcCheckboxWidget extends CheckboxWidget {
     }
 
     $query = $url->getOption('query');
+    if (empty($query) || empty($query['focus'])) {
+      return $build;
+    }
+
     unset($query['focus']);
     $url->setOption('query', $query);
     $build['#url'] = $url;

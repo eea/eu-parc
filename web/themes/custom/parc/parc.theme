@@ -251,6 +251,11 @@ function parc_preprocess_facets_item_list(&$variables) {
     }
 
     $query = $url->getOption('query');
+
+    if (empty($query) || empty($query['focus'])) {
+      continue;
+    }
+
     unset($query['focus']);
     $url->setOption('query', $query);
     $items[$idx]['value']['#url'] = $url;
