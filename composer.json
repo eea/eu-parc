@@ -178,7 +178,8 @@
                 "#3355337 - Support Drupal 10": "https://www.drupal.org/files/issues/2023-09-26/drupal.org_files_issues_2023-09-21_3355337-make-module-compatible-drupal10-5.patch"
             },
             "drupal/ckeditor5_font": {
-                "#3350333 - TypeError: array_filter(): Argument #1 ($array) must be of type array": "https://www.drupal.org/files/issues/2023-04-21/3350333-5.patch"
+                "#3350333 - TypeError: array_filter(): Argument #1 ($array) must be of type array": "https://www.drupal.org/files/issues/2023-04-21/3350333-5.patch",
+                "#3368736 - 'no config schema' Error after update to Drupal 10.1.0": "https://www.drupal.org/files/issues/2023-08-07/error-after-drupal-10.1.0-3368736-19.patch"
             }
         },
         "drupal-lenient" : {
