@@ -82,6 +82,7 @@ module:
   parc_zenodo_api: 0
   path: 0
   path_alias: 0
+  phpass: 0
   publishcontent: 0
   rabbit_hole: 0
   raven: 0

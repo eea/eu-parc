@@ -45,3 +45,4 @@ hidden:
   field_svg_title: true
   field_views_reference: true
   field_views_reference_bottom: true
+  search_api_excerpt: true
