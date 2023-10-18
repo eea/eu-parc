@@ -64,7 +64,7 @@
         "drupal/select2": "^1.15",
         "drupal/selective_better_exposed_filters": "^3.0@beta",
         "drupal/simple_sitemap": "^4.1",
-        "drupal/smart_date": "^4.0@alpha",
+        "drupal/smart_date": "^4.1@RC",
         "drupal/smart_trim": "^2.1",
         "drupal/spamspan": "^3.1",
         "drupal/svg_image": "^3.0",
