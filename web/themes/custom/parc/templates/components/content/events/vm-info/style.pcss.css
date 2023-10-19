@@ -181,9 +181,25 @@
       display: none !important;
     }
   }
+
+  .section--events--header {
+    .field-add-to-calendar {
+      display: block !important;
+    }
+  }
 }
 
 .section--events--info {
+  .field {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .field--name-field-address-data + .field--name-field-city {
+    margin-top: -10px;
+  }
+
   .parc-event-calendar {
     display: none !important;
 

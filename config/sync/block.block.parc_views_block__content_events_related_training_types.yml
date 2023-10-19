@@ -1,4 +1,4 @@
-uuid: d35b6c91-c05e-42af-9863-46184f9c9037
+uuid: c4d89269-55bd-494c-bfec-e40415d4a94f
 langcode: en
 status: true
 dependencies:
@@ -9,14 +9,14 @@ dependencies:
     - views
   theme:
     - parc
-id: views_block__content_events_block_related_events
+id: parc_views_block__content_events_related_training_types
 theme: parc
 region: content_bottom
-weight: -11
+weight: -12
 provider: null
-plugin: 'views_block:content_events-block_related_events'
+plugin: 'views_block:content_events-related_training_types'
 settings:
-  id: 'views_block:content_events-block_related_events'
+  id: 'views_block:content_events-related_training_types'
   label: ''
   label_display: '0'
   provider: views

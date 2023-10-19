@@ -367,3 +367,36 @@ function parc_core_deploy_9007() {
     $node->save();
   }
 }
+
+/**
+ * Create training topics.
+ */
+function parc_core_deploy_9008() {
+  if (!Vocabulary::load('training_types')) {
+    throw new Exception('Training types vocabulary not yet created');
+  }
+
+  $terms = [
+    'FAIR & databases' => '#00342E',
+    'Human health' => '#00564C',
+    'Risk assessment' => '#008475',
+    'Statistics & modelling' => '#1DA998',
+    'Transferable skills' => '#2EC7B4',
+    'Hazard assessment' => '#31D9C4',
+    'Exposure assessment' => '#75D1C6',
+    'Policy and regulation' => '#9AD3CD',
+  ];
+
+  $weight = 0;
+  foreach ($terms as $name => $color) {
+    $term = Term::create([
+      'vid' => 'training_types',
+      'name' => $name,
+      'field_color' => [
+        'color' => $color,
+      ],
+      'weight' => $weight++,
+    ]);
+    $term->save();
+  }
+}

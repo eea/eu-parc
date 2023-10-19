@@ -1,0 +1,16 @@
+uuid: 907109fb-342a-4387-bdcf-dce5785f2eaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+    - taxonomy.vocabulary.training_types
+id: training_types
+label: 'Training types'
+vocabulary: training_types
+menu: main
+expanded: false
+depth: 0
+menu_parent: 'main:taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
+description_field_name: ''
+use_term_weight_order: true

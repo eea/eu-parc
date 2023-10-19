@@ -1,0 +1,33 @@
+uuid: 76596fd9-3bdf-416a-aff8-9e50a81936fe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.training_types.field_color
+    - taxonomy.vocabulary.training_types
+  module:
+    - color_field
+    - text
+id: taxonomy_term.training_types.default
+targetEntityType: taxonomy_term
+bundle: training_types
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

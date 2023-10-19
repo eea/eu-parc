@@ -7,16 +7,16 @@ dependencies:
 id: events
 label: Events
 type: 'canonical_entities:node'
-pattern: '/events/[node:field_categories:entity:name]/[node:title]'
+pattern: '/events/[node:field_categories:entity:name]/[node:field_training_type:0:entity:name]/[node:title]'
 selection_criteria:
-  c7ddcc9b-a282-4e9a-ad73-dee102245c6c:
+  4bdbd439-20af-4bf0-8c88-bc87496df473:
     id: 'entity_bundle:node'
     negate: false
-    uuid: c7ddcc9b-a282-4e9a-ad73-dee102245c6c
+    uuid: 4bdbd439-20af-4bf0-8c88-bc87496df473
     context_mapping:
       node: node
     bundles:
       events: events
 selection_logic: and
-weight: -5
+weight: -9
 relationships: {  }

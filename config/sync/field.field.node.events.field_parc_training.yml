@@ -1,0 +1,21 @@
+uuid: d8888457-1ebd-4e82-b55a-465d10594d87
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_parc_training
+    - node.type.events
+id: node.events.field_parc_training
+field_name: field_parc_training
+entity_type: node
+bundle: events
+label: 'PARC training'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

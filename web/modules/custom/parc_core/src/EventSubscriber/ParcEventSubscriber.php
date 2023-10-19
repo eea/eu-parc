@@ -3,6 +3,8 @@
 namespace Drupal\parc_core\EventSubscriber;
 
 use Drupal\Core\Url;
+use Drupal\parc_core\ParcCoreViews;
+use Drupal\parc_core\ParcEventsManager;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Cache\CacheableRedirectResponse;
@@ -70,6 +72,18 @@ class ParcEventSubscriber implements EventSubscriberInterface {
           $event->setResponse(new CacheableRedirectResponse($url->toString()));
           break;
 
+        case 'training_types':
+          $url = Url::fromRoute('view.content_events.page_events');
+          $options = [
+            'query' => [
+              'category[' . ParcEventsManager::EVENT_TRAINING_TID . ']' => ParcEventsManager::EVENT_TRAINING_TID,
+              'training_topic[' . $term->id() . ']' => $term->id(),
+              'close' => TRUE,
+            ],
+          ];
+          $url->setOptions($options);
+          $event->setResponse(new CacheableRedirectResponse($url->toString()));
+          break;
       }
     }
   }

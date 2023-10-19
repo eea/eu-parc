@@ -1,0 +1,14 @@
+uuid: 26b88688-3189-409c-a700-507c5fbddb82
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.training_types
+id: taxonomy_vocabulary_training_types
+entity_type_id: taxonomy_vocabulary
+entity_id: training_types
+action: display_page
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied

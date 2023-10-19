@@ -1,0 +1,25 @@
+uuid: e771ce77-9c72-4850-a4a5-d5d9215ba685
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_color
+    - taxonomy.vocabulary.training_types
+  module:
+    - color_field
+id: taxonomy_term.training_types.field_color
+field_name: field_color
+entity_type: taxonomy_term
+bundle: training_types
+label: Color
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    color: '#00342e'
+    opacity: null
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

@@ -1,0 +1,8 @@
+uuid: 19fa5ca4-5371-4066-b8b2-d8a20b263a07
+langcode: en
+status: true
+dependencies: {  }
+name: 'Training topics'
+vid: training_types
+description: 'Used for training events'
+weight: 0

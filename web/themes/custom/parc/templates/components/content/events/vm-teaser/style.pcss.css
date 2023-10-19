@@ -61,6 +61,10 @@
     color: var(--ne-c-cat-first, var(--red));
   }
 
+  .parc-training-logo {
+    margin-bottom: 5px;
+  }
+
   .meta {
     flex-wrap: wrap;
     gap: 8px;
@@ -76,12 +80,29 @@
     .date-meta {
       display: block;
     }
+
+    * {
+      display: inline;
+    }
+
+    > div + div {
+
+      &:before {
+        content: " / ";
+      }
+    }
   }
 
-  .field--name-field-categories {
-    margin-right: 4px;
+  .field--name-field-categories,
+  .field--name-field-training-type {
     position: relative;
     z-index: 2;
+
+    > div + div {
+      &:before {
+        content: "/";
+      }
+    }
 
     & a {
       --link-color: var(--red);

@@ -4,6 +4,7 @@ namespace Drupal\parc_core;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\taxonomy\TermInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Theme\ThemeManagerInterface;
@@ -74,7 +75,8 @@ class ParcCoreViews implements ContainerInjectionInterface {
           $view->current_display === 'block_events_front_page' ||
           $view->current_display === 'block_related_events' ||
           $view->current_display == 'embed_1' ||
-          $view->current_display == 'related_events_no_conditions'
+          $view->current_display == 'related_events_no_conditions' ||
+          $view->current_display == 'related_training_types'
       ) {
 
         $defaultOverlay = '#8631A7';
@@ -159,7 +161,12 @@ class ParcCoreViews implements ContainerInjectionInterface {
         $result->_entity->hasField($category) &&
         !$result->_entity->get($category)->isEmpty()
       ) {
-        $termId = $result->_entity->get($category)->entity->id();
+        /** @var \Drupal\node\NodeInterface $node */
+        $node = $result->_entity;
+        if (!$node->get($category)->entity instanceof TermInterface) {
+          continue;
+        }
+        $termId = $node->get($category)->entity->id();
         // Get the overlay value for the current content.
         if ($overlays[$termId]['current'] > $overlays[$termId]['max']) {
           $overlay = 0;
@@ -170,11 +177,21 @@ class ParcCoreViews implements ContainerInjectionInterface {
         }
 
         // Assing the overlay value.
-        $result->_entity->overlay = $overlays[$termId]['overlays'][$overlay] ??
+        $node->overlay = $overlays[$termId]['overlays'][$overlay] ??
           $defaultOverlay;
       }
       else {
-        $result->_entity->overlay = $defaultOverlay;
+        $node->overlay = $defaultOverlay;
+      }
+
+      if ($node->hasField('field_training_type')
+        && !$node->get('field_training_type')->isEmpty()) {
+        /** @var \Drupal\taxonomy\TermInterface $training_type */
+        $training_type = $node->get('field_training_type')->entity;
+        if ($training_type instanceof TermInterface
+          && !$training_type->get('field_color')->isEmpty()) {
+          $node->overlay = $training_type->get('field_color')->color;
+        }
       }
     }
 

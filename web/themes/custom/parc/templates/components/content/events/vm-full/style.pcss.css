@@ -28,6 +28,7 @@
     color: var(--ne-c-cat);
     font-weight: var(--fw-bold);
     margin-block: 20px;
+    margin-bottom: 30px;
   }
 
   .field--name-body {

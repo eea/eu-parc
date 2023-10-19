@@ -92,40 +92,40 @@ definitions:
     expanded: false
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__91':
-    menu_name: main
+    expanded: true
     parent: 'views_view:views.content_events.page_events'
-    weight: -46
-    expanded: false
+    weight: 2
+    menu_name: main
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__92':
-    menu_name: main
+    expanded: true
     parent: 'views_view:views.content_events.page_events'
-    weight: -47
-    expanded: false
+    weight: 3
+    menu_name: main
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__93':
-    menu_name: main
+    expanded: true
     parent: 'views_view:views.content_events.page_events'
-    weight: -49
-    expanded: false
+    weight: 4
+    menu_name: main
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__94':
-    menu_name: main
+    expanded: true
     parent: 'views_view:views.content_events.page_events'
-    weight: -48
-    expanded: false
+    weight: 5
+    menu_name: main
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__95':
-    menu_name: main
+    expanded: true
     parent: 'views_view:views.content_events.page_events'
-    weight: -45
-    expanded: false
+    weight: 6
+    menu_name: main
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__96':
-    menu_name: main
+    expanded: true
     parent: 'views_view:views.content_events.page_events'
-    weight: -44
-    expanded: false
+    weight: 7
+    menu_name: main
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__58':
     menu_name: main
@@ -199,3 +199,15 @@ definitions:
     weight: -48
     expanded: false
     enabled: false
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__662':
+    weight: -62
+    menu_name: main
+    parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
+    enabled: true
+    expanded: true
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__663':
+    weight: -61
+    menu_name: main
+    parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
+    expanded: true
+    enabled: true

@@ -12,7 +12,7 @@ dependencies:
 id: views_block__thematic_areas_block_thematic_areas_footer
 theme: parc
 region: content_bottom
-weight: 0
+weight: -10
 provider: null
 plugin: 'views_block:thematic_areas-block_thematic_areas_footer'
 settings:

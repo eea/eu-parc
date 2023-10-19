@@ -16,6 +16,8 @@ use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\taxonomy_menu\Plugin\Menu\TaxonomyMenuMenuLink;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
+use Drupal\taxonomy\TermInterface;
+use Drupal\parc_core\ParcEventsManager;
 
 /**
  * Implements hook_theme().
@@ -102,6 +104,16 @@ function _parc_core_preprocess_menu_alter_category_links(array &$items) {
       _parc_core_preprocess_menu_alter_category_links($item['below']);
     }
 
+    // If the item only has 1 child with no link, remove it.
+    if (count($item['below']) == 1) {
+      $link = reset($item['below']);
+      /** @var \Drupal\Core\Url $url */
+      $url = $link['url'];
+      if ($url->getRouteName() == '<nolink>') {
+        unset($item['below']);
+      }
+    }
+
     if (!$item['original_link'] instanceof TaxonomyMenuMenuLink) {
       continue;
     }
@@ -127,6 +139,15 @@ function _parc_core_preprocess_menu_alter_category_links(array &$items) {
     elseif ($term->bundle() == 'news_category') {
       $results = $node_storage->getQuery()
         ->condition('field_tags', $term->id())
+        ->accessCheck()
+        ->execute();
+      if (empty($results)) {
+        unset($items[$key]);
+      }
+    }
+    elseif ($term->bundle() == 'training_types') {
+      $results = $node_storage->getQuery()
+        ->condition('field_training_type', $term->id())
         ->accessCheck()
         ->execute();
       if (empty($results)) {
@@ -253,10 +274,28 @@ function parc_core_page_attachments(array &$attachments) {
  * Implements hook_views_query_alter().
  */
 function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
-  // Views queries with GROUP BY date are bugged
-  // and do not interpret NOW as the current date.
-  // Replace 'now' string in queries with time().
   if ($view->id() == 'content_events') {
+    // For training events, this view should only display events
+    // of different training types, while the related_training_types
+    // display should display the rest.
+    /** @var \Drupal\parc_core\ParcEventsManager $events_manager */
+    $events_manager = \Drupal::service('parc_core.events_manager');
+    if ($view->current_display == 'block_related_events') {
+      $node = \Drupal::routeMatch()->getParameter('node');
+      if ($events_manager->isTrainingEventPage()
+        && $node->hasField('field_training_type')
+        && !$node->get('field_training_type')->isEmpty()
+      ) {
+        $training_types = array_column($node->get('field_training_type')->getValue(), 'target_id');
+        if (!empty($training_types)) {
+          $query->addWhere('training_type', 'node__field_training_type.field_training_type_target_id', $training_types, 'NOT IN');
+        }
+      }
+    }
+
+    // Views queries with GROUP BY date are bugged
+    // and do not interpret NOW as the current date.
+    // Replace 'now' string in queries with time().
     foreach ($query->having as &$group) {
       foreach ($group['conditions'] as &$condition) {
         foreach ($condition['value'] as &$value) {
@@ -276,6 +315,20 @@ function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $quer
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for views_exposed_form__content_events__page_events.
+ */
+function parc_core_preprocess_views_exposed_form__content_events__page_events(&$variables) {
+  /** @var \Drupal\parc_core\ParcEventsManager $events_manager */
+  $events_manager = \Drupal::service('parc_core.events_manager');
+  if ($events_manager->isTrainingEventsViewPage()) {
+    $variables['training_event'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for views_view__search.
+ */
 function parc_core_preprocess_views_view__search(&$variables) {
   // The view block needs to cache differently depending on query parameters.
   $variables['cache']['contexts'][] = 'url';
@@ -439,6 +492,17 @@ function parc_core_preprocess_node__search_teaser(&$variables) {
   $variables['url_target'] = '_self';
   if ($node->bundle() == 'deliverables') {
     $variables['url_target'] = '_blank';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for search_teaser.
+ */
+function parc_core_preprocess_node__events__full(&$variables) {
+  /** @var \Drupal\parc_core\ParcEventsManager $events_manager */
+  $events_manager = \Drupal::service('parc_core.events_manager');
+  if ($events_manager->isTrainingEventPage()) {
+    $variables['training_event'] = TRUE;
   }
 }
 

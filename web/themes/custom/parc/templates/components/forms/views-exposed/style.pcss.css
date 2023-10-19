@@ -1,4 +1,5 @@
-.deliverables-filters {
+.deliverables-filters,
+.events-filters {
   .filters-row {
     flex-wrap: nowrap;
   }

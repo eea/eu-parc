@@ -1,0 +1,46 @@
+uuid: 31528c63-1f09-4271-9f28-3ef2be562fe8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.training_types.field_color
+    - taxonomy.vocabulary.training_types
+  module:
+    - color_field
+    - path
+id: taxonomy_term.training_types.default
+targetEntityType: taxonomy_term
+bundle: training_types
+mode: default
+content:
+  field_color:
+    type: color_field_widget_html5
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true
+  simple_sitemap: true
+  simple_sitemap_index_now: true

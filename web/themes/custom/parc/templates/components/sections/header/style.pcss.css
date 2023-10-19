@@ -302,8 +302,23 @@ header {
       min-width: 270px;
     }
 
+    .mm-collapse-2 {
+      position: absolute;
+      inset-block: 0;
+      left: 100%;
+      padding-bottom: 0;
+      display: none;
+      min-width: 270px;
+    }
+
     .nav-link-level-1:hover {
       .mm-collapse-1 {
+        display: block;
+      }
+    }
+
+    .nav-link-level-2:hover {
+      .mm-collapse-2 {
         display: block;
       }
     }

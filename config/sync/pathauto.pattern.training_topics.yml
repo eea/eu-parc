@@ -1,22 +1,22 @@
-uuid: 8af65618-f66b-47bf-9dc9-9c467db5de2e
+uuid: cdc4346e-2529-4a6f-8e2b-fe2bee113851
 langcode: en
 status: true
 dependencies:
   module:
     - taxonomy
-id: taxonomy_thematic_areas
-label: 'Taxonomy Thematic areas'
+id: training_topics
+label: 'Training topics'
 type: 'canonical_entities:taxonomy_term'
-pattern: '/thematic-areas/[term:name]'
+pattern: '/events/trainings/[term:name]'
 selection_criteria:
-  2033fb48-fec4-4e63-a74f-72c2c37e0bd8:
+  bc25222d-4425-4682-b44b-d841f1c02197:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 2033fb48-fec4-4e63-a74f-72c2c37e0bd8
+    uuid: bc25222d-4425-4682-b44b-d841f1c02197
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:
-      thematic_areas: thematic_areas
+      training_types: training_types
 selection_logic: and
-weight: -4
+weight: -5
 relationships: {  }

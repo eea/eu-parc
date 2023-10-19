@@ -17,6 +17,20 @@
     margin-top: auto;
     font-size: 12px;
     line-height: 1em;
+    flex-direction: column;
+    gap: 20px;
+    display: flex;
+
+    .field-add-to-calendar {
+      a {
+        color: #fff;
+        margin-right: 0;
+      }
+
+      svg {
+        display: none;
+      }
+    }
   }
 
   .field-add-to-calendar {
@@ -72,4 +86,10 @@
       margin-top: 0;
     }
   }
+}
+
+.parc-training-header {
+  color: var(--red);
+  margin-top: 15px;
+  margin-bottom: -15px;
 }

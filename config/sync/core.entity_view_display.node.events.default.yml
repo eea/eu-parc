@@ -12,8 +12,10 @@ dependencies:
     - field.field.node.events.field_event_format
     - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
+    - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_training_type
     - field.field.node.events.field_website
     - node.type.events
     - system.menu.main
@@ -119,7 +121,27 @@ third_party_settings:
               expand_all_items: false
               parent: 'main:'
               suggestion: sidebar_dropdown
-            weight: 1
+            weight: -1
+            additional: {  }
+          cc2f9f82-a891-4bbb-b58f-2d1366c33b61:
+            uuid: cc2f9f82-a891-4bbb-b58f-2d1366c33b61
+            region: menu
+            configuration:
+              id: 'menu_block:main'
+              label: 'Main navigation'
+              label_display: '0'
+              provider: menu_block
+              context_mapping: {  }
+              follow: false
+              follow_parent: child
+              label_link: false
+              label_type: block
+              level: 1
+              depth: 0
+              expand_all_items: false
+              parent: 'main:taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
+              suggestion: sidebar_dropdown
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -
@@ -335,6 +357,16 @@ content:
     third_party_settings: {  }
     weight: 109
     region: first
+  field_parc_training:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 119
+    region: first
   field_registration:
     type: text_default
     label: above
@@ -349,6 +381,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 108
+    region: first
+  field_training_type:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 118
     region: first
   field_website:
     type: link

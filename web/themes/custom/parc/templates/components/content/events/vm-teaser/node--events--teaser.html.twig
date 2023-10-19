@@ -17,6 +17,9 @@
     {% set color = node.overlay %}
   {% endif %}
   {% set labelColor = node.field_categories.entity.field_colors.value.0.color %}
+  {% if node.field_training_type.entity and node.field_training_type.entity.field_color.value.0.color %}
+    {% set labelColor = node.field_training_type.entity.field_color.value.0.color %}
+  {% endif %}
 
   <article{{attributes.addClass(classes).setAttribute('style','--ne-c-cat:'~color~';--ne-c-cat-first:'~labelColor~';')}}>
     <div class="card-img">
@@ -24,6 +27,18 @@
         {{- content.field_date -}}
 
         <div class="text-uppercase w--bg--bottom">
+          {% if node.field_parc_training.value %}
+            <div class="parc-training-logo">
+              <svg width="37" height="37" viewBox="0 0 37 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30.4586 6.01713L19.2852 9.00537" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"/>
+                <path d="M35.2114 22.4316L27.0479 14.2681" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"/>
+                <path d="M23.3777 34.7786L26.366 23.6052" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"/>
+                <path d="M6.73145 30.6943L17.9265 27.6844" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"/>
+                <path d="M2 14.2681L10.1635 22.4316" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"/>
+                <path d="M13.8339 1.91265L10.824 13.1077" stroke="white" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"/>
+              </svg>
+            </div>
+          {% endif %}
           {% if content.field_city.0 %}
             {{- content.field_city -}}
           {% else %}
@@ -34,8 +49,11 @@
     </div>
 
     <div class="card-body">
-      <div class="meta d-flex justify-content-between fw-bold text-uppercase">
+      <div class="meta fw-bold text-uppercase">
         {{- content.field_categories -}}
+        {% if not node.field_training_type.isEmpty %}
+          {{- content.field_training_type -}}
+        {% endif %}
       </div>
 
       <h2{{title_attributes.addClass('card-title','fw-bold')}}>

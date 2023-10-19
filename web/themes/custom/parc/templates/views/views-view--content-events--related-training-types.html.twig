@@ -35,6 +35,7 @@
 {%
   set classes = [
     dom_id ? 'js-view-dom-id-' ~ dom_id,
+    'mb-5',
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
@@ -46,13 +47,13 @@
     {% if header %}
       <header class="block-views">
         <h2 class="block--title d-inline-flex">
-          <span class="pe-2">{{ 'Related events in'| t }}</span> {{ header }}
+          <span class="pe-2">{{ 'Related training events in'| t }}</span> {{ header }}
         </h2>
       </header>
     {% else %}
       <header class="block-views">
         <h2 class="block--title d-inline-flex">
-          <span class="pe-2">{{ 'Related events'| t }}</span>
+          <span class="pe-2">{{ 'Related training events'| t }}</span>
         </h2>
       </header>
     {% endif %}

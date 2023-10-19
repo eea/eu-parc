@@ -9,8 +9,8 @@ id: events
 label: Events
 vocabulary: events_category
 menu: main
-expanded: false
-depth: 0
+expanded: true
+depth: 8
 menu_parent: 'main:views_view:views.content_events.page_events'
 description_field_name: ''
 use_term_weight_order: true

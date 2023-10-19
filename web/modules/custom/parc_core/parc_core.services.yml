@@ -17,3 +17,7 @@ services:
   parc_core.menu_link_tree:
     class: Drupal\parc_core\ParcMenuLinkTree
     arguments: [ '@menu.tree_storage', '@plugin.manager.menu.link', '@router.route_provider', '@menu.active_trail', '@controller_resolver', '@entity_type.manager' ]
+
+  parc_core.events_manager:
+    class: Drupal\parc_core\ParcEventsManager
+    arguments: [ '@entity_type.manager', '@request_stack', '@current_route_match' ]
