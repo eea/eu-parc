@@ -42,11 +42,13 @@
   {{ title }}
   {{ title_suffix }}
 
-  <header class="block-views">
-    <h2 class="block--title">
-      <span>{{ 'Upcoming events'|t }}</span>
-    </h2>
-  </header>
+  {% if rows %}
+    <header class="block-views">
+      <h2 class="block--title">
+        <span>{{ 'Upcoming events'|t }}</span>
+      </h2>
+    </header>
+  {% endif %}
 
   {{ exposed }}
   {{ attachment_before }}
