@@ -353,6 +353,12 @@ m--sidebar-dropdown:
   css:
     component:
       css/components/menu/sidebar-dropdown/style.css: {}
+  js:
+    templates/components/menu/sidebar-dropdown/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery
 
 # Media.
 me--download-link:

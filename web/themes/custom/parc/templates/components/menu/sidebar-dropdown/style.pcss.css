@@ -38,3 +38,36 @@
     }
   }
 }
+
+.menu--sidebar-dropdown {
+  .btn {
+    border: none !important;
+    outline: 0 !important;
+    position: relative;
+
+    &.collapsed {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    svg {
+      position: absolute;
+      right: 0;
+      top: 18px;
+    }
+  }
+
+  .nav-link {
+    font-size: 18px !important;
+  }
+
+  .dropdown-toggle {
+    font-size: 24px;
+    padding-left: 0;
+  }
+
+  .text-muted {
+    display: none !important;
+  }
+}

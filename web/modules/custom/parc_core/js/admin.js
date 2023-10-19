@@ -2,7 +2,7 @@
 
   Drupal.behaviors.parcSmartDate = {
     attach: function (context, settings) {
-      $(once('parcSmartDate', document)).on('change', '.node-events-form .allday, .node-events-edit-form .allday', function () {
+      $(once('parcSmartDate', '.node-events-form .allday, .node-events-edit-form .allday')).on('change', function () {
         if ($(this).is(':checked')) {
           $(this).closest('tr').addClass('all-day-selected');
         }

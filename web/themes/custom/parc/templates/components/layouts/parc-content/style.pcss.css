@@ -2,12 +2,30 @@
   isolation: isolate;
 
   .col-menu {
-    margin-bottom: 32px;
+    //margin-bottom: 32px;
+  }
+
+  &.mb-parc {
+    > .row {
+      gap: 30px;
+
+      @media (--lg) {
+        gap: 0;
+      }
+    }
+  }
+
+  .body {
+    margin-bottom: 30px;
+
+    @media (--lg) {
+      margin-bottom: 0;
+    }
   }
 
   .col-menu-sticky {
     .block-menu {
-      padding-bottom: 2rem;
+      padding-bottom: 1rem;
     }
   }
 

@@ -19,6 +19,7 @@ dependencies:
     - field.field.node.events.field_website
     - node.type.events
   module:
+    - conditional_fields
     - field_group
     - ics_link_field
     - link
@@ -140,7 +141,26 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        17f2af46-c1b8-4150-84e6-56b4aba2f8b4:
+          entity_type: node
+          bundle: events
+          dependee: field_categories
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '91'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_registration:
     type: text_textarea
     weight: 9
@@ -168,7 +188,26 @@ content:
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
-    third_party_settings: {  }
+    third_party_settings:
+      conditional_fields:
+        76f1bd62-2821-4129-8a42-9cfee385c00c:
+          entity_type: node
+          bundle: events
+          dependee: field_categories
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '91'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_website:
     type: link_default
     weight: 12
