@@ -9,7 +9,11 @@ dependencies:
     - field.field.node.events.field_categories
     - field.field.node.events.field_city
     - field.field.node.events.field_date
+    - field.field.node.events.field_duration
+    - field.field.node.events.field_ects
     - field.field.node.events.field_event_format
+    - field.field.node.events.field_fee
+    - field.field.node.events.field_hide_calendar
     - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
     - field.field.node.events.field_parc_training
@@ -69,7 +73,7 @@ content:
     third_party_settings: {  }
   field_add_to_calendar:
     type: ics_link_field_widget
-    weight: 20
+    weight: 22
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -97,7 +101,7 @@ content:
     third_party_settings: {  }
   field_date:
     type: smartdate_inline
-    weight: 21
+    weight: 23
     region: content
     settings:
       modal: false
@@ -114,22 +118,71 @@ content:
       remove_seconds: false
       separator: to
     third_party_settings: {  }
+  field_duration:
+    type: string_textfield
+    weight: 24
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_ects:
+    type: number
+    weight: 16
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        06cd0d71-2b74-442c-aa1f-1209e1697a05:
+          entity_type: node
+          bundle: events
+          dependee: field_categories
+          settings:
+            state: visible
+            reset: false
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                target_id: '91'
+            effect: show
+            effect_options: {  }
+            selector: ''
   field_event_format:
     type: options_select
     weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_fee:
+    type: string_textfield
+    weight: 17
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_hide_calendar:
+    type: boolean_checkbox
+    weight: 25
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_media_image:
     type: media_library_widget
-    weight: 16
+    weight: 18
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
-    weight: 19
+    weight: 21
     region: content
     settings:
       sidebar: true
@@ -171,7 +224,7 @@ content:
     third_party_settings: {  }
   field_seo_keyword:
     type: entity_reference_autocomplete
-    weight: 18
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -235,7 +288,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 17
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }

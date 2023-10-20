@@ -1,0 +1,18 @@
+uuid: 8cd7d7bf-6be6-43d5-8f58-86ce33ae00f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_hide_calendar
+field_name: field_hide_calendar
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

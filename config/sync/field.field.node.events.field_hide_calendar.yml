@@ -1,0 +1,21 @@
+uuid: bbcdc23f-91f2-4355-80b7-5a82a7e4f0a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hide_calendar
+    - node.type.events
+id: node.events.field_hide_calendar
+field_name: field_hide_calendar
+entity_type: node
+bundle: events
+label: 'Hide calendar'
+description: 'If checked, the calendar widget will not be shown on the event page. Instead, only the date range will be displayed.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

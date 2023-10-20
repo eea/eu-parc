@@ -1,0 +1,23 @@
+uuid: 318037d8-dd4e-4ce2-8434-61507212661a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ects
+    - node.type.events
+id: node.events.field_ects
+field_name: field_ects
+entity_type: node
+bundle: events
+label: ECTs
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

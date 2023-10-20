@@ -10,7 +10,11 @@ dependencies:
     - field.field.node.events.field_categories
     - field.field.node.events.field_city
     - field.field.node.events.field_date
+    - field.field.node.events.field_duration
+    - field.field.node.events.field_ects
     - field.field.node.events.field_event_format
+    - field.field.node.events.field_fee
+    - field.field.node.events.field_hide_calendar
     - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
     - field.field.node.events.field_parc_training
@@ -21,7 +25,6 @@ dependencies:
     - node.type.events
   module:
     - layout_builder
-    - link
     - parc_core
     - text
     - user
@@ -40,7 +43,7 @@ content:
     settings:
       link_label: 'Add to Calendar'
     third_party_settings: {  }
-    weight: 5
+    weight: 8
     region: content
   field_address_data:
     type: text_default
@@ -55,7 +58,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_date:
     type: parc_event_date
@@ -71,6 +74,31 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_duration:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_ects:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_fee:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
   field_registration:
     type: text_default
     label: above
@@ -79,22 +107,18 @@ content:
     weight: 0
     region: content
   field_website:
-    type: link
+    type: parc_link
     label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+    settings: {  }
     third_party_settings: {  }
-    weight: 4
+    weight: 7
     region: content
 hidden:
   addtoany: true
   body: true
   field_categories: true
   field_event_format: true
+  field_hide_calendar: true
   field_media_image: true
   field_metatags: true
   field_parc_training: true

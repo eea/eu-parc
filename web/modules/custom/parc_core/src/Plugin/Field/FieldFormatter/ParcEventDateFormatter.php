@@ -4,6 +4,7 @@ namespace Drupal\parc_core\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\smart_date\Plugin\Field\FieldFormatter\SmartDateFormatterBase;
+use Drupal\smart_date\SmartDateTrait;
 
 /**
  * Plugin implementation of the 'parc_event_date' formatter.
@@ -23,6 +24,44 @@ class ParcEventDateFormatter extends SmartDateFormatterBase {
    */
   public function viewElements(FieldItemListInterface $items, $langcode, $format = '') {
     $elements = parent::viewElements($items, $langcode);
+    $parent = $items->getParent()->getEntity();
+
+    if ($parent->hasField('field_hide_calendar')
+      && !empty($parent->get('field_hide_calendar')->value)
+      && !$items->isEmpty()) {
+      $start_date = $items->get(0)->getValue()['value'];
+      $end_date = $items->get($items->count() - 1)->getValue()['end_value'];
+
+      $start_date = date('d.m.Y', $start_date);
+      [$start_day, $start_month, $start_year] = explode('.', $start_date);
+      $end_date = date('d.m.Y', $end_date);
+      [$end_day, $end_month, $end_year] = explode('.', $end_date);
+      if ($start_date == $end_date) {
+        $markup = $start_date;
+      }
+      elseif ($start_year != $end_year) {
+        $markup = "$start_date ─ $end_date";
+      }
+      elseif ($start_month != $end_month) {
+        $markup = "$start_day.$start_month ─ $end_day.$end_month.$end_year";
+      }
+      else {
+        $markup = "$start_day ─ $end_day.$end_month.$end_year";
+      }
+
+      return [
+        '#type' => 'inline_template',
+        '#template' => '
+          <div class="field field--name-field-registration field--type-text-long field--label-above">
+            <div class="f-label">{{ label }}</div>
+            {{ value }}
+          </div>',
+        '#context' => [
+          'label' => $this->t('Date'),
+          'value' => $markup,
+        ],
+      ];
+    }
 
     $entries = [];
     foreach ($elements as $delta => $element) {

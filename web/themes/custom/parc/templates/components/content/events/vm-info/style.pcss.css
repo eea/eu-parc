@@ -120,12 +120,6 @@
     }
   }
 
-  .field + .field {
-    .f-label {
-      margin-top: 20px;
-    }
-  }
-
   .f-label {
     font-size: 12px;
     line-height: 18px;
@@ -191,13 +185,9 @@
 
 .section--events--info {
   .field {
-    &:not(:last-child) {
-      margin-bottom: 10px;
+    &:not(:last-child):not(.field--name-field-address-data) {
+      margin-bottom: 20px;
     }
-  }
-
-  .field--name-field-address-data + .field--name-field-city {
-    margin-top: -10px;
   }
 
   .parc-event-calendar {

@@ -9,7 +9,11 @@ dependencies:
     - field.field.node.events.field_categories
     - field.field.node.events.field_city
     - field.field.node.events.field_date
+    - field.field.node.events.field_duration
+    - field.field.node.events.field_ects
     - field.field.node.events.field_event_format
+    - field.field.node.events.field_fee
+    - field.field.node.events.field_hide_calendar
     - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
     - field.field.node.events.field_parc_training
@@ -335,12 +339,47 @@ content:
     third_party_settings: {  }
     weight: 116
     region: first
+  field_duration:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 123
+    region: first
+  field_ects:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 121
+    region: first
   field_event_format:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
     weight: 111
+    region: first
+  field_fee:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 122
+    region: first
+  field_hide_calendar:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 120
     region: first
   field_media_image:
     type: entity_reference_label
