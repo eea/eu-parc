@@ -488,3 +488,28 @@ function parc_preprocess_menu__sidebar_dropdown(&$variables) {
 
   $variables['dropdown_title'] = $dropdown_title;
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for field__block_content__field_paragraphs__newsletter.
+ */
+function parc_preprocess_field__block_content__field_paragraphs__newsletter(&$variables) {
+  $items = $variables['items'];
+  $count = 0;
+  foreach ($items as $item) {
+    if ($count < 6) {
+      $variables['first_items'][] = $item;
+    }
+    else {
+      $variables['see_more_items'][] = $item;
+    }
+
+    $count++;
+  }
+
+  $variables['count'] = count($items);
+
+  /** @var \Drupal\block_content\BlockContentInterface $block */
+  $block = $variables['element']['#object'];
+  $variables['block_id'] = $block->id();
+  $variables['see_more_link_text'] = $block->get('field_link_text')->value ?? t('See all newsletters');
+}

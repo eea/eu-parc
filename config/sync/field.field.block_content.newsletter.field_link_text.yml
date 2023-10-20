@@ -1,0 +1,21 @@
+uuid: 95babce1-1148-475b-9557-638f0a9c2ace
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.newsletter
+    - field.storage.block_content.field_link_text
+id: block_content.newsletter.field_link_text
+field_name: field_link_text
+entity_type: block_content
+bundle: newsletter
+label: 'See more link text'
+description: 'The text used in the see more link button.'
+required: true
+translatable: false
+default_value:
+  -
+    value: 'See all newsletters'
+default_value_callback: ''
+settings: {  }
+field_type: string

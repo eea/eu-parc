@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.newsletter
     - field.field.block_content.newsletter.body
+    - field.field.block_content.newsletter.field_link_text
     - field.field.block_content.newsletter.field_paragraphs
     - field.field.block_content.newsletter.field_show_season
   module:
@@ -14,9 +15,17 @@ targetEntityType: block_content
 bundle: newsletter
 mode: default
 content:
+  field_link_text:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_paragraphs:
     type: paragraphs
-    weight: 2
+    weight: 3
     region: content
     settings:
       title: Newsletter

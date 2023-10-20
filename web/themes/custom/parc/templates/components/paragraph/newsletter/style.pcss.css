@@ -32,3 +32,13 @@
     }
   }
 }
+
+.newsletter-see-more {
+  margin-top: 40px;
+  width: 100%;
+  text-align: center;
+
+  &[aria-expanded="true"] {
+    display: none;
+  }
+}

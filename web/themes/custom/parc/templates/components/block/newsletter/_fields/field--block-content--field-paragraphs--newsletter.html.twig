@@ -6,13 +6,33 @@
 #}
 
 <div class="grid-sm">
-  {%- for item in items -%}
+  {%- for item in first_items -%}
     <div class="position-relative">
       <div class="paragraph--count">
-        #{{ items|length - loop.index0 -}}
+        #{{ count - loop.index0 -}}
       </div>
 
       {{- item.content -}}
     </div>
   {%- endfor -%}
 </div>
+
+{% if see_more_items %}
+  <button class="newsletter-see-more btn-link" data-bs-toggle="collapse" href="#collapse-see-more-{{ block_id }}" role="button" aria-expanded="false" aria-controls="collapse-see-more-{{ block_id }}">
+    {{ see_more_link_text }}
+  </button>
+
+  <div class="collapse see-more-items mt-3" id="collapse-see-more-{{ block_id }}">
+    <div class="grid-sm">
+      {%- for item in see_more_items -%}
+        <div class="position-relative">
+          <div class="paragraph--count">
+            #{{ count - loop.index0 - first_items|length -}}
+          </div>
+
+          {{- item.content -}}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{% endif %}

@@ -218,6 +218,9 @@ fieldset:disabled .btn {
   --btn-box-shadow: none;
   --btn-focus-shadow-rgb: 49, 132, 253;
   text-decoration: underline;
+  box-shadow: none;
+  background: transparent;
+  border: none;
 }
 .btn-link:focus-visible {
   color: var(--btn-color);
@@ -237,4 +240,8 @@ fieldset:disabled .btn {
   --btn-padding-x: 0.5rem;
   --btn-font-size: 0.875rem;
   --btn-border-radius: 0.25rem;
+}
+
+.paragraphs-dropdown-action.button {
+  color: #000;
 }
