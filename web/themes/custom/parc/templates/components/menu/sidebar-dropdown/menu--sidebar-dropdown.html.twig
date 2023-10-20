@@ -7,40 +7,42 @@
 {{ attach_library('parc/m--sidebar-dropdown') }}
 {{ attach_library('parc/dropdowns') }}
 
-<div class="menu--sidebar-dropdown">
-  <button class="btn collapsed dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ unique_id }}" aria-expanded="false" aria-controls="collapse-{{ unique_id }}">
-    {{ dropdown_title }}
-    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11.2633 0.809082L6.87896 6.11133C6.52702 6.53696 5.95641 6.53696 5.60447 6.11133L1.22013 0.809082" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  </button>
-  <div class="collapse" id="collapse-{{ unique_id }}">
-    {%
-      set classes = [
-      'navbar-nav',
-      'nav-' ~ menu_name|clean_class,
-      'mb-0',
-    ]
-    %}
-    <ul{{attributes.addClass(classes)}}>
-      {% for item in items %}
-        {% set linkID = item.title|clean_class %}
+{% if items %}
+  <div class="menu--sidebar-dropdown">
+    <button class="btn collapsed dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ unique_id }}" aria-expanded="false" aria-controls="collapse-{{ unique_id }}">
+      {{ dropdown_title }}
+      <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.2633 0.809082L6.87896 6.11133C6.52702 6.53696 5.95641 6.53696 5.60447 6.11133L1.22013 0.809082" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="collapse" id="collapse-{{ unique_id }}">
+      {%
+        set classes = [
+        'navbar-nav',
+        'nav-' ~ menu_name|clean_class,
+        'mb-0',
+      ]
+      %}
+      <ul{{attributes.addClass(classes)}}>
+        {% for item in items %}
+          {% set linkID = item.title|clean_class %}
 
-        {%
-          set classes_link = [
-          item.url|render == '' ? 'text-muted text-uppercase hidden' : 'nav-link',
-          'grow-1',
-          'nav-link-level-' ~ menu_level,
-          item.is_expanded ? 'dropdown-toggle',
-          item.is_collapsed ? 'dropdown-toggle',
-          item.in_active_trail ? 'active',
-          menu_level == 0 and item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
-        ]
-        %}
-        <li{{item.attributes.addClass('nav-item','nav-link-level-'~menu_level,item.in_active_trail?'li-active',)}}>
-          {{ link(item.title, item.url, { 'class': classes_link }) }}
-        </li>
-      {% endfor %}
-    </ul>
+          {%
+            set classes_link = [
+            item.url|render == '' ? 'text-muted text-uppercase hidden' : 'nav-link',
+            'grow-1',
+            'nav-link-level-' ~ menu_level,
+            item.is_expanded ? 'dropdown-toggle',
+            item.is_collapsed ? 'dropdown-toggle',
+            item.in_active_trail ? 'active',
+            menu_level == 0 and item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
+          ]
+          %}
+          <li{{item.attributes.addClass('nav-item','nav-link-level-'~menu_level,item.in_active_trail?'li-active',)}}>
+            {{ link(item.title, item.url, { 'class': classes_link }) }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
-</div>
+{% endif %}

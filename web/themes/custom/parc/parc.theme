@@ -457,6 +457,7 @@ function parc_preprocess_paragraph__newsletter(&$variables) {
 function parc_preprocess_menu__sidebar_dropdown(&$variables) {
   $variables['unique_id'] = uniqid('menu-');
   $dropdown_title = t('Categories');
+  $training_event_menu = FALSE;
 
   foreach ($variables['items'] as $link) {
     /** @var \Drupal\Core\Url $url */
@@ -467,9 +468,21 @@ function parc_preprocess_menu__sidebar_dropdown(&$variables) {
         break;
       }
       if (strpos(strtolower($link['title']), 'trainings') !== FALSE) {
+        $training_event_menu = TRUE;
         $dropdown_title = t('Training topic');
         break;
       }
+    }
+  }
+
+  // Only show the trainings submenu if the current page is a training event.
+  if ($training_event_menu) {
+    $variables['#cache']['contexts'][] = 'url';
+
+    /** @var \Drupal\parc_core\ParcEventsManager $events_manager */
+    $events_manager = \Drupal::service('parc_core.events_manager');
+    if (!$events_manager->isTrainingEventPage()) {
+      $variables['items'] = [];
     }
   }
 
