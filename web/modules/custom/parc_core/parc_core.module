@@ -476,6 +476,30 @@ function parc_core_form_views_exposed_form_alter(array &$form, FormStateInterfac
         return in_array($key, $used_categories);
       }, ARRAY_FILTER_USE_BOTH);
     }
+
+    if (!empty($form['training_topic'])) {
+      $used_categories = \Drupal::database()
+        ->select('node__field_training_type', 'f')
+        ->fields('f', ['field_training_type_target_id'])
+        ->condition('f.bundle', 'events')
+        ->distinct()
+        ->execute()
+        ->fetchCol();
+
+      $form['training_topic']['#options'] = array_filter($form['training_topic']['#options'], function ($value, $key) use ($used_categories) {
+        return in_array($key, $used_categories);
+      }, ARRAY_FILTER_USE_BOTH);
+
+      if (empty($form['training_topic']['#options'])) {
+        $form['training_topic_collapsible']['#access'] = FALSE;
+      }
+
+      /** @var \Drupal\parc_core\ParcEventsManager $events_manager */
+      $events_manager = \Drupal::service('parc_core.events_manager');
+      if (!$events_manager->shouldDisplayTrainingTopicFilter(FALSE)) {
+        $form['training_topic_collapsible']['#access'] = FALSE;
+      }
+    }
   }
 }
 

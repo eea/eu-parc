@@ -106,4 +106,19 @@ class ParcEventsManager {
     return FALSE;
   }
 
+  /**
+   * Check if we should display the training topic filter.
+   *
+   * @return bool
+   *   True if we should display the filter.
+   */
+  public function shouldDisplayTrainingTopicFilter() {
+    $categories = $this->request->query->all()['category'] ?? [];
+    if (!empty($categories[static::EVENT_TRAINING_TID])) {
+      return TRUE;
+    }
+
+    return FALSE;
+  }
+
 }
