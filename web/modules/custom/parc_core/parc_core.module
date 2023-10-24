@@ -130,6 +130,7 @@ function _parc_core_preprocess_menu_alter_category_links(array &$items) {
     if ($term->bundle() == 'events_category') {
       $results = $node_storage->getQuery()
         ->condition('field_categories', $term->id())
+        ->condition('status', 1)
         ->accessCheck()
         ->execute();
       if (empty($results)) {
@@ -138,8 +139,9 @@ function _parc_core_preprocess_menu_alter_category_links(array &$items) {
     }
     elseif ($term->bundle() == 'news_category') {
       $results = $node_storage->getQuery()
-        ->condition('field_tags', $term->id())
         ->accessCheck()
+        ->condition('field_tags', $term->id())
+        ->condition('status', 1)
         ->execute();
       if (empty($results)) {
         unset($items[$key]);
@@ -147,8 +149,9 @@ function _parc_core_preprocess_menu_alter_category_links(array &$items) {
     }
     elseif ($term->bundle() == 'training_types') {
       $results = $node_storage->getQuery()
-        ->condition('field_training_type', $term->id())
         ->accessCheck()
+        ->condition('field_training_type', $term->id())
+        ->condition('status', 1)
         ->execute();
       if (empty($results)) {
         unset($items[$key]);
