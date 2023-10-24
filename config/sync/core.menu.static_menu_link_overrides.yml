@@ -2,9 +2,9 @@ _core:
   default_config_hash: CXhei_vpaZk-3f_Mj2cH0YmpK-ZpKHoSzVA3yZrDq0g
 definitions:
   contact__site_page:
-    weight: -45
     menu_name: footer
     parent: ''
+    weight: -45
     expanded: false
     enabled: false
   standard__front_page:
@@ -92,40 +92,40 @@ definitions:
     expanded: false
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__91':
-    expanded: true
+    menu_name: main
     parent: 'views_view:views.content_events.page_events'
     weight: 2
-    menu_name: main
+    expanded: true
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__92':
-    expanded: true
+    menu_name: main
     parent: 'views_view:views.content_events.page_events'
     weight: 3
-    menu_name: main
+    expanded: true
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__93':
-    expanded: true
+    menu_name: main
     parent: 'views_view:views.content_events.page_events'
     weight: 4
-    menu_name: main
+    expanded: true
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__94':
-    expanded: true
+    menu_name: main
     parent: 'views_view:views.content_events.page_events'
     weight: 5
-    menu_name: main
+    expanded: true
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__95':
-    expanded: true
+    menu_name: main
     parent: 'views_view:views.content_events.page_events'
     weight: 6
-    menu_name: main
+    expanded: true
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__96':
-    expanded: true
+    menu_name: main
     parent: 'views_view:views.content_events.page_events'
     weight: 7
-    menu_name: main
+    expanded: true
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__58':
     menu_name: main
@@ -200,14 +200,14 @@ definitions:
     expanded: false
     enabled: false
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__662':
+    menu_name: main
+    parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
     weight: -62
-    menu_name: main
-    parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
-    enabled: true
     expanded: true
+    enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__663':
-    weight: -61
     menu_name: main
     parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
+    weight: -61
     expanded: true
     enabled: true
