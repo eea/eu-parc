@@ -20,6 +20,12 @@ function parc_zenodo_api_cron() {
           continue;
         }
 
+        // Skip entries that don't belong to parc.
+        $communities = array_column($deposition['metadata']['communities'] ?? [], 'id');
+        if (!in_array('parc', $communities)) {
+          continue;
+        }
+
         $deposition_id = $deposition['id'];
 
         // Check if Publications exists on local
