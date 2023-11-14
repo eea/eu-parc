@@ -3631,3 +3631,15 @@ div[class*="border-"] {
     padding-top: 0 !important;
   }
 }
+
+.bg-primary.layout {
+  color: var(--c-white);
+
+  a {
+    color: var(--c-white);
+  }
+
+  &:hover {
+    --bg-opacity: .9;
+  }
+}
