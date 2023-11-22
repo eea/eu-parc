@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.full_html
     - media.type.audio
     - media.type.card_footer_overlay
     - media.type.document
@@ -34,6 +35,7 @@ dependencies:
     - comment
     - contextual
     - file
+    - filter
     - layout_builder
     - media
     - node
@@ -198,6 +200,7 @@ permissions:
   - 'unpublish editable content'
   - 'update any media'
   - 'update media'
+  - 'use text format full_html'
   - 'view all revisions'
   - 'view any unpublished content'
   - 'view article revisions'

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - filter.format.full_html
     - media.type.audio
     - media.type.card_footer_overlay
     - media.type.document
@@ -20,6 +21,7 @@ dependencies:
     - taxonomy.vocabulary.tags
   module:
     - comment
+    - filter
     - media
     - node
     - publishcontent
@@ -79,6 +81,7 @@ permissions:
   - 'unpublish editable node type events'
   - 'unpublish own node type events'
   - 'update media'
+  - 'use text format full_html'
   - 'view any unpublished article content'
   - 'view any unpublished events content'
   - 'view own unpublished content'
