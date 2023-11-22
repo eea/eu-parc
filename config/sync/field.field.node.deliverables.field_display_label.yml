@@ -1,0 +1,19 @@
+uuid: 0112256b-d9c9-48e0-883d-308764bcb385
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_label
+    - node.type.deliverables
+id: node.deliverables.field_display_label
+field_name: field_display_label
+entity_type: node
+bundle: deliverables
+label: 'Display label'
+description: 'The label used to display this deliverable. Leave empty to automatically calculate this.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

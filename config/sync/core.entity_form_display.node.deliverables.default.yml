@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.deliverables.field_categories
     - field.field.node.deliverables.field_d_date
     - field.field.node.deliverables.field_deliverable_type
+    - field.field.node.deliverables.field_display_label
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
     - node.type.deliverables
@@ -44,13 +45,21 @@ content:
     third_party_settings: {  }
   field_deliverable_type:
     type: options_select
-    weight: 26
+    weight: 14
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_display_label:
+    type: string_textfield
+    weight: 12
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_media:
     type: media_library_widget
-    weight: 12
+    weight: 13
     region: content
     settings:
       media_types: {  }

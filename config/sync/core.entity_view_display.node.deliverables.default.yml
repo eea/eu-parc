@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.deliverables.field_categories
     - field.field.node.deliverables.field_d_date
     - field.field.node.deliverables.field_deliverable_type
+    - field.field.node.deliverables.field_display_label
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
     - node.type.deliverables
@@ -25,7 +26,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
   field_categories:
     type: entity_reference_label
@@ -33,7 +34,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 105
+    weight: 5
     region: content
   field_d_date:
     type: datetime_default
@@ -42,14 +43,14 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 102
+    weight: 2
     region: content
   field_deliverable_type:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 106
+    weight: 6
     region: content
   field_media:
     type: entity_reference_entity_view
@@ -58,7 +59,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 104
+    weight: 4
     region: content
   field_order:
     type: number_integer
@@ -67,13 +68,14 @@ content:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    weight: 103
+    weight: 3
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   addtoany: true
+  field_display_label: true
   search_api_excerpt: true

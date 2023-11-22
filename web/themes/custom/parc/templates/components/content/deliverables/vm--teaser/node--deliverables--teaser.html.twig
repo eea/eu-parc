@@ -13,35 +13,37 @@
 {% endif %}
 {% set order = node.field_categories.entity.field_order.0.value %}
 {% set fullOrder %}
-{{- order }}.{{ content.field_order.0 -}}
+  {{- order }}.{{ content.field_order.0 -}}
 {% endset %}
 
+{% set display_label = node.field_deliverable_type.value | default('D') ~ fullOrder|replace({' ': ''}) %}
+{% if not node.field_display_label.isEmpty %}
+  {% set display_label = node.field_display_label.value %}
+{% endif %}
 
-{%
-  set classes = [
-    'node',
-    'node--' ~ node.bundle|clean_class,
-    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
-  ]
-%}
+{% set classes = [
+  'node',
+  'node--' ~ node.bundle|clean_class,
+  view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+] %}
 
-<article{{attributes.addClass(classes).setAttribute('style','--n-bg:'~color~';')}}>
+<article{{ attributes.addClass(classes).setAttribute('style','--n-bg:'~color~';') }}>
   {{ title_prefix }}
   {{ title_suffix }}
 
   <div class="node--head d-flex justify-content-between align-items-center mb-2 mb-md-3">
     <div class="node--order">
-        {{ node.field_deliverable_type.value | default('D') }}{{- fullOrder|replace({' ': ''}) -}}
+      {{ display_label }}
     </div>
 
     {{ content.field_d_date }}
   </div>
 
-  <h5{{title_attributes.addClass('flex-grow-1')}}>
+  <h5{{ title_attributes.addClass('flex-grow-1') }}>
     {{ label }}
   </h5>
 
-  <div{{content_attributes.addClass('node--cotent')}}>
+  <div{{ content_attributes.addClass('node--cotent') }}>
     {{ content|without('field_order', 'field_d_date') }}
   </div>
 </article>

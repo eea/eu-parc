@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.deliverables.field_categories
     - field.field.node.deliverables.field_d_date
     - field.field.node.deliverables.field_deliverable_type
+    - field.field.node.deliverables.field_display_label
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
     - image.style.thumbnail
@@ -66,6 +67,7 @@ hidden:
   field_categories: true
   field_d_date: true
   field_deliverable_type: true
+  field_display_label: true
   field_order: true
   links: true
   search_api_excerpt: true
