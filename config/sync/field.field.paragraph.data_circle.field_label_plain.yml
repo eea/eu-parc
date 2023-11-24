@@ -1,0 +1,19 @@
+uuid: ca1f517b-f16e-4466-b87f-149823aaafd2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_label_plain
+    - paragraphs.paragraphs_type.data_circle
+id: paragraph.data_circle.field_label_plain
+field_name: field_label_plain
+entity_type: paragraph
+bundle: data_circle
+label: Label
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

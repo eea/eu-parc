@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph.
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - paragraph.getCreatedTime() will return the paragraph creation timestamp.
+ *   - paragraph.id(): The paragraph ID.
+ *   - paragraph.bundle(): The type of the paragraph, for example, "image" or "text".
+ *   - paragraph.getOwnerId(): The user ID of the paragraph author.
+ *   See Drupal\paragraphs\Entity\Paragraph for a full list of public properties
+ *   and methods for the paragraph object.
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type--image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode--preview", and
+ *     default: "paragraphs--view-mode--default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--' ~ paragraph.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished',
+  'data-circle',
+]
+%}
+
+{{ attach_library('parc/p--data-circle') }}
+
+{% block paragraph %}
+  <div{{attributes.addClass(classes)}}>
+    {% block content %}
+      <div class="data-wrapper">
+        {% if text %}
+          <div class="center-text">{{ text }}</div>
+        {% endif %}
+        {% for element in drawn_elements %}
+          {% if element.label %}
+            <div class="label-text-wrapper" style="top: {{ element.label_x }}px; left: {{ element.label_y }}px;"><div class="label-text">{{ element.label }}</div></div>
+          {% endif %}
+          {% if element.type == 'stars' %}
+            <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg" style="top: {{ element.x }}px; left: {{ element.y }}px; transform: rotate({{ element.rotation }}deg);">
+              <path d="M10.7965 0.0175781L13.2467 7.85821H21.5774L14.8802 12.7586L17.4937 20.5992L10.7965 15.6989L4.09929 20.5992L6.71283 12.7586L0.015625 7.85821H8.18295L10.7965 0.0175781Z" fill="{{ element.color }}"/>
+            </svg>
+          {% elseif element.type == 'lines' %}
+            <svg width="5" height="41" viewBox="0 0 5 41" fill="none" xmlns="http://www.w3.org/2000/svg" style="top: {{ element.x }}px; left: {{ element.y }}px; transform: rotate({{ element.rotation }}deg);">
+              <path d="M4.42227 36.9339C4.42227 38.7307 3.60553 40.2008 2.46211 40.2008C1.31868 40.2008 0.501953 38.7307 0.501953 36.9339V3.28451C0.501953 1.4877 1.31868 0.0175781 2.46211 0.0175781C3.60553 0.0175781 4.42227 1.4877 4.42227 3.28451V36.9339Z" fill="{{ element.color }}"/>
+            </svg>
+          {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360" style="top: 0; left: 0; transform: rotate({{ element.rotation }}deg);">
+              <circle stroke-linecap="round" cx="180" cy="180" r="170" stroke="{{ element.color }}" stroke-width="20" pathLength="360" stroke-dasharray="{{ element.delta }} {{ 360 - element.delta }}" fill="transparent" />
+            </svg>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

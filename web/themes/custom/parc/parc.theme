@@ -513,3 +513,106 @@ function parc_preprocess_field__block_content__field_paragraphs__newsletter(&$va
   $variables['block_id'] = $block->id();
   $variables['see_more_link_text'] = $block->get('field_link_text')->value ?? t('See all newsletters');
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph__data_circle.
+ */
+function parc_preprocess_paragraph__data_circle(&$variables) {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $child_paragraphs = $paragraph->get('field_values')->referencedEntities();
+  $total = count($child_paragraphs);
+  $start_alpha = 0;
+
+  $children = [];
+  foreach ($child_paragraphs as $child) {
+    $end_alpha = $start_alpha + 360 / $total;
+    $children[] = [
+      'label' => $child->get('field_label_plain')->value,
+      'value' => $child->get('field_value')->value,
+      'type' => $child->get('field_dc_indicator_type')->value,
+      'color' => $child->get('field_color')->color,
+      'start_alpha' => $start_alpha,
+      'end_alpha' => $end_alpha,
+      'range' => $end_alpha - $start_alpha,
+      'id' => $child->id(),
+    ];
+
+    $start_alpha = $end_alpha;
+  }
+
+  $labels = [];
+
+  $drawn_elements = [];
+  foreach ($children as $child) {
+    $radius = 180;
+    if ($child['type'] == 'lines') {
+      $radius = 160;
+    }
+    elseif ($child['type'] == 'stars') {
+      $radius = 170;
+    }
+    $split = $child['range'] / $child['value'];
+    for ($i = 0; $i < $child['value']; $i++) {
+      $alpha = $split * $i + $child['start_alpha'];
+      $rad_alpha = deg2rad($alpha);
+      $x = $radius * cos($rad_alpha) + $radius;
+      $y = $radius * sin($rad_alpha) + $radius;
+
+      if ($child['type'] == 'lines') {
+        $y = $y + 16;
+      }
+
+      $end_alpha = $split * ($i + 1) + $child['start_alpha'];
+      $delta = 0;
+      if ($child['type'] == 'pills') {
+        $delta = $end_alpha - $alpha - 18;
+      }
+
+      $element = [
+        'type' => $child['type'],
+        'color' => $child['color'],
+        'x' => $x,
+        'y' => $y,
+        'rotation' => -$alpha + $delta,
+        'delta' => $delta,
+
+      ];
+
+      if (!empty($child['label']) && empty($labels[$child['id']])) {
+        $inner_radius = 130;
+        $rad_alpha -= 0.2;
+
+        $label_x = $inner_radius * cos($rad_alpha) + $radius;
+        $label_y = $inner_radius * sin($rad_alpha) + $radius;
+
+        if ($child['type'] == 'lines' && $total == 2) {
+          $label_y = 180;
+          $label_x = $x < 180 ? 260 : 100;
+        }
+
+        $labels[$child['id']] = $child['label'];
+        $element += [
+          'label' => $child['label'],
+          'label_x' => $label_x,
+          'label_y' => $label_y,
+        ];
+      }
+
+      $drawn_elements[] = $element;
+    }
+  }
+
+  $variables['drawn_elements'] = $drawn_elements;
+  $variables['text'] = $paragraph->get('field_label_plain')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block__block_content__charts_banner.
+ */
+function parc_preprocess_block__block_content__charts_banner(&$variables) {
+  /** @var \Drupal\block_content\BlockContentInterface $block */
+  $block = $variables['content']['#block_content'];
+  $variables['background_color'] = $block->get('field_background_color')->color;
+}

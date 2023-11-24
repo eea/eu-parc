@@ -434,3 +434,8 @@ lab_matrix:
   css:
     component:
       css/components/parc/lab-matrix.css: { }
+
+p--data-circle:
+  css:
+    component:
+      css/components/paragraph/data-circle/data-circle.css: { }

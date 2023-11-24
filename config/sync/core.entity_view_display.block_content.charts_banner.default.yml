@@ -1,0 +1,27 @@
+uuid: b97685e4-f706-444a-869a-e47b6c9f0dea
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.charts_banner
+    - field.field.block_content.charts_banner.field_background_color
+    - field.field.block_content.charts_banner.field_data_circles
+  module:
+    - entity_reference_revisions
+id: block_content.charts_banner.default
+targetEntityType: block_content
+bundle: charts_banner
+mode: default
+content:
+  field_data_circles:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_background_color: true
+  search_api_excerpt: true
