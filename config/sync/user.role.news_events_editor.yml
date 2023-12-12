@@ -21,6 +21,7 @@ dependencies:
     - taxonomy.vocabulary.tags
   module:
     - comment
+    - eu_cookie_compliance
     - filter
     - media
     - node
@@ -59,6 +60,7 @@ permissions:
   - 'delete own thematic_areas media'
   - 'delete own vector media'
   - 'delete own video media'
+  - 'display eu cookie compliance popup'
   - 'edit any article content'
   - 'edit any events content'
   - 'edit own article content'

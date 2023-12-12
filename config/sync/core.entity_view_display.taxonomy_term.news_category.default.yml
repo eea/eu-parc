@@ -15,3 +15,4 @@ hidden:
   description: true
   field_color: true
   field_overlay: true
+  search_api_excerpt: true

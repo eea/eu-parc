@@ -237,3 +237,76 @@ main {
 body {
   overflow-x: hidden;
 }
+
+#sliding-popup {
+  background: #199083 !important;
+  padding: 30px;
+
+  .eu-cookie-compliance-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+    max-width: 100%;
+
+    @media (--md) {
+      flex-direction: row;
+      max-width: 80%;
+    }
+  }
+
+  .eu-cookie-compliance-message {
+    margin: 0;
+    max-width: 100%;
+
+    @media (--md) {
+      flex-direction: row;
+      max-width: 60%;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    margin: 0;
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .eu-cookie-compliance-buttons {
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+
+    @media (--md) {
+      width: auto;
+      max-width: 40%;
+    }
+  }
+
+  button {
+    background: none;
+    box-shadow: none;
+    border: 1px solid #FFF;
+    border-radius: 0.5rem;
+    color: #fff;
+    outline: 0;
+    text-shadow: none;
+    font-family: unset;
+    font: var(--btn-font-weight) var(--btn-font-size) /var(--btn-line-height) var(--btn-font-family);
+    padding: 5px 15px;
+    margin: 0;
+    width: 100%;
+
+    @media (--md) {
+      width: auto;
+    }
+
+    &:hover {
+      background: #FFF;
+      color: var(--link-h-color);
+    }
+  }
+}
