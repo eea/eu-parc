@@ -398,7 +398,7 @@
     }
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 1279px) {
     .authors, .title {
       min-height: 0 !important;
     }
