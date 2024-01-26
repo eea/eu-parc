@@ -16,7 +16,9 @@
         var itemId = $(this).attr('id');
         var color = $(this).parent().data('color');
         if ($(this).is(':checked')) {
-          if ($(context).find("#js-selected-category label[class*='bg--" + labelClass + "']").length === 0) {
+          let form = $(this).closest('form');
+          if ($(context).find("#js-selected-category label[class*='bg--" + labelClass + "']").length === 0
+            && !form.hasClass('d-none')) {
             var insert = '<label for="' + itemId + '" class="option bg--' + labelClass + '" style="--ci-bg: ' + color + '">' + label + svg + '</label>'
             $("#js-selected-category").append(insert);
           }
