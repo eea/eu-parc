@@ -33,6 +33,9 @@ function parc_core_theme() {
         'show_qualified_in_parc' => FALSE,
       ],
     ],
+    'parc_projects' => [
+      'variables' => [],
+    ],
   ];
 }
 

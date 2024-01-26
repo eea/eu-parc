@@ -19,3 +19,11 @@ admin:
     js/admin.js: {}
   dependencies:
     - core/once
+
+projects:
+  js:
+    js/projects.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
