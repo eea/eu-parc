@@ -209,8 +209,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
     font-size: 18px;
+    height: auto;
 
     &:not(.field-regulatory-message):hover {
       --cs-svg-c: var(--cs--item-bg);
@@ -227,6 +227,7 @@
 
     .field--content {
       margin-top: 10px;
+      margin-bottom: 20px;
       margin-right: 20px;
     }
 
