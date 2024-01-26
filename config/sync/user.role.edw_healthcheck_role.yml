@@ -7,7 +7,7 @@ dependencies:
     - eu_cookie_compliance
 id: edw_healthcheck_role
 label: 'EDW HealthCheck Access Role'
-weight: -4
+weight: -3
 is_admin: null
 permissions:
   - 'display eu cookie compliance popup'

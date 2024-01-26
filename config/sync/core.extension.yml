@@ -116,6 +116,8 @@ module:
   views_infinite_scroll: 0
   views_ui: 0
   viewsreference: 0
+  webform: 0
+  webform_ui: 0
   extlink: 1
   pathauto: 1
   selective_better_exposed_filters: 1

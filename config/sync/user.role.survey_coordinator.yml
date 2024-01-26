@@ -1,0 +1,19 @@
+uuid: 4d37520a-1df8-4770-8230-27d88f910428
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - toolbar
+    - webform
+id: survey_coordinator
+label: 'Survey coordinator'
+weight: -4
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access toolbar'
+  - 'access webform overview'
+  - 'edit any webform submission'
+  - 'view any webform submission'
+  - 'view the administration theme'

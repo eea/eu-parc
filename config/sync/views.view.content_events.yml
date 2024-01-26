@@ -167,7 +167,7 @@ display:
           offset: 0
           items_per_page: 12
           total_pages: null
-          id: 3
+          id: 0
           tags:
             next: ››
             previous: ‹‹
@@ -181,7 +181,7 @@ display:
             offset_label: Offset
           views_infinite_scroll:
             button_text: 'Load More'
-            automatically_load_content: true
+            automatically_load_content: false
             initially_load_all_pages: false
       exposed_form:
         type: bef
@@ -664,7 +664,6 @@ display:
       defaults:
         title: false
         css_class: false
-        use_ajax: false
         exposed_form: false
         sorts: false
         arguments: false
@@ -672,7 +671,6 @@ display:
         filter_groups: false
         header: false
       css_class: 'mb-parc js-second-exposed-filter'
-      use_ajax: true
       display_description: ''
       header:
         area:
@@ -1248,10 +1246,6 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      pager:
-        type: none
-        options:
-          offset: 0
       empty:
         area:
           id: area
@@ -1518,7 +1512,6 @@ display:
         empty: false
         css_class: false
         use_ajax: false
-        pager: false
         group_by: true
         relationships: false
         sorts: false
@@ -1562,6 +1555,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
         - user

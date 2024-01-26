@@ -877,3 +877,12 @@ textarea.form-control.is-invalid {
 .input-group > .form-floating:not(:focus-within).is-invalid {
   z-index: 4;
 }
+
+label.form-required::after {
+  display: inline-block;
+  margin-right: 0.15em;
+  margin-left: 0.15em;
+  content: "*";
+  color: #dc3545;
+  font-size: 1.5rem;
+}
