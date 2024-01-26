@@ -424,10 +424,11 @@ function parc_preprocess_paragraph__newsletter(&$variables) {
   if ($block instanceof BlockContent
     && $block->hasField('field_show_season')
     && $block->get('field_show_season')->value) {
-    $spring = (new DateTime('March 1'))->format('Y-m-d');
-    $summer = (new DateTime('June 1'))->format('Y-m-d');
-    $autumn = (new DateTime('September 1'))->format('Y-m-d');
-    $winter = (new DateTime('December 1'))->format('Y-m-d');
+    $year = date('Y', strtotime($date));
+    $spring = "$year-03-01";
+    $summer = "$year-06-01";
+    $autumn = "$year-09-01";
+    $winter = "$year-12-01";
 
     switch (TRUE) {
       case $date >= $spring && $date < $summer:
