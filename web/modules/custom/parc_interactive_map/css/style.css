@@ -309,7 +309,7 @@
   }
 
   .interactive-map.laboratory {
-    max-height: calc(100 * var(--vh, 1vh) - 230px);
+    max-height: calc(100 * var(--vh, 1vh) - 252px);
   }
 
   .map-page .px-0 > :first-child {
