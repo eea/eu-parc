@@ -1,0 +1,20 @@
+.views--2col {
+  @media (--xl) {
+    display: flex;
+    gap: 24px;
+
+    > * {
+      flex: 0 0 calc(50% - 12px);
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .left-col {
+      .views-row {
+        &:nth-child(even) {
+          display: none;
+        }
+      }
+    }
+  }
+}
