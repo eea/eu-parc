@@ -45,7 +45,7 @@
   {%- endif %}
   -->
 {%- endif %}
-<div class="accordion facets-widget- {{- facet.widget.type -}} {% if is_child %}facet-children{% endif %}">
+<div class="facets-widget- {{- facet.widget.type -}} {% if is_child %}facet-children{% endif %}">
   {% if facet.widget.type %}
     {%- set attributes = attributes.addClass('item-list__' ~ facet.widget.type) %}
   {% endif %}
@@ -57,7 +57,7 @@
       </a>
     {%- endif -%}
 
-    <div {% if facet.id %}class="collapse show" id="collapse{{ facet.id }}"{% endif %}>
+    <div>
       {%- if items -%}
       <{{ list_type }}{{ attributes }}>
       {%- for item in items -%}

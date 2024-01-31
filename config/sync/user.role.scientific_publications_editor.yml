@@ -20,6 +20,7 @@ dependencies:
     - taxonomy.vocabulary.tags
   module:
     - comment
+    - eu_cookie_compliance
     - filter
     - media
     - node
@@ -61,6 +62,7 @@ permissions:
   - 'delete terms in publications'
   - 'delete terms in publications_topics'
   - 'delete terms in seo_keywords'
+  - 'display eu cookie compliance popup'
   - 'edit any publications content'
   - 'edit own audio media'
   - 'edit own card_footer_overlay media'

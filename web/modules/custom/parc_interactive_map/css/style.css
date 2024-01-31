@@ -46,7 +46,7 @@
 }
 
 #resultsParent {
-  max-height: calc(100vh - 190px);
+  max-height: calc(100 * var(--vh, 1vh) - 190px);
   overflow: auto;
   padding: 0;
   padding-right: 10px;
@@ -276,7 +276,7 @@
 
   .map-page .layout > :first-child {
     background: #fcfafa;
-    max-height: calc(100vh - 140px);
+    max-height: calc(100 * var(--vh, 1vh) - 140px);
     overflow: auto;
     padding-top: 0;
     margin-top: 20px;
@@ -284,7 +284,7 @@
 }
 
 .interactive-map {
-  max-height: calc(100vh - 96px);
+  max-height: calc(100 * var(--vh, 1vh) - 96px);
 }
 
 @media screen and (max-width: 40em) {
@@ -305,11 +305,11 @@
   }
 
   .interactive-map {
-    max-height: calc(100vh - 210px);
+    max-height: calc(100 * var(--vh, 1vh) - 210px);
   }
 
   .interactive-map.laboratory {
-    max-height: calc(100vh - 230px);
+    max-height: calc(100 * var(--vh, 1vh) - 252px);
   }
 
   .map-page .px-0 > :first-child {
@@ -375,7 +375,7 @@
     background: #fcfafa;
     padding-top: 10px !important;
     width: 100vw;
-    max-height: calc(100vh - 96px);
+    max-height: calc(100 * var(--vh, 1vh) - 96px);
     overflow: auto;
   }
 }
@@ -417,7 +417,7 @@
   }
 
   .map-page .px-0 {
-    height: calc(100vh - 96px);
+    height: calc(100 * var(--vh, 1vh) - 96px);
   }
 
   .map-page .node--page {

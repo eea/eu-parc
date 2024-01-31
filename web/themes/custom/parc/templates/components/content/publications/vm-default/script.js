@@ -44,6 +44,16 @@
     }
   }
 
+  Drupal.behaviors.publicationExpand = {
+    attach: function (context) {
+      $(once('publicationExpand', '.node--publications--default .btn[data-bs-toggle]')).on('click', function () {
+        const parent = $(this).closest('.node--publications--default');
+        parent.toggleClass('expanded');
+        parent.find('.authors').toggleClass('authors-expanded');
+      });
+    }
+  };
+
   Drupal.behaviors.publicationUrl = {
     attach: function (context) {
       hash = window.location.hash;

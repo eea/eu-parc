@@ -35,6 +35,11 @@
           $('#collapselab_type').collapse('hide');
           $('#collapselab_sampling_type').collapse('hide');
           $('#collapselab_substance_group').collapse('hide');
+          $('#collapsefacet-blockcountry').collapse('hide');
+          $('#collapsefacet-blockcategory').collapse('hide');
+          $('#collapsefacet-blocklab-type').collapse('hide');
+          $('#collapsefacet-blocklab-sampling-type').collapse('hide');
+          $('#collapsefacet-blocklab-substance-group').collapse('hide');
         }
       });
 

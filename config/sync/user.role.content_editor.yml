@@ -34,6 +34,7 @@ dependencies:
   module:
     - comment
     - contextual
+    - eu_cookie_compliance
     - file
     - filter
     - layout_builder
@@ -140,6 +141,7 @@ permissions:
   - 'delete terms in seo_keywords'
   - 'delete terms in tags'
   - 'delete terms in thematic_areas'
+  - 'display eu cookie compliance popup'
   - 'edit any article content'
   - 'edit any audio media'
   - 'edit any basic_page content'

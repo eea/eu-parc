@@ -16,6 +16,7 @@ use Drupal\views\ViewExecutable;
 use Drupal\block_content\Entity\BlockContent;
 use Drupal\media\MediaInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -513,4 +514,13 @@ function parc_preprocess_field__block_content__field_paragraphs__newsletter(&$va
   $block = $variables['element']['#object'];
   $variables['block_id'] = $block->id();
   $variables['see_more_link_text'] = $block->get('field_link_text')->value ?? t('See all newsletters');
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for views_exposed_form.
+ */
+function parc_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state) {
+  if ($form['#id'] == 'views-exposed-form-content-events-block-1') {
+    $form['#attributes']['class'][] = 'd-none';
+  }
 }
