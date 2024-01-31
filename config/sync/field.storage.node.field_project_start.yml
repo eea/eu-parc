@@ -1,0 +1,20 @@
+uuid: 93e56f53-5822-4ec9-b901-13721a42fba2
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_project_start
+field_name: field_project_start
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

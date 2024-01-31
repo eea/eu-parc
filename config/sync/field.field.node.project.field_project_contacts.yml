@@ -1,0 +1,61 @@
+uuid: 348029ca-ed27-4e74-ace3-6b10954ad7e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_contacts
+    - node.type.project
+    - paragraphs.paragraphs_type.contact
+  module:
+    - entity_reference_revisions
+id: node.project.field_project_contacts
+field_name: field_project_contacts
+entity_type: node
+bundle: project
+label: Contacts
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      contact: contact
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 12
+        enabled: false
+      card:
+        weight: 13
+        enabled: false
+      carousel_item:
+        weight: 14
+        enabled: false
+      contact:
+        weight: 15
+        enabled: true
+      grid:
+        weight: 16
+        enabled: false
+      lab_matrix:
+        weight: 17
+        enabled: false
+      links_list:
+        weight: 18
+        enabled: false
+      media:
+        weight: 19
+        enabled: false
+      newsletter:
+        weight: 20
+        enabled: false
+      svg_text:
+        weight: 21
+        enabled: false
+      what_we_do:
+        weight: 22
+        enabled: false
+field_type: entity_reference_revisions

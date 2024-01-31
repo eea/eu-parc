@@ -21,9 +21,25 @@ admin:
     - core/once
 
 projects:
+  css:
+    component:
+      css/projects.css: { }
   js:
     js/projects.js: {}
   dependencies:
     - core/drupal
     - core/jquery
     - core/once
+    - core/drupalSettings
+
+project_title:
+  css:
+    component:
+      css/project-title.css: { }
+  js:
+    js/project-title.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+    - core/drupalSettings

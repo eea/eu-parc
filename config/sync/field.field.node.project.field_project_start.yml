@@ -1,0 +1,23 @@
+uuid: 7b2ccc5a-4887-4688-a078-fa0735413171
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_start
+    - node.type.project
+id: node.project.field_project_start
+field_name: field_project_start
+entity_type: node
+bundle: project
+label: 'Project start (PARC month)'
+description: "M1 is May 2022<br>\r\nM13 is May 2023"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

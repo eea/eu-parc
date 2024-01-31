@@ -1,0 +1,8 @@
+uuid: fc6d81ad-69c2-4313-9150-e918ae6ab16c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Project keywords'
+vid: project_keywords
+description: ''
+weight: 0

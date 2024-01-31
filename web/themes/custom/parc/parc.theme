@@ -524,3 +524,85 @@ function parc_form_views_exposed_form_alter(array &$form, FormStateInterface $fo
     $form['#attributes']['class'][] = 'd-none';
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for node__project.
+ */
+function parc_preprocess_node__project(array &$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface
+    && $node->bundle() == 'project') {
+    $variables['#attached']['drupalSettings']['parc']['current_project'] = $node->id();
+  }
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $color = NULL;
+  foreach ($node->get('field_project_topics') as $item) {
+    /** @var \Drupal\taxonomy\TermInterface $topic */
+    $topic = $item->entity;
+    if (empty($color)) {
+      $color = $topic->get('field_color')->color;
+      continue;
+    }
+
+    $color = _parc_combine_colors($color, $topic->get('field_color')->color);
+  }
+  if ($color == '#F5D475') {
+    $color = '#C5A858';
+  }
+  $variables['project_color'] = $color;
+
+  $block_manager = \Drupal::service('plugin.manager.block');
+  $plugin_block = $block_manager->createInstance('parc_projects', []);
+  $variables['projects_block'] = $plugin_block->build();
+
+  $plugin_block = $block_manager->createInstance('parc_project_title', []);
+  $variables['project_title'] = $plugin_block->build();
+}
+
+/**
+ * Helper function used to combine colors
+ *
+ * @param $hex1
+ *   The first hex code.
+ * @param $hex2
+ *   The second hex code.
+ *
+ * @return string
+ *   The resulting hex code.
+ */
+function _parc_combine_colors($hex1, $hex2) {
+  if ($hex1 == '#F5D475' && $hex2 == '#1C85FF'
+    || $hex2 == '#F5D475' && $hex1 == '#1C85FF') {
+    return '#2C4E3B';
+  }
+
+  if ($hex1 == '#F5D475' && $hex2 == '#31D9C4'
+    || $hex2 == '#F5D475' && $hex1 == '#31D9C4') {
+    return '#6D424D';
+  }
+
+  if ($hex1 == '#31D9C4' && $hex2 == '#F58296'
+    || $hex2 == '#31D9C4' && $hex1 == '#F58296') {
+    return '#759875';
+  }
+
+  // Remove '#' if present.
+  $hex1 = str_replace('#', '', $hex1);
+  $hex2 = str_replace('#', '', $hex2);
+
+  // Convert hex to RGB.
+  $rgb1 = sscanf($hex1, "%02x%02x%02x");
+  $rgb2 = sscanf($hex2, "%02x%02x%02x");
+
+  // Combine RGB values.
+  $combined_rgb = array_map(function($c1, $c2) {
+    return round(($c1 + $c2) / 2);
+  }, $rgb1, $rgb2);
+
+  // Convert back to hex.
+  $combined_hex = sprintf("#%02x%02x%02x", $combined_rgb[0], $combined_rgb[1], $combined_rgb[2]);
+
+  return $combined_hex;
+}

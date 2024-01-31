@@ -1,0 +1,54 @@
+.node--project--full {
+  .layout {
+    &:first-child {
+      padding-top: 0;
+
+      @media (max-width: 1199px) {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 1199px) {
+    .content-section {
+      display: none;
+    }
+  }
+
+  .container {
+    display: flex;
+    gap: 50px;
+  }
+
+  .info {
+    max-width: 25%;
+  }
+
+  .field {
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+
+    .f-label {
+      color: var(--project-color);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: .1em;
+    }
+
+    &.field--name-field-name {
+      margin-bottom: 0;
+    }
+  }
+
+  .field--name-field-project-abbreviation {
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .paragraph--contact {
+    margin-bottom: 30px;
+  }
+}

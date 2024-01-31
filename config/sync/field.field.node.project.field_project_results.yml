@@ -1,0 +1,29 @@
+uuid: 57caa63a-522d-47e3-b3d3-8aaabc6f58a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_results
+    - filter.format.full_html
+    - node.type.project
+  module:
+    - allowed_formats
+    - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - full_html
+id: node.project.field_project_results
+field_name: field_project_results
+entity_type: node
+bundle: project
+label: Results
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

@@ -34,7 +34,18 @@ function parc_core_theme() {
       ],
     ],
     'parc_projects' => [
-      'variables' => [],
+      'variables' => [
+        'projects' => [],
+        'topics' => [],
+        'keywords' => [],
+      ],
+    ],
+    'parc_project_title' => [
+      'variables' => [
+        'topics' => [],
+        'keywords' => [],
+        'title' => '',
+      ],
     ],
   ];
 }

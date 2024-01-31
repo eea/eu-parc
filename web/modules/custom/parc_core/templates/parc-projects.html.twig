@@ -1,9 +1,48 @@
-<svg height="1000" width="1000">
-
-  <path id="myPath" d="" stroke="blue" stroke-width="5" fill="none" />
-  <path id="myPath2" d="" stroke="blue" stroke-width="5" fill="none" />
-  <path id="myPath3" d="" stroke="blue" stroke-width="5" fill="none" />
-
-
-
-</svg>
+<div class="projects-chart">
+  <svg class="projects-svg">
+    {% for project in projects %}
+      {% for keyword in project.keywords %}
+        <path stroke-linecap="round" class="projects-hoverable-path keyword-path" data-project="{{ project.id }}" data-keyword="{{ keyword }}" d="" stroke="{{ keywords[keyword].color }}" stroke-width="2" fill="none" />
+      {% endfor %}
+      {% for topic in project.topics %}
+        <path stroke-linecap="round" class="projects-hoverable-path topic-path" data-project="{{ project.id }}" data-topic="{{ topic }}" d="" stroke="{{ topics[topic].color }}" stroke-width="8" fill="none" />
+      {% endfor %}
+    {% endfor %}
+  </svg>
+  <div class="left-col">
+    <div class="col-title">
+      {{ "Topics" | t }}
+    </div>
+    {% for id, topic in topics %}
+      <div data-topic="{{ id }}" class="project-topic" style="height: {{ topic.percentage }}%;">
+        <span class="projects-hoverable">
+          {{ topic.name }}
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="middle-col">
+    <div class="col-title">
+      {{ "Stories" | t }}
+    </div>
+    {% for project in projects %}
+      <div data-project="{{ project.id }}" class="project-title">
+        <span class="projects-hoverable">
+          <a href="{{ project.url }}">{{ project.name }}</a>
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="right-col">
+    <div class="col-title">
+      {{ "Keywords" | t }}
+    </div>
+    {% for id, keyword in keywords %}
+      <div data-keyword="{{ id }}" class="project-keyword" style="height: {{ keyword.percentage }}%;">
+        <span class="projects-hoverable">
+          {{ keyword.name }}
+        </span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
