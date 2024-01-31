@@ -45,3 +45,4 @@ hidden:
   field_bg_color: true
   field_icon: true
   field_seo_keywords: true
+  search_api_excerpt: true

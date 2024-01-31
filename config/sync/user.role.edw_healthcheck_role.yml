@@ -4,9 +4,11 @@ status: true
 dependencies:
   module:
     - edw_healthcheck
+    - eu_cookie_compliance
 id: edw_healthcheck_role
 label: 'EDW HealthCheck Access Role'
 weight: -4
 is_admin: null
 permissions:
+  - 'display eu cookie compliance popup'
   - 'edw healthcheck access'
