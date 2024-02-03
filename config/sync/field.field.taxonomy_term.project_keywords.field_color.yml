@@ -1,0 +1,25 @@
+uuid: 38ebe0ac-f3f5-4b91-b074-9015b8deb4b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_color
+    - taxonomy.vocabulary.project_keywords
+  module:
+    - color_field
+id: taxonomy_term.project_keywords.field_color
+field_name: field_color
+entity_type: taxonomy_term
+bundle: project_keywords
+label: Color
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    color: '#d80303'
+    opacity: null
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

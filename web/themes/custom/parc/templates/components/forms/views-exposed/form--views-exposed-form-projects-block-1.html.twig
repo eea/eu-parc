@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a 'form' element.
+ */
+#}
+
+{{ attach_library('parc/forms') }}
+{{ attach_library('parc/f--views-exposed') }}
+
+<form{{attributes.addClass('parc--details')}}>
+  {{ children }}
+</form>

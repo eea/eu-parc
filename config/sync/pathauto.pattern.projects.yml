@@ -1,0 +1,22 @@
+uuid: 687f318b-c16b-4150-ad3b-e4248f084101
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: projects
+label: Projects
+type: 'canonical_entities:node'
+pattern: '/parc-stories/[node:title]'
+selection_criteria:
+  e7e095bf-d327-4b66-b4fa-3873f7d782e5:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: e7e095bf-d327-4b66-b4fa-3873f7d782e5
+    context_mapping:
+      node: node
+    bundles:
+      project: project
+selection_logic: and
+weight: -5
+relationships: {  }

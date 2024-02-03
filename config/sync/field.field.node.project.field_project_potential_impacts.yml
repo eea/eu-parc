@@ -1,0 +1,19 @@
+uuid: 63b6e3b8-e303-493b-a128-5c16cca856f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_potential_impacts
+    - node.type.project
+id: node.project.field_project_potential_impacts
+field_name: field_project_potential_impacts
+entity_type: node
+bundle: project
+label: 'Potential impacts'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

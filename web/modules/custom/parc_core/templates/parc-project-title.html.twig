@@ -1,0 +1,31 @@
+<div class="project-title">
+  <svg class="project-title-svg">
+    {% for keyword in keywords %}
+      <path stroke-linecap="round" class="keyword-path" data-keyword="{{ keyword.id }}" d="" stroke="{{ keyword.color }}" stroke-width="2" fill="none" />
+    {% endfor %}
+    {% for topic in topics %}
+      <path stroke-linecap="round" class="topic-path" data-topic="{{ topic.id }}" d="" stroke="{{ topic.color }}" stroke-width="8" fill="none" />
+    {% endfor %}
+  </svg>
+  <div class="left-col">
+    {% for topic in topics %}
+      <div data-topic="{{ topic.id }}" class="project-topic">
+        {{ topic.name }}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="middle-col">
+    <div class="project-title--title">
+      <span class="project-title--title--inner">
+        {{ title }}
+      </span>
+    </div>
+  </div>
+  <div class="right-col">
+    {% for keyword in keywords %}
+      <div data-keyword="{{ keyword.id }}" class="project-keyword">
+        {{ keyword.name }}
+      </div>
+    {% endfor %}
+  </div>
+</div>

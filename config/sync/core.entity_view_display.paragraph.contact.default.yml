@@ -1,0 +1,40 @@
+uuid: 4ea8cabb-e217-4b39-a636-317f02a3768f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact.field_email
+    - field.field.paragraph.contact.field_name
+    - paragraphs.paragraphs_type.contact
+  module:
+    - spamspan
+id: paragraph.contact.default
+targetEntityType: paragraph
+bundle: contact
+mode: default
+content:
+  field_email:
+    type: email_spamspan
+    label: hidden
+    settings:
+      spamspan_at: ' [at] '
+      spamspan_use_graphic: false
+      spamspan_dot_enable: false
+      spamspan_dot: ' [dot] '
+      spamspan_use_form: false
+      spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
+      spamspan_form_default_url: contact
+      spamspan_form_default_displaytext: 'contact form'
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

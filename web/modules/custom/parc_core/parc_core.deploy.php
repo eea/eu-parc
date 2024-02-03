@@ -400,3 +400,97 @@ function parc_core_deploy_9008() {
     $term->save();
   }
 }
+
+/**
+ * Import projects.
+ */
+function parc_core_deploy_9009() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  $topics = [
+    'Provide protection against most harmful chemicals' => '#F5D475',
+    'Address Chemical pollution in the natural environment' => '#1C85FF',
+    'Biodiversity protection' => '#F58296',
+    'Shift away from animal testing' => '#31D9C4',
+  ];
+
+  $saved_topics = [];
+
+  $weight = 0;
+  foreach ($topics as $name => $color) {
+    $term = $term_storage->create([
+      'vid' => 'project_topics',
+      'name' => $name,
+      'field_color' => [
+        'color' => $color,
+      ],
+      'weight' => $weight++,
+    ]);
+    $saved_topics[$name] = $term;
+    $term->save();
+  }
+
+  $projects_path = \Drupal::service('extension.list.module')->getPath('parc_core') . '/data/projects.csv';
+  $file = fopen($projects_path, 'r');
+  $headers = fgetcsv($file);
+  $data = [];
+  while (($row = fgetcsv($file)) !== FALSE) {
+    $rowData = array_combine($headers, $row);
+    $data[] = $rowData;
+  }
+  fclose($file);
+
+  $project_topics = [
+    1 => ['Provide protection against most harmful chemicals'],
+    2 => ['Provide protection against most harmful chemicals',  'Address Chemical pollution in the natural environment'],
+    3 => ['Address Chemical pollution in the natural environment'],
+    4 => ['Biodiversity protection'],
+    5 => ['Shift away from animal testing'],
+    6 => ['Shift away from animal testing', 'Biodiversity protection'],
+    7 => ['Provide protection against most harmful chemicals', 'Shift away from animal testing'],
+  ];
+
+  foreach ($data as $row) {
+    $project_topic_names = $project_topics[$row['Category']];
+    $topics = [];
+    foreach ($project_topic_names as $project_topic_name) {
+      $topics[] = $saved_topics[$project_topic_name];
+    }
+
+    $project_keyword_names = explode(';', $row['Manual Tags']);
+    $project_keywords = [];
+    foreach ($project_keyword_names as $keyword_name) {
+      $keyword_name = trim($keyword_name);
+      $project_keyword = $term_storage->loadByProperties([
+        'vid' => 'project_keywords',
+        'name' => $keyword_name,
+      ]);
+      if (!empty($project_keyword)) {
+        $project_keyword = reset($project_keyword);
+      }
+      else {
+        $project_keyword = $term_storage->create([
+          'vid' => 'project_keywords',
+          'name' => $keyword_name,
+          'field_color' => [
+            'color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
+          ],
+        ]);
+        $project_keyword->save();
+      }
+      $project_keywords[] = $project_keyword;
+    }
+
+    $node_data = [
+      'type' => 'project',
+      'title' => $row['Short Title'],
+      'field_project_start' => $row['Project start (in PARC Month)'],
+      'field_project_end' => $row['Project end (in PARC Month)'],
+      'field_project_abbreviation' => $row['Project Abbreviation'],
+      'field_project_topics' => $topics,
+      'field_project_keywords' => $project_keywords,
+    ];
+    $node = \Drupal::entityTypeManager()->getStorage('node')->create($node_data);
+    $node->save();
+  }
+}

@@ -1,0 +1,25 @@
+uuid: 9cb884a4-d34a-4847-bd31-e24366c1674b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_color
+    - taxonomy.vocabulary.project_topics
+  module:
+    - color_field
+id: taxonomy_term.project_topics.field_color
+field_name: field_color
+entity_type: taxonomy_term
+bundle: project_topics
+label: Color
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    color: '#42c908'
+    opacity: null
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

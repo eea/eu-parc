@@ -1,0 +1,19 @@
+uuid: 9e7356d4-51fc-4b9b-8b62-09118af88510
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_abbreviation
+    - node.type.project
+id: node.project.field_project_abbreviation
+field_name: field_project_abbreviation
+entity_type: node
+bundle: project
+label: 'Internal technical title of the project'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

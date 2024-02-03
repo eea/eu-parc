@@ -1,0 +1,266 @@
+.projects-page .container {
+  max-width: 1800px;
+}
+
+.projects-page .views-element-container {
+  width: 100%;
+}
+
+.projects-chart {
+  display: flex;
+  gap: 25%;
+  position: relative;
+  width: 100%;
+}
+
+.projects-chart .left-col,
+.projects-chart .middle-col,
+.projects-chart .right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.projects-chart .left-col,
+.projects-chart .right-col {
+  width: 20%;
+  font-weight: bold;
+  font-size: 18px;
+  gap: 20px;
+}
+
+.projects-chart .middle-col {
+  font-size: 16px;
+  gap: 10px;
+}
+
+.projects-chart .project-topic::after {
+  height: 100%;
+  content: '';
+  display: block;
+  width: 9px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #000;
+  border-radius: 10px;
+}
+
+.projects-chart .project-topic {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.projects-chart .project-title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 9px 40px;
+}
+
+.projects-chart .project-title span {
+  line-height: 18px;
+}
+
+.projects-chart .project-title::before {
+  height: 100%;
+  content: '';
+  display: block;
+  width: 9px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #000;
+  border-radius: 10px;
+}
+
+.projects-chart .project-title::after {
+  height: 100%;
+  content: '';
+  display: block;
+  width: 9px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #000;
+  border-radius: 10px;
+}
+
+.projects-chart .project-keyword {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.projects-chart .project-keyword::before {
+  height: 100%;
+  content: '';
+  display: block;
+  width: 9px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #000;
+  border-radius: 10px;
+}
+
+.projects-chart .projects-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.projects-chart .projects-svg path {
+  opacity: .7;
+}
+
+.projects-chart .projects-hoverable {
+  display: block;
+  cursor: pointer;
+}
+
+.projects-chart .col-title {
+  font-weight: bold;
+  font-size: 15px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+
+  &:after {
+    content: '';
+    background: url('data:image/svg+xml,<svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.52344 1.18066V8.94271" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.9695 8.2668L9.52344 13.7979L2.07741 8.2668" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 15px;
+    height: 13px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+}
+
+.projects-chart .left-col .col-title {
+  align-self: flex-end;
+}
+
+.projects-chart .right-col .col-title {
+  align-self: flex-start;
+}
+
+.projects-chart .middle-col .col-title {
+  align-self: center;
+}
+
+.projects-chart .project-title a {
+  text-decoration: none;
+}
+
+.projects-chart .project-title a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 1200px) {
+  .projects-page .mobile-projects {
+    display: none;
+  }
+}
+
+@media (max-width: 1199px) {
+  .projects-page .projects-chart {
+    display: none;
+  }
+
+  .projects-page .layout:not(:last-child) {
+    display: none;
+  }
+}
+
+.mobile-projects .bef-checkboxes {
+  overflow-y: auto;
+  max-height: 300px;
+  padding-left: 5px;
+}
+
+.mobile-projects header {
+  display: flex;
+}
+
+.mobile-projects .projects-svg-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.mobile-projects .projects-svg-wrapper svg {
+  width: 100%;
+  margin-bottom: 20px;
+  max-width: 400px;
+  z-index: 10;
+  cursor: pointer;
+  transition: all .1s linear;
+}
+
+.mobile-projects #parc-projects-stories-svg {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-projects #parc-projects-stories-svg svg {
+  margin-bottom: 20px;
+}
+
+.mobile-projects .views-row {
+  margin-top: 10px;
+}
+
+.mobile-projects header {
+  position: sticky;
+  top: 65px;
+  background: #fff;
+  z-index: 90;
+  margin-left: -20px;
+  padding: 20px;
+  flex-direction: column;
+  width: 100vw;
+}
+
+.mobile-projects header form {
+  margin-bottom: 0;
+  margin-top: auto;
+  position: absolute;
+  bottom: 20px;
+  width: calc(100% - 40px);
+}
+
+.mobile-projects header .top {
+  display: flex;
+}
+
+.toolbar-fixed .mobile-projects header {
+  top: 105px;
+}
+
+.projects-svg-wrapper {
+  margin-left: auto;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.parc-projects-stories-svg {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-top:not(.h-sticky) + main .mobile-projects header {
+  top: 80px;
+}
