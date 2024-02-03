@@ -183,6 +183,10 @@
   .projects-page .layout:not(:last-child) {
     display: none;
   }
+
+  .projects-page .layout:last-child {
+    padding-top: 0;
+  }
 }
 
 .mobile-projects .bef-checkboxes {
