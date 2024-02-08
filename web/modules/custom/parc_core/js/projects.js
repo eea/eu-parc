@@ -183,9 +183,6 @@
             }
           }
         });
-        $(this).on('mouseleave', function () {
-          // $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '');
-        });
       });
     }
   }
