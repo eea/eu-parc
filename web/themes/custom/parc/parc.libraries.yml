@@ -173,19 +173,19 @@ n--project-full:
   css:
     component:
       css/components/content/project/full/style.css: {}
+
+n--project-teaser:
+  css:
+    component:
+      css/components/content/project/teaser/style.css: {}
   js:
-    templates/components/content/project/full/script.js: {}
+    templates/components/content/project/teaser/script.js: { }
   dependencies:
     - core/drupal
     - core/jquery
     - core/once
     - core/drupalSettings
     - edwt/collapse
-
-n--project-teaser:
-  css:
-    component:
-      css/components/content/project/teaser/style.css: {}
 
 n--article-teaser:
   css:
