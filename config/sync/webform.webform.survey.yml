@@ -9,40 +9,216 @@ uid: 5
 template: false
 archive: false
 id: survey
-title: Survey
+title: 'PARC - Networking and synergies'
 description: ''
 categories: {  }
 elements: |-
-  name:
+  name_of_the_external_activity_project:
     '#type': textfield
-    '#title': Name
+    '#title': 'Name of the external activity/project'
     '#required': true
-  email:
-    '#type': email
-    '#title': Email
+  acronym_of_the_external_activity_project:
+    '#type': textfield
+    '#title': 'Acronym of the external activity/project'
     '#required': true
-  age:
-    '#type': radios
-    '#title': Age
-    '#options':
-      0-17: 0-17
-      18-25: 18-25
-      26-35: 26-35
-      36+: 36+
-  message:
+  website_of_the_external_activity_project:
+    '#type': textfield
+    '#title': 'Website of the external activity/project'
+    '#required': true
+  start_date_of_the_external_activity_project:
+    '#type': date
+    '#title': 'Start date of the external activity/project'
+    '#required': true
+  end_date_of_the_external_activity_project:
+    '#type': date
+    '#title': 'End date of the external activity/project'
+    '#required': true
+  description_of_the_external_activity_project:
     '#type': textarea
-    '#title': Message
-  heard_from:
-    '#type': checkboxes
-    '#title': 'I have heard about EU-PARC from'
-    '#options':
-      Ads: Ads
-      Friends: Friends
-      Other: Other
-  terms:
-    '#type': checkbox
-    '#title': 'I agree with the <a href="/terms">Terms and Conditions</a>'
+    '#title': 'Description of the external activity/project'
     '#required': true
+  field_of_the_external_activity_project:
+    '#type': checkboxes
+    '#title': 'Field of the external activity/project'
+    '#options':
+      'Human health': 'Human health'
+      Environment: Environment
+      Both: Both
+  keyword_of_the_external_activity_project_1:
+    '#type': textfield
+    '#title': 'Keyword of the external activity/project 1'
+  keyword_of_the_external_activity_project_2:
+    '#type': textfield
+    '#title': 'Keyword of the external activity/project 2'
+  keyword_of_the_external_activity_project_3:
+    '#type': textfield
+    '#title': 'Keyword of the external activity/project 3'
+  keyword_of_the_external_activity_project_4:
+    '#type': textfield
+    '#title': 'Keyword of the external activity/project 4'
+  keyword_of_the_external_activity_project_5:
+    '#type': textfield
+    '#title': 'Keyword of the external activity/project 5'
+  keyword_of_the_external_activity_project_6:
+    '#type': textfield
+    '#title': 'Keyword of the external activity/project 6'
+  scope_of_the_external_activity_project:
+    '#type': radios
+    '#title': 'Scope of the external activity/project'
+    '#options':
+      National: National
+      EU: EU
+      International: International
+    '#required': true
+  funding_of_the_external_activity_project:
+    '#type': textfield
+    '#title': 'Funding of the external activity/project'
+  legal_status_of_the_external_activity_project:
+    '#type': textfield
+    '#title': 'Legal status of the external activity/project'
+  potential_synergies_foreseen_in_the_framework_of_parc_:
+    '#type': checkboxes
+    '#title': 'Potential synergies foreseen in the framework of PARC:'
+    '#options':
+      'WP2 - A common science-policy agenda': 'WP2 - A common science-policy agenda'
+      'WP3 - Synergies, collaborations and awareness': 'WP3 - Synergies, collaborations and awareness'
+      'WP4 - Monitoring and exposure': 'WP4 - Monitoring and exposure'
+      'WP5 - Hazard Assessment': 'WP5 - Hazard Assessment'
+      'WP6 - Innovation in regulatory risk assessment': 'WP6 - Innovation in regulatory risk assessment'
+      'WP7 - FAIR Data': 'WP7 - FAIR Data'
+      'WP8 - Concepts and toolboxes': 'WP8 - Concepts and toolboxes'
+      'WP9 - Building infrastructural and human capacities': 'WP9 - Building infrastructural and human capacities'
+  wp2:
+    '#type': checkboxes
+    '#title': WP2
+    '#title_display': invisible
+    '#options':
+      'Task 2.1 - Priority setting': 'Task 2.1 - Priority setting'
+      'Task 2.2 - Knowledge management and uptake into policy': 'Task 2.2 - Knowledge management and uptake into policy'
+      'Task 2.3 - Sustainability': 'Task 2.3 - Sustainability'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP2 - A common science-policy agenda]"]':
+          checked: true
+  wp3:
+    '#type': checkboxes
+    '#title': WP3
+    '#title_display': invisible
+    '#options':
+      'Task 3.1 - Building effective interactions': 'Task 3.1 - Building effective interactions'
+      'Task 3.2 - Communication, dissemination, and awareness': 'Task 3.2 - Communication, dissemination, and awareness'
+      'Task 3.3 - Networking and Synergies': 'Task 3.3 - Networking and Synergies'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP3 - Synergies, collaborations and awareness]"]':
+          checked: true
+  wp4:
+    '#type': checkboxes
+    '#title': WP4
+    '#title_display': invisible
+    '#options':
+      'Task 4.1 - Human Biomonitoring': 'Task 4.1 - Human Biomonitoring'
+      'Task 4.2 - Environmental and multisource monitoring': 'Task 4.2 - Environmental and multisource monitoring'
+      'Task 4.3 - Innovative methods and tools for monitoring and surveys': 'Task 4.3 - Innovative methods and tools for monitoring and surveys'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP4 - Monitoring and exposure]"]':
+          checked: true
+  wp5:
+    '#type': checkboxes
+    '#title': WP5
+    '#title_display': invisible
+    '#options':
+      'Task 5.1 - Toxicity testing addressing data gaps of concern': 'Task 5.1 - Toxicity testing addressing data gaps of concern'
+      'Task 5.2 - Innovative methods and tools for toxicity testing and modelling': 'Task 5.2 - Innovative methods and tools for toxicity testing and modelling'
+      'Task 5.3 - Quantitative systems toxicology and development of new AOPs': 'Task 5.3 - Quantitative systems toxicology and development of new AOPs'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP5 - Hazard Assessment]"]':
+          checked: true
+  wp6:
+    '#type': checkboxes
+    '#title': WP6
+    '#title_display': invisible
+    '#options':
+      'Task 6.1 - Integrated Approaches to Testing and Assessment of Chemicals': 'Task 6.1 - Integrated Approaches to Testing and Assessment of Chemicals'
+      'Task 6.2 - Integrative exposure and risk assessment': 'Task 6.2 - Integrative exposure and risk assessment'
+      'Task 6.3 - Review of risk assessment methodologies': 'Task 6.3 - Review of risk assessment methodologies'
+      'Task 6.4 - Transposing results to regulatory risk assessment methodologies': 'Task 6.4 - Transposing results to regulatory risk assessment methodologies'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP6 - Innovation in regulatory risk assessment]"]':
+          checked: true
+  wp7:
+    '#type': checkboxes
+    '#title': WP7
+    '#title_display': invisible
+    '#options':
+      'Task 7.1 - PARC FAIR Data Policy (PFDP) and DMP': 'Task 7.1 - PARC FAIR Data Policy (PFDP) and DMP'
+      'Task 7.2 - Data libraries': 'Task 7.2 - Data libraries'
+      'Task 7.3 - Innovative analyses': 'Task 7.3 - Innovative analyses'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP7 - FAIR Data]"]':
+          checked: true
+  wp8:
+    '#type': checkboxes
+    '#title': WP8
+    '#title_display': invisible
+    '#options':
+      'Task 8.1 - Safe and sustainable by design (SSbD)': 'Task 8.1 - Safe and sustainable by design (SSbD)'
+      'Task 8.2 - Scientific and technical basis for an Early warning system (EWS) on chemical risks': 'Task 8.2 - Scientific and technical basis for an Early warning system (EWS) on chemical risks'
+      'Task 8.3 - Integrative models': 'Task 8.3 - Integrative models'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP8 - Concepts and toolboxes]"]':
+          checked: true
+  wp9:
+    '#type': checkboxes
+    '#title': WP9
+    '#title_display': invisible
+    '#options':
+      'Task 9.1 - Laboratory networking': 'Task 9.1 - Laboratory networking'
+      'Task 9.2 - Building exposure monitoring capacities': 'Task 9.2 - Building exposure monitoring capacities'
+      'Task 9.3 - Joint activities - harmonisation': 'Task 9.3 - Joint activities - harmonisation'
+      'Task 9.4 - Training': 'Task 9.4 - Training'
+    '#states':
+      visible:
+        ':input[name="potential_synergies_foreseen_in_the_framework_of_parc_[WP9 - Building infrastructural and human capacities]"]':
+          checked: true
+  potential_synergies_foreseen_between_the_external_activity_proje:
+    '#type': textarea
+    '#title': 'Potential synergies foreseen between the external activity/project and PARC. Please give details how it could be implemented'
+  possibility_for_clustering_with_various_parc_wps_and_also_with_o:
+    '#type': radios
+    '#title': 'Possibility for clustering (with various PARC WPs and also with other external projects/activities)?'
+    '#options': yes_no
+  indicate_the_parc_wps_and_or_the_external_projects_activities_wi:
+    '#type': textarea
+    '#title': 'Indicate the PARC WPs and/or the external projects/activities with which you see possibility for clustering'
+  name_of_the_person_filling_the_form:
+    '#type': textfield
+    '#title': 'Name of the person filling the form'
+    '#required': true
+  email_of_the_person_filling_the_form:
+    '#type': email
+    '#title': 'Email of the person filling the form'
+    '#required': true
+  organization_of_the_person_filling_the_form:
+    '#type': textfield
+    '#title': 'Organization of the person filling the form'
+    '#required': true
+  name_of_the_external_activity_coordinator:
+    '#type': textfield
+    '#title': 'Name of the external activity coordinator'
+    '#required': true
+  email_of_the_external_activity_coordinator:
+    '#type': email
+    '#title': 'Email of the external activity coordinator'
+    '#required': true
+  comments:
+    '#type': textarea
+    '#title': Comments
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
@@ -228,7 +404,9 @@ access:
     users: {  }
     permissions: {  }
   configuration:
-    roles: {  }
+    roles:
+      - administrator
+      - survey_coordinator
     users: {  }
     permissions: {  }
 handlers: {  }
