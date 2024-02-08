@@ -110,7 +110,7 @@
 ' %}
 {% endif %}
 
-<article{{ attributes.addClass(classes) }} data-nid="{{ node.id() }}" style="--project-color: {{ project_color }};">
+<article{{ attributes.addClass(classes) }} data-topics="{{ topics }}" data-nid="{{ node.id() }}" style="--project-color: {{ project_color }};">
   <button class="btn btn-clear btn-arrow" type="button" data-bs-toggle="collapse" data-bs-target="#{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }}">
     <span class="left-icon">
       {{ icon | raw }}

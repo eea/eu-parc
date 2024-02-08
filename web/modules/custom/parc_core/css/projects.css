@@ -288,3 +288,7 @@
 .sticky-top:not(.h-sticky) + main .mobile-projects header {
   top: 80px;
 }
+
+#parc-projects-mobile-svg [data-topics] {
+  z-index: 5;
+}

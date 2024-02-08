@@ -538,9 +538,11 @@ function parc_preprocess_node__project(array &$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
   $color = NULL;
+  $topics = [];
   foreach ($node->get('field_project_topics') as $item) {
     /** @var \Drupal\taxonomy\TermInterface $topic */
     $topic = $item->entity;
+    $topics[] = $topic->id();
     if (empty($color)) {
       $color = $topic->get('field_color')->color;
       continue;
@@ -548,6 +550,8 @@ function parc_preprocess_node__project(array &$variables) {
 
     $color = _parc_combine_colors($color, $topic->get('field_color')->color);
   }
+  sort($topics);
+  $variables['topics'] = implode(',', $topics);
   if ($color == '#F5D475') {
     $color = '#C5A858';
   }

@@ -419,6 +419,7 @@ function parc_core_deploy_9009() {
   $weight = 0;
   foreach ($topics as $name => $color) {
     $term = $term_storage->create([
+      'tid' => 1000 + $weight,
       'vid' => 'project_topics',
       'name' => $name,
       'field_color' => [
