@@ -7,14 +7,15 @@ dependencies:
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_achievements
     - field.field.node.project.field_project_contacts
-    - field.field.node.project.field_project_end
+    - field.field.node.project.field_project_end_date
     - field.field.node.project.field_project_keywords
     - field.field.node.project.field_project_potential_impacts
     - field.field.node.project.field_project_results
-    - field.field.node.project.field_project_start
+    - field.field.node.project.field_project_start_date
     - field.field.node.project.field_project_topics
     - node.type.project
   module:
+    - datetime
     - entity_reference_revisions
     - text
     - user
@@ -54,14 +55,14 @@ content:
     third_party_settings: {  }
     weight: 108
     region: content
-  field_project_end:
-    type: number_integer
+  field_project_end_date:
+    type: datetime_custom
     label: above
     settings:
-      thousand_separator: ''
-      prefix_suffix: true
+      timezone_override: ''
+      date_format: 'F Y'
     third_party_settings: {  }
-    weight: 103
+    weight: 114
     region: content
   field_project_keywords:
     type: entity_reference_label
@@ -86,14 +87,14 @@ content:
     third_party_settings: {  }
     weight: 111
     region: content
-  field_project_start:
-    type: number_integer
+  field_project_start_date:
+    type: datetime_custom
     label: above
     settings:
-      thousand_separator: ''
-      prefix_suffix: true
+      timezone_override: ''
+      date_format: 'F Y'
     third_party_settings: {  }
-    weight: 102
+    weight: 113
     region: content
   field_project_topics:
     type: entity_reference_label
