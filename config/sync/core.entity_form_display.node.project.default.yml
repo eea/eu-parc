@@ -7,14 +7,15 @@ dependencies:
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_achievements
     - field.field.node.project.field_project_contacts
-    - field.field.node.project.field_project_end
+    - field.field.node.project.field_project_end_date
     - field.field.node.project.field_project_keywords
     - field.field.node.project.field_project_potential_impacts
     - field.field.node.project.field_project_results
-    - field.field.node.project.field_project_start
+    - field.field.node.project.field_project_start_date
     - field.field.node.project.field_project_topics
     - node.type.project
   module:
+    - datetime
     - paragraphs
     - path
     - select2
@@ -42,7 +43,7 @@ content:
     third_party_settings: {  }
   field_project_abbreviation:
     type: string_textfield
-    weight: 14
+    weight: 16
     region: content
     settings:
       size: 60
@@ -58,7 +59,7 @@ content:
     third_party_settings: {  }
   field_project_contacts:
     type: paragraphs
-    weight: 17
+    weight: 19
     region: content
     settings:
       title: Contact
@@ -75,16 +76,15 @@ content:
         collapse_edit_all: '0'
         duplicate: '0'
     third_party_settings: {  }
-  field_project_end:
-    type: number
-    weight: 13
+  field_project_end_date:
+    type: datetime_default
+    weight: 14
     region: content
-    settings:
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_project_keywords:
     type: select2_entity_reference
-    weight: 16
+    weight: 18
     region: content
     settings:
       width: 100%
@@ -94,7 +94,7 @@ content:
     third_party_settings: {  }
   field_project_potential_impacts:
     type: string_textfield
-    weight: 18
+    weight: 20
     region: content
     settings:
       size: 60
@@ -108,16 +108,15 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-  field_project_start:
-    type: number
-    weight: 12
+  field_project_start_date:
+    type: datetime_default
+    weight: 13
     region: content
-    settings:
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_project_topics:
     type: select2_entity_reference
-    weight: 15
+    weight: 17
     region: content
     settings:
       width: 100%

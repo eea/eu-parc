@@ -107,18 +107,8 @@
     <div class="bg-gray layout content-section">
       <div class="container">
         <div class="info">
-          {{ content.field_project_abbreviation }}
-          {% if node.field_project_end.value and node.field_project_start.value %}
-            <div class="field">
-              <div class="f-label">{{ "Timeframe " }}</div>
-              <div class="field--value">
-                {% set months = node.field_project_end.value - node.field_project_start.value + 1 %}
-                {% trans %}
-                  {{ months }} months
-                {% endtrans %}
-              </div>
-            </div>
-          {% endif %}
+          {{ content.field_project_start_date }}
+          {{ content.field_project_end_date }}
           {{ content.field_project_potential_impacts }}
           {{ content.field_project_contacts }}
         </div>

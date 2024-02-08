@@ -451,6 +451,8 @@ function parc_core_deploy_9009() {
     7 => ['Provide protection against most harmful chemicals', 'Shift away from animal testing'],
   ];
 
+  $month_zero = '1 April 2022';
+
   foreach ($data as $row) {
     $project_topic_names = $project_topics[$row['Category']];
     $topics = [];
@@ -482,11 +484,16 @@ function parc_core_deploy_9009() {
       $project_keywords[] = $project_keyword;
     }
 
+    $month_start = $row['Project start (in PARC Month)'];
+    $date_start = date('Y-m-d', strtotime("+$month_start months", strtotime($month_zero)));
+    $month_end = $row['Project end (in PARC Month)'];
+    $date_end = date('Y-m-d', strtotime("+$month_end months", strtotime($month_zero)));
+
     $node_data = [
       'type' => 'project',
       'title' => $row['Short Title'],
-      'field_project_start' => $row['Project start (in PARC Month)'],
-      'field_project_end' => $row['Project end (in PARC Month)'],
+      'field_project_start_date' => $date_start,
+      'field_project_end_date' => $date_end,
       'field_project_abbreviation' => $row['Project Abbreviation'],
       'field_project_topics' => $topics,
       'field_project_keywords' => $project_keywords,

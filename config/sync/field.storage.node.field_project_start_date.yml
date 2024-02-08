@@ -1,17 +1,17 @@
-uuid: 93e56f53-5822-4ec9-b901-13721a42fba2
+uuid: 140cb649-7c33-458e-9d96-43fa1328730a
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - node
-id: node.field_project_start
-field_name: field_project_start
+id: node.field_project_start_date
+field_name: field_project_start_date
 entity_type: node
-type: integer
+type: datetime
 settings:
-  unsigned: false
-  size: normal
-module: core
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true
