@@ -150,31 +150,41 @@
       }
 
       $(once('projectsHoverable', '.projects-chart .projects-hoverable, .projects-chart .projects-hoverable-path', context)).each(function () {
-        $(this).on('mouseenter', function () {
-          $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '.1');
-          let parent = $(this).hasClass('projects-hoverable-path') ? $(this) : $(this).parent();
-          let project_id = parent.attr('data-project')
-          let keyword_id = parent.attr('data-keyword')
-          let topic_id = parent.attr('data-topic')
+        $(this).on('click', function (e) {
+          e.preventDefault();
+          if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+            $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '');
+          }
+          else {
+            $(this).closest('.projects-chart').find('active').removeClass('active');
+            $(this).addClass('active');
 
-          if (project_id) {
-            focusProject(project_id, topic_id, keyword_id);
-          }
-          else if (keyword_id) {
-            $('.projects-chart [data-keyword="' + keyword_id + '"]').css('opacity', '1');
-            $.each(keywords[keyword_id].projects, function(key, value) {
-              focusProject(value, null, keyword_id);
-            });
-          }
-          else if (topic_id) {
-            $('.projects-chart [data-topic="' + topic_id + '"]').css('opacity', '1');
-            $.each(topics[topic_id].projects, function(key, value) {
-              focusProject(value, topic_id, null);
-            });
+            $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '.1');
+            let parent = $(this).hasClass('projects-hoverable-path') ? $(this) : $(this).parent();
+            let project_id = parent.attr('data-project')
+            let keyword_id = parent.attr('data-keyword')
+            let topic_id = parent.attr('data-topic')
+
+            if (project_id) {
+              focusProject(project_id, topic_id, keyword_id);
+            }
+            else if (keyword_id) {
+              $('.projects-chart [data-keyword="' + keyword_id + '"]').css('opacity', '1');
+              $.each(keywords[keyword_id].projects, function(key, value) {
+                focusProject(value, null, keyword_id);
+              });
+            }
+            else if (topic_id) {
+              $('.projects-chart [data-topic="' + topic_id + '"]').css('opacity', '1');
+              $.each(topics[topic_id].projects, function(key, value) {
+                focusProject(value, topic_id, null);
+              });
+            }
           }
         });
         $(this).on('mouseleave', function () {
-          $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '');
+          // $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '');
         });
       });
     }

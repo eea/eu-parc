@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.projects-chart svg path {
+  cursor: pointer;
+}
+
 .projects-chart .left-col,
 .projects-chart .middle-col,
 .projects-chart .right-col {
@@ -27,6 +31,10 @@
   font-weight: bold;
   font-size: 18px;
   gap: 20px;
+}
+
+.projects-chart .left-col {
+  gap: 220px;
 }
 
 .projects-chart .middle-col {
@@ -57,15 +65,17 @@
 
 .projects-chart .project-title {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   text-align: center;
   padding: 9px 40px;
+
+  display: block;
+  margin-right: -20px;
+  line-height: 20px;
 }
 
 .projects-chart .project-title span {
   line-height: 18px;
+  display: inline;
 }
 
 .projects-chart .project-title::before {
@@ -165,8 +175,18 @@
   text-decoration: none;
 }
 
-.projects-chart .project-title a:hover {
-  text-decoration: underline;
+.projects-chart .project-title .icon {
+  margin-left: 3px;
+  line-height: 0;
+  display: inline;
+}
+
+.projects-chart .project-title svg {
+  width: 12px;
+}
+
+.projects-chart .project-title svg path,
+.projects-chart .project-title svg line {
 }
 
 @media (min-width: 1200px) {
