@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
  *
  * @Block(
  *   id = "parc_project_title",
- *   admin_label = @Translation("PARC Projects"),
+ *   admin_label = @Translation("PARC Projects title"),
  *   category = @Translation("PARC"),
  * )
  */
