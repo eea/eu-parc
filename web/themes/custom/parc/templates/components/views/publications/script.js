@@ -21,17 +21,26 @@
             const title_height = Math.max(left_title.height(), right_title.height());
             left_title.css('min-height', title_height + 'px');
             right_title.css('min-height', title_height + 'px');
-
-            // let left_authors = $(this).find('.authors');
-            // let right_authors = pair.find('.authors');
-            // left_authors.css('min-height', 0);
-            // right_authors.css('min-height', 0);
-            // const author_height = Math.max(left_authors.height(), right_authors.height());
-            // left_authors.css('min-height', author_height + 'px');
-            // right_authors.css('min-height', author_height + 'px');
           }
         });
       }
+
+
+
+      setTimeout(function () {
+        const id = window.location.hash;
+        if (id) {
+          let item1 = $('.left-col ' + id);
+          let item2 = $('.right-col ' + id);
+
+          if (window.innerWidth >= 1280 && item2.length) {
+            $('html, body').animate({scrollTop: item2.offset().top - 100}, 100);
+          }
+          else {
+            $('html, body').animate({scrollTop: item1.offset().top - 100}, 100);
+          }
+        }
+      }, 1);
 
       $(once('viewPublications', '.views--2col', context)).each(function() {
         setPublicationsHeight($(this));
