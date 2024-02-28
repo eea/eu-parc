@@ -25,23 +25,6 @@
         });
       }
 
-      $(document).ready(function () {
-        setTimeout(function () {
-          const id = window.location.hash;
-          if (id) {
-            let item1 = $('.left-col ' + id);
-            let item2 = $('.right-col ' + id);
-
-            if (window.innerWidth >= 1280 && item2.length) {
-              $('html, body').animate({scrollTop: item2.offset().top - 100}, 100);
-            }
-            else {
-              $('html, body').animate({scrollTop: item1.offset().top - 100}, 100);
-            }
-          }
-        }, .3);
-      });
-
       $(once('viewPublications', '.views--2col', context)).each(function() {
         setPublicationsHeight($(this));
       });

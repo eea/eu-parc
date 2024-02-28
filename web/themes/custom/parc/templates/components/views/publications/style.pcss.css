@@ -13,15 +13,8 @@
       .views-row {
         &:nth-child(even) {
           display: none;
-          margin-top: -99999px;
         }
       }
-    }
-  }
-
-  @media (max-width: 1279px) {
-    .right-col .article {
-      margin-top: -99999px;
     }
   }
 }

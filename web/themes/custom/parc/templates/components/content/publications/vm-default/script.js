@@ -56,16 +56,37 @@
 
   Drupal.behaviors.publicationUrl = {
     attach: function (context) {
-      hash = window.location.hash;
+      const urlParams = new URLSearchParams(window.location.search);
+      const publication = urlParams.get('publication');
+      const message = urlParams.get('message');
+      let query_parameter;
+      let type;
 
-      if (hash.indexOf('messages') !== -1) {
-        $(once('publicationUrl', hash, context)).parents('.collapse').addClass('show');
+      if (message) {
+        type = 'message';
+        query_parameter = message;
+        $(once('publicationUrl', '[data-message="' + message + '"]', context)).parents('.collapse').addClass('show');
       }
 
-      if (hash.indexOf('article-') !== -1) {
-        const node = hash + ' .collapse';
-        $(once('publicationUrl', node, context)).addClass('show');
+      if (publication) {
+        type = 'publication';
+        query_parameter = publication;
+        $(once('publicationUrl', '[data-publication="' + publication + '"] .collapse', context)).addClass('show');
       }
+
+      setTimeout(function () {
+        if (type) {
+          let item1 = $('.left-col [data-' + type + '="' + query_parameter + '"]');
+          let item2 = $('.right-col [data-' + type + '="' + query_parameter + '"]');
+
+          if (window.innerWidth >= 1280 && item2.length) {
+            $('html, body').animate({scrollTop: item2.offset().top - 100}, 100);
+          }
+          else {
+            $('html, body').animate({scrollTop: item1.offset().top - 100}, 100);
+          }
+        }
+      }, .3, publication, message);
 
       $('.js-copy-to-clipboard').click(function (e) {
         var btn = $(this);
