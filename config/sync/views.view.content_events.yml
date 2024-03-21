@@ -1531,7 +1531,7 @@ display:
       use_ajax: false
       display_description: ''
       header: {  }
-      exposed_block: true
+      exposed_block: false
       display_extenders:
         ajax_history:
           enable_history: false

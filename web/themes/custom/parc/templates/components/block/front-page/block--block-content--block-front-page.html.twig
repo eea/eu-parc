@@ -14,10 +14,14 @@
   ]
 %}
 
+{{ attach_library('parc/svg_title') }}
+
 <div{{attributes.addClass(classes)}}>
   {{ title_prefix }}
   {% if label %}
-    <h2{{title_attributes}}>{{ label }}</h2>
+    <div class="svg-title pt-0">
+      <h2 class="mb-0">{{ label }}</h2>
+    </div>
   {% endif %}
   {{ title_suffix }}
 

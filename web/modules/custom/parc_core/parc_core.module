@@ -319,9 +319,9 @@ function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $quer
 }
 
 /**
- * Implements hook_preprocess_HOOK() for views_exposed_form__content_events__page_events.
+ * Implements hook_preprocess_HOOK() for views_view__content_events__page_events.
  */
-function parc_core_preprocess_views_exposed_form__content_events__page_events(&$variables) {
+function parc_core_preprocess_views_view__content_events__page_events(&$variables) {
   /** @var \Drupal\parc_core\ParcEventsManager $events_manager */
   $events_manager = \Drupal::service('parc_core.events_manager');
   if ($events_manager->isTrainingEventsViewPage()) {
