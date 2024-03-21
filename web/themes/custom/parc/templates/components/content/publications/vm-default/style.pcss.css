@@ -25,6 +25,7 @@
   .col-sp-content {
     display: flex;
     flex-direction: column;
+    overflow: visible;
   }
 
   .node--title {

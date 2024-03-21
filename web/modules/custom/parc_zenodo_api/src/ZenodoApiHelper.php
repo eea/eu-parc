@@ -151,6 +151,7 @@ class ZenodoApiHelper {
 
     $keyword_terms = [];
     foreach ($final_keywords as $keyword) {
+      $keyword = ucfirst($keyword);
       $keyword_terms[] = $this->getTermByName($keyword, 'publications');
     }
     return $keyword_terms;
