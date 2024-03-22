@@ -6,5 +6,6 @@ dependencies:
     - taxonomy
 id: taxonomy_term.views_link
 label: 'Views link'
+description: ''
 targetEntityType: taxonomy_term
 cache: true
