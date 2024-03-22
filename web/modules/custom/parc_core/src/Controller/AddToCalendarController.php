@@ -30,7 +30,7 @@ class AddToCalendarController extends ServiceController {
    * Override base function to make it work with date fields
    * that have multiple values.
    */
-  public function icsDownload($field_name, EntityInterface $entity) {
+  public function icsDownload(string $field_name, EntityInterface $entity): Response {
     if (empty($entity)) {
       throw new NotFoundHttpException();
     }
@@ -99,7 +99,7 @@ class AddToCalendarController extends ServiceController {
   /**
    * {@inheritdoc}
    */
-  protected function createEvent(array $field_settings, \DateTime $dtStart, \DateTime $dtEnd, bool $noTime = FALSE) {
+  protected function createEvent(array $field_settings, \DateTime $dtStart, \DateTime $dtEnd, bool $noTime = FALSE): Event {
     $event = parent::createEvent($field_settings, $dtStart, $dtEnd, $noTime);
     $event->setDescriptionHTML($event->getDescription());
     $event->setDescription(strip_tags($event->getDescription()));
