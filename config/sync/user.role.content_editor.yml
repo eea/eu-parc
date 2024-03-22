@@ -37,6 +37,7 @@ dependencies:
     - eu_cookie_compliance
     - file
     - filter
+    - help
     - layout_builder
     - media
     - node
@@ -58,6 +59,7 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
+  - 'access help pages'
   - 'access media overview'
   - 'access taxonomy overview'
   - 'access toolbar'
