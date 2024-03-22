@@ -445,3 +445,11 @@ lab_matrix:
   css:
     component:
       css/components/parc/lab-matrix.css: { }
+
+content_only:
+  js:
+    js/content-only.js: { }
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery
