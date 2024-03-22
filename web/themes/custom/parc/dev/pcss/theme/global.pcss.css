@@ -310,3 +310,17 @@ body {
     }
   }
 }
+
+.content-only {
+  header, footer {
+    display: none;
+  }
+
+  .interactive-map {
+    max-height: calc(100 * var(--vh, 1vh));
+  }
+
+  &.map-page .layout > :first-child {
+    max-height: calc(100 * var(--vh, 1vh) - 40px);
+  }
+}

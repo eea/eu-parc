@@ -474,3 +474,11 @@ svg_title:
   css:
     component:
       css/components/parc/svg-title.css: { }
+
+content_only:
+  js:
+    js/content-only.js: { }
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery
