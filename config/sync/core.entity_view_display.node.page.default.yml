@@ -24,7 +24,54 @@ third_party_settings:
       -
         layout_id: layout_onecol
         layout_settings:
+          label: Header
+          context_mapping: {  }
+          layout_builder_styles_style:
+            background_green: 0
+            background_grey: 0
+            remove_horizontal_paddings: remove_horizontal_paddings
+            remove_top_padding: remove_top_padding
+            container: 0
+            container_fluid: 0
+            margin_bottom_5: 0
+            no_paddings: 0
+            remove_vertical_paddings: 0
+        components:
+          aaf72de7-3a26-42b6-846a-5dd643e3ffc5:
+            uuid: aaf72de7-3a26-42b6-846a-5dd643e3ffc5
+            region: content
+            configuration:
+              id: 'field_block:node:page:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings: {  }
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
           label: ''
+          context_mapping: {  }
+          layout_builder_styles_style:
+            background_green: 0
+            background_grey: 0
+            remove_top_padding: remove_top_padding
+            container: 0
+            container_fluid: 0
+            margin_bottom_5: 0
+            no_paddings: 0
+            remove_horizontal_paddings: 0
+            remove_vertical_paddings: 0
         components:
           5e07bb6c-933e-4fd2-994e-ec361776d83f:
             uuid: 5e07bb6c-933e-4fd2-994e-ec361776d83f
@@ -39,7 +86,7 @@ third_party_settings:
                 label: hidden
                 settings: {  }
                 third_party_settings: {  }
-            weight: 0
+            weight: -1
             additional: {  }
           bb73e4f0-8d75-4d57-bed7-226baedfeb92:
             uuid: bb73e4f0-8d75-4d57-bed7-226baedfeb92
@@ -49,7 +96,7 @@ third_party_settings:
               label_display: '0'
               context_mapping:
                 entity: layout_builder.entity
-            weight: 1
+            weight: 0
             additional: {  }
           b3ff1fd8-afc8-4a59-a6c5-1d08add01505:
             uuid: b3ff1fd8-afc8-4a59-a6c5-1d08add01505
@@ -64,7 +111,7 @@ third_party_settings:
                 label: above
                 settings: {  }
                 third_party_settings: {  }
-            weight: 3
+            weight: 1
             additional: {  }
         third_party_settings: {  }
 _core:
