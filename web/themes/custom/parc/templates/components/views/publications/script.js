@@ -21,14 +21,6 @@
             const title_height = Math.max(left_title.height(), right_title.height());
             left_title.css('min-height', title_height + 'px');
             right_title.css('min-height', title_height + 'px');
-
-            // let left_authors = $(this).find('.authors');
-            // let right_authors = pair.find('.authors');
-            // left_authors.css('min-height', 0);
-            // right_authors.css('min-height', 0);
-            // const author_height = Math.max(left_authors.height(), right_authors.height());
-            // left_authors.css('min-height', author_height + 'px');
-            // right_authors.css('min-height', author_height + 'px');
           }
         });
       }

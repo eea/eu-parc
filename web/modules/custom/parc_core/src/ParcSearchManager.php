@@ -85,7 +85,9 @@ class ParcSearchManager {
         return Url::fromUserInput('/laboratories?focus=' . $node->id());
       case 'publications':
         return Url::fromUserInput('/scientific-publications', [
-          'fragment' => 'article-' . $node->id(),
+          'query' => [
+            'publication' => $node->id(),
+          ],
         ]);
 
       default:

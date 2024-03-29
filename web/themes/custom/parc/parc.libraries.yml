@@ -168,6 +168,8 @@ n--page-full:
   css:
     component:
       css/components/content/page/full/style.css: {}
+  dependencies:
+    - parc/svg_title
 
 n--project-full:
   css:
@@ -245,6 +247,8 @@ n--basic-page-full:
   css:
     component:
       css/components/content/basic-page/full/style.css: {}
+  dependencies:
+    - parc/svg_title
 
 n--basic-page-compact:
   css:
@@ -344,6 +348,8 @@ t--thematic-areas--header:
   css:
     component:
       css/components/taxonomy/thematic-areas/vm-header/style.css: {}
+  dependencies:
+    - parc/svg_title
 
 t--thematic-areas--card:
   css:
@@ -463,3 +469,16 @@ lab_matrix:
   css:
     component:
       css/components/parc/lab-matrix.css: { }
+
+svg_title:
+  css:
+    component:
+      css/components/parc/svg-title.css: { }
+
+content_only:
+  js:
+    js/content-only.js: { }
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery

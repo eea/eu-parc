@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "PARC";
+  src: url("../../../fonts/P-A-R-C-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-display: block;
+  font-style: normal;
+}
+
+.svg-title {
+  &, > * {
+    font-family: "PARC";
+    text-align: center;
+    font-size: 33px;
+    line-height: 33px;
+
+    @media (--sm) {
+      font-size: 44px;
+      line-height: 44px;
+    }
+
+    @media (--md) {
+      font-size: 66px;
+      line-height: 66px;
+    }
+
+    @media (--lg) {
+      font-size: 88px;
+      line-height: 88px;
+    }
+  }
+}

@@ -13,6 +13,12 @@ name: 'Full HTML'
 format: full_html
 weight: -10
 filters:
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: true
+    weight: 11
+    settings: {  }
   filter_align:
     id: filter_align
     provider: filter
@@ -25,18 +31,13 @@ filters:
     status: true
     weight: 9
     settings: {  }
-  filter_htmlcorrector:
-    id: filter_htmlcorrector
-    provider: filter
+  filter_external_link_icon:
+    id: filter_external_link_icon
+    provider: filter_external_link_icon
     status: true
-    weight: 10
-    settings: {  }
-  editor_file_reference:
-    id: editor_file_reference
-    provider: editor
-    status: true
-    weight: 11
-    settings: {  }
+    weight: 0
+    settings:
+      icon: ↗
   filter_html:
     id: filter_html
     provider: filter
@@ -46,17 +47,12 @@ filters:
       allowed_html: '<blockquote class="news-blockquote">'
       filter_html_help: true
       filter_html_nofollow: false
-  media_embed:
-    id: media_embed
-    provider: media
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
     status: true
-    weight: 100
-    settings:
-      default_view_mode: default
-      allowed_view_modes: {  }
-      allowed_media_types:
-        image: image
-        vector: vector
+    weight: 10
+    settings: {  }
   filter_spamspan:
     id: filter_spamspan
     provider: spamspan
@@ -71,10 +67,14 @@ filters:
       spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
       spamspan_form_default_url: contact
       spamspan_form_default_displaytext: 'contact form'
-  filter_external_link_icon:
-    id: filter_external_link_icon
-    provider: filter_external_link_icon
+  media_embed:
+    id: media_embed
+    provider: media
     status: true
-    weight: 0
+    weight: 100
     settings:
-      icon: ↗
+      default_view_mode: default
+      allowed_view_modes: {  }
+      allowed_media_types:
+        image: image
+        vector: vector
