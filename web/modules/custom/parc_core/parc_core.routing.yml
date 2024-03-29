@@ -17,3 +17,14 @@ parc_core_ics_link_field.download:
     parameters:
       entity:
         type: entity:{entity_type}
+
+parc_core.event_og_image:
+  path: '/node/{node}/og-image/{type}'
+  defaults:
+    _controller: '\Drupal\parc_core\Controller\ParcController::eventOgImage'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node
