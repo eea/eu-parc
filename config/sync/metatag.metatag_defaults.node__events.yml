@@ -1,0 +1,15 @@
+uuid: 5f6cd079-2635-4992-b4f7-77c6998adf25
+langcode: en
+status: true
+dependencies: {  }
+id: node__events
+label: 'Content: Events'
+tags:
+  og_image: '/node/[node:nid]/og-image/standard'
+  og_image_height: '630'
+  og_image_type: image/jpeg
+  og_image_width: '1200'
+  twitter_cards_image: '/node/[node:nid]/og-image/twitter'
+  twitter_cards_image_height: '630'
+  twitter_cards_image_width: '1200'
+  twitter_cards_type: summary_large_image
