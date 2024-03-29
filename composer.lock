@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d8687f7c4fa21ffcd5a54a1cbc6b8fb",
+    "content-hash": "100c2b6d3ed1f9b046a3e94750576853",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -9438,6 +9438,15 @@
                 "source": "https://github.com/simshaun/recurr/tree/v5.0.2"
             },
             "time": "2023-09-26T20:31:33+00:00"
+        },
+        {
+            "name": "slick/slick",
+            "version": "v1.9.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/kenwheeler/slick/archive/master.zip"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "symfony/console",

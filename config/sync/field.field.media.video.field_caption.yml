@@ -1,0 +1,19 @@
+uuid: 45b0d18f-7594-45dd-aac9-45ac9bd69fa8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_caption
+    - media.type.video
+id: media.video.field_caption
+field_name: field_caption
+entity_type: media
+bundle: video
+label: Caption
+description: 'Caption will be used if this media is displayed in slideshows.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

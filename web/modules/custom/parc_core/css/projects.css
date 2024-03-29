@@ -299,3 +299,9 @@
 #parc-projects-mobile-svg [data-topics] {
   z-index: 5;
 }
+
+.projects-chart [data-project],
+.projects-chart [data-keyword],
+.projects-chart [data-topic] {
+  transition: .35s opacity ease-in-out;
+}

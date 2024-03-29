@@ -2,6 +2,7 @@
 
   Drupal.behaviors.parcProjects = {
     attach: function (context, settings) {
+      var hoverEffect;
       var topic_counts = [];
       var keyword_counts = [];
       var project_keywords_counts = [];
@@ -150,18 +151,13 @@
       }
 
       $(once('projectsHoverable', '.projects-chart .projects-hoverable, .projects-chart .projects-hoverable-path', context)).each(function () {
-        $(this).on('click', function (e) {
-          e.preventDefault();
-          if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
-            $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '');
-          }
-          else {
-            $(this).closest('.projects-chart').find('active').removeClass('active');
-            $(this).addClass('active');
+        $(this).on('mouseenter', function () {
+          window.clearTimeout(hoverEffect);
+          let that = $(this);
 
+          hoverEffect = window.setTimeout(function () {
             $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '.1');
-            let parent = $(this).hasClass('projects-hoverable-path') ? $(this) : $(this).parent();
+            let parent = that.hasClass('projects-hoverable-path') ? that : that.parent();
             let project_id = parent.attr('data-project')
             let keyword_id = parent.attr('data-keyword')
             let topic_id = parent.attr('data-topic')
@@ -181,7 +177,10 @@
                 focusProject(value, topic_id, null);
               });
             }
-          }
+          }, 100);
+        }).on('mouseleave', function () {
+          $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').css('opacity', '');
+          window.clearTimeout(hoverEffect);
         });
       });
     }

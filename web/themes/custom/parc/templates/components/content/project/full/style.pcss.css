@@ -1,4 +1,40 @@
+.node--project {
+  blockquote {
+    font-style: italic;
+    position: relative;
+    padding-left: 15px;
+
+    &:before {
+      content: '';
+      height: 100%;
+      width: 5px;
+      border-radius: 10px;
+      background: var(--lichtblauw);
+      position: absolute;
+      left: 0;
+    }
+  }
+}
+
 .node--project--full {
+  .field--name-field-partners {
+    > div:last-child {
+      > div {
+        display: inline;
+
+        &:not(:last-child):after {
+          content: ', ';
+        }
+      }
+    }
+  }
+
+  .slideshow-item {
+    .field {
+      margin-bottom: 0 !important;
+    }
+  }
+
   .layout {
     &:first-child {
       padding-top: 0;
@@ -15,9 +51,27 @@
     }
   }
 
+  .content {
+    max-width: 100%;
+    overflow-x: hidden;
+    flex-grow: 0;
+  }
+
   .container {
     display: flex;
     gap: 50px;
+
+    &.flex-direction-column {
+      flex-direction: column;
+    }
+  }
+
+  .full-slideshow {
+    display: block !important;
+
+    @media (--lg) {
+      max-width: 1400px;
+    }
   }
 
   .info {
@@ -25,7 +79,7 @@
   }
 
   .field {
-    &:not(:last-child) {
+    &:not(:last-child):not(.field-media):not(.field--name-field-media-audio-file) {
       margin-bottom: 25px;
     }
 

@@ -16,6 +16,18 @@
         {
             "type": "git",
             "url": "https://github.com/stefanbutura/svg-sanitizer.git"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "slick/slick",
+                "version": "v1.9.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/kenwheeler/slick/archive/master.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
@@ -83,6 +95,7 @@
         "eaudeweb/heavy-lifter": "^2.0",
         "enshrined/svg-sanitize": "dev-master as 0.16.0",
         "mglaman/composer-drupal-lenient": "^1.0",
+        "slick/slick": "^1.9",
         "symfony/css-selector": "^5.4"
     },
     "conflict": {

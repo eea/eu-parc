@@ -1,0 +1,18 @@
+{{ attach_library('parc_core/slideshow') }}
+
+<div class="parc-slideshow">
+  <div class="slides">
+    {% for item in items %}
+      <div class="slideshow-item">
+        {{ item.media }}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="captions">
+    {% for item in items %}
+      <div class="caption-item">
+        {{ item.caption }}
+      </div>
+    {% endfor %}
+  </div>
+</div>
