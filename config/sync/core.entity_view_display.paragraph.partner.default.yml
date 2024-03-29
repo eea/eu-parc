@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.partner.field_country
-    - field.field.paragraph.partner.field_link
+    - field.field.paragraph.partner.field_link_one
     - field.field.paragraph.partner.field_name
     - paragraphs.paragraphs_type.partner
   module:
@@ -22,17 +22,17 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_link:
+  field_link_one:
     type: link
     label: hidden
     settings:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: '0'
-      target: '0'
+      rel: ''
+      target: ''
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_name:
     type: string
