@@ -331,6 +331,7 @@ function parc_preprocess_html(&$variables) {
  */
 function parc_preprocess_page(array &$variables) {
   // Hide header and footer when ?content_only=1.
+  $variables['#cache']['contexts'][] = 'url.query_args:content_only';
   $content_only = \Drupal::request()->query->get('content_only');
   if ($content_only) {
     $variables['page']['branding']['#access'] = FALSE;
@@ -341,9 +342,7 @@ function parc_preprocess_page(array &$variables) {
     $variables['page']['footer']['#access'] = FALSE;
     $variables['page']['footer_second']['#access'] = FALSE;
     $variables['page']['footer_s']['#access'] = FALSE;
-
     $variables['#attached']['library'][] = 'parc/content_only';
-    $variables['#cache']['contexts'][] = 'url.query_args.content_only';
   }
 }
 
