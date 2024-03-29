@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
 
-name: 'Dump SQL database'
+name: 'Dump prod SQL database'
 jobs:
   deploy:
     name: 'Dump SQL database'
