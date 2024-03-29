@@ -457,9 +457,9 @@ svg_title:
     component:
       css/components/parc/svg-title.css: { }
 
-content_only:
+full_screen:
   js:
-    js/content-only.js: { }
+    js/full-screen.js: { }
   dependencies:
     - core/drupal
     - core/once

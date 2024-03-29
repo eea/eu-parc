@@ -320,9 +320,9 @@ function parc_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = $node->get('field_custom_classes')->value;
   }
 
-  $content_only = \Drupal::request()->query->get('content_only');
-  if ($content_only) {
-    $variables['attributes']['class'][] = 'content-only';
+  $full_screen = \Drupal::request()->query->get('full_screen');
+  if ($full_screen) {
+    $variables['attributes']['class'][] = 'full-screen';
   }
 }
 
@@ -330,10 +330,10 @@ function parc_preprocess_html(&$variables) {
  * Implements hook_preprocess_page().
  */
 function parc_preprocess_page(array &$variables) {
-  // Hide header and footer when ?content_only=1.
-  $variables['#cache']['contexts'][] = 'url.query_args:content_only';
-  $content_only = \Drupal::request()->query->get('content_only');
-  if ($content_only) {
+  // Hide header and footer when ?full_screen=1.
+  $variables['#cache']['contexts'][] = 'url.query_args:full_screen';
+  $full_screen = \Drupal::request()->query->get('full_screen');
+  if ($full_screen) {
     $variables['page']['branding']['#access'] = FALSE;
     $variables['page']['nav_main']['#access'] = FALSE;
     $variables['page']['nav_additional']['#access'] = FALSE;
@@ -342,7 +342,7 @@ function parc_preprocess_page(array &$variables) {
     $variables['page']['footer']['#access'] = FALSE;
     $variables['page']['footer_second']['#access'] = FALSE;
     $variables['page']['footer_s']['#access'] = FALSE;
-    $variables['#attached']['library'][] = 'parc/content_only';
+    $variables['#attached']['library'][] = 'parc/full_screen';
   }
 }
 
