@@ -3,6 +3,7 @@
     font-style: italic;
     position: relative;
     padding-left: 15px;
+    margin-left: 20px;
 
     &:before {
       content: '';
