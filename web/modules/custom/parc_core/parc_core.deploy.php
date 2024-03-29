@@ -499,6 +499,7 @@ function parc_core_deploy_9009() {
       'field_project_abbreviation' => $row['Project Abbreviation'],
       'field_project_topics' => $topics,
       'field_project_keywords' => $project_keywords,
+      'field_slideshow_position' => 'top',
     ];
     $node = \Drupal::entityTypeManager()->getStorage('node')->create($node_data);
     $node->save();
