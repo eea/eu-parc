@@ -121,4 +121,64 @@ class ParcEventsManager {
     return FALSE;
   }
 
+  /**
+   * Format an event date.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The event.
+   *
+   * @return string
+   *   The date.
+   */
+  public function getEventFormattedDate(NodeInterface $node, $year_only = FALSE) {
+    $dates = $node->get('field_date')->getValue();
+
+    $start_date = reset($dates);
+    $start_date = date('Y-m-d', $start_date['value']);
+    [$start_year, $start_month, $start_day] = explode('-', $start_date);
+
+    $end_date = end($dates);
+    $end_date = date('Y-m-d', $end_date['end_value']);
+    [$end_year, $end_month, $end_day] = explode('-', $end_date);
+
+    if ($year_only) {
+      return $start_year == $end_year ? $start_year : "$start_year - $end_year";
+    }
+
+    if ($start_date == $end_date) {
+      return "$start_day.$start_month.$start_year";
+    }
+
+    if ($start_year != $end_year) {
+      return "$start_day.$start_month.$start_year - $end_day.$end_month.$end_year";
+    }
+
+    if ($start_month != $end_month) {
+      return "$start_day.$start_month - $end_day.$end_month.$end_year";
+    }
+
+    return "$start_day - $end_day.$end_month.$end_year";
+  }
+
+  /**
+   * Get the event location.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The event.
+   *
+   * @return string
+   *   The location.
+   */
+  public function getEventLocation(NodeInterface $node) {
+    $city = $node->get('field_city')->value;
+
+    if ($city) {
+      return $city;
+    }
+
+    $allowed_options = options_allowed_values($node->get('field_event_format')->getFieldDefinition()->getFieldStorageDefinition());
+    $format = $node->get('field_event_format')->value;
+    return $allowed_options[$format] ?? '';
+  }
+
 }
