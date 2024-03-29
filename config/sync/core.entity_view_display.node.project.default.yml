@@ -8,20 +8,15 @@ dependencies:
     - field.field.node.project.field_date_range
     - field.field.node.project.field_partners
     - field.field.node.project.field_project_abbreviation
-    - field.field.node.project.field_project_achievements
     - field.field.node.project.field_project_contacts
-    - field.field.node.project.field_project_end_date
     - field.field.node.project.field_project_keywords
     - field.field.node.project.field_project_potential_impacts
-    - field.field.node.project.field_project_results
-    - field.field.node.project.field_project_start_date
     - field.field.node.project.field_project_topics
     - field.field.node.project.field_related_publications
     - field.field.node.project.field_slideshow_items
     - field.field.node.project.field_slideshow_position
     - node.type.project
   module:
-    - datetime
     - datetime_range
     - entity_reference_revisions
     - options
@@ -74,13 +69,6 @@ content:
     third_party_settings: {  }
     weight: 104
     region: content
-  field_project_achievements:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 112
-    region: content
   field_project_contacts:
     type: entity_reference_revisions_entity_view
     label: above
@@ -89,15 +77,6 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 108
-    region: content
-  field_project_end_date:
-    type: datetime_custom
-    label: above
-    settings:
-      timezone_override: ''
-      date_format: 'F Y'
-    third_party_settings: {  }
-    weight: 114
     region: content
   field_project_keywords:
     type: entity_reference_label
@@ -114,22 +93,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 109
-    region: content
-  field_project_results:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 111
-    region: content
-  field_project_start_date:
-    type: datetime_custom
-    label: above
-    settings:
-      timezone_override: ''
-      date_format: 'F Y'
-    third_party_settings: {  }
-    weight: 113
     region: content
   field_project_topics:
     type: entity_reference_label
