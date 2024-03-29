@@ -7,3 +7,9 @@
 .node-events-edit-form .all-day-selected .smartdate--separator {
   display: none !important;
 }
+
+.select2-container--claro .select2-selection--multiple .select2-selection__rendered li {
+  max-width: 98%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

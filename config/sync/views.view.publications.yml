@@ -409,7 +409,7 @@ display:
       tags: {  }
   related_publications:
     id: related_publications
-    display_title: Block
+    display_title: 'Related publications'
     display_plugin: block
     position: 1
     display_options:
