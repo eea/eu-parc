@@ -23,7 +23,7 @@ class ParcIcsLinkFieldFormatter extends IcsLinkFieldFormatter {
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
+  public function viewElements(FieldItemListInterface $items, $langcode): array {
     $elements = parent::viewElements($items, $langcode);
 
     foreach ($elements as $delta => $element) {
