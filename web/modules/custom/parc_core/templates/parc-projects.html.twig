@@ -28,14 +28,8 @@
     {% for project in projects %}
       <div data-project="{{ project.id }}" class="project-title">
         <span class="projects-hoverable">
-          {{ project.name }}
+          <a href="{{ project.url }}">{{ project.name }}</a>
         </span>
-        <a target="_blank" class="icon" href="{{ project.url }}">
-          <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.79956 1H6.32454C6.96259 1 7.56587 1.57529 7.56587 2.18374L7.56587 5.76558" stroke="#040404" stroke-width="1.5" stroke-linecap="round"></path>
-            <line x1="4.8999" y1="4.161" x2="1.06066" y2="8.00024" stroke="#040404" stroke-width="1.5" stroke-linecap="round"></line>
-          </svg>
-        </a>
       </div>
     {% endfor %}
   </div>

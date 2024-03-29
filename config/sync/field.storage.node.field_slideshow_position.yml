@@ -1,0 +1,27 @@
+uuid: 6b34674b-b1d8-4d17-8b54-5096dc44b06d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_slideshow_position
+field_name: field_slideshow_position
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: top
+      label: Top
+    -
+      value: bottom
+      label: Bottom
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

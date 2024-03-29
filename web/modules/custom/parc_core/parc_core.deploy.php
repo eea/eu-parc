@@ -492,8 +492,10 @@ function parc_core_deploy_9009() {
     $node_data = [
       'type' => 'project',
       'title' => $row['Short Title'],
-      'field_project_start_date' => $date_start,
-      'field_project_end_date' => $date_end,
+      'field_date_range' => [
+        'value' => $date_start,
+        'end_value' => $date_end,
+      ],
       'field_project_abbreviation' => $row['Project Abbreviation'],
       'field_project_topics' => $topics,
       'field_project_keywords' => $project_keywords,

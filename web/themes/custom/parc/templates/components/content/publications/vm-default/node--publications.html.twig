@@ -9,8 +9,8 @@
 {{ attach_library('parc/n--publications') }}
 {% set collpaseID = 'parc--publications-' ~ node.id() %}
 
-{% set linkPublication = path('<current>') ~ '?publication=' ~ node.id() %}
-{% set linkKey = path('<current>') ~ '?message=' ~ node.id() %}
+{% set linkPublication = publication_link  %}
+{% set linkKey = message_link %}
 
 {%
   set classes = [

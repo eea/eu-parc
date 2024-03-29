@@ -47,6 +47,11 @@ function parc_core_theme() {
         'title' => '',
       ],
     ],
+    'parc_slideshow' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
   ];
 }
 

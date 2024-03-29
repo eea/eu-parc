@@ -4,6 +4,9 @@ status: true
 dependencies:
   config:
     - field.field.node.project.body
+    - field.field.node.project.field_audio_file
+    - field.field.node.project.field_date_range
+    - field.field.node.project.field_partners
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_achievements
     - field.field.node.project.field_project_contacts
@@ -13,9 +16,14 @@ dependencies:
     - field.field.node.project.field_project_results
     - field.field.node.project.field_project_start_date
     - field.field.node.project.field_project_topics
+    - field.field.node.project.field_related_publications
+    - field.field.node.project.field_slideshow_items
+    - field.field.node.project.field_slideshow_position
     - node.type.project
   module:
     - datetime
+    - datetime_range
+    - media_library
     - paragraphs
     - path
     - select2
@@ -41,25 +49,48 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_audio_file:
+    type: media_library_widget
+    weight: 20
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_date_range:
+    type: daterange_default
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_partners:
+    type: paragraphs
+    weight: 21
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
   field_project_abbreviation:
     type: string_textfield
-    weight: 16
+    weight: 13
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_project_achievements:
-    type: text_textarea
-    weight: 11
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   field_project_contacts:
     type: paragraphs
-    weight: 19
+    weight: 16
     region: content
     settings:
       title: Contact
@@ -78,13 +109,13 @@ content:
     third_party_settings: {  }
   field_project_end_date:
     type: datetime_default
-    weight: 14
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   field_project_keywords:
     type: select2_entity_reference
-    weight: 18
+    weight: 15
     region: content
     settings:
       width: 100%
@@ -94,35 +125,50 @@ content:
     third_party_settings: {  }
   field_project_potential_impacts:
     type: string_textfield
-    weight: 20
+    weight: 17
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_project_results:
-    type: text_textarea
-    weight: 10
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
   field_project_start_date:
     type: datetime_default
-    weight: 13
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   field_project_topics:
     type: select2_entity_reference
-    weight: 17
+    weight: 14
     region: content
     settings:
       width: 100%
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
+    third_party_settings: {  }
+  field_related_publications:
+    type: select2_entity_reference
+    weight: 22
+    region: content
+    settings:
+      width: 100%
+      autocomplete: true
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_slideshow_items:
+    type: media_library_widget
+    weight: 18
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_slideshow_position:
+    type: options_select
+    weight: 19
+    region: content
+    settings: {  }
     third_party_settings: {  }
   path:
     type: path
@@ -179,4 +225,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_project_achievements: true
+  field_project_results: true

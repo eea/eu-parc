@@ -1,0 +1,64 @@
+uuid: 4b04335f-0c70-418a-97f3-0ed292a47d83
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_partners
+    - node.type.project
+    - paragraphs.paragraphs_type.partner
+  module:
+    - entity_reference_revisions
+id: node.project.field_partners
+field_name: field_partners
+entity_type: node
+bundle: project
+label: 'Partners involved'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      partner: partner
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 13
+        enabled: false
+      card:
+        weight: 14
+        enabled: false
+      carousel_item:
+        weight: 15
+        enabled: false
+      contact:
+        weight: 16
+        enabled: false
+      grid:
+        weight: 17
+        enabled: false
+      lab_matrix:
+        weight: 18
+        enabled: false
+      links_list:
+        weight: 19
+        enabled: false
+      media:
+        weight: 20
+        enabled: false
+      newsletter:
+        weight: 21
+        enabled: false
+      partner:
+        weight: 22
+        enabled: true
+      svg_text:
+        weight: 23
+        enabled: false
+      what_we_do:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

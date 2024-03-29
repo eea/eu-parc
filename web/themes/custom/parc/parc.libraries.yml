@@ -175,11 +175,6 @@ n--project-full:
   css:
     component:
       css/components/content/project/full/style.css: {}
-
-n--project-teaser:
-  css:
-    component:
-      css/components/content/project/teaser/style.css: {}
   js:
     templates/components/content/project/teaser/script.js: { }
   dependencies:
@@ -482,3 +477,14 @@ content_only:
     - core/drupal
     - core/once
     - core/jquery
+
+m--video--slideshow:
+  css:
+    component:
+      css/components/media/video/video-slideshow.css: { }
+  js:
+    templates/components/media/video/video-slideshow.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once

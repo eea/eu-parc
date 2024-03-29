@@ -5,6 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.project.body
+    - field.field.node.project.field_audio_file
+    - field.field.node.project.field_date_range
+    - field.field.node.project.field_partners
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_achievements
     - field.field.node.project.field_project_contacts
@@ -14,6 +17,9 @@ dependencies:
     - field.field.node.project.field_project_results
     - field.field.node.project.field_project_start_date
     - field.field.node.project.field_project_topics
+    - field.field.node.project.field_related_publications
+    - field.field.node.project.field_slideshow_items
+    - field.field.node.project.field_slideshow_position
     - node.type.project
   module:
     - datetime
@@ -114,4 +120,10 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_audio_file: true
+  field_date_range: true
+  field_partners: true
+  field_related_publications: true
+  field_slideshow_items: true
+  field_slideshow_position: true
   search_api_excerpt: true

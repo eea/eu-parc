@@ -565,6 +565,22 @@ function parc_preprocess_views_view(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node__publications.
+ */
+function parc_preprocess_node__publications(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $view_url = Url::fromRoute('view.publications.page_publications');
+  $variables['publication_link'] = $view_url->setOption('query', [
+    'publication' => $node->id(),
+  ])->toString();
+  $variables['message_link'] = $view_url->setOption('query', [
+    'message' => $node->id(),
+  ])->toString();
+}
+
+/**
  * Implements hook_preprocess_HOOK() for node__project.
  */
 function parc_preprocess_node__project(array &$variables) {
