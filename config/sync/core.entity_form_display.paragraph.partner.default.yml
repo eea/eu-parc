@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.partner.field_country
-    - field.field.paragraph.partner.field_link
+    - field.field.paragraph.partner.field_link_one
     - field.field.paragraph.partner.field_name
     - paragraphs.paragraphs_type.partner
   module:
@@ -25,9 +25,9 @@ content:
       match_operator: CONTAINS
       match_limit: 10
     third_party_settings: {  }
-  field_link:
+  field_link_one:
     type: link_default
-    weight: 3
+    weight: 2
     region: content
     settings:
       placeholder_url: ''

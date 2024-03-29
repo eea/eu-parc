@@ -28,7 +28,7 @@ class ParcPartnersFormatter extends EntityReferenceFormatterBase {
 
     foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
       $name = $entity->get('field_name')->value;
-      $website = $entity->get('field_link')->uri;
+      $website = $entity->get('field_link_one')->uri;
       $country_iso2 = NULL;
       $country = $entity->get('field_country')->entity;
       if ($country instanceof TermInterface) {

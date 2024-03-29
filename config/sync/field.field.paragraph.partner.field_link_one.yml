@@ -1,19 +1,19 @@
-uuid: 25c57678-2847-48b9-85cb-10321304d1e6
+uuid: 77bc33fa-10ad-427a-91bc-cb750dbf36b7
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_link
+    - field.storage.paragraph.field_link_one
     - paragraphs.paragraphs_type.partner
   module:
     - link
-id: paragraph.partner.field_link
-field_name: field_link
+id: paragraph.partner.field_link_one
+field_name: field_link_one
 entity_type: paragraph
 bundle: partner
 label: Link
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
