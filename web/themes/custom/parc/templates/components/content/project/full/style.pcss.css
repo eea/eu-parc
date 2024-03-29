@@ -52,7 +52,7 @@
   }
 
   .content {
-    max-width: 100%;
+    max-width: 900px;
     overflow-x: hidden;
     flex-grow: 0;
   }

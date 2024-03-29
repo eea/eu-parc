@@ -300,8 +300,16 @@
   z-index: 5;
 }
 
-.projects-chart [data-project],
-.projects-chart [data-keyword],
-.projects-chart [data-topic] {
-  transition: .35s opacity ease-in-out;
+.projects-chart [data-project]:not(path),
+.projects-chart [data-keyword]:not(path),
+.projects-chart [data-topic]:not(path) {
+  transition: opacity .25s ease-in-out;
+}
+
+.unfocused {
+  opacity: .1;
+}
+
+.projects-chart .projects-svg path.unfocused {
+  opacity: .1;
 }
