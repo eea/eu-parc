@@ -5,9 +5,9 @@ dependencies: {  }
 id: node__events
 label: 'Content: Events'
 tags:
-  og_image: '/node/[node:nid]/og-image/standard'
   og_image_height: '630'
   og_image_type: image/jpeg
+  og_image_url: '/node/[node:nid]/og-image/standard'
   og_image_width: '1200'
   twitter_cards_image: '/node/[node:nid]/og-image/twitter'
   twitter_cards_image_height: '630'
