@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d56b7d64adf7c952f89c386409db2773",
+    "content-hash": "eb63f6450cce24ee598c91fcce1df38d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2093,8 +2093,16 @@
             ],
             "authors": [
                 {
+                    "name": "benjifisher",
+                    "homepage": "https://www.drupal.org/user/683300"
+                },
+                {
                     "name": "colan",
                     "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
+                    "name": "dqd",
+                    "homepage": "https://www.drupal.org/user/1001934"
                 },
                 {
                     "name": "ergonlogic",
@@ -2879,6 +2887,10 @@
                     "name": "Neslee Canil Pinto",
                     "homepage": "https://www.drupal.org/u/neslee-canil-pinto",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
                 }
             ],
             "description": "Modify behavior and appearance of external links.",
@@ -5475,10 +5487,6 @@
                     "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
-                    "name": "Dane Powell",
-                    "homepage": "https://www.drupal.org/user/339326"
-                },
-                {
                     "name": "gielfeldt",
                     "homepage": "https://www.drupal.org/user/366993"
                 },
@@ -5607,20 +5615,8 @@
             "authors": [
                 {
                     "name": "Agnes Chisholm",
-                    "homepage": "https://www.drupal.org/user/66428",
+                    "homepage": "https://www.drupal.org/user/173461",
                     "email": "amaria@chisholmtech.com"
-                },
-                {
-                    "name": "beeradb",
-                    "homepage": "https://www.drupal.org/user/120651"
-                },
-                {
-                    "name": "elevins",
-                    "homepage": "https://www.drupal.org/user/781882"
-                },
-                {
-                    "name": "entendu",
-                    "homepage": "https://www.drupal.org/user/173461"
                 },
                 {
                     "name": "fathima.asmat",
@@ -5845,10 +5841,6 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
-                {
-                    "name": "jasonawant",
-                    "homepage": "https://www.drupal.org/user/589890"
-                },
                 {
                     "name": "joekers",
                     "homepage": "https://www.drupal.org/user/2229066"
