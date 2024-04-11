@@ -2,22 +2,13 @@
 
 namespace Drupal\parc_core\Controller;
 
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\AppendCommand;
-use Drupal\Core\Ajax\RemoveCommand;
-use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Render\HtmlResponse;
-use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\NodeInterface;
 use Drupal\parc_core\ParcEventsManager;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpKernel\HttpKernelInterface;
-use Symfony\Component\CssSelector\CssSelectorConverter;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -42,16 +33,26 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
   protected $eventsManager;
 
   /**
+   * The current request.
+   *
+   * @var \Symfony\Component\HttpFoundation\Request
+   */
+  protected $request;
+
+  /**
    * Constructs a ParcController object.
    *
    * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
    *   The theme extension list.
    * @param \Drupal\parc_core\ParcEventsManager $events_manager
-   *   The events manager.
+   *   The event manager.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack.
    */
-  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager) {
+  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager, RequestStack $request_stack) {
     $this->themeExtensionList = $theme_extension_list;
     $this->eventsManager = $events_manager;
+    $this->request = $request_stack->getCurrentRequest();
   }
 
   /**
@@ -60,7 +61,8 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('extension.list.theme'),
-      $container->get('parc_core.events_manager')
+      $container->get('parc_core.events_manager'),
+      $container->get('request_stack'),
     );
   }
 
@@ -90,7 +92,10 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     $location = $this->eventsManager->getEventLocation($node);
     $location_font_size = 40;
 
-    $color = $category->get('field_colors')->color;
+    $color = $this->request->query->get('color');
+    if (empty($color)) {
+      $color = $category->get('field_colors')->color;
+    }
     [$r, $g, $b] = sscanf($color, "#%02x%02x%02x");
 
     $date = $this->eventsManager->getEventFormattedDate($node);
