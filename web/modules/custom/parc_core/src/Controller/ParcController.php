@@ -2,6 +2,7 @@
 
 namespace Drupal\parc_core\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Render\HtmlResponse;
@@ -130,7 +131,10 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     $response = new HtmlResponse($image_string, 200, [
       'Content-Type' => 'image/jpeg',
     ]);
+    $cacheable_metadata = new CacheableMetadata();
+    $cacheable_metadata->addCacheContexts(['url.query_args:color']);
     $response->addCacheableDependency($node);
+    $response->addCacheableDependency($cacheable_metadata);
     return $response;
   }
 
