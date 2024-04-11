@@ -124,7 +124,7 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     imagettftext($image_p, $font_size, 0, $margin, $font_size + $category_font_size + 80, $white, $font, $date);
 
     ob_start();
-    imagejpeg($image_p, NULL, 100);
+    imagepng($image_p, NULL, 0);
     $image_string = ob_get_clean();
 
     $response = new HtmlResponse($image_string, 200, [
