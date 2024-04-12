@@ -78,19 +78,19 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    *   The HTML response.
    */
   public function eventOgImage(NodeInterface $node, $type = 'standard') {
-    $width = 1200;
-    $height = 630;
+    $width = 800;
+    $height = 420;
 
-    $margin = 40;
-    $margin_bottom = $type == 'standard' ? 0 : 100;
+    $margin = 26;
+    $margin_bottom = str_contains($type, 'standard') ? 0 : 66;
 
     /** @var \Drupal\taxonomy\TermInterface $category */
     $category = $node->get('field_categories')->entity;
     $category_name = $category->getName();
-    $category_font_size = 60;
+    $category_font_size = 40;
 
     $location = $this->eventsManager->getEventLocation($node);
-    $location_font_size = 40;
+    $location_font_size = 26;
 
     $color = $this->request->query->get('color');
     if (empty($color)) {
@@ -114,14 +114,14 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     imagettftext($image_p, $location_font_size, 0, $margin, $height - $location_font_size - $margin_bottom, $white, $font, $location);
 
     // Write date.
-    imagettftext($image_p, $font_size, 0, $margin, $font_size + $category_font_size + 80, $white, $font, $date);
+    imagettftext($image_p, $font_size, 0, $margin, $font_size + $category_font_size + 53, $white, $font, $date);
 
     ob_start();
-    imagepng($image_p, NULL, 0);
+    imagejpeg($image_p, NULL, 100);
     $image_string = ob_get_clean();
 
     $response = new HtmlResponse($image_string, 200, [
-      'Content-Type' => 'image/png',
+      'Content-Type' => 'image/jpeg',
       'Content-Length' => strlen($image_string),
     ]);
     $response->addCacheableDependency($node);
