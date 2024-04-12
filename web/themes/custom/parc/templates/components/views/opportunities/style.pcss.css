@@ -4,6 +4,12 @@
   }
 }
 
+.view-display-id-current_opportunities {
+  &.view-empty {
+    border-bottom: 1px solid #000;
+  }
+}
+
 .view-display-id-past_opportunities {
   form {
     display: none;

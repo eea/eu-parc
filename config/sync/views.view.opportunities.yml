@@ -289,6 +289,20 @@ display:
     display_plugin: block
     position: 1
     display_options:
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: 'There are no active opportunities at this time.'
+          tokenize: false
+      defaults:
+        empty: false
       display_description: ''
       display_extenders:
         ajax_history:
