@@ -105,7 +105,7 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     $white = imagecolorallocate($image_p, 255, 255, 255);
 
     $font = $this->themeExtensionList->getPath('parc') . '/fonts/Satoshi-Bold.ttf';
-    $font_size = $width / strlen($date) * 1.3;
+    $font_size = $width / strlen($date) * 1.1;
 
     // Write category name.
     imagettftext($image_p, $category_font_size, 0, $margin, $category_font_size + $margin, $white, $font, $category_name);
