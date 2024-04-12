@@ -12,10 +12,12 @@ dependencies:
     - field.field.node.events.field_duration
     - field.field.node.events.field_ects
     - field.field.node.events.field_event_format
+    - field.field.node.events.field_exclude_frontpage
     - field.field.node.events.field_fee
     - field.field.node.events.field_hide_calendar
     - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
+    - field.field.node.events.field_organizer
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
@@ -42,7 +44,7 @@ third_party_settings:
       label: Venue
       region: content
       parent_name: ''
-      weight: 10
+      weight: 9
       format_type: fieldset
       format_settings:
         classes: ''
@@ -57,7 +59,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 8
+    weight: 7
     region: content
     settings:
       rows: 9
@@ -73,7 +75,7 @@ content:
     third_party_settings: {  }
   field_add_to_calendar:
     type: ics_link_field_widget
-    weight: 22
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -87,7 +89,7 @@ content:
     third_party_settings: {  }
   field_categories:
     type: options_select
-    weight: 13
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -101,7 +103,7 @@ content:
     third_party_settings: {  }
   field_date:
     type: smartdate_inline
-    weight: 23
+    weight: 22
     region: content
     settings:
       modal: false
@@ -120,7 +122,7 @@ content:
     third_party_settings: {  }
   field_duration:
     type: string_textfield
-    weight: 24
+    weight: 23
     region: content
     settings:
       size: 60
@@ -128,7 +130,7 @@ content:
     third_party_settings: {  }
   field_ects:
     type: number
-    weight: 16
+    weight: 15
     region: content
     settings:
       placeholder: ''
@@ -154,13 +156,20 @@ content:
             selector: ''
   field_event_format:
     type: options_select
-    weight: 11
+    weight: 10
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_exclude_frontpage:
+    type: boolean_checkbox
+    weight: 25
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_fee:
     type: string_textfield
-    weight: 17
+    weight: 16
     region: content
     settings:
       size: 60
@@ -168,35 +177,34 @@ content:
     third_party_settings: {  }
   field_hide_calendar:
     type: boolean_checkbox
-    weight: 25
+    weight: 24
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_media_image:
     type: media_library_widget
-    weight: 18
+    weight: 17
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
-    weight: 21
+    weight: 20
     region: content
     settings:
       sidebar: true
       use_details: true
     third_party_settings: {  }
-  field_parc_training:
-    type: boolean_checkbox
-    weight: 15
+  field_organizer:
+    type: options_select
+    weight: 14
     region: content
-    settings:
-      display_label: true
+    settings: {  }
     third_party_settings:
       conditional_fields:
-        17f2af46-c1b8-4150-84e6-56b4aba2f8b4:
+        b4683441-f346-4732-bb49-8423875e3de5:
           entity_type: node
           bundle: events
           dependee: field_categories
@@ -216,7 +224,7 @@ content:
             selector: ''
   field_registration:
     type: text_textarea
-    weight: 9
+    weight: 8
     region: content
     settings:
       rows: 5
@@ -224,7 +232,7 @@ content:
     third_party_settings: {  }
   field_seo_keyword:
     type: entity_reference_autocomplete
-    weight: 20
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -234,7 +242,7 @@ content:
     third_party_settings: {  }
   field_training_type:
     type: select2_entity_reference
-    weight: 14
+    weight: 13
     region: content
     settings:
       width: 100%
@@ -263,7 +271,7 @@ content:
             selector: ''
   field_website:
     type: link_default
-    weight: 12
+    weight: 11
     region: content
     settings:
       placeholder_url: ''
@@ -271,16 +279,9 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 6
+    weight: 5
     region: content
     settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    weight: 4
-    region: content
-    settings:
-      display_label: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 3
@@ -288,20 +289,20 @@ content:
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 19
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
+    weight: 6
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 5
+    weight: 4
     region: content
     settings:
       display_label: true
@@ -324,4 +325,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_parc_training: true
+  promote: true

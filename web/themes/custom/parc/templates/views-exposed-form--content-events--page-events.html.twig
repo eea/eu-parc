@@ -16,6 +16,10 @@
       <div>
         {{ form.training_topic_collapsible }}
       </div>
+
+      <div>
+        {{ form.organizer_collapsible }}
+      </div>
     </div>
 
     <div class="col-auto col-auto order-1 order-md-3 d-flex justify-content-end w--sort-by">
@@ -30,4 +34,4 @@
   </div>
 </div>
 
-{{ form|without('sort_bef_combine', 'category_collapsible', 'training_topic_collapsible') }}
+{{ form|without('sort_bef_combine', 'category_collapsible', 'training_topic_collapsible', 'organizer_collapsible') }}

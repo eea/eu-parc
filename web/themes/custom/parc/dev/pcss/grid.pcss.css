@@ -989,6 +989,7 @@
 
   &.gaf--events {
     grid-template-columns: repeat(2, 1fr);
+    margin-bottom: var(--gutter);
 
     @media (max-width: 450px) {
       grid-template-columns: repeat(1, 1fr);
