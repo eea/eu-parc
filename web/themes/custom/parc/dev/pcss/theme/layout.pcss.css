@@ -69,6 +69,12 @@
   }
 }
 
+.layout.pb-0 {
+  > div:last-child {
+    padding-bottom: 0 !important;
+  }
+}
+
 .region-nav-additional {
   display: flex !important;
 

@@ -10,4 +10,4 @@ group: default
 block_restrictions: {  }
 layout_restrictions:
   - layout_twocol_section
-weight: 0
+weight: -6

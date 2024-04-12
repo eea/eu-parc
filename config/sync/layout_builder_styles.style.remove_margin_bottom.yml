@@ -10,4 +10,4 @@ group: default
 block_restrictions: {  }
 layout_restrictions:
   - parc_content
-weight: 0
+weight: -2

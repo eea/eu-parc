@@ -1,12 +1,12 @@
-uuid: c45a1933-4d80-48c4-b99c-d23952479d48
+uuid: d75155a8-84af-4d15-bd0b-bf0ffd4a7779
 langcode: en
 status: true
 dependencies: {  }
-id: container
-label: Container
-classes: add-container
+id: remove_bottom_padding
+label: 'Remove bottom padding'
+classes: pb-0
 type: section
 group: default
 block_restrictions: {  }
 layout_restrictions: {  }
-weight: -8
+weight: 0
