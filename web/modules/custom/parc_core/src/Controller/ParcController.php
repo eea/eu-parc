@@ -100,10 +100,6 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
 
     $date = $this->eventsManager->getEventFormattedDate($node);
 
-    $year = $this->eventsManager->getEventFormattedDate($node, TRUE);
-    $year_font_size = 30;
-    $year_width = strlen($year) > 4 ? 270 : 130;
-
     $image_p = imagecreate($width, $height);
     imagecolorallocate($image_p, $r, $g, $b);
     $white = imagecolorallocate($image_p, 255, 255, 255);
@@ -113,9 +109,6 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
 
     // Write category name.
     imagettftext($image_p, $category_font_size, 0, $margin, $category_font_size + $margin, $white, $font, $category_name);
-
-    // Write year.
-    imagettftext($image_p, $year_font_size, 0, $width - $year_width, $year_font_size + $margin, $white, $font, $year);
 
     // Write location.
     imagettftext($image_p, $location_font_size, 0, $margin, $height - $location_font_size - $margin_bottom, $white, $font, $location);
