@@ -1,0 +1,37 @@
+.opportunity-wrapper {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  margin: 0 28px;
+}
+
+.node--opportunity--full {
+  &.container {
+    max-width: 692px;
+    padding: 0;
+  }
+  --opportunity-color: #A8AC00;
+
+  .date {
+    margin-left: auto;
+    color: var(--opportunity-color);
+    font-size: 14px;
+  }
+
+  h1 {
+    color: var(--opportunity-color);
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+
+    @media (--md) {
+      font-size: 57px;
+      line-height: 66px;
+    }
+  }
+}
+
+.opportunities-view-embed {
+  form {
+    display: none;
+  }
+}

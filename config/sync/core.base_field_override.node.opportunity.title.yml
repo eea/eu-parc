@@ -1,0 +1,18 @@
+uuid: a6872a12-7bec-4192-b4af-d13609cd4c06
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opportunity
+id: node.opportunity.title
+field_name: title
+entity_type: node
+bundle: opportunity
+label: 'Title of position'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
