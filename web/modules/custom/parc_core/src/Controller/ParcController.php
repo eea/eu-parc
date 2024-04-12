@@ -121,7 +121,8 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     $image_string = ob_get_clean();
 
     $response = new HtmlResponse($image_string, 200, [
-      'Content-Type' => 'image/jpeg',
+      'Content-Type' => 'image/png',
+      'Content-Length' => strlen($image_string),
     ]);
     $response->addCacheableDependency($node);
     return $response;
