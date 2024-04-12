@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.events.field_hide_calendar
     - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
+    - field.field.node.events.field_organizer
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
@@ -196,15 +197,14 @@ content:
       sidebar: true
       use_details: true
     third_party_settings: {  }
-  field_parc_training:
-    type: boolean_checkbox
+  field_organizer:
+    type: options_select
     weight: 14
     region: content
-    settings:
-      display_label: true
+    settings: {  }
     third_party_settings:
       conditional_fields:
-        17f2af46-c1b8-4150-84e6-56b4aba2f8b4:
+        b4683441-f346-4732-bb49-8423875e3de5:
           entity_type: node
           bundle: events
           dependee: field_categories
@@ -326,4 +326,5 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_parc_training: true
   promote: true

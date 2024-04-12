@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.events.field_hide_calendar
     - field.field.node.events.field_media_image
     - field.field.node.events.field_metatags
+    - field.field.node.events.field_organizer
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
@@ -146,6 +147,21 @@ third_party_settings:
               expand_all_items: false
               parent: 'main:taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
               suggestion: sidebar_dropdown
+            weight: 0
+            additional: {  }
+          b2645403-aa79-4d79-ac98-d36c0c473477:
+            uuid: b2645403-aa79-4d79-ac98-d36c0c473477
+            region: first
+            configuration:
+              id: 'field_block:node:events:field_organizer'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: list_default
+                label: above
+                settings: {  }
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }
@@ -382,6 +398,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 109
+    region: first
+  field_organizer:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 125
     region: first
   field_parc_training:
     type: boolean

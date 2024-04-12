@@ -400,3 +400,26 @@ function parc_core_deploy_9008() {
     $term->save();
   }
 }
+
+/**
+ * Migrate field_parc_training to field_organizer.
+ */
+function parc_core_deploy_9009() {
+  $node_storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+
+  $events = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'events')
+    ->execute();
+
+  foreach ($events as $event) {
+    $event = $node_storage->load($event);
+    $organizer = !empty($event->get('field_parc_training')->value)
+      ? 'parc'
+      : 'external';
+    $event->set('field_organizer', $organizer);
+    $event->save();
+  }
+}
