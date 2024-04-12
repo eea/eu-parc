@@ -1,0 +1,41 @@
+uuid: 6aa1034c-0423-4b25-b1c5-ca13cde65e95
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.info
+    - field.field.node.opportunity.body
+    - field.field.node.opportunity.field_active
+    - field.field.node.opportunity.field_city
+    - field.field.node.opportunity.field_country
+    - field.field.node.opportunity.field_institute_name
+    - field.field.node.opportunity.field_position_category
+    - node.type.opportunity
+  module:
+    - user
+id: node.opportunity.info
+targetEntityType: node
+bundle: opportunity
+mode: info
+content:
+  field_city:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  body: true
+  field_active: true
+  field_country: true
+  field_institute_name: true
+  field_position_category: true
+  search_api_excerpt: true

@@ -1,0 +1,19 @@
+uuid: 02f4b414-052f-4773-a0ae-c6d9666b1dae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city
+    - node.type.opportunity
+id: node.opportunity.field_city
+field_name: field_city
+entity_type: node
+bundle: opportunity
+label: City
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

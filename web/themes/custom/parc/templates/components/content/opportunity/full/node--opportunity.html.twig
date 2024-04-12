@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--opportunity--full') }}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+    'container',
+  ]
+%}
+
+<div class="svg-title">
+  <h1>{{ "Opportunities" | t }}</h1>
+</div>
+
+<div class="opportunity-wrapper pt-3 pt-md-5 pb-5">
+  <article{{ attributes.addClass(classes) }}>
+    <div class="node--head d-flex justify-content-between align-items-center mb-3 mb-md-4">
+      <div class="date">{{ node.getCreatedTime|format_date('medium') }}</div>
+    </div>
+
+    <h1{{ title_attributes.addClass('flex-grow-1 mb-3 mb-md-5') }}>
+      {{ label }}
+    </h1>
+
+    <div{{ content_attributes.addClass('node--content') }}>
+      {{ content.body }}
+    </div>
+  </article>
+</div>
+
+<div class="pt-5 pb-5 opportunities-view-embed container-fluid">
+  {{ opportunities_view }}
+</div>

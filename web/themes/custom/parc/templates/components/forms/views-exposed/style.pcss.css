@@ -181,7 +181,7 @@
       }
     }
 
-    label[for*="asc"]:after {
+    label[for*="desc"]:after {
       transform: rotate(180deg);
     }
   }
