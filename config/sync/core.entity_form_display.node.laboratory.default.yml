@@ -5,8 +5,11 @@ dependencies:
   config:
     - field.field.node.laboratory.field_address_data
     - field.field.node.laboratory.field_city
+    - field.field.node.laboratory.field_contact_email
+    - field.field.node.laboratory.field_contact_name
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_institute_name
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
     - field.field.node.laboratory.field_sampling_type
@@ -28,13 +31,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   field_address_data:
     type: text_textarea
-    weight: 5
+    weight: 6
     region: content
     settings:
       rows: 5
@@ -42,7 +45,23 @@ content:
     third_party_settings: {  }
   field_city:
     type: string_textfield
-    weight: 4
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_contact_email:
+    type: email_default
+    weight: 11
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  field_contact_name:
+    type: string_textfield
+    weight: 10
     region: content
     settings:
       size: 60
@@ -50,13 +69,13 @@ content:
     third_party_settings: {  }
   field_coordinates:
     type: geolocation_latlng
-    weight: 6
+    weight: 7
     region: content
     settings: {  }
     third_party_settings: {  }
   field_country:
     type: select2_entity_reference
-    weight: 3
+    weight: 4
     region: content
     settings:
       width: 100%
@@ -64,9 +83,17 @@ content:
       match_operator: CONTAINS
       match_limit: 10
     third_party_settings: {  }
+  field_institute_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_lab_type:
     type: select2_entity_reference
-    weight: 7
+    weight: 8
     region: content
     settings:
       width: 100%
@@ -76,14 +103,14 @@ content:
     third_party_settings: {  }
   field_media_image:
     type: media_library_widget
-    weight: 10
+    weight: 12
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_substances_matrix:
     type: paragraphs
-    weight: 8
+    weight: 13
     region: content
     settings:
       title: 'Substance matrix'
@@ -108,14 +135,9 @@ content:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
-  simple_sitemap_index_now:
-    weight: 12
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 11
+    weight: 14
     region: content
     settings:
       display_label: true
@@ -130,7 +152,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 1
+    weight: 2
     region: content
     settings:
       match_operator: CONTAINS
@@ -144,4 +166,5 @@ hidden:
   path: true
   promote: true
   simple_sitemap: true
+  simple_sitemap_index_now: true
   sticky: true

@@ -38,7 +38,7 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
         continue;
       }
 
-      $substances[$sampling_type->label()][$substance_group->label()] = $qualified;
+      $substances[$substance_group->label()][$sampling_type->label()] = $qualified;
     }
 
     $elements[] = [

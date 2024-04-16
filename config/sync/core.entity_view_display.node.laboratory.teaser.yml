@@ -6,8 +6,11 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.laboratory.field_address_data
     - field.field.node.laboratory.field_city
+    - field.field.node.laboratory.field_contact_email
+    - field.field.node.laboratory.field_contact_name
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_institute_name
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
     - field.field.node.laboratory.field_sampling_type
@@ -46,6 +49,21 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  field_contact_email:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_contact_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 12
+    region: content
   field_coordinates:
     type: geolocation_latlng
     label: hidden
@@ -60,6 +78,14 @@ content:
       link: false
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_institute_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 10
     region: content
   field_lab_type:
     type: entity_reference_label

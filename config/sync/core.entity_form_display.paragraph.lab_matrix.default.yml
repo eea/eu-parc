@@ -23,7 +23,7 @@ content:
     third_party_settings: {  }
   field_sampling_type:
     type: select2_entity_reference
-    weight: 0
+    weight: 1
     region: content
     settings:
       width: 100%
@@ -33,7 +33,7 @@ content:
     third_party_settings: {  }
   field_substance_group:
     type: select2_entity_reference
-    weight: 1
+    weight: 0
     region: content
     settings:
       width: 100%

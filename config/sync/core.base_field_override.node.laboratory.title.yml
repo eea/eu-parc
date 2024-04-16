@@ -1,0 +1,18 @@
+uuid: 957782f3-a04e-48f5-81ad-5436e8753adb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.laboratory
+id: node.laboratory.title
+field_name: title
+entity_type: node
+bundle: laboratory
+label: 'Laboratory name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
