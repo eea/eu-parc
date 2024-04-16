@@ -1,0 +1,19 @@
+uuid: dcd9e236-6cd7-40c1-93d5-1bccb879c265
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_name
+    - node.type.laboratory
+id: node.laboratory.field_contact_name
+field_name: field_contact_name
+entity_type: node
+bundle: laboratory
+label: 'Contact name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

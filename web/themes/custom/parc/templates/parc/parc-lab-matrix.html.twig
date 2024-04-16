@@ -1,8 +1,8 @@
 {{ attach_library('parc/lab_matrix') }}
 
 <div class="matrix-table">
-  <div class="table-cell table-cell-header">{{ "Matrix" | t }}</div>
   <div class="table-cell table-cell-header">{{ "Substance group" | t }}</div>
+  <div class="table-cell table-cell-header">{{ "Matrix" | t }}</div>
   {% for sample_type, substance_group in substances %}
     <div class="table-cell matrix-item {% if loop.last %}last{% endif %}">{{ sample_type }}</div>
     <div class="table-cell {% if loop.last %}last{% endif %}">
