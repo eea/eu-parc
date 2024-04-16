@@ -23,6 +23,10 @@
 <div class="opportunity-wrapper pt-3 pt-md-5 pb-5">
   <article{{ attributes.addClass(classes) }}>
     <div class="node--head d-flex justify-content-between align-items-center mb-3 mb-md-4">
+      <div class="node--order">
+        {{ content.field_position_category }}
+      </div>
+
       <div class="date">{{ node.getCreatedTime|format_date('medium') }}</div>
     </div>
 

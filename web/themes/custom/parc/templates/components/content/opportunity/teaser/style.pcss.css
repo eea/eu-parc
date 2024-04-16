@@ -1,5 +1,5 @@
 .node--opportunity--teaser {
-  --n-bg: #A8AC00;
+  --n-bg: #20A4AC;
   --link-color: var(--c-white);
   --link-h-color: var(--c-white);
   --link-decoration: none;
@@ -17,7 +17,7 @@
   isolation: isolate;
 
   &:hover {
-    --n-bg: #B9BD33;
+    --n-bg: #4DB6BD;
   }
 
   > a {
@@ -41,6 +41,7 @@
   .node--order {
     font-size: var(--ndt-fs--order, 10px);
     text-transform: uppercase;
+    letter-spacing: 0.96px;
   }
 
   .date {
@@ -48,7 +49,7 @@
   }
 
   @media (--md) {
-    --ndt-fs--date: 11px;
+    --ndt-fs--date: 12px;
     --ndt-fs--media: 24px;
     --ndt-fs--order: 16px;
     --fm-dl--fz: 18px;

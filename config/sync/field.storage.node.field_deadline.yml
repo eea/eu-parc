@@ -1,15 +1,17 @@
-uuid: 9577c5c9-d55d-48ae-a1fe-32a8bcdc6c48
+uuid: 5c2c5615-b018-4472-b58c-20cde89c5086
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - node
-id: node.field_active
-field_name: field_active
+id: node.field_deadline
+field_name: field_deadline
 entity_type: node
-type: boolean
-settings: {  }
-module: core
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true
