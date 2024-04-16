@@ -1,0 +1,21 @@
+uuid: b58b1bc8-e71c-4381-b30c-ba6aa17f062c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_deadline
+    - node.type.opportunity
+  module:
+    - datetime
+id: node.opportunity.field_deadline
+field_name: field_deadline
+entity_type: node
+bundle: opportunity
+label: Deadline
+description: 'Opportunities after this date will only show up under "Past opportunities".'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
