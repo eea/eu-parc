@@ -311,7 +311,7 @@ body {
   }
 }
 
-.content-only {
+.full-screen {
   header, footer {
     display: none;
   }
@@ -322,5 +322,9 @@ body {
 
   &.map-page .layout > :first-child {
     max-height: calc(100 * var(--vh, 1vh) - 40px);
+  }
+
+  #sliding-popup {
+    display: none !important;
   }
 }

@@ -5,8 +5,11 @@ dependencies:
   config:
     - field.field.node.laboratory.field_address_data
     - field.field.node.laboratory.field_city
+    - field.field.node.laboratory.field_contact_email
+    - field.field.node.laboratory.field_contact_name
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_institute_name
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
     - field.field.node.laboratory.field_sampling_type
@@ -18,6 +21,7 @@ dependencies:
     - geolocation
     - link
     - parc_core
+    - spamspan
     - text
     - user
 id: node.laboratory.default
@@ -40,6 +44,29 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
+  field_contact_email:
+    type: email_spamspan
+    label: above
+    settings:
+      spamspan_at: ' [at] '
+      spamspan_use_graphic: false
+      spamspan_dot_enable: false
+      spamspan_dot: ' [dot] '
+      spamspan_use_form: false
+      spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
+      spamspan_form_default_url: contact
+      spamspan_form_default_displaytext: 'contact form'
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_contact_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 116
+    region: content
   field_coordinates:
     type: geolocation_latlng
     label: above
@@ -54,6 +81,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_institute_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 115
     region: content
   field_lab_type:
     type: entity_reference_label

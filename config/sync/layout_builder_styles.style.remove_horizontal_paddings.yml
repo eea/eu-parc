@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies: {  }
 id: remove_horizontal_paddings
-label: 'Remove horizontal paddings'
+label: 'Remove vertical paddings'
 classes: py-0
 type: section
 group: default
 block_restrictions: {  }
 layout_restrictions: {  }
-weight: 0
+weight: 1

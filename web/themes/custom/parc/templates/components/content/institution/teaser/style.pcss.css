@@ -15,6 +15,11 @@
     margin-bottom: 15px;
   }
 
+  .field--name-field-contact-email,
+  .field--name-field-contact-name {
+    display: inline;
+  }
+
   .roles {
     font-weight: bold;
     text-transform: uppercase;

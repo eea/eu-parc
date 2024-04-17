@@ -197,83 +197,104 @@ function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) 
   }
 }
 
-  /**
-   * Implement hook_metatags_attachments_alter().
-   * @param $attachements
-   *
-   * @return void
-   */
-  function parc_core_metatags_attachments_alter($attachements) {
+/**
+ * Implement hook_metatags_attachments_alter().
+ * @param $attachements
+ *
+ * @return void
+ */
+function parc_core_metatags_attachments_alter($attachements) {
 
+}
+
+/**
+ * Implement hook_metatags_alter().
+ * @param array $metatags
+ * @param array $context
+ *
+ * @return void
+ */
+function parc_core_metatags_alter(array &$metatags, array &$context) {
+  $entity = $context['entity'] ?? NULL;
+  if ($entity instanceof NodeInterface
+    && $entity->bundle() == 'events') {
+    $request_color = \Drupal::request()->query->get('color');
+    if (!empty($request_color)) {
+      $request_color = urlencode($request_color);
+
+      $image_tags = [
+        'og_image',
+        'og_image_url',
+        'twitter_cards_image',
+      ];
+
+      foreach ($image_tags as $image_tag) {
+        if (empty($metatags[$image_tag])) {
+          continue;
+        }
+
+        $metatags[$image_tag] .= "?color=$request_color";
+      }
+    }
   }
 
-  /**
-   * Implement hook_metatags_alter().
-   * @param array $metatags
-   * @param array $context
-   *
-   * @return void
-   */
-  function parc_core_metatags_alter(array &$metatags, array &$context) {
-
-    $currentRouteMatchService = \Drupal::service('current_route_match');
-    $routeName = $currentRouteMatchService->getRouteName();
-    if ($routeName == 'view.publications.page_publications') {
-      $pathCurrentService = \Drupal::service('path.current');
-      $current_path = $pathCurrentService->getPath();
-      $request = \Drupal::request();
-      $queryParameters = $request->query->all();
-      if ($current_path == '/scientific-publications') {
-        if ($metatags) {
-          if (!empty($queryParameters['publication-anchor'])) {
-            $nid = $queryParameters['publication-anchor'];
-            $node = Node::load($nid);
-            $image_full_url = '';
-            $body = '';
-            $title = '';
-            $site_name = \Drupal::config('system.site')->get('name');
-            $base_url = \Drupal::request()->getSchemeAndHttpHost();
-            if ($node) {
-              if ($node->hasField('field_cover') && !$node->get('field_cover')->isEmpty())
-              $image_media = $node->field_cover->entity;
-              if ($image_media) {
-                $fid = $image_media->getSource()->getSourceFieldValue($image_media);
-                $file = File::load($fid);
-                if ($file) {
-                  $uri = $file->getFileUri();
-                  $url = \Drupal::service('file_url_generator')->generateString($uri);
-                  $image_full_url = $base_url . $url;
-                }
-              } else {
-                $image_full_url = $base_url . '/themes/custom/parc/img/sp-default.png';
+  $currentRouteMatchService = \Drupal::service('current_route_match');
+  $routeName = $currentRouteMatchService->getRouteName();
+  if ($routeName == 'view.publications.page_publications') {
+    $pathCurrentService = \Drupal::service('path.current');
+    $current_path = $pathCurrentService->getPath();
+    $request = \Drupal::request();
+    $queryParameters = $request->query->all();
+    if ($current_path == '/scientific-publications') {
+      if ($metatags) {
+        if (!empty($queryParameters['publication-anchor'])) {
+          $nid = $queryParameters['publication-anchor'];
+          $node = Node::load($nid);
+          $image_full_url = '';
+          $body = '';
+          $title = '';
+          $site_name = \Drupal::config('system.site')->get('name');
+          $base_url = \Drupal::request()->getSchemeAndHttpHost();
+          if ($node) {
+            if ($node->hasField('field_cover') && !$node->get('field_cover')->isEmpty())
+            $image_media = $node->field_cover->entity;
+            if ($image_media) {
+              $fid = $image_media->getSource()->getSourceFieldValue($image_media);
+              $file = File::load($fid);
+              if ($file) {
+                $uri = $file->getFileUri();
+                $url = \Drupal::service('file_url_generator')->generateString($uri);
+                $image_full_url = $base_url . $url;
               }
-              $title = $node->getTitle();
-              if ($node->hasField('body') && !empty($node->get('body')->getValue())) {
-                $body = $node->body->getValue()[0]['value'];
-              }
-              $full_node_share_url = $base_url . $current_path . '?publication-anchor=' . $nid . '#publication-anchor-' . $nid;
-              foreach ($metatags as $key => $attachement) {
-                switch ($key) {
-                  case 'canonical_url':
-                  case 'og_url':
-                  case 'twitter_cards_page_url':
-                    $metatags[$key] = $full_node_share_url;
-                    break;
-                  case 'title':
-                  case 'og_title':
-                  case 'twitter_cards_title':
-                    $metatags[$key] = $title . ' | ' . $site_name;
-                    break;
-                  case 'description':
-                  case 'og_description':
-                    $metatags[$key] = substr($body, 0, strpos($body, ' ', 196)) . ' ...';
-                    break;
-                  case 'og_image':
-                  case 'og_image_url':
-                  case 'twitter_cards_image':
-                    $metatags[$key] = $image_full_url;
-                    break;
-                }
+            } else {
+              $image_full_url = $base_url . '/themes/custom/parc/img/sp-default.png';
+            }
+            $title = $node->getTitle();
+            if ($node->hasField('body') && !empty($node->get('body')->getValue())) {
+              $body = $node->body->getValue()[0]['value'];
+            }
+            $full_node_share_url = $base_url . $current_path . '?publication-anchor=' . $nid . '#publication-anchor-' . $nid;
+            foreach ($metatags as $key => $attachement) {
+              switch ($key) {
+                case 'canonical_url':
+                case 'og_url':
+                case 'twitter_cards_page_url':
+                  $metatags[$key] = $full_node_share_url;
+                  break;
+                case 'title':
+                case 'og_title':
+                case 'twitter_cards_title':
+                  $metatags[$key] = $title . ' | ' . $site_name;
+                  break;
+                case 'description':
+                case 'og_description':
+                  $metatags[$key] = substr($body, 0, strpos($body, ' ', 196)) . ' ...';
+                  break;
+                case 'og_image':
+                case 'og_image_url':
+                case 'twitter_cards_image':
+                  $metatags[$key] = $image_full_url;
+                  break;
               }
             }
           }
@@ -281,6 +302,7 @@ function parc_core_form_alter(&$form, FormStateInterface $form_state, $form_id) 
       }
     }
   }
+}
 
 /**
  * Implements hook_page_attachments().

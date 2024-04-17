@@ -1,15 +1,15 @@
 /**
- * Alter links to keep the content_only query parameter.
+ * Alter links to keep the full_screen query parameter.
  */
 (function ($, Drupal, once) {
-  Drupal.behaviors.contentOnlyParameter = {
+  Drupal.behaviors.fullScreenParameter = {
     attach: function (context, settings) {
       once('gtranslate-link', $('a'), context).forEach(function (el) {
         let href = $(el).attr('href');
         let domain = window.location.hostname;
 
         if (typeof href !== 'undefined' && href.indexOf('#') !== 0 && (href.indexOf('/') === 0 || href.includes(domain))) {
-          var url = updateQueryStringParameter(href, 'content_only', 1);
+          var url = updateQueryStringParameter(href, 'full_screen', 1);
           $(el).attr('href', url);
         }
       });

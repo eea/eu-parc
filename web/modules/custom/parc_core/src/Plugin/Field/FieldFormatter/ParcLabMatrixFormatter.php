@@ -28,7 +28,26 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
     $elements = [];
 
     $substances = [];
-    foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
+    $paragraphs = $this->getEntitiesToView($items, $langcode);
+    usort($paragraphs, function (ParagraphInterface $a, ParagraphInterface $b) {
+      /** @var \Drupal\taxonomy\TermInterface $substance_group_a */
+      $substance_group_a = $a->get('field_substance_group')->entity;
+      /** @var \Drupal\taxonomy\TermInterface $sampling_type_a */
+      $sampling_type_a = $a->get('field_sampling_type')->entity;
+
+      /** @var \Drupal\taxonomy\TermInterface $substance_group_b */
+      $substance_group_b = $b->get('field_substance_group')->entity;
+      /** @var \Drupal\taxonomy\TermInterface $sampling_type_b */
+      $sampling_type_b = $b->get('field_sampling_type')->entity;
+
+      $substance_order = $substance_group_a->getWeight() <=> $substance_group_b->getWeight();
+      if ($substance_order) {
+        return $substance_order;
+      }
+      return $sampling_type_a->getWeight() <=> $sampling_type_b->getWeight();
+    });
+
+    foreach ($paragraphs as $entity) {
       $substance_group = $entity->get('field_substance_group')->entity;
       $sampling_type = $entity->get('field_sampling_type')->entity;
       $qualified = $entity->get('field_qualified')->value;
@@ -38,7 +57,7 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
         continue;
       }
 
-      $substances[$sampling_type->label()][$substance_group->label()] = $qualified;
+      $substances[$substance_group->label()][$sampling_type->label()] = $qualified;
     }
 
     $elements[] = [
