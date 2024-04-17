@@ -164,6 +164,16 @@ n--vm-teaser:
     component:
       css/components/content/vm/teaser.css: {}
 
+n--opportunity--teaser:
+  css:
+    component:
+      css/components/content/opportunity/teaser/style.css: {}
+
+n--opportunity--full:
+  css:
+    component:
+      css/components/content/opportunity/full/style.css: {}
+
 n--page-full:
   css:
     component:
@@ -379,6 +389,11 @@ me--download-link:
     - core/once
 
 # Views.
+v--opportunities:
+  css:
+    component:
+      css/components/views/opportunities/style.css: {}
+
 v--deliverables:
   css:
     component:

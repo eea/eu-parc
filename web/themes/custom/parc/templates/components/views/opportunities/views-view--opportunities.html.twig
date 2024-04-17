@@ -34,12 +34,14 @@
 #}
 {%
   set classes = [
-    'view-' ~ id|clean_class,
-    'view-display-id-' ~ display_id,
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-  ]
+  'view-' ~ id|clean_class,
+  'view-display-id-' ~ display_id,
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  empty ? 'view-empty',
+]
 %}
 {{ attach_library('parc/svg_title') }}
+{{ attach_library('parc/v--opportunities') }}
 
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
@@ -56,7 +58,9 @@
     </header>
   {% endif %}
 
-  {{ exposed }}
+  {% if not empty %}
+    {{ exposed }}
+  {% endif %}
   {{ attachment_before }}
 
   {% if rows -%}

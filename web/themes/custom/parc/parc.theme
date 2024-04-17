@@ -563,3 +563,25 @@ function parc_preprocess_views_view(array &$variables) {
   }
   $variables['#attached']['library'][] = 'parc/svg_title';
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for node__opportunity__full.
+ */
+function parc_preprocess_node__opportunity__full(array &$variables) {
+  $variables['opportunities_view'] = [
+    '#type' => 'view',
+    '#name' => 'opportunities',
+    '#display_id' => 'current_opportunities',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for views_view__opportunities.
+ */
+function parc_preprocess_views_view__opportunities(array &$variables) {
+  $variables['#cache']['contexts'][] = 'url.path';
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface && $node->bundle() == 'opportunity') {
+    unset($variables['empty']);
+  }
+}

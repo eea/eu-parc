@@ -27,10 +27,11 @@ third_party_settings:
           label: Header
           context_mapping: {  }
           layout_builder_styles_style:
-            background_green: 0
             background_grey: 0
-            remove_horizontal_paddings: remove_horizontal_paddings
+            background_green: 0
             remove_top_padding: remove_top_padding
+            remove_bottom_padding: remove_bottom_padding
+            remove_horizontal_paddings: remove_horizontal_paddings
             container: 0
             container_fluid: 0
             margin_bottom_5: 0
