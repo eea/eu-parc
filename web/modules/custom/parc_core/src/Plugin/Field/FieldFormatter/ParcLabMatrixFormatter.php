@@ -25,7 +25,7 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
   /**
    * The database API.
    *
-   * @var \Drupal\Core\Database\Database
+   * @var \Drupal\Core\Database\Connection
    */
   protected $database;
 
