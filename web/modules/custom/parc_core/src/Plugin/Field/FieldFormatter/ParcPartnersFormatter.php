@@ -14,7 +14,7 @@ use Drupal\taxonomy\TermInterface;
  *   id = "parc_partners",
  *   label = @Translation("PARC Partners"),
  *   field_types = {
- *     "entity_reference_revisions"
+ *     "entity_reference"
  *   }
  * )
  */
@@ -27,8 +27,8 @@ class ParcPartnersFormatter extends EntityReferenceFormatterBase {
     $elements = [];
 
     foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
-      $name = $entity->get('field_name')->value;
-      $website = $entity->get('field_link_one')->uri;
+      $name = $entity->label();
+      $website = $entity->get('field_website')->uri;
       $country_iso2 = NULL;
       $country = $entity->get('field_country')->entity;
       if ($country instanceof TermInterface) {
