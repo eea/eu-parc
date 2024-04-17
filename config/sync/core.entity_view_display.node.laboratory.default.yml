@@ -21,6 +21,7 @@ dependencies:
     - geolocation
     - link
     - parc_core
+    - spamspan
     - text
     - user
 id: node.laboratory.default
@@ -44,9 +45,17 @@ content:
     weight: 103
     region: content
   field_contact_email:
-    type: basic_string
+    type: email_spamspan
     label: above
-    settings: {  }
+    settings:
+      spamspan_at: ' [at] '
+      spamspan_use_graphic: false
+      spamspan_dot_enable: false
+      spamspan_dot: ' [dot] '
+      spamspan_use_form: false
+      spamspan_form_pattern: '<a href="%url?goto=%email">%displaytext</a>'
+      spamspan_form_default_url: contact
+      spamspan_form_default_displaytext: 'contact form'
     third_party_settings: {  }
     weight: 117
     region: content

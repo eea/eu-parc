@@ -82,7 +82,7 @@ class ParcSearchManager {
       case 'institution':
         return Url::fromUserInput('/partners?focus=' . $node->id());
       case 'laboratory':
-        return Url::fromUserInput('/laboratories?focus=' . $node->id());
+        return Url::fromUserInput('/hbmlabnetwork?focus=' . $node->id());
       case 'publications':
         return Url::fromUserInput('/scientific-publications', [
           'query' => [
