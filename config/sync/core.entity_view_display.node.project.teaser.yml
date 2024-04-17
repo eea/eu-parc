@@ -19,6 +19,7 @@ dependencies:
     - node.type.project
   module:
     - entity_reference_revisions
+    - parc_core
     - text
     - user
 id: node.project.teaser
@@ -32,6 +33,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_partners:
+    type: parc_partners
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_project_abbreviation:
     type: string
@@ -48,7 +56,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
   field_project_keywords:
     type: entity_reference_entity_view
@@ -57,7 +65,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 5
     region: content
   field_project_potential_impacts:
     type: string
@@ -65,7 +73,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: content
   field_project_topics:
     type: entity_reference_entity_view
@@ -74,7 +82,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: content
   links:
     settings: {  }
@@ -85,7 +93,6 @@ hidden:
   addtoany: true
   field_audio_file: true
   field_date_range: true
-  field_partners: true
   field_related_publications: true
   field_slideshow_items: true
   field_slideshow_position: true

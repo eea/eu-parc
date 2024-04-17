@@ -33,7 +33,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
   field_audio_file:
     type: entity_reference_entity_view
@@ -42,7 +42,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    weight: 116
+    weight: 9
     region: content
   field_date_range:
     type: daterange_default
@@ -52,14 +52,14 @@ content:
       format_type: medium
       separator: '-'
     third_party_settings: {  }
-    weight: 119
+    weight: 11
     region: content
   field_partners:
     type: parc_partners
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 117
+    weight: 5
     region: content
   field_project_abbreviation:
     type: string
@@ -67,7 +67,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 104
+    weight: 2
     region: content
   field_project_contacts:
     type: entity_reference_revisions_entity_view
@@ -76,7 +76,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 108
+    weight: 6
     region: content
   field_project_keywords:
     type: entity_reference_label
@@ -84,7 +84,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 106
+    weight: 3
     region: content
   field_project_potential_impacts:
     type: string
@@ -92,7 +92,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 109
+    weight: 7
     region: content
   field_project_topics:
     type: entity_reference_label
@@ -100,33 +100,33 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-    weight: 107
+    weight: 4
     region: content
   field_related_publications:
     type: parc_related_publications
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 118
+    weight: 10
     region: content
   field_slideshow_items:
     type: parc_media_slideshow
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 115
+    weight: 8
     region: content
   field_slideshow_position:
     type: list_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 120
+    weight: 12
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   addtoany: true

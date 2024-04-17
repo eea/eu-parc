@@ -150,37 +150,72 @@
         }
       }
 
+      let click_focused = false;
+      function activateProjectsItem(element) {
+        $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').addClass('unfocused');
+        let parent = element.hasClass('projects-hoverable-path') ? element : element.parent();
+        let project_id = parent.attr('data-project')
+        let keyword_id = parent.attr('data-keyword')
+        let topic_id = parent.attr('data-topic')
+
+        if (project_id) {
+          focusProject(project_id, topic_id, keyword_id);
+        } else if (keyword_id) {
+          $('.projects-chart [data-keyword="' + keyword_id + '"]').removeClass('unfocused');
+          $.each(keywords[keyword_id].projects, function (key, value) {
+            focusProject(value, null, keyword_id);
+          });
+        } else if (topic_id) {
+          $('.projects-chart [data-topic="' + topic_id + '"]').removeClass('unfocused');
+          $.each(topics[topic_id].projects, function (key, value) {
+            focusProject(value, topic_id, null);
+          });
+        }
+      }
+
+      let clicked_item = null;
+      $(document).click(function (e) {
+        if (!e.target.classList.contains('projects-hoverable')
+          && !e.target.classList.contains('projects-hoverable-path')) {
+          $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').removeClass('unfocused');
+          click_focused = false;
+          if (clicked_item) {
+            clicked_item.removeClass('clicked');
+          }
+        }
+      });
+
       $(once('projectsHoverable', '.projects-chart .projects-hoverable, .projects-chart .projects-hoverable-path', context)).each(function () {
         $(this).on('mouseleave', function () {
-          $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').removeClass('unfocused');
-          window.clearTimeout(hoverEffect);
+          if (!click_focused) {
+            window.clearTimeout(hoverEffect);
+            if (!$(this).hasClass('clicked')) {
+              $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').removeClass('unfocused');
+            }
+          }
         }).on('mouseenter', function () {
-          window.clearTimeout(hoverEffect);
-          let that = $(this);
+          if (!click_focused) {
+            window.clearTimeout(hoverEffect);
+            let that = $(this);
 
-          hoverEffect = window.setTimeout(function () {
-            $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').addClass('unfocused');
-            let parent = that.hasClass('projects-hoverable-path') ? that : that.parent();
-            let project_id = parent.attr('data-project')
-            let keyword_id = parent.attr('data-keyword')
-            let topic_id = parent.attr('data-topic')
-
-            if (project_id) {
-              focusProject(project_id, topic_id, keyword_id);
+            hoverEffect = window.setTimeout(function () {
+              activateProjectsItem(that);
+            }, 100);
+          }
+        }).on('click', function () {
+          if ($(this).hasClass('clicked')) {
+            click_focused = false;
+            $('.projects-chart [data-project],.projects-chart [data-keyword],.projects-chart [data-topic]').removeClass('unfocused');
+          }
+          else {
+            if (clicked_item) {
+              clicked_item.removeClass('clicked');
             }
-            else if (keyword_id) {
-              $('.projects-chart [data-keyword="' + keyword_id + '"]').removeClass('unfocused');
-              $.each(keywords[keyword_id].projects, function(key, value) {
-                focusProject(value, null, keyword_id);
-              });
-            }
-            else if (topic_id) {
-              $('.projects-chart [data-topic="' + topic_id + '"]').removeClass('unfocused');
-              $.each(topics[topic_id].projects, function(key, value) {
-                focusProject(value, topic_id, null);
-              });
-            }
-          }, 100);
+            click_focused = true;
+            clicked_item = $(this);
+            activateProjectsItem(clicked_item);
+          }
+          $(this).toggleClass('clicked');
         });
       });
     }

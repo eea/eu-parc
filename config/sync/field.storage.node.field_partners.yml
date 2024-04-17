@@ -1,18 +1,16 @@
-uuid: 86ec8d4e-4f56-4580-b981-4af3b7667f69
+uuid: c93cb66e-82a3-4b82-a91e-6aedff3b6a40
 langcode: en
 status: true
 dependencies:
   module:
-    - entity_reference_revisions
     - node
-    - paragraphs
 id: node.field_partners
 field_name: field_partners
 entity_type: node
-type: entity_reference_revisions
+type: entity_reference
 settings:
-  target_type: paragraph
-module: entity_reference_revisions
+  target_type: node
+module: core
 locked: false
 cardinality: -1
 translatable: true
