@@ -404,7 +404,7 @@ function parc_core_deploy_9008() {
 /**
  * Import projects.
  */
-function parc_core_deploy_9009() {
+function parc_core_deploy_9011() {
   $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
 
   $topics = [
@@ -451,6 +451,18 @@ function parc_core_deploy_9009() {
     7 => ['Provide protection against most harmful chemicals', 'Shift away from animal testing'],
   ];
 
+  $allowed_keywords = [
+    'NGRA',
+    'Environment',
+    'Human health',
+    'Human biomonitoring',
+    'Workers',
+    'Monitoring methods',
+    'Risk Assessment',
+    'Mixtures',
+    'Health Effects',
+  ];
+
   $month_zero = '1 April 2022';
 
   foreach ($data as $row) {
@@ -460,10 +472,11 @@ function parc_core_deploy_9009() {
       $topics[] = $saved_topics[$project_topic_name];
     }
 
-    $project_keyword_names = explode(';', $row['Manual Tags']);
     $project_keywords = [];
-    foreach ($project_keyword_names as $keyword_name) {
-      $keyword_name = trim($keyword_name);
+    foreach ($allowed_keywords as $keyword_name) {
+      if (empty(trim($row[$keyword_name]))) {
+        continue;
+      }
       $project_keyword = $term_storage->loadByProperties([
         'vid' => 'project_keywords',
         'name' => $keyword_name,
