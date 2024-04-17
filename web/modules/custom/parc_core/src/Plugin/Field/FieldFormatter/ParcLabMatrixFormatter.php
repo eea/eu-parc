@@ -7,6 +7,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\taxonomy\TermInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Plugin implementation of the 'parc_lab_matrix' formatter.
@@ -22,6 +23,22 @@ use Drupal\taxonomy\TermInterface;
 class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
 
   /**
+   * The database API.
+   *
+   * @var \Drupal\Core\Database\Database
+   */
+  protected $database;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->database = $container->get('database');
+    return $instance;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
@@ -29,25 +46,32 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
 
     $substances = [];
     $paragraphs = $this->getEntitiesToView($items, $langcode);
-    usort($paragraphs, function (ParagraphInterface $a, ParagraphInterface $b) {
-      /** @var \Drupal\taxonomy\TermInterface $substance_group_a */
-      $substance_group_a = $a->get('field_substance_group')->entity;
-      /** @var \Drupal\taxonomy\TermInterface $sampling_type_a */
-      $sampling_type_a = $a->get('field_sampling_type')->entity;
+    $paragraphs_data = [];
+    foreach ($paragraphs as $paragraph) {
+      /** @var \Drupal\taxonomy\TermInterface $substance_group */
+      $substance_group = $paragraph->get('field_substance_group')->entity;
+      /** @var \Drupal\taxonomy\TermInterface $sampling_type */
+      $sampling_type = $paragraph->get('field_sampling_type')->entity;
 
-      /** @var \Drupal\taxonomy\TermInterface $substance_group_b */
-      $substance_group_b = $b->get('field_substance_group')->entity;
-      /** @var \Drupal\taxonomy\TermInterface $sampling_type_b */
-      $sampling_type_b = $b->get('field_sampling_type')->entity;
+      $paragraphs_data[] = [
+        'paragraph' => $paragraph,
+        'group_weight' => $substance_group->getWeight(),
+        'sampling_type_count' => $this->getSamplingTypeCount($sampling_type),
+      ];
+    }
 
-      $substance_order = $substance_group_a->getWeight() <=> $substance_group_b->getWeight();
-      if ($substance_order) {
+    usort($paragraphs_data, function ($a, $b) {
+      // Order by group weight, ASC.
+      $substance_order = $a['group_weight'] <=> $b['group_weight'];
+      if (!empty($substance_order)) {
         return $substance_order;
       }
-      return $sampling_type_a->getWeight() <=> $sampling_type_b->getWeight();
+      // If substance is the same, order by sampling type count, DESC.
+      return $b['sampling_type_count'] <=> $a['sampling_type_count'];
     });
 
-    foreach ($paragraphs as $entity) {
+    foreach ($paragraphs_data as $paragraph_data) {
+      $entity = $paragraph_data['paragraph'];
       $substance_group = $entity->get('field_substance_group')->entity;
       $sampling_type = $entity->get('field_sampling_type')->entity;
       $qualified = $entity->get('field_qualified')->value;
@@ -66,6 +90,24 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
     ];
 
     return $elements;
+  }
+
+  /**
+   * Get the number of labs using this sampling type.
+   *
+   * @param \Drupal\taxonomy\TermInterface $term
+   *   The sampling type
+   *
+   * @return int
+   *   The count.
+   */
+  public function getSamplingTypeCount(TermInterface $term) {
+    $query = $this->database->select('paragraph__field_sampling_type', 'p');
+    $query->join('node__field_substances_matrix', 'n', 'n.field_substances_matrix_target_id = p.entity_id');
+    $query->groupBy('n.entity_id');
+    $query->condition('p.field_sampling_type_target_id', $term->id());
+    $query->fields('n', ['entity_id']);
+    return $query->countQuery()->execute()->fetchField();
   }
 
   /**

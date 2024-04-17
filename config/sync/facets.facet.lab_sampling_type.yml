@@ -43,17 +43,17 @@ only_visible_when_facet_source_is_visible: false
 show_only_one_result: false
 show_title: false
 processor_configs:
+  count_widget_order:
+    processor_id: count_widget_order
+    weights:
+      sort: 30
+    settings:
+      sort: DESC
   hierarchy_processor:
     processor_id: hierarchy_processor
     weights:
       build: 100
     settings: {  }
-  term_weight_widget_order:
-    processor_id: term_weight_widget_order
-    weights:
-      sort: 60
-    settings:
-      sort: ASC
   translate_entity:
     processor_id: translate_entity
     weights:
