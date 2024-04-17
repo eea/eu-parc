@@ -47,7 +47,7 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
       return $sampling_type_a->getWeight() <=> $sampling_type_b->getWeight();
     });
 
-    foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
+    foreach ($paragraphs as $entity) {
       $substance_group = $entity->get('field_substance_group')->entity;
       $sampling_type = $entity->get('field_sampling_type')->entity;
       $qualified = $entity->get('field_qualified')->value;
