@@ -2,6 +2,7 @@
 
 namespace Drupal\parc_core\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Render\HtmlResponse;
@@ -125,6 +126,11 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
       'Content-Length' => strlen($image_string),
     ]);
     $response->addCacheableDependency($node);
+
+    $cacheable_metadata = new CacheableMetadata();
+    $cacheable_metadata->addCacheContexts(['url']);
+    $response->addCacheableDependency($cacheable_metadata);
+
     return $response;
   }
 
