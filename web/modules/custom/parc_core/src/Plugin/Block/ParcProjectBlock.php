@@ -26,6 +26,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class ParcProjectBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
+   * The project topic term IDs.
+   */
+  const TOPICS = [1001, 1000, 1003, 1002];
+
+  /**
    * The entity type manager.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -65,32 +70,16 @@ class ParcProjectBlock extends BlockBase implements ContainerFactoryPluginInterf
    * {@inheritdoc}
    */
   public function build() {
-    $projects = $this->entityTypeManager->getStorage('node')
-      ->loadByProperties([
-        'type' => 'project',
-        'status' => TRUE,
-      ]);
-
-    usort($projects, function (NodeInterface $a, NodeInterface $b) {
-      $topic_a = $a->get('field_project_topics')->entity;
-      $topic_b = $b->get('field_project_topics')->entity;
-
-      $count_a = $a->get('field_project_topics')->count();
-      $count_b = $b->get('field_project_topics')->count();
-
-      $weight_a = $topic_a->get('weight')->value;
-      $weight_b = $topic_b->get('weight')->value;
-
-      if ($count_a != $count_b) {
-        return $count_a <=> $count_b;
+    $projects = [];
+    $topics_order = static::TOPICS;
+    $previous_topic = NULL;
+    foreach ($topics_order as $current_topic) {
+      if ($previous_topic) {
+        $projects = array_merge($projects, $this->getProjectsForTopics([$previous_topic, $current_topic]));
       }
-
-      if ($weight_a != $weight_b) {
-        return $weight_a <=> $weight_b;
-      }
-
-      return strcasecmp($a->getTitle(), $b->getTitle());
-    });
+      $projects = array_merge($projects, $this->getProjectsForTopics([$current_topic]));
+      $previous_topic = $current_topic;
+    }
 
     $topics = [];
     $keywords = [];
@@ -203,6 +192,46 @@ class ParcProjectBlock extends BlockBase implements ContainerFactoryPluginInterf
         ],
       ],
     ];
+  }
+
+  /**
+   * Get all the projects for some topics.
+   *
+   * @param array $topics
+   *   The topics
+   *
+   * @return \Drupal\node\NodeInterface
+   *   The projects.
+   */
+  protected function getProjectsForTopics(array $topics) {
+    /** @var \Drupal\node\NodeStorageInterface $node_storage */
+    $node_storage = $this->entityTypeManager->getStorage('node');
+    $query = $node_storage
+      ->getQuery()
+      ->accessCheck()
+      ->condition('type', 'project')
+      ->sort('title')
+      ->condition('status', 1);
+
+    // Only way to get multiple conditions on the same field
+    // is to use condition groups.
+    foreach ($topics as $topic) {
+      $and = $query->andConditionGroup();
+      $and->condition('field_project_topics', $topic);
+      $query->condition($and);
+    }
+
+    $nids = $query->execute();
+    /** @var \Drupal\node\NodeInterface $projects */
+    $projects = $node_storage->loadMultiple($nids);
+
+    // Exclude projects that don't have these exact topics.
+    foreach ($projects as $idx => $project) {
+      if (count($project->get('field_project_topics')->getValue()) != count($topics)) {
+        unset($projects[$idx]);
+      }
+    }
+    return $projects;
   }
 
   /**
