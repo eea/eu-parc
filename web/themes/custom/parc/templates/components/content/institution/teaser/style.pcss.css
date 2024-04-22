@@ -42,7 +42,7 @@
     margin-bottom: 15px;
   }
 
-  .left {
+  &.node--institution--teaser.left {
     max-width: 50%;
     overflow: hidden;
   }

@@ -1,0 +1,21 @@
+uuid: 83df1a01-3cbc-4bf2-9edb-b4039a169932
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exclude_frontpage
+    - node.type.events
+id: node.events.field_exclude_frontpage
+field_name: field_exclude_frontpage
+entity_type: node
+bundle: events
+label: 'Exclude from frontpage'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

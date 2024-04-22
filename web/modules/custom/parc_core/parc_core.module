@@ -536,12 +536,14 @@ function parc_core_form_views_exposed_form_alter(array &$form, FormStateInterfac
 
       if (empty($form['training_topic']['#options'])) {
         $form['training_topic_collapsible']['#access'] = FALSE;
+        $form['organizer_collapsible']['#access'] = FALSE;
       }
 
       /** @var \Drupal\parc_core\ParcEventsManager $events_manager */
       $events_manager = \Drupal::service('parc_core.events_manager');
-      if (!$events_manager->shouldDisplayTrainingTopicFilter(FALSE)) {
+      if (!$events_manager->shouldDisplayTrainingTopicFilter()) {
         $form['training_topic_collapsible']['#access'] = FALSE;
+        $form['organizer_collapsible']['#access'] = FALSE;
       }
     }
   }

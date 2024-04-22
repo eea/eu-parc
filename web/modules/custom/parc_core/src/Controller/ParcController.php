@@ -2,6 +2,7 @@
 
 namespace Drupal\parc_core\Controller;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Render\HtmlResponse;
@@ -78,19 +79,19 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    *   The HTML response.
    */
   public function eventOgImage(NodeInterface $node, $type = 'standard') {
-    $width = 800;
-    $height = 420;
+    $width = 1200;
+    $height = 630;
 
-    $margin = 26;
-    $margin_bottom = str_contains($type, 'standard') ? 0 : 66;
+    $margin = 40;
+    $margin_bottom = $type == 'standard' ? 0 : 100;
 
     /** @var \Drupal\taxonomy\TermInterface $category */
     $category = $node->get('field_categories')->entity;
     $category_name = $category->getName();
-    $category_font_size = 40;
+    $category_font_size = 60;
 
     $location = $this->eventsManager->getEventLocation($node);
-    $location_font_size = 26;
+    $location_font_size = 40;
 
     $color = $this->request->query->get('color');
     if (empty($color)) {
@@ -114,7 +115,7 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     imagettftext($image_p, $location_font_size, 0, $margin, $height - $location_font_size - $margin_bottom, $white, $font, $location);
 
     // Write date.
-    @imagettftext($image_p, $font_size, 0, $margin, $font_size + $category_font_size + 53, $white, $font, $date);
+    imagettftext($image_p, $font_size, 0, $margin, $font_size + $category_font_size + 80, $white, $font, $date);
 
     ob_start();
     imagejpeg($image_p, NULL, 100);
@@ -125,6 +126,11 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
       'Content-Length' => strlen($image_string),
     ]);
     $response->addCacheableDependency($node);
+
+    $cacheable_metadata = new CacheableMetadata();
+    $cacheable_metadata->addCacheContexts(['url']);
+    $response->addCacheableDependency($cacheable_metadata);
+
     return $response;
   }
 
