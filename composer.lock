@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17b52607b77f72c9483b42cfb1ce8bcb",
+    "content-hash": "1ae5fdb528897037cdfd0ea807ef6c8f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1800,16 +1800,8 @@
                     "homepage": "https://www.drupal.org/user/46549"
                 },
                 {
-                    "name": "googletorp",
-                    "homepage": "https://www.drupal.org/user/386230"
-                },
-                {
                     "name": "jsacksick",
                     "homepage": "https://www.drupal.org/user/972218"
-                },
-                {
-                    "name": "mglaman",
-                    "homepage": "https://www.drupal.org/user/2416470"
                 },
                 {
                     "name": "rszrama",
@@ -2080,6 +2072,10 @@
                 {
                     "name": "rlhawk",
                     "homepage": "https://www.drupal.org/user/352283"
+                },
+                {
+                    "name": "smustgrave",
+                    "homepage": "https://www.drupal.org/user/3252890"
                 }
             ],
             "description": "Replaces the Views default single- or multi-select boxes with more advanced options.",
@@ -2228,6 +2224,10 @@
                     "homepage": "https://www.drupal.org/user/3603391",
                     "email": "ivan.sollima@gmail.com",
                     "role": "author"
+                },
+                {
+                    "name": "renatog",
+                    "homepage": "https://www.drupal.org/user/3326031"
                 }
             ],
             "description": "Allows to control the text and background color directly inside the CKEditor 5 interface.",
@@ -2377,8 +2377,16 @@
             ],
             "authors": [
                 {
+                    "name": "benjifisher",
+                    "homepage": "https://www.drupal.org/user/683300"
+                },
+                {
                     "name": "colan",
                     "homepage": "https://www.drupal.org/user/58704"
+                },
+                {
+                    "name": "dqd",
+                    "homepage": "https://www.drupal.org/user/1001934"
                 },
                 {
                     "name": "ergonlogic",
@@ -3222,6 +3230,10 @@
                     "name": "Neslee Canil Pinto",
                     "homepage": "https://www.drupal.org/u/neslee-canil-pinto",
                     "role": "Maintainer"
+                },
+                {
+                    "name": "quicksketch",
+                    "homepage": "https://www.drupal.org/user/35821"
                 }
             ],
             "description": "Modify behavior and appearance of external links.",
@@ -3342,6 +3354,10 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
+                {
+                    "name": "Anybody",
+                    "homepage": "https://www.drupal.org/user/291091"
+                },
                 {
                     "name": "Hydra",
                     "homepage": "https://www.drupal.org/user/647364"
@@ -5324,21 +5340,21 @@
         },
         {
             "name": "drupal/smart_date",
-            "version": "4.1.0-rc2",
+            "version": "4.1.0-rc6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/smart_date.git",
-                "reference": "4.1.0-rc2"
+                "reference": "4.1.0-rc6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/smart_date-4.1.0-rc2.zip",
-                "reference": "4.1.0-rc2",
-                "shasum": "dcb2898092bdde2aa4e09a8a8fda00c2b4cd7851"
+                "url": "https://ftp.drupal.org/files/projects/smart_date-4.1.0-rc6.zip",
+                "reference": "4.1.0-rc6",
+                "shasum": "36262027054c656c1fd0f88fbe20a28af794c906"
             },
             "require": {
-                "drupal/core": "^9 || ^10",
-                "php": ">=8.0",
+                "drupal/core": "^9 || ^10 || ^11",
+                "php": ">=8.1",
                 "simshaun/recurr": "^5"
             },
             "suggest": {
@@ -5347,8 +5363,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.1.0-rc2",
-                    "datestamp": "1692978775",
+                    "version": "4.1.0-rc6",
+                    "datestamp": "1712320364",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -5814,10 +5830,6 @@
                     "homepage": "https://www.drupal.org/user/214652"
                 },
                 {
-                    "name": "Dane Powell",
-                    "homepage": "https://www.drupal.org/user/339326"
-                },
-                {
                     "name": "gielfeldt",
                     "homepage": "https://www.drupal.org/user/366993"
                 },
@@ -5946,20 +5958,8 @@
             "authors": [
                 {
                     "name": "Agnes Chisholm",
-                    "homepage": "https://www.drupal.org/user/66428",
+                    "homepage": "https://www.drupal.org/user/173461",
                     "email": "amaria@chisholmtech.com"
-                },
-                {
-                    "name": "beeradb",
-                    "homepage": "https://www.drupal.org/user/120651"
-                },
-                {
-                    "name": "elevins",
-                    "homepage": "https://www.drupal.org/user/781882"
-                },
-                {
-                    "name": "entendu",
-                    "homepage": "https://www.drupal.org/user/173461"
                 },
                 {
                     "name": "fathima.asmat",
@@ -6184,10 +6184,6 @@
                 "GPL-2.0-or-later"
             ],
             "authors": [
-                {
-                    "name": "jasonawant",
-                    "homepage": "https://www.drupal.org/user/589890"
-                },
                 {
                     "name": "joekers",
                     "homepage": "https://www.drupal.org/user/2229066"

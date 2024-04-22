@@ -184,6 +184,9 @@
             },
             "drupal/google_analytics": {
                 "#3356272 - JS error on pages with SVG.": "https://www.drupal.org/files/issues/2023-04-25/google_analytics-svg_links-3356272-1.patch"
+            },
+            "drupal/core": {
+                "#3322402 - Add 'Is empty (NULL)' and 'Is not empty (NOT NULL)' operators to boolean field filtering": "https://www.drupal.org/files/issues/2022-11-21/3322402-9.patch"
             }
         },
         "drupal-lenient" : {

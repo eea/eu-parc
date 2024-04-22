@@ -1,0 +1,30 @@
+uuid: b27a2c34-2789-481f-94f0-fb0831fd5245
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_organizer
+field_name: field_organizer
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: parc
+      label: PARC
+    -
+      value: parc_collaboration
+      label: 'In collaboration with PARC'
+    -
+      value: external
+      label: External
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
