@@ -9,6 +9,7 @@ tags:
   og_image_type: image/jpeg
   og_image_url: '/node/[node:nid]/og-image/standard.jpg'
   og_image_width: '1200'
+  og_type: website
   twitter_cards_image: '/node/[node:nid]/og-image/twitter.jpg'
   twitter_cards_image_height: '630'
   twitter_cards_image_width: '1200'
