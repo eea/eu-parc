@@ -402,6 +402,29 @@ function parc_core_deploy_9008() {
 }
 
 /**
+ * Migrate field_parc_training to field_organizer.
+ */
+function parc_core_deploy_9010() {
+  $node_storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+
+  $events = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'events')
+    ->execute();
+
+  foreach ($events as $event) {
+    $event = $node_storage->load($event);
+    $organizer = !empty($event->get('field_parc_training')->value)
+      ? 'parc'
+      : 'external';
+    $event->set('field_organizer', $organizer);
+    $event->save();
+  }
+}
+
+/**
  * Import projects.
  */
 function parc_core_deploy_9011() {
@@ -409,7 +432,7 @@ function parc_core_deploy_9011() {
 
   $topics = [
     'Provide protection against most harmful chemicals' => '#F5D475',
-    'Address Chemical pollution in the natural environment' => '#1C85FF',
+    'Address chemical pollution in the natural environment' => '#1C85FF',
     'Biodiversity protection' => '#F58296',
     'Shift away from animal testing' => '#31D9C4',
   ];
@@ -516,29 +539,6 @@ function parc_core_deploy_9011() {
     ];
     $node = \Drupal::entityTypeManager()->getStorage('node')->create($node_data);
     $node->save();
-  }
-}
-
-/**
- * Migrate field_parc_training to field_organizer.
- */
-function parc_core_deploy_9010() {
-  $node_storage = \Drupal::entityTypeManager()
-    ->getStorage('node');
-
-  $events = $node_storage
-    ->getQuery()
-    ->accessCheck(FALSE)
-    ->condition('type', 'events')
-    ->execute();
-
-  foreach ($events as $event) {
-    $event = $node_storage->load($event);
-    $organizer = !empty($event->get('field_parc_training')->value)
-      ? 'parc'
-      : 'external';
-    $event->set('field_organizer', $organizer);
-    $event->save();
   }
 }
 

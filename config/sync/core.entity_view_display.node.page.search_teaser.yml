@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_teaser
     - field.field.node.page.body
+    - field.field.node.page.field_banner
     - field.field.node.page.field_custom_classes
     - field.field.node.page.field_media_image
     - field.field.node.page.field_metatags
@@ -51,6 +52,17 @@ content:
         replace_tokens: false
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_banner:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_media_image:
     type: media_thumbnail

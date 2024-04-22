@@ -32,7 +32,7 @@ class ParcPartnersFormatter extends EntityReferenceFormatterBase {
       $country_iso2 = NULL;
       $country = $entity->get('field_country')->entity;
       if ($country instanceof TermInterface) {
-        $country_iso2 = strtolower($country->get('field_iso2')->value);
+        $country_iso2 = strtoupper($country->get('field_iso2')->value);
         $country_iso2 = " ($country_iso2)";
       }
 

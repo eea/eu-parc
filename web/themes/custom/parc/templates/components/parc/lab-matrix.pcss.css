@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-radius: 5px;
-  border: 1px solid #CCCCCC;
+  border: 1px solid var(--node-color, #CCC);
   margin-bottom: 35px;
 
   .table-cell {
@@ -16,7 +16,7 @@
     overflow-wrap: anywhere;
 
     &:not(.last) {
-      border-bottom: 1px solid #CCC;
+      border-bottom: 1px solid var(--node-color, #CCC);
     }
   }
 
@@ -50,11 +50,12 @@
   }
 
   .table-cell-header {
-    background-color: #F5F5F5;
+    background-color: var(--node-color, #F5F5F5);
     font-size: 12px;
     text-transform: uppercase;
     font-weight: bold;
     padding: 20px 10px;
+    color: #fff;
   }
 
   .table-cell-header:nth-child(1) {
@@ -66,7 +67,7 @@
   }
 
   .matrix-item {
-    border-right: 1px solid #CCC;
+    border-right: 1px solid var(--node-color, #CCC);
   }
 
   .qualified {
@@ -83,7 +84,7 @@
       content: '';
       height: calc(100% + 20px);
       width: 1px;
-      background: #CCC;
+      background: var(--node-color, #CCC);
       position: absolute;
       right: -10px;
       top: -10px;

@@ -267,14 +267,14 @@
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [350, 0, 350, 0],
-              maxZoom: 2,
+              // padding: [350, 0, 350, 0],
+              maxZoom: 6,
             });
           } else {
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [350, 0, 350, 0],
+              // padding: [350, 0, 350, 0],
             });
           }
 
