@@ -409,7 +409,7 @@ function parc_core_deploy_9011() {
 
   $topics = [
     'Provide protection against most harmful chemicals' => '#F5D475',
-    'Address Chemical pollution in the natural environment' => '#1C85FF',
+    'Address chemical pollution in the natural environment' => '#1C85FF',
     'Biodiversity protection' => '#F58296',
     'Shift away from animal testing' => '#31D9C4',
   ];
