@@ -1,0 +1,21 @@
+uuid: 4fb67df4-ecd6-42cf-a1ea-738f514cc7a9
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.carousel
+    - field.storage.block_content.field_hero_carousel
+id: block_content.carousel.field_hero_carousel
+field_name: field_hero_carousel
+entity_type: block_content
+bundle: carousel
+label: 'Hero carousel'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

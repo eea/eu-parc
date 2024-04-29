@@ -3643,3 +3643,7 @@ div[class*="border-"] {
     --bg-opacity: .9;
   }
 }
+
+.text-decoration-none {
+  text-decoration: none !important;
+}

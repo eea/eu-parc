@@ -42,23 +42,41 @@
   content.field_desktop_image.0 ? 'd-xxl-block' : 'd-md-block',
 ] %}
 
+{% if color %}
+  {% set attributes = attributes.setAttribute('style', '--slide-color: ' ~ color ~ '; --slide-hover-color: ' ~ hover_color) %}
+{% endif %}
+
+{% if not paragraph.field_mobile_image.isEmpty
+  or not paragraph.field_desktop_image.isEmpty
+  or not paragraph.field_desktop_image.field_desktop_image_xl  %}
+  {% set attributes = attributes.addClass('has-image') %}
+{% endif %}
+
+{% if paragraph.field_hero_carousel.value %}
+  {% set attributes = attributes.setClass('hero-carousel') %}
+{% endif %}
+
 {% block content %}
   {{ attach_library('parc/p--carousel-item') }}
 
+  {% if has_image and color %}
+    <div class="background-color"></div>
+  {% endif %}
+
   {% if content.field_desktop_image_xl.0 %}
-    <div class="{{classes_xl|join(' ')}}">
+    <div class="bg-image {{classes_xl|join(' ')}}">
       {{ content.field_desktop_image_xl }}
     </div>
   {% endif %}
 
   {% if content.field_desktop_image.0 %}
-    <div class="{{classes_md|join(' ')}}">
+    <div class="bg-image {{classes_md|join(' ')}}">
       {{ content.field_desktop_image }}
     </div>
   {% endif %}
 
   {% if content.field_mobile_image.0 %}
-    <div class="{{classes_sm|join(' ') }}">
+    <div class="bg-image {{classes_sm|join(' ') }}">
       {{ content.field_mobile_image }}
     </div>
   {% endif %}

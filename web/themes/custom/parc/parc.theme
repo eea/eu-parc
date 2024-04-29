@@ -585,3 +585,72 @@ function parc_preprocess_views_view__opportunities(array &$variables) {
     unset($variables['empty']);
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for field__block_content__field_paragraphs__carousel.
+ */
+function parc_preprocess_field__block_content__field_paragraphs__carousel(array &$variables) {
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['element']['#object'];
+  $variables['carousel_id'] = 'carousel' . $block->id();
+  $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block__block_content__carousel.
+ */
+function parc_preprocess_block__block_content__carousel(array &$variables) {
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['content']['#block_content'];
+  $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph__carousel_item.
+ */
+function parc_preprocess_paragraph__carousel_item(array &$variables) {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+  $color = $paragraph->get('field_background_color')->color;
+  $variables['color'] = $color;
+
+  $has_image = !$paragraph->get('field_desktop_image_xl')->isEmpty()
+    || !$paragraph->get('field_desktop_image')->isEmpty()
+    || !$paragraph->get('field_mobile_image')->isEmpty();
+  $variables['has_image'] = $has_image;
+
+  if ($color) {
+    $variables['color'] = $color;
+    $variables['hover_color'] = _parc_adjust_brightness($color, '0.2');
+  }
+}
+
+/**
+ * Helper function used to adjust color brightness.
+ *
+ * @param $hex_code
+ *   The hex code.
+ * @param $adjust_percent
+ *   The percentage.
+ *
+ * @return string
+ *   The result color.
+ */
+function _parc_adjust_brightness($hex_code, $adjust_percent) {
+  $hex_code = ltrim($hex_code, '#');
+
+  if (strlen($hex_code) == 3) {
+    $hex_code = $hex_code[0] . $hex_code[0] . $hex_code[1] . $hex_code[1] . $hex_code[2] . $hex_code[2];
+  }
+
+  $hex_code = array_map('hexdec', str_split($hex_code, 2));
+
+  foreach ($hex_code as & $color) {
+    $adjustableLimit = $adjust_percent < 0 ? $color : 255 - $color;
+    $adjustAmount = ceil($adjustableLimit * $adjust_percent);
+
+    $color = str_pad(dechex($color + $adjustAmount), 2, '0', STR_PAD_LEFT);
+  }
+
+  return '#' . implode($hex_code);
+}
