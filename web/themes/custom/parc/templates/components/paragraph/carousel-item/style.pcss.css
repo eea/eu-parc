@@ -2,6 +2,26 @@
   position: relative;
 
   .field--name-field-body {
+    inset: 0;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .background-color {
+    background: var(--slide-color);
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: .7;
+  }
+}
+
+.block-inline-blockcarousel.hero-carousel {
+  .field--name-field-body {
     --fb-fs: 50px;
     inset: 0;
     display: flex;
