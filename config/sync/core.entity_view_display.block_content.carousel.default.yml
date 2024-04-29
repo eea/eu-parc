@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.carousel
     - field.field.block_content.carousel.body
+    - field.field.block_content.carousel.field_hero_carousel
     - field.field.block_content.carousel.field_paragraphs
   module:
     - entity_reference_revisions
@@ -20,8 +21,9 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
   body: true
+  field_hero_carousel: true
   search_api_excerpt: true

@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.carousel
     - field.field.block_content.carousel.body
+    - field.field.block_content.carousel.field_hero_carousel
     - field.field.block_content.carousel.field_paragraphs
   module:
     - paragraphs
@@ -13,9 +14,16 @@ targetEntityType: block_content
 bundle: carousel
 mode: default
 content:
+  field_hero_carousel:
+    type: boolean_checkbox
+    weight: 1
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
   field_paragraphs:
     type: entity_reference_paragraphs
-    weight: 26
+    weight: 2
     region: content
     settings:
       title: 'Carousel items'

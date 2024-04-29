@@ -3,12 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.carousel_item.field_background_color
     - field.field.paragraph.carousel_item.field_body
     - field.field.paragraph.carousel_item.field_desktop_image
     - field.field.paragraph.carousel_item.field_desktop_image_xl
     - field.field.paragraph.carousel_item.field_mobile_image
     - paragraphs.paragraphs_type.carousel_item
   module:
+    - color_field
     - field_group
     - media_library
     - text
@@ -20,7 +22,7 @@ third_party_settings:
       label: Mobile
       region: content
       parent_name: ''
-      weight: 1
+      weight: 3
       format_type: details
       format_settings:
         classes: ''
@@ -35,7 +37,7 @@ third_party_settings:
       label: Desktop
       region: content
       parent_name: ''
-      weight: 2
+      weight: 4
       format_type: details
       format_settings:
         classes: ''
@@ -50,7 +52,7 @@ third_party_settings:
       label: 'Desktop xl'
       region: content
       parent_name: ''
-      weight: 3
+      weight: 5
       format_type: details
       format_settings:
         classes: ''
@@ -64,6 +66,12 @@ targetEntityType: paragraph
 bundle: carousel_item
 mode: default
 content:
+  field_background_color:
+    type: color_field_widget_html5
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_body:
     type: text_textarea
     weight: 0
