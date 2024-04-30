@@ -66,5 +66,5 @@ jobs:
         run: >
           curl -X POST -F
           "content=:octagonal_sign: **${{ github.repository }}** failed to deploy release **${{ github.ref_name }}** on PROD: <https://eu-parc.eu>.
-          ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}>"
           ${{ secrets.DISCORD_WEBHOOK }}
