@@ -1542,12 +1542,16 @@
 
     .paragraph--carousel-item {
       height: var(--min-height);
+      display: flex;
 
       .bg-image {
         width: 100%;
         height: 100%;
         z-index: 1;
         position: relative;
+        max-width: 1920px;
+        margin-left: auto;
+        margin-right: auto;
 
         > * {
           width: 100%;
@@ -1608,7 +1612,9 @@
 }
 
 .paragraph--carousel-item {
-  background: var(--slide-color);
+  &:not(.has-image) {
+    background: var(--slide-color);
+  }
 
   &:hover {
     //background: var(--slide-hover-color);

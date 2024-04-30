@@ -10,7 +10,7 @@
   {% set interval = 900000 %}
 {% endif %}
 
-<div id="{{ carousel_id }}" data-bs-ride="{% if hero_carousel %}true{% else %}carousel{% endif %}" class="carousel slide" data-interval="{{ interval }}">
+<div id="{{ carousel_id }}" data-bs-ride="{% if hero_carousel %}true{% else %}true{% endif %}" class="carousel slide" data-interval="{{ interval }}">
 
   <div class="carousel-indicators">
     {% for item in items %}

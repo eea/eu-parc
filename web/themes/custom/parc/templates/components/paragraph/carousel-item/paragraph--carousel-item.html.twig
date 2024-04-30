@@ -48,7 +48,7 @@
 
 {% if not paragraph.field_mobile_image.isEmpty
   or not paragraph.field_desktop_image.isEmpty
-  or not paragraph.field_desktop_image.field_desktop_image_xl  %}
+  or not paragraph.field_desktop_image_xl.isEmpty  %}
   {% set attributes = attributes.addClass('has-image') %}
 {% endif %}
 
