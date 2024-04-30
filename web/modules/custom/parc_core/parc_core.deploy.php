@@ -466,8 +466,8 @@ function parc_core_deploy_9011() {
 
   $project_topics = [
     1 => ['Provide protection against most harmful chemicals'],
-    2 => ['Provide protection against most harmful chemicals',  'Address Chemical pollution in the natural environment'],
-    3 => ['Address Chemical pollution in the natural environment'],
+    2 => ['Provide protection against most harmful chemicals',  'Address chemical pollution in the natural environment'],
+    3 => ['Address chemical pollution in the natural environment'],
     4 => ['Biodiversity protection'],
     5 => ['Shift away from animal testing'],
     6 => ['Shift away from animal testing', 'Biodiversity protection'],
