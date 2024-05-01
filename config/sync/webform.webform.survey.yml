@@ -237,48 +237,45 @@ elements: |-
       '#attributes':
         class:
           - mb-2
-  potential_synergies_foreseen_between_the_external_activity_proje:
-    '#type': textarea
-    '#title': 'Potential synergies foreseen between the external activity/project and PARC. Please give details how it could be implemented'
-    '#access': false
-  possibility_for_clustering_with_various_parc_wps_and_also_with_o:
-    '#type': radios
-    '#title': 'Possibility for clustering (with various PARC WPs and also with other external projects/activities)?'
-    '#options': yes_no
-    '#access': false
-  indicate_the_parc_wps_and_or_the_external_projects_activities_wi:
-    '#type': textarea
-    '#title': 'Indicate the PARC WPs and/or the external projects/activities with which you see possibility for clustering'
-    '#access': false
-  name_of_the_person_filling_the_form:
-    '#type': textfield
-    '#title': 'Name of the person filling the form'
-    '#required': true
-    '#access': false
-  email_of_the_person_filling_the_form:
-    '#type': email
-    '#title': 'Email of the person filling the form'
-    '#required': true
-    '#access': false
-  organization_of_the_person_filling_the_form:
-    '#type': textfield
-    '#title': 'Organization of the person filling the form'
-    '#required': true
-    '#access': false
-  name_of_the_external_activity_coordinator:
-    '#type': textfield
-    '#title': 'Name of the external activity coordinator'
-    '#required': true
-    '#access': false
-  email_of_the_external_activity_coordinator:
-    '#type': email
-    '#title': 'Email of the external activity coordinator'
-    '#required': true
-    '#access': false
-  comments:
-    '#type': textarea
-    '#title': Comments
-    '#access': false
+    potential_synergies_foreseen_between_the_external_activity_proje:
+      '#type': textarea
+      '#title': 'Potential synergies foreseen between the external activity/project and PARC. Please give details how it could be implemented'
+      '#wrapper_attributes':
+        class:
+          - mt-5
+    possibility_for_clustering_with_various_parc_wps_and_also_with_o:
+      '#type': radios
+      '#title': 'Possibility for clustering (with various PARC WPs and also with other external projects/activities)?'
+      '#options': yes_no
+    indicate_the_parc_wps_and_or_the_external_projects_activities_wi:
+      '#type': textarea
+      '#title': 'Indicate the PARC WPs and/or the external projects/activities with which you see possibility for clustering'
+  section_contact_information:
+    '#type': webform_section
+    '#title': 'Contact information'
+    name_of_the_person_filling_the_form:
+      '#type': textfield
+      '#title': 'Name of the person filling the form'
+      '#required': true
+    email_of_the_person_filling_the_form:
+      '#type': email
+      '#title': 'Email of the person filling the form'
+      '#required': true
+    organization_of_the_person_filling_the_form:
+      '#type': textfield
+      '#title': 'Organization of the person filling the form'
+      '#required': true
+    name_of_the_external_activity_coordinator:
+      '#type': textfield
+      '#title': 'Name of the external activity coordinator'
+      '#required': true
+    email_of_the_external_activity_coordinator:
+      '#type': email
+      '#title': 'Email of the external activity coordinator'
+      '#required': true
+    comments:
+      '#type': textarea
+      '#title': Comments
   actions:
     '#type': webform_actions
     '#title': 'Submit button(s)'
