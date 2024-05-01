@@ -59,6 +59,7 @@
         "drupal/geofield": "^1.52",
         "drupal/geolocation": "^3.12",
         "drupal/google_analytics": "^4.0",
+        "drupal/honeypot": "^2.1",
         "drupal/ics_link_field": "1.x-dev@dev",
         "drupal/image_field_caption": "^2.0",
         "drupal/layout_builder_component_attributes": "^2.1",
