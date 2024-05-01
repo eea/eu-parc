@@ -200,6 +200,9 @@
             },
             "drupal/core": {
                 "#3322402 - Add 'Is empty (NULL)' and 'Is not empty (NOT NULL)' operators to boolean field filtering": "https://www.drupal.org/files/issues/2022-11-21/3322402-9.patch"
+            },
+            "drupal/conditional_fields": {
+                "#3344587 - Support for field hidden by condition loosing its required status": "https://www.drupal.org/files/issues/2024-03-27/3344587-required-fields-that-59-with-fix.patch"
             }
         },
         "drupal-lenient" : {
