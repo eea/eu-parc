@@ -1528,12 +1528,16 @@
   &:not(.hero-carousel) {
     --min-height: 578px;
 
-    .text-uppercase {
-      font-size: 16px;
+    @media (--md) {
+      --min-height: 650px;
     }
 
-    @media (--md) {
-      --min-height: 731px;
+    .text-uppercase {
+      font-size: 14px;
+
+      @media (--md) {
+        font-size: 16px;
+      }
     }
 
     .carousel-inner {
@@ -1579,7 +1583,7 @@
     .svg-title {
       padding: 0;
       margin: 0;
-      font-size: 40px;
+      font-size: 36px;
       line-height: 44px;
 
       @media (--sm) {
@@ -1600,6 +1604,10 @@
 
       a {
         color: #FFF;
+
+        &:hover {
+          color: #e6e6e6;
+        }
       }
     }
 
