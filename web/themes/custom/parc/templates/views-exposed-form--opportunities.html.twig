@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a 'form' element.
+ */
+#}
+<div class="events-filters">
+  <div class="d-flex filters-row">
+    <div class="filters flex-grow-1 d-flex"></div>
+
+    <div class="col-auto col-auto order-1 order-md-3 d-flex justify-content-end w--sort-by">
+      {{ form.sort_bef_combine }}
+    </div>
+  </div>
+</div>
+
+{{ form|without('sort_bef_combine') }}

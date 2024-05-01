@@ -1,0 +1,46 @@
+uuid: 9994fe3c-f65b-4ec2-b588-81f89e6b1f06
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.partner.field_country
+    - field.field.paragraph.partner.field_link_one
+    - field.field.paragraph.partner.field_name
+    - paragraphs.paragraphs_type.partner
+  module:
+    - link
+    - select2
+id: paragraph.partner.default
+targetEntityType: paragraph
+bundle: partner
+mode: default
+content:
+  field_country:
+    type: select2_entity_reference
+    weight: 4
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_link_one:
+    type: link_default
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

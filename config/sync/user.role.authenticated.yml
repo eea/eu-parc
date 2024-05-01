@@ -8,6 +8,7 @@ dependencies:
   module:
     - comment
     - contact
+    - eu_cookie_compliance
     - filter
     - google_analytics
     - media
@@ -24,6 +25,7 @@ permissions:
   - 'access content'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'display eu cookie compliance popup'
   - 'opt-in or out of google analytics tracking'
   - 'post comments'
   - 'skip comment approval'

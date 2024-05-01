@@ -15,6 +15,11 @@
     margin-bottom: 15px;
   }
 
+  .field--name-field-contact-email,
+  .field--name-field-contact-name {
+    display: inline;
+  }
+
   .roles {
     font-weight: bold;
     text-transform: uppercase;
@@ -37,7 +42,7 @@
     margin-bottom: 15px;
   }
 
-  .left {
+  &.node--institution--teaser.left {
     max-width: 50%;
     overflow: hidden;
   }

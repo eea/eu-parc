@@ -400,3 +400,374 @@ function parc_core_deploy_9008() {
     $term->save();
   }
 }
+
+/**
+ * Migrate field_parc_training to field_organizer.
+ */
+function parc_core_deploy_9010() {
+  $node_storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+
+  $events = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'events')
+    ->execute();
+
+  foreach ($events as $event) {
+    $event = $node_storage->load($event);
+    $organizer = !empty($event->get('field_parc_training')->value)
+      ? 'parc'
+      : 'external';
+    $event->set('field_organizer', $organizer);
+    $event->save();
+  }
+}
+
+/**
+ * Import projects.
+ */
+function parc_core_deploy_9011() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  $topics = [
+    'Provide protection against most harmful chemicals' => '#F5D475',
+    'Address chemical pollution in the natural environment' => '#1C85FF',
+    'Biodiversity protection' => '#F58296',
+    'Shift away from animal testing' => '#31D9C4',
+  ];
+
+  $saved_topics = [];
+
+  $weight = 0;
+  foreach ($topics as $name => $color) {
+    $term = $term_storage->create([
+      'tid' => 1000 + $weight,
+      'vid' => 'project_topics',
+      'name' => $name,
+      'field_color' => [
+        'color' => $color,
+      ],
+      'weight' => $weight++,
+    ]);
+    $saved_topics[$name] = $term;
+    $term->save();
+  }
+
+  $projects_path = \Drupal::service('extension.list.module')->getPath('parc_core') . '/data/projects.csv';
+  $file = fopen($projects_path, 'r');
+  $headers = fgetcsv($file);
+  $data = [];
+  while (($row = fgetcsv($file)) !== FALSE) {
+    $rowData = array_combine($headers, $row);
+    $data[] = $rowData;
+  }
+  fclose($file);
+
+  $project_topics = [
+    1 => ['Provide protection against most harmful chemicals'],
+    2 => ['Provide protection against most harmful chemicals',  'Address chemical pollution in the natural environment'],
+    3 => ['Address chemical pollution in the natural environment'],
+    4 => ['Biodiversity protection'],
+    5 => ['Shift away from animal testing'],
+    6 => ['Shift away from animal testing', 'Biodiversity protection'],
+    7 => ['Provide protection against most harmful chemicals', 'Shift away from animal testing'],
+  ];
+
+  $allowed_keywords = [
+    'NGRA',
+    'Environment',
+    'Human health',
+    'Human biomonitoring',
+    'Workers',
+    'Monitoring methods',
+    'Risk Assessment',
+    'Mixtures',
+    'Health Effects',
+  ];
+
+  $month_zero = '1 April 2022';
+
+  foreach ($data as $row) {
+    $project_topic_names = $project_topics[$row['Category']];
+    $topics = [];
+    foreach ($project_topic_names as $project_topic_name) {
+      $topics[] = $saved_topics[$project_topic_name];
+    }
+
+    $project_keywords = [];
+    foreach ($allowed_keywords as $keyword_name) {
+      if (empty(trim($row[$keyword_name]))) {
+        continue;
+      }
+      $project_keyword = $term_storage->loadByProperties([
+        'vid' => 'project_keywords',
+        'name' => $keyword_name,
+      ]);
+      if (!empty($project_keyword)) {
+        $project_keyword = reset($project_keyword);
+      }
+      else {
+        $project_keyword = $term_storage->create([
+          'vid' => 'project_keywords',
+          'name' => $keyword_name,
+          'field_color' => [
+            'color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
+          ],
+        ]);
+        $project_keyword->save();
+      }
+      $project_keywords[] = $project_keyword;
+    }
+
+    $month_start = $row['Project start (in PARC Month)'];
+    $date_start = date('Y-m-d', strtotime("+$month_start months", strtotime($month_zero)));
+    $month_end = $row['Project end (in PARC Month)'];
+    $date_end = date('Y-m-d', strtotime("+$month_end months", strtotime($month_zero)));
+
+    $node_data = [
+      'type' => 'project',
+      'title' => $row['Short Title'],
+      'field_date_range' => [
+        'value' => $date_start,
+        'end_value' => $date_end,
+      ],
+      'field_project_abbreviation' => $row['Project Abbreviation'],
+      'field_project_topics' => $topics,
+      'field_project_keywords' => $project_keywords,
+      'field_slideshow_position' => 'top',
+    ];
+    $node = \Drupal::entityTypeManager()->getStorage('node')->create($node_data);
+    $node->save();
+  }
+}
+
+/**
+ * Update labs vocabularies.
+ */
+function parc_core_deploy_10001() {
+  $terms = [
+    'sampling_types' => [
+      'Other matrix',
+    ],
+    'substance_groups' => [
+      'Pesticides-glyphosate',
+      'Pesticides-neonicotinoids',
+      'Pesticides-organochlorines',
+      'Pesticides-organophosphates',
+      'Pesticides-phenylpyrazoles',
+      'Pesticides-pyrethroids',
+      'Pesticides-others',
+      'Other chemicals',
+    ],
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($terms as $vid => $names) {
+    foreach ($names as $idx => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'name' => $name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
+      $term = Term::create([
+        'vid' => $vid,
+        'name' => $name,
+        'weight' => $idx,
+      ]);
+      $term->save();
+    }
+  }
+
+  $deleted_groups = [
+    'DINH',
+    'Pesticides',
+  ];
+  foreach ($deleted_groups as $name) {
+    $existing_term = $term_storage->loadByProperties([
+      'name' => $name,
+      'vid' => 'substance_groups',
+    ]);
+
+    if (empty($existing_term)) {
+      continue;
+    }
+
+    $existing_term = reset($existing_term);
+    $existing_term->delete();
+  }
+}
+
+/**
+ * Import labs.
+ */
+function parc_core_deploy_10002() {
+  $groups_map = [
+    'pfas' => 'Per- and polyfluoroalkyl substances (PFAS)',
+    'phthalates' => 'Phthalates',
+    'metals' => 'Metals and trace elements',
+    'flame_retardants' => 'Flame retardants',
+    'bisphenols' => 'Bisphenols',
+    'pahs' => 'Polycyclic aromatic hydrocarbons (PAHs)',
+    'cotinine' => 'Cotinine',
+    'pcbs' => 'Polychlorinated biphenyls (PCBs)',
+    'acrylamide' => 'Acrylamide',
+    'mycotoxins' => 'Mycotoxins',
+    'pest_pyrethroids' => 'Pesticides-pyrethroids',
+    'pest_organophos' => 'Pesticides-organophosphates',
+    'pest_phenylpyr' => 'Pesticides-phenylpyrazoles',
+    'pest_glyphosate' => 'Pesticides-glyphosate',
+    'pest_organochlorine' => 'Pesticides-organophosphates',
+    'pest_neonicotinoids' => 'Pesticides-neonicotinoids',
+    'pest_others' => 'Pesticides-others',
+    'aproticsolvents' => 'Aprotic solvents',
+    'uvfilters_benzophenones' => 'UV filters-benzophenones',
+    'diisocyanates' => 'Diisocyanates',
+    'aromatic_amines' => 'Aromatic amines',
+    'parabens' => 'Parabens',
+    'dioxins_furans' => 'Furans',
+    'other_chemicals' => 'Other chemicals',
+    'musks' => 'Musks',
+  ];
+
+  $sample_map = [
+    'serum' => 'Serum',
+    'plasma' => 'Plasma',
+    'urine' => 'Urine',
+    'wholeblood' => 'Whole blood',
+    'dbs' => 'Dried blood spot samples',
+    'breastmilk' => 'Breast milk',
+    'cordblood' => 'Cord blood',
+    'placenta' => 'Placenta',
+    'othermatrix' => 'Other matrix',
+    'semen' => 'Semen',
+    'meconium' => 'Meconium',
+    'hair' => 'Hair',
+    'nails' => 'Nails',
+    'saliva' => 'Saliva',
+    'faeces' => 'Faeces',
+    'adiposetissue' => 'Adipose tissue',
+    'vams' => 'Volumetric absorptive microsamples',
+  ];
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $existing_labs = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+  ]);
+  foreach ($existing_labs as $existing_lab) {
+    $existing_lab->delete();
+  }
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_core');
+  $file_path = $module_path . '/data/labs.csv';
+
+  $file = fopen($file_path, 'r');
+  $headers = fgetcsv($file);
+  while (FALSE !== ($line = fgetcsv($file))) {
+    $row = array_combine($headers, $line);
+
+    $country = $row['lab_country'];
+    $country_term = $term_storage->loadByProperties([
+      'vid' => 'countries',
+      'name' => $country,
+    ]);
+    if (empty($country_term)) {
+      continue;
+    }
+    $country_term = reset($country_term);
+
+    $institute = $row['lab_inst'];
+    $title = $row['lab_name'];
+    $address = $row['lab_adress'];
+    $city = $row['City lab'];
+    $latitude = $row['Latitude'];
+    $longitude = $row['Longitude'];
+
+    $lab_type = $row['lab_type'];
+    $lab_type_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $lab_type,
+    ]);
+    if (empty($lab_type_term)) {
+      continue;
+    }
+    $lab_type_term = reset($lab_type_term);
+
+    $contact_name = $row['lab_person_name'];
+    $contact_email = $row['lab_person_email'];
+
+    $matrix_entries = [];
+    foreach ($headers as $column) {
+      if (!str_contains($column, '.')) {
+        continue;
+      }
+
+      if (empty(trim($row[$column]))) {
+        continue;
+      }
+
+      [$substance_group, $sampling_type] = explode('.', $column);
+      if (empty($groups_map[$substance_group])) {
+        continue;
+      }
+      $substance_group = $groups_map[$substance_group];
+      $substance_group_term = $term_storage->loadByProperties([
+        'vid' => 'substance_groups',
+        'name' => $substance_group,
+      ]);
+      if (empty($substance_group_term)) {
+        continue;
+      }
+      $substance_group_term = reset($substance_group_term);
+
+      if (empty($sample_map[$sampling_type])) {
+        continue;
+      }
+      $sampling_type = $sample_map[$sampling_type];
+      $sampling_type_term = $term_storage->loadByProperties([
+        'vid' => 'sampling_types',
+        'name' => $sampling_type,
+      ]);
+      if (empty($sampling_type_term)) {
+        continue;
+      }
+      $sampling_type_term = reset($sampling_type_term);
+
+      /** @var \Drupal\paragraphs\ParagraphInterface $matrix_entry */
+      $matrix_entry = $paragraph_storage->create([
+        'type' => 'lab_matrix',
+        'field_sampling_type' => $sampling_type_term,
+        'field_substance_group' => $substance_group_term,
+      ]);
+      $matrix_entry->save();
+      $matrix_entries[] = [
+        'target_id' => $matrix_entry->id(),
+        'target_revision_id' => $matrix_entry->getRevisionId(),
+      ];
+    }
+
+    $lab = $node_storage->create([
+      'type' => 'laboratory',
+      'title' => $title,
+      'field_institute_name' => $institute,
+      'field_country' => $country_term,
+      'field_address_data' => $address,
+      'field_city' => $city,
+      'field_coordinates' => [
+        'lat' => $latitude,
+        'lng' => $longitude,
+      ],
+      'field_lab_type' => $lab_type_term,
+      'field_contact_name' => $contact_name,
+      'field_contact_email' => $contact_email,
+      'field_substances_matrix' => $matrix_entries,
+    ]);
+    $lab->save();
+  }
+}

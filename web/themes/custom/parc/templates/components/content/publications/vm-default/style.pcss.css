@@ -25,6 +25,7 @@
   .col-sp-content {
     display: flex;
     flex-direction: column;
+    overflow: visible;
   }
 
   .node--title {
@@ -33,6 +34,8 @@
     display: inline;
     text-decoration: none;
     flex-grow: 1;
+    word-break: break-word;
+    hyphens: auto;
 
     svg {
       margin-left: 3px;
@@ -207,8 +210,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
     font-size: 18px;
+    height: auto;
 
     &:not(.field-regulatory-message):hover {
       --cs-svg-c: var(--cs--item-bg);
@@ -225,6 +228,7 @@
 
     .field--content {
       margin-top: 10px;
+      margin-bottom: 20px;
       margin-right: 20px;
     }
 
@@ -382,6 +386,23 @@
 
     .node--section--body {
       padding-right: 16%;
+    }
+  }
+
+  .authors {
+    &:not(.authors-expanded) {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      min-height: 45px;
+    }
+  }
+
+  @media (max-width: 1279px) {
+    .authors, .title {
+      min-height: 0 !important;
     }
   }
 }

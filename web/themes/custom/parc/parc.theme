@@ -319,6 +319,31 @@ function parc_preprocess_html(&$variables) {
   if ($node instanceof NodeInterface && $node->hasField('field_custom_classes')) {
     $variables['attributes']['class'][] = $node->get('field_custom_classes')->value;
   }
+
+  $full_screen = \Drupal::request()->query->get('full_screen');
+  if ($full_screen) {
+    $variables['attributes']['class'][] = 'full-screen';
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function parc_preprocess_page(array &$variables) {
+  // Hide header and footer when ?full_screen=1.
+  $variables['#cache']['contexts'][] = 'url.query_args:full_screen';
+  $full_screen = \Drupal::request()->query->get('full_screen');
+  if ($full_screen) {
+    $variables['page']['branding']['#access'] = FALSE;
+    $variables['page']['nav_main']['#access'] = FALSE;
+    $variables['page']['nav_additional']['#access'] = FALSE;
+    $variables['page']['highlighted']['#access'] = FALSE;
+    $variables['page']['prefooter']['#access'] = FALSE;
+    $variables['page']['footer']['#access'] = FALSE;
+    $variables['page']['footer_second']['#access'] = FALSE;
+    $variables['page']['footer_s']['#access'] = FALSE;
+    $variables['#attached']['library'][] = 'parc/full_screen';
+  }
 }
 
 /**
@@ -523,4 +548,211 @@ function parc_form_views_exposed_form_alter(array &$form, FormStateInterface $fo
   if ($form['#id'] == 'views-exposed-form-content-events-block-1') {
     $form['#attributes']['class'][] = 'd-none';
   }
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function parc_preprocess_views_view(array &$variables) {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+  $display = $view->getDisplay();
+
+  if ($display->getPluginId() == 'page') {
+    $variables['title'] = $view->getTitle();
+  }
+  $variables['#attached']['library'][] = 'parc/svg_title';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node__opportunity__full.
+ */
+function parc_preprocess_node__opportunity__full(array &$variables) {
+  $variables['opportunities_view'] = [
+    '#type' => 'view',
+    '#name' => 'opportunities',
+    '#display_id' => 'current_opportunities',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for views_view__opportunities.
+ */
+function parc_preprocess_views_view__opportunities(array &$variables) {
+  $variables['#cache']['contexts'][] = 'url.path';
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface && $node->bundle() == 'opportunity') {
+    unset($variables['empty']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node__publications.
+ */
+function parc_preprocess_node__publications(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $view_url = Url::fromRoute('view.publications.page_publications');
+  $variables['publication_link'] = $view_url->setOption('query', [
+    'publication' => $node->id(),
+  ])->toString();
+  $variables['message_link'] = $view_url->setOption('query', [
+    'message' => $node->id(),
+  ])->toString();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node__project.
+ */
+function parc_preprocess_node__project(array &$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node instanceof NodeInterface
+    && $node->bundle() == 'project') {
+    $variables['#attached']['drupalSettings']['parc']['current_project'] = $node->id();
+  }
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $color = NULL;
+  $topics = [];
+  foreach ($node->get('field_project_topics') as $item) {
+    /** @var \Drupal\taxonomy\TermInterface $topic */
+    $topic = $item->entity;
+    $topics[] = $topic->id();
+    if (empty($color)) {
+      $color = $topic->get('field_color')->color;
+      continue;
+    }
+
+    $color = _parc_combine_colors($color, $topic->get('field_color')->color);
+  }
+  sort($topics);
+  $variables['topics'] = implode(',', $topics);
+  if ($color == '#F5D475') {
+    $color = '#C5A858';
+  }
+  $variables['project_color'] = $color;
+
+  $block_manager = \Drupal::service('plugin.manager.block');
+  $plugin_block = $block_manager->createInstance('parc_projects', []);
+  $variables['projects_block'] = $plugin_block->build();
+
+  $plugin_block = $block_manager->createInstance('parc_project_title', []);
+  $variables['project_title'] = $plugin_block->build();
+}
+
+/**
+ * Helper function used to combine colors
+ *
+ * @param $hex1
+ *   The first hex code.
+ * @param $hex2
+ *   The second hex code.
+ *
+ * @return string
+ *   The resulting hex code.
+ */
+function _parc_combine_colors($hex1, $hex2) {
+  if ($hex1 == '#F5D475' && $hex2 == '#1C85FF'
+    || $hex2 == '#F5D475' && $hex1 == '#1C85FF') {
+    return '#2C4E3B';
+  }
+
+  if ($hex1 == '#F5D475' && $hex2 == '#31D9C4'
+    || $hex2 == '#F5D475' && $hex1 == '#31D9C4') {
+    return '#6D424D';
+  }
+
+  if ($hex1 == '#31D9C4' && $hex2 == '#F58296'
+    || $hex2 == '#31D9C4' && $hex1 == '#F58296') {
+    return '#759875';
+  }
+
+  // Remove '#' if present.
+  $hex1 = str_replace('#', '', $hex1);
+  $hex2 = str_replace('#', '', $hex2);
+
+  // Convert hex to RGB.
+  $rgb1 = sscanf($hex1, "%02x%02x%02x");
+  $rgb2 = sscanf($hex2, "%02x%02x%02x");
+
+  // Combine RGB values.
+  $combined_rgb = array_map(function($c1, $c2) {
+    return round(($c1 + $c2) / 2);
+  }, $rgb1, $rgb2);
+
+  // Convert back to hex.
+  $combined_hex = sprintf("#%02x%02x%02x", $combined_rgb[0], $combined_rgb[1], $combined_rgb[2]);
+
+  return $combined_hex;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for field__block_content__field_paragraphs__carousel.
+ */
+function parc_preprocess_field__block_content__field_paragraphs__carousel(array &$variables) {
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['element']['#object'];
+  $variables['carousel_id'] = 'carousel' . $block->id();
+  $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block__block_content__carousel.
+ */
+function parc_preprocess_block__block_content__carousel(array &$variables) {
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['content']['#block_content'];
+  $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph__carousel_item.
+ */
+function parc_preprocess_paragraph__carousel_item(array &$variables) {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+  $color = $paragraph->get('field_background_color')->color;
+  $variables['color'] = $color;
+
+  $has_image = !$paragraph->get('field_desktop_image_xl')->isEmpty()
+    || !$paragraph->get('field_desktop_image')->isEmpty()
+    || !$paragraph->get('field_mobile_image')->isEmpty();
+  $variables['has_image'] = $has_image;
+
+  if ($color) {
+    $variables['color'] = $color;
+    $variables['hover_color'] = _parc_adjust_brightness($color, '0.2');
+  }
+}
+
+/**
+ * Helper function used to adjust color brightness.
+ *
+ * @param $hex_code
+ *   The hex code.
+ * @param $adjust_percent
+ *   The percentage.
+ *
+ * @return string
+ *   The result color.
+ */
+function _parc_adjust_brightness($hex_code, $adjust_percent) {
+  $hex_code = ltrim($hex_code, '#');
+
+  if (strlen($hex_code) == 3) {
+    $hex_code = $hex_code[0] . $hex_code[0] . $hex_code[1] . $hex_code[1] . $hex_code[2] . $hex_code[2];
+  }
+
+  $hex_code = array_map('hexdec', str_split($hex_code, 2));
+
+  foreach ($hex_code as & $color) {
+    $adjustableLimit = $adjust_percent < 0 ? $color : 255 - $color;
+    $adjustAmount = ceil($adjustableLimit * $adjust_percent);
+
+    $color = str_pad(dechex($color + $adjustAmount), 2, '0', STR_PAD_LEFT);
+  }
+
+  return '#' . implode($hex_code);
 }

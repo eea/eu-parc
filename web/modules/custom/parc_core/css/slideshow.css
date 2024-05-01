@@ -1,0 +1,104 @@
+.parc-slideshow .slideshow-item {
+  position: relative;
+}
+
+.parc-slideshow .caption-item {
+  color: #999898;
+  font-size: 14px;
+  text-align: center;
+  line-height: 18px;
+}
+
+.captions {
+  margin-top: 20px;
+}
+
+.captions .slick-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.captions .slick-slide > div {
+  display: flex;
+}
+
+.parc-slideshow .slideshow-item img,
+.parc-slideshow .slideshow-item video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+}
+
+.slick-prev,
+.slick-next {
+  visibility: hidden;
+}
+
+.parc-slideshow:hover .slick-prev,
+.parc-slideshow:hover .slick-next {
+  visibility: visible;
+}
+
+.slick-prev {
+  left: 20px;
+  z-index: 5;
+}
+
+.slick-prev:before {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="31" viewBox="0 0 18 31" fill="none"><path d="M16.4734 0.782837L1.44043 15.1718L16.4734 29.5608" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  content: '';
+  width: 15px;
+  height: 29px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+}
+
+.slick-next {
+  right: 20px;
+  z-index: 5;
+}
+
+.slick-next:before {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="17" height="31" viewBox="0 0 17 31" fill="none"><path d="M1.14572 29.5608L16.1787 15.1718L1.14573 0.782836" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  content: '';
+  width: 15px;
+  height: 29px;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+}
+
+.slick-dots {
+  bottom: 5px;
+}
+
+.slick-dots li {
+  width: 10px;
+}
+
+.slick-dots li button:before {
+  display: none !important;
+}
+
+.slick-dots li button {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #FFF;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+}
+
+.slick-dots li.slick-active button {
+  background: #7B7B7B;
+}
+
+.slick-dotted.slick-slider {
+  margin-bottom: 0;
+}

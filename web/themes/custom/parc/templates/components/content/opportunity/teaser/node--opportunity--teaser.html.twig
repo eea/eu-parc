@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--opportunity--teaser') }}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+  <div class="opportunity-inner">
+    <a href="{{ url }}">
+      <div class="node--head d-flex justify-content-between align-items-center mb-2 mb-md-3">
+        <div class="node--order">
+          {{ content.field_position_category }}
+        </div>
+
+        <div class="date">{{ node.getCreatedTime|format_date('medium') }}</div>
+      </div>
+
+      <h5{{ title_attributes.addClass('flex-grow-1') }}>
+        {{ label }}
+      </h5>
+
+      <div{{ content_attributes.addClass('node--content') }}>
+        {{ content.field_institute_name }}
+        <div class="location">
+          {{ content.field_city }}
+          {{ content.field_country }}
+        </div>
+      </div>
+    </a>
+  </div>
+</article>

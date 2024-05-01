@@ -1,0 +1,14 @@
+uuid: a7fd24eb-6c11-45fe-9b64-2a2fd6177b19
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.project_keywords
+id: taxonomy_vocabulary_project_keywords
+entity_type_id: taxonomy_vocabulary
+entity_id: project_keywords
+action: page_not_found
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied

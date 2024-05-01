@@ -17,6 +17,18 @@
   }
 }
 
+.events-filters {
+  .filters {
+    @media (--md) {
+      gap: 30px;
+    }
+
+    > div {
+      min-width: unset;
+    }
+  }
+}
+
 .parc--details {
   margin-bottom: 24px;
   z-index: 7;
@@ -169,7 +181,7 @@
       }
     }
 
-    label[for*="asc"]:after {
+    label[for*="desc"]:after {
       transform: rotate(180deg);
     }
   }

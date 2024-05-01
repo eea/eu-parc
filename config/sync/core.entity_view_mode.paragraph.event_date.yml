@@ -6,5 +6,6 @@ dependencies:
     - paragraphs
 id: paragraph.event_date
 label: 'Event date list'
+description: ''
 targetEntityType: paragraph
 cache: true

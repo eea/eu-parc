@@ -1,0 +1,26 @@
+.view-display-id-current_opportunities {
+  &.view-empty {
+    border-bottom: 1px solid #000;
+  }
+}
+
+.view-display-id-past_opportunities {
+  form {
+    display: none;
+  }
+}
+
+.grid--opportunities {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 22px;
+  margin-bottom: 22px;
+
+  @media (--sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (--xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

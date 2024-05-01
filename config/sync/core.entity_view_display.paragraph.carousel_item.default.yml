@@ -3,18 +3,29 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.carousel_item.field_background_color
     - field.field.paragraph.carousel_item.field_body
     - field.field.paragraph.carousel_item.field_desktop_image
     - field.field.paragraph.carousel_item.field_desktop_image_xl
     - field.field.paragraph.carousel_item.field_mobile_image
     - paragraphs.paragraphs_type.carousel_item
   module:
+    - color_field
     - text
 id: paragraph.carousel_item.default
 targetEntityType: paragraph
 bundle: carousel_item
 mode: default
 content:
+  field_background_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_body:
     type: text_default
     label: hidden
@@ -49,4 +60,5 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-hidden: {  }
+hidden:
+  search_api_excerpt: true

@@ -16,6 +16,18 @@
         {
             "type": "git",
             "url": "https://github.com/stefanbutura/svg-sanitizer.git"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "slick/slick",
+                "version": "v1.9.0",
+                "type": "drupal-library",
+                "dist": {
+                    "url": "https://github.com/kenwheeler/slick/archive/master.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
@@ -31,12 +43,14 @@
         "drupal/ckeditor_bs_grid": "^2.0",
         "drupal/color_field": "^3.0",
         "drupal/conditional_fields": "^4.0@alpha",
-        "drupal/core-composer-scaffold": "^10.0",
-        "drupal/core-project-message": "^10.0",
-        "drupal/core-recommended": "^10.0",
+        "drupal/core-composer-scaffold": "^10.2",
+        "drupal/core-project-message": "^10.2",
+        "drupal/core-recommended": "^10.2",
         "drupal/ctools": "^4.0",
+        "drupal/devel": "^5.2",
         "drupal/edw_healthcheck": "^1.20",
         "drupal/edwt": "2.1.4",
+        "drupal/eu_cookie_compliance": "^1.24",
         "drupal/extlink": "^1.7",
         "drupal/facets": "^2.0",
         "drupal/field_group": "^3.4",
@@ -46,7 +60,7 @@
         "drupal/geolocation": "^3.12",
         "drupal/google_analytics": "^4.0",
         "drupal/ics_link_field": "1.x-dev@dev",
-        "drupal/image_field_caption": "^1.2",
+        "drupal/image_field_caption": "^2.0",
         "drupal/layout_builder_component_attributes": "^2.1",
         "drupal/layout_builder_modal": "^1.2",
         "drupal/layout_builder_styles": "^2.0",
@@ -79,10 +93,11 @@
         "drupal/views_infinite_scroll": "^2.0",
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2",
-        "drush/drush": "^11.4",
+        "drush/drush": "^12.0",
         "eaudeweb/heavy-lifter": "^2.0",
         "enshrined/svg-sanitize": "dev-master as 0.16.0",
         "mglaman/composer-drupal-lenient": "^1.0",
+        "slick/slick": "^1.9",
         "symfony/css-selector": "^5.4"
     },
     "conflict": {
@@ -177,20 +192,22 @@
             "drupal/publishcontent": {
                 "Set the status as unpublished if the author does not have publish access": "https://www.drupal.org/files/issues/2023-06-21/3368259-publish-default-value-2.patch"
             },
-            "drupal/image_field_caption": {
-                "#3355337 - Support Drupal 10": "https://www.drupal.org/files/issues/2023-09-26/drupal.org_files_issues_2023-09-21_3355337-make-module-compatible-drupal10-5.patch"
-            },
             "drupal/ckeditor5_font": {
                 "#3350333 - TypeError: array_filter(): Argument #1 ($array) must be of type array": "https://www.drupal.org/files/issues/2023-04-21/3350333-5.patch",
                 "#3368736 - 'no config schema' Error after update to Drupal 10.1.0": "https://www.drupal.org/files/issues/2023-08-07/error-after-drupal-10.1.0-3368736-19.patch"
             },
             "drupal/google_analytics": {
                 "#3356272 - JS error on pages with SVG.": "https://www.drupal.org/files/issues/2023-04-25/google_analytics-svg_links-3356272-1.patch"
+            },
+            "drupal/core": {
+                "#3322402 - Add 'Is empty (NULL)' and 'Is not empty (NOT NULL)' operators to boolean field filtering": "https://www.drupal.org/files/issues/2022-11-21/3322402-9.patch"
+            },
+            "drupal/conditional_fields": {
+                "#3344587 - Support for field hidden by condition loosing its required status": "https://www.drupal.org/files/issues/2024-03-27/3344587-required-fields-that-59-with-fix.patch"
             }
         },
         "drupal-lenient" : {
             "allowed-list": [
-                "drupal/image_field_caption"
             ]
         }
     },

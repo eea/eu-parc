@@ -80,7 +80,7 @@
 
 {{ attach_library('parc/n--institution-teaser') }}
 
-<article {{ attributes.addClass(classes) }}>
+<article {{ attributes.addClass(classes) }} style="--node-color: {{ color }};">
   <div class="top-row">
     <div class="left">
       <div class="roles">
@@ -88,12 +88,12 @@
       </div>
 
       <div class="title">
-        {{ label }}
+        <div>{{ label }}</div>
+        <div>{{ content.field_institute_name }}</div>
       </div>
 
       <div class="address">
         <div class="to-expand hidden">
-          {{ content.field_address_data }}
           {{ content.field_city }}
         </div>
         <div class="country">
@@ -101,6 +101,11 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="to-expand hidden">
+    <div>{{ "Contact" | t }}: {{ content.field_contact_name }}</div>
+    <div>{{ "Email" | t }}: {{ content.field_contact_email }}</div>
   </div>
 
   <div class="to-expand hidden bottom">

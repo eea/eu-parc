@@ -1,0 +1,29 @@
+uuid: 1fedb6c9-dc61-4c53-b118-8dff17df78e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_partners
+    - node.type.institution
+    - node.type.project
+id: node.project.field_partners
+field_name: field_partners
+entity_type: node
+bundle: project
+label: 'Partners involved'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      institution: institution
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

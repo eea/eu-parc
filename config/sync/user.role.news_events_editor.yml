@@ -15,12 +15,14 @@ dependencies:
     - media.type.video
     - node.type.article
     - node.type.events
+    - node.type.opportunity
     - taxonomy.vocabulary.events_category
     - taxonomy.vocabulary.news_category
     - taxonomy.vocabulary.seo_keywords
     - taxonomy.vocabulary.tags
   module:
     - comment
+    - eu_cookie_compliance
     - filter
     - media
     - node
@@ -41,6 +43,7 @@ permissions:
   - 'create events content'
   - 'create image media'
   - 'create media'
+  - 'create opportunity content'
   - 'create terms in events_category'
   - 'create terms in news_category'
   - 'create terms in seo_keywords'
@@ -48,19 +51,24 @@ permissions:
   - 'create vector media'
   - 'delete any article content'
   - 'delete any events content'
+  - 'delete any opportunity content'
   - 'delete media'
+  - 'delete opportunity revisions'
   - 'delete own article content'
   - 'delete own audio media'
   - 'delete own card_footer_overlay media'
   - 'delete own document media'
   - 'delete own image media'
+  - 'delete own opportunity content'
   - 'delete own overlay media'
   - 'delete own remote_video media'
   - 'delete own thematic_areas media'
   - 'delete own vector media'
   - 'delete own video media'
+  - 'display eu cookie compliance popup'
   - 'edit any article content'
   - 'edit any events content'
+  - 'edit any opportunity content'
   - 'edit own article content'
   - 'edit own audio media'
   - 'edit own card_footer_overlay media'
@@ -68,6 +76,7 @@ permissions:
   - 'edit own document media'
   - 'edit own events content'
   - 'edit own image media'
+  - 'edit own opportunity content'
   - 'edit own overlay media'
   - 'edit own remote_video media'
   - 'edit own thematic_areas media'
@@ -76,6 +85,7 @@ permissions:
   - 'publish any node type events'
   - 'publish editable content'
   - 'publish editable node type events'
+  - 'revert opportunity revisions'
   - 'unpublish any node type events'
   - 'unpublish editable content'
   - 'unpublish editable node type events'
@@ -84,6 +94,7 @@ permissions:
   - 'use text format full_html'
   - 'view any unpublished article content'
   - 'view any unpublished events content'
+  - 'view opportunity revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view the administration theme'

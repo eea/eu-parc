@@ -1,0 +1,19 @@
+uuid: 45f3ae0d-c88c-4ad0-90ff-54f08c81a602
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contact_email
+    - node.type.laboratory
+id: node.laboratory.field_contact_email
+field_name: field_contact_email
+entity_type: node
+bundle: laboratory
+label: 'Contact email'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

@@ -267,14 +267,14 @@
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [350, 0, 350, 0],
-              maxZoom: 2,
+              // padding: [350, 0, 350, 0],
+              maxZoom: 6,
             });
           } else {
             map.getView().fit(geom, {
               size: map.getSize(),
               duration: 1000,
-              padding: [350, 0, 350, 0],
+              // padding: [350, 0, 350, 0],
             });
           }
 
@@ -678,6 +678,12 @@
             highlightSource.clear();
             selectedFeature = featureToSelect;
             highlightSource.addFeature(selectedFeature);
+            let id = featureToSelect.get('id');
+            if (id) {
+              const url = new URL(window.location);
+              url.searchParams.set('focus', id);
+              window.history.pushState(null, '', url.toString());
+            }
 
             document.getElementById("identifyParent").style.display = "block";
             document.querySelector(
@@ -696,6 +702,10 @@
             selectedFeature = null;
             highlightSource.clear();
             highlightSource.changed();
+
+            const url = new URL(window.location);
+            url.searchParams.delete('focus');
+            window.history.pushState(null, '', url.toString());
           }
           function featureInCluster(featureId) {
             let allClusterFeatures = clusters.getSource().getFeatures();

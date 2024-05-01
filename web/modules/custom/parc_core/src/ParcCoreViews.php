@@ -4,6 +4,7 @@ namespace Drupal\parc_core;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\node\NodeInterface;
 use Drupal\taxonomy\TermInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
@@ -94,6 +95,33 @@ class ParcCoreViews implements ContainerInjectionInterface {
     $full_results = !empty(\Drupal::request()->query->get('full_results'));
     if ($view->id() == 'search' && !$full_results) {
       $view->setAjaxEnabled(FALSE);
+    }
+
+    if ($view->id() == 'projects') {
+      $results = $view->result;
+      usort($results, function ($a, $b) {
+        $a = $a->_entity;
+        $b = $b->_entity;
+        $topic_a = $a->get('field_project_topics')->entity;
+        $topic_b = $b->get('field_project_topics')->entity;
+
+        $count_a = $a->get('field_project_topics')->count();
+        $count_b = $b->get('field_project_topics')->count();
+
+        $weight_a = $topic_a->get('weight')->value;
+        $weight_b = $topic_b->get('weight')->value;
+
+        if ($count_a != $count_b) {
+          return $count_a <=> $count_b;
+        }
+
+        if ($weight_a != $weight_b) {
+          return $weight_a <=> $weight_b;
+        }
+
+        return strcasecmp($a->getTitle(), $b->getTitle());
+      });
+      $view->result = $results;
     }
   }
 

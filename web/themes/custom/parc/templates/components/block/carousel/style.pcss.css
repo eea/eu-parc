@@ -1,4 +1,4 @@
-#mainCarousel {
+.carousel {
   img,
   svg {
     object-fit: cover;
@@ -22,7 +22,7 @@
   }
 }
 
-#mainCarousel {
+.carousel {
   .v-desktop {
     circle {
       stroke: black;
@@ -1521,5 +1521,114 @@
     g:nth-child(155) .line3[data-v-5f486725] {
       animation-duration: 3.15s;
     }
+  }
+}
+
+.block--carousel {
+  &:not(.hero-carousel) {
+    --min-height: 578px;
+
+    @media (--md) {
+      --min-height: 650px;
+    }
+
+    .text-uppercase {
+      font-size: 14px;
+
+      @media (--md) {
+        font-size: 16px;
+      }
+    }
+
+    .carousel-inner {
+      height: var(--min-height);
+    }
+
+    .paragraph--carousel-item {
+      height: var(--min-height);
+      display: flex;
+
+      .bg-image {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+
+        > * {
+          width: 100%;
+          height: 100%;
+
+          > * {
+            width: 100%;
+            height: 100%;
+
+            > * {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .field-media {
+      aspect-ratio: unset;
+      width: 100%;
+      height: 100%;
+    }
+
+    .svg-title {
+      padding: 0;
+      margin: 0;
+      font-size: 36px;
+      line-height: 44px;
+
+      @media (--sm) {
+        font-size: 60px;
+        line-height: 66px;
+      }
+
+      @media (--md) {
+        font-size: 88px;
+        line-height: 92px;
+      }
+    }
+
+    .field--name-field-body {
+      font-size: 20px !important;
+      color: #FFF;
+      height: unset;
+
+      a {
+        color: #FFF;
+
+        &:hover {
+          color: #e6e6e6;
+        }
+      }
+    }
+
+    .field--name-field-body {
+      .field-media {
+        aspect-ratio: unset;
+      }
+    }
+  }
+}
+
+.paragraph--carousel-item {
+  &:not(.has-image) {
+    background: var(--slide-color);
+  }
+
+  &:hover {
+    //background: var(--slide-hover-color);
+  }
+  
+  > a {
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -320,7 +320,6 @@ display:
           title: ''
           default_argument_type: node
           default_argument_options: {  }
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -359,7 +358,6 @@ display:
             limit: false
             vids: {  }
             anyall: +
-          default_argument_skip_url: false
           summary_options:
             base_path: ''
             count: true
@@ -496,7 +494,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -626,7 +623,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      title: 'All News'
+      title: News
       pager:
         type: infinite_scroll
         options:
@@ -825,7 +822,7 @@ display:
       use_ajax: true
       display_description: ''
       header: {  }
-      exposed_block: true
+      exposed_block: false
       display_extenders:
         ajax_history:
           enable_history: true
@@ -859,7 +856,6 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

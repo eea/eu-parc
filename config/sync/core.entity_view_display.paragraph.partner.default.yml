@@ -1,0 +1,46 @@
+uuid: e3fa21e6-a11e-46bb-9c9c-6ba09f0c5318
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.partner.field_country
+    - field.field.paragraph.partner.field_link_one
+    - field.field.paragraph.partner.field_name
+    - paragraphs.paragraphs_type.partner
+  module:
+    - link
+id: paragraph.partner.default
+targetEntityType: paragraph
+bundle: partner
+mode: default
+content:
+  field_country:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_link_one:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

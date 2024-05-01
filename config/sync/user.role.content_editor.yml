@@ -34,8 +34,10 @@ dependencies:
   module:
     - comment
     - contextual
+    - eu_cookie_compliance
     - file
     - filter
+    - help
     - layout_builder
     - media
     - node
@@ -57,6 +59,7 @@ permissions:
   - 'access content overview'
   - 'access contextual links'
   - 'access files overview'
+  - 'access help pages'
   - 'access media overview'
   - 'access taxonomy overview'
   - 'access toolbar'
@@ -140,6 +143,7 @@ permissions:
   - 'delete terms in seo_keywords'
   - 'delete terms in tags'
   - 'delete terms in thematic_areas'
+  - 'display eu cookie compliance popup'
   - 'edit any article content'
   - 'edit any audio media'
   - 'edit any basic_page content'

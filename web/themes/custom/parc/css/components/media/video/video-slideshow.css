@@ -1,0 +1,1 @@
+.video-slideshow{cursor:pointer;position:relative}.video-slideshow .play-button{left:50%;pointer-events:none;position:absolute;top:50%;transform:translateX(-50%) translateY(-50%)}.video-slideshow.playing .play-button{display:none}

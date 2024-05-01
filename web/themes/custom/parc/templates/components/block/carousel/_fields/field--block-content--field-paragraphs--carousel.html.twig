@@ -5,15 +5,20 @@
  */
 #}
 
-<div id="mainCarousel" class="carousel slide" data-bs-ride="true" data-interval="900000">
+{% set interval = 3000 %}
+{% if hero_carousel %}
+  {% set interval = 900000 %}
+{% endif %}
+
+<div id="{{ carousel_id }}" data-bs-ride="{% if hero_carousel %}true{% else %}carousel{% endif %}" class="carousel slide" data-bs-interval="{{ interval }}">
 
   <div class="carousel-indicators">
     {% for item in items %}
-      <button type="button" data-bs-target="#mainCarousel" data-bs-interval="false" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-label="Slide {{ loop.index }}"></button>
+      <button type="button" data-bs-target="#{{ carousel_id }}" data-bs-interval="false" data-bs-slide-to="{{ loop.index0 }}" class="{{ loop.first ? 'active' }}" aria-label="Slide {{ loop.index }}"></button>
     {% endfor %}
   </div>
 
-  <div class="carousel-inner" data-interval="900000">
+  <div class="carousel-inner" data-interval="{{ interval }}">
     {% for item in items %}
       <div class="carousel-item{{ loop.first ? ' active' }}">
         {{- item.content -}}
