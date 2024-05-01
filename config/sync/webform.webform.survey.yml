@@ -51,6 +51,7 @@ elements: |-
     field_of_the_external_activity_project:
       '#type': checkboxes
       '#title': 'Field of the external activity/project'
+      '#title_display': invisible
       '#options':
         'Human health': 'Human health'
         Environment: Environment
@@ -79,6 +80,7 @@ elements: |-
     scope_of_the_external_activity_project:
       '#type': radios
       '#title': 'Scope of the external activity/project'
+      '#title_display': invisible
       '#options':
         National: National
         EU: EU
