@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_banner
     - media.type.image
+    - media.type.vector
     - node.type.page
 id: node.page.field_banner
 field_name: field_banner
@@ -21,9 +22,10 @@ settings:
   handler_settings:
     target_bundles:
       image: image
+      vector: vector
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: image
 field_type: entity_reference

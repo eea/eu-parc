@@ -503,3 +503,8 @@ m--video--slideshow:
     - core/drupal
     - core/jquery
     - core/once
+
+webform:
+  css:
+    component:
+      css/components/webform/webform.css: { }
