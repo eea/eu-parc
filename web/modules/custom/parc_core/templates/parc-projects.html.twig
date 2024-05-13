@@ -28,7 +28,8 @@
     {% for project in projects %}
       <div data-project="{{ project.id }}" class="project-title">
         <span class="projects-hoverable">
-          <a href="{{ project.url }}">{{ project.name }}</a>
+{#          <a href="{{ project.url }}">{{ project.name }}</a>#}
+          {{ project.name }}
         </span>
       </div>
     {% endfor %}
