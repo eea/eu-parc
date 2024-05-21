@@ -149,21 +149,6 @@ third_party_settings:
               suggestion: sidebar_dropdown
             weight: 0
             additional: {  }
-          b2645403-aa79-4d79-ac98-d36c0c473477:
-            uuid: b2645403-aa79-4d79-ac98-d36c0c473477
-            region: first
-            configuration:
-              id: 'field_block:node:events:field_organizer'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: list_default
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
         third_party_settings: {  }
       -
         layout_id: parc_content
@@ -240,21 +225,6 @@ third_party_settings:
                   class: ''
                   style: ''
                   data: ''
-          494267e4-9472-4f05-a23b-101f31cafc12:
-            uuid: 494267e4-9472-4f05-a23b-101f31cafc12
-            region: menu
-            configuration:
-              id: 'field_block:node:events:field_metatags'
-              label_display: '0'
-              context_mapping:
-                entity: layout_builder.entity
-              formatter:
-                type: metatag_empty_formatter
-                label: above
-                settings: {  }
-                third_party_settings: {  }
-            weight: 0
-            additional: {  }
           edca0097-f316-4e33-9a3f-221625b130c9:
             uuid: edca0097-f316-4e33-9a3f-221625b130c9
             region: second
