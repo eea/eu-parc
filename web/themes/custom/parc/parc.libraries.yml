@@ -186,7 +186,7 @@ n--project-full:
     component:
       css/components/content/project/full/style.css: {}
   js:
-    templates/components/content/project/teaser/script.js: { }
+    templates/components/content/project/full/script.js: { }
   dependencies:
     - core/drupal
     - core/jquery
