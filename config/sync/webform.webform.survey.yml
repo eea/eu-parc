@@ -20,7 +20,7 @@ categories: {  }
 elements: |-
   section_title:
     '#type': webform_section
-    '#title': 'Title of the survey'
+    '#title': 'Networking and synergies'
     name_of_the_external_activity_project:
       '#type': textfield
       '#title': 'Name of the external activity/project'
