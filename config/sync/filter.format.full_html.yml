@@ -78,3 +78,4 @@ filters:
       allowed_media_types:
         image: image
         vector: vector
+        video: video

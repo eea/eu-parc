@@ -8,12 +8,14 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_metatags
     - field.field.node.article.field_seo_keyword
+    - field.field.node.article.field_slideshow_items
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
   module:
     - image_field_caption
     - metatag
+    - parc_core
     - text
     - user
 _core:
@@ -60,6 +62,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 6
+    region: content
+  field_slideshow_items:
+    type: parc_media_slideshow
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
     region: content
   field_tags:
     type: entity_reference_label

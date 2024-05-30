@@ -9,12 +9,14 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_metatags
     - field.field.node.article.field_seo_keyword
+    - field.field.node.article.field_slideshow_items
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
   module:
     - image_field_caption
     - layout_builder
+    - parc_core
     - text
     - user
 third_party_settings:
@@ -45,6 +47,13 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_slideshow_items:
+    type: parc_media_slideshow
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_tags:
     type: entity_reference_entity_view
