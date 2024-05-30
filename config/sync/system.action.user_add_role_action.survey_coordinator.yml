@@ -1,0 +1,14 @@
+uuid: 83f95aa9-e720-48a9-b44b-5412155772df
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.survey_coordinator
+  module:
+    - user
+id: user_add_role_action.survey_coordinator
+label: 'Add the Survey coordinator role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: survey_coordinator

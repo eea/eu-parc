@@ -1,0 +1,14 @@
+uuid: e662264f-e3f3-459b-803d-418c940cbe3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.survey_coordinator
+  module:
+    - user
+id: user_remove_role_action.survey_coordinator
+label: 'Remove the Survey coordinator role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: survey_coordinator

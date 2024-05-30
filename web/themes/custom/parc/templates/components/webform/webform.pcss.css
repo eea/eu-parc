@@ -1,0 +1,92 @@
+.webform-submission-form {
+  .webform-section {
+    .webform-section-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+
+      @media (--md) {
+        margin-left: 330px;
+      }
+    }
+
+    .webform-section-wrapper {
+      .form-item {
+        margin-bottom: 40px;
+
+        @media (--md) {
+          display: grid;
+          grid-template-columns: 300px auto;
+          grid-gap: 30px;
+        }
+
+        &.js-form-type-checkbox,
+        &.js-form-type-radio {
+          margin-bottom: 0;
+          align-items: center;
+          display: flex;
+          gap: 7px;
+
+          input {
+            margin: 0 !important;
+          }
+        }
+
+        &.js-form-type-checkbox {
+          input {
+            border-radius: 5px;
+          }
+        }
+
+        label, legend {
+          font-size: 14px;
+          font-weight: 600;
+
+          &:after {
+            width: 0;
+          }
+        }
+
+        .form-control {
+          padding: 4px 12px;
+        }
+
+        input, textarea {
+          border: 1px solid #000;
+        }
+      }
+
+      .flex-container {
+        @media (--lg) {
+          display: flex;
+          gap: 30px;
+
+          .form-item:last-child {
+            gap: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .form-actions {
+    margin-top: 30px;
+    margin-bottom: 60px;
+
+    .btn-primary {
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      padding: 7px 15px;
+      line-height: 18px;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    @media (--md) {
+      margin-left: 330px;
+    }
+  }
+}
