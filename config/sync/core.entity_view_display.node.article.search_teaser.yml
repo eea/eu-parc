@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_metatags
     - field.field.node.article.field_seo_keyword
+    - field.field.node.article.field_slideshow_items
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - image.style.thumbnail
@@ -73,6 +74,7 @@ hidden:
   comment: true
   field_metatags: true
   field_seo_keyword: true
+  field_slideshow_items: true
   field_svg_hover: true
   field_tags: true
   links: true

@@ -55,4 +55,8 @@
       padding-inline: var(--col-w1) calc(var(--col-w1) * 2);
     }
   }
+
+  .field + .field--name-field-slideshow-items {
+    margin-top: var(--spacer);
+  }
 }

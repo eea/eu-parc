@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.field_image
     - field.field.node.article.field_metatags
     - field.field.node.article.field_seo_keyword
+    - field.field.node.article.field_slideshow_items
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - image.style.thumbnail
@@ -66,6 +67,13 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_slideshow_items:
+    type: media_library_widget
+    weight: 4
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   field_svg_hover:
     type: media_library_widget
