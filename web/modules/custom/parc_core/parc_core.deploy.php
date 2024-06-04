@@ -870,7 +870,7 @@ function rollback_parc_core_deploy_10003() {
 /**
  * Remove obsolete fields Laboratory field_contact_name and field_contact_email
  */
-function parc_core_deploy_10004() {
+function cleanup_parc_core_deploy_10003() {
   // Step 1: Remove the old fields from the content type.
   remove_old_fields_from_content_type('laboratory', ['field_contact_name', 'field_contact_email']);
 
