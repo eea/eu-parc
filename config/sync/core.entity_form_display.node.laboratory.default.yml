@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
     - field.field.node.laboratory.field_institute_name
+    - field.field.node.laboratory.field_lab_contacts
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
     - field.field.node.laboratory.field_sampling_type
@@ -53,7 +54,7 @@ content:
     third_party_settings: {  }
   field_contact_email:
     type: email_default
-    weight: 11
+    weight: 12
     region: content
     settings:
       placeholder: ''
@@ -61,7 +62,7 @@ content:
     third_party_settings: {  }
   field_contact_name:
     type: string_textfield
-    weight: 10
+    weight: 11
     region: content
     settings:
       size: 60
@@ -91,6 +92,25 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_lab_contacts:
+    type: paragraphs
+    weight: 10
+    region: content
+    settings:
+      title: Contact
+      title_plural: Contacts
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: '0'
+        duplicate: '0'
+    third_party_settings: {  }
   field_lab_type:
     type: select2_entity_reference
     weight: 8
@@ -103,14 +123,14 @@ content:
     third_party_settings: {  }
   field_media_image:
     type: media_library_widget
-    weight: 12
+    weight: 13
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_substances_matrix:
     type: paragraphs
-    weight: 13
+    weight: 14
     region: content
     settings:
       title: 'Substance matrix'
@@ -137,7 +157,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 14
+    weight: 15
     region: content
     settings:
       display_label: true
