@@ -771,3 +771,150 @@ function parc_core_deploy_10002() {
     $lab->save();
   }
 }
+
+
+/**
+ * Migrate Laboratory field_contact_name and field_contact_email to
+ * Contacts - field_lab_contacts (Paragraph -> Contact)
+ */
+function parc_core_deploy_10003() {
+  $node_storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()
+    ->getStorage('paragraph');
+
+  $results = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'laboratory')
+    ->execute();
+
+  foreach ($results as $result) {
+    $result = $node_storage->load($result);
+
+    // Skip nodes that already have the new field populated.
+    if (!$result->get('field_lab_contacts')->isEmpty()) {
+      continue;
+    }
+
+    $contact_names = $result->get('field_contact_name')->value;
+    $contact_emails = $result->get('field_contact_email')->value;
+
+    // If either field is empty, skip this node.
+    if (empty($contact_names) || empty($contact_emails)) {
+      continue;
+    }
+
+    // Create a new paragraph item.
+    $paragraph = $paragraph_storage->create([
+      'type' => 'contact',
+      'field_name' => [
+        'value' => $contact_names,
+      ],
+      'field_email' => [
+        'value' => $contact_emails,
+      ],
+    ]);
+
+    // Save the paragraph item.
+    $paragraph->save();
+
+    // Add the paragraph item to the node's field_contacts field.
+    $result->get('field_lab_contacts')->appendItem($paragraph);
+
+    // Save the node.
+    $result->save();
+  }
+}
+
+/**
+ * Rollback function for Laboratory field_contact_name and field_contact_email to
+ * Contacts - field_lab_contacts (Paragraph -> Contact) migration
+ */
+function rollback_parc_core_deploy_10003() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $results = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'laboratory')
+    ->execute();
+
+  foreach ($results as $result) {
+    // Skip nodes that don't have the new field populated.
+    if ($result->get('field_contacts')->isEmpty()) {
+      continue;
+    }
+
+    // Get the first paragraph item from the field_contacts field.
+    $paragraphs = $result->get('field_contacts')->referencedEntities();
+
+    foreach ($paragraphs as $paragraph) {
+      // Restore the original fields with values from the paragraph.
+      $result->set('field_contact_name', $paragraph->get('field_contact_name')->value);
+      $result->set('field_contact_email', $paragraph->get('field_contact_email')->value);
+
+      // Delete the paragraph.
+      $paragraph->delete();
+    }
+
+    // Clear the field_contacts field.
+    $result->get('field_contacts')->setValue([]);
+
+    // Save the node.
+    $result->save();
+  }
+}
+
+/**
+ * Remove obsolete fields Laboratory field_contact_name and field_contact_email
+ */
+function parc_core_deploy_10004() {
+  // Step 1: Remove the old fields from the content type.
+  remove_old_fields_from_content_type('laboratory', ['field_contact_name', 'field_contact_email']);
+
+  // Step 2: Delete the field instances and field storage.
+  field_purge('field_contact_name');
+  field_purge('field_contact_email');
+}
+
+/**
+ * Remove fields from a content type.
+ *
+ * @param string $content_type
+ *   The content type machine name.
+ * @param array $field_names
+ *   An array of field machine names to remove.
+ */
+function remove_old_fields_from_content_type($content_type, array $field_names) {
+  $entity_manager = \Drupal::entityTypeManager();
+  $field_config_storage = $entity_manager->getStorage('field_config');
+
+  foreach ($field_names as $field_name) {
+    $field = $field_config_storage->load("node.$content_type.$field_name");
+    if ($field) {
+      $field->delete();
+    }
+  }
+}
+
+/**
+ * Delete field storage and purge field data.
+ *
+ * @param string $field_name
+ *   The field machine name.
+ */
+function field_purge($field_name) {
+  $entity_manager = \Drupal::entityTypeManager();
+  $field_storage_config_storage = $entity_manager->getStorage('field_storage_config');
+
+  $field_storage = $field_storage_config_storage->load("node.$field_name");
+  if ($field_storage) {
+    $field_storage->delete();
+  }
+
+  // Purge the field data from the database.
+  \Drupal::service('entity_field.manager')->clearCachedFieldDefinitions();
+  \Drupal::entityManager()->clearCachedFieldDefinitions();
+}
