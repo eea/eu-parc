@@ -52,22 +52,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_contact_email:
-    type: email_default
-    weight: 12
-    region: content
-    settings:
-      placeholder: ''
-      size: 60
-    third_party_settings: {  }
-  field_contact_name:
-    type: string_textfield
-    weight: 11
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_coordinates:
     type: geolocation_latlng
     weight: 7
@@ -123,14 +107,14 @@ content:
     third_party_settings: {  }
   field_media_image:
     type: media_library_widget
-    weight: 13
+    weight: 11
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_substances_matrix:
     type: paragraphs
-    weight: 14
+    weight: 12
     region: content
     settings:
       title: 'Substance matrix'
@@ -157,7 +141,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 15
+    weight: 13
     region: content
     settings:
       display_label: true
@@ -181,6 +165,8 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_contact_email: true
+  field_contact_name: true
   field_sampling_type: true
   field_substance_group: true
   path: true

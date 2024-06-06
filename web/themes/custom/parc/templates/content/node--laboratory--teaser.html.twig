@@ -80,45 +80,46 @@
 
 {{ attach_library('parc/n--institution-teaser') }}
 
-<article {{ attributes.addClass(classes) }} style="--node-color: {{ color }};">
-  <div class="top-row">
-    <div class="left">
-      <div class="roles">
-        {{ roles }}
-      </div>
-
-      <div class="title">
-        <div>{{ label }}</div>
-        <div>{{ content.field_institute_name }}</div>
-      </div>
-
-      <div class="address">
-        <div class="to-expand hidden">
-          {{ content.field_city }}
+{% apply spaceless %}
+  <article {{ attributes.addClass(classes) }} style="--node-color: {{ color }};">
+    <div class="top-row">
+      <div class="left">
+        <div class="roles">
+          {{ roles }}
         </div>
-        <div class="country">
-          {{ content.field_country }}
+
+        <div class="title">
+          <div>{{ label }}</div>
+          <div>{{ content.field_institute_name }}</div>
+        </div>
+
+        <div class="address">
+          <div class="to-expand hidden">
+            {{ content.field_city }}
+          </div>
+          <div class="country">
+            {{ content.field_country }}
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="to-expand hidden">
-    <div>{{ "Contact" | t }}: {{ content.field_contact_name }}</div>
-    <div>{{ "Email" | t }}: {{ content.field_contact_email }}</div>
-  </div>
+    <div class="to-expand hidden">
+      <div>{{ "Contacts" | t }}: {{- content.field_lab_contacts -}}</div>
+    </div>
 
-  <div class="to-expand hidden bottom">
-    {{ content.field_website }}
-    <div class="mt-3">{{ content.field_substances_matrix }}</div>
-  </div>
+    <div class="to-expand hidden bottom">
+      {{ content.field_website }}
+      <div class="mt-3">{{ content.field_substances_matrix }}</div>
+    </div>
 
-  <div class="expand">
-    <a class="expand-link" href="#" style="color: {{ color }};">
-      <span class="expand-link-text">{{ "Details" | t }}</span>
-      <svg width="4" height="6" viewBox="0 0 4 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1.55836 0.812901L3.02387 2.41975C3.32534 2.75029 3.33739 3.17241 3.05354 3.45845L1.46012 5.06413" stroke="{{ color }}" stroke-linecap="round"/>
-      </svg>
-    </a>
-  </div>
-</article>
+    <div class="expand">
+      <a class="expand-link" href="#" style="color: {{ color }};">
+        <span class="expand-link-text">{{ "Details" | t }}</span>
+        <svg width="4" height="6" viewBox="0 0 4 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.55836 0.812901L3.02387 2.41975C3.32534 2.75029 3.33739 3.17241 3.05354 3.45845L1.46012 5.06413" stroke="{{ color }}" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </article>
+{% endapply %}
