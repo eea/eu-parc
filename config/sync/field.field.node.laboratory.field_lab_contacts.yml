@@ -1,0 +1,64 @@
+uuid: b367a902-8070-4520-b359-b391aac4c115
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lab_contacts
+    - node.type.laboratory
+    - paragraphs.paragraphs_type.contact
+  module:
+    - entity_reference_revisions
+id: node.laboratory.field_lab_contacts
+field_name: field_lab_contacts
+entity_type: node
+bundle: laboratory
+label: Contacts
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      contact: contact
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 13
+        enabled: false
+      card:
+        weight: 14
+        enabled: false
+      carousel_item:
+        weight: 15
+        enabled: false
+      contact:
+        weight: 16
+        enabled: true
+      grid:
+        weight: 17
+        enabled: false
+      lab_matrix:
+        weight: 18
+        enabled: false
+      links_list:
+        weight: 19
+        enabled: false
+      media:
+        weight: 20
+        enabled: false
+      newsletter:
+        weight: 21
+        enabled: false
+      partner:
+        weight: 22
+        enabled: false
+      svg_text:
+        weight: 23
+        enabled: false
+      what_we_do:
+        weight: 24
+        enabled: false
+field_type: entity_reference_revisions

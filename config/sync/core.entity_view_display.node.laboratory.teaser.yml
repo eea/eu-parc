@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
     - field.field.node.laboratory.field_institute_name
+    - field.field.node.laboratory.field_lab_contacts
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
     - field.field.node.laboratory.field_sampling_type
@@ -86,6 +87,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 10
+    region: content
+  field_lab_contacts:
+    type: parc_contacts
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 13
     region: content
   field_lab_type:
     type: entity_reference_label

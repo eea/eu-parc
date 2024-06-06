@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
     - field.field.node.laboratory.field_institute_name
+    - field.field.node.laboratory.field_lab_contacts
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
     - field.field.node.laboratory.field_sampling_type
@@ -96,6 +97,7 @@ hidden:
   field_contact_name: true
   field_coordinates: true
   field_institute_name: true
+  field_lab_contacts: true
   field_lab_type: true
   field_sampling_type: true
   field_substance_group: true
