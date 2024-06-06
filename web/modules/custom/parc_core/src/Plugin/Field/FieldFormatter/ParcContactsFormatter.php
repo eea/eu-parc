@@ -35,7 +35,7 @@ class ParcContactsFormatter extends EntityReferenceFormatterBase {
 
       $elements[] = [
         '#type' => 'inline_template',
-        '#template' => '<a href="{{ email }}">{{ name }}</a>',
+        '#template' => '<a href="mailto:{{ email }}">{{ name }}</a>',
         '#context' => [
           'email' => $email,
           'name' => $name ?? $email,
