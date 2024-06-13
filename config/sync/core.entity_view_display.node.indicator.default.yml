@@ -1,0 +1,41 @@
+uuid: 0d88369e-2d97-45df-bae2-1f2612248e2c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.indicator.body
+    - field.field.node.indicator.field_data
+    - node.type.indicator
+  module:
+    - entity_reference_revisions
+    - text
+    - user
+id: node.indicator.default
+targetEntityType: node
+bundle: indicator
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_data:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  search_api_excerpt: true

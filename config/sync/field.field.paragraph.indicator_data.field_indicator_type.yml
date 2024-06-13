@@ -1,0 +1,21 @@
+uuid: c0328736-3e42-4001-90b0-db5fbd2fde15
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_indicator_type
+    - paragraphs.paragraphs_type.indicator_data
+  module:
+    - options
+id: paragraph.indicator_data.field_indicator_type
+field_name: field_indicator_type
+entity_type: paragraph
+bundle: indicator_data
+label: 'Indicator type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
