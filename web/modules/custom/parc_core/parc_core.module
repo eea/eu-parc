@@ -606,3 +606,11 @@ function parc_core_node_presave(NodeInterface $node) {
       break;
   }
 }
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for tablefield.
+ */
+function parc_core_field_widget_complete_tablefield_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, $context) {
+  $field_widget_complete_form['widget'][0]['caption']['#access'] = FALSE;
+  $field_widget_complete_form['widget'][0]['#description'] = NULL;
+}

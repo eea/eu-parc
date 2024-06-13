@@ -1,0 +1,29 @@
+uuid: 8beba19f-dcfc-4f8a-90d2-345dfcc99d36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_indicator_data
+    - paragraphs.paragraphs_type.indicator_data
+  module:
+    - tablefield
+id: paragraph.indicator_data.field_indicator_data
+field_name: field_indicator_data
+entity_type: paragraph
+bundle: indicator_data
+label: 'Indicator data'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  export: true
+  restrict_rebuild: false
+  restrict_import: false
+  lock_values: false
+  cell_processing: 0
+  empty_rules:
+    ignore_table_structure: false
+    ignore_table_header: false
+field_type: tablefield

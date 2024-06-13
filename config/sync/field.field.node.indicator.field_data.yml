@@ -1,0 +1,67 @@
+uuid: 50623bdf-549c-4d53-b30b-e130ed2c927f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_data
+    - node.type.indicator
+    - paragraphs.paragraphs_type.indicator_data
+  module:
+    - entity_reference_revisions
+id: node.indicator.field_data
+field_name: field_data
+entity_type: node
+bundle: indicator
+label: Data
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      indicator_data: indicator_data
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 14
+        enabled: false
+      card:
+        weight: 15
+        enabled: false
+      carousel_item:
+        weight: 16
+        enabled: false
+      contact:
+        weight: 17
+        enabled: false
+      grid:
+        weight: 18
+        enabled: false
+      indicator_data:
+        weight: 19
+        enabled: true
+      lab_matrix:
+        weight: 20
+        enabled: false
+      links_list:
+        weight: 21
+        enabled: false
+      media:
+        weight: 22
+        enabled: false
+      newsletter:
+        weight: 23
+        enabled: false
+      partner:
+        weight: 24
+        enabled: false
+      svg_text:
+        weight: 25
+        enabled: false
+      what_we_do:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions
