@@ -52,12 +52,13 @@
 
 .grid--deliverables {
   display: grid;
-  grid-template-columns: repeat(2, calc((100% - var(--grig-right-s)) / 2));
+  grid-template-columns: repeat(2, calc((100% - var(--grid-d--gap)) / 2));
   gap: var(--grid-d--gap);
 
   & > article {
     align-self: stretch;
     max-width: 100%;
+    width: 100%;
   }
 
   @media (--md) {
