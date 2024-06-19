@@ -7,7 +7,6 @@ dependencies:
     - field.field.block_content.newsletter.body
     - field.field.block_content.newsletter.field_link_text
     - field.field.block_content.newsletter.field_paragraphs
-    - field.field.block_content.newsletter.field_show_season
   module:
     - entity_reference_revisions
 id: block_content.newsletter.default
@@ -27,5 +26,4 @@ content:
 hidden:
   body: true
   field_link_text: true
-  field_show_season: true
   search_api_excerpt: true
