@@ -17,8 +17,14 @@
   ]
 %}
 
+{% set attributes = attributes.setAttribute('style', '--media-font-size: ' ~ font_size ~ 'px;') %}
+
 <div{{attributes.addClass(classes)}}>
-  {{- content|without('field_file', 'field_file_name') -}}
+  {% if not paragraph.field_preview_image.isEmpty %}
+    {{- content.field_preview_image -}}
+  {% elseif paragraph.field_name.value %}
+    {{- content.field_name -}}
+  {% endif %}
 
   <a href="{{ content.field_file.0 }}" class="link-download stretched-link" download>
     {{- content.field_file_name.0 -}}
