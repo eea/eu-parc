@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.newsletter.field_date
     - field.field.paragraph.newsletter.field_link_one
+    - field.field.paragraph.newsletter.field_name
     - field.field.paragraph.newsletter.field_svg
     - paragraphs.paragraphs_type.newsletter
   module:
@@ -32,6 +33,14 @@ content:
       link_class_mode: force_class
       link_class_force: 'btn btn-clear btn-arrow btn-arrow-link stretched-link'
       link_class_select: ''
+    third_party_settings: {  }
+  field_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_svg:
     type: media_library_widget
