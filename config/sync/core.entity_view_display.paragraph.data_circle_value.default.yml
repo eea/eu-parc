@@ -1,0 +1,53 @@
+uuid: 17c14e8a-9dd3-4917-b4f3-ecf574fbad5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.data_circle_value.field_color
+    - field.field.paragraph.data_circle_value.field_dc_indicator_type
+    - field.field.paragraph.data_circle_value.field_label_plain
+    - field.field.paragraph.data_circle_value.field_value
+    - paragraphs.paragraphs_type.data_circle_value
+  module:
+    - color_field
+    - options
+id: paragraph.data_circle_value.default
+targetEntityType: paragraph
+bundle: data_circle_value
+mode: default
+content:
+  field_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_dc_indicator_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_label_plain:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_value:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  search_api_excerpt: true

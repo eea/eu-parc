@@ -508,3 +508,8 @@ webform:
   css:
     component:
       css/components/webform/webform.css: { }
+
+p--data-circle:
+  css:
+    component:
+      css/components/paragraph/data-circle/data-circle.css: { }

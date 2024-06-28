@@ -1,0 +1,25 @@
+uuid: 720a9192-715f-4975-8562-982be1f2f4d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_color
+    - paragraphs.paragraphs_type.data_circle_value
+  module:
+    - color_field
+id: paragraph.data_circle_value.field_color
+field_name: field_color
+entity_type: paragraph
+bundle: data_circle_value
+label: Color
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    color: '#FFFFFF'
+    opacity: null
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

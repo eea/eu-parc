@@ -1,0 +1,10 @@
+uuid: 3037bf2f-8660-44f6-9640-9ce30a350622
+langcode: en
+status: true
+dependencies: {  }
+id: data_circle_value
+label: 'Data circle value'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

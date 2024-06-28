@@ -1,0 +1,21 @@
+uuid: 9b265889-c099-4d30-941c-dfb0dd5d8f82
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_dc_indicator_type
+    - paragraphs.paragraphs_type.data_circle_value
+  module:
+    - options
+id: paragraph.data_circle_value.field_dc_indicator_type
+field_name: field_dc_indicator_type
+entity_type: paragraph
+bundle: data_circle_value
+label: 'Indicator type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

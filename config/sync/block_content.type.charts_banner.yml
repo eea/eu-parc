@@ -1,0 +1,8 @@
+uuid: 866570e0-d672-49ed-ad0b-a5381b269811
+langcode: en
+status: true
+dependencies: {  }
+id: charts_banner
+label: 'Charts banner'
+revision: 0
+description: ''
