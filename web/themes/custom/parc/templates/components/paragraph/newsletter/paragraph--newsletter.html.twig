@@ -22,9 +22,9 @@
 <div{{attributes.addClass(classes)}}>
   <div class="wrap">
     <div class="d-flex justify-content-end">
-      {% if show_season %}
+      {% if paragraph.field_name.value %}
         <div class="field field--name-field-date text-uppercase mb-2">
-          {{ newsletter_date }}
+          {{ content.field_name }}
         </div>
       {% else %}
         {{ content.field_date }}
@@ -32,5 +32,5 @@
     </div>
     {{ content.field_svg }}
   </div>
-  {{ content|without('field_svg', 'field_date') }}
+  {{ content|without('field_svg', 'field_date', 'field_name') }}
 </div>

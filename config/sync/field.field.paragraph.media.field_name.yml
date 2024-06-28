@@ -1,0 +1,19 @@
+uuid: 5d1e83a9-32dc-4ca9-b89f-d44720d3ec76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_name
+    - paragraphs.paragraphs_type.media
+id: paragraph.media.field_name
+field_name: field_name
+entity_type: paragraph
+bundle: media
+label: 'Preview name'
+description: 'This name will be displayed in PARC font if no preview image is set.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

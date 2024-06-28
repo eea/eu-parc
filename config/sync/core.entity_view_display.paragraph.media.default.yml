@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.media.field_file
     - field.field.paragraph.media.field_file_name
+    - field.field.paragraph.media.field_name
     - field.field.paragraph.media.field_preview_image
     - paragraphs.paragraphs_type.media
   module:
@@ -28,6 +29,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_preview_image:
     type: entity_reference_entity_view

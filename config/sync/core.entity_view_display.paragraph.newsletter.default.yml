@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.newsletter.field_date
     - field.field.paragraph.newsletter.field_link_one
+    - field.field.paragraph.newsletter.field_name
     - field.field.paragraph.newsletter.field_svg
     - image.style.newsletter
     - paragraphs.paragraphs_type.newsletter
@@ -37,6 +38,14 @@ content:
       target: _blank
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
     region: content
   field_svg:
     type: media_thumbnail

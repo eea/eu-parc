@@ -439,46 +439,6 @@ function parc_preprocess_node__search_teaser(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for paragraph__newsletter.
- */
-function parc_preprocess_paragraph__newsletter(&$variables) {
-  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
-  $paragraph = $variables['paragraph'];
-  $date = $paragraph->get('field_date')->value;
-
-  $block = $paragraph->getParentEntity();
-  if ($block instanceof BlockContent
-    && $block->hasField('field_show_season')
-    && $block->get('field_show_season')->value) {
-    $year = date('Y', strtotime($date));
-    $spring = "$year-03-01";
-    $summer = "$year-06-01";
-    $autumn = "$year-09-01";
-    $winter = "$year-12-01";
-
-    switch (TRUE) {
-      case $date >= $spring && $date < $summer:
-        $variables['season'] = t('Spring');
-        break;
-
-      case $date >= $summer && $date < $autumn:
-        $variables['season'] = t('Summer');
-        break;
-
-      case $date >= $autumn && $date < $winter:
-        $variables['season'] = t('Autumn');
-        break;
-
-      default:
-        $variables['season'] = t('Winter');
-    }
-
-    $variables['newsletter_date'] = $variables['season'] . ' ' . date('Y', strtotime($date));
-    $variables['show_season'] = TRUE;
-  }
-}
-
-/**
  * Implements hook_preprocess_HOOK() for menu__sidebar_dropdown.
  */
 function parc_preprocess_menu__sidebar_dropdown(&$variables) {
@@ -858,4 +818,23 @@ function parc_preprocess_block__block_content__charts_banner(&$variables) {
   /** @var \Drupal\block_content\BlockContentInterface $block */
   $block = $variables['content']['#block_content'];
   $variables['background_color'] = $block->get('field_background_color')->color;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph__media.
+ */
+function parc_preprocess_paragraph__media(array &$variables) {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['paragraph'];
+  $name = $paragraph->get('field_name')->value;
+
+  $font_size = 60;
+  if (!empty($name)) {
+    $letter_count = strlen($name);
+    if ($letter_count > 7) {
+      $font_size = 60 - 5 * ($letter_count - 7);
+      $font_size = max(36, $font_size);
+    }
+  }
+  $variables['font_size'] = $font_size;
 }
