@@ -17,6 +17,7 @@ dependencies:
     - node.type.basic_page
     - node.type.deliverables
     - node.type.events
+    - node.type.indicator
     - node.type.institution
     - node.type.page
     - node.type.publications
@@ -44,6 +45,7 @@ dependencies:
     - path
     - publishcontent
     - system
+    - tablefield
     - taxonomy
     - toolbar
     - tour
@@ -64,6 +66,7 @@ permissions:
   - 'access taxonomy overview'
   - 'access toolbar'
   - 'access tour'
+  - 'addrow tablefield'
   - 'administer nodes'
   - 'administer url aliases'
   - 'create and edit custom blocks'
@@ -75,6 +78,7 @@ permissions:
   - 'create document media'
   - 'create events content'
   - 'create image media'
+  - 'create indicator content'
   - 'create institution content'
   - 'create media'
   - 'create overlay media'
@@ -104,6 +108,7 @@ permissions:
   - 'delete any document media'
   - 'delete any events content'
   - 'delete any image media'
+  - 'delete any indicator content'
   - 'delete any institution content'
   - 'delete any media'
   - 'delete any overlay media'
@@ -124,6 +129,7 @@ permissions:
   - 'delete own document media'
   - 'delete own events content'
   - 'delete own image media'
+  - 'delete own indicator content'
   - 'delete own institution content'
   - 'delete own overlay media'
   - 'delete own page content'
@@ -152,6 +158,7 @@ permissions:
   - 'edit any document media'
   - 'edit any events content'
   - 'edit any image media'
+  - 'edit any indicator content'
   - 'edit any institution content'
   - 'edit any overlay media'
   - 'edit any page content'
@@ -170,6 +177,7 @@ permissions:
   - 'edit own document media'
   - 'edit own events content'
   - 'edit own image media'
+  - 'edit own indicator content'
   - 'edit own institution content'
   - 'edit own overlay media'
   - 'edit own page content'
@@ -189,13 +197,17 @@ permissions:
   - 'edit terms in seo_keywords'
   - 'edit terms in tags'
   - 'edit terms in thematic_areas'
+  - 'export tablefield'
+  - 'import tablefield'
   - 'publish any content'
   - 'publish editable content'
+  - 'rebuild tablefield'
   - 'revert all revisions'
   - 'revert article revisions'
   - 'revert basic_page revisions'
   - 'revert deliverables revisions'
   - 'revert events revisions'
+  - 'revert indicator revisions'
   - 'revert institution revisions'
   - 'revert page revisions'
   - 'revert publications revisions'
@@ -211,6 +223,7 @@ permissions:
   - 'view basic_page revisions'
   - 'view deliverables revisions'
   - 'view events revisions'
+  - 'view indicator revisions'
   - 'view institution revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'

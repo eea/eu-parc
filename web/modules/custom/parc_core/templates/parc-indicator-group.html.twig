@@ -1,0 +1,8 @@
+<div class="data-wrapper" style="--indicator-color: {{ color }};">
+  <div class="center-text">{{ title }}<br>{{ value }}</div>
+  {% for element in elements %}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360" style="top: 0; left: 0; transform: rotate({{ element.rotation }}deg);">
+      <circle stroke-linecap="round" cx="180" cy="180" r="170" stroke="{{ color }}" stroke-width="20" pathLength="360" stroke-dasharray="{{ element.delta }} {{ 360 - element.delta }}" fill="transparent" />
+    </svg>
+  {% endfor %}
+</div>
