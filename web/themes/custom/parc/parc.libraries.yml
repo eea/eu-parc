@@ -509,7 +509,10 @@ webform:
     component:
       css/components/webform/webform.css: { }
 
-p--data-circle:
+indicators:
   css:
     component:
-      css/components/paragraph/data-circle/data-circle.css: { }
+      css/components/indicators/indicators.css: { }
+  dependencies:
+    - edwt/collapse
+    - edwt/tab

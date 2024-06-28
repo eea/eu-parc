@@ -239,7 +239,7 @@ class ParcProjectBlock extends BlockBase implements ContainerFactoryPluginInterf
    */
   public function getCacheTags() {
     return Cache::mergeTags(parent::getCacheTags(), [
-      'node_list:projects',
+      'node_list:project',
     ]);
   }
 

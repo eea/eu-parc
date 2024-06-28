@@ -5,9 +5,11 @@ dependencies:
   config:
     - field.field.node.indicator.body
     - field.field.node.indicator.field_data
+    - field.field.node.indicator.field_indicator_type
     - node.type.indicator
   module:
     - entity_reference_revisions
+    - options
     - text
     - user
 id: node.indicator.default
@@ -30,6 +32,13 @@ content:
       link: ''
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_indicator_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
     region: content
   links:
     settings: {  }

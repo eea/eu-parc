@@ -1,0 +1,30 @@
+uuid: 6b1f51c5-03f8-4633-888e-fd577efac877
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_indicator_type
+field_name: field_indicator_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: output
+      label: 'Output indicator'
+    -
+      value: outcome
+      label: 'Outcome indicator'
+    -
+      value: impact
+      label: 'Impact indicator'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

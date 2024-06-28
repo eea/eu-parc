@@ -52,6 +52,19 @@ function parc_core_theme() {
         'items' => [],
       ],
     ],
+    'parc_indicator_groups' => [
+      'variables' => [
+        'groups' => [],
+      ],
+    ],
+    'parc_indicator_group' => [
+      'variables' => [
+        'title' => '',
+        'value' => '',
+        'elements' => [],
+        'color' => NULL,
+      ],
+    ],
   ];
 }
 
@@ -63,7 +76,6 @@ function parc_core_preprocess_page(&$variables) {
   if ($node instanceof Node) {
     $variables['#attached']['library'][] = 'parc_core/ajax_links';
   }
-
 }
 
 /**
@@ -613,4 +625,52 @@ function parc_core_node_presave(NodeInterface $node) {
 function parc_core_field_widget_complete_tablefield_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, $context) {
   $field_widget_complete_form['widget'][0]['caption']['#access'] = FALSE;
   $field_widget_complete_form['widget'][0]['#description'] = NULL;
+}
+
+function template_preprocess_parc_indicator_groups(array &$variables) {
+  $start_alpha = 0;
+  $colors = [
+    'output' => '#E45C4D',
+    'outcome' => '#008475',
+    'impact' => '#8631A7',
+  ];
+
+  foreach ($variables['groups'] as $type => &$group) {
+    $elements = [];
+
+    $radius = 180;
+    $value = max(1, count($group['items']));
+    $split = 360 / $value;
+    for ($i = 0; $i < $value; $i++) {
+      $alpha = $split * $i + $start_alpha;
+      $rad_alpha = deg2rad($alpha);
+      $x = $radius * cos($rad_alpha) + $radius;
+      $y = $radius * sin($rad_alpha) + $radius;
+
+      $end_alpha = $split * ($i + 1) + $start_alpha;
+      $delta = $end_alpha - $alpha - min($split, 12);
+      if ($value == 1) {
+        $delta = 360;
+      }
+
+      $element = [
+        'x' => $x,
+        'y' => $y,
+        'rotation' => -$alpha + $delta,
+        'delta' => $delta,
+      ];
+
+      $elements[] = $element;
+    }
+
+    $group['render'] = [
+      '#theme' => 'parc_indicator_group',
+      '#title' => $group['label'],
+      '#value' => count($group['items']),
+      '#elements' => $elements,
+      '#color' => $colors[$type],
+    ];
+
+    $group['color'] = $colors[$type];
+  }
 }

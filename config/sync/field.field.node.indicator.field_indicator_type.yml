@@ -1,0 +1,21 @@
+uuid: 1c466f8e-a409-481e-96b2-457daea747b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_indicator_type
+    - node.type.indicator
+  module:
+    - options
+id: node.indicator.field_indicator_type
+field_name: field_indicator_type
+entity_type: node
+bundle: indicator
+label: 'Indicator type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
