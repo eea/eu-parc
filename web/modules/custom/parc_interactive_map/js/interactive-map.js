@@ -187,41 +187,23 @@
             source: new ol.source.OSM(),
           });
 
-          const key = settings.parc_interactive_map.map_api_key;
-          let maptilerSrc;
+          let mapBasemapSrc;
 
           try {
-            maptilerSrc = new ol.source.TileJSON({
-              url: `https://api.maptiler.com/maps/dataviz-light/tiles.json?key=${key}`, // source URL
-              tileSize: 512,
-              crossOrigin: "anonymous",
-            });
-            // Trigger a request to check if the API key is valid
-            fetch(maptilerSrc.getUrls()[0]).then(response => {
-              if (!response.ok) {
-                if (response.status === 403) {
-                  throw new Error("MapTiler request limit exceeded (403 Forbidden).");
-                } else {
-                  throw new Error(`MapTiler request failed with status ${response.status}.`);
-                }
-              }
-            }).catch(error => {
-              console.warn(error.message);
-              maptilerSrc = new ol.source.XYZ({
-                url: 'https://gisco-services.ec.europa.eu/maps/tiles/OSMPositronComposite/EPSG3857/{z}/{x}/{y}.png',
-                crossOrigin: 'anonymous'
-              }); // fallback to OSMPositronComposite
-            });
-          } catch (error) {
-            console.warn(error.message);
-            maptilerSrc = new ol.source.XYZ({
+            mapBasemapSrc = new ol.source.XYZ({
               url: 'https://gisco-services.ec.europa.eu/maps/tiles/OSMPositronComposite/EPSG3857/{z}/{x}/{y}.png',
               crossOrigin: 'anonymous'
-            }); // fallback to OSMPositronComposite
+            }); // set primary to OSMPositronComposite
+          } catch (error) {
+            console.warn(error.message);
+            mapBasemapSrc = new ol.source.XYZ({
+              url: 'https://gisco-services.ec.europa.eu/maps/tiles/OSMBlossomComposite/EPSG3857/{z}/{x}/{y}.png',
+              crossOrigin: 'anonymous'
+            }); // fallback to OSMBlossomComposite
           }
 
-          const maptilerBkg = new ol.layer.Tile({
-            source: maptilerSrc,
+          const mapBkg = new ol.layer.Tile({
+            source: mapBasemapSrc,
           });
 
           let highlightSource = new ol.source.Vector();
@@ -271,7 +253,7 @@
 
           const map = new ol.Map({
             target: $(this).attr("id"),
-            layers: [maptilerBkg, clusters, highlightLayer],
+            layers: [mapBkg, clusters, highlightLayer],
             view: new ol.View({
               center: [0, 0],
               zoom: 2,
