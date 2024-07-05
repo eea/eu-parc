@@ -40,13 +40,9 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode = NULL) {
+    /** @var \Drupal\paragraphs\ParagraphInterface $parent */
     $parent = $items->getParent()->getEntity();
     $indicator_type = $parent->get('field_indicator_type')->value;
-    $table_data = $this->getTableData($items);
-
-    if (empty($table_data)) {
-      return [];
-    }
 
     try {
       /** @var \Drupal\parc_core\IndicatorChartInterface $plugin */
@@ -56,7 +52,28 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       return [];
     }
 
-    return [$plugin->render($table_data)];
+    $table_data = $this->getTableData($items);
+    $chart_data = $plugin->getChartData($table_data);
+    $chart_type = $plugin->getChartType();
+
+    if (empty($table_data)) {
+      return [];
+    }
+
+    return [
+      '#theme' => 'parc_indicator_chart',
+      '#chart_type' => $chart_type,
+      '#id' => $parent->id(),
+      '#attached' => [
+        'drupalSettings' => [
+          'parc_core' => [
+            'indicator_data' => [
+              $parent->id() => $chart_data,
+            ],
+          ],
+        ],
+      ],
+    ];
   }
 
   /**
@@ -73,9 +90,6 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
 
     foreach ($items as $delta => $table) {
       $table_data = $table->value;
-      // Remove the table header.
-      unset($table_data[0]);
-
       foreach ($table_data as $idx => &$row) {
         // Remove other properties.
         if (!is_array($row)) {

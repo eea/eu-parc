@@ -65,6 +65,12 @@ function parc_core_theme() {
         'color' => NULL,
       ],
     ],
+    'parc_indicator_chart' => [
+      'variables' => [
+        'id' => '',
+        'chart_type' => '',
+      ],
+    ],
   ];
 }
 

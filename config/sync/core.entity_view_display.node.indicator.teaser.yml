@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.indicator.field_indicator_type
     - node.type.indicator
   module:
+    - entity_reference_revisions
     - options
     - text
     - user
@@ -24,6 +25,15 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_data:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_indicator_type:
     type: list_default
     label: hidden
@@ -38,5 +48,4 @@ content:
     region: content
 hidden:
   addtoany: true
-  field_data: true
   search_api_excerpt: true
