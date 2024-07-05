@@ -42,7 +42,10 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
   public function viewElements(FieldItemListInterface $items, $langcode = NULL) {
     /** @var \Drupal\paragraphs\ParagraphInterface $parent */
     $parent = $items->getParent()->getEntity();
-    $indicator_type = $parent->get('field_indicator_type')->value;
+    if (!$parent->hasField('field_indicator_id')) {
+      return [];
+    }
+    $indicator_type = $parent->get('field_indicator_id')->value;
 
     try {
       /** @var \Drupal\parc_core\IndicatorChartInterface $plugin */

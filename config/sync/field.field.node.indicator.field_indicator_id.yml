@@ -1,0 +1,21 @@
+uuid: a9572d1b-5b8d-40d0-841d-59fd28ee0078
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_indicator_id
+    - node.type.indicator
+  module:
+    - options
+id: node.indicator.field_indicator_id
+field_name: field_indicator_id
+entity_type: node
+bundle: indicator
+label: 'Indicator ID'
+description: 'Used to decide how to display the indicator chart'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

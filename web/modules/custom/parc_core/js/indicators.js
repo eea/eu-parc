@@ -41,7 +41,7 @@
         };
 
         const margin = { top: 20, right: 20, bottom: 20, left: 20 },
-          width = 1130 - margin.left - margin.right,
+          width = 1250 - margin.left - margin.right,
           height = 800 - margin.top - margin.bottom;
 
         const svg = d3
@@ -181,10 +181,11 @@
         // Extract unique years from the data
         const years = [...new Set(data.flatMap(d => Object.keys(d.data)))];
         const yearCount = years.length;
+        const barsCount = yearCount * data.length;
 
         const margin = { top: 20, right: 30, bottom: 40, left: 150 },
-          width = 1130 - margin.left - margin.right,
-          height = 500 - margin.top - margin.bottom;
+          width = 1250 - margin.left - margin.right,
+          height = 150 + barsCount * 20 - margin.top - margin.bottom;
 
         const svg = d3
         .select("#" + wrapperId)
@@ -205,7 +206,7 @@
         .domain([
           0,
           d3.max(data, (d) => {
-            return d3.max(Object.values(d.data), d => +d)
+            return d3.max(Object.values(d.data), d => +d) * 1.1
           })
         ])
         .nice()
@@ -298,43 +299,14 @@
       }
 
       function buildVerticalBarChart(wrapperId, chartData) {
-        const data = [
-          { category: "Sweden", data: { "2022": 52, "2023": 8 } },
-          { category: "France", data: { "2022": 45, "2023": 5 } },
-          { category: "Spain", data: { "2022": 40, "2023": 4 } },
-          { category: "Germany", data: { "2022": 35, "2023": 5 } },
-          { category: "Belgium", data: { "2022": 30, "2023": 5 } },
-          { category: "Cyprus", data: { "2022": 25, "2023": 5 } },
-          { category: "Finland", data: { "2022": 20, "2023": 4 } },
-          { category: "Slovenia", data: { "2022": 15, "2023": 5 } },
-          { category: "Austria", data: { "2022": 10, "2023": 5 } },
-          { category: "Estonia", data: { "2022": 10, "2023": 5 } },
-          { category: "Czech Republic", data: { "2022": 8, "2023": 2 } },
-          { category: "Switzerland", data: { "2022": 8, "2023": 2 } },
-          { category: "Greece", data: { "2022": 6, "2023": 1 } },
-          { category: "United Kingdom", data: { "2022": 5, "2023": 2 } },
-          { category: "Luxembourg", data: { "2022": 5, "2023": 1 } },
-          { category: "Portugal", data: { "2022": 4, "2023": 1 } },
-          { category: "Latvia", data: { "2022": 4, "2023": 1 } },
-          { category: "Netherlands", data: { "2022": 3, "2023": 1 } },
-          { category: "Denmark", data: { "2022": 2, "2023": 1 } },
-          { category: "Norway", data: { "2022": 2, "2023": 1 } },
-          { category: "Slovakia", data: { "2022": 2, "2023": 1 } },
-          { category: "Croatia", data: { "2022": 1, "2023": 1 } },
-          { category: "Hungary", data: { "2022": 1, "2023": 1 } },
-          { category: "Iceland", data: { "2022": 1, "2023": 0 } },
-          { category: "Lithuania", data: { "2022": 1, "2023": 0 } },
-          { category: "Israel", data: { "2022": 1, "2023": 0 } },
-          { category: "Poland", data: { "2022": 1, "2023": 0 } },
-          { category: "Ireland", data: { "2022": 1, "2023": 0 } },
-        ];
+        const data = chartData.chart;
 
         // Extract unique years from the data
-        const years = [...new Set(data.flatMap(d => Object.keys(d.data)))];
+        let years = [...new Set(data.flatMap(d => Object.keys(d.data)))];
         const yearCount = years.length;
 
-        const margin = { top: 20, right: 30, bottom: 40, left: 50 },
-          width = 1130 - margin.left - margin.right,
+        const margin = { top: 20, right: 30, bottom: 90, left: 50 },
+          width = 1250 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
         const svg = d3
@@ -375,15 +347,15 @@
         .attr("transform", (d) => `translate(${x0(d.category)},0)`)
         .selectAll("rect")
         .data((d) =>
-          Object.keys(d.data).map((key) => ({ key: key, value: d.data[key] }))
+          Object.keys(d.data).map((key) => ({ key: key, value: d.data[key] })).reverse()
         )
         .enter()
         .append("rect")
-        .attr("x", (d) => x1(d.key) / 2)
+        .attr("x", (d) => x1(0))
         .attr("y", (d) => y(d.value))
-        .attr("width", x0.bandwidth())
+        .attr("width", Math.min(x0.bandwidth(), 30))
         .attr("height", (d) => height - y(d.value))
-        .attr("class", (d, index) => `bar${index}`)
+        .attr("class", (d, index) => `bar${yearCount - index - 1}`)
         .attr("rx", 10) // Rounded corners
         .attr("ry", 10); // Rounded corners
 
@@ -405,7 +377,7 @@
         .attr("x", 0 - height / 2)
         .attr("dy", "1em")
         .style("text-anchor", "middle")
-        .text(chartData.label_x);
+        .text(chartData.label_y);
 
         svg
         .append("text")
@@ -453,42 +425,26 @@
       }
 
       function buildRadialChart(wrapperId, chartData) {
-        // const data = chartData.chart;
-
-        const data = [
-          { category: "Beneficiaries and Affiliated Entities", data: { "2022": 100, "2023": 0 } },
-          { category: "Governing Board member organisations", data: { "2022": 91, "2023": 96 } },
-          { category: "Other scientists", data: { "2022": 64, "2023": 68 } },
-          { category: "Other policy makers", data: { "2022": 45, "2023": 64 } },
-          { category: "Other regulators", data: { "2022": 59, "2023": 64 } },
-          { category: "Representatives from industry", data: { "2022": 27, "2023": 36 } },
-          { category: "Consumer associations", data: { "2022": 5, "2023": 24 } },
-          { category: "Trade Unions", data: { "2022": 0, "2023": 12 } },
-          { category: "Other NGO's", data: { "2022": 27, "2023": 40 } },
-          { category: "Other stakeholders", data: { "2022": 14, "2023": 24 } },
-        ];
-        const width = 200;
-        const height = 200;
-        const innerRadius = 50;
-        const outerRadius = Math.min(width, height) / 2 - 10;
-
-        const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
-
-        const pie = d3.pie().sort(null).value(d => d.value);
+        const data = chartData.chart;
+        const width = 250;
+        const height = 250;
+        const innerRadius = 60;
+        const outerRadius = Math.min(width, height) / 2 - 35;
+        const numLines = 100;
 
         // Extract unique years from the data
         let years = [...new Set(data.flatMap(d => Object.keys(d.data)))];
         years = years.reverse();
-        const yearCount = years.length;
 
         // Colors for the years
         const colors = {
-          "2022": "#f1c40f",
-          "2023": "#8e44ad",
-          "2024": "#06bcde",
-          "2025": "#07e80a",
-          "2026": "#ff1e1e",
-          "2027": "#8e44ad"
+          "2022": "#017365",
+          "2023": "#E4798B",
+          "2024": "#1879EB",
+          "2025": "#2DC9B6",
+          "2026": "#C0A456",
+          "2027": "#7D2D9C",
+          "2028": "#DB5749",
         };
 
         const svg = d3.select("#" + wrapperId)
@@ -502,72 +458,59 @@
         .append("g")
         .attr("transform", `translate(${width / 2},${height / 2})`);
 
-        svg.selectAll("path.background")
-        .data(pie([{ value: 100 }]))
-        .enter()
-        .append("path")
-        .attr("class", "background")
-        .attr("d", arc)
-        .attr("fill", "#e0e0e0");
+        const angle = 2 * Math.PI / numLines;
 
-        years.forEach(year => {
-          svg.selectAll(`path.value${year}`)
-          .data(d => pie([{ value: d.data[year] }, { value: 100 - d.data[year] }]))
-          .enter()
-          .append("path")
-          .attr("class", `value${year}`)
-          .attr("d", arc)
-          .attr("fill", (d, i) => i === 0 ? colors[year] : "none");
+        // Generate lines
+        svg.each(function(d) {
+          const g = d3.select(this);
+          for (let i = 0; i < numLines; i++) {
+            g.append("line")
+            .attr("class", "line")
+            .attr("x1", innerRadius * Math.cos(angle * i))
+            .attr("y1", innerRadius * Math.sin(angle * i))
+            .attr("x2", outerRadius * Math.cos(angle * i))
+            .attr("y2", outerRadius * Math.sin(angle * i))
+            .attr("stroke", '#E9E9E9')
+            ;
+          }
+        });
+
+        // Color the lines based on values and add labels
+        svg.each(function(d) {
+          years.forEach((year, index) => {
+            const linesToColor = Math.round((d.data[year] / 100) * numLines);
+            for (let j = 0; j < linesToColor; j++) {
+              d3.select(this).append("line")
+              .attr("class", `line colored value${year}`)
+              .attr("x1", innerRadius * Math.cos(angle * j))
+              .attr("y1", innerRadius * Math.sin(angle * j))
+              .attr("x2", outerRadius * Math.cos(angle * j))
+              .attr("y2", outerRadius * Math.sin(angle * j))
+              .attr("stroke", colors[year]);
+            }
+
+            // Add value label
+            const midAngle = angle * (linesToColor);
+            const labelX = (outerRadius + 18) * Math.cos(midAngle);
+            const labelY = (outerRadius + 18) * Math.sin(midAngle);
+            d3.select(this).append("text")
+            .attr("class", `label-${year}`)
+            .attr("x", labelX)
+            .attr("y", labelY)
+            .attr("dy", "0.35em")
+            .text(`${d.data[year]}%`)
+            .attr("fill", colors[year])
+            .style("font-size", "12px")
+            .attr("text-anchor", midAngle > Math.PI ? "end" : "start");
+          });
         });
 
         svg.append("text")
         .attr("class", "category-label")
-        .attr("dy", "0.35em")
         .text(d => d.category)
         .attr("fill", "black")
         .style("font-size", "12px")
         .attr("text-anchor", "middle");
-
-        const labelArc = d3.arc().innerRadius(outerRadius + 10).outerRadius(outerRadius + 10);
-
-        years.forEach(year => {
-          svg.append("text")
-          .attr("class", `label-${year}`)
-          .attr("transform", d => `translate(${labelArc.centroid({
-            startAngle: (d.data[year] / 100) * 2 * Math.PI,
-            endAngle: (d.data[year] / 100) * 2 * Math.PI,
-          })})`)
-          .attr("dy", "0.35em")
-          .text(d => `${d.data[year]}%`)
-          .attr("fill", colors[year])
-          .style("font-size", "12px")
-          .attr("text-anchor", "middle");
-        });
-
-        function wrap(text, width) {
-          text.each(function () {
-            const text = d3.select(this),
-              words = text.text().split(/\s+/).reverse(),
-              lineHeight = 1.1, // ems
-              y = text.attr("y"),
-              dy = parseFloat(text.attr("dy")),
-              tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-            let line = [],
-              lineNumber = 0,
-              word,
-              tspanNode = tspan.node();
-            while ((word = words.pop())) {
-              line.push(word);
-              tspan.text(line.join(" "));
-              if (tspanNode.getComputedTextLength() > width) {
-                line.pop();
-                tspan.text(line.join(" "));
-                line = [word];
-                tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-              }
-            }
-          });
-        }
 
         const legend = d3.select("#" + wrapperId)
         .append("div")
@@ -576,12 +519,11 @@
         .data(years.map(year => ({ year, color: colors[year] })))
         .enter()
         .append("div")
-        .on("click", function (event, d) {
+        .on("click", function(event, d) {
           const active = d3.select(this).classed("active");
           d3.select(this).classed("active", !active);
           const opacity = active ? 1 : 0;
-          d3.selectAll(`path.value${d.year}`).transition().style("opacity", opacity);
-          d3.selectAll(`text.label-${d.year}`).transition().style("opacity", opacity);
+          d3.selectAll(`.line.value${d.year}`).transition().style("opacity", opacity);
         });
 
         legend.append("span")
@@ -592,7 +534,37 @@
         .attr("class", "legend-text")
         .text(d => d.year);
 
-        d3.selectAll(".category-label").call(wrap, width - 20);
+        d3.selectAll(".category-label").call(wrap, innerRadius + 20);
+
+        function wrap(text, width) {
+          text.each(function() {
+            let text = d3.select(this),
+              words = text.text().split(/\s+/).reverse(),
+              lineHeight = 1.1, // ems
+              y = text.attr("y"),
+              dy = parseFloat(text.attr("dy")),
+              tspan = text.text(null).append("tspan").attr("x", 0).attr("y", 0).attr("dy", 0 + "em"),
+              firstTspan = tspan;
+            let line = [],
+              lineNumber = 0,
+              word,
+              tspanNode = tspan.node();
+            while ((word = words.pop())) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              tspanNode = tspan.node();
+              if (tspanNode.getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", 0).attr("dy", lineHeight + "em").text(word);
+                lineNumber++;
+              }
+            }
+            text.attr("x", 0).attr("y", -lineNumber * lineHeight / 2 + "em");
+            firstTspan.attr("dy", -(lineNumber - 1) * lineHeight / 2 + "em");
+          });
+        }
       }
     }
   }

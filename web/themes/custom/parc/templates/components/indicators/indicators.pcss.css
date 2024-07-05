@@ -1,15 +1,46 @@
 .block-parc-indicators {
   .nav-tabs {
+    margin-top: 20px;
     border: none;
     padding: 0 !important;
-    margin-bottom: 70px;
+  }
+
+  .tab-content:not(:last-child) {
+    margin-bottom: 60px;
+  }
+
+  .nav-item {
+    flex: 1 0 auto;
+    text-align: center;
   }
 
   .nav {
     display: flex;
-    gap: 10px;
     justify-content: center;
     padding: 80px 50px;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
+
+    .nav-link {
+      border: 1px solid #fff !important;
+      border-bottom: none !important;
+      width: 100%;
+      background-color: #EEEBEB;
+      color: #999898;
+      padding-top: 26px;
+      padding-bottom: 26px;
+      text-decoration: none !important;
+      font-size: 20px;
+      font-weight: 500;
+      border-radius: 8px 8px 0 0;
+
+      &.active, &:hover {
+        background-color: #F5F5F5;
+        color: #000;
+      }
+    }
 
     > div {
       flex: 1;
@@ -22,39 +53,6 @@
     height: 360px;
   }
 
-  .nav-link {
-    border: none !important;
-
-    &:not(.active) {
-      svg * {
-        stroke: #D9D9D9 !important;
-      }
-    }
-
-    &:hover {
-      svg * {
-        stroke: var(--indicator-color) !important;
-      }
-    }
-  }
-
-  .accordion-button {
-    border: none;
-    background-color: #F5F5F5;
-    width: 100%;
-    text-align: left;
-    padding: 50px 35px;
-    border-radius: 8px;
-
-    &[aria-expanded="true"] {
-      border-radius: 8px 8px 0 0;
-    }
-
-    &[aria-expanded="false"]:hover {
-      background-color: #E9E9E9;
-    }
-  }
-
   .field--name-field-indicator-type {
     color: #000000;
     font-size: 18px;
@@ -62,19 +60,9 @@
     margin-bottom: 20px;
   }
 
-  .title {
-    font-size: 44px;
-    font-weight: bold;
-    color: var(--indicator-color);
-  }
-
-  .accordion-collapse {
+  .tab-content {
     background-color: #F5F5F5;
-    padding: 0 35px 50px 35px;
-  }
-
-  .indicator {
-    margin-bottom: 15px;
+    padding: 40px;
   }
 }
 
@@ -117,7 +105,40 @@
   }
 }
 
+.indicator + .indicator {
+  margin-top: 80px;
+}
+
+.indicator {
+  .field--name-body {
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+  }
+}
+
 .indicator-chart {
+  margin-bottom: 10px;
+
+  &[data-chart-type="radial"] {
+    display: flex;
+    flex-wrap: wrap;
+
+    .line {
+      stroke-width: 2px;
+      stroke-linecap: round;
+    }
+  }
+
+  background: #fff;
+  border: 1px solid #999898;
+  padding: 20px;
+
   .text {
     fill: black;
     font-size: 20px;
@@ -163,27 +184,31 @@
   }
 
   .bar0 {
-    fill: #ff6347;
+    fill: #017365;
   }
 
   .bar1 {
-    fill: #40e0d0;
+    fill: #E4798B;
   }
 
   .bar2 {
-    fill: #8d40e0;
+    fill: #1879EB;
   }
 
   .bar3 {
-    fill: #55c50c;
+    fill: #2DC9B6;
   }
 
   .bar4 {
-    fill: #c29a05;
+    fill: #C0A456;
   }
 
   .bar5 {
-    fill: #9b3411;
+    fill: #7D2D9C;
+  }
+
+  .bar6 {
+    fill: #DB5749;
   }
 
   .axis-label {
@@ -196,13 +221,33 @@
   }
 
   .radial-chart {
-    width: 200px;
-    height: 200px;
-    margin: 20px;
+    flex: 1 0 auto;
   }
 
   .radial-chart text {
     font-size: 12px;
     text-anchor: middle;
+  }
+}
+
+.topic-indicators {
+  margin-top: 80px;
+}
+
+.topic-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.topic-subtitle {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.nav-indicator-topics {
+  a {
+    font-size: 24px;
+    font-weight: 500;
   }
 }
