@@ -15,13 +15,23 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Performance of national hubs involving a broad network of stakeholders and engaged collaboration")
  * )
  */
-class Indicator2Sub1 extends IndicatorChartPluginBase {
+class Indicator2Sub1 extends Indicator7Sub2 {
 
   /**
    * {@inheritdoc}
    */
-  public function render(array $rows): array {
-    return [];
+  public function getChartType(): string {
+    return 'vertical_bar';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChartData(array $table_data): array {
+    $data = parent::getChartData($table_data);
+    $data['label_x'] = NULL;
+    $data['label_y'] = $this->t('Number of organisations');
+    return $data;
   }
 
 }

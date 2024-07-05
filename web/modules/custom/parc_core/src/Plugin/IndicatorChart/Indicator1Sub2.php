@@ -15,7 +15,7 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Number and characteristics of PARC partners (by type of organisation)")
  * )
  */
-class Indicator1Sub2 extends IndicatorChartPluginBase {
+class Indicator1Sub2 extends Indicator2Sub2 {
 
   /**
    * {@inheritdoc}

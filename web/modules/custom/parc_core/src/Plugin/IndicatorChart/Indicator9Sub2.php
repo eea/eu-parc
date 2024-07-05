@@ -15,13 +15,15 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Number and characteristics of entities in the risk assessment network catalogue (External)")
  * )
  */
-class Indicator9Sub2 extends IndicatorChartPluginBase {
+class Indicator9Sub2 extends Indicator9Sub1 {
 
   /**
    * {@inheritdoc}
    */
-  public function render(array $rows): array {
-    return [];
+  public function getChartData(array $table_data): array {
+    $data = parent::getChartData($table_data);
+    $data['label_x'] = $this->t('Number of external networks catalogued');
+    return $data;
   }
 
 }

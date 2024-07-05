@@ -15,13 +15,13 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Involvement of different stakeholders in the national hubs")
  * )
  */
-class Indicator2Sub2 extends IndicatorChartPluginBase {
+class Indicator2Sub2 extends Indicator7Sub2 {
 
   /**
    * {@inheritdoc}
    */
-  public function render(array $rows): array {
-    return [];
+  public function getChartType(): string {
+    return 'radial';
   }
 
 }

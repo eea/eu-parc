@@ -15,13 +15,6 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Number and characteristics of projects approved for implementation")
  * )
  */
-class Indicator6Sub1 extends IndicatorChartPluginBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  public function render(array $rows): array {
-    return [];
-  }
+class Indicator6Sub1 extends Indicator2Sub1 {
 
 }

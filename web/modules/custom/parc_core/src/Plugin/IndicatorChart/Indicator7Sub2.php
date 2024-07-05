@@ -20,8 +20,36 @@ class Indicator7Sub2 extends IndicatorChartPluginBase {
   /**
    * {@inheritdoc}
    */
-  public function render(array $rows): array {
-    return [];
+  public function getChartType(): string {
+    return 'horizontal_bar';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getChartData(array $table_data): array {
+    $header = NULL;
+    $chart_data = [];
+    foreach ($table_data as $row) {
+      if (empty($header)) {
+        $header = $row;
+        array_shift($header);
+        continue;
+      }
+
+      $category = array_shift($row);
+      $data = array_combine($header, $row);
+      $chart_data[] = [
+        'data' => $data,
+        'category' => $category,
+      ];
+    }
+
+    return [
+      'chart' => $chart_data,
+      'label_x' => $this->t('Number of External Networks Catalogued'),
+      'label_y' => NULL,
+    ];
   }
 
 }

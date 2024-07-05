@@ -132,4 +132,77 @@
   .legend rect {
     cursor: pointer;
   }
+
+  .legend {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .legend div {
+    margin-left: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+  }
+
+  .legend-text {
+    vertical-align: middle;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .bar0 {
+    fill: #ff6347;
+  }
+
+  .bar1 {
+    fill: #40e0d0;
+  }
+
+  .bar2 {
+    fill: #8d40e0;
+  }
+
+  .bar3 {
+    fill: #55c50c;
+  }
+
+  .bar4 {
+    fill: #c29a05;
+  }
+
+  .bar5 {
+    fill: #9b3411;
+  }
+
+  .axis-label {
+    font-size: 14px;
+  }
+
+  text {
+    font-size: 12px;
+    fill: #333;
+  }
+
+  .radial-chart {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+  }
+
+  .radial-chart text {
+    font-size: 12px;
+    text-anchor: middle;
+  }
 }

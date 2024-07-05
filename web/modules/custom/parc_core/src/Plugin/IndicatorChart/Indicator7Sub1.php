@@ -15,13 +15,6 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Number and characteristics of scientific publications (per month)")
  * )
  */
-class Indicator7Sub1 extends IndicatorChartPluginBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  public function render(array $rows): array {
-    return [];
-  }
+class Indicator7Sub1 extends Indicator6Sub1 {
 
 }
