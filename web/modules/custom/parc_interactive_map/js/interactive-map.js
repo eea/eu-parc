@@ -197,9 +197,9 @@
           } catch (error) {
             console.warn(error.message);
             mapBasemapSrc = new ol.source.XYZ({
-              url: 'https://gisco-services.ec.europa.eu/maps/tiles/OSMBlossomComposite/EPSG3857/{z}/{x}/{y}.png',
+              url: 'https://gisco-services.ec.europa.eu/maps/tiles/OSMPositronBackground/EPSG3857/{z}/{x}/{y}.png',
               crossOrigin: 'anonymous'
-            }); // fallback to OSMBlossomComposite
+            }); // fallback to OSMPositronBackground
           }
 
           const mapBkg = new ol.layer.Tile({
