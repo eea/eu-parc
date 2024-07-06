@@ -1,0 +1,13 @@
+uuid: edb46219-bb89-4b5d-95a4-5e9489b60d15
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_trail_by_path
+third_party_settings:
+  menu_trail_by_path:
+    trail_source: ''
+id: indicator-topics
+label: 'Indicator topics'
+description: ''
+locked: false

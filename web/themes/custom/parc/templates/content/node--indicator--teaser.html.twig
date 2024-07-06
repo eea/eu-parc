@@ -81,16 +81,9 @@
 {{ attach_library('parc/indicators') }}
 
 <div class="indicator">
-  <div class="accordion-header">
-    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#indicator-{{ node.id() }}" aria-expanded="true" aria-controls="indicator-{{ node.id() }}" id="indicator-{{ node.id() }}-title">
-      {{ content.field_indicator_type }}
-      <div class="title">{{ label }}</div>
-    </button>
-  </div>
-  <div id="indicator-{{ node.id() }}" class="accordion-collapse collapse" aria-labelledby="indicator-{{ node.id() }}-title" data-bs-parent="#{{ node.field_indicator_type.value }}">
-    <div class="accordion-body">
-      {{ content.field_data }}
-      {{ content.body }}
-    </div>
+  <div class="title">{{ label }}</div>
+  {{ content.field_indicator_data }}
+  <div class="container px-0">
+    {{ content.body }}
   </div>
 </div>

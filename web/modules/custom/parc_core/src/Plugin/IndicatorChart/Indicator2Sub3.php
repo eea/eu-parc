@@ -15,7 +15,7 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Expertise covered by the national hubs")
  * )
  */
-class Indicator2Sub3 extends IndicatorChartPluginBase {
+class Indicator2Sub3 extends Indicator2Sub2 {
 
   /**
    * {@inheritdoc}

@@ -1,21 +1,21 @@
 {{ attach_library('parc/indicators') }}
 
 <ul class="nav nav-tabs" role="tablist">
-  {% for id, group in groups %}
+  {% for group in groups %}
     <li class="nav-item" role="presentation">
-      <button class="nav-link {% if loop.first %}active{% endif %}" id="{{ id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ id }}" type="button" role="tab" aria-controls="home" aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
-        {{ group.render }}
+      <button class="nav-link {% if loop.first %}active{% endif %}" id="{{ group.id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ group.id }}" type="button" role="tab" aria-controls="home" aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+        {{ group.label }}
       </button>
     </li>
   {% endfor %}
 </ul>
 <div class="tab-content">
-  {% for id, group in groups %}
-    <div style="--indicator-color: {{ group.color }};" class="tab-pane fade {% if loop.first %}show active{% endif %}" id="{{ id }}" role="tabpanel" aria-labelledby="{{ id }}-tab">
+  {% for group in groups %}
+    <div style="--indicator-color: {{ group.color }};" class="tab-pane fade {% if loop.first %}show active{% endif %}" id="{{ group.id }}" role="tabpanel" aria-labelledby="{{ group.id }}-tab">
       {% if group.items %}
-      {% for item in group.items %}
-        {{ item }}
-      {% endfor %}
+        {% for item in group.items %}
+          {{ item }}
+        {% endfor %}
       {% else %}
         <p>{{ "No indicators of this type were added yet." }}</p>
       {% endif %}

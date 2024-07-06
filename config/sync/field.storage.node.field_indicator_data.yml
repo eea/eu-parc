@@ -1,13 +1,13 @@
-uuid: 2e4998af-1c50-44a6-81af-e704724d607f
+uuid: 7d5404b4-2827-4953-a3a3-94c39c991115
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraphs
+    - node
     - tablefield
-id: paragraph.field_indicator_data
+id: node.field_indicator_data
 field_name: field_indicator_data
-entity_type: paragraph
+entity_type: node
 type: tablefield
 settings: {  }
 module: tablefield

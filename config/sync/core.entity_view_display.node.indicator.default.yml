@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - field.field.node.indicator.body
-    - field.field.node.indicator.field_data
+    - field.field.node.indicator.field_indicator_data
+    - field.field.node.indicator.field_indicator_id
+    - field.field.node.indicator.field_indicator_topic
     - field.field.node.indicator.field_indicator_type
     - node.type.indicator
   module:
-    - entity_reference_revisions
     - options
+    - parc_core
     - text
     - user
 id: node.indicator.default
@@ -22,28 +24,41 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 1
     region: content
-  field_data:
-    type: entity_reference_revisions_entity_view
-    label: above
-    settings:
-      view_mode: default
-      link: ''
+  field_indicator_data:
+    type: parc_indicator_chart
+    label: hidden
+    settings: {  }
     third_party_settings: {  }
-    weight: 102
+    weight: 4
+    region: content
+  field_indicator_id:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_indicator_topic:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_indicator_type:
     type: list_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 103
+    weight: 2
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   addtoany: true

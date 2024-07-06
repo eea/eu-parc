@@ -5,11 +5,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.indicator.body
-    - field.field.node.indicator.field_data
+    - field.field.node.indicator.field_indicator_data
+    - field.field.node.indicator.field_indicator_id
+    - field.field.node.indicator.field_indicator_topic
     - field.field.node.indicator.field_indicator_type
     - node.type.indicator
   module:
     - options
+    - parc_core
     - text
     - user
 id: node.indicator.teaser
@@ -23,6 +26,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_indicator_data:
+    type: parc_indicator_chart
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_indicator_type:
     type: list_default
@@ -38,5 +48,6 @@ content:
     region: content
 hidden:
   addtoany: true
-  field_data: true
+  field_indicator_id: true
+  field_indicator_topic: true
   search_api_excerpt: true

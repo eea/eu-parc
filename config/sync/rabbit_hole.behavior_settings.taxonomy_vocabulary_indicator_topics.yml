@@ -1,0 +1,14 @@
+uuid: 1b603049-d39b-4462-a57b-1d7c1e03c13c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.indicator_topics
+id: taxonomy_vocabulary_indicator_topics
+entity_type_id: taxonomy_vocabulary
+entity_id: indicator_topics
+action: display_page
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied
