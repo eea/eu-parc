@@ -7,12 +7,12 @@ dependencies:
 id: indicator_tipics
 label: 'Indicator tipics'
 type: 'canonical_entities:taxonomy_term'
-pattern: '/indicator/[term:name]'
+pattern: '/indicators/[term:name]'
 selection_criteria:
-  5ac43e45-f442-4190-9b07-895d6a863188:
+  7331c395-6d47-4253-b505-e38dc023d1ed:
     id: 'entity_bundle:taxonomy_term'
     negate: false
-    uuid: 5ac43e45-f442-4190-9b07-895d6a863188
+    uuid: 7331c395-6d47-4253-b505-e38dc023d1ed
     context_mapping:
       taxonomy_term: taxonomy_term
     bundles:
