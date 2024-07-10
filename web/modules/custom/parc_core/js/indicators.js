@@ -21,11 +21,182 @@
           'horizontal_bar': buildHorizontalBarChart,
           'vertical_bar': buildVerticalBarChart,
           'radial': buildRadialChart,
+          'pie': buildPieChart,
         };
 
         const buildFunction = buildFunctions[chartType];
         buildFunction(wrapperId, chartData);
       }
+
+      function buildPieChart(wrapperId, chartData) {
+        const data = chartData.chart["2022"]; // Extract data for the year 2022
+
+        // Dimensions and margins
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+        const width = 600 - margin.left - margin.right;
+        const height = 600 - margin.top - margin.bottom;
+        const radius = Math.min(width, height) / 2-80;
+
+        // Color scale
+        const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        // Create SVG element
+        const svg = d3
+          .select(`#${wrapperId}`)
+          .append("svg")
+          .attr("width", '100%')
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${ width },${height / 2 + margin.top})`); // Adjusted for margins
+
+        // Prepare data for pie layout
+        const pie = d3.pie()
+          .value(d => d.value)
+          .sort(null);
+
+        const pieData = pie(Object.entries(data).map(([key, value]) => ({
+          category: key,
+          value: value
+        })));
+
+        // Calculate line lengths and angles
+        const lineLength = 40; // Length of each line
+
+        // Draw lines for each pie segment and add labels
+        pieData.forEach((slice, i) => {
+          const numLines = slice.data.value; // Number of lines for this segment
+          const angleStep = (slice.endAngle - slice.startAngle) / numLines;
+
+          for (let j = 0; j < numLines; j++) {
+            const angle = slice.startAngle + j * angleStep;
+            const x1 = 0; // Start at center of the circle
+            const y1 = 0; // Start at center of the circle
+            const x2 = Math.cos(angle) * radius;
+            const y2 = Math.sin(angle) * radius;
+            outerRadius = radius*1.2;
+
+            // Draw line
+            svg.append("line")
+              .attr("x1", x1)
+              .attr("y1", y1)
+              .attr("x2", x2)
+              .attr("y2", y2)
+              .attr("stroke", color(i))
+              .attr("stroke-width", 2);
+
+            // Add label at the end of the first line in each category
+            // svg.append("text")
+
+            if (j === 0) {
+              const angleInDegrees = angle * (180 / Math.PI); // Convert angle to degrees
+              const x = outerRadius * Math.cos(angle);
+              const y = outerRadius * Math.sin(angle);
+              rotationAngle=angleInDegrees;
+              if (angle > Math.PI) {
+                rotationAngle += 180; // Rotate by 180 degrees for second half of the circle (right side)
+              } else {
+                rotationAngle -= 180; // Rotate by -180 degrees for first half of the circle (left side)
+              }
+
+              const label = svg.append("text")
+                .attr("transform", `translate(${x}, ${y}) rotate(${rotationAngle})`)
+                .attr("dy", "0.35em")
+                .style("fill", color(i))
+                .text(`${slice.data.value} projects, ${slice.data.category}`) // Display number of projects and category name
+                .attr("text-anchor", angle > Math.PI ? "end" : "start");
+
+              // Wrap the label text
+              wrap(label, 200); // Adjust the width parameter as needed
+              if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
+                label.attr("transform", `translate(${x}, ${y}) rotate(${0})`)
+                  .attr("text-anchor", "end");
+              } else {
+                label.attr("transform", `translate(${x}, ${y}) rotate(${360})`)
+                  .attr("text-anchor", "start");
+              }
+
+            }
+          }
+        });
+
+        // Add title
+        svg.append("text")
+          .attr("x", 0)
+          .attr("y", -height / 2 + 20)
+          .attr("text-anchor", "middle")
+          .style("font-size", "18px")
+          .text("Organizations' Focus Areas in 2022");
+
+        // Adding the chart's title and additional information
+        svg.append("text")
+          .attr("x", 0)
+          .attr("y", height / 2 + 40)
+          .attr("text-anchor", "middle")
+          .text(`Number of organizations`)
+          .style("font-size", "12px")
+          .attr("fill", "gray");
+
+        // Add legend
+        // const legend = svg.selectAll(".legend")
+        //   .data(Object.keys(data))
+        //   .enter()
+        //   .append("g")
+        //   .attr("class", "legend")
+        //   .attr("transform", (d, i) => `translate(0,${i * 20})`);
+        //
+        // legend.append("rect")
+        //   .attr("x", width - 18)
+        //   .attr("width", 18)
+        //   .attr("height", 18)
+        //   .attr("fill", (d, i) => color(i));
+        //
+        // legend.append("text")
+        //   .attr("x", width - 24)
+        //   .attr("y", 9)
+        //   .attr("dy", ".35em")
+        //   .style("text-anchor", "end")
+        //   .text(d => `${data[d]} projects, ${d}`); // Display number of projects and category name in legend
+      }
+
+// Function to wrap text within a specified width using <tspan>
+      function wrap(text, width) {
+        text.each(function () {
+          let text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            lineHeight = 1.1, // ems
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", 0).attr("dy", 0 + "em"),
+            firstTspan = tspan;
+          let line = [],
+            lineNumber = 0,
+            word,
+            tspanNode = tspan.node();
+          while ((word = words.pop())) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            tspanNode = tspan.node();
+            if (tspanNode.getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(" "));
+              line = [word];
+              tspan = text.append("tspan").attr("x", 0).attr("dy", lineHeight + "em").text(word);
+              lineNumber++;
+            }
+          }
+          text.attr("x", 0).attr("y", -lineNumber * lineHeight / 2 + "em");
+          firstTspan.attr("dy", -(lineNumber - 1) * lineHeight / 2 + "em");
+        });
+      }
+
+
+
+
+
+
+
+
+
 
       function buildMapChart(wrapperId, chartData) {
         const data = chartData.chart;
