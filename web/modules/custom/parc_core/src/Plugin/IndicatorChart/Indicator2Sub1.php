@@ -29,11 +29,14 @@ class Indicator2Sub1 extends Indicator7Sub2 {
    */
   public function getChartData(array $table_data): array {
     $data = parent::getChartData($table_data);
-    usort($data['chart'], function ($a, $b) {
-      $last_value_a = end($a['data']);
-      $last_value_b = end($b['data']);
-      return $last_value_b - $last_value_a;
-    });
+    $years = array_keys($data['chart']);
+    $last_year = end($years);
+    arsort($data['chart'][$last_year]);
+    $order = array_keys($data['chart'][$last_year]);
+    foreach ($data['chart'] as &$year_data) {
+      $year_data = array_merge(array_flip($order), $year_data);
+    }
+
     $data['label_x'] = NULL;
     $data['label_y'] = $this->t('Number of organisations');
     return $data;

@@ -30,6 +30,7 @@ class Indicator7Sub2 extends IndicatorChartPluginBase {
   public function getChartData(array $table_data): array {
     $header = NULL;
     $chart_data = [];
+    $table_data = $this->transposeArray($table_data);
     foreach ($table_data as $row) {
       if (empty($header)) {
         $header = $row;
@@ -37,12 +38,9 @@ class Indicator7Sub2 extends IndicatorChartPluginBase {
         continue;
       }
 
-      $category = array_shift($row);
+      $year = array_shift($row);
       $data = array_combine($header, $row);
-      $chart_data[] = [
-        'data' => $data,
-        'category' => $category,
-      ];
+      $chart_data[$year] = $data;
     }
 
     return [
@@ -50,6 +48,19 @@ class Indicator7Sub2 extends IndicatorChartPluginBase {
       'label_x' => $this->t('Number of External Networks Catalogued'),
       'label_y' => NULL,
     ];
+  }
+
+  /**
+   * Transpose array.
+   *
+   * @param array $data
+   *   The array.
+   *
+   * @return array
+   *   The transposed array.
+   */
+  protected function transposeArray(array $data) {
+    return array_map(NULL, ...$data);
   }
 
 }

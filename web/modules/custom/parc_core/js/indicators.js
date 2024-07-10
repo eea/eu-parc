@@ -15,7 +15,6 @@
       });
 
       function buildIndicatorChart(wrapper, chartType, chartData) {
-        const data = chartData.chart;
         const wrapperId = wrapper.attr('id');
         const buildFunctions = {
           'map': buildMapChart,
@@ -178,250 +177,268 @@
       function buildHorizontalBarChart(wrapperId, chartData) {
         const data = chartData.chart;
 
-        // Extract unique years from the data
-        const years = [...new Set(data.flatMap(d => Object.keys(d.data)))];
-        const yearCount = years.length;
-        const barsCount = yearCount * data.length;
+        // Extract unique years and categories from the new data structure
+        const years = Object.keys(data);
+        const categories = [...new Set(Object.values(data).flatMap(Object.keys))];
+        const latestYear = years[years.length - 1];
 
         const margin = { top: 20, right: 30, bottom: 40, left: 150 },
           width = 1250 - margin.left - margin.right,
-          height = 150 + barsCount * 20 - margin.top - margin.bottom;
+          height = 200 + categories.length * 20 - margin.top - margin.bottom,
+          maxWidth = 25; // Set your maximum bar width here
 
         const svg = d3
-        .select("#" + wrapperId)
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+          .select("#" + wrapperId)
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
 
         const y = d3
-        .scaleBand()
-        .domain(data.map((d) => d.category))
-        .range([0, height])
-        .padding(0.2);
+          .scaleBand()
+          .domain(categories)
+          .range([0, height])
+          .padding(0.2);
 
         const x = d3
-        .scaleLinear()
-        .domain([
-          0,
-          d3.max(data, (d) => {
-            return d3.max(Object.values(d.data), d => +d) * 1.1
-          })
-        ])
-        .nice()
-        .range([0, width]);
+          .scaleLinear()
+          .domain([
+            0,
+            d3.max(Object.values(data), (yearData) =>
+              d3.max(Object.values(yearData), (value) => +value) * 1.1
+            ),
+          ])
+          .nice()
+          .range([0, width]);
 
-        const bars = svg
-        .append("g")
-        .selectAll("g")
-        .data(data)
-        .enter()
-        .append("g")
-        .attr("transform", (d) => `translate(0,${y(d.category)})`)
-        .selectAll("rect")
-        .data((d) =>
-          Object.keys(d.data).map((key) => ({ key: key, value: d.data[key] }))
-        )
-        .enter()
-        .append("rect")
-        .attr(
-          "y",
-          (d, index) => y.bandwidth() * index / yearCount
-        )
-        .attr("x", 0)
-        .attr("width", (d) => x(d.value))
-        .attr("height", y.bandwidth() / yearCount)
-        .attr("class", (d, index) => `bar${index}`)
-        .attr("rx", 10) // Rounded corners
-        .attr("ry", 10); // Rounded corners
+        // Function to update the chart based on the selected year
+        function updateChart(selectedYear) {
+          const bars = svg
+            .selectAll(".bar-group")
+            .data(categories);
+
+          const barsEnter = bars
+            .enter()
+            .append("g")
+            .attr("class", "bar-group")
+            .attr("transform", (d) => `translate(0,${y(d)})`);
+
+          barsEnter.merge(bars)
+            .selectAll("rect")
+            .data((category) => [{
+              year: selectedYear,
+              value: data[selectedYear][category] || 0,
+            }])
+            .join("rect")
+            .attr("y", 0) // Reset y position to 0
+            .attr("x", 0)
+            .attr("width", (d) => x(d.value))
+            .attr("height", Math.min(y.bandwidth(), maxWidth)) // Set the height of the full band
+            .attr("class", (d) => `bar${years.indexOf(d.year)}`)
+            .attr("rx", 10) // Rounded corners
+            .attr("ry", 10) // Rounded corners
+            .attr("transform", function(d) {
+              const barWidth = Math.min(y.bandwidth(), maxWidth);
+              return `translate(0, ${(y.bandwidth() - barWidth) / 2})`; // Center the bar within its group
+            });
+
+          bars.exit().remove();
+        }
+
+        updateChart(latestYear);
 
         svg.append("g").call(d3.axisLeft(y));
 
         svg
-        .append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x));
+          .append("g")
+          .attr("transform", `translate(0,${height})`)
+          .call(d3.axisBottom(x));
 
         svg
-        .append("text")
-        .attr("class", "axis-label")
-        .attr("transform", `translate(${width / 2} ,${height + margin.top + 20})`)
-        .style("text-anchor", "middle")
-        .text(chartData.label_x);
+          .append("text")
+          .attr("class", "axis-label")
+          .attr("transform", `translate(${width / 2} ,${height + margin.top + 20})`)
+          .style("text-anchor", "middle")
+          .text(chartData.label_x);
 
         svg
-        .append("text")
-        .attr("class", "axis-label")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x", 0 - height / 2)
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text(chartData.label_y);
+          .append("text")
+          .attr("class", "axis-label")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 0 - margin.left)
+          .attr("x", 0 - height / 2)
+          .attr("dy", "1em")
+          .style("text-anchor", "middle")
+          .text(chartData.label_y);
 
         const legend = svg
-        .selectAll(".legend")
-        .data(years)
-        .enter()
-        .append("g")
-        .attr("class", "legend")
-        .attr("transform", (d, i) => `translate(0,${i * 20})`)
-        .style("cursor", "pointer")
-        .on("click", function (event, d) {
-          // Toggle the active class
-          const active = d3.select(this).classed("active");
-          d3.select(this).classed("active", !active);
-
-          // Filter bars based on active status
-          svg
-          .selectAll(`.${event.target.classList[0]}`)
-          .transition()
-          .style("opacity", active ? 1 : 0);
-        });
+          .selectAll(".legend")
+          .data(years)
+          .enter()
+          .append("g")
+          .attr("class", "legend")
+          .attr("transform", (d, i) => `translate(0,${i * 20})`)
+          .style("cursor", "pointer")
+          .on("click", function (event, d) {
+            // Update chart to show data for the clicked year
+            updateChart(d);
+          });
 
         legend
-        .append("rect")
-        .attr("x", width - 18)
-        .attr("width", 18)
-        .attr("height", 18)
-        .attr("class", (d, index) => `bar${index}`)
-        .attr("rx", 5) // Rounded corners for legend
-        .attr("ry", 5); // Rounded corners for legend
+          .append("rect")
+          .attr("x", width - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .attr("class", (d, index) => `bar${index}`)
+          .attr("rx", 5) // Rounded corners for legend
+          .attr("ry", 5); // Rounded corners for legend
 
         legend
-        .append("text")
-        .attr("x", width - 24)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .style("text-anchor", "end")
-        .text((d) => d);
+          .append("text")
+          .attr("x", width - 24)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text((d) => d);
       }
 
       function buildVerticalBarChart(wrapperId, chartData) {
         const data = chartData.chart;
 
-        // Extract unique years from the data
-        let years = [...new Set(data.flatMap(d => Object.keys(d.data)))];
-        const yearCount = years.length;
+        // Extract unique years and categories from the new data structure
+        const years = Object.keys(data);
+        const categories = [...new Set(Object.values(data).flatMap(Object.keys))];
+        const latestYear = years[years.length - 1];
 
         const margin = { top: 20, right: 30, bottom: 90, left: 50 },
           width = 1250 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
         const svg = d3
-        .select("#" + wrapperId)
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+          .select("#" + wrapperId)
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
 
         const x0 = d3
-        .scaleBand()
-        .domain(data.map((d) => d.category))
-        .range([0, width])
-        .padding(0.2);
+          .scaleBand()
+          .domain(categories)
+          .range([0, width])
+          .padding(0.2);
 
         const x1 = d3
-        .scaleBand()
-        .domain(years)
-        .range([0, x0.bandwidth()])
-        .padding(0.05);
+          .scaleBand()
+          .domain(years)
+          .range([0, x0.bandwidth()])
+          .padding(0.05);
 
         const y = d3
-        .scaleLinear()
-        .domain([
-          0,
-          d3.max(data, (d) => d3.max(Object.values(d.data), d => +d))
-        ])
-        .nice()
-        .range([height, 0]);
+          .scaleLinear()
+          .domain([
+            0,
+            d3.max(Object.values(data), (yearData) =>
+              d3.max(Object.values(yearData), (value) => +value)
+            ),
+          ])
+          .nice()
+          .range([height, 0]);
 
-        const bars = svg
-        .append("g")
-        .selectAll("g")
-        .data(data)
-        .enter()
-        .append("g")
-        .attr("transform", (d) => `translate(${x0(d.category)},0)`)
-        .selectAll("rect")
-        .data((d) =>
-          Object.keys(d.data).map((key) => ({ key: key, value: d.data[key] })).reverse()
-        )
-        .enter()
-        .append("rect")
-        .attr("x", (d) => x1(0))
-        .attr("y", (d) => y(d.value))
-        .attr("width", Math.min(x0.bandwidth(), 30))
-        .attr("height", (d) => height - y(d.value))
-        .attr("class", (d, index) => `bar${yearCount - index - 1}`)
-        .attr("rx", 10) // Rounded corners
-        .attr("ry", 10); // Rounded corners
+        // Function to update the chart based on the selected year
+        function updateChart(selectedYear) {
+          const bars = svg
+            .selectAll(".bar-group")
+            .data(categories);
+
+          const barsEnter = bars
+            .enter()
+            .append("g")
+            .attr("class", "bar-group")
+            .attr("transform", (d) => `translate(${x0(d)},0)`);
+
+          const barMaxWidth = 20;
+          barsEnter.merge(bars)
+            .selectAll("rect")
+            .data((category) => [{
+              year: selectedYear,
+              value: data[selectedYear][category] || 0,
+            }])
+            .join("rect")
+            .attr("x", 0)
+            .attr("y", (d) => y(d.value))
+            .attr("width", Math.min(barMaxWidth, x0.bandwidth()))
+            .attr("height", (d) => height - y(d.value))
+            .attr("class", (d) => `bar${years.indexOf(d.year)}`)
+            .attr("rx", 10) // Rounded corners
+            .attr("ry", 10)  // Rounded corners
+            .attr("transform", function(d) {
+              const barWidth = Math.min(x0.bandwidth(), barMaxWidth);
+              return `translate(${(x0.bandwidth() - barWidth) / 2}, 0)`; // Center the bar within its group
+            });
+
+          bars.exit().remove();
+        }
+
+        updateChart(latestYear);
 
         svg.append("g").call(d3.axisLeft(y));
 
         svg
-        .append("g")
-        .attr("transform", `translate(0,${height})`)
-        .call(d3.axisBottom(x0))
-        .selectAll("text")
-        .attr("transform", "rotate(-45)")
-        .style("text-anchor", "end");
+          .append("g")
+          .attr("transform", `translate(0,${height})`)
+          .call(d3.axisBottom(x0))
+          .selectAll("text")
+          .attr("transform", "rotate(-45)")
+          .style("text-anchor", "end");
 
         svg
-        .append("text")
-        .attr("class", "axis-label")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0 - margin.left)
-        .attr("x", 0 - height / 2)
-        .attr("dy", "1em")
-        .style("text-anchor", "middle")
-        .text(chartData.label_y);
+          .append("text")
+          .attr("class", "axis-label")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 0 - margin.left)
+          .attr("x", 0 - height / 2)
+          .attr("dy", "1em")
+          .style("text-anchor", "middle")
+          .text(chartData.label_y);
 
         svg
-        .append("text")
-        .attr("class", "axis-label")
-        .attr("transform", `translate(${width / 2} ,${height + margin.top + 30})`)
-        .style("text-anchor", "middle")
-        .text(chartData.label_x);
+          .append("text")
+          .attr("class", "axis-label")
+          .attr("transform", `translate(${width / 2} ,${height + margin.top + 30})`)
+          .style("text-anchor", "middle")
+          .text(chartData.label_x);
 
         const legend = svg
-        .selectAll(".legend")
-        .data(years)
-        .enter()
-        .append("g")
-        .attr("class", "legend")
-        .attr("transform", (d, i) => `translate(0,${i * 20})`)
-        .style("cursor", "pointer")
-        .on("click", function (event, d) {
-          // Toggle the active class
-          const active = d3.select(this).classed("active");
-          d3.select(this).classed("active", !active);
-
-          // Filter bars based on active status
-          svg
-          .selectAll(`.${event.target.classList[0]}`)
-          .transition()
-          .style("opacity", active ? 1 : 0);
-        });
+          .selectAll(".legend")
+          .data(years)
+          .enter()
+          .append("g")
+          .attr("class", "legend")
+          .attr("transform", (d, i) => `translate(0,${i * 20})`)
+          .style("cursor", "pointer")
+          .on("click", function (event, d) {
+            // Update chart to show data for the clicked year
+            updateChart(d);
+          });
 
         legend
-        .append("rect")
-        .attr("x", width - 18)
-        .attr("width", 18)
-        .attr("height", 18)
-        .attr("class", (d, index) => `bar${index}`)
-        .attr("rx", 5) // Rounded corners for legend
-        .attr("ry", 5); // Rounded corners for legend
+          .append("rect")
+          .attr("x", width - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .attr("class", (d, index) => `bar${index}`)
+          .attr("rx", 5) // Rounded corners for legend
+          .attr("ry", 5); // Rounded corners for legend
 
         legend
-        .append("text")
-        .attr("x", width - 24)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .style("text-anchor", "end")
-        .text((d) => d);
+          .append("text")
+          .attr("x", width - 24)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text((d) => d);
       }
 
       function buildRadialChart(wrapperId, chartData) {
@@ -432,9 +449,12 @@
         const outerRadius = Math.min(width, height) / 2 - 35;
         const numLines = 100;
 
-        // Extract unique years from the data
-        let years = [...new Set(data.flatMap(d => Object.keys(d.data)))];
-        years = years.reverse();
+        // Extract unique years from the new data structure
+        const years = Object.keys(data).reverse();
+        const latestYear = years[0];
+
+        // Extract categories from the first year (assuming all years have the same categories)
+        const categories = Object.keys(data[latestYear]);
 
         // Colors for the years
         const colors = {
@@ -448,45 +468,45 @@
         };
 
         const svg = d3.select("#" + wrapperId)
-        .selectAll(".radial-chart")
-        .data(data)
-        .enter()
-        .append("svg")
-        .attr("class", "radial-chart")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", `translate(${width / 2},${height / 2})`);
+          .selectAll(".radial-chart")
+          .data(categories)
+          .enter()
+          .append("svg")
+          .attr("class", "radial-chart")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", `translate(${width / 2},${height / 2})`);
 
         const angle = 2 * Math.PI / numLines;
 
         // Generate lines
-        svg.each(function(d) {
+        svg.each(function (category) {
           const g = d3.select(this);
           for (let i = 0; i < numLines; i++) {
             g.append("line")
-            .attr("class", "line")
-            .attr("x1", innerRadius * Math.cos(angle * i))
-            .attr("y1", innerRadius * Math.sin(angle * i))
-            .attr("x2", outerRadius * Math.cos(angle * i))
-            .attr("y2", outerRadius * Math.sin(angle * i))
-            .attr("stroke", '#E9E9E9')
-            ;
+              .attr("class", "line")
+              .attr("x1", innerRadius * Math.cos(angle * i))
+              .attr("y1", innerRadius * Math.sin(angle * i))
+              .attr("x2", outerRadius * Math.cos(angle * i))
+              .attr("y2", outerRadius * Math.sin(angle * i))
+              .attr("stroke", '#E9E9E9');
           }
         });
 
         // Color the lines based on values and add labels
-        svg.each(function(d) {
-          years.forEach((year, index) => {
-            const linesToColor = Math.round((d.data[year] / 100) * numLines);
+        svg.each(function (category) {
+          years.forEach((year) => {
+            const linesToColor = Math.round((data[year][category] / 100) * numLines);
             for (let j = 0; j < linesToColor; j++) {
               d3.select(this).append("line")
-              .attr("class", `line colored value${year}`)
-              .attr("x1", innerRadius * Math.cos(angle * j))
-              .attr("y1", innerRadius * Math.sin(angle * j))
-              .attr("x2", outerRadius * Math.cos(angle * j))
-              .attr("y2", outerRadius * Math.sin(angle * j))
-              .attr("stroke", colors[year]);
+                .attr("class", `line colored value${year}`)
+                .attr("x1", innerRadius * Math.cos(angle * j))
+                .attr("y1", innerRadius * Math.sin(angle * j))
+                .attr("x2", outerRadius * Math.cos(angle * j))
+                .attr("y2", outerRadius * Math.sin(angle * j))
+                .attr("stroke", colors[year])
+                .style("opacity", year === latestYear ? 1 : 0); // Show only the latest year by default
             }
 
             // Add value label
@@ -494,50 +514,56 @@
             const labelX = (outerRadius + 18) * Math.cos(midAngle);
             const labelY = (outerRadius + 18) * Math.sin(midAngle);
             d3.select(this).append("text")
-            .attr("class", `label-${year}`)
-            .attr("x", labelX)
-            .attr("y", labelY)
-            .attr("dy", "0.35em")
-            .text(`${d.data[year]}%`)
-            .attr("fill", colors[year])
-            .style("font-size", "12px")
-            .attr("text-anchor", midAngle > Math.PI ? "end" : "start");
+              .attr("class", `label-${year}`)
+              .attr("x", labelX)
+              .attr("y", labelY)
+              .attr("dy", "0.35em")
+              .text(`${data[year][category]}%`)
+              .attr("fill", colors[year])
+              .style("font-size", "12px")
+              .attr("text-anchor", midAngle > Math.PI ? "end" : "start")
+              .style("opacity", year === latestYear ? 1 : 0); // Show only the latest year by default
           });
         });
 
         svg.append("text")
-        .attr("class", "category-label")
-        .text(d => d.category)
-        .attr("fill", "black")
-        .style("font-size", "12px")
-        .attr("text-anchor", "middle");
+          .attr("class", "category-label")
+          .text(category => category)
+          .attr("fill", "black")
+          .style("font-size", "12px")
+          .attr("text-anchor", "middle");
 
         const legend = d3.select("#" + wrapperId)
-        .append("div")
-        .attr("class", "legend")
-        .selectAll("div")
-        .data(years.map(year => ({ year, color: colors[year] })))
-        .enter()
-        .append("div")
-        .on("click", function(event, d) {
-          const active = d3.select(this).classed("active");
-          d3.select(this).classed("active", !active);
-          const opacity = active ? 1 : 0;
-          d3.selectAll(`.line.value${d.year}`).transition().style("opacity", opacity);
-        });
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map(year => ({ year, color: colors[year] })))
+          .enter()
+          .append("div")
+          .on("click", function (event, d) {
+            // Hide all years
+            years.forEach(year => {
+              d3.selectAll(`.line.value${year}`).transition().style("opacity", 0);
+              d3.selectAll(`.label-${year}`).transition().style("opacity", 0);
+            });
+
+            // Show the selected year
+            d3.selectAll(`.line.value${d.year}`).transition().style("opacity", 1);
+            d3.selectAll(`.label-${d.year}`).transition().style("opacity", 1);
+          });
 
         legend.append("span")
-        .attr("class", "legend-color")
-        .style("background-color", d => d.color);
+          .attr("class", "legend-color")
+          .style("background-color", d => d.color);
 
         legend.append("span")
-        .attr("class", "legend-text")
-        .text(d => d.year);
+          .attr("class", "legend-text")
+          .text(d => d.year);
 
         d3.selectAll(".category-label").call(wrap, innerRadius + 20);
 
         function wrap(text, width) {
-          text.each(function() {
+          text.each(function () {
             let text = d3.select(this),
               words = text.text().split(/\s+/).reverse(),
               lineHeight = 1.1, // ems
