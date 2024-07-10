@@ -15,52 +15,13 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Number and characteristics of scientific publications (per thematic area)")
  * )
  */
-class Indicator7Sub2 extends IndicatorChartPluginBase {
+class Indicator7Sub2 extends Indicator9Sub2 {
 
   /**
    * {@inheritdoc}
    */
   public function getChartType(): string {
-    return 'horizontal_bar';
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getChartData(array $table_data): array {
-    $header = NULL;
-    $chart_data = [];
-    $table_data = $this->transposeArray($table_data);
-    foreach ($table_data as $row) {
-      if (empty($header)) {
-        $header = $row;
-        array_shift($header);
-        continue;
-      }
-
-      $year = array_shift($row);
-      $data = array_combine($header, $row);
-      $chart_data[$year] = $data;
-    }
-
-    return [
-      'chart' => $chart_data,
-      'label_x' => $this->t('Number of External Networks Catalogued'),
-      'label_y' => NULL,
-    ];
-  }
-
-  /**
-   * Transpose array.
-   *
-   * @param array $data
-   *   The array.
-   *
-   * @return array
-   *   The transposed array.
-   */
-  protected function transposeArray(array $data) {
-    return array_map(NULL, ...$data);
+    return 'group_pie';
   }
 
 }

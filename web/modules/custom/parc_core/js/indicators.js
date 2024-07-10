@@ -21,10 +21,148 @@
           'horizontal_bar': buildHorizontalBarChart,
           'vertical_bar': buildVerticalBarChart,
           'radial': buildRadialChart,
+          'group_pie': buildGroupPieChart,
         };
 
         const buildFunction = buildFunctions[chartType];
         buildFunction(wrapperId, chartData);
+      }
+
+      function buildGroupPieChart(wrapperId, chartData) {
+        const data = chartData.chart;
+        const width = 1000;
+        const height = 600;
+        const radius = Math.min(width, height) / 2 - 35;
+        const numLines = 100;
+
+        // Extract unique years from the new data structure
+        const years = Object.keys(data).reverse();
+        const latestYear = years[0];
+
+        // Extract categories from the first year (assuming all years have the same categories)
+        const categories = Object.keys(data[latestYear]);
+
+        // Colors for the categories
+        const categoryColors = [
+          "#F58296",
+          "#8631A7",
+          "#1C74FF",
+          "#E1C268",
+          "#008475",
+          "#E1BAFF",
+          "#E45C4D",
+        ];
+
+        // Colors for the years
+        const colors = {
+          "2022": "#017365",
+          "2023": "#E4798B",
+          "2024": "#1879EB",
+          "2025": "#2DC9B6",
+          "2026": "#C0A456",
+          "2027": "#7D2D9C",
+          "2028": "#DB5749",
+        };
+
+        const svg = d3.select("#" + wrapperId)
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", `translate(${width / 2},${height / 2})`);
+
+        // Calculate angles for each category
+        const arcGenerator = d3.arc()
+          .innerRadius(0)
+          .outerRadius(radius);
+
+        const pie = d3.pie()
+          .sort(null)
+          .value(d => 1); // Each slice is of equal size
+
+        const arcs = pie(categories.map(cat => data[latestYear][cat]));
+
+        // Draw arcs for each category
+        arcs.forEach((arc, index) => {
+          const category = categories[index];
+          const linesToColor = Math.round((data[latestYear][category] / 100) * numLines);
+
+          // Draw the colored lines
+          const color = categoryColors[index];
+          const arcSelection = svg.append("g")
+            .attr("class", "arc-" + category.split(' ').join('-'))
+            .selectAll(".line")
+            .data(d3.range(linesToColor))
+            .enter()
+            .append("line")
+            .attr("class", "line colored")
+            .attr("x1", 0)
+            .attr("y1", 0)
+            .attr("x2", (d, i) => {
+              const angle = arc.startAngle + (arc.endAngle - arc.startAngle) * (i / linesToColor);
+              return radius * Math.cos(angle);
+            })
+            .attr("y2", (d, i) => {
+              const angle = arc.startAngle + (arc.endAngle - arc.startAngle) * (i / linesToColor);
+              return radius * Math.sin(angle);
+            })
+            .attr("stroke", color)
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", "3px")
+            .style("opacity", 1);
+
+
+          // Add category label just outside the slice
+          const outerRadius = radius * 1.3; // Place label just outside the slice
+          const labelAngle = (arc.startAngle + arc.endAngle) / 2; // Angle at the middle of the slice
+
+          svg.append("text")
+            .attr("class", `category-label-${category}`)
+            .attr("transform", `translate(${outerRadius * Math.cos(labelAngle)}, ${outerRadius * Math.sin(labelAngle)})`)
+            .attr("dy", "0.35em")
+            .text(category + `${data[latestYear][category]}`)
+            .attr("fill", color)
+            .style("font-size", "12px")
+            .attr("text-anchor", labelAngle > Math.PI ? "end" : "start")
+            .style("opacity", 1); // Show only the latest year by default
+        });
+
+        svg.append("text")
+          .attr("class", "category-label")
+          .attr("fill", "black")
+          .style("font-size", "12px")
+          .attr("text-anchor", "middle");
+
+        const legend = d3.select("#" + wrapperId)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map(year => ({ year, color: colors[year] })))
+          .enter()
+          .append("div")
+          .on("click", function (event, d) {
+            // Hide all years
+            years.forEach(year => {
+              d3.selectAll(`.arc-${category.split(' ').join('-')}`).transition().style("opacity", 0);
+              d3.selectAll(`.label-${category}`).transition().style("opacity", 0);
+            });
+
+            // Show the selected year
+            d3.selectAll(`.arc-${category.split(' ').join('-')}`).transition().style("opacity", 1);
+            d3.selectAll(`.label-${category}`).transition().style("opacity", 1);
+          });
+
+        legend.append("span")
+          .attr("class", "legend-color")
+          .style("background-color", d => d.color);
+
+        legend.append("span")
+          .attr("class", "legend-text")
+          .text(d => d.year);
+
+        function wrap(text, width) {
+          // Function to wrap text if needed
+        }
       }
 
       function buildMapChart(wrapperId, chartData) {
