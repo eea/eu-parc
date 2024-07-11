@@ -1,39 +1,12 @@
-
-<div class="container">
+<div class="indicators-timeline indicator-chart">
   {% for item in items %}
     <div class="column">
       {% for it in item %}
         <a class="image" href="{{ it.link }}">{{ it.image }}</a>
       {% endfor %}
       <div class="date">
-        <h5 style="rotate:-30deg; margin-top:20px;">{{ item.0.date }}</h5>
+        {{ item.0.date }}
       </div>
     </div>
   {% endfor %}
 </div>
-
-<style>
-  .container {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    padding: 20px;
-  }
-  .column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width:120px;
-  }
-  .image {
-    margin: 5px;
-    align-self: flex-end;
-  }
-
-  .date {
-      text-align:end;
-      margin: 5px;
-
-  }
-</style>
-

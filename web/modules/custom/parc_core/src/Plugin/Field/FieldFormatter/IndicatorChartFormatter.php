@@ -36,12 +36,20 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
   protected $parcSearchManager;
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->chartPluginManager = $container->get('plugin.manager.indicator_chart');
     $instance->parcSearchManager = $container->get('parc_core.search_manager');
+    $instance->entityTypeManager = $container->get('entity_type.manager');
     return $instance;
   }
 
@@ -57,65 +65,7 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
     $indicator_type = $parent->get('field_indicator_id')->value;
 
     if ($indicator_type == 'indicator_7_1') {
-      $items = [];
-
-      $query = \Drupal::entityQuery('node')
-        ->condition('type', 'publications')
-        ->condition('status', 1)
-        ->exists('field_cover') // Ensure the field_cover field exists
-        ->condition('field_cover', NULL, 'IS NOT NULL') // Ensure the field_cover field is not empty
-        ->sort('field_publication_date', 'ASC')
-        ->accessCheck('false')
-        ->execute();
-
-      $nodes = \Drupal\node\Entity\Node::loadMultiple($query);
-
-      foreach ($nodes as $node) {
-        $data_formatata_frumos = $node->get('field_publication_date')->value;
-        $data_formatata_frumos = strtotime($data_formatata_frumos);
-        $data_formatata_frumos = date('F Y', $data_formatata_frumos);
-
-        if (!isset($items[$data_formatata_frumos])) {
-          $items[$data_formatata_frumos] = [];
-        }
-
-
-        $items[$data_formatata_frumos][] = [
-          'image' => $node->get('field_cover')->view('search_teaser'),
-          'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node)->toString(),
-          'date' => $data_formatata_frumos,
-          'date_month' => explode(' ', $data_formatata_frumos)[0],
-        ];
-      }
-      uksort($items, function($a, $b) {
-        // Convert keys to DateTime objects for comparison
-        $dateA = DateTime::createFromFormat('F Y', $a);
-        $dateB = DateTime::createFromFormat('F Y', $b);
-
-        // Compare DateTime objects
-        if ($dateA == $dateB) {
-          return 0;
-        }
-        return ($dateA < $dateB) ? -1 : 1;
-      });
-
-
-
-      // Incarcate toate publicatiile.
-      // Sortate dupa Publication date
-      // $data_formatata_frumos = 'February 2020'; field_publication_date
-      // Trecut prin fiecare publication, $items[$data_formatata_frumos][] = [
-      //     'image' => $node->get('field_publication_date')->view('search_teaser')
-      //     'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node);,
-      // ]
-      // <a href="{{ link}}">{{ item.image }}</a>
-
-
-
-      return [
-        '#theme' => 'parc_publications_timeline',
-        '#items' => $items,
-      ];
+      return $this->renderPublicationsChart();
     }
 
     try {
@@ -147,6 +97,54 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
           ],
         ],
       ],
+    ];
+  }
+
+  /**
+   * Render the publications chart.
+   *
+   * @return array
+   *   The render array.
+   */
+  protected function renderPublicationsChart() {
+    $items = [];
+
+    $node_storage = $this->entityTypeManager
+      ->getStorage('node');
+
+    $query = $node_storage
+      ->getQuery()
+      ->condition('type', 'publications')
+      ->condition('status', 1)
+      ->exists('field_cover')
+      ->condition('field_cover', NULL, 'IS NOT NULL')
+      ->sort('field_publication_date')
+      ->accessCheck()
+      ->execute();
+
+    /** @var \Drupal\node\NodeInterface[] $nodes */
+    $nodes = $node_storage->loadMultiple($query);
+
+    $first = TRUE;
+    foreach ($nodes as $node) {
+      $date = $node->get('field_publication_date')->value;
+      $date = strtotime($date);
+      $formatted_date = date('Y F', $date);
+      $month = date('F', $date);
+      $month_idx = date('m', $date);
+
+      $items[$formatted_date][] = [
+        'image' => $node->get('field_cover')->view('search_teaser'),
+        'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node)->toString(),
+        'date' => $first || $month_idx == '01' ? $formatted_date : $month,
+      ];
+
+      $first = FALSE;
+    }
+
+    return [
+      '#theme' => 'parc_publications_timeline',
+      '#items' => $items,
     ];
   }
 

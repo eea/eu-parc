@@ -60,6 +60,9 @@ class Indicator9Sub2 extends IndicatorChartPluginBase {
    *   The transposed array.
    */
   protected function transposeArray(array $data) {
+    if (empty($data)) {
+      return [];
+    }
     return array_map(NULL, ...$data);
   }
 
