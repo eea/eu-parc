@@ -6,6 +6,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Datetime;
 
 /**
  * Plugin implementation of the Indicator Chart formatter.
@@ -58,6 +59,48 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
     if ($indicator_type == 'indicator_7_1') {
       $items = [];
 
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'publications')
+        ->condition('status', 1)
+        ->exists('field_cover') // Ensure the field_cover field exists
+        ->condition('field_cover', NULL, 'IS NOT NULL') // Ensure the field_cover field is not empty
+        ->sort('field_publication_date', 'ASC')
+        ->accessCheck('false')
+        ->execute();
+
+      $nodes = \Drupal\node\Entity\Node::loadMultiple($query);
+
+      foreach ($nodes as $node) {
+        $data_formatata_frumos = $node->get('field_publication_date')->value;
+        $data_formatata_frumos = strtotime($data_formatata_frumos);
+        $data_formatata_frumos = date('F Y', $data_formatata_frumos);
+
+        if (!isset($items[$data_formatata_frumos])) {
+          $items[$data_formatata_frumos] = [];
+        }
+
+
+        $items[$data_formatata_frumos][] = [
+          'image' => $node->get('field_cover')->view('search_teaser'),
+          'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node)->toString(),
+          'date' => $data_formatata_frumos,
+          'date_month' => explode(' ', $data_formatata_frumos)[0],
+        ];
+      }
+      uksort($items, function($a, $b) {
+        // Convert keys to DateTime objects for comparison
+        $dateA = DateTime::createFromFormat('F Y', $a);
+        $dateB = DateTime::createFromFormat('F Y', $b);
+
+        // Compare DateTime objects
+        if ($dateA == $dateB) {
+          return 0;
+        }
+        return ($dateA < $dateB) ? -1 : 1;
+      });
+
+
+
       // Incarcate toate publicatiile.
       // Sortate dupa Publication date
       // $data_formatata_frumos = 'February 2020'; field_publication_date
@@ -66,6 +109,7 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       //     'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node);,
       // ]
       // <a href="{{ link}}">{{ item.image }}</a>
+
 
 
       return [
