@@ -22,6 +22,7 @@
           'vertical_bar': buildVerticalBarChart,
           'radial': buildRadialChart,
           'group_pie': buildGroupPieChart,
+          'pie': buildPieChart,
         };
 
         const buildFunction = buildFunctions[chartType];
@@ -164,6 +165,253 @@
           // Function to wrap text if needed
         }
       }
+
+        function buildPieChart(wrapperId, chartData) {
+          const colors = {
+            "2022": "#017365",
+            "2023": "#E4798B",
+            "2024": "#1879EB",
+            "2025": "#2DC9B6",
+            "2026": "#C0A456",
+            "2027": "#7D2D9C",
+            "2028": "#DB5749",
+          };
+          function chart(year){
+            const data = chartData.chart[year]; // Extract data for the year 2022
+
+            // Dimensions and margins
+            const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+            const width = 600 - margin.left - margin.right;
+            const height = 600 - margin.top - margin.bottom;
+            const radius = Math.min(width, height) / 2-80;
+
+            // Color scale
+            const colors = ["#E1C268", "#008474", "#1C74FF", "#F58296", "#8631A7", "#E0BAFF"];
+            const color = d3.scaleOrdinal()
+              .domain(Object.keys(data))
+              .range(colors);
+            // Create SVG element
+            const svg = d3
+              .select(`#${wrapperId}`)
+              .append("svg")
+              .attr("width", '100%')
+              .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+              .attr("transform", `translate(${ width },${height / 2 + margin.top})`); // Adjusted for margins
+
+            // Prepare data for pie layout
+            const pie = d3.pie()
+              .value(d => d.value)
+              .sort(null);
+
+             const pieData = pie(Object.entries(data).map(([key, value]) => ({
+              category: key,
+              value: value
+            })));
+
+            // Calculate line lengths and angles
+            const lineLength = 40; // Length of each line
+            const gapLength = 5;
+            // Draw lines for each pie segment and add labels
+            pieData.forEach((slice, i) => {
+              const numLines = slice.data.value; // Number of lines for this segment
+              const angleStep = (slice.endAngle - slice.startAngle) / numLines;
+
+              let rotationAngle;
+              let outerRadius;
+              for (let j = 0; j < numLines; j++) {
+                const angle = slice.startAngle + j * angleStep;
+                const x1 = 0; // Start at center of the circle
+                const y1 = 0; // Start at center of the circle
+                const x2 = Math.cos(angle) * radius;
+                const y2 = Math.sin(angle) * radius;
+                outerRadius = radius * 1.2;
+
+                // Draw line
+                svg.append("line")
+                  .attr("x1", x1)
+                  .attr("y1", y1)
+                  .attr("x2", x2)
+                  .attr("y2", y2)
+                  .attr("stroke", color(i))
+                  .attr("stroke-width", 6)
+                  .attr("stroke-linecap", 'round');
+
+                // Add label at the end of the first line in each category
+                // svg.append("text")
+
+                if (j === 0) {
+                  const angleInDegrees = angle * (180 / Math.PI); // Convert angle to degrees
+                  const x = outerRadius * Math.cos(angle);
+                  const y = outerRadius * Math.sin(angle);
+                  const gapX = x2 + (Math.cos(angle) * gapLength);
+                  const gapY = y2 + (Math.sin(angle) * gapLength);
+                  const labelLineLength = 20; // Length of the connecting line
+                  const labelX = gapX + (Math.cos(angle) * labelLineLength);
+                  const labelY = gapY + (Math.sin(angle) * labelLineLength);
+                  rotationAngle = angleInDegrees;
+                  if (angle > Math.PI) {
+                    rotationAngle += 180; // Rotate by 180 degrees for second half of the circle (right side)
+                  } else {
+                    rotationAngle -= 180; // Rotate by -180 degrees for first half of the circle (left side)
+                  }
+
+                  const label = svg.append("text")
+                    .attr("transform", `translate(${x}, ${y}) rotate(${rotationAngle})`)
+                    .attr("dy", "0.35em")
+                    .style("fill", color(i))
+                    .html(`${slice.data.value} projects ${slice.data.category}`) // Display number of projects and category name
+                    .attr("text-anchor", angle > Math.PI ? "end" : "start");
+
+                  // Wrap the label text
+                  wrap(label, 200); // Adjust the width parameter as needed
+                  if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
+                    // label.attr("transform", `translate(${x}, ${y}) rotate(${0})`)
+                    label.attr("text-anchor", "end");
+                  } else {
+                    // label.attr("transform", `translate(${x}, ${y}) rotate(${360})`)
+                    label.attr("text-anchor", "start");
+                  }
+                  label.attr("transform", `translate(${x}, ${y}) rotate(${0})`)
+
+                  svg.append("line")
+                    .attr("x1", gapX)
+                    .attr("y1", gapY)
+                    .attr("x2", labelX)
+                    .attr("y2", labelY)
+                    .attr("stroke", 'black')
+                    .attr("stroke-width", 1);
+
+                }
+
+              }
+            });
+
+
+
+
+            // Adding the chart's title and additional information
+            svg.append("text")
+              .attr("x", 0)
+              .attr("y", height / 2 + 40)
+              .attr("text-anchor", "middle")
+              .text(`Number of organizations`)
+              .style("font-size", "12px")
+              .attr("fill", "gray");
+
+
+            // Create buttons for each year
+
+
+
+          }
+
+
+          function handleLegendClick(event, d) {
+            // Remove existing SVG
+            d3.select(`#${wrapperId} svg`).remove();
+
+            // Remove existing legend
+            d3.select(`#${wrapperId} .legend`).remove();
+
+            // Recreate chart for selected year
+            chart(d.year);
+
+            // Recreate legend
+            const legend = d3.select(`#${wrapperId}`)
+              .append("div")
+              .attr("class", "legend")
+              .selectAll("div")
+              .data(years.map(year => ({ year, color: "blue" })))
+              .enter()
+              .append("div")
+              .on("click", handleLegendClick);
+
+            legend.append("span")
+              .attr("class", "legend-color")
+              .style("background-color", d => colors[d.year]);
+
+            legend.append("span")
+              .attr("class", "legend-text")
+              .text(d => d.year);
+          }
+
+          // Initial call to create the chart for the first year in the data
+          const years = Object.keys(chartData.chart).reverse();
+          chart(years[0]);
+
+          // Create initial legend
+          const legend = d3.select(`#${wrapperId}`)
+            .append("div")
+            .attr("class", "legend")
+            .selectAll("div")
+            .data(years.map(year => ({ year, color: "blue" })))
+            .enter()
+            .append("div")
+            .on("click", handleLegendClick);
+
+          legend.append("span")
+            .attr("class", "legend-color")
+            .style("background-color", d => colors[d.year]);
+
+          legend.append("span")
+            .attr("class", "legend-text")
+            .text(d => d.year);
+        }
+
+// Function to wrap text within a specified width using <tspan>
+      function wrap(text, width) {
+        text.each(function () {
+          let text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            lineHeight = 1.1, // ems
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy")),
+            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", 0).attr("dy", 0 + "em"),
+            firstTspan = tspan;
+          let line = [],
+            lineNumber = 0,
+            word,
+            tspanNode = tspan.node();
+          while ((word = words.pop())) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            tspanNode = tspan.node();
+            if (word === "projects") {
+              // Create a bold tspan for the word "projects"
+              tspan.style("font-weight", "bold");
+            }
+            if (tspanNode.getComputedTextLength() > width || word === "projects") {
+              if (word === "projects") {
+                // Add the word "projects" to the current line
+                tspan.text(line.join(" "));
+                line = [];
+                // Append a new tspan without any word
+                tspan = text.append("tspan").attr("x", 0).attr("dy", lineHeight + "em").text("");
+              } else {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", 0).attr("dy", lineHeight + "em").text(word);
+              }
+              lineNumber++;
+            }
+          }
+          text.attr("x", 0).attr("y", -lineNumber * lineHeight / 2 + "em");
+          firstTspan.attr("dy", -(lineNumber - 1) * lineHeight / 2 + "em");
+        });
+      }
+
+
+
+
+
+
+
+
+
+
+
 
       function buildMapChart(wrapperId, chartData) {
         const data = chartData.chart;

@@ -28,11 +28,19 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
   protected $chartPluginManager;
 
   /**
+   * The PARC search manager.
+   *
+   * @var \Drupal\parc_core\ParcSearchManager
+   */
+  protected $parcSearchManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->chartPluginManager = $container->get('plugin.manager.indicator_chart');
+    $instance->parcSearchManager = $container->get('parc_core.search_manager');
     return $instance;
   }
 
@@ -46,6 +54,25 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       return [];
     }
     $indicator_type = $parent->get('field_indicator_id')->value;
+
+    if ($indicator_type == 'indicator_7_1') {
+      $items = [];
+
+      // Incarcate toate publicatiile.
+      // Sortate dupa Publication date
+      // $data_formatata_frumos = 'February 2020'; field_publication_date
+      // Trecut prin fiecare publication, $items[$data_formatata_frumos][] = [
+      //     'image' => $node->get('field_publication_date')->view('search_teaser')
+      //     'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node);,
+      // ]
+      // <a href="{{ link}}">{{ item.image }}</a>
+
+
+      return [
+        '#theme' => 'parc_publications_timeline',
+        '#items' => $items,
+      ];
+    }
 
     try {
       /** @var \Drupal\parc_core\IndicatorChartInterface $plugin */
@@ -157,6 +184,9 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
    *   The transposed array.
    */
   protected function transposeArray(array $data) {
+    if (empty($data)) {
+      return $data;
+    }
     return array_map(NULL, ...$data);
   }
 
