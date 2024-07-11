@@ -135,12 +135,18 @@
     }
   }
 
+  &[data-chart-type="group_pie"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
   background: #fff;
   border: 1px solid #999898;
   padding: 20px;
 
   .text {
-    fill: black;
     font-size: 20px;
     text-anchor: middle;
     dominant-baseline: central;
@@ -217,7 +223,6 @@
 
   text {
     font-size: 12px;
-    fill: #333;
   }
 
   .radial-chart {
