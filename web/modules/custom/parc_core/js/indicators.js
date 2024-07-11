@@ -166,7 +166,7 @@
         }
       }
 
-        function buildPieChart(wrapperId, chartData) {
+      function buildPieChart(wrapperId, chartData) {
           const colors = {
             "2022": "#017365",
             "2023": "#E4798B",
@@ -287,9 +287,6 @@
               }
             });
 
-
-
-
             // Adding the chart's title and additional information
             svg.append("text")
               .attr("x", 0)
@@ -298,14 +295,7 @@
               .text(`Number of organizations`)
               .style("font-size", "12px")
               .attr("fill", "gray");
-
-
-            // Create buttons for each year
-
-
-
           }
-
 
           function handleLegendClick(event, d) {
             // Remove existing SVG
@@ -359,7 +349,7 @@
             .text(d => d.year);
         }
 
-// Function to wrap text within a specified width using <tspan>
+      // Function to wrap text within a specified width using <tspan>
       function wrap(text, width) {
         text.each(function () {
           let text = d3.select(this),
