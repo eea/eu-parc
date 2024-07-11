@@ -71,6 +71,11 @@ function parc_core_theme() {
         'chart_type' => '',
       ],
     ],
+    'parc_publications_timeline' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
   ];
 }
 
