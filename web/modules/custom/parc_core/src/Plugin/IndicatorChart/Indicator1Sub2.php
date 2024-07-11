@@ -20,8 +20,8 @@ class Indicator1Sub2 extends Indicator2Sub2 {
   /**
    * {@inheritdoc}
    */
-  public function render(array $rows): array {
-    return [];
+  public function getChartType(): string {
+    return 'classic_pie';
   }
 
 }

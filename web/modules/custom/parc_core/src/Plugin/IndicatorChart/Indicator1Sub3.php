@@ -17,11 +17,4 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  */
 class Indicator1Sub3 extends Indicator1Sub2 {
 
-  /**
-   * {@inheritdoc}
-   */
-  public function render(array $rows): array {
-    return [];
-  }
-
 }
