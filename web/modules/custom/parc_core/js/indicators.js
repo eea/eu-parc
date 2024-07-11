@@ -23,10 +23,119 @@
           'radial': buildRadialChart,
           'group_pie': buildGroupPieChart,
           'pie': buildPieChart,
+          'classic_pie': buildClassicPieChart,
         };
 
         const buildFunction = buildFunctions[chartType];
         buildFunction(wrapperId, chartData);
+      }
+
+      function buildClassicPieChart(wrapperId, chartData){
+        let year='2023';
+        const data = chartData.chart[year];
+        const colors = {
+          "2022": "#017365",
+          "2023": "#E4798B",
+          "2024": "#1879EB",
+          "2025": "#2DC9B6",
+          "2026": "#C0A456",
+          "2027": "#7D2D9C",
+          "2028": "#DB5749",
+        };
+        const colorHex = colors[year]; // Hex color for the specified year
+
+        // Function to convert hex color to RGBA with specified opacity
+        function hexToRGBA(hex, opacity) {
+          hex = hex.replace('#', '');
+          const r = parseInt(hex.substring(0, 2), 16);
+          const g = parseInt(hex.substring(2, 4), 16);
+          const b = parseInt(hex.substring(4, 6), 16);
+          const adjustedOpacity = opacity < 0.10 ? opacity * 4 : opacity;
+
+          return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
+        }
+
+
+
+
+
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+        const width = 600 - margin.left - margin.right;
+        const height = 600 - margin.top - margin.bottom;
+        const radius = Math.min(width, height) / 2 - 80;
+
+        const sortedData = Object.entries(data)
+          .sort((a, b) => b[1] - a[1]);
+
+        // Extract sorted categories
+        const largestValue = sortedData[0][1];
+        const percentages = sortedData.map(([key, value]) => value / largestValue);
+        console.log(percentages)
+
+
+
+        const svg = d3
+          .select(`#${wrapperId}`)
+          .append("svg")
+          .attr("width", '100%')
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${width / 2},${height / 2})`); // Center the pie chart
+
+        // Outer pie chart (for the edges)
+        const outerPie = d3.pie()
+          .value(d => d.value)
+          .sort(null);
+
+        const outerArc = d3.arc()
+          .innerRadius(radius - 20)  // Outer radius of the outer pie
+          .outerRadius(radius);     // Inner radius of the outer pie
+
+        const outerPieData = outerPie(Object.entries(data).map(([key, value]) => ({
+          category: key,
+          value: value
+        })));
+
+        // Draw the outer pie slices
+        svg.selectAll(".outerSlice")
+          .data(outerPieData)
+          .enter()
+          .append("path")
+          .attr("class", "outerSlice")
+          .attr("d", outerArc)
+          .style("stroke", "white")
+          .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]))
+
+          .style("stroke-width",2);
+
+        // Inner pie chart (for the hollowed-out interior)
+        const innerPie = d3.pie()
+          .value(d => d.value)
+          .sort(null);
+
+        const innerArc = d3.arc()
+          .innerRadius(0)            // Inner radius of the inner pie
+          .outerRadius(radius - 20); // Outer radius of the inner pie (adjust as needed for thickness)
+
+        const innerPieData = innerPie(Object.entries(data).map(([key, value]) => ({
+          category: key,
+          value: value
+        })));
+
+        // Draw the inner pie slices
+        svg.selectAll(".innerSlice")
+          .data(innerPieData)
+          .enter()
+          .append("path")
+          .attr("class", "innerSlice")
+          .attr("d", innerArc)
+          .style("fill", "none")        // Transparent fill
+          .style("stroke", "black")     // Add black stroke color
+          .style("stroke-width", 2);    //
+
+
+
+
       }
 
       function buildGroupPieChart(wrapperId, chartData) {
