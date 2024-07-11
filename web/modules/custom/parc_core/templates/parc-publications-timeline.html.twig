@@ -1,6 +1,4 @@
 
-{#<div class="rotate-90">#}
-{#  <div class="rotate-90-container">#}
 <div class="container">
   {% for item in items %}
     <div class="column">
@@ -17,19 +15,19 @@
 <style>
   .container {
     display: flex;
-    align-items: flex-end; /* Align items to the top */
+    align-items: flex-end;
     justify-content: space-between;
     padding: 20px;
   }
   .column {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align items */
+    align-items: center;
     width:120px;
   }
   .image {
     margin: 5px;
-    align-self: flex-end; /* Align image at the bottom of the column */
+    align-self: flex-end;
   }
 
   .date {
@@ -38,24 +36,4 @@
 
   }
 </style>
-{#  </div>#}
-{#</div>#}
 
-{#<style>#}
-
-{#  .rotate-90-container {#}
-
-{#    width: max-content; /* Adjust based on the content width */#}
-{#    height: max-content; /* Adjust based on the content height */#}
-{#    justify-content: space-around;#}
-{#  }#}
-{#  .rotate-90{#}
-{#      width: max-content; /* Adjust based on the content width */#}
-{#      height: max-content;#}
-{#      transform: rotate(-90deg);#}
-{#      transform-origin: center center;#}
-{#      display: flex;#}
-{#      flex-direction: column;#}
-
-{#  }#}
-{#</style>#}
