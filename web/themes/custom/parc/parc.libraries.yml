@@ -508,3 +508,11 @@ webform:
   css:
     component:
       css/components/webform/webform.css: { }
+
+indicators:
+  css:
+    component:
+      css/components/indicators/indicators.css: { }
+  dependencies:
+    - edwt/collapse
+    - edwt/tab

@@ -88,6 +88,7 @@ module:
   publishcontent: 0
   rabbit_hole: 0
   raven: 0
+  rh_node: 0
   rh_taxonomy: 0
   search_api: 0
   search_api_autocomplete: 0
@@ -102,12 +103,14 @@ module:
   spamspan: 0
   svg_image: 0
   system: 0
+  tablefield: 0
   taxonomy: 0
   taxonomy_menu: 0
   text: 0
   token: 0
   toolbar: 0
   tour: 0
+  twig_tweak: 0
   ultimate_cron: 0
   update: 0
   user: 0

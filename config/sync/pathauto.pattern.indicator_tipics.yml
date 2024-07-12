@@ -1,0 +1,22 @@
+uuid: b3ad284b-e197-403e-9d99-7a0657d4ead2
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: indicator_tipics
+label: 'Indicator tipics'
+type: 'canonical_entities:taxonomy_term'
+pattern: '/indicators/[term:name]'
+selection_criteria:
+  7331c395-6d47-4253-b505-e38dc023d1ed:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 7331c395-6d47-4253-b505-e38dc023d1ed
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      indicator_topics: indicator_topics
+selection_logic: and
+weight: -5
+relationships: {  }
