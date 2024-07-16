@@ -202,7 +202,7 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       $is_empty = TRUE;
       foreach ($row as $idx2 => $column) {
         if ($idx2 == 0) {
-          continue;
+//          continue;
         }
         if (!empty($column)) {
           $is_empty = FALSE;

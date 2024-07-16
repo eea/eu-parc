@@ -132,6 +132,7 @@
 
 .indicator-chart {
   min-width: 1070px;
+  position: relative;
 
   &[data-chart-type="radial"] {
     display: flex;
@@ -156,10 +157,6 @@
     dominant-baseline: central;
   }
 
-  .legend {
-    font-size: 14px;
-  }
-
   .legend rect {
     cursor: pointer;
   }
@@ -168,18 +165,22 @@
     font-size: 14px;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .legend div {
-    margin-left: 20px;
+    margin-left: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
   }
 
   .legend-color {
-    display: inline-block;
+    //display: inline-block;
+    display: none;
     width: 12px;
     height: 12px;
     margin-right: 5px;
@@ -187,6 +188,38 @@
 
   .legend-text {
     vertical-align: middle;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+    display: inline-block;
+
+    &.year-2022 {
+      color: #017365;
+    }
+
+    &.year-2023 {
+      color: #E4798B;
+    }
+
+    &.year-2024 {
+      color: #1879EB;
+    }
+
+    &.year-2025 {
+      color: #2DC9B6;
+    }
+
+    &.year-2026 {
+      color: #C0A456;
+    }
+
+    &.year-2027 {
+      color: #7D2D9C;
+    }
+
+    &.year-2028 {
+      color: #DB5749;
+    }
   }
 
   body {
@@ -230,7 +263,7 @@
   }
 
   .radial-chart {
-    flex: 1 0 auto;
+    flex: 0 0 auto;
   }
 
   .radial-chart text {
