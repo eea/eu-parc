@@ -128,11 +128,14 @@
   border: 1px solid #999898;
   padding: 20px;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .indicator-chart {
-  min-width: 1070px;
-  position: relative;
+  width: 1070px;
 
   &[data-chart-type="radial"] {
     display: flex;
@@ -167,8 +170,8 @@
     justify-content: center;
 
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 20px;
+    right: 20px;
   }
 
   .legend div {
