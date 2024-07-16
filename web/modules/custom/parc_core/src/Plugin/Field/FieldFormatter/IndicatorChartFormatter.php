@@ -125,21 +125,21 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
     /** @var \Drupal\node\NodeInterface[] $nodes */
     $nodes = $node_storage->loadMultiple($query);
 
-    $first = TRUE;
+    $last_year = 0;
     foreach ($nodes as $node) {
       $date = $node->get('field_publication_date')->value;
       $date = strtotime($date);
       $formatted_date = date('Y F', $date);
       $month = date('F', $date);
-      $month_idx = date('m', $date);
+      $year = date('Y', $date);
 
       $items[$formatted_date][] = [
         'image' => $node->get('field_cover')->view('search_teaser'),
         'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node)->toString(),
-        'date' => $first || $month_idx == '01' ? $formatted_date : $month,
+        'date' => $last_year != $year ? $formatted_date : $month,
       ];
 
-      $first = FALSE;
+      $last_year = $year;
     }
 
     return [
@@ -202,7 +202,7 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       $is_empty = TRUE;
       foreach ($row as $idx2 => $column) {
         if ($idx2 == 0) {
-          continue;
+//          continue;
         }
         if (!empty($column)) {
           $is_empty = FALSE;

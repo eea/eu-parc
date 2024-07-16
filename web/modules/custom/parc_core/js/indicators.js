@@ -30,10 +30,7 @@
       }
 
       function buildClassicPieChart(wrapperId, chartData) {
-
-        // culorile se genereaza pe baza procentajului din cel mai mare slice al fiecarui slice
-        // ex, daca avem 3 slice-uri cu valorile 10, 20, 30, culorile vor fi 10/30, 20/30, 30/30
-        // folosesc opacity pentru a face culorile mai deschise
+        // Colors generated based on the year color + opacity change.
         const colors = {
           2022: "#017365",
           2023: "#E4798B",
@@ -43,10 +40,8 @@
           2027: "#7D2D9C",
           2028: "#DB5749",
         };
-        function chart(year){
 
-
-
+        function chart(year) {
           const data = chartData.chart[year];
           const colorHex = colors[year]; // Hex color for the specified year
 
@@ -61,14 +56,13 @@
             return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
           }
 
-          const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-          const width = 700 - margin.left - margin.right;
-          const height = 800 - margin.top - margin.bottom;
-          const radius = Math.min(width, height) / 2 - 80;
+          const margin = {top: 20, right: 20, bottom: 0, left: 20};
+          const width = 600 - margin.left - margin.right;
+          const height = 600 - margin.top - margin.bottom;
+          const radius = Math.min(width, height) / 2 - 60;
 
           const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
 
-          console.log(sortedData);
           // Extract sorted categories
           const largestValue = sortedData[0][1];
           const percentages = sortedData.map(
@@ -165,8 +159,6 @@
 
               // Adjust label placement based on slice size
               if (angle > thresholdAngleDegrees) {
-                console.log(angle, thresholdAngleDegrees);
-
                 // Place label inside the pie chart
                 const [x, y] = innerArc.centroid(d);
                 i++;
@@ -180,16 +172,9 @@
                   first_outer_x = x - 150;
                   first_outer_y = y - 10;
                 }
-                //   i++;
-                //   return `translate(${first_outer_x},${first_outer_y})`
-
-                // }
-                // else{
 
                 i++;
                 return `translate(${first_outer_x},${first_outer_y})`;
-
-                // }
               }
             })
             .attr("dy", "0.35em")
@@ -200,59 +185,55 @@
             .call(wrap2, maxLabelWidth);
 
           svg.selectAll(".sliceLabel").each(function (d, i) {
-            if (outers.includes(i)) {
-              let index = outers.indexOf(i);
-              let children = d3.select(this).node().children;
-              let newX = first_outer_x + index * 20;
-              let newY = first_outer_y - index * (font_size + 6) * children.length;
+              if (outers.includes(i)) {
+                let index = outers.indexOf(i);
+                let children = d3.select(this).node().children;
+                let newX = first_outer_x + index * 20;
+                let newY = first_outer_y - index * (font_size + 8) * children.length;
 
+                if (index != 0) {
+                  let sibling = d3.select(this).node().previousSibling;
+                  // translate this label to x = index*10, y =  - index* 7*children.length\
 
-              if (index != 0) {
-                //check how many children this label has
-                console.log(children.length);
+                  // Update label transform attribute
+                  d3.select(this).attr("transform", `translate(${newX},${newY})`);
+                }
+                let [centroidX, centroidY] = outerArc.centroid(d);
+                let lineX1 = centroidX; // Start at centroidX
+                let lineY1 = centroidY; // Start at centroidY
+                let lineX2 = centroidX; // End at newX
+                let lineY2 = newY; // Horizontal line at same Y as centroid
 
-                let sibling = d3.select(this).node().previousSibling;
-                // translate this label to x = index*10, y =  - index* 7*children.length\
+                let endX = newX + children.item(0).getBoundingClientRect().width / 2 + 10;
+                let endY = lineY2 - 20;
 
-                // Update label transform attribute
-                d3.select(this).attr("transform", `translate(${newX},${newY})`);
+                svg
+                  .append("line")
+                  .attr("x1", lineX1)
+                  .attr("y1", lineY1 - 10)
+                  .attr("x2", lineX2)
+                  .attr("y2", endY)
+                  .attr("stroke", "gray")
+                  .attr("stroke-width", 1)
 
+                // Draw horizontal line
+                svg
+                  .append("line")
+                  .attr("x1", lineX2)
+                  .attr("y1", endY)
+                  .attr("x2", endX) // End at newX
+                  .attr("y2", endY) // Horizontal line at same Y as vertical end
+                  .attr("stroke", "gray")
+                  .attr("stroke-width", 1)
               }
-              let [centroidX, centroidY] = outerArc.centroid(d);
-              let lineX1 = centroidX; // Start at centroidX
-              let lineY1 = centroidY; // Start at centroidY
-              let lineX2 = centroidX; // End at newX
-              let lineY2 = newY; // Horizontal line at same Y as centroid
-
-              svg
-          .append("line")
-          .attr("x1", lineX1)
-          .attr("y1", lineY1-10)
-          .attr("x2", lineX2)
-          .attr("y2", lineY2)
-          .attr("stroke", "gray")
-          .attr("stroke-width", 1)
-
-        // Draw horizontal line
-        svg
-          .append("line")
-          .attr("x1", lineX2)
-          .attr("y1", lineY2)
-          .attr("x2", newX) // End at newX
-          .attr("y2", lineY2) // Horizontal line at same Y as vertical end
-          .attr("stroke", "gray")
-          .attr("stroke-width", 1)
-        }
-
-
             }
-          , 1000);
+            , 1000);
 
           function wrap2(text, width) {
             text.each(function () {
               let text = d3.select(this),
                 lines = text.text().split(/\n/), // Split by \n for manual line breaks
-                lineHeight = 1.1, // ems
+                lineHeight = 1.4, // ems
                 y = text.attr("y"),
                 dy = parseFloat(text.attr("dy"));
 
@@ -317,6 +298,7 @@
             });
           }
         }
+
         function handleLegendClick(event, d) {
           // Remove existing SVG
           d3.select(`#${wrapperId} svg`).remove();
@@ -333,7 +315,7 @@
             .append("div")
             .attr("class", "legend")
             .selectAll("div")
-            .data(years.map((year) => ({ year, color: "blue" })))
+            .data(years.map((year) => ({year, color: "blue"})))
             .enter()
             .append("div")
             .on("click", handleLegendClick);
@@ -345,13 +327,14 @@
 
           legend
             .append("span")
-            .attr("class", "legend-text")
+            .attr("class", (d) => "legend-text year-" + d.year)
             .text((d) => d.year);
         }
 
         // Initial call to create the chart for the first year in the data
-        const years = Object.keys(chartData.chart).reverse();
-        chart(years[0]);
+        const years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
+        chart(latestYear);
 
         // Create initial legend
         const legend = d3
@@ -359,7 +342,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: "blue" })))
+          .data(years.map((year) => ({year, color: "blue"})))
           .enter()
           .append("div")
           .on("click", handleLegendClick);
@@ -371,7 +354,7 @@
 
         legend
           .append("span")
-          .attr("class", "legend-text")
+          .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
       }
 
@@ -383,8 +366,8 @@
         const innerRadius = radius / 3; // Set the inner radius for the doughnut chart
 
         // Extract unique years from the new data structure
-        const years = Object.keys(data).reverse();
-        const latestYear = years[0];
+        let years = Object.keys(data);
+        const latestYear = years[years.length - 1];
 
         // Extract categories from the first year (assuming all years have the same categories)
         const categories = Object.keys(data[latestYear]);
@@ -458,28 +441,28 @@
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return innerRadius * Math.cos(angle);
               })
               .attr("y1", (d, i) => {
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return innerRadius * Math.sin(angle);
               })
               .attr("x2", (d, i) => {
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return radius * Math.cos(angle);
               })
               .attr("y2", (d, i) => {
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return radius * Math.sin(angle);
               })
               .attr("stroke", color)
@@ -547,7 +530,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: colors[year] })))
+          .data(years.map((year) => ({year, color: colors[year]})))
           .enter()
           .append("div")
           .on("click", function (event, d) {
@@ -562,7 +545,7 @@
 
         legend
           .append("span")
-          .attr("class", "legend-text")
+          .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
 
         function wrap(text, width) {
@@ -580,11 +563,12 @@
           2027: "#7D2D9C",
           2028: "#DB5749",
         };
+
         function chart(year) {
           const data = chartData.chart[year]; // Extract data for the year 2022
 
           // Dimensions and margins
-          const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+          const margin = {top: 20, right: 20, bottom: 20, left: 20};
           const width = 600 - margin.left - margin.right;
           const height = 600 - margin.top - margin.bottom;
           const radius = Math.min(width, height) / 2 - 80;
@@ -597,6 +581,7 @@
             "#F58296",
             "#8631A7",
             "#E0BAFF",
+            "#E45C4D",
           ];
           const color = d3
             .scaleOrdinal()
@@ -736,7 +721,7 @@
             .append("div")
             .attr("class", "legend")
             .selectAll("div")
-            .data(years.map((year) => ({ year, color: "blue" })))
+            .data(years.map((year) => ({year, color: "blue"})))
             .enter()
             .append("div")
             .on("click", handleLegendClick);
@@ -748,13 +733,14 @@
 
           legend
             .append("span")
-            .attr("class", "legend-text")
+            .attr("class", (d) => "legend-text year-" + d.year)
             .text((d) => d.year);
         }
 
         // Initial call to create the chart for the first year in the data
-        const years = Object.keys(chartData.chart).reverse();
-        chart(years[0]);
+        const years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
+        chart(latestYear);
 
         // Create initial legend
         const legend = d3
@@ -762,7 +748,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: "blue" })))
+          .data(years.map((year) => ({year, color: "blue"})))
           .enter()
           .append("div")
           .on("click", handleLegendClick);
@@ -774,13 +760,12 @@
 
         legend
           .append("span")
-          .attr("class", "legend-text")
+          .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
       }
 
       // Function to wrap text within a specified width using <tspan>
       function wrap(text, width) {
-        console.log(text);
         text.each(function () {
           let text = d3.select(this),
             words = text.text().split(/\s+/).reverse(),
@@ -842,16 +827,16 @@
         const data = chartData.chart;
 
         const categories = {
-          member: { color: "#1f77b4", label: "23 Member States" },
-          associated: { color: "#f1c40f", label: "4 Associated Countries" },
+          member: {color: "#1f77b4", label: "23 Member States"},
+          associated: {color: "#f1c40f", label: "4 Associated Countries"},
           "non-associated": {
             color: "#bdc3c7",
             label: "1 Non-associated Third Countries",
           },
         };
 
-        const margin = { top: 20, right: 20, bottom: 20, left: 20 },
-          width = 1250 - margin.left - margin.right,
+        const margin = {top: 20, right: 20, bottom: 20, left: 20},
+          width = 1100 - margin.left - margin.right,
           height = 800 - margin.top - margin.bottom;
 
         const svg = d3
@@ -992,15 +977,24 @@
 
         // Extract unique years and categories from the new data structure
         const years = Object.keys(data);
-        const categories = [
-          ...new Set(Object.values(data).flatMap(Object.keys)),
-        ];
+        const categories = [...new Set(Object.values(data).flatMap(Object.keys))];
         const latestYear = years[years.length - 1];
 
-        const margin = { top: 20, right: 30, bottom: 40, left: 150 },
-          width = 1250 - margin.left - margin.right,
+        const margin = {top: 20, right: 30, bottom: 80, left: 200},
+          width = 1100 - margin.left - margin.right,
           height = 200 + categories.length * 20 - margin.top - margin.bottom,
           maxWidth = 25; // Set your maximum bar width here
+
+        // Colors for the years
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
 
         const svg = d3
           .select("#" + wrapperId)
@@ -1020,10 +1014,8 @@
           .scaleLinear()
           .domain([
             0,
-            d3.max(
-              Object.values(data),
-              (yearData) =>
-                d3.max(Object.values(yearData), (value) => +value) * 1.1
+            d3.max(Object.values(data), (yearData) =>
+              d3.max(Object.values(yearData), (value) => +value) * 1.1
             ),
           ])
           .nice()
@@ -1093,13 +1085,15 @@
           .style("text-anchor", "middle")
           .text(chartData.label_y);
 
-        const legend = svg
-          .selectAll(".legend")
+        // Creating the legend using divs
+        const legend = d3
+          .select("#" + wrapperId)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
           .data(years)
           .enter()
-          .append("g")
-          .attr("class", "legend")
-          .attr("transform", (d, i) => `translate(0,${i * 20})`)
+          .append("div")
           .style("cursor", "pointer")
           .on("click", function (event, d) {
             // Update chart to show data for the clicked year
@@ -1107,20 +1101,13 @@
           });
 
         legend
-          .append("rect")
-          .attr("x", width - 18)
-          .attr("width", 18)
-          .attr("height", 18)
-          .attr("class", (d, index) => `bar${index}`)
-          .attr("rx", 5) // Rounded corners for legend
-          .attr("ry", 5); // Rounded corners for legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => colors[d]);
 
         legend
-          .append("text")
-          .attr("x", width - 24)
-          .attr("y", 9)
-          .attr("dy", ".35em")
-          .style("text-anchor", "end")
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d)
           .text((d) => d);
       }
 
@@ -1129,14 +1116,23 @@
 
         // Extract unique years and categories from the new data structure
         const years = Object.keys(data);
-        const categories = [
-          ...new Set(Object.values(data).flatMap(Object.keys)),
-        ];
+        const categories = [...new Set(Object.values(data).flatMap(Object.keys))];
         const latestYear = years[years.length - 1];
 
-        const margin = { top: 20, right: 30, bottom: 90, left: 50 },
-          width = 1250 - margin.left - margin.right,
+        const margin = {top: 20, right: 30, bottom: 90, left: 50},
+          width = 1100 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
+
+        // Colors for the years
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
 
         const svg = d3
           .select("#" + wrapperId)
@@ -1237,35 +1233,30 @@
           .style("text-anchor", "middle")
           .text(chartData.label_x);
 
-        const legend = svg
-          .selectAll(".legend")
-          .data(years)
-          .enter()
-          .append("g")
+        // Creating the legend using divs
+        const legend = d3
+          .select("#" + wrapperId)
+          .append("div")
           .attr("class", "legend")
-          .attr("transform", (d, i) => `translate(0,${i * 20})`)
+          .selectAll("div")
+          .data(years.map((year) => ({year, color: colors[year]})))
+          .enter()
+          .append("div")
           .style("cursor", "pointer")
           .on("click", function (event, d) {
             // Update chart to show data for the clicked year
-            updateChart(d);
+            updateChart(d.year);
           });
 
         legend
-          .append("rect")
-          .attr("x", width - 18)
-          .attr("width", 18)
-          .attr("height", 18)
-          .attr("class", (d, index) => `bar${index}`)
-          .attr("rx", 5) // Rounded corners for legend
-          .attr("ry", 5); // Rounded corners for legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => d.color);
 
         legend
-          .append("text")
-          .attr("x", width - 24)
-          .attr("y", 9)
-          .attr("dy", ".35em")
-          .style("text-anchor", "end")
-          .text((d) => d);
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d.year)
+          .text((d) => d.year);
       }
 
       function buildRadialChart(wrapperId, chartData) {
@@ -1277,8 +1268,8 @@
         const numLines = 100;
 
         // Extract unique years from the new data structure
-        const years = Object.keys(data).reverse();
-        const latestYear = years[0];
+        const years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
 
         // Extract categories from the first year (assuming all years have the same categories)
         const categories = Object.keys(data[latestYear]);
@@ -1371,7 +1362,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: colors[year] })))
+          .data(years.map((year) => ({year, color: colors[year]})))
           .enter()
           .append("div")
           .on("click", function (event, d) {
@@ -1397,7 +1388,7 @@
 
         legend
           .append("span")
-          .attr("class", "legend-text")
+          .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
 
         d3.selectAll(".category-label").call(wrap, innerRadius + 20);
