@@ -237,8 +237,7 @@ class InteractiveMap extends StylePluginBase {
             $map_id => [
               'institutions' => $institutions,
             ],
-            'categories' => $all_categories,
-            'map_api_key' => $this->config->get('map_api_key'),
+            'categories' => $all_categories
           ],
         ],
       ],

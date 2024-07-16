@@ -187,15 +187,23 @@
             source: new ol.source.OSM(),
           });
 
-          const key = settings.parc_interactive_map.map_api_key;
+          let mapBasemapSrc;
 
-          const maptilerSrc = new ol.source.TileJSON({
-            url: `https://api.maptiler.com/maps/dataviz-light/tiles.json?key=${key}`, // source URL
-            tileSize: 512,
-            crossOrigin: "anonymous",
-          });
-          const maptilerBkg = new ol.layer.Tile({
-            source: maptilerSrc,
+          try {
+            mapBasemapSrc = new ol.source.XYZ({
+              url: 'https://gisco-services.ec.europa.eu/maps/tiles/OSMPositronComposite/EPSG3857/{z}/{x}/{y}.png',
+              crossOrigin: 'anonymous'
+            }); // set primary to OSMPositronComposite
+          } catch (error) {
+            console.warn(error.message);
+            mapBasemapSrc = new ol.source.XYZ({
+              url: 'https://gisco-services.ec.europa.eu/maps/tiles/OSMPositronBackground/EPSG3857/{z}/{x}/{y}.png',
+              crossOrigin: 'anonymous'
+            }); // fallback to OSMPositronBackground
+          }
+
+          const mapBkg = new ol.layer.Tile({
+            source: mapBasemapSrc,
           });
 
           let highlightSource = new ol.source.Vector();
@@ -245,7 +253,7 @@
 
           const map = new ol.Map({
             target: $(this).attr("id"),
-            layers: [maptilerBkg, clusters, highlightLayer],
+            layers: [mapBkg, clusters, highlightLayer],
             view: new ol.View({
               center: [0, 0],
               zoom: 2,
