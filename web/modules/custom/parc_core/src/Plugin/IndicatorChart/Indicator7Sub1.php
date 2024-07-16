@@ -17,4 +17,11 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  */
 class Indicator7Sub1 extends Indicator6Sub1 {
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getChartData(array $table_data): array {
+    return [];
+  }
+
 }

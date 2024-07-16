@@ -17,4 +17,11 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  */
 class Indicator6Sub1 extends Indicator2Sub1 {
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getChartType(): string {
+    return 'pie';
+  }
+
 }

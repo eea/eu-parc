@@ -15,7 +15,7 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Involvement of different stakeholders in the national hubs")
  * )
  */
-class Indicator2Sub2 extends Indicator7Sub2 {
+class Indicator2Sub2 extends Indicator9Sub2 {
 
   /**
    * {@inheritdoc}

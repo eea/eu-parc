@@ -6,6 +6,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Datetime;
 
 /**
  * Plugin implementation of the Indicator Chart formatter.
@@ -28,11 +29,27 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
   protected $chartPluginManager;
 
   /**
+   * The PARC search manager.
+   *
+   * @var \Drupal\parc_core\ParcSearchManager
+   */
+  protected $parcSearchManager;
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
     $instance->chartPluginManager = $container->get('plugin.manager.indicator_chart');
+    $instance->parcSearchManager = $container->get('parc_core.search_manager');
+    $instance->entityTypeManager = $container->get('entity_type.manager');
     return $instance;
   }
 
@@ -46,6 +63,10 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       return [];
     }
     $indicator_type = $parent->get('field_indicator_id')->value;
+
+    if ($indicator_type == 'indicator_7_1') {
+      return $this->renderPublicationsChart();
+    }
 
     try {
       /** @var \Drupal\parc_core\IndicatorChartInterface $plugin */
@@ -76,6 +97,54 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
           ],
         ],
       ],
+    ];
+  }
+
+  /**
+   * Render the publications chart.
+   *
+   * @return array
+   *   The render array.
+   */
+  protected function renderPublicationsChart() {
+    $items = [];
+
+    $node_storage = $this->entityTypeManager
+      ->getStorage('node');
+
+    $query = $node_storage
+      ->getQuery()
+      ->condition('type', 'publications')
+      ->condition('status', 1)
+      ->exists('field_cover')
+      ->condition('field_cover', NULL, 'IS NOT NULL')
+      ->sort('field_publication_date')
+      ->accessCheck()
+      ->execute();
+
+    /** @var \Drupal\node\NodeInterface[] $nodes */
+    $nodes = $node_storage->loadMultiple($query);
+
+    $first = TRUE;
+    foreach ($nodes as $node) {
+      $date = $node->get('field_publication_date')->value;
+      $date = strtotime($date);
+      $formatted_date = date('Y F', $date);
+      $month = date('F', $date);
+      $month_idx = date('m', $date);
+
+      $items[$formatted_date][] = [
+        'image' => $node->get('field_cover')->view('search_teaser'),
+        'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node)->toString(),
+        'date' => $first || $month_idx == '01' ? $formatted_date : $month,
+      ];
+
+      $first = FALSE;
+    }
+
+    return [
+      '#theme' => 'parc_publications_timeline',
+      '#items' => $items,
     ];
   }
 
@@ -157,6 +226,9 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
    *   The transposed array.
    */
   protected function transposeArray(array $data) {
+    if (empty($data)) {
+      return $data;
+    }
     return array_map(NULL, ...$data);
   }
 

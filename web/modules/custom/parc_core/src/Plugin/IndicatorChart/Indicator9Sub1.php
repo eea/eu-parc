@@ -15,7 +15,7 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Number and characteristics of entities in the risk assessment network catalogue (PARC)")
  * )
  */
-class Indicator9Sub1 extends Indicator7Sub2 {
+class Indicator9Sub1 extends Indicator9Sub2 {
 
   /**
    * {@inheritdoc}
