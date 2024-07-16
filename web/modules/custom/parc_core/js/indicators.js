@@ -30,10 +30,7 @@
       }
 
       function buildClassicPieChart(wrapperId, chartData) {
-
-        // culorile se genereaza pe baza procentajului din cel mai mare slice al fiecarui slice
-        // ex, daca avem 3 slice-uri cu valorile 10, 20, 30, culorile vor fi 10/30, 20/30, 30/30
-        // folosesc opacity pentru a face culorile mai deschise
+        // Colors generated based on the year color + opacity change.
         const colors = {
           2022: "#017365",
           2023: "#E4798B",
@@ -43,10 +40,8 @@
           2027: "#7D2D9C",
           2028: "#DB5749",
         };
-        function chart(year){
 
-
-
+        function chart(year) {
           const data = chartData.chart[year];
           const colorHex = colors[year]; // Hex color for the specified year
 
@@ -61,7 +56,7 @@
             return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
           }
 
-          const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+          const margin = {top: 20, right: 20, bottom: 20, left: 20};
           const width = 700 - margin.left - margin.right;
           const height = 800 - margin.top - margin.bottom;
           const radius = Math.min(width, height) / 2 - 80;
@@ -180,11 +175,6 @@
                   first_outer_x = x - 150;
                   first_outer_y = y - 10;
                 }
-                //   i++;
-                //   return `translate(${first_outer_x},${first_outer_y})`
-
-                // }
-                // else{
 
                 i++;
                 return `translate(${first_outer_x},${first_outer_y})`;
@@ -200,53 +190,53 @@
             .call(wrap2, maxLabelWidth);
 
           svg.selectAll(".sliceLabel").each(function (d, i) {
-            if (outers.includes(i)) {
-              let index = outers.indexOf(i);
-              let children = d3.select(this).node().children;
-              let newX = first_outer_x + index * 20;
-              let newY = first_outer_y - index * (font_size + 6) * children.length;
+              if (outers.includes(i)) {
+                let index = outers.indexOf(i);
+                let children = d3.select(this).node().children;
+                let newX = first_outer_x + index * 20;
+                let newY = first_outer_y - index * (font_size + 6) * children.length;
 
 
-              if (index != 0) {
-                //check how many children this label has
-                console.log(children.length);
+                if (index != 0) {
+                  //check how many children this label has
+                  console.log(children.length);
 
-                let sibling = d3.select(this).node().previousSibling;
-                // translate this label to x = index*10, y =  - index* 7*children.length\
+                  let sibling = d3.select(this).node().previousSibling;
+                  // translate this label to x = index*10, y =  - index* 7*children.length\
 
-                // Update label transform attribute
-                d3.select(this).attr("transform", `translate(${newX},${newY})`);
+                  // Update label transform attribute
+                  d3.select(this).attr("transform", `translate(${newX},${newY})`);
 
+                }
+                let [centroidX, centroidY] = outerArc.centroid(d);
+                let lineX1 = centroidX; // Start at centroidX
+                let lineY1 = centroidY; // Start at centroidY
+                let lineX2 = centroidX; // End at newX
+                let lineY2 = newY; // Horizontal line at same Y as centroid
+
+                svg
+                  .append("line")
+                  .attr("x1", lineX1)
+                  .attr("y1", lineY1 - 10)
+                  .attr("x2", lineX2)
+                  .attr("y2", lineY2)
+                  .attr("stroke", "gray")
+                  .attr("stroke-width", 1)
+
+                // Draw horizontal line
+                svg
+                  .append("line")
+                  .attr("x1", lineX2)
+                  .attr("y1", lineY2)
+                  .attr("x2", newX) // End at newX
+                  .attr("y2", lineY2) // Horizontal line at same Y as vertical end
+                  .attr("stroke", "gray")
+                  .attr("stroke-width", 1)
               }
-              let [centroidX, centroidY] = outerArc.centroid(d);
-              let lineX1 = centroidX; // Start at centroidX
-              let lineY1 = centroidY; // Start at centroidY
-              let lineX2 = centroidX; // End at newX
-              let lineY2 = newY; // Horizontal line at same Y as centroid
-
-              svg
-          .append("line")
-          .attr("x1", lineX1)
-          .attr("y1", lineY1-10)
-          .attr("x2", lineX2)
-          .attr("y2", lineY2)
-          .attr("stroke", "gray")
-          .attr("stroke-width", 1)
-
-        // Draw horizontal line
-        svg
-          .append("line")
-          .attr("x1", lineX2)
-          .attr("y1", lineY2)
-          .attr("x2", newX) // End at newX
-          .attr("y2", lineY2) // Horizontal line at same Y as vertical end
-          .attr("stroke", "gray")
-          .attr("stroke-width", 1)
-        }
 
 
             }
-          , 1000);
+            , 1000);
 
           function wrap2(text, width) {
             text.each(function () {
@@ -317,6 +307,7 @@
             });
           }
         }
+
         function handleLegendClick(event, d) {
           // Remove existing SVG
           d3.select(`#${wrapperId} svg`).remove();
@@ -333,7 +324,7 @@
             .append("div")
             .attr("class", "legend")
             .selectAll("div")
-            .data(years.map((year) => ({ year, color: "blue" })))
+            .data(years.map((year) => ({year, color: "blue"})))
             .enter()
             .append("div")
             .on("click", handleLegendClick);
@@ -359,7 +350,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: "blue" })))
+          .data(years.map((year) => ({year, color: "blue"})))
           .enter()
           .append("div")
           .on("click", handleLegendClick);
@@ -458,28 +449,28 @@
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return innerRadius * Math.cos(angle);
               })
               .attr("y1", (d, i) => {
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return innerRadius * Math.sin(angle);
               })
               .attr("x2", (d, i) => {
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return radius * Math.cos(angle);
               })
               .attr("y2", (d, i) => {
                 const angle =
                   arc.startAngle +
                   ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
+                  (2 * linesToColor);
                 return radius * Math.sin(angle);
               })
               .attr("stroke", color)
@@ -547,7 +538,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: colors[year] })))
+          .data(years.map((year) => ({year, color: colors[year]})))
           .enter()
           .append("div")
           .on("click", function (event, d) {
@@ -580,11 +571,12 @@
           2027: "#7D2D9C",
           2028: "#DB5749",
         };
+
         function chart(year) {
           const data = chartData.chart[year]; // Extract data for the year 2022
 
           // Dimensions and margins
-          const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+          const margin = {top: 20, right: 20, bottom: 20, left: 20};
           const width = 600 - margin.left - margin.right;
           const height = 600 - margin.top - margin.bottom;
           const radius = Math.min(width, height) / 2 - 80;
@@ -736,7 +728,7 @@
             .append("div")
             .attr("class", "legend")
             .selectAll("div")
-            .data(years.map((year) => ({ year, color: "blue" })))
+            .data(years.map((year) => ({year, color: "blue"})))
             .enter()
             .append("div")
             .on("click", handleLegendClick);
@@ -762,7 +754,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: "blue" })))
+          .data(years.map((year) => ({year, color: "blue"})))
           .enter()
           .append("div")
           .on("click", handleLegendClick);
@@ -842,15 +834,15 @@
         const data = chartData.chart;
 
         const categories = {
-          member: { color: "#1f77b4", label: "23 Member States" },
-          associated: { color: "#f1c40f", label: "4 Associated Countries" },
+          member: {color: "#1f77b4", label: "23 Member States"},
+          associated: {color: "#f1c40f", label: "4 Associated Countries"},
           "non-associated": {
             color: "#bdc3c7",
             label: "1 Non-associated Third Countries",
           },
         };
 
-        const margin = { top: 20, right: 20, bottom: 20, left: 20 },
+        const margin = {top: 20, right: 20, bottom: 20, left: 20},
           width = 1250 - margin.left - margin.right,
           height = 800 - margin.top - margin.bottom;
 
@@ -997,7 +989,7 @@
         ];
         const latestYear = years[years.length - 1];
 
-        const margin = { top: 20, right: 30, bottom: 40, left: 150 },
+        const margin = {top: 20, right: 30, bottom: 40, left: 150},
           width = 1250 - margin.left - margin.right,
           height = 200 + categories.length * 20 - margin.top - margin.bottom,
           maxWidth = 25; // Set your maximum bar width here
@@ -1134,7 +1126,7 @@
         ];
         const latestYear = years[years.length - 1];
 
-        const margin = { top: 20, right: 30, bottom: 90, left: 50 },
+        const margin = {top: 20, right: 30, bottom: 90, left: 50},
           width = 1250 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
@@ -1371,7 +1363,7 @@
           .append("div")
           .attr("class", "legend")
           .selectAll("div")
-          .data(years.map((year) => ({ year, color: colors[year] })))
+          .data(years.map((year) => ({year, color: colors[year]})))
           .enter()
           .append("div")
           .on("click", function (event, d) {
