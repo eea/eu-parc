@@ -56,14 +56,13 @@
             return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
           }
 
-          const margin = {top: 20, right: 20, bottom: 20, left: 20};
-          const width = 700 - margin.left - margin.right;
-          const height = 800 - margin.top - margin.bottom;
-          const radius = Math.min(width, height) / 2 - 80;
+          const margin = {top: 20, right: 20, bottom: 0, left: 20};
+          const width = 600 - margin.left - margin.right;
+          const height = 600 - margin.top - margin.bottom;
+          const radius = Math.min(width, height) / 2 - 60;
 
           const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
 
-          console.log(sortedData);
           // Extract sorted categories
           const largestValue = sortedData[0][1];
           const percentages = sortedData.map(
@@ -160,8 +159,6 @@
 
               // Adjust label placement based on slice size
               if (angle > thresholdAngleDegrees) {
-                console.log(angle, thresholdAngleDegrees);
-
                 // Place label inside the pie chart
                 const [x, y] = innerArc.centroid(d);
                 i++;
@@ -178,8 +175,6 @@
 
                 i++;
                 return `translate(${first_outer_x},${first_outer_y})`;
-
-                // }
               }
             })
             .attr("dy", "0.35em")
@@ -194,19 +189,14 @@
                 let index = outers.indexOf(i);
                 let children = d3.select(this).node().children;
                 let newX = first_outer_x + index * 20;
-                let newY = first_outer_y - index * (font_size + 6) * children.length;
-
+                let newY = first_outer_y - index * (font_size + 8) * children.length;
 
                 if (index != 0) {
-                  //check how many children this label has
-                  console.log(children.length);
-
                   let sibling = d3.select(this).node().previousSibling;
                   // translate this label to x = index*10, y =  - index* 7*children.length\
 
                   // Update label transform attribute
                   d3.select(this).attr("transform", `translate(${newX},${newY})`);
-
                 }
                 let [centroidX, centroidY] = outerArc.centroid(d);
                 let lineX1 = centroidX; // Start at centroidX
@@ -214,12 +204,15 @@
                 let lineX2 = centroidX; // End at newX
                 let lineY2 = newY; // Horizontal line at same Y as centroid
 
+                let endX = newX + children.item(0).getBoundingClientRect().width / 2 + 10;
+                let endY = lineY2 - 20;
+
                 svg
                   .append("line")
                   .attr("x1", lineX1)
                   .attr("y1", lineY1 - 10)
                   .attr("x2", lineX2)
-                  .attr("y2", lineY2)
+                  .attr("y2", endY)
                   .attr("stroke", "gray")
                   .attr("stroke-width", 1)
 
@@ -227,14 +220,12 @@
                 svg
                   .append("line")
                   .attr("x1", lineX2)
-                  .attr("y1", lineY2)
-                  .attr("x2", newX) // End at newX
-                  .attr("y2", lineY2) // Horizontal line at same Y as vertical end
+                  .attr("y1", endY)
+                  .attr("x2", endX) // End at newX
+                  .attr("y2", endY) // Horizontal line at same Y as vertical end
                   .attr("stroke", "gray")
                   .attr("stroke-width", 1)
               }
-
-
             }
             , 1000);
 
@@ -242,7 +233,7 @@
             text.each(function () {
               let text = d3.select(this),
                 lines = text.text().split(/\n/), // Split by \n for manual line breaks
-                lineHeight = 1.1, // ems
+                lineHeight = 1.4, // ems
                 y = text.attr("y"),
                 dy = parseFloat(text.attr("dy"));
 
@@ -589,6 +580,7 @@
             "#F58296",
             "#8631A7",
             "#E0BAFF",
+            "#E45C4D",
           ];
           const color = d3
             .scaleOrdinal()
@@ -772,7 +764,6 @@
 
       // Function to wrap text within a specified width using <tspan>
       function wrap(text, width) {
-        console.log(text);
         text.each(function () {
           let text = d3.select(this),
             words = text.text().split(/\s+/).reverse(),
@@ -843,7 +834,7 @@
         };
 
         const margin = {top: 20, right: 20, bottom: 20, left: 20},
-          width = 1250 - margin.left - margin.right,
+          width = 1100 - margin.left - margin.right,
           height = 800 - margin.top - margin.bottom;
 
         const svg = d3
@@ -989,8 +980,8 @@
         ];
         const latestYear = years[years.length - 1];
 
-        const margin = {top: 20, right: 30, bottom: 40, left: 150},
-          width = 1250 - margin.left - margin.right,
+        const margin = {top: 20, right: 30, bottom: 80, left: 200},
+          width = 1100 - margin.left - margin.right,
           height = 200 + categories.length * 20 - margin.top - margin.bottom,
           maxWidth = 25; // Set your maximum bar width here
 
@@ -1127,7 +1118,7 @@
         const latestYear = years[years.length - 1];
 
         const margin = {top: 20, right: 30, bottom: 90, left: 50},
-          width = 1250 - margin.left - margin.right,
+          width = 1100 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
         const svg = d3

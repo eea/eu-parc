@@ -122,8 +122,16 @@
   }
 }
 
-.indicator-chart {
+.indicator-chart__wrapper {
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #999898;
+  padding: 20px;
   margin-bottom: 10px;
+}
+
+.indicator-chart {
+  min-width: 1070px;
 
   &[data-chart-type="radial"] {
     display: flex;
@@ -141,10 +149,6 @@
     justify-content: center;
     flex-direction: column;
   }
-
-  background: #fff;
-  border: 1px solid #999898;
-  padding: 20px;
 
   .text {
     font-size: 20px;
@@ -264,6 +268,7 @@
   padding-left: 40px;
   padding-right: 40px;
   overflow: auto;
+  justify-content: center;
 
   .column {
     display: flex;
