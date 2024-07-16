@@ -72,7 +72,7 @@
           const svg = d3
             .select(`#${wrapperId}`)
             .append("svg")
-            .attr("width", "100%")
+            .attr("width", "1100")
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", `translate(${width},${height / 2})`); // Center the pie chart
@@ -591,7 +591,7 @@
           const svg = d3
             .select(`#${wrapperId}`)
             .append("svg")
-            .attr("width", "100%")
+            .attr("width", "1100")
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr(
