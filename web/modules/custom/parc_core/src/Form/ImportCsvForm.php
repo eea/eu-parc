@@ -153,7 +153,7 @@ class ImportCsvForm extends FormBase
                 foreach ($value as $contact) {
 
 
-                    $nod = \Drupal::entityTypeManager()->getStorage('paragraph')->load($contact);
+                    $nod = $this->entityTypeManager->getStorage('paragraph')->load($contact);
 
                     if($nod) {
                         $rev_id = $nod->getRevisionId();
