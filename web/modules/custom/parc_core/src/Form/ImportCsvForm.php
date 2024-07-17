@@ -63,17 +63,14 @@ class ImportCsvForm extends FormBase
         'file_validate_extensions' => ['csv'],
         ];
 
-        // Handle file upload.
         if ($file = file_save_upload('csv_file', $validators, false, 0)) {
             // If we have a valid upload.
             $file->setPermanent();
             $file->save();
 
-            // Read the CSV file.
             $file_uri = $file->getFileUri();
             $file_path = \Drupal::service('file_system')->realpath($file_uri);
 
-            // Open the CSV file and process data.
             if (($handle = fopen($file_path, 'r')) !== false) {
                 $row_index = 0;
                 while (($data = fgetcsv($handle, 1500, ",")) !== false) {
@@ -125,7 +122,6 @@ class ImportCsvForm extends FormBase
         'field_project_contacts' => $this->processContactsNameToId($contacts),
         ];
 
-        // Create and save the node
         $this->createProjectNode($node_data);
     }
 
@@ -153,7 +149,6 @@ class ImportCsvForm extends FormBase
             }
 
             if($field_name === 'field_project_contacts') {
-                // foreach get the paragraph id, load the paragraph and get the revision id
                 $contacts = [];
                 foreach ($value as $contact) {
 
@@ -197,7 +192,7 @@ class ImportCsvForm extends FormBase
         $csv_data = [];
 
         $header = [];
-        $first_publication = reset($projects); // Get the first publication for headers
+        $first_publication = reset($projects);
         $header = array('title','body','related_publications','topics','keywords','internal_title','start_date','end_date','potential_impacts','partners', 'contacts');
         $csv_data[] = $header;
 
@@ -400,7 +395,7 @@ class ImportCsvForm extends FormBase
             ->execute();
 
         if (!empty($query)) {
-            return reset($query); // Return the first matching term ID.
+            return reset($query);
         }
         return null;
 
