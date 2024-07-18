@@ -35,4 +35,4 @@ parc_core.import_csv_form:
     _form: '\Drupal\parc_core\Form\ImportCsvForm'
     _title: 'Import CSV'
   requirements:
-    _permission: 'access content'
+    _permission: 'create project content'
