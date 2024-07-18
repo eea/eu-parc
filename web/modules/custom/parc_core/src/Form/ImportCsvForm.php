@@ -5,8 +5,11 @@ namespace Drupal\parc_core\Form;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
@@ -27,8 +30,25 @@ class ImportCsvForm extends FormBase {
    */
   protected EntityTypeManagerInterface $entityTypeManager;
 
-  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+  /**
+   * The file system service.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
+
+  /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, FileSystemInterface $file_system, MessengerInterface $messenger) {
     $this->entityTypeManager = $entity_type_manager;
+    $this->fileSystem = $file_system;
+    $this->messenger = $messenger;
   }
 
   /**
@@ -36,8 +56,10 @@ class ImportCsvForm extends FormBase {
    */
   public static function create(ContainerInterface $container): ImportCsvForm|static {
     return new static(
-          $container->get('entity_type.manager')
-      );
+          $container->get('entity_type.manager'),
+          $container->get('file_system'),
+          $container->get('messenger')
+        );
   }
 
   /**
@@ -83,13 +105,95 @@ class ImportCsvForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
-    $validators = [
-      'file_validate_extensions' => ['csv'],
+
+    $triggering_element = $form_state->getTriggeringElement();
+    if ($triggering_element['#value'] === 'Import') {
+      $file = file_save_upload('csv_file', ['file_validate_extensions' => ['csv']], FALSE, 0);
+      $this->validateImportForm($form, $form_state, $file);
+    }
+  }
+
+  /**
+   * Validate the import form.
+   *
+   * @param array $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   * @param \Drupal\file\Entity\File $file
+   *   The uploaded file.
+   */
+  protected function validateImportForm(array &$form, FormStateInterface $form_state, File $file): void {
+    if (!$file) {
+      $form_state->setErrorByName('csv_file', $this->t('The file could not be uploaded.'));
+      return;
+    }
+    $file_uri = $file->getFileUri();
+    $file_path = $this->fileSystem->realpath($file_uri);
+    if (($handle = fopen($file_path, 'r')) === FALSE) {
+      $form_state->setErrorByName('csv_file', $this->t('The file could not be opened.'));
+    }
+    $row_index = 0;
+    $csv_data = [];
+    $header = [];
+    while (($data = fgetcsv($handle, NULL, ",")) !== FALSE) {
+      if ($row_index == 0) {
+        $header = $data;
+        $expected_header = ['title', 'body', 'related_publications', 'topics', 'keywords', 'internal_title', 'start_date',
+          'end_date', 'potential_impacts', 'partners', 'contacts',
+        ];
+        if ($header != $expected_header) {
+          $form_state->setErrorByName('csv_file', $this->t('The file does not have the correct header.'));
+          fclose($handle);
+          return;
+        }
+      }
+      else {
+        $data = array_combine($header, $data);
+        $check_valid = $this->validateCsvRow($data);
+        if (!$check_valid) {
+          $form_state->setErrorByName('csv_file', $this->t('The file contains invalid data.'));
+          fclose($handle);
+          return;
+        }
+        $csv_data[] = $data;
+      }
+      $row_index++;
+    }
+    fclose($handle);
+
+    $form_state->set('csv_data', $csv_data);
+  }
+
+  /**
+   * Validate a row from the CSV file.
+   *
+   * @param array $data
+   *   The row data from the CSV file.
+   *
+   * @return bool
+   *   TRUE if the row is valid, FALSE otherwise.
+   */
+  protected function validateCsvRow(array &$data): bool {
+    $entities_to_check = [
+      'related_publications' => ['type' => 'publications', 'content_type' => 'node'],
+      'topics' => ['type' => 'project_topics', 'content_type' => 'taxonomy_term'],
+      'keywords' => ['type' => 'project_keywords', 'content_type' => 'taxonomy_term'],
+      'partners' => ['type' => 'institution', 'content_type' => 'node'],
     ];
 
-    if (!$file = file_save_upload('csv_file', $validators, FALSE, 0)) {
-      $form_state->setErrorByName('csv_file', $this->t('The file could not be uploaded.'));
+    foreach ($entities_to_check as $key => $settings) {
+      if (!empty($data[$key])) {
+        $check = $this->processEntitiesNameToId($data[$key], $settings['type'], $settings['content_type']);
+        if ($check === NULL) {
+          return FALSE;
+        }
+        $data[$key] = $check;
+      }
+
     }
+
+    return TRUE;
   }
 
   /**
@@ -110,29 +214,10 @@ class ImportCsvForm extends FormBase {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function submitFormImport(array &$form, FormStateInterface $form_state): void {
-    $validator = [
-      'file_validate_extensions' => ['csv'],
-    ];
-    if ($file = file_save_upload('csv_file', $validator, FALSE, 0)) {
+    $rows = $form_state->get('csv_data');
 
-      $file->save();
-
-      $file_uri = $file->getFileUri();
-      $file_path = \Drupal::service('file_system')->realpath($file_uri);
-
-      if (($handle = fopen($file_path, 'r')) !== FALSE) {
-        $row_index = 0;
-        while (($data = fgetcsv($handle, NULL, ",")) !== FALSE) {
-          if ($row_index > 0) {
-            $this->processCsvRow($data);
-          }
-          $row_index++;
-        }
-        fclose($handle);
-      }
-    }
-    else {
-      \Drupal::messenger()->addError($this->t('The file could not be uploaded.'));
+    foreach ($rows as $row) {
+      $this->processCsvRow($row);
     }
   }
 
@@ -143,31 +228,18 @@ class ImportCsvForm extends FormBase {
    *   The row data from the CSV file.
    */
   protected function processCsvRow(array $data): void {
-    $title = $data[0];
-    $body = $data[1];
-    $related_publications = $data[2];
-    $topics = $data[3];
-    $keywords = $data[4];
-    $internal_title = $data[5];
-    $start_date = $data[6];
-    $end_date = $data[7];
-    $potential_impacts = $data[8];
-    $partners = $data[9];
-    $contacts = $data[10];
-
     $node_data = [
       'type' => 'project',
-      'title' => $title,
-      'body' => $body,
-      'field_project_abbreviation' => $internal_title,
-      'field_date_range' => ['value' => $start_date, 'end_value' => $end_date],
-      'field_related_publications' => $this->processEntitiesNameToId($related_publications, 'publications', 'node'),
-      'field_project_topics' => $this->processEntitiesNameToId($topics, 'project_topics', 'taxonomy_term'),
-      'field_project_keywords' => $this->processEntitiesNameToId($keywords, 'project_keywords', 'taxonomy_term'),
-      'field_project_potential_impacts' => explode("\n", $potential_impacts),
-      'field_partners' => $this->processEntitiesNameToId($partners, 'institution', 'node'),
-      // Creez altul, nu caut.
-      'field_project_contacts' => $this->processContactsNameToId($contacts),
+      'title' => $data['title'],
+      'body' => $data['body'],
+      'field_project_abbreviation' => $data['internal_title'],
+      'field_date_range' => ['value' => $data['start_date'], 'end_value' => $data['end_date']],
+      'field_related_publications' => $data['related_publications'],
+      'field_project_topics' => $data['topics'],
+      'field_project_keywords' => $data['keywords'],
+      'field_project_potential_impacts' => explode("\n", $data['potential_impacts']),
+      'field_partners' => $data['partners'],
+      'field_project_contacts' => $this->processContactsNameToId($data['contacts']),
     ];
 
     $this->createProjectNode($node_data);
@@ -184,6 +256,7 @@ class ImportCsvForm extends FormBase {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
   protected function createProjectNode(array $node_data): void {
+
     $storage = $this->entityTypeManager->getStorage('node');
     $node = $storage->create(['type' => $node_data['type'], 'title' => $node_data['title']]);
 
@@ -198,14 +271,12 @@ class ImportCsvForm extends FormBase {
         continue;
       }
 
-      // Le fac o singura functie.
       if (!is_array($value)) {
         $value = [$value];
       }
       $this->setNodeFieldValues($node, $field_name, $value);
 
     }
-
     $node->save();
   }
 
@@ -254,24 +325,9 @@ class ImportCsvForm extends FormBase {
           'partners' => $this->processProjectContent($project, 'field_partners'),
           'contacts' => $this->processProjectContacts($project),
         ];
-      // Le fac array.
-      $row = [
-        $data_array['title'],
-        $data_array['body'],
-        $data_array['related_publications'],
-        $data_array['topics'],
-        $data_array['keywords'],
-        $data_array['internal_title'],
-        $data_array['start_date'],
-        $data_array['end_date'],
-        $data_array['potential_impacts'],
-        $data_array['partners'],
-        $data_array['contacts'],
-      ];
 
-      $csv_data[] = $row;
+      $csv_data[] = $data_array;
     }
-    echo "yes";
     $this->createCsv($csv_data);
 
   }
@@ -319,8 +375,7 @@ class ImportCsvForm extends FormBase {
     }
     catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
       $err = $e->getMessage();
-      \Drupal::messenger()->addError($err);
-
+      $this->messenger()->addError($err);
     }
     $query = $storage->getQuery()
       ->condition('type', 'project')
@@ -340,7 +395,7 @@ class ImportCsvForm extends FormBase {
    *   The term name or NULL if not found.
    */
   protected function getTermNameById(int $term_id): ?string {
-    $term = Term::load($term_id);
+    $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($term_id);
 
     return $term?->getName();
   }
@@ -430,10 +485,8 @@ class ImportCsvForm extends FormBase {
   protected function getIdByName($name, $type, $content_type) {
     $identifier_field = $content_type == 'node' ? 'title' : 'name';
     $type_field = $content_type == 'node' ? 'type' : 'vid';
-    echo $content_type;
 
-
-    $query = \Drupal::entityQuery($content_type)
+    $query = $this->entityTypeManager->getStorage($content_type)->getQuery()
       ->condition($identifier_field, $name)
       ->condition($type_field, $type)
       ->accessCheck(FALSE)
@@ -482,8 +535,12 @@ class ImportCsvForm extends FormBase {
     $field_values = [];
     if ($field_name === 'field_project_contacts') {
       $field_values = $values;
-
     }
+
+    elseif ($field_name === 'field_project_abbreviation' || $field_name === 'body') {
+      $field_values = $values[0];
+    }
+
     else {
 
       foreach ($values as $value) {
@@ -492,6 +549,7 @@ class ImportCsvForm extends FormBase {
     }
 
     if (!empty($field_values)) {
+
       $node->set($field_name, $field_values);
     }
   }
@@ -507,7 +565,7 @@ class ImportCsvForm extends FormBase {
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function processContactsNameToId(string $paragraph): array {
+  protected function processContactsNameToId(?string $paragraph): array {
     if (empty($paragraph)) {
       return [];
     }
@@ -539,7 +597,7 @@ class ImportCsvForm extends FormBase {
    * @return array
    *   An array of entity IDs.
    */
-  protected function processEntitiesNameToId(string $entities, string $type, string $content_type): array {
+  protected function processEntitiesNameToId(string $entities, string $type, string $content_type): ?array {
     if (empty($entities)) {
       return [];
     }
@@ -547,6 +605,9 @@ class ImportCsvForm extends FormBase {
     $entity_array = explode("\n", $entities);
     foreach ($entity_array as &$entity) {
       $entity = $this->getIdByName(trim($entity), $type, $content_type);
+      if ($entity === NULL) {
+        return NULL;
+      }
     }
 
     return $entity_array;

@@ -84,7 +84,6 @@
         "drupal/smart_trim": "^2.1",
         "drupal/spamspan": "^3.1",
         "drupal/svg_image": "^3.0",
-        "drupal/tablefield": "^2.4",
         "drupal/taxonomy_menu": "^3.6",
         "drupal/twig_tweak": "^3.2",
         "drupal/ultimate_cron": "^2.0@alpha",
@@ -221,7 +220,6 @@
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^1.11",
         "phpstan/phpstan-deprecation-rules": "^1.2",
-        "slevomat/coding-standard": "^8.15",
         "squizlabs/php_codesniffer": "^3.10"
     }
 }
