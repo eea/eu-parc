@@ -258,7 +258,20 @@ class ImportCsvForm extends FormBase {
   protected function createProjectNode(array $node_data): void {
 
     $storage = $this->entityTypeManager->getStorage('node');
-    $node = $storage->create(['type' => $node_data['type'], 'title' => $node_data['title']]);
+    $query = $storage->getQuery()
+      ->condition('title', $node_data['title'])
+      ->condition('type', $node_data['type'])
+      ->accessCheck(FALSE)
+      ->execute();
+
+    $node = NULL;
+
+    if (!empty($query)) {
+      $node = $storage->load(reset($query));
+    }
+    else {
+      $node = $storage->create(['type' => $node_data['type'], 'title' => $node_data['title']]);
+    }
 
     foreach ($node_data as $field_name => $value) {
       if ($field_name === 'type' || $field_name === 'title') {
