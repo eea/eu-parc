@@ -11,6 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
+
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -44,7 +45,6 @@ class ImportCsvForm extends FormBase {
    */
   protected $messenger;
 
-
   public function __construct(EntityTypeManagerInterface $entity_type_manager, FileSystemInterface $file_system, MessengerInterface $messenger) {
     $this->entityTypeManager = $entity_type_manager;
     $this->fileSystem = $file_system;
@@ -56,10 +56,10 @@ class ImportCsvForm extends FormBase {
    */
   public static function create(ContainerInterface $container): ImportCsvForm|static {
     return new static(
-          $container->get('entity_type.manager'),
-          $container->get('file_system'),
-          $container->get('messenger')
-        );
+      $container->get('entity_type.manager'),
+      $container->get('file_system'),
+      $container->get('messenger')
+    );
   }
 
   /**
@@ -339,17 +339,14 @@ class ImportCsvForm extends FormBase {
    *   The row data from the CSV file.
    */
   protected function createCsv(array $csv_data): void {
-    $csv_content = '';
-    foreach ($csv_data as $line) {
-      $line = array_map(
-            function ($value) {
-                return '"' . str_replace('"', '""', $value) . '"';
-            }, $line
-        );
-      $csv_content .= implode(',', $line) . "\n";
-    }
+    $temp_file = tmpfile();
 
-    $response = new Response($csv_content);
+    foreach ($csv_data as $line) {
+      fputcsv($temp_file, $line);
+    }
+    rewind($temp_file);
+
+    $response = new Response(stream_get_contents($temp_file));
     $disposition = $response->headers->makeDisposition(
           ResponseHeaderBag::DISPOSITION_ATTACHMENT,
           'projects.csv'
@@ -360,7 +357,9 @@ class ImportCsvForm extends FormBase {
     $response->headers->set('Expires', '0');
     $response->headers->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0');
     $response->headers->set('Content-Transfer-Encoding', 'binary');
-    $response->headers->set('Content-Length', strlen($csv_content));
+    $response->headers->set('Content-Length', strlen(stream_get_contents($temp_file)));
+
+    fclose($temp_file);
 
     $response->send();
   }
@@ -383,21 +382,6 @@ class ImportCsvForm extends FormBase {
 
     $ids = $query->execute();
     return $storage->loadMultiple($ids);
-  }
-
-  /**
-   * Get the name of a taxonomy term by its ID.
-   *
-   * @param int $term_id
-   *   The term ID.
-   *
-   * @return string|null
-   *   The term name or NULL if not found.
-   */
-  protected function getTermNameById(int $term_id): ?string {
-    $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($term_id);
-
-    return $term?->getName();
   }
 
   /**
