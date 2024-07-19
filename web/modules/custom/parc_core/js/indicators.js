@@ -27,6 +27,7 @@
 
         const buildFunction = buildFunctions[chartType];
         buildFunction(wrapperId, chartData);
+        addPlayButtonToLegend(`#${wrapperId} .legend`, wrapperId);
       }
 
       function buildClassicPieChart(wrapperId, chartData) {
@@ -40,8 +41,8 @@
           2027: "#7D2D9C",
           2028: "#DB5749",
         };
+        const year = 2022;
 
-        function chart(year) {
           const data = chartData.chart[year];
           const colorHex = colors[year]; // Hex color for the specified year
 
@@ -185,6 +186,7 @@
             .call(wrap2, maxLabelWidth);
 
           svg.selectAll(".sliceLabel").each(function (d, i) {
+            console.log(i);
               if (outers.includes(i)) {
                 let index = outers.indexOf(i);
                 let children = d3.select(this).node().children;
@@ -209,6 +211,8 @@
 
                 svg
                   .append("line")
+                  .attr("class", "connector-line")
+
                   .attr("x1", lineX1)
                   .attr("y1", lineY1 - 10)
                   .attr("x2", lineX2)
@@ -219,6 +223,8 @@
                 // Draw horizontal line
                 svg
                   .append("line")
+                  .attr("class", "connector-line")
+
                   .attr("x1", lineX2)
                   .attr("y1", endY)
                   .attr("x2", endX) // End at newX
@@ -297,45 +303,253 @@
               text.attr("x", 0).attr("y", (-lineNumber * lineHeight) / 2 + "em");
             });
           }
+          function updateChart(selectedYear) {
+            // Define the categories based on the selected year
+            const colors = {
+                2022: "#017365",
+                2023: "#E4798B",
+                2024: "#1879EB",
+                2025: "#2DC9B6",
+                2026: "#C0A456",
+                2027: "#7D2D9C",
+                2028: "#DB5749",
+            };
+
+            const data = chartData.chart[selectedYear];
+            const colorHex = colors[selectedYear]; // Hex color for the specified year
+
+            // Function to convert hex color to RGBA with specified opacity
+            function hexToRGBA(hex, opacity) {
+                hex = hex.replace("#", "");
+                const r = parseInt(hex.substring(0, 2), 16);
+                const g = parseInt(hex.substring(2, 4), 16);
+                const b = parseInt(hex.substring(4, 6), 16);
+                const adjustedOpacity = opacity < 0.1 ? opacity * 4 : opacity;
+
+                return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
+            }
+
+            const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
+            const largestValue = sortedData[0][1];
+            const percentages = sortedData.map(([key, value]) => value / largestValue);
+
+            // Prepare pie data
+            const pie = d3.pie().value(d => d[1]).sort(null);
+            const pieData = pie(sortedData);
+
+            // Define the arcs
+            const outerArc = d3.arc().innerRadius(radius - 20).outerRadius(radius);
+            const innerArc = d3.arc().innerRadius(0).outerRadius(radius - 20);
+
+            // Update the outer pie slices
+            const outerSlices = svg.selectAll(".outerSlice")
+                .data(pieData, d => d.index);
+
+            outerSlices
+                .enter()
+                .append("path")
+                .attr("class", "outerSlice")
+                .attr("d", outerArc)
+                .style("stroke", "white")
+                .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]))
+                .style("stroke-width", 2)
+                .merge(outerSlices)
+                .transition()
+                .duration(750)
+                .attr("d", outerArc)
+                .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]));
+
+            outerSlices.exit().remove();
+
+            // Update the inner pie slices
+            const innerPie = d3.pie().value(d => d.value).sort(null);
+            const innerPieData = innerPie(sortedData.map(([key, value]) => ({ category: key, value: value })));
+
+            const innerSlices = svg.selectAll(".innerSlice")
+                .data(innerPieData, d => d.index);
+
+            innerSlices
+                .enter()
+                .append("path")
+                .attr("class", "innerSlice")
+                .attr("d", innerArc)
+                .style("fill", "none")
+                .style("stroke", "black")
+                .style("stroke-width", 1)
+                .merge(innerSlices)
+                .transition()
+                .duration(750)
+                .attr("d", innerArc);
+
+            innerSlices.exit().remove();
+
+            // Update the slice labels
+            const labelUpdate = svg.selectAll(".sliceLabel")
+                .data(pieData, d => d.index);
+
+                const maxLabelWidth = 80;
+                const labelWidthAngleRatio = (maxLabelWidth + 30) / (2 * radius);
+                const thresholdAngle = Math.atan(labelWidthAngleRatio);
+                const thresholdAngleDegrees = thresholdAngle * (180 / Math.PI);
+
+                // Remove existing labels and lines
+                svg.selectAll(".sliceLabel").remove();
+                svg.selectAll(".connector-line").remove();
+
+                let i = 0;
+                let outers = [];
+                let first_outer_x = 0;
+                let first_outer_y = 0;
+                const font_size = 12;
+
+                // Append and position labels
+                svg.selectAll(".sliceLabel")
+    .data(pieData, d => d.index)
+    .enter()
+    .append("text")
+    .attr("class", "sliceLabel")
+    .attr("dy", "0.35em")
+    .attr("text-anchor", "middle")
+    .style("font-size", `${font_size}px`)
+    .style("fill", colorHex)
+    .each(function (d, i) {
+        let startAngle = (d.startAngle * 180) / Math.PI;
+        let endAngle = (d.endAngle * 180) / Math.PI;
+        let angle = (endAngle - startAngle) % 360;
+        let centroidX, centroidY;
+        let labelX, labelY;
+        let endX, endY;
+
+        if (angle > thresholdAngleDegrees) {
+            // Place label inside the pie chart
+            [centroidX, centroidY] = innerArc.centroid(d);
+            d3.select(this).attr("transform", `translate(${centroidX},${centroidY})`);
+        } else {
+            // Place label outside the pie chart
+            [centroidX, centroidY] = outerArc.centroid(d);
+            outers.push(i);
+            if (outers.length === 1) {
+                first_outer_x = centroidX - 150;
+                first_outer_y = centroidY - 10;
+            }
+
+            let index = outers.indexOf(i);
+            labelX = first_outer_x + index * 20;
+            labelY = first_outer_y - index * (font_size + 8);
+
+            // get how many children this has, if it has a sibling, translate this label to x = index*10, y =  - index* 7*children.length
+
+
+            d3.select(this).attr("transform", `translate(${labelX},${labelY})`);
+
+            // Using requestAnimationFrame to wait until the text is rendered
+            requestAnimationFrame(() => {
+                // Measure the text element
+                const bbox = this.getBBox();
+                //get how many children this has
+                let children = d3.select(this).node().children;
+                console.log(bbox.width);
+                labelY=labelY-index*children.length*10
+                endX = labelX + bbox.width/2 + 10; // Use bbox.width for the text width
+                endY = labelY - 20;
+
+                d3.select(this).attr("transform", `translate(${labelX},${labelY})`);
+                // Draw the connector lines, one vertical and one horizontal
+                svg.append("line")
+                    .attr("class", "connector-line")
+                    .attr("x1", centroidX)
+                    .attr("y1", centroidY - 10)
+                    .attr("x2", centroidX)
+                    .attr("y2", endY)
+                    .attr("stroke", "gray")
+                    .attr("stroke-width", 1);
+
+                svg.append("line")
+                .attr("class", "connector-line")
+                    .attr("x1", centroidX)
+                    .attr("y1", endY)
+                    .attr("x2", endX)
+                    .attr("y2", endY)
+                    .attr("stroke", "gray")
+                    .attr("stroke-width", 1);
+            });
+        }
+    })
+    .text(d => `${d.data[0]}\n${d.data[1]}`)
+    .call(wrap2, maxLabelWidth);
+
+
         }
 
-        function handleLegendClick(event, d) {
-          // Remove existing SVG
-          d3.select(`#${wrapperId} svg`).remove();
+        function wrap2(text, width) {
+            text.each(function () {
+                let text = d3.select(this),
+                    lines = text.text().split(/\n/),
+                    lineHeight = 1.4,
+                    y = text.attr("y"),
+                    dy = parseFloat(text.attr("dy"));
 
-          // Remove existing legend
-          d3.select(`#${wrapperId} .legend`).remove();
+                text.text(null);
 
-          // Recreate chart for selected year
-          chart(d.year);
+                lines.forEach((line, index) => {
+                    line = line.replace(/\//g, " / ");
+                    let words = line.split(/\s+/);
+                    let tspan = text
+                        .append("tspan")
+                        .attr("x", 0)
+                        .attr("dy", index === 0 ? 0 + "em" : lineHeight + "em")
+                        .style("font-weight", "bold")
+                        .text(line.toUpperCase());
+                    let lineLength = 0;
+                    words.forEach((word, i) => {
+                        if (i > 0) {
+                            let currentLength = tspan.text().length > 0 ? tspan.node().getComputedTextLength() : 0;
+                            if (currentLength + word.length > width) {
+                                tspan = text
+                                    .append("tspan")
+                                    .attr("x", 0)
+                                    .attr("dy", lineHeight + "em")
+                                    .style("font-weight", "bold")
+                                    .text(word.toUpperCase());
+                            } else {
+                                tspan.text(tspan.text() + " " + word.toUpperCase());
+                            }
+                        } else {
+                            tspan.text(word.toUpperCase());
+                        }
+                    });
 
-          // Recreate legend
-          const legend = d3
-            .select(`#${wrapperId}`)
-            .append("div")
-            .attr("class", "legend")
-            .selectAll("div")
-            .data(years.map((year) => ({year, color: "blue"})))
-            .enter()
-            .append("div")
-            .on("click", handleLegendClick);
+                    if (index === 0) {
+                        let tspanNode = tspan.node();
+                        if (tspanNode.getComputedTextLength() > width) {
+                            let words = tspan.text().split(/\s+/);
+                            tspan.text(null);
+                            words.forEach((word, i) => {
+                                if (i > 0) {
+                                    tspan = text
+                                        .append("tspan")
+                                        .attr("x", 0)
+                                        .attr("dy", lineHeight + "em")
+                                        .text(word);
+                                } else {
+                                    tspan.text(word);
+                                }
+                            });
+                        }
+                    }
+                });
 
-          legend
-            .append("span")
-            .attr("class", "legend-color")
-            .style("background-color", (d) => colors[d.year]);
-
-          legend
-            .append("span")
-            .attr("class", (d) => "legend-text year-" + d.year)
-            .text((d) => d.year);
+                let lineNumber = lines.length;
+                text.attr("x", 0).attr("y", (-lineNumber * lineHeight) / 2 + "em");
+            });
         }
+
+
+
+
 
         // Initial call to create the chart for the first year in the data
         const years = Object.keys(chartData.chart);
-        const latestYear = years[years.length - 1];
-        chart(latestYear);
-
         // Create initial legend
         const legend = d3
           .select(`#${wrapperId}`)
@@ -345,7 +559,9 @@
           .data(years.map((year) => ({year, color: "blue"})))
           .enter()
           .append("div")
-          .on("click", handleLegendClick);
+          .on("click", function (event, d) {
+            updateChart(d.year);
+          });
 
         legend
           .append("span")
@@ -564,7 +780,7 @@
           2028: "#DB5749",
         };
 
-        function chart(year) {
+        year = '2022';
           const data = chartData.chart[year]; // Extract data for the year 2022
 
           // Dimensions and margins
@@ -574,7 +790,7 @@
           const radius = Math.min(width, height) / 2 - 80;
 
           // Color scale
-          const colors = [
+          const colorss = [
             "#E1C268",
             "#008474",
             "#1C74FF",
@@ -586,11 +802,12 @@
           const color = d3
             .scaleOrdinal()
             .domain(Object.keys(data))
-            .range(colors);
+            .range(colorss);
           // Create SVG element
           const svg = d3
             .select(`#${wrapperId}`)
             .append("svg")
+            .attr("class", "indicator-chart-svg")
             .attr("width", "1100")
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -703,44 +920,106 @@
             .text(`Number of organizations`)
             .style("font-size", "12px")
             .attr("fill", "gray");
-        }
+            function updateChart(selectedYear) {
+              // Select the container and remove any existing SVG elements
+              const container = d3.select(`#${wrapperId}`);
+              container.selectAll(".indicator-chart-svg").remove(); // This ensures only one SVG is present
 
-        function handleLegendClick(event, d) {
-          // Remove existing SVG
-          d3.select(`#${wrapperId} svg`).remove();
+              // Extract data for the selected year
+              const data = chartData.chart[selectedYear];
 
-          // Remove existing legend
-          d3.select(`#${wrapperId} .legend`).remove();
+              // Create SVG element again
+              const svg = container
+                  .insert("svg", ":first-child") // Insert SVG as the first child
+                  .attr("width", "1100")
+                  .attr("class", "indicator-chart-svg")
+                  .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                  .attr("transform", `translate(${width},${height / 2 + margin.top})`); // Adjusted for margins
 
-          // Recreate chart for selected year
-          chart(d.year);
+              // Prepare data for pie layout
+              const pieData = pie(
+                  Object.entries(data).map(([key, value]) => ({
+                      category: key,
+                      value: value,
+                  }))
+              );
 
-          // Recreate legend
-          const legend = d3
-            .select(`#${wrapperId}`)
-            .append("div")
-            .attr("class", "legend")
-            .selectAll("div")
-            .data(years.map((year) => ({year, color: "blue"})))
-            .enter()
-            .append("div")
-            .on("click", handleLegendClick);
+              // Draw pie chart
+              pieData.forEach((slice, i) => {
+                  const numLines = slice.data.value;
+                  const angleStep = (slice.endAngle - slice.startAngle) / numLines;
 
-          legend
-            .append("span")
-            .attr("class", "legend-color")
-            .style("background-color", (d) => colors[d.year]);
+                  let rotationAngle;
+                  let outerRadius;
+                  for (let j = 0; j < numLines; j++) {
+                      const angle = slice.startAngle + j * angleStep;
+                      const x1 = 0;
+                      const y1 = 0;
+                      const x2 = Math.cos(angle) * radius;
+                      const y2 = Math.sin(angle) * radius;
+                      outerRadius = radius * 1.2;
 
-          legend
-            .append("span")
-            .attr("class", (d) => "legend-text year-" + d.year)
-            .text((d) => d.year);
-        }
+                      svg.append("line")
+                          .attr("x1", x1)
+                          .attr("y1", y1)
+                          .attr("x2", x2)
+                          .attr("y2", y2)
+                          .attr("stroke", color(i))
+                          .attr("stroke-width", 6)
+                          .attr("stroke-linecap", "round");
+
+                      if (j === 0) {
+                          const angleInDegrees = angle * (180 / Math.PI);
+                          const x = outerRadius * Math.cos(angle);
+                          const y = outerRadius * Math.sin(angle);
+                          const gapX = x2 + Math.cos(angle) * gapLength;
+                          const gapY = y2 + Math.sin(angle) * gapLength;
+                          const labelLineLength = 20;
+                          const labelX = gapX + Math.cos(angle) * labelLineLength;
+                          const labelY = gapY + Math.sin(angle) * labelLineLength;
+                          rotationAngle = angleInDegrees;
+                          if (angle > Math.PI) {
+                              rotationAngle += 180;
+                          } else {
+                              rotationAngle -= 180;
+                          }
+
+                          const label = svg
+                              .append("text")
+                              .attr("transform", `translate(${x}, ${y}) rotate(${rotationAngle})`)
+                              .attr("dy", "0.35em")
+                              .style("fill", color(i))
+                              .html(`${slice.data.value} projects ${slice.data.category}`)
+                              .attr("text-anchor", angle > Math.PI ? "end" : "start");
+
+                          wrap(label, 200);
+                          if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
+                              label.attr("text-anchor", "end");
+                          } else {
+                              label.attr("text-anchor", "start");
+                          }
+                          label.attr("transform", `translate(${x}, ${y}) rotate(${0})`);
+
+                          svg.append("line")
+                              .attr("x1", gapX)
+                              .attr("y1", gapY)
+                              .attr("x2", labelX)
+                              .attr("y2", labelY)
+                              .attr("stroke", "black")
+                              .attr("stroke-width", 1);
+                      }
+                  }
+              });
+          }
+
+
 
         // Initial call to create the chart for the first year in the data
         const years = Object.keys(chartData.chart);
         const latestYear = years[years.length - 1];
-        chart(latestYear);
+
+
 
         // Create initial legend
         const legend = d3
@@ -751,7 +1030,10 @@
           .data(years.map((year) => ({year, color: "blue"})))
           .enter()
           .append("div")
-          .on("click", handleLegendClick);
+          .on("click", function (event, d) {
+            updateChart(d.year);
+          });
+
 
         legend
           .append("span")
@@ -834,6 +1116,8 @@
           2027: "#7D2D9C",
           2028: "#DB5749",
         };
+        const year = 2022;
+
         function hexToRGBA(hex, opacity) {
           hex = hex.replace("#", "");
           const r = parseInt(hex.substring(0, 2), 16);
@@ -844,7 +1128,6 @@
           return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
         }
 
-        function chart(year) {
           console.log(colors[year]);
           const categories = {
 
@@ -997,45 +1280,13 @@
           function ticked() {
             node.attr("transform", (d) => `translate(${d.x},${d.y})`);
           }
-        }
-        function handleLegendClick(event, d) {
-          // Remove existing SVG
-          d3.select(`#${wrapperId} svg`).remove();
 
-          // Remove existing legend
-          d3.select(`#${wrapperId} .legend`).remove();
 
-          // Recreate chart for selected year
-          chart(d.year);
-
-          // Recreate legend
-          const legend = d3
-            .select(`#${wrapperId}`)
-            .append("div")
-            .attr("class", "legend")
-            .selectAll("div")
-            .data(years.map((year) => ({year, color: "blue"})))
-            .enter()
-            .append("div")
-            .on("click", handleLegendClick);
-
-          legend
-            .append("span")
-            .attr("class", "legend-color")
-            .style("background-color", (d) => colors[d.year]);
-
-          legend
-            .append("span")
-            .attr("class", (d) => "legend-text year-" + d.year)
-            .text((d) => d.year);
-        }
         const years = ['2022', '2023', '2024', '2025', '2026', '2027', '2028'];
         const latestYear = years[0];
-        console.log(latestYear);
-        chart(latestYear);
 
         // Create initial legend
-        const legend = d3
+        const leg = d3
           .select(`#${wrapperId}`)
           .append("div")
           .attr("class", "legend")
@@ -1043,17 +1294,124 @@
           .data(years.map((year) => ({year, color: "blue"})))
           .enter()
           .append("div")
-          .on("click", handleLegendClick);
-
-        legend
+          .on("click", function (event, year) {
+            // Call updateChart with the clicked year
+            updateChart(year.year);
+        });
+        leg
           .append("span")
           .attr("class", "legend-color")
           .style("background-color", (d) => colors[d.year]);
-
-        legend
+        leg
           .append("span")
           .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
+
+
+
+
+          function updateChart(selectedYear) {
+            // Re-define the categories based on the selected year
+            const categories = {
+                member: { color: colors[selectedYear], label: "23 MEMBER STATES" },
+                associated: { color: hexToRGBA(colors[selectedYear], 0.6), label: "4 ASSOCIATED COUNTRIES" },
+                "non-associated": { color: hexToRGBA(colors[selectedYear], 0.2), label: "1 NON-ASSOCIATED THIRD COUNTRIES" },
+            };
+
+            console.log('Categories:', categories);
+
+            // Update existing bubbles
+            const nodes = svg.selectAll(".bubble")
+                .data(data); // Assuming each data item has a unique 'id'
+
+            console.log('Nodes data:', data);
+
+            // Entering elements
+            const entering = nodes.enter().append("g")
+                .attr("class", "bubble");
+
+            entering.append("circle");
+            entering.append("text").attr("class", "value-text");
+            entering.append("text").attr("class", "country-text");
+
+            // Update circles
+            nodes.select("circle")
+                .transition()
+                .duration(750)
+                .attr("r", d => radiusScale(d.value))
+                .attr("fill", d => categories[d.category].color);
+
+            // Update text elements
+            nodes.select(".value-text")
+                .transition()
+                .duration(750)
+                .text(d => d.value);
+
+            nodes.select(".country-text")
+                .transition()
+                .duration(750)
+                .text(d => d.country);
+
+            // Exit elements
+            nodes.exit().remove();
+
+            svg.select("text.legend-details")
+        .text(`${selectedYear} - ${chartData.countries} Countries - ${chartData.partners} Partners`);
+
+    // Update legend
+    const legend = svg.selectAll(".legend")
+        .data(Object.keys(categories), d => d);
+
+    // Enter new legend items
+    const legendEnter = legend.enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", (d, i) => `translate(${width},${i * 20})`)
+        .style("cursor", "pointer")
+        .on("click", function (event, d) {
+            const active = d3.select(this).classed("active");
+            d3.select(this).classed("active", !active);
+            const opacity = active ? 1 : 0;
+            svg.selectAll(`circle[fill="${categories[d].color}"]`)
+                .transition()
+                .style("opacity", opacity);
+            svg.selectAll(`text[fill="${categories[d].color}"]`)
+                .transition()
+                .style("opacity", opacity);
+        });
+
+    // Append circle and text for new legend items
+    legendEnter.append("circle")
+        .attr("cx", width - 10) // Adjust as necessary
+        .attr("cy", height - 50)
+        .attr("r", 8)
+        .attr("fill", d => categories[d].color);
+
+    legendEnter.append("text")
+        .attr("x", width + 5) // Adjust as necessary
+        .attr("y", height - 50)
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .style("font-weight", "bold")
+        .style("font-family", "_Satoshi")
+        .style("font-size", "10px")
+        .text(d => categories[d].label);
+
+    // Update existing legend items
+    legend.select("circle")
+        .attr("fill", d => categories[d].color);
+
+    legend.select("text")
+        .text(d => categories[d].label);
+
+    // Remove old legend items
+    legend.exit().remove();
+        }
+
+
+        // Call updateChart with the initial year or the year you want to show initially
+        const initialYear = 2022; // or any year you want to start with
+        updateChart(initialYear);
+
       }
 
       function buildHorizontalBarChart(wrapperId, chartData) {
@@ -1516,6 +1874,46 @@
           });
         }
       }
+
+      function addPlayButtonToLegend(selector, wrapperId) {
+        const legendContainer = $(selector);
+
+        // SVG markup for the play button
+        const playButtonSvg =`
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+          </svg>`
+        ;
+
+        // Create button with SVG play icon
+        const playButton = $('<button>')
+          .addClass('play-button')
+          .css({
+            'background-color': 'transparent',
+            'border': 'none'
+        })
+          .attr('data-chart-id', wrapperId)
+          .on('click', handlePlayButtonClick)
+          .html(playButtonSvg); // Insert SVG as the button's content
+
+        legendContainer.prepend(playButton); // Insert the play button as the first child
+    }
+
+    function handlePlayButtonClick() {
+      const chartId = $(this).data('chart-id');
+      console.log("Play button clicked for chart:", chartId);
+
+      const legendItems = $(`#${chartId} .legend div`);
+      legendItems.each((index, item) => {
+        setTimeout(() => {
+          $(item).click();
+        }, index * 4000); // 4 seconds interval
+      });
+    }
+
+
+
+
     },
   };
 })(jQuery, Drupal, once, drupalSettings);
