@@ -1,0 +1,54 @@
+uuid: c94a03f4-a590-4540-82af-28d782fe2787
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_indicator_id
+field_name: field_indicator_id
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: indicator_1_1
+      label: 'Indicator 1.1'
+    -
+      value: indicator_1_2
+      label: 'Indicator 1.2'
+    -
+      value: indicator_1_3
+      label: 'Indicator 1.3'
+    -
+      value: indicator_2_1
+      label: 'Indicator 2.1'
+    -
+      value: indicator_2_2
+      label: 'Indicator 2.2'
+    -
+      value: indicator_2_3
+      label: 'Indicator 2.3'
+    -
+      value: indicator_6_1
+      label: 'Indicator 6.1'
+    -
+      value: indicator_7_1
+      label: 'Indicator 7.1'
+    -
+      value: indicator_7_2
+      label: 'Indicator 7.2'
+    -
+      value: indicator_9_1
+      label: 'Indicator 9.1'
+    -
+      value: indicator_9_2
+      label: 'Indicator 9.2'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -21,3 +21,7 @@ services:
   parc_core.events_manager:
     class: Drupal\parc_core\ParcEventsManager
     arguments: [ '@entity_type.manager', '@request_stack', '@current_route_match' ]
+
+  plugin.manager.indicator_chart:
+    class: Drupal\parc_core\IndicatorChartPluginManager
+    parent: default_plugin_manager

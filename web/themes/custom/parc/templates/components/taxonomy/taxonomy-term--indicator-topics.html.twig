@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Theme override to display a taxonomy term.
+ *
+ * Available variables:
+ * - url: URL of the current term.
+ * - name: (optional) Name of the current term.
+ * - content: Items for the content of the term (fields and description).
+ *   Use 'content' to print them all, or print a subset such as
+ *   'content.description'. Use the following code to exclude the
+ *   printing of a given child element:
+ *   @code
+ *   {{ content|without('description') }}
+ *   @endcode
+ * - attributes: HTML attributes for the wrapper.
+ * - page: Flag for the full page state.
+ * - term: The taxonomy term entity, including:
+ *   - id: The ID of the taxonomy term.
+ *   - bundle: Machine name of the current vocabulary.
+ * - view_mode: View mode, e.g. 'full', 'teaser', etc.
+ *
+ * @see template_preprocess_taxonomy_term()
+ */
+#}
+{%
+  set classes = [
+    'taxonomy-term',
+    'vocabulary-' ~ term.bundle|clean_class,
+    'container-second-col',
+  ]
+%}
+
+{{ attach_library('layout_builder/twocol_section') }}
+<div{{attributes.setAttribute('id','taxonomy-term-'~term.id).addClass(classes)}}>
+  <div class="layout">
+    <div class="svg-title d-flex justify-content-center">
+      <h1>{{ "Indicators" | t }}</h1>
+    </div>
+  </div>
+
+  <div class="layout layout--twocol-section layout--twocol-section--25-75 container-fluid pt-0">
+
+    <div class="layout__region layout__region--first">
+      {{ drupal_menu('indicator-topics', 1, 1) }}
+    </div>
+
+    <div class="layout__region layout__region--second">
+      {{ content }}
+    </div>
+  </div>
+
+  <div class="layout mb-5">
+    <div class="container">
+      <div class="topic-indicators">
+        {{ drupal_block('parc_indicators') }}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+uuid: ce213a56-721e-4a12-a826-0c354c6134e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_indicator_data
+    - node.type.indicator
+  module:
+    - tablefield
+id: node.indicator.field_indicator_data
+field_name: field_indicator_data
+entity_type: node
+bundle: indicator
+label: 'Indicator data'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  export: true
+  restrict_rebuild: false
+  restrict_import: false
+  lock_values: false
+  cell_processing: 0
+  empty_rules:
+    ignore_table_structure: false
+    ignore_table_header: false
+field_type: tablefield

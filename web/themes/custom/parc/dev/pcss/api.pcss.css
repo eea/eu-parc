@@ -3647,3 +3647,11 @@ div[class*="border-"] {
 .text-decoration-none {
   text-decoration: none !important;
 }
+
+.container-second-col {
+  .layout__region--second {
+    > * {
+      margin-right: 16.6666%;
+    }
+  }
+}
