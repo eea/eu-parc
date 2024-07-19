@@ -825,151 +825,235 @@
 
       function buildMapChart(wrapperId, chartData) {
         const data = chartData.chart;
-
-        const categories = {
-          member: {color: "#1f77b4", label: "23 Member States"},
-          associated: {color: "#f1c40f", label: "4 Associated Countries"},
-          "non-associated": {
-            color: "#bdc3c7",
-            label: "1 Non-associated Third Countries",
-          },
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
         };
+        function hexToRGBA(hex, opacity) {
+          hex = hex.replace("#", "");
+          const r = parseInt(hex.substring(0, 2), 16);
+          const g = parseInt(hex.substring(2, 4), 16);
+          const b = parseInt(hex.substring(4, 6), 16);
+          const adjustedOpacity = opacity < 0.1 ? opacity * 4 : opacity;
 
-        const margin = {top: 20, right: 20, bottom: 20, left: 20},
-          width = 1100 - margin.left - margin.right,
-          height = 800 - margin.top - margin.bottom;
+          return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
+        }
 
-        const svg = d3
-          .select("#" + wrapperId)
-          .append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform", `translate(${margin.left},${margin.top})`);
+        function chart(year) {
+          console.log(colors[year]);
+          const categories = {
 
-        const minRadius = 20; // Minimum radius to ensure text fits
-        const radiusScale = d3
-          .scaleSqrt()
-          .domain([0, d3.max(data, (d) => d.value)])
-          .range([minRadius, 40]);
+            member: {color: colors[year], label: "23 MEMBER STATES"},
+            associated: {color: hexToRGBA(colors[year], 0.6), label: "4 ASSOCIATED COUNTRIES"},
+            "non-associated": {
+              color: hexToRGBA(colors[year], 0.2),
+              label: "1 NON-ASSOCIATED THIRD COUNTRIES",
+            },
+          };
 
-        // Initialize force simulation
-        const simulation = d3
-          .forceSimulation(data)
-          .force("x", d3.forceX((d) => d.x).strength(0.5))
-          .force("y", d3.forceY((d) => d.y).strength(0.5))
-          .force(
-            "collide",
-            d3.forceCollide((d) => radiusScale(d.value) + 2).strength(1)
-          )
-          .on("tick", ticked);
+          const margin = {top: 20, right: 20, bottom: 20, left: 20},
+            width = 1100 - margin.left - margin.right,
+            height = 800 - margin.top - margin.bottom;
 
-        const node = svg
-          .selectAll(".bubble")
-          .data(data)
-          .enter()
-          .append("g")
-          .attr("class", "bubble");
+          const svg = d3
+            .select("#" + wrapperId)
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        node
-          .append("circle")
-          .attr("r", (d) => radiusScale(d.value))
-          .attr("fill", (d) => categories[d.category].color)
-          .attr("stroke", "white")
-          .attr("stroke-width", 1.5);
+          const minRadius = 20; // Minimum radius to ensure text fits
+          const radiusScale = d3
+            .scaleSqrt()
+            .domain([0, d3.max(data, (d) => d.value)])
+            .range([minRadius, 40]);
 
-        // Adding radial lines (ticks)
-        node.each(function (d) {
-          const numLines = d.value;
-          const radius = radiusScale(d.value);
-          const innerRadius = radius * 0.7; // Inner radius for the ticks (70% of the radius)
-          const outerRadius = radius * 0.9; // Outer radius for the ticks (90% of the radius)
-          const angleStep = (2 * Math.PI) / numLines;
-          const lines = d3
-            .select(this)
-            .selectAll("line")
-            .data(d3.range(numLines))
+          // Initialize force simulation
+          const simulation = d3
+            .forceSimulation(data)
+            .force("x", d3.forceX((d) => d.x).strength(0.5))
+            .force("y", d3.forceY((d) => d.y).strength(0.5))
+            .force(
+              "collide",
+              d3.forceCollide((d) => radiusScale(d.value) + 2).strength(1)
+            )
+            .on("tick", ticked);
+
+          const node = svg
+            .selectAll(".bubble")
+            .data(data)
             .enter()
-            .append("line")
-            .attr("x1", (d, i) => innerRadius * Math.cos(i * angleStep))
-            .attr("y1", (d, i) => innerRadius * Math.sin(i * angleStep))
-            .attr("x2", (d, i) => outerRadius * Math.cos(i * angleStep))
-            .attr("y2", (d, i) => outerRadius * Math.sin(i * angleStep))
+            .append("g")
+            .attr("class", "bubble");
+
+          node
+            .append("circle")
+            .attr("r", (d) => radiusScale(d.value))
+            .attr("fill", (d) => categories[d.category].color)
             .attr("stroke", "white")
-            .attr("stroke-width", 2);
-        });
+            .attr("stroke-width", 1.5);
 
-        // Centering text inside the bubbles
-        node
-          .append("text")
-          .attr("class", "text")
-          .attr("dy", "-0.2em")
-          .style("font-size", "10px")
-          .attr("fill", "black")
-          .attr("text-anchor", "middle")
-          .text((d) => d.value);
-
-        node
-          .append("text")
-          .attr("class", "text")
-          .attr("dy", "1em")
-          .style("font-size", "10px")
-          .attr("fill", "black")
-          .attr("text-anchor", "middle")
-          .text((d) => d.country);
-
-        const legend = svg
-          .selectAll(".legend")
-          .data(Object.keys(categories))
-          .enter()
-          .append("g")
-          .attr("class", "legend")
-          .attr("transform", (d, i) => `translate(0,${i * 20})`)
-          .style("cursor", "pointer")
-          .on("click", function (event, d) {
-            const active = d3.select(this).classed("active");
-            d3.select(this).classed("active", !active);
-            const opacity = active ? 1 : 0;
-            svg
-              .selectAll(`circle[fill="${categories[d].color}"]`)
-              .transition()
-              .style("opacity", opacity);
-            svg
-              .selectAll(`text[fill="${categories[d].color}"]`)
-              .transition()
-              .style("opacity", opacity);
+          // Adding radial lines (ticks)
+          node.each(function (d) {
+            const numLines = d.value;
+            const radius = radiusScale(d.value);
+            const innerRadius = radius * 0.7; // Inner radius for the ticks (70% of the radius)
+            const outerRadius = radius * 0.9; // Outer radius for the ticks (90% of the radius)
+            const angleStep = (2 * Math.PI) / numLines;
+            const lines = d3
+              .select(this)
+              .selectAll("line")
+              .data(d3.range(numLines))
+              .enter()
+              .append("line")
+              .attr("x1", (d, i) => innerRadius * Math.cos(i * angleStep))
+              .attr("y1", (d, i) => innerRadius * Math.sin(i * angleStep))
+              .attr("x2", (d, i) => outerRadius * Math.cos(i * angleStep))
+              .attr("y2", (d, i) => outerRadius * Math.sin(i * angleStep))
+              .attr("stroke", "white")
+              .attr("stroke-width", 2);
           });
 
-        legend
-          .append("rect")
-          .attr("x", width - 18)
-          .attr("width", 18)
-          .attr("height", 18)
-          .attr("fill", (d) => categories[d].color);
+          // Centering text inside the bubbles
+          node
+            .append("text")
+            .attr("class", "text")
+            .attr("dy", "-0.2em")
+            .style("font-size", "10px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .text((d) => d.value);
 
-        legend
-          .append("text")
-          .attr("x", width - 24)
-          .attr("y", 9)
-          .attr("dy", ".35em")
-          .style("text-anchor", "end")
-          .text((d) => categories[d].label);
+          node
+            .append("text")
+            .attr("class", "text")
+            .attr("dy", "1em")
+            .style("font-size", "10px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .text((d) => d.country);
 
-        // Adding the legend's title and additional information
-        svg
-          .append("text")
-          .attr("x", width / 2)
-          .attr("y", height - 10)
-          .attr("text-anchor", "middle")
-          .text(
-            `${chartData.year} - ${chartData.countries} Countries - ${chartData.partners} Partners`
-          )
-          .style("font-size", "12px")
-          .attr("fill", "gray");
+          const legend = svg
+            .selectAll(".legend")
+            .data(Object.keys(categories))
+            .enter()
+            .append("g")
+            .attr("class", "legend")
+            .attr("transform", (d, i) => `translate(${-width},${i * 20})`)
+            .style("cursor", "pointer")
+            .on("click", function (event, d) {
+              const active = d3.select(this).classed("active");
+              d3.select(this).classed("active", !active);
+              const opacity = active ? 1 : 0;
+              svg
+                .selectAll(`circle[fill="${categories[d].color}"]`)
+                .transition()
+                .style("opacity", opacity);
+              svg
+                .selectAll(`text[fill="${categories[d].color}"]`)
+                .transition()
+                .style("opacity", opacity);
+            });
 
-        function ticked() {
-          node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+          legend
+            .append("circle")
+            .attr("cx", width)
+            .attr("cy", height-50)
+            .attr("r", 8)
+            .attr("fill", (d) => categories[d].color);
+
+          legend
+            .append("text")
+            .attr("x", width+15)
+            .attr("y", height-50)
+            .attr("dy", ".35em")
+            .style("text-anchor", "start")
+            //bold
+            .style("font-weight", "bold")
+            //satoshi
+            .style("font-family", "_Satoshi")
+            .style("font-size", "10px")
+            .text((d) => categories[d].label);
+
+          // Adding the legend's title and additional information
+          svg
+            .append("text")
+            .attr("x", width / 2)
+            .attr("y", height - 10)
+            .attr("text-anchor", "middle")
+            .text(
+              `${chartData.year} - ${chartData.countries} Countries - ${chartData.partners} Partners`
+            )
+            .style("font-size", "12px")
+
+            .attr("fill", "gray");
+
+          function ticked() {
+            node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+          }
         }
+        function handleLegendClick(event, d) {
+          // Remove existing SVG
+          d3.select(`#${wrapperId} svg`).remove();
+
+          // Remove existing legend
+          d3.select(`#${wrapperId} .legend`).remove();
+
+          // Recreate chart for selected year
+          chart(d.year);
+
+          // Recreate legend
+          const legend = d3
+            .select(`#${wrapperId}`)
+            .append("div")
+            .attr("class", "legend")
+            .selectAll("div")
+            .data(years.map((year) => ({year, color: "blue"})))
+            .enter()
+            .append("div")
+            .on("click", handleLegendClick);
+
+          legend
+            .append("span")
+            .attr("class", "legend-color")
+            .style("background-color", (d) => colors[d.year]);
+
+          legend
+            .append("span")
+            .attr("class", (d) => "legend-text year-" + d.year)
+            .text((d) => d.year);
+        }
+        const years = ['2022', '2023', '2024', '2025', '2026', '2027', '2028'];
+        const latestYear = years[0];
+        console.log(latestYear);
+        chart(latestYear);
+
+        // Create initial legend
+        const legend = d3
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map((year) => ({year, color: "blue"})))
+          .enter()
+          .append("div")
+          .on("click", handleLegendClick);
+
+        legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => colors[d.year]);
+
+        legend
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d.year)
+          .text((d) => d.year);
       }
 
       function buildHorizontalBarChart(wrapperId, chartData) {
