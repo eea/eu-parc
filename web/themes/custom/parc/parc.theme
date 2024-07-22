@@ -660,7 +660,19 @@ function parc_preprocess_field__block_content__field_paragraphs__carousel(array 
 
 function parc_preprocess_parc_indicator_groups(array &$variables){
   $active_tab = \Drupal::request()->query->get('tab');
+  $active_tab = implode("-",explode('-', $active_tab, -1));
   $variables['active_tab'] = $active_tab;
+
+}
+
+function parc_preprocess_node__indicator__teaser(array &$variables) {
+  $node = $variables['node'];
+  $topic = $node->get('field_indicator_topic')->target_id;
+  $type = $node->get('field_indicator_type')->value;
+  $tab = "{$type}-{$topic}-tab";
+
+  $copy_link = Url::fromRoute('<current>', [], ['query' => ['tab' => $tab], 'fragment' => 'indicator-' . $node->id()])->toString();
+  $variables['copy_link'] = $copy_link;
 }
 
 /**

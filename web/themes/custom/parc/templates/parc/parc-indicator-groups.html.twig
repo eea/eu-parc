@@ -3,7 +3,7 @@
 <ul class="nav nav-tabs" role="tablist">
   {% for group in groups %}
     <li class="nav-item" role="presentation">
-      <button class="nav-link {% if loop.first %}active{% endif %}" id="{{ group.id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ group.id }}" type="button" role="tab" aria-controls="home" aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
+      <button class="nav-link {% if group.id == active_tab or (active_tab is empty and loop.first) %}active{% endif %}" id="{{ group.id }}-tab" data-bs-toggle="tab" data-bs-target="#{{ group.id }}" type="button" role="tab" aria-controls="home" aria-selected="{% if loop.first %}true{% else %}false{% endif %}">
         {{ group.label }}
       </button>
     </li>
@@ -11,7 +11,7 @@
 </ul>
 <div class="tab-content">
   {% for group in groups %}
-    <div style="--indicator-color: {{ group.color }};" class="tab-pane fade {% if loop.first %}show active{% endif %}" id="{{ group.id }}" role="tabpanel" aria-labelledby="{{ group.id }}-tab">
+    <div style="--indicator-color: {{ group.color }};" class="tab-pane fade {% if group.id == active_tab or (active_tab is empty and loop.first) %}show active{% endif %}" id="{{ group.id }}" role="tabpanel" aria-labelledby="{{ group.id }}-tab">
       {% if group.items %}
         {% for item in group.items %}
           {{ item }}
