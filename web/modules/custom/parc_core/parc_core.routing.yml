@@ -36,3 +36,13 @@ parc_core.import_csv_form:
     _title: 'Import CSV'
   requirements:
     _permission: 'create project content'
+
+parc_core.download_svg_data:
+  path: '/indicators/{node_id}/download-data'
+  defaults:
+    _controller: 'Drupal\parc_core\Controller\ParcController::downloadSvg'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node_id: entity:node
