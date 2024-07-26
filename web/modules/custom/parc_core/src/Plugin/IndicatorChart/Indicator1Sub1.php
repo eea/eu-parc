@@ -15,7 +15,7 @@ use Drupal\parc_core\IndicatorChartPluginBase;
  *   description = @Translation("Number and characteristics of PARC partners (by country)")
  * )
  */
-class Indicator1Sub1 extends IndicatorChartPluginBase {
+class Indicator1Sub1 extends Indicator9Sub2 {
 
   /**
    * {@inheritdoc}
@@ -60,39 +60,48 @@ class Indicator1Sub1 extends IndicatorChartPluginBase {
       'IE' => ['country' => 'Ireland', 'category' => 'associated', 'x' => 250, 'y' => 320],
     ];
 
-    $first_data_row = $table_data[1];
-    $last_key = NULL;
-    foreach ($first_data_row as $key => $value) {
-      if ($value != '') {
-        $last_key = $key;
-      }
-    }
-
-    $first_row = NULL;
-    $partners = 0;
+    $table_data = $this->transposeArray($table_data);
+    $chart_data = [];
     foreach ($table_data as $row) {
-      if (empty($first_row)) {
-        $first_row = $row;
+      if (empty($header)) {
+        $header = $row;
+        array_shift($header);
         continue;
       }
 
-      $value = $row[$last_key];
-      $partners += $value;
-      $country = reset($row);
-
-      if (empty($country_data[$country])) {
-        continue;
-      }
-
-      $country_data[$country]['value'] = $value;
+      $year = array_shift($row);
+      $data = array_combine($header, $row);
+      $chart_data[$year] = $data;
     }
 
-    $countries = count($country_data);
+    $final_chart_data = [];
+
+    foreach ($chart_data as $year => $year_data) {
+      $total = 0;
+      $final_chart_data[$year]['total_countries'] = 0;
+      $final_chart_data[$year]['member'] = 0;
+      $final_chart_data[$year]['associated'] = 0;
+      $final_chart_data[$year]['non-associated'] = 0;
+
+      foreach ($year_data as $country => $value) {
+        $total += $value;
+
+        if (empty($country_data[$country])) {
+          continue;
+        }
+
+        $final_chart_data[$year]['data'][$country] = [
+          'value' => $value,
+        ] + $country_data[$country];
+        $final_chart_data[$year][$country_data[$country]['category']]++;
+        $final_chart_data[$year]['total_countries']++;
+      }
+
+      $final_chart_data[$year]['total'] = $total;
+    }
+
     return [
-      'year' => $first_row[$last_key],
-      'partners' => $partners,
-      'countries' => $countries,
-      'chart' => array_values($country_data),
+      'chart' => $final_chart_data,
     ];
   }
 

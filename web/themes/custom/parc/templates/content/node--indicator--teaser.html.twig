@@ -86,16 +86,14 @@
   <div class="title">{{ label }}</div>
   {{ content.field_indicator_data }}
   <div class="container px-0 row">
-    <div class="col-md-5 col-12">
-      <small>{{ content.body }}</small>
+    <div class="col-lg-5 col-12">
+      {{ content.body }}
     </div>
-    <div class="col-md-2 col-12"></div>
-    <div class="col-md-5 col-12 links-container">
-      <div class="links d-flex justify-content-between">
-        <a href="#"><small>SHARE</small></a>
-        <a href="#" class="download-image-button"><small>Download as image</small>{{download_svg|raw}}</a>
-        <a href="#" class="download-data-button"><small>Download data</small>{{download_svg|raw}}</a>
-        <a href="{{ copy_link }}" class="copy-link-button"><small>Copy link</small></a>
+    <div class="col-lg-7 col-12 links-container d-flex">
+      <div class="links d-flex">
+        <a href="#" class="download-image-button download-link">{{ "Download as image" | t }}</a>
+        <a href="#" class="download-data-button download-link">{{ "Download data" }}</a>
+        <a href="{{ copy_link }}" class="copy-link-button copy-link js-copy-to-clipboard btn-copy-to-clipboard">{{ "Copy link" }}<span>{{ "Copied to clipboard" | t }}</span></a>
       </div>
     </div>
   </div>

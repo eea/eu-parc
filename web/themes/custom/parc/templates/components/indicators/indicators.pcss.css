@@ -1,3 +1,68 @@
+.indicator {
+  .links {
+    margin-left: auto;
+    gap: 20px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    @media (--lg) {
+      flex-direction: row;
+    }
+  }
+
+  .download-link,
+  .copy-link {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+    position: relative;
+
+    span {
+      background-color: var(--c-primary);
+      border-radius: .625rem;
+      font-size: .8rem;
+      padding: 2px .625rem;
+      pointer-events: none;
+      position: absolute;
+      transition: var(--transition-base);
+      white-space: nowrap;
+      right: 0;
+      top: -30px;
+      color: #fff;
+      display: none;
+    }
+
+    &.added {
+      span {
+        display: block;
+      }
+    }
+  }
+
+  .copy-link,
+  .download-link {
+    &:after {
+      content: '';
+      background: url("../../../img/link.svg");
+
+      width: 20px;
+      height: 22px;
+      display: inline-block;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .download-link {
+    &:after {
+      background: url("../../../img/download.svg");
+    }
+  }
+}
+
 .block-parc-indicators {
   .nav-tabs {
     margin-top: 20px;
@@ -174,11 +239,21 @@
     right: 20px;
   }
 
-  .legend div {
-    margin-left: 10px;
-    cursor: pointer;
+  .play-button {
     display: flex;
-    align-items: center;
+  }
+
+  .legend {
+    div {
+      margin-left: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      &.active .legend-text {
+        text-decoration: underline;
+      }
+    }
   }
 
   .legend-color {
