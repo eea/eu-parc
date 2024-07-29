@@ -84,6 +84,9 @@ class Indicator1Sub1 extends Indicator9Sub2 {
       $final_chart_data[$year]['non-associated'] = 0;
 
       foreach ($year_data as $country => $value) {
+        if($value == ""){
+          continue;
+        }
         $total += $value;
 
         if (empty($country_data[$country])) {

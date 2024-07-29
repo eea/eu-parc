@@ -1101,6 +1101,10 @@
 
       function buildMapChart(wrapperId, chartData) {
         const data = chartData.chart;
+        const years = Object.keys(data);
+        const year = years[years.length - 1];
+        const dataYear = data[year];
+
         const colors = {
           2022: "#017365",
           2023: "#E4798B",
@@ -1109,8 +1113,8 @@
           2026: "#C0A456",
           2027: "#7D2D9C",
           2028: "#DB5749",
+          2029: "#cd0505"
         };
-        const year = 2022;
 
         function hexToRGBA(hex, opacity) {
           hex = hex.replace("#", "");
@@ -1118,16 +1122,14 @@
           const g = parseInt(hex.substring(2, 4), 16);
           const b = parseInt(hex.substring(4, 6), 16);
           const adjustedOpacity = opacity < 0.1 ? opacity * 4 : opacity;
-
           return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
         }
-
         const categories = {
-          member: {color: colors[year], label: "23 MEMBER STATES"},
-          associated: {color: hexToRGBA(colors[year], 0.6), label: "4 ASSOCIATED COUNTRIES"},
+          member: {color: colors[year], label: `${dataYear.member} MEMBER STATES`},
+          associated: {color: hexToRGBA(colors[year], 0.6), label: `${dataYear.associated} ASSOCIATED COUNTRIES`},
           "non-associated": {
             color: hexToRGBA(colors[year], 0.2),
-            label: "1 NON-ASSOCIATED THIRD COUNTRIES",
+            label:  `${dataYear["non-associated"]} NON-ASSOCIATED THIRD COUNTRIES`,
           },
         };
 
@@ -1136,268 +1138,335 @@
           height = 800 - margin.top - margin.bottom;
 
         const svg = d3
-        .select("#" + wrapperId)
-        .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+          .select("#" + wrapperId)
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${margin.left},${margin.top})`);
 
-        const minRadius = 20; // Minimum radius to ensure text fits
-        const radiusScale = d3
-        .scaleSqrt()
-        .domain([0, d3.max(data, (d) => d.value)])
-        .range([minRadius, 40]);
 
-        // Initialize force simulation
+        const minRadius = 20;
+        let radiusScale = d3.scaleSqrt().domain([0, 0]).range([0, 0]);
+
+        if (dataYear && dataYear.data) {
+          const values = Object.values(dataYear.data).map(d => d.value);
+          radiusScale = d3
+            .scaleSqrt()
+            .domain([0, d3.max(values)])
+            .range([minRadius, 40]);
+        }
+
         const simulation = d3
-        .forceSimulation(data)
-        .force("x", d3.forceX((d) => d.x).strength(0.5))
-        .force("y", d3.forceY((d) => d.y).strength(0.5))
-        .force(
-          "collide",
-          d3.forceCollide((d) => radiusScale(d.value) + 2).strength(1)
-        )
-        .on("tick", ticked);
+          .forceSimulation(Object.values(dataYear.data))
+          .force("x", d3.forceX((d) => d.x).strength(0.5))
+          .force("y", d3.forceY((d) => d.y).strength(0.5))
+          .force("collide", d3.forceCollide((d) => radiusScale(d.value) + 2).strength(1))
+          .on("tick", ticked);
 
         const node = svg
-        .selectAll(".bubble")
-        .data(data)
-        .enter()
-        .append("g")
-        .attr("class", "bubble");
+          .selectAll(".bubble")
+          .data(Object.values(dataYear.data))
+          .enter()
+          .append("g")
+          .attr("class", "bubble");
 
         node
-        .append("circle")
-        .attr("r", (d) => radiusScale(d.value))
-        .attr("fill", (d) => categories[d.category].color)
-        .attr("stroke", "white")
-        .attr("stroke-width", 1.5);
+          .append("circle")
+          .attr("r", (d) => radiusScale(d.value))
+          .attr("fill", (d) => categories[d.category].color)
+          .attr("stroke", "white")
+          .attr("stroke-width", 1.5);
 
-        // Adding radial lines (ticks)
+
         node.each(function (d) {
           const numLines = d.value;
           const radius = radiusScale(d.value);
-          const innerRadius = radius * 0.7; // Inner radius for the ticks (70% of the radius)
-          const outerRadius = radius * 0.9; // Outer radius for the ticks (90% of the radius)
+          const innerRadius = radius * 0.7;
+          const outerRadius = radius * 0.9;
           const angleStep = (2 * Math.PI) / numLines;
-          const lines = d3
-          .select(this)
-          .selectAll("line")
-          .data(d3.range(numLines))
-          .enter()
-          .append("line")
-          .attr("x1", (d, i) => innerRadius * Math.cos(i * angleStep))
-          .attr("y1", (d, i) => innerRadius * Math.sin(i * angleStep))
-          .attr("x2", (d, i) => outerRadius * Math.cos(i * angleStep))
-          .attr("y2", (d, i) => outerRadius * Math.sin(i * angleStep))
-          .attr("stroke", "white")
-          .attr("stroke-width", 2);
+          d3.select(this)
+            .selectAll("line")
+            .data(d3.range(numLines))
+            .enter()
+            .append("line")
+            .attr("x1", (d, i) => innerRadius * Math.cos(i * angleStep))
+            .attr("y1", (d, i) => innerRadius * Math.sin(i * angleStep))
+            .attr("x2", (d, i) => outerRadius * Math.cos(i * angleStep))
+            .attr("y2", (d, i) => outerRadius * Math.sin(i * angleStep))
+            .attr("stroke", "white")
+            .attr("stroke-width", 2);
         });
 
-        // Centering text inside the bubbles
         node
-        .append("text")
-        .attr("class", "text")
-        .attr("dy", "-0.2em")
-        .style("font-size", "10px")
-        .attr("fill", "black")
-        .attr("text-anchor", "middle")
-        .text((d) => d.value);
+          .append("text")
+          .attr("class", "text")
+          .attr("dy", "-0.2em")
+          .style("font-size", "10px")
+          .attr("fill", "black")
+          .attr("text-anchor", "middle")
+          .text((d) => d.value);
 
         node
-        .append("text")
-        .attr("class", "text")
-        .attr("dy", "1em")
-        .style("font-size", "10px")
-        .attr("fill", "black")
-        .attr("text-anchor", "middle")
-        .text((d) => d.country);
+          .append("text")
+          .attr("class", "text")
+          .attr("dy", "1em")
+          .style("font-size", "10px")
+          .attr("fill", "black")
+          .attr("text-anchor", "middle")
+          .text((d) => d.country);
 
         const legend = svg
-        .selectAll(".legend")
-        .data(Object.keys(categories))
-        .enter()
-        .append("g")
-        .attr("class", "legend")
-        .attr("transform", (d, i) => `translate(${-width},${i * 20})`)
-        .style("cursor", "pointer")
-        .on("click", function (event, d) {
-          const active = d3.select(this).classed("active");
-          d3.select(this).classed("active", !active);
-          const opacity = active ? 1 : 0;
-          svg
-          .selectAll(`circle[fill="${categories[d].color}"]`)
-          .transition()
-          .style("opacity", opacity);
-          svg
-          .selectAll(`text[fill="${categories[d].color}"]`)
-          .transition()
-          .style("opacity", opacity);
-        });
-
-        legend
-        .append("circle")
-        .attr("cx", width)
-        .attr("cy", height - 50)
-        .attr("r", 8)
-        .attr("fill", (d) => categories[d].color);
-
-        legend
-        .append("text")
-        .attr("x", width + 15)
-        .attr("y", height - 50)
-        .attr("dy", ".35em")
-        .style("text-anchor", "start")
-        //bold
-        .style("font-weight", "bold")
-        //satoshi
-        .style("font-family", "Satoshi")
-        .style("font-size", "10px")
-        .text((d) => categories[d].label);
-
-        // Adding the legend's title and additional information
-        svg
-        .append("text")
-        .attr("x", width / 2)
-        .attr("y", height - 10)
-        .attr("text-anchor", "middle")
-        .text(
-          `${chartData.year} - ${chartData.countries} Countries - ${chartData.partners} Partners`
-        )
-        .style("font-size", "12px")
-
-        .attr("fill", "gray");
-
-        function ticked() {
-          node.attr("transform", (d) => `translate(${d.x},${d.y})`);
-        }
-
-
-        const years = ['2022', '2023', '2024', '2025', '2026', '2027', '2028'];
-        const latestYear = years[0];
-
-        // Create initial legend
-        const leg = d3
-        .select(`#${wrapperId}`)
-        .append("div")
-        .attr("class", "legend")
-        .selectAll("div")
-        .data(years.map((year) => ({year, color: "blue"})))
-        .enter()
-        .append("div")
-        .on("click", function (event, year) {
-          // Call updateChart with the clicked year
-          updateChart(year.year);
-        });
-        leg
-        .append("span")
-        .attr("class", "legend-color")
-        .style("background-color", (d) => colors[d.year]);
-        leg
-        .append("span")
-        .attr("class", (d) => "legend-text year-" + d.year)
-        .text((d) => d.year);
-
-
-        function updateChart(selectedYear) {
-          // Re-define the categories based on the selected year
-          const categories = {
-            member: {color: colors[selectedYear], label: "23 MEMBER STATES"},
-            associated: {color: hexToRGBA(colors[selectedYear], 0.6), label: "4 ASSOCIATED COUNTRIES"},
-            "non-associated": {color: hexToRGBA(colors[selectedYear], 0.2), label: "1 NON-ASSOCIATED THIRD COUNTRIES"},
-          };
-
-          // Update existing bubbles
-          const nodes = svg.selectAll(".bubble")
-          .data(data); // Assuming each data item has a unique 'id'
-
-          // Entering elements
-          const entering = nodes.enter().append("g")
-          .attr("class", "bubble");
-
-          entering.append("circle");
-          entering.append("text").attr("class", "value-text");
-          entering.append("text").attr("class", "country-text");
-
-          // Update circles
-          nodes.select("circle")
-          .transition()
-          .duration(750)
-          .attr("r", d => radiusScale(d.value))
-          .attr("fill", d => categories[d.category].color);
-
-          // Update text elements
-          nodes.select(".value-text")
-          .transition()
-          .duration(750)
-          .text(d => d.value);
-
-          nodes.select(".country-text")
-          .transition()
-          .duration(750)
-          .text(d => d.country);
-
-          // Exit elements
-          nodes.exit().remove();
-
-          svg.select("text.legend-details")
-          .text(`${selectedYear} - ${chartData.countries} Countries - ${chartData.partners} Partners`);
-
-          // Update legend
-          const legend = svg.selectAll(".legend")
-          .data(Object.keys(categories), d => d);
-
-          // Enter new legend items
-          const legendEnter = legend.enter().append("g")
+          .selectAll(".legend")
+          .data(Object.keys(categories))
+          .enter()
+          .append("g")
           .attr("class", "legend")
-          .attr("transform", (d, i) => `translate(${width},${i * 20})`)
+          .attr("transform", (d, i) => `translate(${-width},${i * 20})`)
           .style("cursor", "pointer")
           .on("click", function (event, d) {
             const active = d3.select(this).classed("active");
             d3.select(this).classed("active", !active);
             const opacity = active ? 1 : 0;
-            svg.selectAll(`circle[fill="${categories[d].color}"]`)
-            .transition()
-            .style("opacity", opacity);
-            svg.selectAll(`text[fill="${categories[d].color}"]`)
-            .transition()
-            .style("opacity", opacity);
+            svg
+              .selectAll(`circle[fill="${categories[d].color}"]`)
+              .transition()
+              .style("opacity", opacity);
+            svg
+              .selectAll(`text[fill="${categories[d].color}"]`)
+              .transition()
+              .style("opacity", opacity);
           });
 
-          // Append circle and text for new legend items
-          legendEnter.append("circle")
-          .attr("cx", width - 10) // Adjust as necessary
+        legend
+          .append("circle")
+          .attr("cx", width)
           .attr("cy", height - 50)
           .attr("r", 8)
-          .attr("fill", d => categories[d].color);
+          .attr("fill", (d) => categories[d].color);
 
-          legendEnter.append("text")
-          .attr("x", width + 5) // Adjust as necessary
+        legend
+          .append("text")
+          .attr("x", width + 15)
           .attr("y", height - 50)
           .attr("dy", ".35em")
           .style("text-anchor", "start")
           .style("font-weight", "bold")
           .style("font-family", "Satoshi")
           .style("font-size", "10px")
-          .text(d => categories[d].label);
+          .text((d) => categories[d].label);
 
-          // Update existing legend items
-          legend.select("circle")
-          .attr("fill", d => categories[d].color);
+        svg
+          .append("text")
+          .attr("x", width / 2)
+          .attr("y", height - 10)
+          .attr("text-anchor", "middle")
+          .text(`${year} - ${dataYear.total_countries} Countries - ${dataYear.total} Partners`)
+          .style("font-size", "12px")
+          .attr("fill", "gray");
 
-          legend.select("text")
-          .text(d => categories[d].label);
+        function ticked() {
+          node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+        }
 
-          // Remove old legend items
-          legend.exit().remove();
+        const leg = d3
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map((year) => ({year, color: "blue"})))
+          .enter()
+          .append("div")
+          .on("click", function (event, year) {
+            updateChart(year.year);
+          });
+
+        leg
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => colors[d.year]);
+
+        leg
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d.year)
+          .text((d) => d.year);
+
+        function updateChart(selectedYear) {
+          const dataYear = data[selectedYear];
+          if (!dataYear || !dataYear.data || Object.keys(dataYear.data).length === 0) {
+            // Clear existing SVG content if no data
+            svg.selectAll("*").remove();
+
+            // Optionally display a message or handle the empty data case
+            svg.append("text")
+              .attr("class", "no-data-message")
+              .attr("x", width / 2)
+              .attr("y", height / 2)
+              .attr("text-anchor", "middle")
+              .style("font-size", "16px")
+              .attr("fill", "gray")
+              .text("No data available for the selected year");
+
+            return; // Exit function early if no data
+          }
+          // Define categories based on the new year
+          const categories = {
+            member: { color: colors[selectedYear], label: `${dataYear.member} MEMBER STATES` },
+            associated: { color: hexToRGBA(colors[selectedYear], 0.6), label: `${dataYear.associated} ASSOCIATED COUNTRIES` },
+            "non-associated": { color: hexToRGBA(colors[selectedYear], 0.2), label: `${dataYear["non-associated"]} NON-ASSOCIATED THIRD COUNTRIES` },
+          };
+
+          // Update radius scale based on new data
+          const values = Object.values(dataYear.data);
+          let val = values.map(d => d.value);
+          if (values.length) {
+            radiusScale = d3.scaleSqrt()
+              .domain([0, d3.max(val)])
+              .range([minRadius, 40]);
+          }
+
+          // Clear existing SVG content
+          svg.selectAll("*").remove();
+
+          // Recreate the force simulation
+          const simulation = d3
+            .forceSimulation(values)
+            .force("x", d3.forceX(d => d.x).strength(0.5))
+            .force("y", d3.forceY(d => d.y).strength(0.5))
+            .force("collide", d3.forceCollide(d => radiusScale(d.value) + 2).strength(1))
+            .on("tick", ticked);
+
+          // Append new nodes
+          const node = svg.selectAll(".bubble")
+            .data(values); // Use a unique identifier if possible
+
+          // Enter selection
+          const nodeEnter = node.enter().append("g")
+            .attr("class", "bubble");
+
+          nodeEnter.append("circle")
+            .attr("r", d => radiusScale(d.value))
+            .attr("fill", d => categories[d.category].color)
+            .attr("stroke", "white")
+            .attr("stroke-width", 1.5);
+
+          nodeEnter.append("text")
+            .attr("class", "text")
+            .attr("dy", "-0.2em")
+            .style("font-size", "10px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .text(d => d.value);
+
+          nodeEnter.append("text")
+            .attr("class", "text")
+            .attr("dy", "1em")
+            .style("font-size", "10px")
+            .attr("fill", "black")
+            .attr("text-anchor", "middle")
+            .text(d => d.country);
+
+          // Update existing nodes
+          node.merge(nodeEnter).select("circle")
+            .transition()
+            .attr("r", d => radiusScale(d.value))
+            .attr("fill", d => categories[d.category].color);
+
+          // Remove old lines and append new lines
+          node.selectAll("line").remove();
+          const bubbles = svg.selectAll(".bubble");
+          bubbles.each(function(d) {
+            const numLines = d.value;
+            const radius = radiusScale(d.value);
+            const innerRadius = radius * 0.7;
+            const outerRadius = radius * 0.9;
+            const angleStep = (2 * Math.PI) / numLines;
+
+            // Select all lines within this node and bind new data
+            const lines = d3.select(this).selectAll("line")
+              .data(d3.range(numLines), (line, index) => index);
+
+            // Enter selection: Append new lines
+            lines.enter()
+              .append("line")
+              .attr("x1", (line, i) => innerRadius * Math.cos(i * angleStep))
+              .attr("y1", (line, i) => innerRadius * Math.sin(i * angleStep))
+              .attr("x2", (line, i) => outerRadius * Math.cos(i * angleStep))
+              .attr("y2", (line, i) => outerRadius * Math.sin(i * angleStep))
+              .attr("stroke", "white")
+              .attr("stroke-width", 2);
+
+            // Update selection: Update existing lines
+            lines
+              .attr("x1", (line, i) => innerRadius * Math.cos(i * angleStep))
+              .attr("y1", (line, i) => innerRadius * Math.sin(i * angleStep))
+              .attr("x2", (line, i) => outerRadius * Math.cos(i * angleStep))
+              .attr("y2", (line, i) => outerRadius * Math.sin(i * angleStep));
+
+            // Exit selection: Remove old lines that are no longer needed
+            lines.exit().remove();
+          });
+
+          // Add legend
+          const legend = svg
+            .selectAll(".legend")
+            .data(Object.keys(categories))
+            .enter()
+            .append("g")
+            .attr("class", "legend")
+            .attr("transform", (d, i) => `translate(${-width},${i * 20})`)
+            .style("cursor", "pointer")
+            .on("click", function (event, d) {
+              const active = d3.select(this).classed("active");
+              d3.select(this).classed("active", !active);
+              const opacity = active ? 1 : 0;
+              svg
+                .selectAll(`circle[fill="${categories[d].color}"]`)
+                .transition()
+                .style("opacity", opacity);
+              svg
+                .selectAll(`text[fill="${categories[d].color}"]`)
+                .transition()
+                .style("opacity", opacity);
+            });
+
+          legend
+            .append("circle")
+            .attr("cx", width)
+            .attr("cy", height - 50)
+            .attr("r", 8)
+            .attr("fill", (d) => categories[d].color);
+
+          legend
+            .append("text")
+            .attr("x", width + 15)
+            .attr("y", height - 50)
+            .attr("dy", ".35em")
+            .style("text-anchor", "start")
+            .style("font-weight", "bold")
+            .style("font-family", "Satoshi")
+            .style("font-size", "10px")
+            .text((d) => categories[d].label);
+
+          // Update chart details text
+          svg.append("text")
+            .attr("class", "legend-details")
+            .attr("x", width / 2)
+            .attr("y", height - 10)
+            .attr("text-anchor", "middle")
+            .text(`${selectedYear} - ${dataYear.total_countries} Countries - ${dataYear.total} Partners`)
+            .style("font-size", "12px")
+            .attr("fill", "gray");
+
+          function ticked() {
+            svg.selectAll(".bubble")
+              .attr("transform", d => `translate(${d.x},${d.y})`);
+          }
         }
 
 
-        // Call updateChart with the initial year or the year you want to show initially
-        const initialYear = 2022; // or any year you want to start with
-        updateChart(initialYear);
 
+        //updateChart(2022);
       }
 
       function buildHorizontalBarChart(wrapperId, chartData) {
