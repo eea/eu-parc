@@ -1463,10 +1463,6 @@
               .attr("transform", d => `translate(${d.x},${d.y})`);
           }
         }
-
-
-
-        //updateChart(2022);
       }
 
       function buildHorizontalBarChart(wrapperId, chartData) {
