@@ -3,14 +3,16 @@
 namespace Drupal\parc_core\Controller;
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Render\HtmlResponse;
-use Drupal\Core\Controller\ControllerBase;
+use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\parc_core\ParcEventsManager;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Controller for PARC routes.
@@ -130,6 +132,59 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     $cacheable_metadata = new CacheableMetadata();
     $cacheable_metadata->addCacheContexts(['url']);
     $response->addCacheableDependency($cacheable_metadata);
+
+    return $response;
+  }
+
+  /**
+   * Downloads SVG data as CSV.
+   */
+  public function downloadSvg($node_id) {
+    $node_id = intval($node_id);
+    $node = Node::load($node_id);
+    $node_data = $node->get('field_indicator_data')->getValue();
+    $csv_data = $this->generateCsv($node_data);
+    return $this->createCsvResponse($csv_data);
+
+  }
+
+  /**
+   * Generates CSV from data.
+   */
+  private function generateCsv(array $data): string {
+    $csv_lines = [];
+    $rows = $data[0]['value'];
+
+    foreach ($rows as $row) {
+      if (isset($row['weight'])) {
+        unset($row['weight']);
+      }
+      if ($row === "") {
+        continue;
+      }
+      $csv_lines[] = implode(',', $row);
+    }
+
+    // Join the CSV lines with new line characters.
+    return implode("\n", $csv_lines);
+  }
+
+  /**
+   * Sends response with CSV.
+   *
+   * @param string $csv_data
+   *   Data to put in csv.
+   *
+   * @return \Symfony\Component\HttpFoundation\StreamedResponse
+   *   The CSV response.
+   */
+  private function createCsvResponse(string $csv_data): StreamedResponse {
+
+    $response = new StreamedResponse(function () use ($csv_data) {
+      echo $csv_data;
+    });
+    $response->headers->set('Content-Type', 'text/csv');
+    $response->headers->set('Content-Disposition', 'attachment; filename="data.csv"');
 
     return $response;
   }
