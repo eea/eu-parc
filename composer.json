@@ -201,7 +201,9 @@
                 "#3356272 - JS error on pages with SVG.": "https://www.drupal.org/files/issues/2023-04-25/google_analytics-svg_links-3356272-1.patch"
             },
             "drupal/core": {
-                "#3322402 - Add 'Is empty (NULL)' and 'Is not empty (NOT NULL)' operators to boolean field filtering": "https://www.drupal.org/files/issues/2022-11-21/3322402-9.patch"
+                "#3322402 - Add 'Is empty (NULL)' and 'Is not empty (NOT NULL)' operators to boolean field filtering": "https://www.drupal.org/files/issues/2022-11-21/3322402-9.patch",
+                "3091740 - Apply image styles to SVG": "https://www.drupal.org/files/issues/2024-07-09/3091740-26.patch"
+
             },
             "drupal/conditional_fields": {
                 "#3344587 - Support for field hidden by condition loosing its required status": "https://www.drupal.org/files/issues/2024-03-27/3344587-required-fields-that-59-with-fix.patch"
