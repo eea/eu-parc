@@ -36,3 +36,17 @@ parc_core.import_csv_form:
     _title: 'Import CSV'
   requirements:
     _permission: 'create project content'
+
+parc_core.eu_parc_menu:
+  path: '/admin/config/parc'
+  defaults:
+    _title: 'EU-PARC'
+  requirements:
+    _permission: 'administer site configuration'
+
+parc_core.import_projects_menu:
+  path: '/admin/config/parc/import-projects'
+  defaults:
+    _title: 'Import projects'
+  requirements:
+    _permission: 'administer site configuration'
