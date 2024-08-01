@@ -402,6 +402,8 @@
   padding-bottom: 100px;
   padding-left: 40px;
   padding-right: 40px;
+  width: unset;
+  min-width: unset;
 
   .column {
     display: flex;
