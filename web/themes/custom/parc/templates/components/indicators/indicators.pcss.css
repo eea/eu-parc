@@ -462,3 +462,19 @@
     }
   }
 }
+
+.vocabulary-indicator-topics {
+  .layout__region--first {
+    margin-bottom: 20px;
+  }
+
+  .layout--twocol-section {
+    @media (max-width: 740px) {
+      > * {
+        width: 100%;
+        flex: 0 0 100% !important;
+        padding: 0 !important;
+      }
+    }
+  }
+}
