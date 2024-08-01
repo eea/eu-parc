@@ -78,19 +78,26 @@ class ImportCsvForm extends FormBase {
    *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
+    $form['description'] = [
+      '#markup' => '<p>' . $this->t('Use the export button to download projects data as CSV. You can edit the CSV to add new projects or edit existing ones, and then reimport the data into the site.') . '</p>',
+    ];
+
     $form['csv_file'] = [
       '#type' => 'file',
       '#title' => $this->t('CSV file'),
       '#description' => $this->t('Upload a CSV file to import data.'),
     ];
+
     $form['actions']['import'] = [
       '#type' => 'submit',
-      '#value' => 'Import',
+      '#value' => $this->t('Import'),
       '#submit' => ["::submitFormImport"],
+      '#button_type' => 'primary',
     ];
+
     $form['actions']['export'] = [
       '#type' => 'submit',
-      '#value' => 'Export',
+      '#value' => $this->t('Export'),
       '#submit' => ["::submitFormExport"],
     ];
     $form['#attributes']['enctype'] = 'multipart/form-data';
