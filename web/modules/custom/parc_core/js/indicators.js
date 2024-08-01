@@ -59,7 +59,7 @@
           return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
         }
 
-        const margin = {top: 20, right: 20, bottom: 0, left: 20};
+        const margin = {top: 60, right: 20, bottom: 0, left: 20};
         const width = 600 - margin.left - margin.right;
         const height = 600 - margin.top - margin.bottom;
         const radius = Math.min(width, height) / 2 - 60;
@@ -73,12 +73,12 @@
         );
 
         const svg = d3
-        .select(`#${wrapperId}`)
+        .select(`#${wrapperId} .indicator-container`)
         .append("svg")
         .attr("width", "1100")
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", `translate(${width},${height / 2})`); // Center the pie chart
+        .attr("transform", `translate(${width},${height / 2 + margin.top})`); // Center the pie chart
 
         // Outer pie chart (for the edges)
         const pie = d3
@@ -606,7 +606,7 @@
         };
 
         const svg = d3
-        .select("#" + wrapperId)
+        .select("#" + wrapperId + ' .indicator-scrollable-container .indicator-container')
         .append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -1133,12 +1133,12 @@
           },
         };
 
-        const margin = {top: 20, right: 20, bottom: 20, left: 20},
+        const margin = {top: 20, right: 20, bottom: 40, left: 20},
           width = 1100 - margin.left - margin.right,
           height = 800 - margin.top - margin.bottom;
 
         const svg = d3
-          .select("#" + wrapperId)
+          .select("#" + wrapperId + ' .indicator-scrollable-container .indicator-container')
           .append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
@@ -1490,7 +1490,7 @@
         };
 
         const svg = d3
-        .select("#" + wrapperId)
+        .select("#" + wrapperId + ' .indicator-scrollable-container .indicator-container')
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -1612,7 +1612,7 @@
         const categories = [...new Set(Object.values(data).flatMap(Object.keys))];
         const latestYear = years[years.length - 1];
 
-        const margin = {top: 20, right: 30, bottom: 90, left: 50},
+        const margin = {top: 20, right: 30, bottom: 110, left: 50},
           width = 1100 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
@@ -1628,7 +1628,7 @@
         };
 
         const svg = d3
-        .select("#" + wrapperId)
+        .select("#" + wrapperId + ' .indicator-scrollable-container .indicator-container')
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -1759,8 +1759,9 @@
         const innerRadius = 60;
         const outerRadius = Math.min(width, height) / 2 - 35;
         const numLines = 100;
+        const margin = {top: 20, bottom: 10};
 
-        // Extract unique years from the new data structure
+          // Extract unique years from the new data structure
         const years = Object.keys(chartData.chart);
         const latestYear = years[years.length - 1];
 
@@ -1779,16 +1780,16 @@
         };
 
         const svg = d3
-        .select("#" + wrapperId)
+        .select("#" + wrapperId + ' .indicator-scrollable-container .indicator-container')
         .selectAll(".radial-chart")
         .data(categories)
         .enter()
         .append("svg")
         .attr("class", "radial-chart")
         .attr("width", width)
-        .attr("height", height)
+        .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", `translate(${width / 2},${height / 2})`);
+        .attr("transform", `translate(${width / 2},${height / 2 + margin.top})`);
 
         const angle = (2 * Math.PI) / numLines;
 
