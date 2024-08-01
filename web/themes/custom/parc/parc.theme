@@ -795,7 +795,8 @@ function parc_preprocess_menu__indicator_topics(array &$variables) {
         continue;
       }
 
-      $indicators = $query->condition('field_indicator_topic', $tid)->execute();
+      $topic_query = clone $query;
+      $indicators = $topic_query->condition('field_indicator_topic', $tid)->execute();
       if (empty($indicators)) {
         unset($item['below'][$idx]);
         continue;
