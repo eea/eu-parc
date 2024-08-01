@@ -24,6 +24,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
  * Defines a form for importing and exporting projects via CSV.
  */
 class ImportCsvForm extends FormBase {
+
   /**
    * The entity type manager service.
    *
@@ -55,11 +56,7 @@ class ImportCsvForm extends FormBase {
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container): ImportCsvForm|static {
-    return new static(
-      $container->get('entity_type.manager'),
-      $container->get('file_system'),
-      $container->get('messenger')
-    );
+    return new static($container->get('entity_type.manager'), $container->get('file_system'), $container->get('messenger'));
   }
 
   /**
@@ -105,7 +102,6 @@ class ImportCsvForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
-
     $triggering_element = $form_state->getTriggeringElement();
     if ($triggering_element['#value'] === 'Import') {
       $file = file_save_upload('csv_file', ['file_validate_extensions' => ['csv']], FALSE, 0);
@@ -139,23 +135,27 @@ class ImportCsvForm extends FormBase {
     while (($data = fgetcsv($handle, NULL, ",")) !== FALSE) {
       if ($row_index == 0) {
         $header = $data;
-        $expected_header = ['title', 'body', 'related_publications', 'topics', 'keywords', 'internal_title', 'start_date',
-          'end_date', 'potential_impacts', 'partners', 'contacts',
+        $expected_header = [
+          'title',
+          'body',
+          'related_publications',
+          'topics',
+          'keywords',
+          'internal_title',
+          'start_date',
+          'end_date',
+          'potential_impacts',
+          'partners',
+          'contacts',
         ];
         if ($header != $expected_header) {
           $form_state->setErrorByName('csv_file', $this->t('The file does not have the correct header.'));
           fclose($handle);
           return;
         }
-      }
-      else {
+      } else {
         $data = array_combine($header, $data);
-        $check_valid = $this->validateCsvRow($data);
-        if (!$check_valid) {
-          $form_state->setErrorByName('csv_file', $this->t('The file contains invalid data.'));
-          fclose($handle);
-          return;
-        }
+        $this->validateCsvRow($data, $form_state, $row_index + 1);
         $csv_data[] = $data;
       }
       $row_index++;
@@ -170,27 +170,53 @@ class ImportCsvForm extends FormBase {
    *
    * @param array $data
    *   The row data from the CSV file.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   * @param string $idx
+   *   The row index.
    *
    * @return bool
    *   TRUE if the row is valid, FALSE otherwise.
    */
-  protected function validateCsvRow(array &$data): bool {
+  protected function validateCsvRow(array &$data, FormStateInterface $form_state, string $idx): bool {
     $entities_to_check = [
-      'related_publications' => ['type' => 'publications', 'content_type' => 'node'],
-      'topics' => ['type' => 'project_topics', 'content_type' => 'taxonomy_term'],
-      'keywords' => ['type' => 'project_keywords', 'content_type' => 'taxonomy_term'],
-      'partners' => ['type' => 'institution', 'content_type' => 'node'],
+      'related_publications' => [
+        'type' => 'publications',
+        'content_type' => 'node',
+        'label' => $this->t('Publication'),
+      ],
+      'topics' => [
+        'type' => 'project_topics',
+        'content_type' => 'taxonomy_term',
+        'label' => $this->t('Project topic'),
+      ],
+      'keywords' => [
+        'type' => 'project_keywords',
+        'content_type' => 'taxonomy_term',
+        'label' => $this->t('Project keyword'),
+      ],
+      'partners' => [
+        'type' => 'institution',
+        'content_type' => 'node',
+        'label' => $this->t('Partner'),
+      ],
     ];
 
     foreach ($entities_to_check as $key => $settings) {
-      if (!empty($data[$key])) {
-        $check = $this->processEntitiesNameToId($data[$key], $settings['type'], $settings['content_type']);
-        if ($check === NULL) {
-          return FALSE;
-        }
-        $data[$key] = $check;
+      if (empty($data[$key])) {
+        continue;
       }
 
+      $check = $this->processEntitiesNameToId($data[$key], $settings['type'], $settings['content_type']);
+      if (!$check) {
+        $form_state->setErrorByName("$key-$idx", $this->t('@content_type @label does not exist (Row @idx)', [
+          '@content_type' => $settings['label'],
+          '@label' => $data[$key],
+          '@idx' => $idx,
+        ]));
+      }
+
+      $data[$key] = $check;
     }
 
     return TRUE;
@@ -219,6 +245,8 @@ class ImportCsvForm extends FormBase {
     foreach ($rows as $row) {
       $this->processCsvRow($row);
     }
+
+    $this->messenger()->addMessage($this->t('Successfully imported projects.'));
   }
 
   /**
@@ -233,7 +261,10 @@ class ImportCsvForm extends FormBase {
       'title' => $data['title'],
       'body' => $data['body'],
       'field_project_abbreviation' => $data['internal_title'],
-      'field_date_range' => ['value' => $data['start_date'], 'end_value' => $data['end_date']],
+      'field_date_range' => [
+        'value' => $data['start_date'],
+        'end_value' => $data['end_date'],
+      ],
       'field_related_publications' => $data['related_publications'],
       'field_project_topics' => $data['topics'],
       'field_project_keywords' => $data['keywords'],
@@ -258,19 +289,16 @@ class ImportCsvForm extends FormBase {
   protected function createProjectNode(array $node_data): void {
 
     $storage = $this->entityTypeManager->getStorage('node');
-    $query = $storage->getQuery()
-      ->condition('title', $node_data['title'])
-      ->condition('type', $node_data['type'])
-      ->accessCheck(FALSE)
-      ->execute();
-
-    $node = NULL;
+    $query = $storage->getQuery()->condition('title', $node_data['title'])->condition('type', $node_data['type'])->accessCheck(FALSE)->execute();
 
     if (!empty($query)) {
       $node = $storage->load(reset($query));
     }
     else {
-      $node = $storage->create(['type' => $node_data['type'], 'title' => $node_data['title']]);
+      $node = $storage->create([
+        'type' => $node_data['type'],
+        'title' => $node_data['title'],
+      ]);
     }
 
     foreach ($node_data as $field_name => $value) {
@@ -278,17 +306,7 @@ class ImportCsvForm extends FormBase {
         continue;
       }
 
-      if ($field_name === 'field_date_range') {
-
-        $node->set('field_date_range', $value);
-        continue;
-      }
-
-      if (!is_array($value)) {
-        $value = [$value];
-      }
-      $this->setNodeFieldValues($node, $field_name, $value);
-
+      $node->set($field_name, $value);
     }
     $node->save();
   }
@@ -308,7 +326,8 @@ class ImportCsvForm extends FormBase {
 
     $csv_data = [];
 
-    $header = ['title',
+    $header = [
+      'title',
       'body',
       'related_publications',
       'topics',
@@ -323,26 +342,23 @@ class ImportCsvForm extends FormBase {
     $csv_data[] = $header;
 
     foreach ($projects as $project) {
-
-      $data_array =
-        [
-          'title' => $project->get('title')->value,
-          'body' => $project->get('body')->value,
-          'related_publications' => $this->processProjectContent($project, 'field_related_publications'),
-          'topics' => $this->processProjectContent($project, 'field_project_topics'),
-          'keywords' => $this->processProjectContent($project, 'field_project_keywords'),
-          'internal_title' => $project->get('field_project_abbreviation')->value,
-          'start_date' => $project->get('field_date_range')->value,
-          'end_date' => $project->get('field_date_range')->end_value,
-          'potential_impacts' => $this->processProjectPotentialImpacts($project),
-          'partners' => $this->processProjectContent($project, 'field_partners'),
-          'contacts' => $this->processProjectContacts($project),
-        ];
+      $data_array = [
+        'title' => $project->get('title')->value,
+        'body' => $project->get('body')->value,
+        'related_publications' => $this->processProjectContent($project, 'field_related_publications'),
+        'topics' => $this->processProjectContent($project, 'field_project_topics'),
+        'keywords' => $this->processProjectContent($project, 'field_project_keywords'),
+        'internal_title' => $project->get('field_project_abbreviation')->value,
+        'start_date' => $project->get('field_date_range')->value,
+        'end_date' => $project->get('field_date_range')->end_value,
+        'potential_impacts' => $this->processProjectPotentialImpacts($project),
+        'partners' => $this->processProjectContent($project, 'field_partners'),
+        'contacts' => $this->processProjectContacts($project),
+      ];
 
       $csv_data[] = $data_array;
     }
     $this->createCsv($csv_data);
-
   }
 
   /**
@@ -352,27 +368,25 @@ class ImportCsvForm extends FormBase {
    *   The row data from the CSV file.
    */
   protected function createCsv(array $csv_data): void {
-    $temp_file = tmpfile();
+    $fp = fopen('php://memory', 'w+');
 
     foreach ($csv_data as $line) {
-      fputcsv($temp_file, $line);
+      fputcsv($fp, $line);
     }
-    rewind($temp_file);
+    fseek($fp, 0);
 
-    $response = new Response(stream_get_contents($temp_file));
-    $disposition = $response->headers->makeDisposition(
-          ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-          'projects.csv'
-      );
+    $data = stream_get_contents($fp);
+    $response = new Response($data);
+    $disposition = $response->headers->makeDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'projects.csv');
     $response->headers->set('Content-Disposition', $disposition);
     $response->headers->set('Content-Type', 'text/csv');
     $response->headers->set('Pragma', 'public');
     $response->headers->set('Expires', '0');
     $response->headers->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0');
     $response->headers->set('Content-Transfer-Encoding', 'binary');
-    $response->headers->set('Content-Length', strlen(stream_get_contents($temp_file)));
+    $response->headers->set('Content-Length', strlen($data));
 
-    fclose($temp_file);
+    fclose($fp);
 
     $response->send();
   }
@@ -385,13 +399,11 @@ class ImportCsvForm extends FormBase {
     try {
       $storage = $this->entityTypeManager->getStorage('node');
     }
-    catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
+    catch (InvalidPluginDefinitionException|PluginNotFoundException $e) {
       $err = $e->getMessage();
       $this->messenger()->addError($err);
     }
-    $query = $storage->getQuery()
-      ->condition('type', 'project')
-      ->accessCheck(FALSE);
+    $query = $storage->getQuery()->condition('type', 'project')->accessCheck(FALSE);
 
     $ids = $query->execute();
     return $storage->loadMultiple($ids);
@@ -483,17 +495,12 @@ class ImportCsvForm extends FormBase {
     $identifier_field = $content_type == 'node' ? 'title' : 'name';
     $type_field = $content_type == 'node' ? 'type' : 'vid';
 
-    $query = $this->entityTypeManager->getStorage($content_type)->getQuery()
-      ->condition($identifier_field, $name)
-      ->condition($type_field, $type)
-      ->accessCheck(FALSE)
-      ->execute();
+    $query = $this->entityTypeManager->getStorage($content_type)->getQuery()->condition($identifier_field, $name)->condition($type_field, $type)->accessCheck(FALSE)->execute();
 
     if (!empty($query)) {
       return reset($query);
     }
     return NULL;
-
   }
 
   /**
@@ -526,32 +533,6 @@ class ImportCsvForm extends FormBase {
   }
 
   /**
-   * Set node field values.
-   */
-  protected function setNodeFieldValues(Node $node, $field_name, array $values, $value_key = 'target_id'): void {
-    $field_values = [];
-    if ($field_name === 'field_project_contacts') {
-      $field_values = $values;
-    }
-
-    elseif ($field_name === 'field_project_abbreviation' || $field_name === 'body') {
-      $field_values = $values[0];
-    }
-
-    else {
-
-      foreach ($values as $value) {
-        $field_values[] = [$value_key => $value];
-      }
-    }
-
-    if (!empty($field_values)) {
-
-      $node->set($field_name, $field_values);
-    }
-  }
-
-  /**
    * Process paragraphs to their IDs.
    *
    * @param string $paragraph
@@ -578,7 +559,6 @@ class ImportCsvForm extends FormBase {
     }
 
     return $paragraphs;
-
   }
 
   /**
