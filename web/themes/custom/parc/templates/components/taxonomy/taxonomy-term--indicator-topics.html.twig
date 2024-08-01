@@ -31,6 +31,8 @@
   ]
 %}
 
+{{ attach_library('parc/indicators') }}
+
 {{ attach_library('layout_builder/twocol_section') }}
 <div{{attributes.setAttribute('id','taxonomy-term-'~term.id).addClass(classes)}}>
   <div class="layout">
@@ -42,7 +44,7 @@
   <div class="layout layout--twocol-section layout--twocol-section--25-75 container-fluid pt-0">
 
     <div class="layout__region layout__region--first">
-      {{ drupal_menu('indicator-topics', 1, 1) }}
+      {{ drupal_menu('indicator-topics', 1, 2) }}
     </div>
 
     <div class="layout__region layout__region--second">

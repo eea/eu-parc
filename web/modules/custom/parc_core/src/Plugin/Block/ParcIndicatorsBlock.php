@@ -119,9 +119,10 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
       $topic_build = [
         'group_title' => [
           '#type' => 'inline_template',
-          '#template' => '<div class="topic-title">{{ title }}</div>',
+          '#template' => '<div class="topic-title" id="{{ id }}">{{ title }}</div>',
           '#context' => [
             'title' => $parent instanceof TermInterface ? $parent->label() : $topic->label(),
+            'id' => 'topic-' . $topic->id(),
           ],
         ],
         'group_subtitle' => [
