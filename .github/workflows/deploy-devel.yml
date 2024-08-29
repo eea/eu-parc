@@ -7,10 +7,11 @@ name: 'Deploy staging instance'
 jobs:
   deploy:
     name: 'deployment'
-    runs-on: self-hosted
+    runs-on:
+      labels: 'drupal-runner-v2'
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
@@ -18,7 +19,7 @@ jobs:
         uses: eaudeweb/drupal-install-action@v1.1
         with:
           dev: false
-          php: /usr/bin/php81
+          php: /usr/bin/php8.1
 
       - name: 'Create release archive'
         id: artifact
