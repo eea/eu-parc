@@ -250,3 +250,12 @@
   padding: 0;
   overflow-y: visible;
 }
+
+.nav-main .nav-link-fakelink {
+  letter-spacing: unset !important;
+  color: var(--nav-link-color) !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  font-weight: var(--base-font-weight) !important;
+  font-size: var(--nav-link-font-size) !important;
+}
