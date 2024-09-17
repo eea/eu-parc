@@ -176,29 +176,29 @@ definitions:
     expanded: false
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__99':
-    enabled: true
+    weight: -67
     menu_name: main
     parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
-    weight: -47
     expanded: false
+    enabled: false
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__97':
-    enabled: true
+    weight: -71
     menu_name: main
     parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
     expanded: false
-    weight: -49
+    enabled: false
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__100':
-    enabled: true
+    weight: -65
     menu_name: main
     parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
-    weight: -46
     expanded: false
+    enabled: false
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__98':
-    enabled: true
+    weight: -69
     menu_name: main
     parent: 'menu_link_content:d69028ef-e54e-4cbe-9e11-15854fe65fad'
-    weight: -48
     expanded: false
+    enabled: false
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__events__662':
     menu_name: main
     parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
