@@ -667,6 +667,26 @@
                 arc.startAngle +
                 ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
                 (2 * linesToColor);
+              return innerRadius * Math.cos(angle);
+            })
+            .attr("y2", (d, i) => {
+              const angle =
+                arc.startAngle +
+                ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                (2 * linesToColor);
+              return innerRadius * Math.sin(angle);
+            })
+            .attr("stroke", color)
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", "5px")
+            .style("opacity", 1)
+            .transition()
+            .duration(750)
+            .attr("x2", (d, i) => {
+              const angle =
+                arc.startAngle +
+                ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                (2 * linesToColor);
               return radius * Math.cos(angle);
             })
             .attr("y2", (d, i) => {
@@ -676,10 +696,7 @@
                 (2 * linesToColor);
               return radius * Math.sin(angle);
             })
-            .attr("stroke", color)
-            .attr("stroke-linecap", "round")
-            .attr("stroke-width", "5px")
-            .style("opacity", 1);
+            ;
 
             // Add category label just outside the slice
             const outerRadius = radius * 1.15; // Place label just outside the slice
@@ -800,7 +817,7 @@
         .range(colorss);
         // Create SVG element
         const svg = d3
-        .select(`#${wrapperId}`)
+        .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
         .append("svg")
         .attr("class", "indicator-chart-svg")
         .attr("width", "1100")
@@ -851,10 +868,12 @@
             .attr("y2", y2)
             .attr("stroke", color(i))
             .attr("stroke-width", 6)
-            .attr("stroke-linecap", "round");
+            .attr("stroke-linecap", "round")
+            .transition()
+            .duration(500)
+            .attr("x2", x2)
+            .attr("y2", y2);
 
-            // Add label at the end of the first line in each category
-            // svg.append("text")
 
             if (j === 0) {
               const angleInDegrees = angle * (180 / Math.PI); // Convert angle to degrees
@@ -881,7 +900,8 @@
               .attr("dy", "0.35em")
               .style("fill", color(i))
               .html(`${slice.data.value} projects ${slice.data.category}`) // Display number of projects and category name
-              .attr("text-anchor", angle > Math.PI ? "end" : "start");
+              .attr("text-anchor", angle > Math.PI ? "end" : "start")
+
 
               // Wrap the label text
               wrap(label, 200); // Adjust the width parameter as needed
@@ -898,10 +918,14 @@
               .append("line")
               .attr("x1", gapX)
               .attr("y1", gapY)
-              .attr("x2", labelX)
-              .attr("y2", labelY)
+              .attr("x2", gapX)
+              .attr("y2", gapY)
               .attr("stroke", "black")
-              .attr("stroke-width", 1);
+              .attr("stroke-width", 1)
+              .transition()
+              .duration(750)
+              .attr("x2", labelX)
+              .attr("y2", labelY);
             }
           }
         });
@@ -918,7 +942,7 @@
 
         function updateChart(selectedYear) {
           // Select the container and remove any existing SVG elements
-          const container = d3.select(`#${wrapperId}`);
+          const container = d3.select(`#${wrapperId} .indicator-scrollable-container .indicator-container`);
           container.selectAll(".indicator-chart-svg").remove(); // This ensures only one SVG is present
 
           // Extract data for the selected year
@@ -959,11 +983,15 @@
               svg.append("line")
               .attr("x1", x1)
               .attr("y1", y1)
-              .attr("x2", x2)
-              .attr("y2", y2)
+              .attr("x2", x1)
+              .attr("y2", y1)
               .attr("stroke", color(i))
               .attr("stroke-width", 6)
-              .attr("stroke-linecap", "round");
+              .attr("stroke-linecap", "round")
+              .transition()
+              .duration(500)
+              .attr("x2", x2)
+              .attr("y2", y2);
 
               if (j === 0) {
                 const angleInDegrees = angle * (180 / Math.PI);
@@ -987,7 +1015,8 @@
                 .attr("dy", "0.35em")
                 .style("fill", color(i))
                 .html(`${slice.data.value} projects ${slice.data.category}`)
-                .attr("text-anchor", angle > Math.PI ? "end" : "start");
+                .attr("text-anchor", angle > Math.PI ? "end" : "start")
+
 
                 wrap(label, 200);
                 if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
@@ -1003,7 +1032,11 @@
                 .attr("x2", labelX)
                 .attr("y2", labelY)
                 .attr("stroke", "black")
-                .attr("stroke-width", 1);
+                .attr("stroke-width", 1)
+                .transition()
+                .duration(500)
+                .attr("x2", labelX)
+                .attr("y2", labelY);
               }
             }
           });
@@ -1495,7 +1528,8 @@
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("transform", `translate(${margin.left},${margin.top})`)
+;
 
         const y = d3
         .scaleBand()
@@ -1536,15 +1570,20 @@
           .join("rect")
           .attr("y", 0) // Reset y position to 0
           .attr("x", 0)
-          .attr("width", (d) => x(d.value))
-          .attr("height", Math.min(y.bandwidth(), maxWidth)) // Set the height of the full band
+          .attr("width", 0) // Start with width 0 for the transition
+          .attr("height", Math.min(y.bandwidth(), maxWidth)) // Start with height 0 for the transition
           .attr("class", (d) => `bar${years.indexOf(d.year)}`)
           .attr("rx", 10) // Rounded corners
           .attr("ry", 10) // Rounded corners
           .attr("transform", function (d) {
             const barWidth = Math.min(y.bandwidth(), maxWidth);
             return `translate(0, ${(y.bandwidth() - barWidth) / 2})`; // Center the bar within its group
-          });
+          })
+          .transition()
+          .duration(750)
+          .attr("width", (d) => x(d.value)) // Transition to the new width
+          .attr("height", Math.min(y.bandwidth(), maxWidth)); // Transition to the new height
+
 
           bars.exit().remove();
         }
@@ -1670,26 +1709,30 @@
 
           const barMaxWidth = 20;
           barsEnter
-          .merge(bars)
-          .selectAll("rect")
-          .data((category) => [
-            {
-              year: selectedYear,
-              value: data[selectedYear][category] || 0,
-            },
-          ])
-          .join("rect")
-          .attr("x", 0)
-          .attr("y", (d) => y(d.value))
-          .attr("width", Math.min(barMaxWidth, x0.bandwidth()))
-          .attr("height", (d) => height - y(d.value))
-          .attr("class", (d) => `bar${years.indexOf(d.year)}`)
-          .attr("rx", 10) // Rounded corners
-          .attr("ry", 10) // Rounded corners
-          .attr("transform", function (d) {
-            const barWidth = Math.min(x0.bandwidth(), barMaxWidth);
-            return `translate(${(x0.bandwidth() - barWidth) / 2}, 0)`; // Center the bar within its group
-          });
+            .merge(bars)
+            .selectAll("rect")
+            .data((category) => [
+              {
+                year: selectedYear,
+                value: data[selectedYear][category] || 0,
+              },
+            ])
+            .join("rect")
+            .attr("x", 0)
+            .attr("y", height) // Start from the bottom
+            .attr("width", Math.min(barMaxWidth, x0.bandwidth()))
+            .attr("height", 0) // Start with height 0 for the transition
+            .attr("class", (d) => `bar${years.indexOf(d.year)}`)
+            .attr("rx", 10) // Rounded corners
+            .attr("ry", 10) // Rounded corners
+            .attr("transform", function (d) {
+              const barWidth = Math.min(x0.bandwidth(), barMaxWidth);
+              return `translate(${(x0.bandwidth() - barWidth) / 2}, 0)`; // Center the bar within its group
+            })
+            .transition()
+            .duration(750)
+            .attr("y", (d) => y(d.value)) // Transition to the new y position
+            .attr("height", (d) => height - y(d.value)); // Transition to the new height
 
           bars.exit().remove();
         }

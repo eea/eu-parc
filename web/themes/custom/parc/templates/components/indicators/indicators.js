@@ -13,28 +13,66 @@
       $(once('download', '.download-image-button')).on('click', function (event) {
         event.preventDefault();
 
-        let svg = $(this).closest('.container').siblings('.indicator-chart__wrapper').find('svg').get(0);
+        let svg = $(this).closest('.container').siblings('.indicator-chart__wrapper').find('.indicator-container svg');
+
+        svg.css('font-family', '"Satoshi",sans-serif');
+
+        svg.find('.bar1').attr('fill', '#e4798b');
+        svg.find('.bar0').attr('fill', '#017365');
+        if (svg.hasClass('radial-chart')) {
+
+          svg.find('text').each(function () {
+
+            $(this).css('text-anchor', 'middle');
+          });
+        }
+
+        svg = svg.toArray();
         if (!svg) {
           console.error("Can't find the SVG");
           return;
         }
 
-        let svgData = new XMLSerializer().serializeToString(svg);
         let canvas = document.createElement('canvas');
-        let ctx = canvas.getContext('2d');
-        let img = new Image();
+        let totalSVGs = svg.length;
+        console.log();
+        let columns = totalSVGs < 4 ? totalSVGs : 4;
+        let rows = totalSVGs > 0 ? Math.ceil(totalSVGs / columns) : 0;
 
-        canvas.width = svg.clientWidth;
-        canvas.height = svg.clientHeight;
+        canvas.width = svg[0].clientWidth * columns;
+        canvas.height = svg[0].clientHeight * rows;
+        let ctx = canvas.getContext('2d');
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        img.onload = function () {
-          ctx.drawImage(img, 0, 0);
-          download(canvas.toDataURL("image/png"), 'downloaded-image.png');
-        };
+        svg.forEach((svgElement, i) => {
 
-        img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+          let img = new Image();
+          let svgData = new XMLSerializer().serializeToString(svgElement);
+
+
+
+          img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+
+          img.onload = function () {
+            ctx.drawImage(
+              img,
+              (i % columns) * svgElement.clientWidth,
+              Math.floor(i / columns) * svgElement.clientHeight,
+              svgElement.clientWidth,
+              svgElement.clientHeight
+            );
+
+            if (i === totalSVGs - 1) {
+              download(canvas.toDataURL('image/png'), 'chart.png');
+            }
+          };
+
+          img.onerror = function () {
+            console.error('Error loading SVG image:', svgData);
+          };
+        });
+
       });
 
       $(once('legendClick', '.legend > div')).each(function () {
