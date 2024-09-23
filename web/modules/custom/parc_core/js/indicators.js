@@ -789,7 +789,7 @@
           2028: "#DB5749",
         };
 
-        year = '2022';
+        let year = '2022';
         const data = chartData.chart[year]; // Extract data for the year 2022
 
         // Dimensions and margins
@@ -828,8 +828,19 @@
         // Prepare data for pie layout
         const pie = d3
         .pie()
+        .startAngle(-Math.PI / 2)
         .value((d) => d.value)
         .sort(null);
+
+        const tooltip = d3.select(`body`)
+          .append("div")
+          .attr("class", "tooltip")
+          .style("position", "absolute")
+          .style("visibility", "hidden")
+          .style("background", "#fff")
+          .style("border", "1px solid #ccc")
+          .style("padding", "5px")
+          .style("border-radius", "5px");
 
         const pieData = pie(
           Object.entries(data).map(([key, value]) => ({
@@ -857,20 +868,31 @@
             outerRadius = radius * 1.2;
 
             // Draw line
-            svg
-            .append("line")
-            .attr("x1", x1)
-            .attr("y1", y1)
-            .attr("x2", x2)
-            .attr("y2", y2)
-            .attr("stroke", color(i))
-            .attr("stroke-width", 6)
-            .attr("stroke-linecap", "round")
-            .transition()
-            .duration(500)
-            .attr("x2", x2)
-            .attr("y2", y2);
-
+            svg.append("line")
+              .data(pieData)
+              .attr("x1", x1)
+              .attr("y1", y1)
+              .attr("x2", x1)
+              .attr("y2", y1)
+              .attr("stroke", color(i))
+              .attr("stroke-width", 6)
+              .attr("stroke-linecap", "round")
+              .transition()
+              .duration(500)
+              .attr("x2", x2)
+              .attr("y2", y2)
+              .attr("data-index", i);
+              svg.on("mouseover", (event, d) => {
+                tooltip.style("visibility", "visible")
+                  .text(`${pieData[event.originalTarget.dataset.index].data.category}`);
+              })
+              .on("mousemove", (event, d) => {
+                tooltip.style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", (event, d) => {
+                tooltip.style("visibility", "hidden");
+              });
 
             if (j === 0) {
               const angleInDegrees = angle * (180 / Math.PI); // Convert angle to degrees
@@ -896,17 +918,14 @@
               )
               .attr("dy", "0.35em")
               .style("fill", color(i))
-              .html(`${slice.data.value} projects ${slice.data.category}`) // Display number of projects and category name
+              .html(`${slice.data.value} projects`) // Display number of projects and category name
               .attr("text-anchor", angle > Math.PI ? "end" : "start")
 
 
-              // Wrap the label text
-              wrap(label, 200); // Adjust the width parameter as needed
+
               if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
-                // label.attr("transform", `translate(${x}, ${y}) rotate(${0})`)
                 label.attr("text-anchor", "end");
               } else {
-                // label.attr("transform", `translate(${x}, ${y}) rotate(${360})`)
                 label.attr("text-anchor", "start");
               }
               label.attr("transform", `translate(${x}, ${y}) rotate(${0})`);
@@ -978,6 +997,7 @@
               outerRadius = radius * 1.2;
 
               svg.append("line")
+              .data(pieData)
               .attr("x1", x1)
               .attr("y1", y1)
               .attr("x2", x1)
@@ -988,8 +1008,19 @@
               .transition()
               .duration(500)
               .attr("x2", x2)
-              .attr("y2", y2);
-
+              .attr("y2", y2)
+              .attr("data-index", i);
+              svg.on("mouseover", (event, d) => {
+                tooltip.style("visibility", "visible")
+                  .text(`${pieData[event.originalTarget.dataset.index].data.category}`);
+              })
+              .on("mousemove", (event, d) => {
+                tooltip.style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", (event, d) => {
+                tooltip.style("visibility", "hidden");
+              });
               if (j === 0) {
                 const angleInDegrees = angle * (180 / Math.PI);
                 const x = outerRadius * Math.cos(angle);
@@ -1011,7 +1042,7 @@
                 .attr("transform", `translate(${x}, ${y}) rotate(${rotationAngle})`)
                 .attr("dy", "0.35em")
                 .style("fill", color(i))
-                .html(`${slice.data.value} projects ${slice.data.category}`)
+                .html(`${slice.data.value} projects`)
                 .attr("text-anchor", angle > Math.PI ? "end" : "start")
 
 
