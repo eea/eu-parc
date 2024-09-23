@@ -800,7 +800,7 @@
         .range(colorss);
         // Create SVG element
         const svg = d3
-        .select(`#${wrapperId}`)
+        .select(`#${wrapperId}` + ' .indicator-scrollable-container .indicator-container')
         .append("svg")
         .attr("class", "indicator-chart-svg")
         .attr("width", "1100")
