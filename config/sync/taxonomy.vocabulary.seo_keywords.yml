@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Seo keywords'
 vid: seo_keywords
-description: ''
+description: null
 weight: 0
+new_revision: false
