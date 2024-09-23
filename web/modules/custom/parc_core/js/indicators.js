@@ -356,8 +356,6 @@
           .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]))
           .style("stroke-width", 2)
           .merge(outerSlices)
-          .transition()
-          .duration(750)
           .attr("d", outerArc)
           .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]));
 
@@ -379,8 +377,7 @@
           .style("stroke", "black")
           .style("stroke-width", 1)
           .merge(innerSlices)
-          .transition()
-          .duration(750)
+
           .attr("d", innerArc);
 
           innerSlices.exit().remove();
@@ -1263,11 +1260,10 @@
             const opacity = active ? 1 : 0;
             svg
               .selectAll(`circle[fill="${categories[d].color}"]`)
-              .transition()
+
               .style("opacity", opacity);
             svg
               .selectAll(`text[fill="${categories[d].color}"]`)
-              .transition()
               .style("opacity", opacity);
           });
 
@@ -1401,7 +1397,6 @@
 
           // Update existing nodes
           node.merge(nodeEnter).select("circle")
-            .transition()
             .attr("r", d => radiusScale(d.value))
             .attr("fill", d => categories[d.category].color);
 
@@ -1455,11 +1450,9 @@
               const opacity = active ? 1 : 0;
               svg
                 .selectAll(`circle[fill="${categories[d].color}"]`)
-                .transition()
                 .style("opacity", opacity);
               svg
                 .selectAll(`text[fill="${categories[d].color}"]`)
-                .transition()
                 .style("opacity", opacity);
             });
 
@@ -1905,17 +1898,15 @@
         .on("click", function (event, d) {
           // Hide all years
           years.forEach((year) => {
-            d3.selectAll(`.line.value${year}`)
-            .transition()
+            d3.selectAll(`.indicator-container .line.value${year}`)
             .style("opacity", 0);
-            d3.selectAll(`.label-${year}`).transition().style("opacity", 0);
+            d3.selectAll(`.indicator-container .label-${year}`).style("opacity", 0);
           });
 
           // Show the selected year
-          d3.selectAll(`.line.value${d.year}`)
-          .transition()
+          d3.selectAll(`.indicator-container .line.value${d.year}`)
           .style("opacity", 1);
-          d3.selectAll(`.label-${d.year}`).transition().style("opacity", 1);
+          d3.selectAll(`.indicator-container .label-${d.year}`).style("opacity", 1);
         });
 
         legend

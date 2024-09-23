@@ -11,27 +11,109 @@
       }
 
       $(once('download', '.download-image-button')).on('click', function (event) {
-        event.preventDefault();
+      event.preventDefault();
+      event.stopPropagation();
 
-        let svg = $(this).closest('.container').siblings('.indicator-chart__wrapper').find('.indicator-container svg');
+      let button = $(this);
+      let svgs = [];
 
-        svg.css('font-family', '"Satoshi",sans-serif');
+      button.closest('.container').siblings('.indicator-chart__wrapper').find('div[data-once="legendClick"]').each(function () {
+        let legendDiv = $(this);
+        legendDiv.click();
 
-        svg.find('.bar1').attr('fill', '#e4798b');
-        svg.find('.bar0').attr('fill', '#017365');
-        if (svg.hasClass('radial-chart')) {
+        let year = legendDiv.find('.legend-text').text();
+        let svg = legendDiv.closest('.indicator-chart__wrapper').find('.indicator-container svg').clone();
+        if (svg.length > 0) {
+          svg.find('.bar1').attr('fill', '#e4798b');
+          svg.find('.bar0').attr('fill', '#017365');
+          if (svg.hasClass('radial-chart')) {
+            svg.find('.colored').each(function () {
 
-          svg.find('text').each(function () {
+              if ($(this).hasClass('value'+year)){
+                $(this).css('display', 'block');
+                $(this).css('stroke-width', '2px');
+                $(this).css('stroke-linecap', 'round');
+                $(this).css('opacity', '1');
+              }
+              else{
 
-            $(this).css('text-anchor', 'middle');
+                $(this).css('display', 'none');
+              }
+
+            });
+            svg.find('text').each(function () {
+
+              $(this).css('text-anchor', 'middle');
+              let opacity = $(this).css('opacity');
+
+              if (opacity == '1') {
+                $(this).css('display', 'block')
+            }
+            else{
+              $(this).css('display', 'none');
+            }
+            });
+        }
+          svg.each(function() {
+            $(this).attr('data-year', year);
+            svgs.push(this);
           });
-        }
 
-        svg = svg.toArray();
-        if (!svg) {
+        } else {
           console.error("Can't find the SVG");
-          return;
         }
+      });
+
+      if (svgs.length === 0) {
+        console.error("No SVGs found");
+        return;
+      }
+      let groupedSvgs = {};
+      svgs.forEach(svg => {
+        let year = svg.getAttribute('data-year');
+        if (!groupedSvgs[year]) {
+          groupedSvgs[year] = [];
+        }
+        groupedSvgs[year].push(svg);
+      });
+      let totalHeight = 0;
+      let maxWidth = 0;
+
+      svgs.forEach(svg => {
+        totalHeight += svg.height.baseVal.value;
+        if (svg.clientWidth > maxWidth) {
+          maxWidth = svg.clientWidth;
+        }
+      });
+
+      let canvas = document.createElement('canvas');
+      let ctx = canvas.getContext('2d');
+      canvas.width = maxWidth;
+      canvas.height = totalHeight;
+
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+      function createCanvas(groupedSvgs) {
+        const svgWidth = groupedSvgs[2022][0].clientWidth;
+        const svgHeight = groupedSvgs[2022][0].height.baseVal.value;
+        let maxArraySize = 0;
+        Object.values(groupedSvgs).forEach(group => {
+            if (group.length > maxArraySize) {
+                maxArraySize = group.length;
+            }
+        });
+        const maxPerRow = Math.min(4, maxArraySize);
+        const rowHeight = svgHeight;
+        let totalRows = 0;
+        Object.values(groupedSvgs).forEach(group => {
+          const rows = Math.ceil(group.length / maxPerRow);
+          totalRows += rows;
+        });
+
+        const canvasWidth = maxPerRow * svgWidth;
+        const canvasHeight = totalRows * rowHeight;
 
         let canvas = document.createElement('canvas');
         let totalSVGs = svg.length;
@@ -73,7 +155,8 @@
           };
         });
 
-      });
+      }});
+
 
       $(once('legendClick', '.legend > div')).each(function () {
         $(this).click(function () {
