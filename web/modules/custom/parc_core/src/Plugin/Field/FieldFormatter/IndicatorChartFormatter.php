@@ -137,6 +137,7 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
         'image' => $node->get('field_cover')->view('search_teaser'),
         'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node)->toString(),
         'date' => $last_year != $year ? $formatted_date : $month,
+        'title' => $node->label(),
       ];
 
       $last_year = $year;
