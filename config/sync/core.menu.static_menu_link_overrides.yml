@@ -212,8 +212,8 @@ definitions:
     expanded: true
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__indicator_topics__1071':
+    menu_name: indicator-topics
     parent: ''
     weight: 0
     expanded: true
     enabled: true
-    menu_name: indicator-topics

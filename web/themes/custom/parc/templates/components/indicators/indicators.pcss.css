@@ -478,3 +478,7 @@
     }
   }
 }
+
+text.axis-label {
+  fill: #818181;
+}
