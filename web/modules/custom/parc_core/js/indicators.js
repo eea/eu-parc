@@ -1092,6 +1092,13 @@
                 .attr("y2", labelY);
               }
             }
+            svg.append("path")
+            .attr("d", arcGenerator({
+              startAngle: slice.startAngle + Math.PI/2,  // Adjust start angle by -90 degrees
+              endAngle: slice.endAngle + Math.PI/2
+            }))
+            .attr("fill", "transparent") // Make it invisible but hoverable
+            .attr("data-index", i);
           });
 
           svg.append("circle")
