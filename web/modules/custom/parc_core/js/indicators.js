@@ -855,6 +855,11 @@
         const lineLength = 40; // Length of each line
         const gapLength = 5;
         // Draw lines for each pie segment and add labels
+
+        const arcGenerator = d3.arc()
+          .innerRadius(0)  // Start at the center (or you can set a small inner radius)
+          .outerRadius(radius * 1.2);  // Outer radius extends beyond the lines
+
         pieData.forEach((slice, i) => {
           const numLines = slice.data.value; // Number of lines for this segment
           const angleStep = (slice.endAngle - slice.startAngle) / numLines;
@@ -946,6 +951,16 @@
               .attr("y2", labelY);
             }
           }
+
+          console.log(slice.startAngle, slice.endAngle)
+
+          svg.append("path")
+            .attr("d", arcGenerator({
+              startAngle: slice.startAngle + Math.PI/2,  // Adjust start angle by -90 degrees
+              endAngle: slice.endAngle + Math.PI/2
+            }))
+            .attr("fill", "transparent") // Make it invisible but hoverable
+            .attr("data-index", i);
         });
 
         svg.append("circle")
