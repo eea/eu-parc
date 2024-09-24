@@ -12,6 +12,12 @@
 
       $(once('download', '.download-image-button')).on('click', function (event) {
         event.preventDefault();
+        const filename = $(this).closest('.indicator').data("filename");
+        let year = $(this).closest('.indicator-description').siblings(".indicator-chart__wrapper").find(".active .legend-text").text();
+
+        if(!year) {
+          year = new Date().getFullYear();
+        }
 
         let svg = $(this).closest('.container').siblings('.indicator-chart__wrapper').find('.indicator-container svg');
 
@@ -35,7 +41,7 @@
 
         let canvas = document.createElement('canvas');
         let totalSVGs = svg.length;
-        console.log();
+
         let columns = totalSVGs < 4 ? totalSVGs : 4;
         let rows = totalSVGs > 0 ? Math.ceil(totalSVGs / columns) : 0;
 
@@ -64,7 +70,8 @@
             );
 
             if (i === totalSVGs - 1) {
-              download(canvas.toDataURL('image/png'), 'chart.png');
+
+              download(canvas.toDataURL('image/png'), filename + '-' + year);
             }
           };
 

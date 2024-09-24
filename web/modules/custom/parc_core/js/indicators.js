@@ -889,8 +889,13 @@
               .attr("y2", y2)
               .attr("data-index", i);
               svg.on("mouseover", (event, d) => {
-                tooltip.style("visibility", "visible")
-                  .text(`${pieData[event.target.getAttribute('data-index')].data.category}`);
+                if (event.target.getAttribute('data-index')) {
+                  tooltip.style("visibility", "visible")
+                    .text(`${pieData[event.target.getAttribute('data-index')].data.category}`);
+                }
+                else{
+                  tooltip.style("visibility", "hidden");
+                }
               })
               .on("mousemove", (event, d) => {
                 tooltip.style("top", (event.pageY - 10) + "px")
@@ -1034,8 +1039,13 @@
               .attr("y2", y2)
               .attr("data-index", i);
               svg.on("mouseover", (event, d) => {
-                tooltip.style("visibility", "visible")
-                  .text(`${pieData[event.target.getAttribute('data-index')].data.category}`);
+                if (event.target.getAttribute('data-index')) {
+                  tooltip.style("visibility", "visible")
+                    .text(`${pieData[event.target.getAttribute('data-index')].data.category}`);
+                }
+                else{
+                  tooltip.style("visibility", "hidden");
+                }
               })
               .on("mousemove", (event, d) => {
                 tooltip.style("top", (event.pageY - 10) + "px")
