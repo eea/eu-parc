@@ -2093,7 +2093,7 @@
                         .style("opacity", year === latestYear ? 1 : 0); // Set opacity to 1
                     }
                   });
-              }, j * 20);
+              }, j * 5);
             }
           });
         });
@@ -2141,7 +2141,7 @@
 
               lineSelection
                 .transition()
-                .delay((d, i) => i * 20) // Staggered delay
+                .delay((d, i) => i * 5) // Staggered delay
                 .style("opacity", 1) // Animate to opacity 1
                 .on("end", function () {
                   // After the transition ends, show the labels
