@@ -1,0 +1,13 @@
+eu_parc_menu:
+  title: 'EU-PARC'
+  description: 'EU-PARC'
+  route_name: parc_core.eu_parc_menu
+  parent: system.admin_config
+  weight: -100
+
+import_projects_menu:
+  title: 'Import projects'
+  description: 'Import or export projects as csv.'
+  route_name: parc_core.import_projects_menu
+  parent: eu_parc_menu
+  weight: 0
