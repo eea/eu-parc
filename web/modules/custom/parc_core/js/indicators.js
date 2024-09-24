@@ -770,7 +770,7 @@
 
         legend
         .append("span")
-        .attr("class", (d) => "legend-text year-" + d.year)
+        .attr("class", (d) => "legend-text")
         .text((d) => d.year);
 
         function wrap(text, width) {
@@ -789,8 +789,9 @@
           2028: "#DB5749",
         };
 
-        let year = '2022';
-        const data = chartData.chart[year]; // Extract data for the year 2022
+        let years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
+        const data = chartData.chart[latestYear]; // Extract data for the year 2022
 
         // Dimensions and margins
         const margin = {top: 20, right: 20, bottom: 20, left: 20};
@@ -946,6 +947,12 @@
           }
         });
 
+        svg.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .attr("r", 5)
+        .attr("fill", "white");
+
         // Adding the chart's title and additional information
         svg
         .append("text")
@@ -1068,13 +1075,13 @@
               }
             }
           });
+
+          svg.append("circle")
+          .attr("cx", 0)
+          .attr("cy", 0)
+          .attr("r", 5)
+          .attr("fill", "white");
         }
-
-
-        // Initial call to create the chart for the first year in the data
-        const years = Object.keys(chartData.chart);
-        const latestYear = years[years.length - 1];
-
 
         // Create initial legend
         const legend = d3
@@ -1097,7 +1104,7 @@
 
         legend
         .append("span")
-        .attr("class", (d) => "legend-text year-" + d.year)
+        .attr("class", (d) => "legend-text")
         .text((d) => d.year);
       }
 
