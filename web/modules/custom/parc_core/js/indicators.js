@@ -65,6 +65,7 @@
         const radius = Math.min(width, height) / 2 - 60;
 
         const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
+        const duration = 700;
 
         // Extract sorted categories
         const largestValue = sortedData[0][1];
@@ -99,11 +100,27 @@
           .enter()
           .append("path")
           .attr("class", "outerSlice")
-          .attr("d", outerArc)
+          .attr("d", outerArc) // Initial outer arc state
           .style("stroke", "white")
-          .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]))
-
-          .style("stroke-width", 2);
+          .style("fill", "white")
+          .style("stroke-width", 2)
+          .attr("d", outerArc) // Update the outer arc state
+          .style("fill", "white")
+          .transition()
+          .duration(duration)
+          .delay((d, i) => i * (duration-225)) // Stagger the transitions by index
+          .duration(duration) // Adjust duration as necessary
+          .attrTween("d", function(d) {
+              // Interpolate the arc from a small slice to the full arc
+              const interpolate = d3.interpolate(
+                  { ...d, endAngle: d.startAngle }, // Start with a very small arc
+                  d // Final arc
+              );
+              return function(t) {
+                  return outerArc(interpolate(t));
+              };
+          })
+          .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i])); // Change the color during the transition
 
         // Inner pie chart (for the hollowed-out interior)
         const innerPie = d3
@@ -131,8 +148,30 @@
           .attr("class", "innerSlice")
           .attr("d", innerArc)
           .style("fill", "none") // Transparent fill
-          .style("stroke", "black") // Add black stroke color
-          .style("stroke-width", 1); //
+          .style("stroke", "none")
+
+            // Start with the slices as zero arcs
+            .attr("d", function(d) {
+              return innerArc({ ...d, endAngle: d.startAngle }); // Zero-length arcs
+          })
+
+          // Transition to full arcs with colors from outer slices
+          .transition()
+          .delay((d, i) => i * (duration-225)) // Delay each slice based on its index
+          .duration(duration)
+          .attrTween("d", function(d) {
+              // Interpolate from zero-length arc to full arc
+              const interpolate = d3.interpolate(
+                  { ...d, endAngle: d.startAngle }, // Start with a small arc
+                  d // Full arc
+              );
+              return function(t) {
+                  return innerArc(interpolate(t));
+              };
+          })
+          .style("fill", 'white') // Set color from outer slices
+          .style("stroke", 'black') // Optionally set stroke color to match
+          .style("stroke-width", 0);
 
         let pieRadius = radius;
 
@@ -360,17 +399,34 @@
             .selectAll(".outerSlice")
             .data(pieData, (d) => d.index);
 
-          outerSlices
+
+            outerSlices
             .enter()
             .append("path")
             .attr("class", "outerSlice")
-            .attr("d", outerArc)
+            .attr("d", outerArc) // Initial outer arc state
             .style("stroke", "white")
-            .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]))
+            .style("fill", "white")
             .style("stroke-width", 2)
             .merge(outerSlices)
-            .attr("d", outerArc)
-            .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]));
+            .attr("d", outerArc) // Update the outer arc state
+            .style("fill", "white")
+            .transition()
+            .duration(duration)
+            .delay((d, i) => i * (duration-275)) // Stagger the transitions by index
+            .duration(duration) // Adjust duration as necessary
+            .attrTween("d", function(d) {
+                // Interpolate the arc from a small slice to the full arc
+                const interpolate = d3.interpolate(
+                    { ...d, endAngle: d.startAngle }, // Start with a very small arc
+                    d // Final arc
+                );
+                return function(t) {
+                    return outerArc(interpolate(t));
+                };
+            })
+            .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i])); // Change the color during the transition
+
 
           outerSlices.exit().remove();
 
@@ -387,19 +443,41 @@
             .selectAll(".innerSlice")
             .data(innerPieData, (d) => d.index);
 
-          innerSlices
-            .enter()
-            .append("path")
-            .attr("class", "innerSlice")
-            .attr("d", innerArc)
-            .style("fill", "none")
-            .style("stroke", "black")
-            .style("stroke-width", 1)
-            .merge(innerSlices)
+          innerSlices.remove();
 
-            .attr("d", innerArc);
+          svg
+          .selectAll(".innerSlice")
+          .data(pieData)
+          .enter()
+          .append("path")
+          .attr("class", "innerSlice")
+          .attr("d", innerArc)
+          .style("fill", "none") // Transparent fill
+          .style("stroke", "none")
 
-          innerSlices.exit().remove();
+            // Start with the slices as zero arcs
+            .attr("d", function(d) {
+              return innerArc({ ...d, endAngle: d.startAngle }); // Zero-length arcs
+          })
+
+          // Transition to full arcs with colors from outer slices
+          .transition()
+          .delay((d, i) => i * (duration-275)) // Delay each slice based on its index
+          .duration(duration)
+          .attrTween("d", function(d) {
+              // Interpolate from zero-length arc to full arc
+              const interpolate = d3.interpolate(
+                  { ...d, endAngle: d.startAngle }, // Start with a small arc
+                  d // Full arc
+              );
+              return function(t) {
+                  return innerArc(interpolate(t));
+              };
+          })
+          .style("stroke", 'black') // Optionally set stroke color to match
+          .style("stroke-width", 0);
+
+          // innerSlices.exit().remove();
 
           // Update the slice labels
           const labelUpdate = svg
@@ -2093,7 +2171,7 @@
                         .style("opacity", year === latestYear ? 1 : 0); // Set opacity to 1
                     }
                   });
-              }, j * 20);
+              }, j * 5);
             }
           });
         });
@@ -2141,7 +2219,7 @@
 
               lineSelection
                 .transition()
-                .delay((d, i) => i * 20) // Staggered delay
+                .delay((d, i) => i * 5) // Staggered delay
                 .style("opacity", 1) // Animate to opacity 1
                 .on("end", function () {
                   // After the transition ends, show the labels
@@ -2151,10 +2229,6 @@
                     .style("opacity", 1) // Show the label for the selected year
                     .on("end", function () {});
                 });
-              if (j++ == 9) {
-                // Set the animation flag to false
-                isAnimating = false;
-              }
             });
           });
 
