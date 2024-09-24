@@ -793,6 +793,7 @@
         const latestYear = years[years.length - 1];
         const data = chartData.chart[latestYear]; // Extract data for the year 2022
 
+
         // Dimensions and margins
         const margin = {top: 20, right: 20, bottom: 20, left: 20};
         const width = 600 - margin.left - margin.right;
@@ -870,7 +871,6 @@
 
             // Draw line
             svg.append("line")
-              .data(pieData)
               .attr("x1", x1)
               .attr("y1", y1)
               .attr("x2", x1)
@@ -885,7 +885,7 @@
               .attr("data-index", i);
               svg.on("mouseover", (event, d) => {
                 tooltip.style("visibility", "visible")
-                  .text(`${pieData[event.originalTarget.dataset.index].data.category}`);
+                  .text(`${pieData[event.target.getAttribute('data-index')].data.category}`);
               })
               .on("mousemove", (event, d) => {
                 tooltip.style("top", (event.pageY - 10) + "px")
@@ -913,6 +913,7 @@
 
               const label = svg
               .append("text")
+              .attr("data-index", i)
               .attr(
                 "transform",
                 `translate(${x}, ${y}) rotate(${rotationAngle})`
@@ -1019,7 +1020,7 @@
               .attr("data-index", i);
               svg.on("mouseover", (event, d) => {
                 tooltip.style("visibility", "visible")
-                  .text(`${pieData[event.originalTarget.dataset.index].data.category}`);
+                  .text(`${pieData[event.target.getAttribute('data-index')].data.category}`);
               })
               .on("mousemove", (event, d) => {
                 tooltip.style("top", (event.pageY - 10) + "px")
@@ -1051,9 +1052,11 @@
                 .style("fill", color(i))
                 .html(`${slice.data.value} projects`)
                 .attr("text-anchor", angle > Math.PI ? "end" : "start")
+                .attr("data-index", i);
 
 
-                wrap(label, 200);
+
+                // wrap(label, 200, i);
                 if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
                   label.attr("text-anchor", "end");
                 } else {
@@ -1109,7 +1112,7 @@
       }
 
       // Function to wrap text within a specified width using <tspan>
-      function wrap(text, width) {
+      function wrap(text, width, i) {
         text.each(function () {
           let text = d3.select(this),
             words = text.text().split(/\s+/).reverse(),
@@ -1121,7 +1124,8 @@
             .append("tspan")
             .attr("x", 0)
             .attr("y", 0)
-            .attr("dy", 0 + "em"),
+            .attr("dy", 0 + "em")
+            .attr("data-index", i)
             firstTspan = tspan;
           let line = [],
             lineNumber = 0,
@@ -1148,7 +1152,8 @@
                 .append("tspan")
                 .attr("x", 0)
                 .attr("dy", lineHeight + "em")
-                .text("");
+                .text("")
+                .attr("data-index", i);
               } else {
                 line.pop();
                 tspan.text(line.join(" "));
@@ -1157,7 +1162,9 @@
                 .append("tspan")
                 .attr("x", 0)
                 .attr("dy", lineHeight + "em")
-                .text(word);
+                .text(word)
+                .attr("data-index", i);
+
               }
               lineNumber++;
             }
