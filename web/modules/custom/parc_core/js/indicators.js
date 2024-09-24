@@ -356,8 +356,6 @@
           .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]))
           .style("stroke-width", 2)
           .merge(outerSlices)
-          .transition()
-          .duration(750)
           .attr("d", outerArc)
           .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i]));
 
@@ -379,8 +377,7 @@
           .style("stroke", "black")
           .style("stroke-width", 1)
           .merge(innerSlices)
-          .transition()
-          .duration(750)
+
           .attr("d", innerArc);
 
           innerSlices.exit().remove();
@@ -667,6 +664,26 @@
                 arc.startAngle +
                 ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
                 (2 * linesToColor);
+              return innerRadius * Math.cos(angle);
+            })
+            .attr("y2", (d, i) => {
+              const angle =
+                arc.startAngle +
+                ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                (2 * linesToColor);
+              return innerRadius * Math.sin(angle);
+            })
+            .attr("stroke", color)
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", "5px")
+            .style("opacity", 1)
+            .transition()
+            .duration(750)
+            .attr("x2", (d, i) => {
+              const angle =
+                arc.startAngle +
+                ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                (2 * linesToColor);
               return radius * Math.cos(angle);
             })
             .attr("y2", (d, i) => {
@@ -676,10 +693,7 @@
                 (2 * linesToColor);
               return radius * Math.sin(angle);
             })
-            .attr("stroke", color)
-            .attr("stroke-linecap", "round")
-            .attr("stroke-width", "5px")
-            .style("opacity", 1);
+            ;
 
             // Add category label just outside the slice
             const outerRadius = radius * 1.15; // Place label just outside the slice
@@ -756,7 +770,7 @@
 
         legend
         .append("span")
-        .attr("class", (d) => "legend-text year-" + d.year)
+        .attr("class", (d) => "legend-text")
         .text((d) => d.year);
 
         function wrap(text, width) {
@@ -775,8 +789,9 @@
           2028: "#DB5749",
         };
 
-        year = '2022';
-        const data = chartData.chart[year]; // Extract data for the year 2022
+        let years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
+        const data = chartData.chart[latestYear]; // Extract data for the year 2022
 
         // Dimensions and margins
         const margin = {top: 20, right: 20, bottom: 20, left: 20};
@@ -800,7 +815,7 @@
         .range(colorss);
         // Create SVG element
         const svg = d3
-        .select(`#${wrapperId}` + ' .indicator-scrollable-container .indicator-container')
+        .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
         .append("svg")
         .attr("class", "indicator-chart-svg")
         .attr("width", "1100")
@@ -814,8 +829,19 @@
         // Prepare data for pie layout
         const pie = d3
         .pie()
+        .startAngle(-Math.PI / 2)
         .value((d) => d.value)
         .sort(null);
+
+        const tooltip = d3.select(`body`)
+          .append("div")
+          .attr("class", "tooltip")
+          .style("position", "absolute")
+          .style("visibility", "hidden")
+          .style("background", "#fff")
+          .style("border", "1px solid #ccc")
+          .style("padding", "5px")
+          .style("border-radius", "5px");
 
         const pieData = pie(
           Object.entries(data).map(([key, value]) => ({
@@ -843,18 +869,31 @@
             outerRadius = radius * 1.2;
 
             // Draw line
-            svg
-            .append("line")
-            .attr("x1", x1)
-            .attr("y1", y1)
-            .attr("x2", x2)
-            .attr("y2", y2)
-            .attr("stroke", color(i))
-            .attr("stroke-width", 6)
-            .attr("stroke-linecap", "round");
-
-            // Add label at the end of the first line in each category
-            // svg.append("text")
+            svg.append("line")
+              .data(pieData)
+              .attr("x1", x1)
+              .attr("y1", y1)
+              .attr("x2", x1)
+              .attr("y2", y1)
+              .attr("stroke", color(i))
+              .attr("stroke-width", 6)
+              .attr("stroke-linecap", "round")
+              .transition()
+              .duration(500)
+              .attr("x2", x2)
+              .attr("y2", y2)
+              .attr("data-index", i);
+              svg.on("mouseover", (event, d) => {
+                tooltip.style("visibility", "visible")
+                  .text(`${pieData[event.originalTarget.dataset.index].data.category}`);
+              })
+              .on("mousemove", (event, d) => {
+                tooltip.style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", (event, d) => {
+                tooltip.style("visibility", "hidden");
+              });
 
             if (j === 0) {
               const angleInDegrees = angle * (180 / Math.PI); // Convert angle to degrees
@@ -880,16 +919,14 @@
               )
               .attr("dy", "0.35em")
               .style("fill", color(i))
-              .html(`${slice.data.value} projects ${slice.data.category}`) // Display number of projects and category name
-              .attr("text-anchor", angle > Math.PI ? "end" : "start");
+              .html(`${slice.data.value} projects`) // Display number of projects and category name
+              .attr("text-anchor", angle > Math.PI ? "end" : "start")
 
-              // Wrap the label text
-              wrap(label, 200); // Adjust the width parameter as needed
+
+
               if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
-                // label.attr("transform", `translate(${x}, ${y}) rotate(${0})`)
                 label.attr("text-anchor", "end");
               } else {
-                // label.attr("transform", `translate(${x}, ${y}) rotate(${360})`)
                 label.attr("text-anchor", "start");
               }
               label.attr("transform", `translate(${x}, ${y}) rotate(${0})`);
@@ -898,13 +935,23 @@
               .append("line")
               .attr("x1", gapX)
               .attr("y1", gapY)
-              .attr("x2", labelX)
-              .attr("y2", labelY)
+              .attr("x2", gapX)
+              .attr("y2", gapY)
               .attr("stroke", "black")
-              .attr("stroke-width", 1);
+              .attr("stroke-width", 1)
+              .transition()
+              .duration(750)
+              .attr("x2", labelX)
+              .attr("y2", labelY);
             }
           }
         });
+
+        svg.append("circle")
+        .attr("cx", 0)
+        .attr("cy", 0)
+        .attr("r", 5)
+        .attr("fill", "white");
 
         // Adding the chart's title and additional information
         svg
@@ -918,7 +965,7 @@
 
         function updateChart(selectedYear) {
           // Select the container and remove any existing SVG elements
-          const container = d3.select(`#${wrapperId}`);
+          const container = d3.select(`#${wrapperId} .indicator-scrollable-container .indicator-container`);
           container.selectAll(".indicator-chart-svg").remove(); // This ensures only one SVG is present
 
           // Extract data for the selected year
@@ -957,14 +1004,30 @@
               outerRadius = radius * 1.2;
 
               svg.append("line")
+              .data(pieData)
               .attr("x1", x1)
               .attr("y1", y1)
-              .attr("x2", x2)
-              .attr("y2", y2)
+              .attr("x2", x1)
+              .attr("y2", y1)
               .attr("stroke", color(i))
               .attr("stroke-width", 6)
-              .attr("stroke-linecap", "round");
-
+              .attr("stroke-linecap", "round")
+              .transition()
+              .duration(500)
+              .attr("x2", x2)
+              .attr("y2", y2)
+              .attr("data-index", i);
+              svg.on("mouseover", (event, d) => {
+                tooltip.style("visibility", "visible")
+                  .text(`${pieData[event.originalTarget.dataset.index].data.category}`);
+              })
+              .on("mousemove", (event, d) => {
+                tooltip.style("top", (event.pageY - 10) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", (event, d) => {
+                tooltip.style("visibility", "hidden");
+              });
               if (j === 0) {
                 const angleInDegrees = angle * (180 / Math.PI);
                 const x = outerRadius * Math.cos(angle);
@@ -986,8 +1049,9 @@
                 .attr("transform", `translate(${x}, ${y}) rotate(${rotationAngle})`)
                 .attr("dy", "0.35em")
                 .style("fill", color(i))
-                .html(`${slice.data.value} projects ${slice.data.category}`)
-                .attr("text-anchor", angle > Math.PI ? "end" : "start");
+                .html(`${slice.data.value} projects`)
+                .attr("text-anchor", angle > Math.PI ? "end" : "start")
+
 
                 wrap(label, 200);
                 if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
@@ -1003,17 +1067,21 @@
                 .attr("x2", labelX)
                 .attr("y2", labelY)
                 .attr("stroke", "black")
-                .attr("stroke-width", 1);
+                .attr("stroke-width", 1)
+                .transition()
+                .duration(500)
+                .attr("x2", labelX)
+                .attr("y2", labelY);
               }
             }
           });
+
+          svg.append("circle")
+          .attr("cx", 0)
+          .attr("cy", 0)
+          .attr("r", 5)
+          .attr("fill", "white");
         }
-
-
-        // Initial call to create the chart for the first year in the data
-        const years = Object.keys(chartData.chart);
-        const latestYear = years[years.length - 1];
-
 
         // Create initial legend
         const legend = d3
@@ -1036,7 +1104,7 @@
 
         legend
         .append("span")
-        .attr("class", (d) => "legend-text year-" + d.year)
+        .attr("class", (d) => "legend-text")
         .text((d) => d.year);
       }
 
@@ -1230,11 +1298,10 @@
             const opacity = active ? 1 : 0;
             svg
               .selectAll(`circle[fill="${categories[d].color}"]`)
-              .transition()
+
               .style("opacity", opacity);
             svg
               .selectAll(`text[fill="${categories[d].color}"]`)
-              .transition()
               .style("opacity", opacity);
           });
 
@@ -1368,7 +1435,6 @@
 
           // Update existing nodes
           node.merge(nodeEnter).select("circle")
-            .transition()
             .attr("r", d => radiusScale(d.value))
             .attr("fill", d => categories[d.category].color);
 
@@ -1422,11 +1488,9 @@
               const opacity = active ? 1 : 0;
               svg
                 .selectAll(`circle[fill="${categories[d].color}"]`)
-                .transition()
                 .style("opacity", opacity);
               svg
                 .selectAll(`text[fill="${categories[d].color}"]`)
-                .transition()
                 .style("opacity", opacity);
             });
 
@@ -1495,7 +1559,8 @@
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("transform", `translate(${margin.left},${margin.top})`)
+;
 
         const y = d3
         .scaleBand()
@@ -1536,15 +1601,20 @@
           .join("rect")
           .attr("y", 0) // Reset y position to 0
           .attr("x", 0)
-          .attr("width", (d) => x(d.value))
-          .attr("height", Math.min(y.bandwidth(), maxWidth)) // Set the height of the full band
+          .attr("width", 0) // Start with width 0 for the transition
+          .attr("height", Math.min(y.bandwidth(), maxWidth)) // Start with height 0 for the transition
           .attr("class", (d) => `bar${years.indexOf(d.year)}`)
           .attr("rx", 10) // Rounded corners
           .attr("ry", 10) // Rounded corners
           .attr("transform", function (d) {
             const barWidth = Math.min(y.bandwidth(), maxWidth);
             return `translate(0, ${(y.bandwidth() - barWidth) / 2})`; // Center the bar within its group
-          });
+          })
+          .transition()
+          .duration(750)
+          .attr("width", (d) => x(d.value)) // Transition to the new width
+          .attr("height", Math.min(y.bandwidth(), maxWidth)); // Transition to the new height
+
 
           bars.exit().remove();
         }
@@ -1670,26 +1740,30 @@
 
           const barMaxWidth = 20;
           barsEnter
-          .merge(bars)
-          .selectAll("rect")
-          .data((category) => [
-            {
-              year: selectedYear,
-              value: data[selectedYear][category] || 0,
-            },
-          ])
-          .join("rect")
-          .attr("x", 0)
-          .attr("y", (d) => y(d.value))
-          .attr("width", Math.min(barMaxWidth, x0.bandwidth()))
-          .attr("height", (d) => height - y(d.value))
-          .attr("class", (d) => `bar${years.indexOf(d.year)}`)
-          .attr("rx", 10) // Rounded corners
-          .attr("ry", 10) // Rounded corners
-          .attr("transform", function (d) {
-            const barWidth = Math.min(x0.bandwidth(), barMaxWidth);
-            return `translate(${(x0.bandwidth() - barWidth) / 2}, 0)`; // Center the bar within its group
-          });
+            .merge(bars)
+            .selectAll("rect")
+            .data((category) => [
+              {
+                year: selectedYear,
+                value: data[selectedYear][category] || 0,
+              },
+            ])
+            .join("rect")
+            .attr("x", 0)
+            .attr("y", height) // Start from the bottom
+            .attr("width", Math.min(barMaxWidth, x0.bandwidth()))
+            .attr("height", 0) // Start with height 0 for the transition
+            .attr("class", (d) => `bar${years.indexOf(d.year)}`)
+            .attr("rx", 10) // Rounded corners
+            .attr("ry", 10) // Rounded corners
+            .attr("transform", function (d) {
+              const barWidth = Math.min(x0.bandwidth(), barMaxWidth);
+              return `translate(${(x0.bandwidth() - barWidth) / 2}, 0)`; // Center the bar within its group
+            })
+            .transition()
+            .duration(750)
+            .attr("y", (d) => y(d.value)) // Transition to the new y position
+            .attr("height", (d) => height - y(d.value)); // Transition to the new height
 
           bars.exit().remove();
         }
@@ -1862,17 +1936,15 @@
         .on("click", function (event, d) {
           // Hide all years
           years.forEach((year) => {
-            d3.selectAll(`.line.value${year}`)
-            .transition()
+            d3.selectAll(`.indicator-container .line.value${year}`)
             .style("opacity", 0);
-            d3.selectAll(`.label-${year}`).transition().style("opacity", 0);
+            d3.selectAll(`.indicator-container .label-${year}`).style("opacity", 0);
           });
 
           // Show the selected year
-          d3.selectAll(`.line.value${d.year}`)
-          .transition()
+          d3.selectAll(`.indicator-container .line.value${d.year}`)
           .style("opacity", 1);
-          d3.selectAll(`.label-${d.year}`).transition().style("opacity", 1);
+          d3.selectAll(`.indicator-container .label-${d.year}`).style("opacity", 1);
         });
 
         legend
