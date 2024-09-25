@@ -32,3 +32,6 @@ regions:
   footer_second: Footer Second
   footer_s: After Footer
   disable_region: "Disabled Region"
+
+libraries:
+  - parc/html2canvas
