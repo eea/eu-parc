@@ -2,9 +2,11 @@
 
 namespace Drupal\parc_core\Controller;
 
+use DateTime;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Render\HtmlResponse;
 use Drupal\node\Entity\Node;
@@ -43,6 +45,13 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
   protected $request;
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * Constructs a ParcController object.
    *
    * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
@@ -52,10 +61,11 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack.
    */
-  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager, RequestStack $request_stack) {
+  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager, RequestStack $request_stack, EntityTypeManagerInterface $entity_type_manager) {
     $this->themeExtensionList = $theme_extension_list;
     $this->eventsManager = $events_manager;
     $this->request = $request_stack->getCurrentRequest();
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -66,6 +76,7 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
       $container->get('extension.list.theme'),
       $container->get('parc_core.events_manager'),
       $container->get('request_stack'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -141,8 +152,32 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    */
   public function downloadSvg($node_id) {
     $node_id = intval($node_id);
-    $node = Node::load($node_id);
-    $node_data = $node->get('field_indicator_data')->getValue();
+    if($node_id != 0){
+      $node = Node::load($node_id);
+      $node_data = $node->get('field_indicator_data')->getValue();
+    }
+    else{
+      $query = $this->entityTypeManager()->getStorage('node')->getQuery()
+                ->condition('type', 'publications')
+                ->condition('status', 1)
+                ->sort('created', 'DESC')
+                ->accessCheck(FALSE);
+      $nids = $query->execute();
+
+      $publications = $this->entityTypeManager()->getStorage('node')->loadMultiple($nids);
+      $node_data = [];
+
+      foreach($publications as $node){
+        $date = (new DateTime($node->get('field_publication_date')->value))->format('d.m.Y');
+        $title = $node->get('title')->value;
+        $node_data[0]["value"][] = [
+          'Date' => $date,
+          'Publication name' => $title
+        ];
+      }
+
+    }
+    array_unshift($node_data[0]["value"], ["Date", "Publication name"]);
     $csv_data = $this->generateCsv($node_data);
     return $this->createCsvResponse($csv_data);
 
@@ -152,8 +187,11 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    * Generates CSV from data.
    */
   private function generateCsv(array $data): string {
+
     $csv_lines = [];
     $rows = $data[0]['value'];
+
+
 
     foreach ($rows as $row) {
       if (isset($row['weight'])) {
@@ -162,7 +200,7 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
       if ($row === "") {
         continue;
       }
-      $csv_lines[] = implode(',', $row);
+      $csv_lines[] = '"' . implode('","', $row) . '"';
     }
 
     // Join the CSV lines with new line characters.
