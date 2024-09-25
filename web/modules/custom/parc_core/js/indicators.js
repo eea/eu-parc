@@ -286,25 +286,30 @@
               .attr("x2", lineX1)
               .attr("y2", lineY1 - 10)
               .transition()
-
+              .delay(duration)
+              .duration(300)
               .attr("x2", lineX2)
               .attr("y2", endY)
               .attr("stroke", "gray")
-              .attr("stroke-width", 1);
+              .attr("stroke-width", 1)
+              .on("end", () => {
+                svg
+                .append("line")
+                .attr("class", "connector-line")
+
+                .attr("x1", lineX2)
+                .attr("y1", endY)
+                .attr("x2", lineX2) // End at newX
+                .attr("y2", endY) // Horizontal line at same Y as vertical end
+                .transition()
+                .duration(300)
+                .attr("x2", endX)
+                .attr("stroke", "gray")
+                .attr("stroke-width", 1);
+              });
 
             // Draw horizontal line
-            svg
-              .append("line")
-              .attr("class", "connector-line")
 
-              .attr("x1", lineX2)
-              .attr("y1", endY)
-              .attr("x2", lineX2) // End at newX
-              .attr("y2", endY) // Horizontal line at same Y as vertical end
-              .transition()
-              .attr("x2", endX)
-              .attr("stroke", "gray")
-              .attr("stroke-width", 1);
           }
         }, 1000);
             });
