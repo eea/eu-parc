@@ -3,33 +3,29 @@
     attach: function (context, settings) {
 
         const observerOptions = {
-          root: null, // viewport
-          rootMargin: "0px", // Load the chart when it's within 100px of the viewport
-          threshold: 1 // Trigger when 10% of the element is in view
+          root: null,
+          rootMargin: "0px",
+          threshold: 1
         };
 
         const chartObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              // Chart is in or near the viewport, build it
               const chartElement = $(entry.target);
               const chartType = chartElement.data("chart-type");
               const id = chartElement.data("chart-id");
               const chartData = drupalSettings.parc_core?.indicator_data[id];
 
               if (chartData) {
-                // Build the chart when the data is available
                 buildIndicatorChart(chartElement, chartType, chartData);
-                // Once chart is loaded, unobserve the element
                 observer.unobserve(entry.target);
               }
             }
           });
         }, observerOptions);
 
-        // Observe each chart container with the data-chart-type attribute
         $(once("indicatorChart", "[data-chart-type]")).each(function () {
-          chartObserver.observe(this); // Observe the chart element
+          chartObserver.observe(this);
         });
 
 
