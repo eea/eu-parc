@@ -28,3 +28,21 @@ parc_core.event_og_image:
     parameters:
       node:
         type: entity:node
+
+parc_core.import_csv_form:
+  path: '/admin/config/parc/import-projects'
+  defaults:
+    _form: '\Drupal\parc_core\Form\ImportCsvForm'
+    _title: 'Import CSV'
+  requirements:
+    _permission: 'create project content'
+
+parc_core.download_svg_data:
+  path: '/indicators/{node_id}/download-data'
+  defaults:
+    _controller: 'Drupal\parc_core\Controller\ParcController::downloadSvg'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node_id: entity:node

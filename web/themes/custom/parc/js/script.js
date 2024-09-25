@@ -108,7 +108,9 @@
       }
 
       $(window).on('hashchange', function() {
-        scrollToGovernanceItem();
+        if ($('.governance-title').length) {
+          scrollToGovernanceItem();
+        }
       });
 
       function scrollPageToTitle() {

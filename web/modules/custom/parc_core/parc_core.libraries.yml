@@ -68,3 +68,16 @@ slideshow:
     js/slideshow.js: { }
   dependencies:
     - parc_core/slick
+
+d3:
+  js:
+    js/lib/d3.min.js: { minified: true }
+
+indicators:
+  js:
+    js/indicators.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+    - parc_core/d3

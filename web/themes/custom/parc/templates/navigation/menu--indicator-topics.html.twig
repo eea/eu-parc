@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Parc override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{{ menus.menu_links(menu_name, items, attributes, 0) }}
+
+{% macro menu_links(menu_name, items, attributes, menu_level) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      {{ attach_library('parc/m--main') }}
+      {%
+        set classes = [
+        'navbar-nav',
+        'nav-' ~ menu_name|clean_class,
+        'mb-0',
+      ]
+      %}
+
+      <ul{{attributes.addClass(classes)}}>
+    {% else %}
+      <ul class="second-level mm-level-{{ menu_level }} list-unstyled">
+    {% endif %}
+    {% for item in items %}
+      {% set linkID = item.title|clean_class %}
+
+      {%
+        set classes_link = [
+        item.url|render == '' and menu_level > 0 ? 'text-muted text-uppercase' :'nav-link',
+        'grow-1',
+        'nav-link-level-' ~ menu_level,
+        item.is_expanded ? 'dropdown-toggle',
+        item.is_collapsed ? 'dropdown-toggle',
+        item.in_active_trail ? 'active',
+        menu_level == 0 and item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
+      ]
+      %}
+      <li{{item.attributes.addClass('nav-item','nav-link-level-'~menu_level,item.in_active_trail?'li-active',)}}>
+        {% if item.is_expanded and menu_level == 0 %}
+          <div class="d-flex">
+            {{ attach_library('parc/collapse') }}
+            {% if item.is_disabled %}
+              <div class="{{ classes_link | join(' ') }}">
+                {{ item.title }}
+              </div>
+            {% else %}
+              {{ link(item.title, item.url, { 'class': classes_link }) }}
+            {% endif %}
+            {% if item.below %}
+              <button class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="{% if item.in_active_trail  %}true{% else %}false{% endif %}" aria-controls="collapseMainSecond-{{ linkID }}">
+                <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            {% endif %}
+          </div>
+        {% else %}
+          {{ link(item.title, item.url, { 'class': classes_link }) }}
+        {% endif %}
+
+        {% if item.below %}
+          <div class="collapse {% if item.in_active_trail  %}show{% endif %} mm-collapse-{{menu_level}}" id="collapseMainSecond-{{ linkID }}">
+            {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}

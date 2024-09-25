@@ -1,0 +1,16 @@
+uuid: 315cc2e0-adb8-4a73-b1d6-f7ea31098f8a
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.indicator-topics
+    - taxonomy.vocabulary.indicator_topics
+id: indicator_topics
+label: 'Indicator topics'
+vocabulary: indicator_topics
+menu: indicator-topics
+expanded: true
+depth: 1
+menu_parent: 'indicator-topics:'
+description_field_name: ''
+use_term_weight_order: true

@@ -1,0 +1,9 @@
+uuid: 972cce62-6281-4398-8560-91e9e4a97928
+langcode: en
+status: true
+dependencies: {  }
+name: 'Indicator topics'
+vid: indicator_topics
+description: null
+weight: 0
+new_revision: false
