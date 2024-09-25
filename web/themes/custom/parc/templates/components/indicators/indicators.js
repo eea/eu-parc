@@ -91,15 +91,11 @@
             };
           });
         }
-
       });
 
-
-      $(once('legendClick', '.legend > div')).each(function () {
-        $(this).click(function () {
-          $(this).closest('.legend').find('.active').removeClass('active');
-          $(this).addClass('active');
-        });
+      $(document).on("click", ".legend > div", function(){
+        $(this).closest('.legend').find('.active').removeClass('active');
+        $(this).addClass('active');
       });
 
       $(once('download-data', '.download-data-button')).on('click', function (event) {
@@ -182,7 +178,7 @@
                 let el = $(this);
                 setTimeout(function () {
                   el.removeClass('visibility-hidden');
-                }, idx * 40, el);
+                }, idx * 20, el);
                 idx++;
               });
             });

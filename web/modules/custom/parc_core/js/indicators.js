@@ -1,33 +1,31 @@
 (function ($, Drupal, once, drupalSettings) {
   Drupal.behaviors.indicatorCharts = {
     attach: function (context, settings) {
-
         const observerOptions = {
           root: null,
           rootMargin: "0px",
           threshold: 1
         };
 
-        const chartObserver = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const chartElement = $(entry.target);
-              const chartType = chartElement.data("chart-type");
-              const id = chartElement.data("chart-id");
-              const chartData = drupalSettings.parc_core?.indicator_data[id];
+      const chartObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const chartElement = $(entry.target);
+            const chartType = chartElement.data("chart-type");
+            const id = chartElement.data("chart-id");
+            const chartData = drupalSettings.parc_core?.indicator_data[id];
 
-              if (chartData) {
-                buildIndicatorChart(chartElement, chartType, chartData);
-                observer.unobserve(entry.target);
-              }
+            if (chartData) {
+              buildIndicatorChart(chartElement, chartType, chartData);
+              observer.unobserve(entry.target);
             }
-          });
-        }, observerOptions);
-
-        $(once("indicatorChart", "[data-chart-type]")).each(function () {
-          chartObserver.observe(this);
+          }
         });
+      }, observerOptions);
 
+      $(once("indicatorChart", "[data-chart-type]")).each(function () {
+        chartObserver.observe(this);
+      });
 
       function buildIndicatorChart(wrapper, chartType, chartData) {
         const wrapperId = wrapper.attr("id");
@@ -46,8 +44,6 @@
         addPlayButtonToLegend(`#${wrapperId} .legend`, wrapperId);
         wrapper.find(".legend > div:last-child").addClass("active");
       }
-
-
 
       function buildClassicPieChart(wrapperId, chartData) {
         // Colors generated based on the year color + opacity change.
@@ -126,17 +122,17 @@
           .style("fill", "white")
           .transition()
           .duration(duration)
-          .delay((d, i) => i * (duration-275)) // Stagger the transitions by index
+          .delay((d, i) => i * (duration - 275)) // Stagger the transitions by index
           .duration(duration) // Adjust duration as necessary
-          .attrTween("d", function(d) {
-              // Interpolate the arc from a small slice to the full arc
-              const interpolate = d3.interpolate(
-                  { ...d, endAngle: d.startAngle }, // Start with a very small arc
-                  d // Final arc
-              );
-              return function(t) {
-                  return outerArc(interpolate(t));
-              };
+          .attrTween("d", function (d) {
+            // Interpolate the arc from a small slice to the full arc
+            const interpolate = d3.interpolate(
+              { ...d, endAngle: d.startAngle }, // Start with a very small arc
+              d // Final arc
+            );
+            return function (t) {
+              return outerArc(interpolate(t));
+            };
           })
           .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i])); // Change the color during the transition
 
@@ -168,153 +164,155 @@
           .style("fill", "none") // Transparent fill
           .style("stroke", "none")
 
-            // Start with the slices as zero arcs
-            .attr("d", function(d) {
-              return innerArc({ ...d, endAngle: d.startAngle }); // Zero-length arcs
+          // Start with the slices as zero arcs
+          .attr("d", function (d) {
+            return innerArc({ ...d, endAngle: d.startAngle }); // Zero-length arcs
           })
 
           // Transition to full arcs with colors from outer slices
           .transition()
-          .delay((d, i) => i * (duration-275)) // Delay each slice based on its index
+          .delay((d, i) => i * (duration - 275)) // Delay each slice based on its index
           .duration(duration)
-          .attrTween("d", function(d) {
-              // Interpolate from zero-length arc to full arc
-              const interpolate = d3.interpolate(
-                  { ...d, endAngle: d.startAngle }, // Start with a small arc
-                  d // Full arc
-              );
-              return function(t) {
-                  return innerArc(interpolate(t));
-              };
+          .attrTween("d", function (d) {
+            // Interpolate from zero-length arc to full arc
+            const interpolate = d3.interpolate(
+              { ...d, endAngle: d.startAngle }, // Start with a small arc
+              d // Full arc
+            );
+            return function (t) {
+              return innerArc(interpolate(t));
+            };
           })
-          .style("fill", 'white') // Set color from outer slices
-          .style("stroke", 'black') // Optionally set stroke color to match
+          .style("fill", "white") // Set color from outer slices
+          .style("stroke", "black") // Optionally set stroke color to match
           .style("stroke-width", 0)
           .on("end", () => {
             let pieRadius = radius;
 
-        const maxLabelWidth = 80;
-        const labelWidthAngleRatio = (maxLabelWidth + 30) / (2 * pieRadius); // Assuming pieRadius is the radius of your pie chart
+            const maxLabelWidth = 80;
+            const labelWidthAngleRatio = (maxLabelWidth + 30) / (2 * pieRadius); // Assuming pieRadius is the radius of your pie chart
 
-        // Convert ratio to radians
-        const thresholdAngle = Math.atan(labelWidthAngleRatio); // This gives you the threshold angle in radians
-        const thresholdAngleDegrees = thresholdAngle * (180 / Math.PI);
+            // Convert ratio to radians
+            const thresholdAngle = Math.atan(labelWidthAngleRatio); // This gives you the threshold angle in radians
+            const thresholdAngleDegrees = thresholdAngle * (180 / Math.PI);
 
-        let i = 0;
-        let outers = [];
-        let first_outer_x = 0;
-        let first_outer_y = 0;
-        let font_size = 12;
-        svg
-          .selectAll(".sliceLabel")
-          .data(pieData)
-          .enter()
-          .append("text")
-          .attr("class", "sliceLabel")
-          .attr("transform", function (d) {
-            // Calculate the angle of the slice
-            let startAngle = (d.startAngle * 180) / Math.PI;
-            let endAngle = (d.endAngle * 180) / Math.PI;
-            let angle = (endAngle - startAngle) % 360;
-
-            // Adjust label placement based on slice size
-            if (angle > thresholdAngleDegrees) {
-              // Place label inside the pie chart
-              [x, y] = innerArc.centroid(d);
-              if(x < 0) {
-                x-=12;
-              }
-              i++;
-              return `translate(${x},${y})`;
-            } else {
-              // Place label outside the pie chart
-              let [x, y] = outerArc.centroid(d);
-              // check if the label collides with the previous label
-              outers.push(i);
-              if (outers.length == 1) {
-                first_outer_x = x - 150;
-                first_outer_y = y - 10;
-              }
-
-              i++;
-              return `translate(${first_outer_x},${first_outer_y})`;
-            }
-          })
-          .attr("dy", "0.35em")
-          .attr("text-anchor", "middle")
-          .text((d) => `${d.data[0]}\n${d.data[1]}`)
-          .style("font-size", `${font_size}px`)
-          .style("fill", `${colorHex}`)
-          .call(wrap2, maxLabelWidth)
-          .style("opacity", "0")
-          .transition()
-          .delay(duration) // Sync the delay with the arc transition
-          .duration(300) // Duration for the fade-in effect
-          .style("opacity", "1"); // Fade in to full opacity;
-
-        svg.selectAll(".sliceLabel").each(function (d, i) {
-          if (outers.includes(i)) {
-            let index = outers.indexOf(i);
-            let children = d3.select(this).node().children;
-            let newX = first_outer_x + index * 20;
-            let newY =
-              first_outer_y - index * (font_size + 8) * children.length;
-
-            if (index != 0) {
-              let sibling = d3.select(this).node().previousSibling;
-              // translate this label to x = index*10, y =  - index* 7*children.length\
-
-              // Update label transform attribute
-              d3.select(this).attr("transform", `translate(${newX},${newY})`);
-            }
-            let [centroidX, centroidY] = outerArc.centroid(d);
-            let lineX1 = centroidX; // Start at centroidX
-            let lineY1 = centroidY; // Start at centroidY
-            let lineX2 = centroidX; // End at newX
-            let lineY2 = newY; // Horizontal line at same Y as centroid
-
-            let endX =
-              newX + children.item(0).getBoundingClientRect().width / 2 + 10;
-            let endY = lineY2 - 20;
-
+            let i = 0;
+            let outers = [];
+            let first_outer_x = 0;
+            let first_outer_y = 0;
+            let font_size = 12;
             svg
-              .append("line")
-              .attr("class", "connector-line")
+              .selectAll(".sliceLabel")
+              .data(pieData)
+              .enter()
+              .append("text")
+              .attr("class", "sliceLabel")
+              .attr("transform", function (d) {
+                // Calculate the angle of the slice
+                let startAngle = (d.startAngle * 180) / Math.PI;
+                let endAngle = (d.endAngle * 180) / Math.PI;
+                let angle = (endAngle - startAngle) % 360;
 
-              .attr("x1", lineX1)
-              .attr("y1", lineY1 - 10)
-              .attr("x2", lineX1)
-              .attr("y2", lineY1 - 10)
+                // Adjust label placement based on slice size
+                if (angle > thresholdAngleDegrees) {
+                  // Place label inside the pie chart
+                  [x, y] = innerArc.centroid(d);
+                  if (x < 0) {
+                    x -= 12;
+                  }
+                  i++;
+                  return `translate(${x},${y})`;
+                } else {
+                  // Place label outside the pie chart
+                  let [x, y] = outerArc.centroid(d);
+                  // check if the label collides with the previous label
+                  outers.push(i);
+                  if (outers.length == 1) {
+                    first_outer_x = x - 150;
+                    first_outer_y = y - 10;
+                  }
+
+                  i++;
+                  return `translate(${first_outer_x},${first_outer_y})`;
+                }
+              })
+              .attr("dy", "0.35em")
+              .attr("text-anchor", "middle")
+              .text((d) => `${d.data[0]}\n${d.data[1]}`)
+              .style("font-size", `${font_size}px`)
+              .style("fill", `${colorHex}`)
+              .call(wrap2, maxLabelWidth)
+              .style("opacity", "0")
               .transition()
-              .delay(duration)
-              .duration(300)
-              .attr("x2", lineX2)
-              .attr("y2", endY)
-              .attr("stroke", "gray")
-              .attr("stroke-width", 1)
-              .on("end", () => {
+              .delay(duration) // Sync the delay with the arc transition
+              .duration(300) // Duration for the fade-in effect
+              .style("opacity", "1"); // Fade in to full opacity;
+
+            svg.selectAll(".sliceLabel").each(function (d, i) {
+              if (outers.includes(i)) {
+                let index = outers.indexOf(i);
+                let children = d3.select(this).node().children;
+                let newX = first_outer_x + index * 20;
+                let newY =
+                  first_outer_y - index * (font_size + 8) * children.length;
+
+                if (index != 0) {
+                  let sibling = d3.select(this).node().previousSibling;
+                  // translate this label to x = index*10, y =  - index* 7*children.length\
+
+                  // Update label transform attribute
+                  d3.select(this).attr(
+                    "transform",
+                    `translate(${newX},${newY})`
+                  );
+                }
+                let [centroidX, centroidY] = outerArc.centroid(d);
+                let lineX1 = centroidX; // Start at centroidX
+                let lineY1 = centroidY; // Start at centroidY
+                let lineX2 = centroidX; // End at newX
+                let lineY2 = newY; // Horizontal line at same Y as centroid
+
+                let endX =
+                  newX +
+                  children.item(0).getBoundingClientRect().width / 2 +
+                  10;
+                let endY = lineY2 - 20;
+
                 svg
-                .append("line")
-                .attr("class", "connector-line")
+                  .append("line")
+                  .attr("class", "connector-line")
 
-                .attr("x1", lineX2)
-                .attr("y1", endY)
-                .attr("x2", lineX2) // End at newX
-                .attr("y2", endY) // Horizontal line at same Y as vertical end
-                .transition()
-                .duration(300)
-                .attr("x2", endX)
-                .attr("stroke", "gray")
-                .attr("stroke-width", 1);
-              });
+                  .attr("x1", lineX1)
+                  .attr("y1", lineY1 - 10)
+                  .attr("x2", lineX1)
+                  .attr("y2", lineY1 - 10)
+                  .transition()
+                  .delay(duration)
+                  .duration(300)
+                  .attr("x2", lineX2)
+                  .attr("y2", endY)
+                  .attr("stroke", "gray")
+                  .attr("stroke-width", 1)
+                  .on("end", () => {
+                    svg
+                      .append("line")
+                      .attr("class", "connector-line")
 
-            // Draw horizontal line
+                      .attr("x1", lineX2)
+                      .attr("y1", endY)
+                      .attr("x2", lineX2) // End at newX
+                      .attr("y2", endY) // Horizontal line at same Y as vertical end
+                      .transition()
+                      .duration(300)
+                      .attr("x2", endX)
+                      .attr("stroke", "gray")
+                      .attr("stroke-width", 1);
+                  });
 
-          }
-        }, 1000);
-            });
-
-
+                // Draw horizontal line
+              }
+            }, 1000);
+          });
 
         function wrap2(text, width) {
           text.each(function () {
@@ -386,6 +384,7 @@
         }
 
         function updateChart(selectedYear) {
+          svg.selectAll(".connector-line").interrupt(); // Stop any ongoing transitions
           // Define the categories based on the selected year
           const colors = {
             2022: "#017365",
@@ -435,12 +434,12 @@
             .outerRadius(radius - 20);
 
           // Update the outer pie slices
+          svg.selectAll(".outerSlice").interrupt().remove();
           const outerSlices = svg
             .selectAll(".outerSlice")
             .data(pieData, (d) => d.index);
 
-
-            outerSlices
+          outerSlices
             .enter()
             .append("path")
             .attr("class", "outerSlice")
@@ -448,27 +447,19 @@
             .style("stroke", "white")
             .style("fill", "white")
             .style("stroke-width", 2)
-            .merge(outerSlices)
-            .attr("d", outerArc) // Update the outer arc state
-            .style("fill", "white")
-            .transition()
+            .transition() // Start the transition right away since everything is new
             .duration(duration)
-            .delay((d, i) => i * (duration-275)) // Stagger the transitions by index
-            .duration(duration) // Adjust duration as necessary
-            .attrTween("d", function(d) {
-                // Interpolate the arc from a small slice to the full arc
-                const interpolate = d3.interpolate(
-                    { ...d, endAngle: d.startAngle }, // Start with a very small arc
-                    d // Final arc
-                );
-                return function(t) {
-                    return outerArc(interpolate(t));
-                };
+            .delay((d, i) => i * (duration - 275)) // Stagger the transitions by index
+            .attrTween("d", function (d) {
+              const interpolate = d3.interpolate(
+                { ...d, endAngle: d.startAngle }, // Start with a very small arc
+                d // Final arc
+              );
+              return function (t) {
+                return outerArc(interpolate(t));
+              };
             })
-            .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i])); // Change the color during the transition
-
-
-          outerSlices.exit().remove();
+            .style("fill", (d, i) => hexToRGBA(colorHex, percentages[i])); // Transition to the final color
 
           // Update the inner pie slices
           const innerPie = d3
@@ -479,11 +470,12 @@
             sortedData.map(([key, value]) => ({ category: key, value: value }))
           );
 
+          svg.selectAll(".innerSlice").interrupt().remove();
+
           const innerSlices = svg
             .selectAll(".innerSlice")
             .data(innerPieData, (d) => d.index);
 
-          innerSlices.remove();
           const labelUpdate = svg
             .selectAll(".sliceLabel")
             .data(pieData, (d) => d.index);
@@ -504,140 +496,140 @@
           const font_size = 12;
 
           svg
-          .selectAll(".innerSlice")
-          .interrupt()
-          .data(pieData)
-          .enter()
-          .append("path")
-          .attr("class", "innerSlice")
-          .attr("d", innerArc)
-          .style("fill", "none") // Transparent fill
-          .style("stroke", "none")
+            .selectAll(".innerSlice")
+            .interrupt()
+            .data(pieData)
+            .enter()
+            .append("path")
+            .attr("class", "innerSlice")
+            .attr("d", innerArc)
+            .style("fill", "none") // Transparent fill
+            .style("stroke", "none")
 
             // Start with the slices as zero arcs
-            .attr("d", function(d) {
+            .attr("d", function (d) {
               return innerArc({ ...d, endAngle: d.startAngle }); // Zero-length arcs
-          })
+            })
 
-          // Transition to full arcs with colors from outer slices
-          .transition()
-          .delay((d, i) => i * (duration-275)) // Delay each slice based on its index
-          .duration(duration)
-          .attrTween("d", function(d) {
+            // Transition to full arcs with colors from outer slices
+            .transition()
+            .delay((d, i) => i * (duration - 275)) // Delay each slice based on its index
+            .duration(duration)
+            .attrTween("d", function (d) {
               // Interpolate from zero-length arc to full arc
               const interpolate = d3.interpolate(
-                  { ...d, endAngle: d.startAngle }, // Start with a small arc
-                  d // Full arc
+                { ...d, endAngle: d.startAngle }, // Start with a small arc
+                d // Full arc
               );
-              return function(t) {
-                  return innerArc(interpolate(t));
+              return function (t) {
+                return innerArc(interpolate(t));
               };
-          })
-          .style("stroke", 'black') // Optionally set stroke color to match
-          .style("stroke-width", 0)
-          .on("end", (d, i) => {
-          svg
-            .selectAll(".sliceLabel")
-            .data(pieData, (d) => d.index)
-            .enter()
-            .append("text")
-            .attr("class", "sliceLabel")
-            .attr("dy", "0.35em")
-            .attr("text-anchor", "middle")
-            .style("font-size", `${font_size}px`)
-            .style("fill", colorHex)
-            .each(function (d, i) {
-              let startAngle = (d.startAngle * 180) / Math.PI;
-              let endAngle = (d.endAngle * 180) / Math.PI;
-              let angle = (endAngle - startAngle) % 360;
-              let centroidX, centroidY;
-              let labelX, labelY;
-              let endX, endY;
+            })
+            .style("stroke", "black") // Optionally set stroke color to match
+            .style("stroke-width", 0)
+            .on("end", (d, i) => {
 
-              if (angle > thresholdAngleDegrees) {
-                // Place label inside the pie chart
-                [centroidX, centroidY] = innerArc.centroid(d);
-                centroidX = centroidX < 0 ? centroidX - 12 : centroidX;
-                d3.select(this).attr(
-                  "transform",
-                  `translate(${centroidX},${centroidY})`
-                );
-              } else {
-                // Place label outside the pie chart
-                [centroidX, centroidY] = outerArc.centroid(d);
-                outers.push(i);
-                if (outers.length === 1) {
-                  first_outer_x = centroidX - 150;
-                  first_outer_y = centroidY - 10;
-                }
+              svg
+                .selectAll(".sliceLabel")
+                .data(pieData, (d) => d.index)
+                .enter()
+                .append("text")
+                .attr("class", "sliceLabel")
+                .attr("dy", "0.35em")
+                .attr("text-anchor", "middle")
+                .style("font-size", `${font_size}px`)
+                .style("fill", colorHex)
+                .each(function (d, i) {
 
-                let index = outers.indexOf(i);
-                labelX = first_outer_x + index * 20;
-                labelY = first_outer_y - index * (font_size + 8);
+                  let startAngle = (d.startAngle * 180) / Math.PI;
+                  let endAngle = (d.endAngle * 180) / Math.PI;
+                  let angle = (endAngle - startAngle) % 360;
+                  let centroidX, centroidY;
+                  let labelX, labelY;
+                  let endX, endY;
 
-                // get how many children this has, if it has a sibling, translate this label to x = index*10, y =  - index* 7*children.length
+                  if (angle > thresholdAngleDegrees) {
+                    // Place label inside the pie chart
+                    [centroidX, centroidY] = innerArc.centroid(d);
+                    centroidX = centroidX < 0 ? centroidX - 12 : centroidX;
+                    d3.select(this).attr(
+                      "transform",
+                      `translate(${centroidX},${centroidY})`
+                    );
+                  } else {
+                    // Place label outside the pie chart
+                    [centroidX, centroidY] = outerArc.centroid(d);
+                    outers.push(i);
+                    if (outers.length === 1) {
+                      first_outer_x = centroidX - 150;
+                      first_outer_y = centroidY - 10;
+                    }
 
-                d3.select(this).attr(
-                  "transform",
-                  `translate(${labelX},${labelY})`
-                );
+                    let index = outers.indexOf(i);
+                    labelX = first_outer_x + index * 20;
+                    labelY = first_outer_y - index * (font_size + 8);
 
-                // Using requestAnimationFrame to wait until the text is rendered
-                requestAnimationFrame(() => {
-                  // Measure the text element
-                  const bbox = this.getBBox();
-                  //get how many children this has
-                  let children = d3.select(this).node().children;
-                  labelY = labelY - index * children.length * 10;
-                  endX = labelX + bbox.width / 2 + 10; // Use bbox.width for the text width
-                  endY = labelY - 20;
+                    // get how many children this has, if it has a sibling, translate this label to x = index*10, y =  - index* 7*children.length
 
-                  d3.select(this).attr(
-                    "transform",
-                    `translate(${labelX},${labelY})`
-                  );
-                  // Draw the connector lines, one vertical and one horizontal
-                  svg
-                    .append("line")
-                    .attr("class", "connector-line")
-                    .attr("x1", centroidX)
-                    .attr("y1", centroidY - 10)
-                    .attr("x2", centroidX)
-                    .attr("y2", centroidY - 10)
-                    .transition()
-                    .delay(duration) // Sync the delay with the arc transition
-                    .duration(300) // Duration for the fade-in effect
-                    .attr("y2", endY)
-                    .attr("stroke", "gray")
-                    .attr("stroke-width", 1)
-                    .on("end", () => {
+                    d3.select(this).attr(
+                      "transform",
+                      `translate(${labelX},${labelY})`
+                    );
+
+                    // Using requestAnimationFrame to wait until the text is rendered
+                    setTimeout(() => {
+                      // Measure the text element
+                      const bbox = this.getBBox();
+
+                      // Get how many children this has
+                      let children = d3.select(this).node().children;
+                      labelY = labelY - index * children.length * 10;
+                      endX = labelX + bbox.width / 2 + 10; // Use bbox.width for the text width
+                      endY = labelY - 20;
+
+                      d3.select(this).attr("transform", `translate(${labelX},${labelY})`);
+
+
+
+                      // Draw the connector lines, one vertical and one horizontal
                       svg
                         .append("line")
-                        .attr("class", "connector-line")
+                        .attr("class", `connector-line `)
                         .attr("x1", centroidX)
-                        .attr("y1", endY)
+                        .attr("y1", centroidY - 10)
                         .attr("x2", centroidX)
-                        .attr("y2", endY)
+                        .attr("y2", centroidY - 10)
                         .transition()
-                        .duration(300)
-                        .attr("x2", endX)
+                        .delay(duration) // Sync the delay with the arc transition
+                        .duration(300) // Duration for the fade-in effect
+                        .attr("y2", endY)
                         .attr("stroke", "gray")
-                        .attr("stroke-width", 1);
-                    });
-
-                });
-              }
-            })
-            .text((d) => `${d.data[0]}\n${d.data[1]}`)
-            .call(wrap2, maxLabelWidth)
-            .style("opacity", "0")
-            .transition()
-            .delay(duration) // Sync the delay with the arc transition
-            .duration(300) // Duration for the fade-in effect
-            .style("opacity", "1"); // Fade in to full opacity;
-          });
-
-
+                        .attr("stroke-width", 1)
+                        .on("end", () => {
+                          svg
+                            .append("line")
+                            .attr("class", `connector-line  `)
+                            .attr("x1", centroidX)
+                            .attr("y1", endY)
+                            .attr("x2", centroidX)
+                            .attr("y2", endY)
+                            .transition()
+                            .duration(300)
+                            .attr("x2", endX)
+                            .attr("stroke", "gray")
+                            .attr("stroke-width", 1);
+                        });
+                    }, 0); // Delay of 0 milliseconds, executes as soon as the current call stack is clear
+                  }
+                })
+                .text((d) => `${d.data[0]}\n${d.data[1]}`)
+                .call(wrap2, maxLabelWidth)
+                .style("opacity", "0")
+                .transition()
+                .delay(duration) // Sync the delay with the arc transition
+                .duration(300) // Duration for the fade-in effect
+                .style("opacity", "1"); // Fade in to full opacity;
+            });
         }
 
         function wrap2(text, width) {
@@ -1488,6 +1480,11 @@
           .attr("r", (d) => radiusScale(d.value))
           .attr("fill", (d) => categories[d.category].color)
           .attr("stroke", "white")
+          .style("opacity", 0)
+          .transition() // Add transition to animate the radius growth
+          .duration(400) // Duration of the animation (adjust as needed)
+          .delay((d, i) => i * 50) // Delay each bubble by 200ms times its index
+          .style("opacity", 1)
           .attr("stroke-width", 1.5);
 
         node.each(function (d) {
@@ -1511,20 +1508,32 @@
 
         node
           .append("text")
-          .attr("class", "text")
+          .attr("class", (d) => `text text-${d.category}`)
           .attr("dy", "-0.2em")
           .style("font-size", "10px")
           .attr("fill", "black")
           .attr("text-anchor", "middle")
+          .style("opacity", 0)
+          .transition() // Add transition to animate the radius growth
+          .duration(400) // Duration of the animation (adjust as needed)
+          .delay((d, i) => i * 50) // Delay each bubble by 200ms times its index
+          .style("opacity", 1)
+
           .text((d) => d.value);
 
         node
           .append("text")
-          .attr("class", "text")
+          .attr("class", (d) => `text text-${d.category}`)
           .attr("dy", "1em")
           .style("font-size", "10px")
           .attr("fill", "black")
           .attr("text-anchor", "middle")
+          .style("opacity", 0)
+          .transition() // Add transition to animate the radius growth
+          .duration(400) // Duration of the animation (adjust as needed)
+          .delay((d, i) => i * 50) // Delay each bubble by 200ms times its index
+          .style("opacity", 1)
+
           .text((d) => d.country);
 
         const legend = svg
@@ -1541,11 +1550,9 @@
             const opacity = active ? 1 : 0;
             svg
               .selectAll(`circle[fill="${categories[d].color}"]`)
-
+              .transition()
               .style("opacity", opacity);
-            svg
-              .selectAll(`text[fill="${categories[d].color}"]`)
-              .style("opacity", opacity);
+            svg.selectAll(`.text-${d}`).transition().style("opacity", opacity);
           });
 
         legend
@@ -1677,24 +1684,40 @@
             .attr("r", (d) => radiusScale(d.value))
             .attr("fill", (d) => categories[d.category].color)
             .attr("stroke", "white")
+            .style("opacity", 0)
+            .transition() // Add transition to animate the radius growth
+            .duration(400) // Duration of the animation (adjust as needed)
+            .delay((d, i) => i * 50) // Delay each bubble by 200ms times its index
+            .style("opacity", 1)
             .attr("stroke-width", 1.5);
 
           nodeEnter
             .append("text")
-            .attr("class", "text")
+            .attr("class", (d) => `text text-${d.category}`)
             .attr("dy", "-0.2em")
             .style("font-size", "10px")
             .attr("fill", "black")
             .attr("text-anchor", "middle")
-            .text((d) => d.value);
+            .style("opacity", 0)
+            .transition() // Add transition to animate the radius growth
+            .duration(400) // Duration of the animation (adjust as needed)
+            .delay((d, i) => i * 50) // Delay each bubble by 200ms times its index
+            .style("opacity", 1)
 
+            .text((d) => d.value);
           nodeEnter
             .append("text")
-            .attr("class", "text")
+            .attr("class", (d) => `text text-${d.category}`)
             .attr("dy", "1em")
             .style("font-size", "10px")
             .attr("fill", "black")
             .attr("text-anchor", "middle")
+            .style("opacity", 0)
+            .transition() // Add transition to animate the radius growth
+            .duration(400) // Duration of the animation (adjust as needed)
+            .delay((d, i) => i * 50) // Delay each bubble by 200ms times its index
+            .style("opacity", 1)
+
             .text((d) => d.country);
 
           // Update existing nodes
@@ -1757,9 +1780,11 @@
               const opacity = active ? 1 : 0;
               svg
                 .selectAll(`circle[fill="${categories[d].color}"]`)
+                .transition()
                 .style("opacity", opacity);
               svg
-                .selectAll(`text[fill="${categories[d].color}"]`)
+                .selectAll(`.text-${d}`)
+                .transition()
                 .style("opacity", opacity);
             });
 
@@ -2367,7 +2392,7 @@
             $(item).trigger("click");
             // $(item).closest('legend').find('.active').removeClass('active');
             // $(item).addClass('active');
-          }, index * 2000);
+          }, index * 5000);
         });
       }
     },
