@@ -1516,7 +1516,7 @@
 
         node
           .append("text")
-          .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
+          .attr("class", (d) => `text text-${d.category}`)
           .attr("dy", "-0.2em")
           .style("font-size", "10px")
           .attr("fill", "black")
@@ -1531,7 +1531,7 @@
 
         node
           .append("text")
-          .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
+          .attr("class", (d) => `text text-${d.category}`)
           .attr("dy", "1em")
           .style("font-size", "10px")
           .attr("fill", "black")
@@ -1560,10 +1560,8 @@
               .selectAll(`circle[fill="${categories[d].color}"]`)
               .transition()
               .style("opacity", opacity);
-            let x = svg.selectAll(`.text-${categories[d].color}`);
-            console.log(x)
             svg
-              .selectAll(`.text-${categories[d].color.substring(1)}`)
+              .selectAll(`.text-${d}`)
               .transition()
               .style("opacity", opacity);
           });
@@ -1706,7 +1704,7 @@
 
           nodeEnter
             .append("text")
-            .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
+            .attr("class", (d) => `text text-${d.category}`)
             .attr("dy", "-0.2em")
             .style("font-size", "10px")
             .attr("fill", "black")
@@ -1718,10 +1716,9 @@
             .style("opacity", 1)
 
             .text((d) => d.value);
-
           nodeEnter
             .append("text")
-            .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
+            .attr("class", (d) => `text text-${d.category}`)
             .attr("dy", "1em")
             .style("font-size", "10px")
             .attr("fill", "black")
@@ -1797,7 +1794,7 @@
                 .transition()
                 .style("opacity", opacity);
               svg
-                .selectAll(`.text-${categories[d].color.substring(1)}`)
+                .selectAll(`.text-${d}`)
                 .transition()
                 .style("opacity", opacity);
             });
