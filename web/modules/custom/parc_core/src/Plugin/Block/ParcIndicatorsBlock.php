@@ -116,6 +116,14 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
       }
 
       $parent = $topic->get('parent')->entity;
+
+      foreach ($groups as $id => $group) {
+        if (!empty($group['items'])) {
+          $groups[$id]['default_active'] = TRUE;
+          break;
+        }
+      }
+
       $topic_build = [
         'group_title' => [
           '#type' => 'inline_template',
