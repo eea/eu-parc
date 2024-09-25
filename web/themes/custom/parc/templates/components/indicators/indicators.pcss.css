@@ -207,10 +207,7 @@
   display: flex;
   align-items: center;
   position: relative;
-
-  @media (min-width: 1280px) {
-    justify-content: center;
-  }
+  justify-content: center;
 }
 
 .indicator-chart {
@@ -224,6 +221,10 @@
   .indicator-container {
     min-width: 1070px;
     width: 1070px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &[data-chart-type="radial"] {
@@ -481,4 +482,8 @@
 
 text.axis-label {
   fill: #818181;
+}
+
+.visibility-hidden {
+  visibility: hidden !important;
 }

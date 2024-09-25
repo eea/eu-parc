@@ -154,4 +154,22 @@
       });
     }
   };
+
+  Drupal.behaviors.timelineAnimation = {
+    attach: function (context, settings) {
+      $(once('hideTimeline', '.indicators-timeline', context)).each(function () {
+        $(this).find('.column > *').addClass('visibility-hidden');
+        let idx = 1;
+        $(this).find('.column').each(function () {
+          $($(this).find('> *').get().reverse()).each(function () {
+            let el = $(this);
+            setTimeout(function () {
+              el.removeClass('visibility-hidden');
+            }, idx * 50, el)
+            idx++;
+          });
+        });
+      });
+    }
+  };
 })(jQuery, Drupal, once);
