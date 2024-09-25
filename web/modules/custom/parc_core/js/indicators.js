@@ -1,17 +1,37 @@
 (function ($, Drupal, once, drupalSettings) {
   Drupal.behaviors.indicatorCharts = {
     attach: function (context, settings) {
-      $(once("indicatorChart", "[data-chart-type]")).each(function () {
-        const chartType = $(this).data("chart-type");
-        const id = $(this).data("chart-id");
-        const chartData = drupalSettings.parc_core?.indicator_data[id];
 
-        if (!chartData) {
-          return;
-        }
+        const observerOptions = {
+          root: null, // viewport
+          rootMargin: "0px", // Load the chart when it's within 100px of the viewport
+          threshold: 1 // Trigger when 10% of the element is in view
+        };
 
-        buildIndicatorChart($(this), chartType, chartData);
-      });
+        const chartObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Chart is in or near the viewport, build it
+              const chartElement = $(entry.target);
+              const chartType = chartElement.data("chart-type");
+              const id = chartElement.data("chart-id");
+              const chartData = drupalSettings.parc_core?.indicator_data[id];
+
+              if (chartData) {
+                // Build the chart when the data is available
+                buildIndicatorChart(chartElement, chartType, chartData);
+                // Once chart is loaded, unobserve the element
+                observer.unobserve(entry.target);
+              }
+            }
+          });
+        }, observerOptions);
+
+        // Observe each chart container with the data-chart-type attribute
+        $(once("indicatorChart", "[data-chart-type]")).each(function () {
+          chartObserver.observe(this); // Observe the chart element
+        });
+
 
       function buildIndicatorChart(wrapper, chartType, chartData) {
         const wrapperId = wrapper.attr("id");
@@ -30,6 +50,8 @@
         addPlayButtonToLegend(`#${wrapperId} .legend`, wrapperId);
         wrapper.find(".legend > div:last-child").addClass("active");
       }
+
+
 
       function buildClassicPieChart(wrapperId, chartData) {
         // Colors generated based on the year color + opacity change.
@@ -108,7 +130,7 @@
           .style("fill", "white")
           .transition()
           .duration(duration)
-          .delay((d, i) => i * (duration-225)) // Stagger the transitions by index
+          .delay((d, i) => i * (duration-275)) // Stagger the transitions by index
           .duration(duration) // Adjust duration as necessary
           .attrTween("d", function(d) {
               // Interpolate the arc from a small slice to the full arc
@@ -157,7 +179,7 @@
 
           // Transition to full arcs with colors from outer slices
           .transition()
-          .delay((d, i) => i * (duration-225)) // Delay each slice based on its index
+          .delay((d, i) => i * (duration-275)) // Delay each slice based on its index
           .duration(duration)
           .attrTween("d", function(d) {
               // Interpolate from zero-length arc to full arc
@@ -171,9 +193,9 @@
           })
           .style("fill", 'white') // Set color from outer slices
           .style("stroke", 'black') // Optionally set stroke color to match
-          .style("stroke-width", 0);
-
-        let pieRadius = radius;
+          .style("stroke-width", 0)
+          .on("end", () => {
+            let pieRadius = radius;
 
         const maxLabelWidth = 80;
         const labelWidthAngleRatio = (maxLabelWidth + 30) / (2 * pieRadius); // Assuming pieRadius is the radius of your pie chart
@@ -202,7 +224,10 @@
             // Adjust label placement based on slice size
             if (angle > thresholdAngleDegrees) {
               // Place label inside the pie chart
-              const [x, y] = innerArc.centroid(d);
+              [x, y] = innerArc.centroid(d);
+              if(x < 0) {
+                x-=12;
+              }
               i++;
               return `translate(${x},${y})`;
             } else {
@@ -224,7 +249,12 @@
           .text((d) => `${d.data[0]}\n${d.data[1]}`)
           .style("font-size", `${font_size}px`)
           .style("fill", `${colorHex}`)
-          .call(wrap2, maxLabelWidth);
+          .call(wrap2, maxLabelWidth)
+          .style("opacity", "0")
+          .transition()
+          .delay(duration) // Sync the delay with the arc transition
+          .duration(300) // Duration for the fade-in effect
+          .style("opacity", "1"); // Fade in to full opacity;
 
         svg.selectAll(".sliceLabel").each(function (d, i) {
           if (outers.includes(i)) {
@@ -257,6 +287,10 @@
 
               .attr("x1", lineX1)
               .attr("y1", lineY1 - 10)
+              .attr("x2", lineX1)
+              .attr("y2", lineY1 - 10)
+              .transition()
+
               .attr("x2", lineX2)
               .attr("y2", endY)
               .attr("stroke", "gray")
@@ -269,12 +303,17 @@
 
               .attr("x1", lineX2)
               .attr("y1", endY)
-              .attr("x2", endX) // End at newX
+              .attr("x2", lineX2) // End at newX
               .attr("y2", endY) // Horizontal line at same Y as vertical end
+              .transition()
+              .attr("x2", endX)
               .attr("stroke", "gray")
               .attr("stroke-width", 1);
           }
         }, 1000);
+            });
+
+
 
         function wrap2(text, width) {
           text.each(function () {
@@ -444,9 +483,28 @@
             .data(innerPieData, (d) => d.index);
 
           innerSlices.remove();
+          const labelUpdate = svg
+            .selectAll(".sliceLabel")
+            .data(pieData, (d) => d.index);
+
+          const maxLabelWidth = 80;
+          const labelWidthAngleRatio = (maxLabelWidth + 30) / (2 * radius);
+          const thresholdAngle = Math.atan(labelWidthAngleRatio);
+          const thresholdAngleDegrees = thresholdAngle * (180 / Math.PI);
+
+          // Remove existing labels and lines
+          svg.selectAll(".sliceLabel").remove();
+          svg.selectAll(".connector-line").remove();
+
+          let i = 0;
+          let outers = [];
+          let first_outer_x = 0;
+          let first_outer_y = 0;
+          const font_size = 12;
 
           svg
           .selectAll(".innerSlice")
+          .interrupt()
           .data(pieData)
           .enter()
           .append("path")
@@ -475,31 +533,8 @@
               };
           })
           .style("stroke", 'black') // Optionally set stroke color to match
-          .style("stroke-width", 0);
-
-          // innerSlices.exit().remove();
-
-          // Update the slice labels
-          const labelUpdate = svg
-            .selectAll(".sliceLabel")
-            .data(pieData, (d) => d.index);
-
-          const maxLabelWidth = 80;
-          const labelWidthAngleRatio = (maxLabelWidth + 30) / (2 * radius);
-          const thresholdAngle = Math.atan(labelWidthAngleRatio);
-          const thresholdAngleDegrees = thresholdAngle * (180 / Math.PI);
-
-          // Remove existing labels and lines
-          svg.selectAll(".sliceLabel").remove();
-          svg.selectAll(".connector-line").remove();
-
-          let i = 0;
-          let outers = [];
-          let first_outer_x = 0;
-          let first_outer_y = 0;
-          const font_size = 12;
-
-          // Append and position labels
+          .style("stroke-width", 0)
+          .on("end", (d, i) => {
           svg
             .selectAll(".sliceLabel")
             .data(pieData, (d) => d.index)
@@ -521,6 +556,7 @@
               if (angle > thresholdAngleDegrees) {
                 // Place label inside the pie chart
                 [centroidX, centroidY] = innerArc.centroid(d);
+                centroidX = centroidX < 0 ? centroidX - 12 : centroidX;
                 d3.select(this).attr(
                   "transform",
                   `translate(${centroidX},${centroidY})`
@@ -566,24 +602,39 @@
                     .attr("x1", centroidX)
                     .attr("y1", centroidY - 10)
                     .attr("x2", centroidX)
+                    .attr("y2", centroidY - 10)
+                    .transition()
                     .attr("y2", endY)
                     .attr("stroke", "gray")
-                    .attr("stroke-width", 1);
+                    .attr("stroke-width", 1)
+                    .on("end", () => {
+                      svg
+                        .append("line")
+                        .attr("class", "connector-line")
+                        .attr("x1", centroidX)
+                        .attr("y1", endY)
+                        .attr("x2", centroidX)
+                        .attr("y2", endY)
+                        .transition()
+                        .attr("x2", endX)
+                        .attr("stroke", "gray")
+                        .attr("stroke-width", 1);
+                    });
 
-                  svg
-                    .append("line")
-                    .attr("class", "connector-line")
-                    .attr("x1", centroidX)
-                    .attr("y1", endY)
-                    .attr("x2", endX)
-                    .attr("y2", endY)
-                    .attr("stroke", "gray")
-                    .attr("stroke-width", 1);
+
                 });
               }
             })
             .text((d) => `${d.data[0]}\n${d.data[1]}`)
-            .call(wrap2, maxLabelWidth);
+            .call(wrap2, maxLabelWidth)
+            .style("opacity", "0")
+            .transition()
+            .delay(duration) // Sync the delay with the arc transition
+            .duration(300) // Duration for the fade-in effect
+            .style("opacity", "1"); // Fade in to full opacity;
+          });
+
+
         }
 
         function wrap2(text, width) {
