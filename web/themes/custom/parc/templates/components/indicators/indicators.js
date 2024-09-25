@@ -182,7 +182,7 @@
                 let el = $(this);
                 setTimeout(function () {
                   el.removeClass('visibility-hidden');
-                }, idx * 40, el);
+                }, idx * 20, el);
                 idx++;
               });
             });
