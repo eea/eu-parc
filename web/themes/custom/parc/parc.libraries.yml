@@ -26,7 +26,7 @@ global-styling:
 
 html2canvas:
   js:
-    node_modules/html2canvas/dist/html2canvas.min.js: {}
+    js/libs/html2canvas.min.js: {}
 
 parc-popper:
   remote: https://cdnjs.cloudflare.com/ajax/libs/popper.js
