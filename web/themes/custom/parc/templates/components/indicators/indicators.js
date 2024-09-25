@@ -157,40 +157,35 @@
 
   Drupal.behaviors.timelineAnimation = {
     attach: function (context, settings) {
-      // Initially hide all timeline elements
       $(once('hideTimeline', '.indicators-timeline', context)).each(function () {
-        $(this).find('.column > *').addClass('visibility-hidden'); // Ensure elements are hidden
+        $(this).find('.column > *').addClass('visibility-hidden');
       });
 
-      // Create an Intersection Observer for lazy loading
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            // Get all columns and reverse their child elements
             $(entry.target).find('.column').each(function () {
-              let idx = 1; // Initialize the index for staggered timing
+              let idx = 1;
               $($(this).find('> *').get().reverse()).each(function () {
                 let el = $(this);
                 setTimeout(function () {
-                  el.removeClass('visibility-hidden'); // Remove hidden class
+                  el.removeClass('visibility-hidden');
                 }, idx * 50, el);
                 idx++;
               });
             });
 
-            // Stop observing once the animation has started
             observer.unobserve(entry.target);
           }
         });
       }, {
-        root: null, // Use the viewport as the root
+        root: null,
         rootMargin: '0px',
-        threshold: 0.6 // Trigger when at least 10% of the element is visible
+        threshold: 0.6
       });
 
-      // Observe each timeline element
       $(context).find('.indicators-timeline').each(function () {
-        observer.observe(this); // Start observing the timeline element
+        observer.observe(this);
       });
     }
   };
