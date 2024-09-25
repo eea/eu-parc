@@ -1488,6 +1488,11 @@
           .attr("r", (d) => radiusScale(d.value))
           .attr("fill", (d) => categories[d.category].color)
           .attr("stroke", "white")
+          .style("opacity", 0)
+          .transition()  // Add transition to animate the radius growth
+          .duration(400)  // Duration of the animation (adjust as needed)
+          .delay((d, i) => i * 50)  // Delay each bubble by 200ms times its index
+          .style("opacity", 1)
           .attr("stroke-width", 1.5);
 
         node.each(function (d) {
@@ -1511,20 +1516,32 @@
 
         node
           .append("text")
-          .attr("class", "text")
+          .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
           .attr("dy", "-0.2em")
           .style("font-size", "10px")
           .attr("fill", "black")
           .attr("text-anchor", "middle")
+          .style("opacity", 0)
+          .transition()  // Add transition to animate the radius growth
+          .duration(400)  // Duration of the animation (adjust as needed)
+          .delay((d, i) => i * 50)  // Delay each bubble by 200ms times its index
+          .style("opacity", 1)
+
           .text((d) => d.value);
 
         node
           .append("text")
-          .attr("class", "text")
+          .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
           .attr("dy", "1em")
           .style("font-size", "10px")
           .attr("fill", "black")
           .attr("text-anchor", "middle")
+          .style("opacity", 0)
+          .transition()  // Add transition to animate the radius growth
+          .duration(400)  // Duration of the animation (adjust as needed)
+          .delay((d, i) => i * 50)  // Delay each bubble by 200ms times its index
+          .style("opacity", 1)
+
           .text((d) => d.country);
 
         const legend = svg
@@ -1541,10 +1558,13 @@
             const opacity = active ? 1 : 0;
             svg
               .selectAll(`circle[fill="${categories[d].color}"]`)
-
+              .transition()
               .style("opacity", opacity);
+            let x = svg.selectAll(`.text-${categories[d].color}`);
+            console.log(x)
             svg
-              .selectAll(`text[fill="${categories[d].color}"]`)
+              .selectAll(`.text-${categories[d].color.substring(1)}`)
+              .transition()
               .style("opacity", opacity);
           });
 
@@ -1677,24 +1697,41 @@
             .attr("r", (d) => radiusScale(d.value))
             .attr("fill", (d) => categories[d.category].color)
             .attr("stroke", "white")
+            .style("opacity", 0)
+            .transition()  // Add transition to animate the radius growth
+            .duration(400)  // Duration of the animation (adjust as needed)
+            .delay((d, i) => i * 50)  // Delay each bubble by 200ms times its index
+            .style("opacity", 1)
             .attr("stroke-width", 1.5);
 
           nodeEnter
             .append("text")
-            .attr("class", "text")
+            .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
             .attr("dy", "-0.2em")
             .style("font-size", "10px")
             .attr("fill", "black")
             .attr("text-anchor", "middle")
+            .style("opacity", 0)
+            .transition()  // Add transition to animate the radius growth
+            .duration(400)  // Duration of the animation (adjust as needed)
+            .delay((d, i) => i * 50)  // Delay each bubble by 200ms times its index
+            .style("opacity", 1)
+
             .text((d) => d.value);
 
           nodeEnter
             .append("text")
-            .attr("class", "text")
+            .attr("class", (d) => `text text-${categories[d.category].color.substring(1)}`)
             .attr("dy", "1em")
             .style("font-size", "10px")
             .attr("fill", "black")
             .attr("text-anchor", "middle")
+            .style("opacity", 0)
+            .transition()  // Add transition to animate the radius growth
+            .duration(400)  // Duration of the animation (adjust as needed)
+            .delay((d, i) => i * 50)  // Delay each bubble by 200ms times its index
+            .style("opacity", 1)
+
             .text((d) => d.country);
 
           // Update existing nodes
@@ -1757,9 +1794,11 @@
               const opacity = active ? 1 : 0;
               svg
                 .selectAll(`circle[fill="${categories[d].color}"]`)
+                .transition()
                 .style("opacity", opacity);
               svg
-                .selectAll(`text[fill="${categories[d].color}"]`)
+                .selectAll(`.text-${categories[d].color.substring(1)}`)
+                .transition()
                 .style("opacity", opacity);
             });
 
