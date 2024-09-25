@@ -605,6 +605,8 @@
                     .attr("x2", centroidX)
                     .attr("y2", centroidY - 10)
                     .transition()
+                    .delay(duration) // Sync the delay with the arc transition
+                    .duration(300) // Duration for the fade-in effect
                     .attr("y2", endY)
                     .attr("stroke", "gray")
                     .attr("stroke-width", 1)
@@ -617,11 +619,11 @@
                         .attr("x2", centroidX)
                         .attr("y2", endY)
                         .transition()
+                        .duration(300)
                         .attr("x2", endX)
                         .attr("stroke", "gray")
                         .attr("stroke-width", 1);
                     });
-
 
                 });
               }
@@ -1126,8 +1128,6 @@
                 .attr("y2", labelY);
             }
           }
-
-          console.log(slice.startAngle, slice.endAngle);
 
           svg
             .append("path")
