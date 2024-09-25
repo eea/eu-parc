@@ -164,8 +164,8 @@
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            let idx = 1;
             $(entry.target).find('.column').each(function () {
-              let idx = 1;
               $($(this).find('> *').get().reverse()).each(function () {
                 let el = $(this);
                 setTimeout(function () {
