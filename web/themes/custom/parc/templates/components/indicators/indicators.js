@@ -159,16 +159,33 @@
     attach: function (context, settings) {
       $(once('hideTimeline', '.indicators-timeline', context)).each(function () {
         $(this).find('.column > *').addClass('visibility-hidden');
-        let idx = 1;
-        $(this).find('.column').each(function () {
-          $($(this).find('> *').get().reverse()).each(function () {
-            let el = $(this);
-            setTimeout(function () {
-              el.removeClass('visibility-hidden');
-            }, idx * 50, el)
-            idx++;
-          });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            $(entry.target).find('.column').each(function () {
+              let idx = 1;
+              $($(this).find('> *').get().reverse()).each(function () {
+                let el = $(this);
+                setTimeout(function () {
+                  el.removeClass('visibility-hidden');
+                }, idx * 50, el);
+                idx++;
+              });
+            });
+
+            observer.unobserve(entry.target);
+          }
         });
+      }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.6
+      });
+
+      $(context).find('.indicators-timeline').each(function () {
+        observer.observe(this);
       });
     }
   };
