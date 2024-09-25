@@ -1,11 +1,11 @@
 (function ($, Drupal, once, drupalSettings) {
   Drupal.behaviors.indicatorCharts = {
     attach: function (context, settings) {
-      const observerOptions = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 1,
-      };
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 1
+        };
 
       const chartObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {

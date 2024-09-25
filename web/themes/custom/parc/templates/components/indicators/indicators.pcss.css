@@ -403,8 +403,9 @@
   padding-bottom: 100px;
   padding-left: 40px;
   padding-right: 40px;
-  width: unset;
   min-width: unset;
+  width: max-content;
+  flex-wrap: nowrap;
 
   .column {
     display: flex;
