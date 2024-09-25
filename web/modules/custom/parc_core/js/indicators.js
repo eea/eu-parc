@@ -1,7 +1,6 @@
 (function ($, Drupal, once, drupalSettings) {
   Drupal.behaviors.indicatorCharts = {
     attach: function (context, settings) {
-
         const observerOptions = {
           root: null,
           rootMargin: "0px",
