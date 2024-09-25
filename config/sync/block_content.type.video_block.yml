@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 id: video_block
 label: 'Video Block'
-revision: 0
+revision: false
 description: ''

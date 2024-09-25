@@ -4,5 +4,6 @@ status: true
 dependencies: {  }
 name: 'Indicator topics'
 vid: indicator_topics
-description: ''
+description: null
 weight: 0
+new_revision: false

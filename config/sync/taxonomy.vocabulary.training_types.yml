@@ -6,3 +6,4 @@ name: 'Training topics'
 vid: training_types
 description: 'Used for training events'
 weight: 0
+new_revision: false

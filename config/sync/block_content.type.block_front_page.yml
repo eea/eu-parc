@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 id: block_front_page
 label: 'Block front page'
-revision: 0
+revision: false
 description: 'Blocks for front page (probably temp)'
