@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - 'test'
+      - 'devel_migration'
 
 name: 'Deploy staging instance'
 jobs:
@@ -19,7 +19,7 @@ jobs:
         uses: eaudeweb/drupal-install-action@v1.1
         with:
           dev: false
-          php: /usr/bin/php8.1
+          php: /usr/bin/php8.2
 
       - name: 'Create release archive'
         id: artifact
@@ -29,7 +29,7 @@ jobs:
         uses: eaudeweb/drupal-deploy-action@v2.1.2
         with:
           ssh_user:             ${{ secrets.DEVEL_SSH_USER }}
-          ssh_host:             ${{ secrets.DEVEL_SSH_HOST }}
+          ssh_host:             ${{ secrets.NEW_DEVEL_SSH_HOST }}
           ssh_key:              ${{ secrets.DEVEL_SSH_KEY }}
           release_id:           ${{ steps.artifact.outputs.base }}
           release_filename:     ${{ steps.artifact.outputs.filename }}
@@ -47,11 +47,3 @@ jobs:
         uses: eaudeweb/drupal-update-action@v1.0
         with:
           path: /var/www/html/devel.eu-parc.eu
-
-      - name: 'Discord notification on failed deploy'
-        if: failure()
-        run: >
-          curl -X POST -F
-          "content=:octagonal_sign: ${{ github.repository }} failed to deploy release **${{ github.ref_name }}** on <https://devel.eu-parc.eu>.
-          <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}>"
-          ${{ secrets.DISCORD_WEBHOOK }}
