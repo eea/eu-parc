@@ -1141,16 +1141,6 @@
           .attr("r", 5)
           .attr("fill", "white");
 
-        // Adding the chart's title and additional information
-        svg
-          .append("text")
-          .attr("x", 0)
-          .attr("y", height / 2 + 40)
-          .attr("text-anchor", "middle")
-          .text(`Number of organizations`)
-          .style("font-size", "12px")
-          .attr("fill", "gray");
-
         function updateChart(selectedYear) {
           // Select the container and remove any existing SVG elements
           const container = d3.select(
@@ -1305,7 +1295,42 @@
             .attr("fill", "white");
         }
 
-        // Create initial legend
+
+        const legendContainer = d3
+        .select(`#${wrapperId}`)
+        .append("div")
+        .attr("class", "legend-container")
+        .style("display", "flex")
+        .style("flex-direction", "column");
+
+    // Add legend items for each category
+        const legendItems = legendContainer
+          .selectAll(".legend-item")
+          .data(Object.entries(data))
+          .enter()
+          .append("div")
+          .attr("class", "legend-item")
+          .style("display", "flex")
+          .style("align-items", "center")
+          .style("margin-bottom", "5px");
+
+          legendItems
+          .append("span")
+          .style("width", "16px")
+          .style("height", "16px")
+          .style("display", "inline-block")
+          .style("margin-right", "5px")
+          .style("border-radius", "50%")
+          .style("background-color", (d) => color(d[0]));
+
+        legendItems
+          .append("span")
+          .text((d) => `${d[0]}`)
+          .style("font-size", "12px")
+          .style("color", "gray")
+          .style("height", "18px")
+          .style("line-height", "18px");
+
         const legend = d3
           .select(`#${wrapperId}`)
           .append("div")
@@ -1765,7 +1790,6 @@
             lines.exit().remove();
           });
 
-          // Add legend
           const legend = svg
             .selectAll(".legend")
             .data(Object.keys(categories))
@@ -1862,6 +1886,7 @@
           .append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
+          .style("padding-right", "20px")
           .append("g")
           .attr("transform", `translate(${margin.left},${margin.top})`);
         const y = d3
@@ -1939,6 +1964,7 @@
             `translate(${width / 2} ,${height + margin.top + 20})`
           )
           .style("text-anchor", "middle")
+          .style("fill", "#818181")
           .text(chartData.label_x);
 
         svg
@@ -2037,9 +2063,34 @@
           .nice()
           .range([height, 0]);
 
+        svg.append("g").call(d3.axisLeft(y));
+
+        const xAxisGroup = svg
+          .append("g")
+          .attr("transform", `translate(0,${height})`);
+
         // Function to update the chart based on the selected year
         function updateChart(selectedYear) {
-          const bars = svg.selectAll(".bar-group").data(categories);
+
+          const sortedCategories = categories.sort((a, b) => {
+            const valueA = data[selectedYear][a] || 0;
+            const valueB = data[selectedYear][b] || 0;
+            return valueB - valueA; // Sort in descending order
+          });
+
+          x0.domain(sortedCategories); // Set the domain to the sorted categories
+
+          // Update the x-axis labels
+          xAxisGroup.call(d3.axisBottom(x0))
+            .selectAll("text")
+            .attr("transform", "rotate(-45)")
+            .style("text-anchor", "end")
+            .style("opacity", 0)
+            .transition()
+            .duration(500)
+            .style("opacity", 1);
+
+          const bars = svg.selectAll(".bar-group").data(sortedCategories);
 
           const barsEnter = bars
             .enter()
@@ -2079,15 +2130,6 @@
 
         updateChart(latestYear);
 
-        svg.append("g").call(d3.axisLeft(y));
-
-        svg
-          .append("g")
-          .attr("transform", `translate(0,${height})`)
-          .call(d3.axisBottom(x0))
-          .selectAll("text")
-          .attr("transform", "rotate(-45)")
-          .style("text-anchor", "end");
 
         svg
           .append("text")
