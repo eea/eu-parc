@@ -217,3 +217,15 @@ definitions:
     parent: 'views_view:views.news_events.page_news'
     expanded: false
     enabled: true
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__indicator_topics__1230':
+    weight: -50
+    menu_name: indicator-topics
+    parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.indicator_topics.1224'
+    enabled: true
+    expanded: false
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__indicator_topics__1231':
+    parent: 'taxonomy_menu.menu_link:taxonomy_menu.menu_link.indicator_topics.1224'
+    weight: 0
+    expanded: false
+    enabled: true
+    menu_name: indicator-topics
