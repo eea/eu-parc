@@ -22,7 +22,7 @@ class Indicator9Sub1 extends Indicator9Sub2 {
    */
   public function getChartData(array $table_data): array {
     $data = parent::getChartData($table_data);
-    $data['label_x'] = $this->t('Number of laboratories in the PARC laboratory networks');
+    $data['label_x'] = $this->t('Number of entities');
     $data['label_y'] = NULL;
     return $data;
   }

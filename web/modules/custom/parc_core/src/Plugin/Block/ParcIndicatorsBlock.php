@@ -196,7 +196,7 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
       ->getQuery()
       ->accessCheck()
       ->condition('type', 'indicator')
-      ->sort('title')
+      ->sort('field_indicator_id')
       ->condition('field_indicator_topic', $topic->id())
       ->condition('status', 1);
 

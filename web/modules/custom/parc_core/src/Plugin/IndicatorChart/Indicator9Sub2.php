@@ -45,7 +45,7 @@ class Indicator9Sub2 extends IndicatorChartPluginBase {
 
     return [
       'chart' => $chart_data,
-      'label_x' => $this->t('Number of External Networks Catalogued'),
+      'label_x' => $this->t('Number of external laboratory networks'),
       'label_y' => NULL,
     ];
   }

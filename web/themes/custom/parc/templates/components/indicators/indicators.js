@@ -33,9 +33,12 @@
 
 
           svg.css('font-family', '"Satoshi",sans-serif');
-
+          svg.find('.tick').css('font-size', '12px');
+          svg.find('.tick').css('letter-spacing', '0.1px');
+          svg.find('.axis-label').css('font-size', '14px');
           svg.find('.bar1').attr('fill', '#e4798b');
           svg.find('.bar0').attr('fill', '#017365');
+
           if (svg.hasClass('radial-chart')) {
 
             svg.find('text').each(function () {
