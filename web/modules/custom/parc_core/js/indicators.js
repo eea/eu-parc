@@ -2361,7 +2361,7 @@
           .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
 
-        d3.selectAll(".category-label").call(wrap, innerRadius + 20);
+        svg.selectAll(".category-label").call(wrap, innerRadius + 20);
 
         function wrap(text, width) {
           text.each(function () {

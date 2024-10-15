@@ -12,6 +12,7 @@ use Drupal\geolocation\MapProviderManager;
 use Drupal\node\NodeInterface;
 use Drupal\parc_core\ParcSearchManager;
 use Drupal\taxonomy\TermInterface;
+use Drupal\views\Views;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -190,21 +191,36 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
    *   The indicators.
    */
   protected function getIndicators(TermInterface $topic) {
-    /** @var \Drupal\node\NodeStorageInterface $node_storage */
-    $node_storage = $this->entityTypeManager->getStorage('node');
-    $query = $node_storage
-      ->getQuery()
-      ->accessCheck()
-      ->condition('type', 'indicator')
-      ->sort('field_indicator_id')
-      ->condition('field_indicator_topic', $topic->id())
-      ->condition('status', 1);
+    // Load the view.
+    $view = Views::getView('indicators_admin'); // Replace 'indicators' with your view's machine name.
 
-    $nids = $query->execute();
-    /** @var \Drupal\node\NodeInterface $projects */
-    $projects = $node_storage->loadMultiple($nids);
+    if ($view) {
+      // Set display ID if necessary, for example 'page_1'.
+      $view->setDisplay('default'); // Change this to your display ID if not default.
 
-    return $projects;
+      // Set the arguments or contextual filters if needed.
+      // Assuming you have a contextual filter for the topic term.
+      $view->setArguments([$topic->id()]); // Pass the topic ID as an argument.
+
+      // Execute the view.
+      $view->preExecute();
+      $view->execute();
+
+      // Fetch results. Adjust according to your view configuration.
+      $results = $view->result;
+
+      // If you need to return nodes only, extract them:
+      $indicators = [];
+      foreach ($results as $result) {
+        // Assuming your view returns node entities.
+        $indicators[] = $result->_entity;
+      }
+
+      return $indicators;
+    }
+
+    // Return an empty array if the view was not found or no results.
+    return [];
   }
 
   /**

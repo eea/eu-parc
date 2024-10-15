@@ -27,6 +27,7 @@ module:
   datetime: 0
   datetime_range: 0
   dblog: 0
+  draggableviews: 0
   dynamic_page_cache: 0
   editor: 0
   edw_healthcheck: 0
