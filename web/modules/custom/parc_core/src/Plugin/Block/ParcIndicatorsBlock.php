@@ -12,6 +12,7 @@ use Drupal\geolocation\MapProviderManager;
 use Drupal\node\NodeInterface;
 use Drupal\parc_core\ParcSearchManager;
 use Drupal\taxonomy\TermInterface;
+use Drupal\views\Views;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
@@ -186,25 +187,27 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
    * @param \Drupal\taxonomy\TermInterface $topic
    *   The topic.
    *
-   * @return \Drupal\node\NodeInterface
+   * @return \Drupal\node\NodeInterface[]
    *   The indicators.
    */
   protected function getIndicators(TermInterface $topic) {
-    /** @var \Drupal\node\NodeStorageInterface $node_storage */
-    $node_storage = $this->entityTypeManager->getStorage('node');
-    $query = $node_storage
-      ->getQuery()
-      ->accessCheck()
-      ->condition('type', 'indicator')
-      ->sort('field_indicator_id')
-      ->condition('field_indicator_topic', $topic->id())
-      ->condition('status', 1);
+    $view = Views::getView('indicators_admin');
 
-    $nids = $query->execute();
-    /** @var \Drupal\node\NodeInterface $projects */
-    $projects = $node_storage->loadMultiple($nids);
+    if (!$view) {
+      return [];
+    }
 
-    return $projects;
+    $view->setDisplay('default');
+    $view->setArguments([$topic->id()]);
+    $view->preExecute();
+    $view->execute();
+    $results = $view->result;
+    $indicators = [];
+    foreach ($results as $result) {
+      $indicators[] = $result->_entity;
+    }
+
+    return $indicators;
   }
 
   /**
