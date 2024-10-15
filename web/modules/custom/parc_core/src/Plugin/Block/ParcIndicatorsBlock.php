@@ -187,40 +187,27 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
    * @param \Drupal\taxonomy\TermInterface $topic
    *   The topic.
    *
-   * @return \Drupal\node\NodeInterface
+   * @return \Drupal\node\NodeInterface[]
    *   The indicators.
    */
   protected function getIndicators(TermInterface $topic) {
-    // Load the view.
-    $view = Views::getView('indicators_admin'); // Replace 'indicators' with your view's machine name.
+    $view = Views::getView('indicators_admin');
 
-    if ($view) {
-      // Set display ID if necessary, for example 'page_1'.
-      $view->setDisplay('default'); // Change this to your display ID if not default.
-
-      // Set the arguments or contextual filters if needed.
-      // Assuming you have a contextual filter for the topic term.
-      $view->setArguments([$topic->id()]); // Pass the topic ID as an argument.
-
-      // Execute the view.
-      $view->preExecute();
-      $view->execute();
-
-      // Fetch results. Adjust according to your view configuration.
-      $results = $view->result;
-
-      // If you need to return nodes only, extract them:
-      $indicators = [];
-      foreach ($results as $result) {
-        // Assuming your view returns node entities.
-        $indicators[] = $result->_entity;
-      }
-
-      return $indicators;
+    if (!$view) {
+      return [];
     }
 
-    // Return an empty array if the view was not found or no results.
-    return [];
+    $view->setDisplay('default');
+    $view->setArguments([$topic->id()]);
+    $view->preExecute();
+    $view->execute();
+    $results = $view->result;
+    $indicators = [];
+    foreach ($results as $result) {
+      $indicators[] = $result->_entity;
+    }
+
+    return $indicators;
   }
 
   /**
