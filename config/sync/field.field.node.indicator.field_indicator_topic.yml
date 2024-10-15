@@ -11,7 +11,7 @@ field_name: field_indicator_topic
 entity_type: node
 bundle: indicator
 label: 'Indicator topic'
-description: ''
+description: 'The list of indicator topics can be managed <a target="_blank" href="/admin/structure/taxonomy/manage/indicator_topics/overview">here</a>'
 required: true
 translatable: false
 default_value: {  }
