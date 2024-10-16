@@ -6,11 +6,7 @@ dependencies:
     - field.storage.node.body
     - node.type.indicator
   module:
-    - allowed_formats
     - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats: {  }
 id: node.indicator.body
 field_name: body
 entity_type: node
