@@ -1,16 +1,20 @@
-<div class="indicator-chart__wrapper">
+
+<div class="indicator-chart__wrapper" id="publicationsChart">
   <div class="indicators-timeline indicator-chart">
-    <div class="indicator-scrollable-container">
+    <div class="indicator-scrollable-container mt-2">
       <div class="indicator-container">
-        {% for item in items %}
-          <div class="column">
-            {% for it in item %}
-              <a title="{{ it.title }}" target="_blank" class="image" href="{{ it.link }}">{{ it.image }}</a>
-            {% endfor %}
-            <div class="date">
-              {{ item.0.date }}
+        {% for year_key, year in items %}
+          {% for month_key, month in year %}
+            <div class="column {{year_key}}">
+              {% for item in month %}
+                <a title="{{ item.title }}" target="_blank" class="image" href="{{ item.link }}">{{ item.image }}</a>
+            
+                {% endfor %}
+                <div class="date">
+                  {{ month_key }}
+                </div>
             </div>
-          </div>
+          {% endfor %}  
         {% endfor %}
       </div>
     </div>

@@ -2406,12 +2406,10 @@
       function addPlayButtonToLegend(selector, wrapperId) {
         const legendContainer = $(selector);
 
-        // SVG markup for the play button
         const playButtonSvg = `
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
           </svg>`;
-        // Create button with SVG play icon
         const playButton = $("<button>")
           .addClass("play-button")
           .css({
@@ -2420,9 +2418,9 @@
           })
           .attr("data-chart-id", wrapperId)
           .on("click", handlePlayButtonClick)
-          .html(playButtonSvg); // Insert SVG as the button's content
+          .html(playButtonSvg);
 
-        legendContainer.prepend(playButton); // Insert the play button as the first child
+        legendContainer.prepend(playButton);
       }
 
       function handlePlayButtonClick() {
@@ -2432,11 +2430,110 @@
         legendItems.each((index, item) => {
           setTimeout(() => {
             $(item).trigger("click");
-            // $(item).closest('legend').find('.active').removeClass('active');
-            // $(item).addClass('active');
           }, index * 5000);
         });
       }
     },
   };
+
+  Drupal.behaviors.addLegendToPublicationsChart = {
+    attach: function (context, settings) {
+      if(!d3.select('#publicationsChart .legend').node()){
+
+        const columns = document.querySelectorAll('.column');
+        const yearsSet = new Set();
+  
+        columns.forEach(column => {
+          const classList = column.classList;
+          const year = [...classList].find(cls => /^\d{4}$/.test(cls));
+          if (year) {
+            yearsSet.add(year);
+          }
+        });
+  
+        const yearsArray = Array.from(yearsSet).map(year => ({ year }));
+        console.log(yearsArray[yearsArray.length-1].year)
+
+        const latestYear = yearsArray[yearsArray.length-1].year;
+
+  
+        const legend = d3
+          .select(`#publicationsChart .indicator-chart`)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(yearsArray)
+          .enter()
+          .append("div")
+          .attr("class", "legend-item")
+          .on("click", function (event, d) {
+            updateChart(d.year);
+          });
+  
+        legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", 'black');  
+  
+        legend
+          .append("span")
+          .attr("class", (d) => "legend-text")
+          .text((d) => d.year); 
+
+        $('#publicationsChart .legend div:last').addClass('active');
+  
+        function updateChart(year){
+          $(".column").each(function () {
+            $(this).find('> *').addClass('visibility-hidden');
+          });
+
+          $(".column").attr("style", "display: none;");
+          $(`.column.${year}`).attr("style", "display: flex;");
+
+          let idx = 1;
+          $(`.column.${year}`).each(function () {        
+            $($(this).find('> *').get().reverse()).each(function () {
+              let el = $(this);
+              setTimeout(function () {
+                el.removeClass('visibility-hidden');
+              }, idx * 20, el); 
+              idx++;
+            });
+          });
+        }
+        updateChart(latestYear);
+
+        function addPlayButtonToLegend() {
+          const legendContainer = $('#publicationsChart .legend');
+  
+          const playButtonSvg = `
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+            </svg>`;
+          const playButton = $("<button>")
+            .addClass("play-button")
+            .css({
+              "background-color": "transparent",
+              border: "none",
+            })
+            .attr("data-chart-id", "publicationsChart")
+            .on("click", handlePlayButtonClick)
+            .html(playButtonSvg);
+  
+          legendContainer.prepend(playButton);
+        }
+        function handlePlayButtonClick() {  
+          const legendItems = $(`#publicationsChart .legend > div`);
+          legendItems.each((index, item) => {
+            setTimeout(() => {
+              $(item).trigger("click");
+            }, index * 5000);
+          });
+        }
+
+        addPlayButtonToLegend();
+      }
+    }
+  }
+
 })(jQuery, Drupal, once, drupalSettings);
