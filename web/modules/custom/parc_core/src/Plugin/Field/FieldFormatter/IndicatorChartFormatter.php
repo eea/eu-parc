@@ -133,16 +133,16 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       $month = date('F', $date);
       $year = date('Y', $date);
 
-      $items[$formatted_date][] = [
+      $items[$year][$month][] = [
         'image' => $node->get('field_cover')->view('search_teaser'),
         'link' =>  $this->parcSearchManager->getNodeSearchTeaserUrl($node)->toString(),
         'date' => $last_year != $year ? $formatted_date : $month,
         'title' => $node->label(),
       ];
-
+      
       $last_year = $year;
     }
-
+    
     return [
       '#theme' => 'parc_publications_timeline',
       '#items' => $items,

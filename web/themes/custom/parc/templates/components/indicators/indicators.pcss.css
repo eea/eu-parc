@@ -400,12 +400,11 @@
 .indicators-timeline .indicator-container {
   display: flex;
   align-items: flex-end;
-  padding-bottom: 100px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 60px 40px;
   min-width: unset;
   width: max-content;
   flex-wrap: nowrap;
+  min-height: 600px;
 
   .column {
     display: flex;
@@ -441,8 +440,8 @@
   }
 
   img {
-    width: 48px;
-    height: 78px;
+    width: 55px;
+    height: 90px;
     object-fit: cover;
     object-position: center;
     border-radius: 6px;
