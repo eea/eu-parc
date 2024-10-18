@@ -129,6 +129,10 @@ popover:
   css:
     component:
       css/components/popover.css: {}
+  js:
+    js/popover.js: {}
+  dependencies:
+    - edwt/popover
 
 progress:
   css:

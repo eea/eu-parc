@@ -163,3 +163,114 @@
   padding: var(--popover-body-padding-y) var(--popover-body-padding-x);
   color: var(--popover-body-color);
 }
+
+
+.popover-arrow {
+  margin: 5px !important;
+}
+
+.popover-body ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.popover-body ul li {
+  display: flex;
+  align-items: center;
+}
+
+.bs-popover-auto[data-popper-placement^="top"] > .popover-arrow {
+  bottom: -14px;
+}
+
+.bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow {
+  top: -14px;
+}
+
+.bs-popover-auto[data-popper-placement^="left"] > .popover-arrow {
+  right: -14px;
+}
+
+.bs-popover-auto[data-popper-placement^="right"] > .popover-arrow {
+  left: -14px;
+}
+
+.bs-popover-auto[data-popper-placement^="top"] > .popover-arrow::before {
+  border-top-color: #CCC;
+}
+
+.bs-popover-auto[data-popper-placement^="bottom"] > .popover-arrow::before {
+  border-bottom-color: #CCC;
+}
+
+.bs-popover-auto[data-popper-placement^="left"] > .popover-arrow::before {
+  border-left-color: #CCC;
+}
+
+.bs-popover-auto[data-popper-placement^="right"] > .popover-arrow::before {
+  border-right-color: #CCC;
+}
+
+.popover-header {
+  display: none;
+}
+
+.popover p {
+  margin-bottom: 0;
+}
+
+.popover {
+  background: #fff;
+  opacity: .9;
+  border: 1px solid #CCCCCC;
+  border-radius: 15px;
+  backdrop-filter: blur(12px);
+  font-size: 14px;
+}
+
+.popover-body {
+  padding: 10px;
+}
+
+.popover .title {
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 17px;
+  margin-bottom: 10px;
+}
+
+.popover .country {
+  margin-top: -10px;
+}
+
+.popover li {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.popover li:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.popover[data-popper-placement="top"] {
+  margin-bottom: 10px !important;
+}
+
+.popover[data-popper-placement="bottom"] {
+  margin-top: 10px !important;
+}
+
+.popover[data-popper-placement="left"] {
+  margin-right: 10px !important;
+}
+
+.popover[data-popper-placement="right"] {
+  margin-left: 10px !important;
+}
+
+.popover-body p {
+  margin-bottom: 10px !important;
+}

@@ -2452,7 +2452,6 @@
         });
   
         const yearsArray = Array.from(yearsSet).map(year => ({ year }));
-        console.log(yearsArray[yearsArray.length-1].year)
 
         const latestYear = yearsArray[yearsArray.length-1].year;
 
