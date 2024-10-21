@@ -19,7 +19,7 @@ jobs:
         uses: eaudeweb/drupal-install-action@v1.1
         with:
           dev: false
-          php: /usr/bin/php8.1
+          php: /usr/bin/php8.2
 
       - name: 'Create release archive'
         id: artifact
