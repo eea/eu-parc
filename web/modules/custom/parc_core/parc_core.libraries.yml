@@ -81,3 +81,8 @@ indicators:
     - core/jquery
     - core/once
     - parc_core/d3
+
+events_table:
+  css:
+    component:
+      css/events-table.css: {}

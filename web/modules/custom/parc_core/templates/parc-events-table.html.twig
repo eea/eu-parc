@@ -1,0 +1,37 @@
+<div class="events-table">
+  <div class="events-table__year">
+    <div class="events-table__row__empty-sub"></div>
+    {% for year in year_header %}
+      <div class="events-table__year__item">{{ year }}</div>
+    {% endfor %}
+  </div>
+  <div class="events-table__month">
+    {% for item in month_header %}
+      {% if loop.first %}
+        <div class="events-table__row__format">{{ item }}</div>
+      {% else %}
+        <div class="events-table__month__item">{{ item }}</div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% for row in rows %}
+    <div class="events-table__row" {% if row.event %}style="--event-color: {{ row.event.color }};"{% endif %}>
+      {% if row.format %}
+        <div class="events-table__row__format">{{ row.format }}</div>
+      {% elseif row.event %}
+        <div class="events-table__row__event">
+          <a target="_blank" href="{{ row.event.link }}"><div>{{ row.event.title }}</div></a>
+        </div>
+      {% else %}
+        <div class="events-table__row__empty-sub"></div>
+      {% endif %}
+      {% for month in row.months %}
+        <div class="events-table__row__month">
+          {% if month %}
+            <a class="events-table__row__month__link" target="_blank" href="{{ row.event.link }}">{{ row.event.title }}</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>

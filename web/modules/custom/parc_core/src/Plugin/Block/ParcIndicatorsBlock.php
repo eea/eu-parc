@@ -197,7 +197,7 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
       return [];
     }
 
-    $view->setDisplay('default');
+    $view->setDisplay('page_1');
     $view->setArguments([$topic->id()]);
     $view->preExecute();
     $view->execute();
@@ -216,6 +216,7 @@ class ParcIndicatorsBlock extends BlockBase implements ContainerFactoryPluginInt
   public function getCacheTags() {
     return Cache::mergeTags(parent::getCacheTags(), [
       'node_list:indicator',
+      'config:views.view.indicators_admin.page_1',
     ]);
   }
 
