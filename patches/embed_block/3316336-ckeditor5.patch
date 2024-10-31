@@ -1,0 +1,13 @@
+diff --git a/src/Plugin/Filter/EmbedBlockFilter.php b/src/Plugin/Filter/EmbedBlockFilter.php
+index 83b7f52ef837d153e4f769c8ee1a69705475db57..29b038446a6beff8d9992c8e25f9be82e92212f8 100644
+--- a/src/Plugin/Filter/EmbedBlockFilter.php
++++ b/src/Plugin/Filter/EmbedBlockFilter.php
+@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
+  *   id = "embed_block",
+  *   title = @Translation("Embed Block"),
+  *   description = @Translation("Allows to place blocks into content."),
+- *   type = Drupal\filter\Plugin\FilterInterface::TYPE_MARKUP_LANGUAGE,
++ *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE,
+  * )
+  */
+ class EmbedBlockFilter extends FilterBase implements ContainerFactoryPluginInterface {
