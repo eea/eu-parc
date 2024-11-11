@@ -108,3 +108,11 @@
   background-color: var(--event-color);
   display: block;
 }
+
+.events-table .external-link-mark {
+  display: none;
+}
+
+.events-table .disabled {
+  pointer-events: none;
+}

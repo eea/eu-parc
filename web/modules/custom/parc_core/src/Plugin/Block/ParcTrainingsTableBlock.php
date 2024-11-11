@@ -68,14 +68,24 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
       'in person' => $this->t('In Person Courses'),
       'hybrid' => $this->t('Hybrid Courses'),
       'online' => $this->t('Remote Courses'),
+      'resource' => $this->t('Online Resources'),
     ];
     foreach ($formats as $format => $label) {
+      if ($format == 'resource') {
+        $events = array_merge($events, $this->getResources());
+        continue;
+      }
       $events = array_merge($events, $this->getEventsWithFormat($format));
     }
 
     $month_header = [];
     foreach ($events as $event) {
-      $format = $event->get('field_event_format')->value ?? 'in person';
+      if ($event->bundle() == 'resource') {
+        $format = 'resource';
+      }
+      else {
+        $format = $event->get('field_event_format')->value ?? 'in person';
+      }
       $format = $formats[$format]->__toString();
 
       if (empty($month_header)) {
@@ -112,17 +122,34 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
           continue;
         }
 
+        if ($event->bundle() == 'resource') {
+          $xd = 1;
+        }
+
+        $dates = $event->bundle() == 'events'
+          ? $event->get('field_date')
+          : $event->get('field_d_date');
+
+        $link = $event->bundle() == 'events'
+          ? $event->toUrl()->toString()
+          : $event->get('field_external_link')->uri;
+
         $row = [
           'event' => [
             'title' => $event->label(),
-            'link' => $event->toUrl()->toString(),
+            'link' => $link,
             'color' => $topic->get('field_color')->color,
           ],
           'months' => $events_per_month,
         ];
 
-        foreach ($event->get('field_date') as $item) {
-          $date_value = date('Y-m', (int) $item->value);
+        foreach ($dates as $item) {
+          $value = (int) $item->value;
+          if ($event->bundle() == 'resource') {
+            $value = strtotime($item->value);
+          }
+
+          $date_value = date('Y-m', $value);
           $row['months'][$date_value] = TRUE;
         }
 
@@ -170,6 +197,28 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
       // Events after January 1st of current year.
       ->condition('field_date', strtotime(date('Y') . '-01-01', time()), '>=')
       ->condition('field_event_format', $format)
+      ->sort('field_date')
+      ->execute();
+    return $node_storage->loadMultiple($events);
+  }
+
+  /**
+   * Get resources.
+   *
+   * @return \Drupal\node\NodeInterface[]
+   *   The resources.
+   */
+  protected function getResources() {
+    /** @var \Drupal\node\NodeStorageInterface $node_storage */
+    $node_storage = $this->entityTypeManager->getStorage('node');
+
+    $events = $node_storage
+      ->getQuery()
+      ->accessCheck()
+      ->condition('type', 'resource')
+      ->condition('status', TRUE)
+      // Events after January 1st of current year.
+      ->condition('field_d_date', strtotime(date('Y') . '-01-01', time()), '>=')
       ->sort('field_date')
       ->execute();
     return $node_storage->loadMultiple($events);

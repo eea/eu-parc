@@ -20,7 +20,7 @@
         <div class="events-table__row__format">{{ row.format }}</div>
       {% elseif row.event %}
         <div class="events-table__row__event">
-          <a target="_blank" href="{{ row.event.link }}"><div>{{ row.event.title }}</div></a>
+          <a title="{{ row.event.title }}" class="{% if not row.event.link %}disabled{% endif %}" target="_blank" href="{{ row.event.link }}"><div>{{ row.event.title }}</div></a>
         </div>
       {% else %}
         <div class="events-table__row__empty-sub"></div>
@@ -28,7 +28,7 @@
       {% for month in row.months %}
         <div class="events-table__row__month">
           {% if month %}
-            <a class="events-table__row__month__link" target="_blank" href="{{ row.event.link }}">{{ row.event.title }}</a>
+            <a title="{{ row.event.title }}" class="events-table__row__month__link {% if not row.event.link %}disabled{% endif %}" target="_blank" href="{{ row.event.link }}">{{ row.event.title }}</a>
           {% endif %}
         </div>
       {% endfor %}
