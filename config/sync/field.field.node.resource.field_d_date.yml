@@ -1,0 +1,24 @@
+uuid: 2a1098c5-3904-401d-a507-c44c8ce57e4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_d_date
+    - node.type.resource
+  module:
+    - datetime
+id: node.resource.field_d_date
+field_name: field_d_date
+entity_type: node
+bundle: resource
+label: Date
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime
