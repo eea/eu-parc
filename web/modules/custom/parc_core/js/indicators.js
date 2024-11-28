@@ -1,11 +1,11 @@
 (function ($, Drupal, once, drupalSettings) {
   Drupal.behaviors.indicatorCharts = {
     attach: function (context, settings) {
-        const observerOptions = {
-          root: null,
-          rootMargin: "0px",
-          threshold: 1
-        };
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1,
+      };
 
       const chartObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
@@ -37,6 +37,8 @@
           group_pie: buildGroupPieChart,
           pie: buildPieChart,
           classic_pie: buildClassicPieChart,
+          trainings: buildTrainingsChart,
+          synergies: buildSynergiesChart,
         };
 
         const buildFunction = buildFunctions[chartType];
@@ -528,7 +530,6 @@
             .style("stroke", "black") // Optionally set stroke color to match
             .style("stroke-width", 0)
             .on("end", (d, i) => {
-
               svg
                 .selectAll(".sliceLabel")
                 .data(pieData, (d) => d.index)
@@ -540,7 +541,6 @@
                 .style("font-size", `${font_size}px`)
                 .style("fill", colorHex)
                 .each(function (d, i) {
-
                   let startAngle = (d.startAngle * 180) / Math.PI;
                   let endAngle = (d.endAngle * 180) / Math.PI;
                   let angle = (endAngle - startAngle) % 360;
@@ -587,9 +587,10 @@
                       endX = labelX + bbox.width / 2 + 10; // Use bbox.width for the text width
                       endY = labelY - 20;
 
-                      d3.select(this).attr("transform", `translate(${labelX},${labelY})`);
-
-
+                      d3.select(this).attr(
+                        "transform",
+                        `translate(${labelX},${labelY})`
+                      );
 
                       // Draw the connector lines, one vertical and one horizontal
                       svg
@@ -1295,15 +1296,14 @@
             .attr("fill", "white");
         }
 
-
         const legendContainer = d3
-        .select(`#${wrapperId}`)
-        .append("div")
-        .attr("class", "legend-container")
-        .style("display", "flex")
-        .style("flex-direction", "column");
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend-container")
+          .style("display", "flex")
+          .style("flex-direction", "column");
 
-    // Add legend items for each category
+        // Add legend items for each category
         const legendItems = legendContainer
           .selectAll(".legend-item")
           .data(Object.entries(data))
@@ -1314,7 +1314,7 @@
           .style("align-items", "center")
           .style("margin-bottom", "5px");
 
-          legendItems
+        legendItems
           .append("span")
           .style("width", "16px")
           .style("height", "16px")
@@ -2071,7 +2071,6 @@
 
         // Function to update the chart based on the selected year
         function updateChart(selectedYear) {
-
           const sortedCategories = categories.sort((a, b) => {
             const valueA = data[selectedYear][a] || 0;
             const valueB = data[selectedYear][b] || 0;
@@ -2081,7 +2080,8 @@
           x0.domain(sortedCategories); // Set the domain to the sorted categories
 
           // Update the x-axis labels
-          xAxisGroup.call(d3.axisBottom(x0))
+          xAxisGroup
+            .call(d3.axisBottom(x0))
             .selectAll("text")
             .attr("transform", "rotate(-45)")
             .style("text-anchor", "end")
@@ -2129,7 +2129,6 @@
         }
 
         updateChart(latestYear);
-
 
         svg
           .append("text")
@@ -2403,6 +2402,146 @@
         }
       }
 
+      function buildTrainingsChart(wrapperId, chartData) {
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
+
+        const years = Object.keys(chartData.chart);
+        const months = [
+          "JAN",
+          "FEB",
+          "MAR",
+          "APR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AUG",
+          "SEP",
+          "OCT",
+          "NOV",
+          "DEC",
+        ];
+        $('body').append('<div id="tooltip" style="width: 20rem; position: absolute; opacity: 0; pointer-events: none; background: rgba(0,0,0, 0.75); border: 1px solid grey;color: #fff; padding: 10px; border-radius: 5px; font-size: 12px;"></div>');
+        const tooltip = d3.select("#tooltip");
+
+        const latestYear = years[years.length - 1];
+        const monthsWithData = Object.keys(chartData.chart[latestYear]);
+        const yearData = chartData.chart[latestYear];
+        const maxData = Math.max(...monthsWithData.map((month) => yearData[month].length));
+        const maxParticipants = Math.max(...monthsWithData.map((month) => Math.max(...yearData[month].map((event) => event.Participants))));
+        const minParticipants = Math.min(...monthsWithData.map((month) => Math.min(...yearData[month].map((event) => event.Participants))));
+        // Set up the SVG container
+        const margin = { top: 60, right: 20, bottom: 0, left: 20 };
+        const radius = 75;
+        const segmentLength = 70;
+        console.log("maxData:", maxData);
+        const width = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.left - margin.right;
+        const height = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.top - margin.bottom;
+        const svg = d3
+          .select(`#${wrapperId}`)
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", `translate(${width / 2}, ${height / 2})`); // Center the circle
+
+        $(`#${wrapperId}`).attr("style", "text-align: center");
+
+        // Function to calculate the position of each month
+        const angleStep = (2 * Math.PI) / months.length;
+        const startAngle = -Math.PI / 2;
+
+        console.log(chartData.chart[latestYear]);
+
+        const colorScale = d3.scaleLinear()
+          .domain([minParticipants, maxParticipants])
+          .range(["#AED3FF", "#1E2094"]);
+        months.forEach((month, i) => {
+          const angle = startAngle + angleStep * i; // Calculate angle for each month
+          const x = radius * Math.cos(angle); // X position for the month
+          const y = radius * Math.sin(angle); // Y position for the month
+
+          svg.append('text')
+            .attr('x', x)
+            .attr('y', y)
+            .attr('dy', '.35em') // Adjust vertical alignment
+            .attr('text-anchor', 'middle') // Center text horizontally
+            .text(month)
+            .style('font-size', '14px')
+            .style('fill', '#000');
+
+          const radiusForSegments = radius + 20;
+          // Draw segments for events of this month (if data exists)
+          const events = yearData[month] || [];
+          events.forEach((ev, j) => {
+            const segmentStart = radiusForSegments + j * (segmentLength + 15); // Start of the segment
+            const segmentEnd = segmentStart + segmentLength; // End of the segment
+
+            // Calculate positions for the line segment
+            const x1 = segmentStart * Math.cos(angle);
+            const y1 = segmentStart * Math.sin(angle);
+            const x2 = segmentEnd * Math.cos(angle);
+            const y2 = segmentEnd * Math.sin(angle);
+            
+            // Draw a line (segment) for each event
+            let strokeColor = colorScale(ev.Participants);
+
+            console.log(strokeColor);
+
+            svg
+              .append("line")
+              .attr("x1", x1)
+              .attr("y1", y1)
+              .attr("x2", x2)
+              .attr("y2", y2)
+              .attr("stroke", strokeColor) // Use color for the year
+              .attr("stroke-width", 3 * ev.Duration/2)
+              .attr("stroke-linecap", "round")
+              .on("mouseover", function(event) {
+                // On hover, show the tooltip
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 1);
+    
+                    tooltip.html(`
+                      ${ev.Date} <br>
+                      ${ev.Title} <br>
+                      <p>${ev.Participants} participants ${ev.Duration} hours</p>
+                      <p>Click to view the training</p>
+                `)
+                .style("left", (event.pageX + 5) + "px")
+                .style("top", (event.pageY - 28) + "px");  // Position the tooltip near the mouse pointer
+            })
+            .on("mouseout", function() {
+                // On mouseout, hide the tooltip
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0);
+            });;
+          });
+        });
+      }
+
+      function buildSynergiesChart(wrapperId, chartData) {
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
+        const years = Object.keys(chartData.chart);
+      }
+
       function addPlayButtonToLegend(selector, wrapperId) {
         const legendContainer = $(selector);
 
@@ -2438,24 +2577,26 @@
 
   Drupal.behaviors.addLegendToPublicationsChart = {
     attach: function (context, settings) {
-      if(!d3.select('#publicationsChart .legend').node()){
+      if (!$("#publicationsChart").length) {
+        return;
+      }
 
-        const columns = document.querySelectorAll('.column');
+      if (!d3.select("#publicationsChart .legend").node()) {
+        const columns = document.querySelectorAll(".column");
         const yearsSet = new Set();
-  
-        columns.forEach(column => {
+
+        columns.forEach((column) => {
           const classList = column.classList;
-          const year = [...classList].find(cls => /^\d{4}$/.test(cls));
+          const year = [...classList].find((cls) => /^\d{4}$/.test(cls));
           if (year) {
             yearsSet.add(year);
           }
         });
-  
-        const yearsArray = Array.from(yearsSet).map(year => ({ year }));
 
-        const latestYear = yearsArray[yearsArray.length-1].year;
+        const yearsArray = Array.from(yearsSet).map((year) => ({ year }));
 
-  
+        const latestYear = yearsArray[yearsArray.length - 1].year;
+
         const legend = d3
           .select(`#publicationsChart .indicator-chart`)
           .append("div")
@@ -2468,34 +2609,38 @@
           .on("click", function (event, d) {
             updateChart(d.year);
           });
-  
+
         legend
           .append("span")
           .attr("class", "legend-color")
-          .style("background-color", 'black');  
-  
+          .style("background-color", "black");
+
         legend
           .append("span")
           .attr("class", (d) => "legend-text")
-          .text((d) => d.year); 
+          .text((d) => d.year);
 
-        $('#publicationsChart .legend div:last').addClass('active');
-  
-        function updateChart(year){
+        $("#publicationsChart .legend div:last").addClass("active");
+
+        function updateChart(year) {
           $(".column").each(function () {
-            $(this).find('> *').addClass('visibility-hidden');
+            $(this).find("> *").addClass("visibility-hidden");
           });
 
           $(".column").attr("style", "display: none;");
           $(`.column.${year}`).attr("style", "display: flex;");
 
           let idx = 1;
-          $(`.column.${year}`).each(function () {        
-            $($(this).find('> *').get().reverse()).each(function () {
+          $(`.column.${year}`).each(function () {
+            $($(this).find("> *").get().reverse()).each(function () {
               let el = $(this);
-              setTimeout(function () {
-                el.removeClass('visibility-hidden');
-              }, idx * 20, el); 
+              setTimeout(
+                function () {
+                  el.removeClass("visibility-hidden");
+                },
+                idx * 20,
+                el
+              );
               idx++;
             });
           });
@@ -2503,8 +2648,8 @@
         updateChart(latestYear);
 
         function addPlayButtonToLegend() {
-          const legendContainer = $('#publicationsChart .legend');
-  
+          const legendContainer = $("#publicationsChart .legend");
+
           const playButtonSvg = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
@@ -2518,10 +2663,10 @@
             .attr("data-chart-id", "publicationsChart")
             .on("click", handlePlayButtonClick)
             .html(playButtonSvg);
-  
+
           legendContainer.prepend(playButton);
         }
-        function handlePlayButtonClick() {  
+        function handlePlayButtonClick() {
           const legendItems = $(`#publicationsChart .legend > div`);
           legendItems.each((index, item) => {
             setTimeout(() => {
@@ -2532,7 +2677,6 @@
 
         addPlayButtonToLegend();
       }
-    }
-  }
-
+    },
+  };
 })(jQuery, Drupal, once, drupalSettings);
