@@ -197,6 +197,7 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
       // Events after January 1st of current year.
       ->condition('field_date', strtotime(date('Y') . '-01-01', time()), '>=')
       ->condition('field_event_format', $format)
+      ->condition('field_organizer', 'external', '!=')
       ->sort('field_date')
       ->execute();
     return $node_storage->loadMultiple($events);
