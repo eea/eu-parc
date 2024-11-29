@@ -24,6 +24,6 @@ settings:
   handler_settings: {  }
   file_directory: '[date:custom:Y]-[date:custom:m]'
   file_extensions: 'mp4 mov avi'
-  max_filesize: ''
+  max_filesize: '800 MB'
   description_field: false
 field_type: file
