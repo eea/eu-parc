@@ -6,7 +6,7 @@
         rootMargin: "0px",
         threshold: 1,
       };
-
+      Drupal.behaviors.bootstrapPopover.attach();
       const chartObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -994,7 +994,7 @@
         const tooltip = d3
           .select(`body`)
           .append("div")
-          .attr("class", "tooltip")
+          .attr("class", "tool")
           .style("position", "absolute")
           .style("visibility", "hidden")
           .style("background", "#fff")
@@ -2413,6 +2413,29 @@
           2028: "#DB5749",
         };
 
+        function hexToRgb(hex) {
+          hex = hex.replace('#', '');
+          let r = parseInt(hex.substring(0, 2), 16);
+          let g = parseInt(hex.substring(2, 4), 16);
+          let b = parseInt(hex.substring(4, 6), 16);
+          return { r, g, b };
+        }
+
+
+
+        function rgbToHex(r, g, b) {
+          return '#' + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase();
+        }
+
+        function adjustColor(color, amount) {
+          let { r, g, b } = hexToRgb(color);
+          r = Math.min(255, Math.max(0, r + amount));
+          g = Math.min(255, Math.max(0, g + amount));
+          b = Math.min(255, Math.max(0, b + amount));
+          return rgbToHex(r, g, b);
+        }
+
+
         const years = Object.keys(chartData.chart);
         const months = [
           "JAN",
@@ -2428,16 +2451,13 @@
           "NOV",
           "DEC",
         ];
-        $('body').append('<div id="tooltip" style="width: 20rem; position: absolute; opacity: 0; pointer-events: none; background: rgba(0,0,0, 0.75); border: 1px solid grey;color: #fff; padding: 10px; border-radius: 5px; font-size: 12px;"></div>');
-        const tooltip = d3.select("#tooltip");
-
-        const latestYear = years[years.length - 1];
+        const latestYear = 2024;
         const monthsWithData = Object.keys(chartData.chart[latestYear]);
         const yearData = chartData.chart[latestYear];
         const maxData = Math.max(...monthsWithData.map((month) => yearData[month].length));
         const maxParticipants = Math.max(...monthsWithData.map((month) => Math.max(...yearData[month].map((event) => event.Participants))));
         const minParticipants = Math.min(...monthsWithData.map((month) => Math.min(...yearData[month].map((event) => event.Participants))));
-        // Set up the SVG container
+        const latestYearColors = [adjustColor(colors[latestYear], 60), adjustColor(colors[latestYear], -60)];
         const margin = { top: 60, right: 20, bottom: 0, left: 20 };
         const radius = 75;
         const segmentLength = 70;
@@ -2445,16 +2465,15 @@
         const width = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.left - margin.right;
         const height = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.top - margin.bottom;
         const svg = d3
-          .select(`#${wrapperId}`)
+          .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
           .append("svg")
           .attr("width", width)
           .attr("height", height)
           .append("g")
-          .attr("transform", `translate(${width / 2}, ${height / 2})`); // Center the circle
+          .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
         $(`#${wrapperId}`).attr("style", "text-align: center");
 
-        // Function to calculate the position of each month
         const angleStep = (2 * Math.PI) / months.length;
         const startAngle = -Math.PI / 2;
 
@@ -2462,71 +2481,294 @@
 
         const colorScale = d3.scaleLinear()
           .domain([minParticipants, maxParticipants])
-          .range(["#AED3FF", "#1E2094"]);
+          .range(latestYearColors);
         months.forEach((month, i) => {
-          const angle = startAngle + angleStep * i; // Calculate angle for each month
-          const x = radius * Math.cos(angle); // X position for the month
-          const y = radius * Math.sin(angle); // Y position for the month
+          const angle = startAngle + angleStep * i;
+          const x = radius * Math.cos(angle);
+          const y = radius * Math.sin(angle);
 
           svg.append('text')
             .attr('x', x)
             .attr('y', y)
-            .attr('dy', '.35em') // Adjust vertical alignment
-            .attr('text-anchor', 'middle') // Center text horizontally
+            .attr('dy', '.35em')
+            .attr('text-anchor', 'middle')
             .text(month)
             .style('font-size', '14px')
             .style('fill', '#000');
 
           const radiusForSegments = radius + 20;
-          // Draw segments for events of this month (if data exists)
           const events = yearData[month] || [];
           events.forEach((ev, j) => {
-            const segmentStart = radiusForSegments + j * (segmentLength + 15); // Start of the segment
-            const segmentEnd = segmentStart + segmentLength; // End of the segment
-
-            // Calculate positions for the line segment
+            const segmentStart = radiusForSegments + j * (segmentLength + 15);
+            const segmentEnd = segmentStart + segmentLength;
             const x1 = segmentStart * Math.cos(angle);
             const y1 = segmentStart * Math.sin(angle);
             const x2 = segmentEnd * Math.cos(angle);
             const y2 = segmentEnd * Math.sin(angle);
-            
-            // Draw a line (segment) for each event
+
             let strokeColor = colorScale(ev.Participants);
 
-            console.log(strokeColor);
+            console.log(ev);
 
-            svg
-              .append("line")
-              .attr("x1", x1)
-              .attr("y1", y1)
-              .attr("x2", x2)
-              .attr("y2", y2)
-              .attr("stroke", strokeColor) // Use color for the year
-              .attr("stroke-width", 3 * ev.Duration/2)
-              .attr("stroke-linecap", "round")
-              .on("mouseover", function(event) {
-                // On hover, show the tooltip
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", 1);
-    
-                    tooltip.html(`
-                      ${ev.Date} <br>
-                      ${ev.Title} <br>
-                      <p>${ev.Participants} participants ${ev.Duration} hours</p>
-                      <p>Click to view the training</p>
-                `)
-                .style("left", (event.pageX + 5) + "px")
-                .style("top", (event.pageY - 28) + "px");  // Position the tooltip near the mouse pointer
+            const strokeWidth = Math.max(1.5, 3 * ev.Duration/2);
+
+            const html = `<p>${ev.Date}</p><p><b>${ev.Title}</b></p><p><b>${ev.Participants} participants ${ev.Duration} hours</b></p><p>Click here to view the training</p>`;
+            const link = ev.Link;
+            console.log(html);
+            svg.append("a")
+            .attr("data-bs-html", "true")
+            .attr("data-bs-placement", "top")
+            .attr("data-bs-toggle", "popover")
+            .attr("data-bs-trigger", "hover")
+            .attr("data-bs-content", function(d) {
+                return html;
             })
-            .on("mouseout", function() {
-                // On mouseout, hide the tooltip
-                tooltip.transition()
-                    .duration(200)
-                    .style("opacity", 0);
-            });;
+            .attr("target", "_blank")
+            .attr("href", function(d) {
+                return link;
+            })
+            .append("line")
+            .attr("x1", x1)
+            .attr("y1", y1)
+            .attr("x2", x1)
+            .attr("y2", y1)
+            .attr("stroke", strokeColor)
+            .attr("stroke-width", strokeWidth)
+            .attr("stroke-linecap", "round")
+            .transition()
+            .duration(750)
+            .delay(100 * j)
+            .attr("x2", x2)
+            .attr("y2", y2);
+
+            $(function () {
+              $('[data-bs-toggle="popover"]').popover();
+            });
+
+
           });
         });
+        const legend = d3
+          .select("#" + wrapperId)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map((year) => ({ year, color: colors[year] })))
+          .enter()
+          .append("div")
+          .style("cursor", "pointer")
+          .on("click", function (event, d) {
+            updateChart(d.year);
+          });
+
+        legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => d.color);
+
+        legend
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d.year)
+          .text((d) => d.year);
+
+        const legendContainer = d3
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend-container")
+          .style("display", "flex")
+          .style("justify-content", "end");
+
+
+        const gradientStart = adjustColor(colors[latestYear], 60);
+        const gradientEnd = adjustColor(colors[latestYear], -60);
+        const leg = legendContainer
+          .append("div")
+          .style("display", "flex")
+          .style("flex-direction", "column")
+          .style("align-items", "start");
+
+        leg
+          .append("div")
+          .text("Number of participants")
+          .style("margin-bottom", "5px")
+          .style("font-size", "17px");
+
+        const gradientDiv = leg
+          .append("div")
+          .style("height", "10px")
+          .style("width", "200px")
+          .style("background", `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`);
+
+
+          leg
+          .append("div")
+          .text("Duration")
+          .style("margin-top", "10px")
+          .style("font-size", "17px");
+
+
+          const numLines = 4;
+          const lineWidth = 150;
+          const strokeWidths = [2, 4, 6, 8];
+
+
+          const durationLineContainer = leg.append("div")
+            .style("display", "flex")
+            .style("align-items", "center")
+            .style("height", "10px")
+            .style("width", `200px`);
+
+          for (let i = 0; i < numLines; i++) {
+            durationLineContainer.append("div")
+              .style("height", `${strokeWidths[i]}px`)
+              .style("width", '50px')
+              .style("background-color", `black`)
+              .style("margin-right", "2px")
+              .style("border-radius", "5px");
+
+          }
+
+        function updateChart(year) {
+          svg.selectAll("line").remove();
+          d3.select(`#${wrapperId}`).selectAll(".legend-container").remove();
+
+          const yearColors = [adjustColor(colors[year], 60), adjustColor(colors[year], -60)];
+
+          const yearData = chartData.chart[year];
+
+          const monthsWithData = Object.keys(chartData.chart[year]);
+          const maxData = Math.max(...monthsWithData.map((month) => yearData[month].length));
+          const maxParticipants = Math.max(...monthsWithData.map((month) => Math.max(...yearData[month].map((event) => event.Participants))));
+          const minParticipants = Math.min(...monthsWithData.map((month) => Math.min(...yearData[month].map((event) => event.Participants))));
+          const margin = { top: 60, right: 20, bottom: 0, left: 20 };
+          const radius = 75;
+          const segmentLength = 70;
+          const width = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.left - margin.right;
+          const height = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.top - margin.bottom;
+          d3.select(`#${wrapperId} svg`)
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", `0 0 ${width} ${height}`)
+            .attr("preserveAspectRatio", "xMidYMid meet");
+
+          d3.select(`#${wrapperId} svg g`)
+            .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+          const colorScale = d3.scaleLinear()
+              .domain([minParticipants, maxParticipants])
+              .range(yearColors);
+
+          monthsWithData.forEach((month, i) => {
+              const angle = startAngle + angleStep * months.indexOf(month);
+              const x = radius * Math.cos(angle);
+              const y = radius * Math.sin(angle);
+              const events = yearData[month] || [];
+              events.forEach((ev, j) => {
+                  const segmentStart = radius + 20 + j * (segmentLength + 15);
+                  const segmentEnd = segmentStart + segmentLength;
+
+                  const x1 = segmentStart * Math.cos(angle);
+                  const y1 = segmentStart * Math.sin(angle);
+                  const x2 = segmentEnd * Math.cos(angle);
+                  const y2 = segmentEnd * Math.sin(angle);
+
+                  const strokeColor = colorScale(ev.Participants);
+                  const strokeWidth = Math.max(1.5, 3 * ev.Duration / 2);
+
+                  const html = `<p>${ev.Date}</p><p><b>${ev.Title}</b></p><p><b>${ev.Participants} participants ${ev.Duration} hours</b></p><p>Click here to view the training</p>`;
+                  const link = ev.Link;
+
+                  svg.append("a")
+                      .attr("data-bs-html", "true")
+                      .attr("data-bs-placement", "top")
+                      .attr("data-bs-toggle", "popover")
+                      .attr("data-bs-trigger", "hover")
+                      .attr("data-bs-content", function(d) {
+                          return html;
+                      })
+                      .attr("target", "_blank")
+                      .attr("href", function(d) {
+                          return link;
+                      })
+                      .classed("image", true)
+                      .append("line")
+                      .attr("x1", x1)
+                      .attr("y1", y1)
+                      .attr("x2", x1)
+                      .attr("y2", y1)
+                      .attr("stroke", strokeColor)
+                      .attr("stroke-width", strokeWidth)
+                      .attr("stroke-linecap", "round")
+                      .transition()
+                      .duration(750)
+                      .delay(100 * j)
+                      .attr("x2", x2)
+                      .attr("y2", y2);
+
+
+                  $(function () {
+                      $('[data-bs-toggle="popover"]').popover();
+                  });
+              });
+          });
+        const legendContainer = d3
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend-container")
+          .style("display", "flex")
+          .style("justify-content", "end");
+
+
+        const gradientStart = adjustColor(colors[year], 60);
+        const gradientEnd = adjustColor(colors[year], -60);
+        const leg = legendContainer
+          .append("div")
+          .style("display", "flex")
+          .style("flex-direction", "column")
+          .style("align-items", "start");
+
+        leg
+          .append("div")
+          .text("Number of participants")
+          .style("margin-bottom", "5px")
+          .style("font-size", "17px");
+
+        const gradientDiv = leg
+          .append("div")
+          .style("height", "10px")
+          .style("width", "200px")
+          .style("background", `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`);
+
+
+          leg
+          .append("div")
+          .text("Duration")
+          .style("margin-top", "10px")
+          .style("font-size", "17px");
+
+
+          const numLines = 4;
+          const lineWidth = 150;
+          const strokeWidths = [2, 4, 6, 8];
+
+
+          const durationLineContainer = leg.append("div")
+            .style("display", "flex")
+            .style("align-items", "center")
+            .style("height", "10px")
+            .style("width", `200px`);
+
+          for (let i = 0; i < numLines; i++) {
+            durationLineContainer.append("div")
+              .style("height", `${strokeWidths[i]}px`)
+              .style("width", '50px')
+              .style("background-color", `black`)
+              .style("margin-right", "2px")
+              .style("border-radius", "5px");
+
+          }
+
+        }
       }
 
       function buildSynergiesChart(wrapperId, chartData) {
