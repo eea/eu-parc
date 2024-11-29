@@ -2772,17 +2772,68 @@
       }
 
       function buildSynergiesChart(wrapperId, chartData) {
-        const colors = {
-          2022: "#017365",
-          2023: "#E4798B",
-          2024: "#1879EB",
-          2025: "#2DC9B6",
-          2026: "#C0A456",
-          2027: "#7D2D9C",
-          2028: "#DB5749",
-        };
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+        const width = 600 - margin.left - margin.right;
+        const height = 600 - margin.top - margin.bottom;
+        const outerRadius = Math.min(width, height) / 2 - 60;
+        const innerRadius = outerRadius - 100;
+
+        // Extract the fifth category for the inner pie
         const years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
+        const data = chartData.chart[latestYear];
+        const innerCategory = "External initiatives seeking synergies with PARC ";
+        const innerValue = data[innerCategory];
+
+        const svg = d3
+          .select(`#${wrapperId}`)
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform", `translate(${width / 2 + margin.left}, ${height / 2 + margin.top})`);
+
+        // Add central text
+        svg
+          .append("text")
+          .attr("text-anchor", "middle")
+          .style("font-size", "16px")
+          .style("font-weight", "bold")
+          .text(innerValue);
+
+        svg
+          .append("text")
+          .attr("text-anchor", "middle")
+          .attr("dy", "20px") // Position below the number
+          .style("font-size", "12px")
+          .style("width", "100px")
+          .text(innerCategory);
+
+        // Draw radial lines for the inner pie
+        const totalLines = innerValue;
+        const angleStep = (2 * Math.PI) / totalLines;
+
+        for (let i = 0; i < totalLines; i++) {
+          const angle = i * angleStep;
+          const x1 = Math.cos(angle) * innerRadius;
+          const y1 = Math.sin(angle) * innerRadius;
+          const x2 = Math.cos(angle) * outerRadius;
+          const y2 = Math.sin(angle) * outerRadius;
+
+          svg
+            .append("line")
+            .attr("x1", x1)
+            .attr("y1", y1)
+            .attr("x2", x2)
+            .attr("y2", y2)
+            .attr("stroke", "#1879EB") // Dark blue color
+            .attr("stroke-width", 6)
+            .attr("stroke-linecap", "round");
+        }
       }
+
+
+
 
       function addPlayButtonToLegend(selector, wrapperId) {
         const legendContainer = $(selector);
