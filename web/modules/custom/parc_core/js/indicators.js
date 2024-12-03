@@ -2461,7 +2461,6 @@
         const margin = { top: 60, right: 20, bottom: 0, left: 20 };
         const radius = 75;
         const segmentLength = 70;
-        console.log("maxData:", maxData);
         const width = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.left - margin.right;
         const height = 600 + (segmentLength + 20) * Math.max(0, (maxData - 1)) - margin.top - margin.bottom;
         const svg = d3
@@ -2477,7 +2476,6 @@
         const angleStep = (2 * Math.PI) / months.length;
         const startAngle = -Math.PI / 2;
 
-        console.log(chartData.chart[latestYear]);
 
         const colorScale = d3.scaleLinear()
           .domain([minParticipants, maxParticipants])
@@ -2508,13 +2506,11 @@
 
             let strokeColor = colorScale(ev.Participants);
 
-            console.log(ev);
 
             const strokeWidth = Math.max(1.5, 3 * ev.Duration/2);
 
             const html = `<p>${ev.Date}</p><p><b>${ev.Title}</b></p><p><b>${ev.Participants} participants ${ev.Duration} hours</b></p><p>Click here to view the training</p>`;
             const link = ev.Link;
-            console.log(html);
             svg.append("a")
             .attr("data-bs-html", "true")
             .attr("data-bs-placement", "top")
@@ -2772,21 +2768,54 @@
       }
 
       function buildSynergiesChart(wrapperId, chartData) {
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
+        function hexToRgb(hex) {
+          hex = hex.replace('#', '');
+          let r = parseInt(hex.substring(0, 2), 16);
+          let g = parseInt(hex.substring(2, 4), 16);
+          let b = parseInt(hex.substring(4, 6), 16);
+          return { r, g, b };
+        }
+
+
+
+        function rgbToHex(r, g, b) {
+          return '#' + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1).toUpperCase();
+        }
+
+        function adjustColor(color, amount) {
+          let { r, g, b } = hexToRgb(color);
+          r = Math.min(255, Math.max(0, r + amount));
+          g = Math.min(255, Math.max(0, g + amount));
+          b = Math.min(255, Math.max(0, b + amount));
+          return rgbToHex(r, g, b);
+        }
+
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-        const width = 600 - margin.left - margin.right;
-        const height = 600 - margin.top - margin.bottom;
-        const outerRadius = Math.min(width, height) / 2 - 60;
-        const innerRadius = outerRadius - 100;
+        const width = 900 - margin.left - margin.right;
+        const height = 750 - margin.top - margin.bottom;
+        const outerRadius = 140;
+        const innerRadius = outerRadius - 50;
 
         // Extract the fifth category for the inner pie
         const years = Object.keys(chartData.chart);
         const latestYear = years[years.length - 1];
         const data = chartData.chart[latestYear];
-        const innerCategory = "External initiatives seeking synergies with PARC ";
+        const innerCategory = "External initiatives seeking synergies with PARC";
         const innerValue = data[innerCategory];
-
+        const outerCategories = Object.keys(data).filter((category) => category !== innerCategory);
+        const outerValues = outerCategories.map((category) => data[category]);
+      
         const svg = d3
-          .select(`#${wrapperId}`)
+          .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
           .append("svg")
           .attr("width", width + margin.left + margin.right)
           .attr("height", height + margin.top + margin.bottom)
@@ -2796,25 +2825,20 @@
         // Add central text
         svg
           .append("text")
+          .classed("inner-text", true)
           .attr("text-anchor", "middle")
           .style("font-size", "16px")
           .style("font-weight", "bold")
-          .text(innerValue);
+          .text(innerValue + "\n" + innerCategory);
 
-        svg
-          .append("text")
-          .attr("text-anchor", "middle")
-          .attr("dy", "20px") // Position below the number
-          .style("font-size", "12px")
-          .style("width", "100px")
-          .text(innerCategory);
+        d3.selectAll(".inner-text").call(wrap, innerRadius * 2-20);
 
         // Draw radial lines for the inner pie
         const totalLines = innerValue;
         const angleStep = (2 * Math.PI) / totalLines;
 
         for (let i = 0; i < totalLines; i++) {
-          const angle = i * angleStep;
+          const angle = i * angleStep - Math.PI / 2;
           const x1 = Math.cos(angle) * innerRadius;
           const y1 = Math.sin(angle) * innerRadius;
           const x2 = Math.cos(angle) * outerRadius;
@@ -2826,9 +2850,112 @@
             .attr("y1", y1)
             .attr("x2", x2)
             .attr("y2", y2)
-            .attr("stroke", "#1879EB") // Dark blue color
-            .attr("stroke-width", 6)
+            .attr("stroke", `${adjustColor(colors[latestYear], -90)}`) // Dark blue color
+            .attr("stroke-width", 12)
             .attr("stroke-linecap", "round");
+        }
+        const outerRadiusStart = outerRadius + 20; // Start just outside the inner chart
+        const outerRadiusEnd = outerRadius + 90; // Adjust to desired size
+        const totalOuterLines = outerCategories.slice(0, 4).reduce((sum, category) => sum + data[category], 0);
+        const outerAngleStep = (2 * Math.PI) / totalOuterLines;
+        let currentAngle = -Math.PI / 2; // Start at the top
+
+        let categoryColors = [adjustColor(colors[latestYear], -60), adjustColor(colors[latestYear], -30), adjustColor(colors[latestYear], 30), adjustColor(colors[latestYear], 60)];
+
+        outerCategories.slice(0, 4).forEach((category, index) => {
+          const categoryValue = data[category];
+          const rotationOffset = -Math.PI / 2; 
+          const categoryAngle = currentAngle;
+          const labelX = Math.cos(categoryAngle) * (outerRadiusEnd + 20); // Position slightly beyond the outer radius
+          const labelY = Math.sin(categoryAngle) * (outerRadiusEnd + 20);
+
+          svg
+              .append("text")
+              .attr("x", labelX)
+              .attr("y", labelY)
+              .attr("text-anchor", categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2 ? "end" : "start")
+              .attr("alignment-baseline", "middle")
+              .style("font-size", "18px")
+              .style("fill", `${categoryColors[index]}`)
+              .style("font-weight", "700")
+              .text(category); // Label as category name
+          
+          let addToX = categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2 ? -60 : 60;
+          svg
+              .append("text")
+              .attr("x", labelX + addToX)
+              .attr("y", labelY + 20) // Slightly below for the value
+              .attr("text-anchor", categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2 ? "end" : "start")
+              .attr("alignment-baseline", "middle")
+              .style("font-size", "18px")
+              .style("font-weight", "700")
+              .style("fill", `${categoryColors[index]}`)
+              .text(categoryValue);
+
+          for (let i = 0; i < categoryValue; i++) {
+              const x1 = Math.cos(currentAngle) * outerRadiusStart;
+              const y1 = Math.sin(currentAngle) * outerRadiusStart;
+              const x2 = Math.cos(currentAngle) * outerRadiusEnd;
+              const y2 = Math.sin(currentAngle) * outerRadiusEnd;
+  
+              // Draw each line
+              svg
+                  .append("line")
+                  .attr("x1", x1)
+                  .attr("y1", y1)
+                  .attr("x2", x2)
+                  .attr("y2", y2)
+                  .attr("stroke", categoryColors[index]) // Unique color per category
+                  .attr("stroke-width", 4);
+  
+              // Increment the angle
+              currentAngle += outerAngleStep;
+          }
+  
+        });
+    
+        function wrap(text, width) {
+          text.each(function () {
+            let text = d3.select(this),
+              words = text.text().split(/\s+/).reverse(),
+              lineHeight = 1.1, // ems
+              y = text.attr("y"),
+              dy = parseFloat(text.attr("dy")),
+              tspan = text
+                .text(null)
+                .append("tspan")
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("dy", 0 + "em"),
+              firstTspan = tspan;
+            let line = [],
+              lineNumber = 0,
+              word,
+              tspanNode = tspan.node();
+            if (words.length) {
+              let firstWord = words.pop();
+              tspan.text(firstWord); // First word in its own tspan
+              tspan = text.append("tspan").attr("x", 0).attr("dy", lineHeight + "em");            
+            }
+            while ((word = words.pop())) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              tspanNode = tspan.node();
+              if (tspanNode.getComputedTextLength() > width ) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text
+                  .append("tspan")
+                  .attr("x", 0)
+                  .attr("dy", lineHeight + "em")
+                  .text(word);
+                lineNumber++;
+              }
+            }
+            text.attr("x", 0).attr("y", (-lineNumber * lineHeight) / 2 + "em");
+            firstTspan.attr("dy", (-(lineNumber - 1) * lineHeight) / 2 + "em");
+          });
         }
       }
 
