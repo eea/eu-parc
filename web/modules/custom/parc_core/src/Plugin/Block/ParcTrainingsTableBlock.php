@@ -139,6 +139,7 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
             'title' => $event->label(),
             'link' => $link,
             'color' => $topic->get('field_color')->color,
+            'tentative' => $event->get('field_tentative_event')->value,
           ],
           'months' => $events_per_month,
         ];

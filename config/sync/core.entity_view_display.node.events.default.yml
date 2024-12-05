@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
     - node.type.events
@@ -147,6 +148,24 @@ third_party_settings:
               expand_all_items: false
               parent: 'main:taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
               suggestion: sidebar_dropdown
+            weight: 0
+            additional: {  }
+          27ee28b8-f155-491d-b11c-c25f1f5b0093:
+            uuid: 27ee28b8-f155-491d-b11c-c25f1f5b0093
+            region: first
+            configuration:
+              id: 'field_block:node:events:field_tentative_event'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: boolean
+                label: above
+                settings:
+                  format: default
+                  format_custom_false: ''
+                  format_custom_true: ''
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }
@@ -424,6 +443,16 @@ content:
       link: true
     third_party_settings: {  }
     weight: 108
+    region: first
+  field_tentative_event:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 126
     region: first
   field_training_type:
     type: entity_reference_label
