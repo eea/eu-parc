@@ -10,7 +10,7 @@ field_name: field_tentative_event
 entity_type: node
 bundle: events
 label: 'Tentative event'
-description: ''
+description: 'Events marked as tentative will only appear in the calendar, but will NOT be displayed in listings'
 required: false
 translatable: false
 default_value: {  }
