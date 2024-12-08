@@ -11,6 +11,11 @@ on:
         description: 'Create SQL backup'
         required: true
         default: true
+      enable_maintenance_mode:
+        type: boolean
+        description: 'Enable maintenance mode.'
+        required: true
+        default: true
 
 name: 'Deploy production instance'
 jobs:
@@ -28,7 +33,7 @@ jobs:
         uses: eaudeweb/drupal-install-action@1.x
         with:
           dev: false
-          php: /usr/bin/php8.1
+          php: /usr/bin/php8.2
 
       - name: 'Create release archive'
         id: artifact
@@ -54,9 +59,10 @@ jobs:
 
       - name: 'Update the Drupal instance'
         id: release
-        uses: eaudeweb/drupal-update-action@v1.0
+        uses: eaudeweb/drupal-update-action@v1.2
         with:
           path: /var/www/html/eu-parc.eu
+          enable_maintenance_mode: ${{ inputs.enable_maintenance_mode }}
 
       - name: 'Discord notification'
         run: >

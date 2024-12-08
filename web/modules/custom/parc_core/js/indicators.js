@@ -1,4 +1,11 @@
 (function ($, Drupal, once, drupalSettings) {
+  function scrollChart(chartElement) {
+    let container = chartElement.find('.indicator-scrollable-container');
+    let content = container.find('.indicator-container');
+    let scroll = (content.get(0).offsetWidth - container.get(0).offsetWidth) / 2;
+    container.scrollLeft(scroll);
+  }
+
   Drupal.behaviors.indicatorCharts = {
     attach: function (context, settings) {
         const observerOptions = {
@@ -17,6 +24,7 @@
 
             if (chartData) {
               buildIndicatorChart(chartElement, chartType, chartData);
+              scrollChart(chartElement);
               observer.unobserve(entry.target);
             }
           }
@@ -1301,7 +1309,8 @@
         .append("div")
         .attr("class", "legend-container")
         .style("display", "flex")
-        .style("flex-direction", "column");
+        .style("flex-direction", "column")
+        .style("margin-top", "10px");
 
     // Add legend items for each category
         const legendItems = legendContainer
@@ -1321,6 +1330,7 @@
           .style("display", "inline-block")
           .style("margin-right", "5px")
           .style("border-radius", "50%")
+          .style("flex-shrink", "0")
           .style("background-color", (d) => color(d[0]));
 
         legendItems
@@ -1328,7 +1338,8 @@
           .text((d) => `${d[0]}`)
           .style("font-size", "12px")
           .style("color", "gray")
-          .style("height", "18px")
+          .style("height", "auto")
+          .style("display", "block")
           .style("line-height", "18px");
 
         const legend = d3
@@ -2438,7 +2449,7 @@
 
   Drupal.behaviors.addLegendToPublicationsChart = {
     attach: function (context, settings) {
-      if(!d3.select('#publicationsChart .legend').node()){
+      if($('#publicationsChart').length && !d3.select('#publicationsChart .legend').node()){
 
         const columns = document.querySelectorAll('.column');
         const yearsSet = new Set();

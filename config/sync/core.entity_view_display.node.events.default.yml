@@ -244,30 +244,6 @@ third_party_settings:
                   class: ''
                   style: ''
                   data: ''
-          601480d3-8412-4104-b31d-fc6dcabe968f:
-            uuid: 601480d3-8412-4104-b31d-fc6dcabe968f
-            region: second
-            configuration:
-              id: 'field_block:node:events:field_date'
-              label: Date
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: parc_event_date
-                label: hidden
-                settings:
-                  timezone_override: ''
-                  format: compact
-                  force_chronological: 0
-                  add_classes: 0
-                  time_wrapper: 0
-                  localize: 0
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
           edca0097-f316-4e33-9a3f-221625b130c9:
             uuid: edca0097-f316-4e33-9a3f-221625b130c9
             region: second
