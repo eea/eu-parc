@@ -122,10 +122,6 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
           continue;
         }
 
-        if ($event->bundle() == 'resource') {
-          $xd = 1;
-        }
-
         $dates = $event->bundle() == 'events'
           ? $event->get('field_date')
           : $event->get('field_d_date');
@@ -139,7 +135,8 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
             'title' => $event->label(),
             'link' => $link,
             'color' => $topic->get('field_color')->color,
-            'tentative' => $event->get('field_tentative_event')->value,
+            'tentative' => $event->bundle() == 'events'
+              && $event->get('field_tentative_event')->value,
           ],
           'months' => $events_per_month,
         ];
