@@ -768,6 +768,45 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_tentative_event_value:
+          id: field_tentative_event_value
+          table: node__field_tentative_event
+          field: field_tentative_event_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          accept_null: 1
       filter_groups:
         operator: AND
         groups:
@@ -874,17 +913,17 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        field_exclude_frontpage_value:
-          id: field_exclude_frontpage_value
-          table: node__field_exclude_frontpage
-          field: field_exclude_frontpage_value
+        field_tentative_event_value:
+          id: field_tentative_event_value
+          table: node__field_tentative_event
+          field: field_tentative_event_value
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: boolean
-          operator: empty
-          value: ''
-          group: 2
+          operator: '='
+          value: '0'
+          group: 1
           exposed: false
           expose:
             operator_id: ''
@@ -912,17 +951,18 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        field_exclude_frontpage_value_1:
-          id: field_exclude_frontpage_value_1
+          accept_null: 1
+        field_exclude_frontpage_value_2:
+          id: field_exclude_frontpage_value_2
           table: node__field_exclude_frontpage
           field: field_exclude_frontpage_value
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: boolean
-          operator: '!='
-          value: '1'
-          group: 2
+          operator: '='
+          value: '0'
+          group: 1
           exposed: false
           expose:
             operator_id: ''
@@ -950,6 +990,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          accept_null: 1
       filter_groups:
         operator: AND
         groups:
@@ -1238,6 +1279,45 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_tentative_event_value:
+          id: field_tentative_event_value
+          table: node__field_tentative_event
+          field: field_tentative_event_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          accept_null: 1
       filter_groups:
         operator: AND
         groups:
@@ -1340,82 +1420,6 @@ display:
           expose:
             operator_limit_selection: false
             operator_list: {  }
-        field_exclude_frontpage_value_1:
-          id: field_exclude_frontpage_value_1
-          table: node__field_exclude_frontpage
-          field: field_exclude_frontpage_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: boolean
-          operator: '!='
-          value: '1'
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-        field_exclude_frontpage_value:
-          id: field_exclude_frontpage_value
-          table: node__field_exclude_frontpage
-          field: field_exclude_frontpage_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: boolean
-          operator: empty
-          value: '1'
-          group: 2
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
         field_date_end_value:
           id: field_date_end_value
           table: node__field_date
@@ -1462,6 +1466,84 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_tentative_event_value:
+          id: field_tentative_event_value
+          table: node__field_tentative_event
+          field: field_tentative_event_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          accept_null: 1
+        field_exclude_frontpage_value_2:
+          id: field_exclude_frontpage_value_2
+          table: node__field_exclude_frontpage
+          field: field_exclude_frontpage_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          accept_null: 1
       filter_groups:
         operator: AND
         groups:
@@ -1813,6 +1895,45 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_tentative_event_value:
+          id: field_tentative_event_value
+          table: node__field_tentative_event
+          field: field_tentative_event_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          accept_null: 1
       filter_groups:
         operator: AND
         groups:
@@ -2017,6 +2138,45 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_tentative_event_value:
+          id: field_tentative_event_value
+          table: node__field_tentative_event
+          field: field_tentative_event_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          accept_null: 1
       filter_groups:
         operator: AND
         groups:
@@ -2286,6 +2446,45 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+        field_tentative_event_value:
+          id: field_tentative_event_value
+          table: node__field_tentative_event
+          field: field_tentative_event_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: boolean
+          operator: '='
+          value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          accept_null: 1
       filter_groups:
         operator: AND
         groups:

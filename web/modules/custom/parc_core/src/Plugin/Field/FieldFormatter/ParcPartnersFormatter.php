@@ -28,6 +28,10 @@ class ParcPartnersFormatter extends EntityReferenceFormatterBase {
 
     foreach ($this->getEntitiesToView($items, $langcode) as $entity) {
       $name = $entity->label();
+      if (!empty($entity->get('field_abbreviation')->value)) {
+        $name = $entity->get('field_abbreviation')->value;
+      }
+
       $website = $entity->get('field_website')->uri;
       $country_iso2 = NULL;
       $country = $entity->get('field_country')->entity;

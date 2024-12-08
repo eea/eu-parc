@@ -62,7 +62,7 @@ header {
 }
 
 .menu--main {
-  .text-muted {
+  .text-muted:not(.nav-link-fakelink) {
     display: none;
   }
 }

@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
     - node.type.events
@@ -400,6 +401,16 @@ content:
       link: true
     third_party_settings: {  }
     weight: 108
+    region: first
+  field_tentative_event:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 126
     region: first
   field_training_type:
     type: entity_reference_label

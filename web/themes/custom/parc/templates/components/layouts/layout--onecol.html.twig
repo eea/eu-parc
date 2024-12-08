@@ -14,24 +14,25 @@
 
 {% set id = content["#settings"]["label"]|clean_class %}
 
-{%
-  set classes = [
-    'layout',
-    'layout--onecol',
-  ]
-%}
-
 {% if attributes.hasClass('add-container') %}
   {% set attributes = attributes.removeClass('add-container') %}
   {% set addClass = TRUE %}
 {% endif %}
+
+{%
+  set classes = [
+    'layout',
+    'layout--onecol',
+    addClass ? 'container'
+  ]
+%}
 
 {% if content.content|render is not empty %}
   {% if attributes.hasClass('bg-gray') %}
     <div class="bg-gray">
     {% endif %}
     <div{{attributes.addClass(classes).setAttribute('id',id)}}>
-      <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content', addClass ? 'container') }}>
+      <div {{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
         {{ content.content }}
       </div>
     </div>

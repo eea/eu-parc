@@ -2,7 +2,6 @@
  * @file
  * Description.
  */
-
 (function ($, Drupal, once) {
   Drupal.behaviors.bootstrapPopover = {
     attach: function (context, settings) {
