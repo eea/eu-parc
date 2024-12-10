@@ -806,7 +806,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
       filter_groups:
         operator: AND
         groups:
@@ -951,7 +951,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
         field_exclude_frontpage_value_2:
           id: field_exclude_frontpage_value_2
           table: node__field_exclude_frontpage
@@ -990,7 +990,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
       filter_groups:
         operator: AND
         groups:
@@ -1317,7 +1317,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
       filter_groups:
         operator: AND
         groups:
@@ -1504,7 +1504,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
         field_exclude_frontpage_value_2:
           id: field_exclude_frontpage_value_2
           table: node__field_exclude_frontpage
@@ -1543,7 +1543,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
       filter_groups:
         operator: AND
         groups:
@@ -1933,7 +1933,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
       filter_groups:
         operator: AND
         groups:
@@ -2176,7 +2176,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
       filter_groups:
         operator: AND
         groups:
@@ -2484,7 +2484,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          accept_null: 1
+          accept_null: true
       filter_groups:
         operator: AND
         groups:
