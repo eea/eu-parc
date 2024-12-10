@@ -10,9 +10,73 @@ template: false
 archive: false
 id: webinar_test
 title: Webinar_Test
-description: ''
+description: '<p>Considering the training needs identified by Task 9.4 on PARC 1st training needs survey, Task 3.2 is now organising a webinar on the Principles for Effective Risk Communication that will take place online, via Zoom on 28.11.2024, from 12:00 to 13:00 CET. The webinar will be presented by Ana Rita Goes, an Assistant Professor at the National School of Public Health from NOVA Lisbon University, and an expert in health promotion and health communication. It will focus on what is risk communication; what is its purpose and what are core principles; what are core steps and key considerations for a systematic approach to risk communication; and what kind of basic tools and tips can be used to guide the process for developing and implementing risk messages. To consider your participation, we kindly request some essential personal and professional details on this registration form. This information will be used solely for the organisation of this event. Anonymized data will also be used for PARC project reporting. Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e. NOVA National School of Public Health (ENSP), Portugal). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679). If you have any questions, please contact Cristina Godinho (cristina.godinho@ensp.unl.pt), and Carla Trindade Costa (carla.trindade@insa.min-saude.pt). On behalf of the scientific coordination of this webinar and Task 9.4 co-leaders, Cristina Godinho &amp; Carla Trindade Costa</p>'
 categories: {  }
-elements: null
+elements: |-
+  webinar_on_principles_for_effective_risk_communication:
+    '#type': webform_wizard_page
+    '#title': 'Webinar on Principles for Effective Risk Communication'
+    '#open': true
+    '#format': header
+    do_you_confirm_that_you_have_read_and_accept_the_information_sta:
+      '#type': select
+      '#title': 'Do you confirm that you have read and accept the information stated above? '
+      '#description': '<p>Considering the training needs identified by Task 9.4 on PARC 1st training needs survey, Task 3.2 is now organising a webinar on the Principles for Effective Risk Communication that will take place online, via Zoom on 28.11.2024, from 12:00 to 13:00 CET. The webinar will be presented by Ana Rita Goes, an Assistant Professor at the National School of Public Health from NOVA Lisbon University, and an expert in health promotion and health communication. It will focus on what is risk communication; what is its purpose and what are core principles; what are core steps and key considerations for a systematic approach to risk communication; and what kind of basic tools and tips can be used to guide the process for developing and implementing risk messages. To consider your participation, we kindly request some essential personal and professional details on this registration form. This information will be used solely for the organisation of this event. Anonymized data will also be used for PARC project reporting. Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e. NOVA National School of Public Health (ENSP), Portugal). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679). If you have any questions, please contact Cristina Godinho (cristina.godinho@ensp.unl.pt), and Carla Trindade Costa (carla.trindade@insa.min-saude.pt). On behalf of the scientific coordination of this webinar and Task 9.4 co-leaders,</p><p>&nbsp;Cristina Godinho &amp; Carla Trindade Costa</p><p>&nbsp;</p><p>&nbsp;</p>'
+      '#title_display': after
+      '#description_display': before
+      '#options': yes_no
+      '#states':
+        required:
+          - ':input[name="do_you_confirm_that_you_have_read_and_accept_the_information_sta"]':
+              empty: true
+          - or
+          - ':input[name="do_you_confirm_that_you_have_read_and_accept_the_information_sta"]':
+              value: 'NO'
+  personal_details:
+    '#type': webform_wizard_page
+    '#title': 'Personal Details'
+    '#open': true
+    first_name:
+      '#type': textfield
+      '#title': 'First Name'
+      '#required': true
+    last_name:
+      '#type': textfield
+      '#title': 'Last Name'
+      '#required': true
+    e_mail_adress:
+      '#type': email
+      '#title': 'E-mail Adress'
+      '#required': true
+  education:
+    '#type': webform_wizard_page
+    '#title': Education
+    '#open': true
+    phd:
+      '#type': select
+      '#title': PhD
+      '#options': yes_no
+    indicate_here_field_and_year_of_graduation_phd:
+      '#type': textfield
+      '#title': 'Indicate here field and year of graduation (PhD)'
+      '#required': true
+      '#states':
+        visible-slide:
+          ':input[name="phd"]':
+            value: 'Yes'
+  professional_activity:
+    '#type': webform_wizard_page
+    '#title': 'Professional Activity'
+    '#open': true
+    current_affiliation_institution_and_department:
+      '#type': textfield
+      '#title': 'Current Affiliation (Institution and Department)'
+      '#required': true
+    current_affiliation_country:
+      '#type': webform_select_other
+      '#title': 'Current Affiliation (Country) '
+      '#options': country_names
+      '#required': true
 css: ''
 javascript: ''
 settings:
@@ -25,9 +89,9 @@ settings:
   page_submit_path: ''
   page_confirm_path: ''
   page_theme_name: ''
-  form_title: both
-  form_submit_once: false
-  form_open_message: ''
+  form_title: source_entity_webform
+  form_submit_once: true
+  form_open_message: '<p>Considering the training needs identified by Task 9.4 on PARC 1st training needs survey, Task 3.2 is now organising a webinar on the Principles for Effective Risk Communication that will take place online, via Zoom on 28.11.2024, from 12:00 to 13:00 CET. The webinar will be presented by Ana Rita Goes, an Assistant Professor at the National School of Public Health from NOVA Lisbon University, and an expert in health promotion and health communication. It will focus on what is risk communication; what is its purpose and what are core principles; what are core steps and key considerations for a systematic approach to risk communication; and what kind of basic tools and tips can be used to guide the process for developing and implementing risk messages. To consider your participation, we kindly request some essential personal and professional details on this registration form. This information will be used solely for the organisation of this event. Anonymized data will also be used for PARC project reporting. Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e. NOVA National School of Public Health (ENSP), Portugal). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679). If you have any questions, please contact Cristina Godinho (cristina.godinho@ensp.unl.pt), and Carla Trindade Costa (carla.trindade@insa.min-saude.pt). On behalf of the scientific coordination of this webinar and Task 9.4 co-leaders, Cristina Godinho &amp; Carla Trindade Costa</p>'
   form_close_message: ''
   form_exception_message: ''
   form_previous_submissions: true
