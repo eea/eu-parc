@@ -161,9 +161,9 @@ third_party_settings:
                   plugin_types:
                     block: block
                     embed: embed
-                    default: 0
-                    page: 0
-                    feed: 0
+                    default: '0'
+                    page: '0'
+                    feed: '0'
                 third_party_settings: {  }
             weight: 1
             additional: {  }
@@ -239,10 +239,10 @@ third_party_settings:
                 settings:
                   plugin_types:
                     embed: embed
-                    default: 0
-                    page: 0
-                    block: 0
-                    feed: 0
+                    default: '0'
+                    page: '0'
+                    block: '0'
+                    feed: '0'
                 third_party_settings: {  }
             weight: 0
             additional: {  }

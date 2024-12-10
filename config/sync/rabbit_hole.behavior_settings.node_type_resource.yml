@@ -1,0 +1,14 @@
+uuid: db4d4949-c3d9-4da5-ab42-8ae8e6c17b89
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.resource
+id: node_type_resource
+entity_type_id: node_type
+entity_id: resource
+action: access_denied
+allow_override: 0
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied

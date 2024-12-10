@@ -76,6 +76,13 @@ function parc_core_theme() {
         'items' => [],
       ],
     ],
+    'parc_events_table' => [
+      'variables' => [
+        'year_header' => [],
+        'month_header' => [],
+        'rows' => [],
+      ],
+    ],
   ];
 }
 

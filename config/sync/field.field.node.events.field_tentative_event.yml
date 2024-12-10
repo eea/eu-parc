@@ -1,0 +1,21 @@
+uuid: 914765f4-d40e-401d-b664-1ad8ed7d5a0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tentative_event
+    - node.type.events
+id: node.events.field_tentative_event
+field_name: field_tentative_event
+entity_type: node
+bundle: events
+label: 'Tentative event'
+description: 'Events marked as tentative will only appear in the calendar, but will NOT be displayed in listings'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
