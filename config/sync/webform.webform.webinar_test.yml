@@ -1,0 +1,264 @@
+uuid: da1415b0-db1a-4a04-afd3-bfa357ef68d9
+langcode: en
+status: closed
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 20
+template: false
+archive: false
+id: webinar_test
+title: Webinar_Test
+description: '<p>Considering the training needs identified by Task 9.4 on PARC 1st training needs survey, Task 3.2 is now organising a webinar on the Principles for Effective Risk Communication that will take place online, via Zoom on 28.11.2024, from 12:00 to 13:00 CET. The webinar will be presented by Ana Rita Goes, an Assistant Professor at the National School of Public Health from NOVA Lisbon University, and an expert in health promotion and health communication. It will focus on what is risk communication; what is its purpose and what are core principles; what are core steps and key considerations for a systematic approach to risk communication; and what kind of basic tools and tips can be used to guide the process for developing and implementing risk messages. To consider your participation, we kindly request some essential personal and professional details on this registration form. This information will be used solely for the organisation of this event. Anonymized data will also be used for PARC project reporting. Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e. NOVA National School of Public Health (ENSP), Portugal). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679). If you have any questions, please contact Cristina Godinho (cristina.godinho@ensp.unl.pt), and Carla Trindade Costa (carla.trindade@insa.min-saude.pt). On behalf of the scientific coordination of this webinar and Task 9.4 co-leaders, Cristina Godinho &amp; Carla Trindade Costa</p>'
+categories: {  }
+elements: |-
+  webinar_on_principles_for_effective_risk_communication:
+    '#type': webform_wizard_page
+    '#title': 'Webinar on Principles for Effective Risk Communication'
+    '#open': true
+    '#format': header
+    do_you_confirm_that_you_have_read_and_accept_the_information_sta:
+      '#type': select
+      '#title': 'Do you confirm that you have read and accept the information stated above? '
+      '#description': '<p>Considering the training needs identified by Task 9.4 on PARC 1st training needs survey, Task 3.2 is now organising a webinar on the Principles for Effective Risk Communication that will take place online, via Zoom on 28.11.2024, from 12:00 to 13:00 CET. The webinar will be presented by Ana Rita Goes, an Assistant Professor at the National School of Public Health from NOVA Lisbon University, and an expert in health promotion and health communication. It will focus on what is risk communication; what is its purpose and what are core principles; what are core steps and key considerations for a systematic approach to risk communication; and what kind of basic tools and tips can be used to guide the process for developing and implementing risk messages. To consider your participation, we kindly request some essential personal and professional details on this registration form. This information will be used solely for the organisation of this event. Anonymized data will also be used for PARC project reporting. Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e. NOVA National School of Public Health (ENSP), Portugal). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679). If you have any questions, please contact Cristina Godinho (cristina.godinho@ensp.unl.pt), and Carla Trindade Costa (carla.trindade@insa.min-saude.pt). On behalf of the scientific coordination of this webinar and Task 9.4 co-leaders,</p><p>&nbsp;Cristina Godinho &amp; Carla Trindade Costa</p><p>&nbsp;</p><p>&nbsp;</p>'
+      '#title_display': after
+      '#description_display': before
+      '#options': yes_no
+      '#states':
+        required:
+          - ':input[name="do_you_confirm_that_you_have_read_and_accept_the_information_sta"]':
+              empty: true
+          - or
+          - ':input[name="do_you_confirm_that_you_have_read_and_accept_the_information_sta"]':
+              value: 'NO'
+  personal_details:
+    '#type': webform_wizard_page
+    '#title': 'Personal Details'
+    '#open': true
+    first_name:
+      '#type': textfield
+      '#title': 'First Name'
+      '#required': true
+    last_name:
+      '#type': textfield
+      '#title': 'Last Name'
+      '#required': true
+    e_mail_adress:
+      '#type': email
+      '#title': 'E-mail Adress'
+      '#required': true
+  education:
+    '#type': webform_wizard_page
+    '#title': Education
+    '#open': true
+    phd:
+      '#type': select
+      '#title': PhD
+      '#options': yes_no
+    indicate_here_field_and_year_of_graduation_phd:
+      '#type': textfield
+      '#title': 'Indicate here field and year of graduation (PhD)'
+      '#required': true
+      '#states':
+        visible-slide:
+          ':input[name="phd"]':
+            value: 'Yes'
+  professional_activity:
+    '#type': webform_wizard_page
+    '#title': 'Professional Activity'
+    '#open': true
+    current_affiliation_institution_and_department:
+      '#type': textfield
+      '#title': 'Current Affiliation (Institution and Department)'
+      '#required': true
+    current_affiliation_country:
+      '#type': webform_select_other
+      '#title': 'Current Affiliation (Country) '
+      '#options': country_names
+      '#required': true
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: true
+  form_open_message: '<p>Considering the training needs identified by Task 9.4 on PARC 1st training needs survey, Task 3.2 is now organising a webinar on the Principles for Effective Risk Communication that will take place online, via Zoom on 28.11.2024, from 12:00 to 13:00 CET. The webinar will be presented by Ana Rita Goes, an Assistant Professor at the National School of Public Health from NOVA Lisbon University, and an expert in health promotion and health communication. It will focus on what is risk communication; what is its purpose and what are core principles; what are core steps and key considerations for a systematic approach to risk communication; and what kind of basic tools and tips can be used to guide the process for developing and implementing risk messages. To consider your participation, we kindly request some essential personal and professional details on this registration form. This information will be used solely for the organisation of this event. Anonymized data will also be used for PARC project reporting. Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e. NOVA National School of Public Health (ENSP), Portugal). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679). If you have any questions, please contact Cristina Godinho (cristina.godinho@ensp.unl.pt), and Carla Trindade Costa (carla.trindade@insa.min-saude.pt). On behalf of the scientific coordination of this webinar and Task 9.4 co-leaders, Cristina Godinho &amp; Carla Trindade Costa</p>'
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
