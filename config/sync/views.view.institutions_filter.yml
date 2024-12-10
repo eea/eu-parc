@@ -24,13 +24,15 @@ display:
     display_options:
       title: 'Institutions filter'
       fields:
-        field_abbreviation:
-          id: field_abbreviation
-          table: node__field_abbreviation
-          field: field_abbreviation
+        title:
+          id: title
+          table: node_field_data
+          field: title
           relationship: none
           group_type: group
           admin_label: ''
+          entity_type: node
+          entity_field: title
           plugin_id: field
           label: ''
           exclude: true
@@ -43,7 +45,7 @@ display:
             external: false
             replace_spaces: false
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: true
             alt: ''
             rel: ''
             link_class: ''
@@ -57,7 +59,7 @@ display:
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
+            strip_tags: true
             trim: false
             preserve_tags: ''
             html: false
@@ -87,28 +89,26 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        title:
-          id: title
-          table: node_field_data
-          field: title
+        field_abbreviation:
+          id: field_abbreviation
+          table: node__field_abbreviation
+          field: field_abbreviation
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: title
           plugin_id: field
           label: ''
           exclude: false
           alter:
             alter_text: true
-            text: "{{ field_abbreviation|trim == \"\" ? title: field_abbreviation }}\r\n"
-            make_link: true
+            text: '{{ field_abbreviation }} - {{ title }}'
+            make_link: false
             path: ''
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: true
             alt: ''
             rel: ''
             link_class: ''
@@ -122,7 +122,7 @@ display:
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
+            strip_tags: true
             trim: false
             preserve_tags: ''
             html: false
@@ -134,14 +134,14 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: '{{ title }}'
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: true
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -255,7 +255,8 @@ display:
         type: entity_reference
         options:
           default_field_elements: true
-          inline: {  }
+          inline:
+            field_abbreviation: field_abbreviation
           separator: ''
           hide_empty: false
       display_extenders:
