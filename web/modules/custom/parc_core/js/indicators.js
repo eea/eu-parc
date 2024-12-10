@@ -2520,7 +2520,10 @@
 
             const strokeWidth = Math.max(1.5, 3 * ev.Duration/2);
 
-            const html = `<p>${ev.Date}</p><p><b>${ev.Title}</b></p><p><b>${ev.Participants} participants ${ev.Duration} hours</b></p><p>Click here to view the training</p>`;
+            let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev.Date}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
+            if (ev.Link) {
+              html += `<p>Click to view the training</p>`;
+            }
             const link = ev.Link;
             svg.append("a")
             .attr("data-bs-html", "true")
@@ -2532,7 +2535,7 @@
             })
             .attr("target", "_blank")
             .attr("href", function(d) {
-                return link;
+                return link ? link : null;
             })
             .append("line")
             .attr("x1", x1)
@@ -2549,6 +2552,7 @@
             .attr("y2", y2);
 
             $(function () {
+              Tooltip.Default.allowList.p = ['style'];
               $('[data-bs-toggle="popover"]').popover();
             });
 
@@ -2583,7 +2587,8 @@
           .append("div")
           .attr("class", "legend-container")
           .style("display", "flex")
-          .style("justify-content", "end");
+          .style("justify-content", "end")
+          .style("margin-top", "10px");
 
 
         const gradientStart = adjustColor(colors[latestYear], 60);
@@ -2682,7 +2687,10 @@
                   const strokeColor = colorScale(ev.Participants);
                   const strokeWidth = Math.max(1.5, 3 * ev.Duration / 2);
 
-                  const html = `<p>${ev.Date}</p><p><b>${ev.Title}</b></p><p><b>${ev.Participants} participants ${ev.Duration} hours</b></p><p>Click here to view the training</p>`;
+                  let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev.Date}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
+                  if (ev.Link) {
+                    html += `<p>Click to view the training</p>`;
+                  }
                   const link = ev.Link;
 
                   svg.append("a")
@@ -2695,7 +2703,7 @@
                       })
                       .attr("target", "_blank")
                       .attr("href", function(d) {
-                          return link;
+                        return link ? link : null;
                       })
                       .classed("image", true)
                       .append("line")
@@ -2714,7 +2722,8 @@
 
 
                   $(function () {
-                      $('[data-bs-toggle="popover"]').popover();
+                    Tooltip.Default.allowList.p = ['style'];
+                    $('[data-bs-toggle="popover"]').popover();
                   });
               });
           });
