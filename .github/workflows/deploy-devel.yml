@@ -3,12 +3,15 @@ on:
     branches:
       - 'test'
 
-name: 'Deploy staging instance'
+name: 'Deploy DEVEL instance'
 jobs:
-  deploy:
-    name: 'deployment'
+  create_release_archive:
+    name: 'Create release archive'
     runs-on:
       labels: 'drupal-runner-v2'
+    outputs:
+      release_id: ${{ steps.artifact.outputs.base }}
+      release_filename: ${{ steps.artifact.outputs.filename }}
     steps:
       - name: 'Checkout source code'
         uses: actions/checkout@v4
@@ -25,14 +28,20 @@ jobs:
         id: artifact
         uses: eaudeweb/drupal-artifact-action@1.x
 
+  deploy_release:
+    name: 'Deploy release on the server'
+    runs-on:
+      labels: 'drupal-runner-v2'
+    needs: create_release_archive
+    steps:
       - name: 'Deploy release on the server'
         uses: eaudeweb/drupal-deploy-action@v2.1.2
         with:
           ssh_user:             ${{ secrets.DEVEL_SSH_USER }}
           ssh_host:             ${{ secrets.DEVEL_SSH_HOST }}
           ssh_key:              ${{ secrets.DEVEL_SSH_KEY }}
-          release_id:           ${{ steps.artifact.outputs.base }}
-          release_filename:     ${{ steps.artifact.outputs.filename }}
+          release_id:           ${{ needs.create_release_archive.outputs.release_id }}
+          release_filename:     ${{ needs.create_release_archive.outputs.release_filename }}
           project_dir:          /var/www/html/devel.eu-parc.eu
           artifacts_dir:        /var/www/artifacts/devel.eu-parc.eu
           settings_file:        /var/www/config/devel.eu-parc.eu/settings.local.php
@@ -42,14 +51,26 @@ jobs:
           database_dump_dir:    /var/www/config/devel.eu-parc.eu/sync
           artifacts_lifespan: 30
 
+  update_instance:
+    name: 'Update Drupal instance'
+    runs-on:
+      labels: 'drupal-runner-v2'
+    needs: deploy_release
+    steps:
       - name: 'Update the Drupal instance'
         id: release
-        uses: eaudeweb/drupal-update-action@v1.0
+        uses: eaudeweb/drupal-update-action@v1.2
         with:
           path: /var/www/html/devel.eu-parc.eu
 
+  notify_failure:
+    name: 'Notify on failure'
+    runs-on:
+      labels: 'drupal-runner-v2'
+    needs: [create_release_archive, deploy_release, update_instance]
+    if: failure()
+    steps:
       - name: 'Discord notification on failed deploy'
-        if: failure()
         run: >
           curl -X POST -F
           "content=:octagonal_sign: ${{ github.repository }} failed to deploy release **${{ github.ref_name }}** on <https://devel.eu-parc.eu>.
