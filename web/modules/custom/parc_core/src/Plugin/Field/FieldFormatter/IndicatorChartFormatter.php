@@ -139,10 +139,10 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
         'date' => $last_year != $year ? $formatted_date : $month,
         'title' => $node->label(),
       ];
-      
+
       $last_year = $year;
     }
-    
+
     return [
       '#theme' => 'parc_publications_timeline',
       '#items' => $items,
@@ -173,7 +173,12 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
         foreach ($row as &$value) {
           $value = str_replace('%', '', $value);
           if (is_numeric($value)) {
-            $value = (int) $value;
+            if ((float) $value == (int) $value) {
+              $value = (int) $value;
+            }
+            else {
+              $value = (float) $value;
+            }
           }
         }
 

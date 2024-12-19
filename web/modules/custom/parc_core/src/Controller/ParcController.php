@@ -175,9 +175,8 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
           'Publication name' => $title
         ];
       }
-
+      array_unshift($node_data[0]["value"], ["Date", "Publication name"]);
     }
-    array_unshift($node_data[0]["value"], ["Date", "Publication name"]);
     $csv_data = $this->generateCsv($node_data);
     return $this->createCsvResponse($csv_data);
 
