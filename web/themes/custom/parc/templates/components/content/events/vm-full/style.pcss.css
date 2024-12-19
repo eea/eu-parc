@@ -104,7 +104,7 @@
 
     .field--name-body,
     .body {
-      & > *:not(blockquote):not(div) {
+      & > *:not(div) {
         margin-right: calc(var(--col-w1) * 2);
       }
 

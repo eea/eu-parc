@@ -44,6 +44,12 @@ settings:
     -
       value: indicator_9_2
       label: 'Indicator 9.2'
+    -
+      value: synergies
+      label: Synergies
+    -
+      value: trainings
+      label: Trainings
   allowed_values_function: ''
 module: options
 locked: false

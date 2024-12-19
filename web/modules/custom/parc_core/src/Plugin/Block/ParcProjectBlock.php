@@ -136,6 +136,7 @@ class ParcProjectBlock extends BlockBase implements ContainerFactoryPluginInterf
         'percentage' => 100 / count($projects),
         'id' => $project->id(),
         'url' => $project->toUrl()->toString(),
+        'show_link' => $project->get('field_show_link')->value,
       ];
 
       foreach ($project_topics as $topic) {

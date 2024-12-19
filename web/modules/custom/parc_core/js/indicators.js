@@ -1,19 +1,20 @@
 (function ($, Drupal, once, drupalSettings) {
   function scrollChart(chartElement) {
-    let container = chartElement.find('.indicator-scrollable-container');
-    let content = container.find('.indicator-container');
-    let scroll = (content.get(0).offsetWidth - container.get(0).offsetWidth) / 2;
+    let container = chartElement.find(".indicator-scrollable-container");
+    let content = container.find(".indicator-container");
+    let scroll =
+      (content.get(0).offsetWidth - container.get(0).offsetWidth) / 2;
     container.scrollLeft(scroll);
   }
 
   Drupal.behaviors.indicatorCharts = {
     attach: function (context, settings) {
-        const observerOptions = {
-          root: null,
-          rootMargin: "0px",
-          threshold: 1
-        };
-
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1,
+      };
+      Drupal.behaviors.bootstrapPopover.attach();
       const chartObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -45,6 +46,8 @@
           group_pie: buildGroupPieChart,
           pie: buildPieChart,
           classic_pie: buildClassicPieChart,
+          trainings: buildTrainingsChart,
+          synergies: buildSynergiesChart,
         };
 
         const buildFunction = buildFunctions[chartType];
@@ -536,7 +539,6 @@
             .style("stroke", "black") // Optionally set stroke color to match
             .style("stroke-width", 0)
             .on("end", (d, i) => {
-
               svg
                 .selectAll(".sliceLabel")
                 .data(pieData, (d) => d.index)
@@ -548,7 +550,6 @@
                 .style("font-size", `${font_size}px`)
                 .style("fill", colorHex)
                 .each(function (d, i) {
-
                   let startAngle = (d.startAngle * 180) / Math.PI;
                   let endAngle = (d.endAngle * 180) / Math.PI;
                   let angle = (endAngle - startAngle) % 360;
@@ -595,9 +596,10 @@
                       endX = labelX + bbox.width / 2 + 10; // Use bbox.width for the text width
                       endY = labelY - 20;
 
-                      d3.select(this).attr("transform", `translate(${labelX},${labelY})`);
-
-
+                      d3.select(this).attr(
+                        "transform",
+                        `translate(${labelX},${labelY})`
+                      );
 
                       // Draw the connector lines, one vertical and one horizontal
                       svg
@@ -1001,7 +1003,7 @@
         const tooltip = d3
           .select(`body`)
           .append("div")
-          .attr("class", "tooltip")
+          .attr("class", "tool")
           .style("position", "absolute")
           .style("visibility", "hidden")
           .style("background", "#fff")
@@ -1303,16 +1305,15 @@
             .attr("fill", "white");
         }
 
-
         const legendContainer = d3
-        .select(`#${wrapperId}`)
-        .append("div")
-        .attr("class", "legend-container")
-        .style("display", "flex")
-        .style("flex-direction", "column")
-        .style("margin-top", "10px");
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend-container")
+          .style("display", "flex")
+          .style("flex-direction", "column")
+          .style("margin-top", "10px");
 
-    // Add legend items for each category
+        // Add legend items for each category
         const legendItems = legendContainer
           .selectAll(".legend-item")
           .data(Object.entries(data))
@@ -1323,7 +1324,7 @@
           .style("align-items", "center")
           .style("margin-bottom", "5px");
 
-          legendItems
+        legendItems
           .append("span")
           .style("width", "16px")
           .style("height", "16px")
@@ -2082,7 +2083,6 @@
 
         // Function to update the chart based on the selected year
         function updateChart(selectedYear) {
-
           const sortedCategories = categories.sort((a, b) => {
             const valueA = data[selectedYear][a] || 0;
             const valueB = data[selectedYear][b] || 0;
@@ -2092,7 +2092,8 @@
           x0.domain(sortedCategories); // Set the domain to the sorted categories
 
           // Update the x-axis labels
-          xAxisGroup.call(d3.axisBottom(x0))
+          xAxisGroup
+            .call(d3.axisBottom(x0))
             .selectAll("text")
             .attr("transform", "rotate(-45)")
             .style("text-anchor", "end")
@@ -2140,7 +2141,6 @@
         }
 
         updateChart(latestYear);
-
 
         svg
           .append("text")
@@ -2414,6 +2414,937 @@
         }
       }
 
+      function buildTrainingsChart(wrapperId, chartData) {
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
+
+        function hexToRgb(hex) {
+          hex = hex.replace("#", "");
+          let r = parseInt(hex.substring(0, 2), 16);
+          let g = parseInt(hex.substring(2, 4), 16);
+          let b = parseInt(hex.substring(4, 6), 16);
+          return { r, g, b };
+        }
+
+        function rgbToHex(r, g, b) {
+          return (
+            "#" +
+            ((1 << 24) | (r << 16) | (g << 8) | b)
+              .toString(16)
+              .slice(1)
+              .toUpperCase()
+          );
+        }
+
+        function adjustColor(color, amount) {
+          let { r, g, b } = hexToRgb(color);
+          r = Math.min(255, Math.max(0, r + amount));
+          g = Math.min(255, Math.max(0, g + amount));
+          b = Math.min(255, Math.max(0, b + amount));
+          return rgbToHex(r, g, b);
+        }
+
+        const years = Object.keys(chartData.chart);
+        const months = [
+          "JAN",
+          "FEB",
+          "MAR",
+          "APR",
+          "MAY",
+          "JUN",
+          "JUL",
+          "AUG",
+          "SEP",
+          "OCT",
+          "NOV",
+          "DEC",
+        ];
+        const latestYear = 2024;
+        const monthsWithData = Object.keys(chartData.chart[latestYear]);
+        const yearData = chartData.chart[latestYear];
+        const maxData = Math.max(
+          ...monthsWithData.map((month) => yearData[month].length)
+        );
+        const maxParticipants = Math.max(
+          ...monthsWithData.map((month) =>
+            Math.max(...yearData[month].map((event) => event.Participants))
+          )
+        );
+        const minParticipants = Math.min(
+          ...monthsWithData.map((month) =>
+            Math.min(...yearData[month].map((event) => event.Participants))
+          )
+        );
+        const latestYearColors = [
+          adjustColor(colors[latestYear], 60),
+          adjustColor(colors[latestYear], -60),
+        ];
+        const margin = { top: 60, right: 20, bottom: 0, left: 20 };
+        const radius = 75;
+        const segmentLength = 70;
+        const width =
+          600 +
+          (segmentLength + 20) * Math.max(0, maxData - 1) -
+          margin.left -
+          margin.right;
+        const height =
+          600 +
+          (segmentLength + 20) * Math.max(0, maxData - 1) -
+          margin.top -
+          margin.bottom;
+        const svg = d3
+          .select(
+            `#${wrapperId} .indicator-scrollable-container .indicator-container`
+          )
+          .append("svg")
+          .attr("width", width)
+          .attr("height", height)
+          .append("g")
+          .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+        $(`#${wrapperId}`).attr("style", "text-align: center");
+
+        const angleStep = (2 * Math.PI) / months.length;
+        const startAngle = -Math.PI / 2;
+
+        const colorScale = d3
+          .scaleLinear()
+          .domain([minParticipants, maxParticipants])
+          .range(latestYearColors);
+        months.forEach((month, i) => {
+          const angle = startAngle + angleStep * i;
+          const x = radius * Math.cos(angle);
+          const y = radius * Math.sin(angle);
+
+          svg
+            .append("text")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .text(month)
+            .style("font-size", "14px")
+            .style("fill", "#000");
+
+          const radiusForSegments = radius + 20;
+          const events = yearData[month] || [];
+          events.forEach((ev, j) => {
+            const segmentStart = radiusForSegments + j * (segmentLength + 15);
+            const segmentEnd = segmentStart + segmentLength;
+            const x1 = segmentStart * Math.cos(angle);
+            const y1 = segmentStart * Math.sin(angle);
+            const x2 = segmentEnd * Math.cos(angle);
+            const y2 = segmentEnd * Math.sin(angle);
+
+            let strokeColor = colorScale(ev.Participants);
+
+            const strokeWidth = Math.max(1.5, (3 * ev.Duration) / 2);
+
+            let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev.Date}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
+            if (ev.Link) {
+              html += `<p>Click to view the training</p>`;
+            }
+            const link = ev.Link;
+            svg
+              .append("a")
+              .attr("data-bs-html", "true")
+              .attr("data-bs-placement", "top")
+              .attr("data-bs-toggle", "popover")
+              .attr("data-bs-trigger", "hover")
+              .attr("data-bs-content", function (d) {
+                return html;
+              })
+              .attr("target", "_blank")
+              .attr("href", function (d) {
+                return link ? link : null;
+              })
+              .append("line")
+              .attr("x1", x1)
+              .attr("y1", y1)
+              .attr("x2", x1)
+              .attr("y2", y1)
+              .attr("stroke", strokeColor)
+              .attr("stroke-width", strokeWidth)
+              .attr("stroke-linecap", "round")
+              .transition()
+              .duration(750)
+              .delay(100 * j)
+              .attr("x2", x2)
+              .attr("y2", y2);
+
+            $(function () {
+              Tooltip.Default.allowList.p = ["style"];
+              $('[data-bs-toggle="popover"]').popover();
+            });
+          });
+        });
+        const legend = d3
+          .select("#" + wrapperId)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map((year) => ({ year, color: colors[year] })))
+          .enter()
+          .append("div")
+          .style("cursor", "pointer")
+          .on("click", function (event, d) {
+            updateChart(d.year);
+          });
+
+        legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => d.color);
+
+        legend
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d.year)
+          .text((d) => d.year);
+
+        const legendContainer = d3
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend-container")
+          .style("display", "flex")
+          .style("justify-content", "end")
+          .style("margin-top", "10px");
+
+        const gradientStart = adjustColor(colors[latestYear], 60);
+        const gradientEnd = adjustColor(colors[latestYear], -60);
+        const leg = legendContainer
+          .append("div")
+          .style("display", "flex")
+          .style("flex-direction", "column")
+          .style("align-items", "start");
+
+        leg
+          .append("div")
+          .text("Number of participants")
+          .style("margin-bottom", "5px")
+          .style("font-size", "17px");
+
+        const gradientDiv = leg
+          .append("div")
+          .style("height", "10px")
+          .style("width", "200px")
+          .style(
+            "background",
+            `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`
+          );
+
+        leg
+          .append("div")
+          .text("Duration")
+          .style("margin-top", "10px")
+          .style("font-size", "17px");
+
+        const numLines = 4;
+        const lineWidth = 150;
+        const strokeWidths = [2, 4, 6, 8];
+
+        const durationLineContainer = leg
+          .append("div")
+          .style("display", "flex")
+          .style("align-items", "center")
+          .style("height", "10px")
+          .style("width", `200px`);
+
+        for (let i = 0; i < numLines; i++) {
+          durationLineContainer
+            .append("div")
+            .style("height", `${strokeWidths[i]}px`)
+            .style("width", "50px")
+            .style("background-color", `black`)
+            .style("margin-right", "2px")
+            .style("border-radius", "5px");
+        }
+
+        function updateChart(year) {
+          svg.selectAll("line").remove();
+          d3.select(`#${wrapperId}`).selectAll(".legend-container").remove();
+
+          const yearColors = [
+            adjustColor(colors[year], 60),
+            adjustColor(colors[year], -60),
+          ];
+
+          const yearData = chartData.chart[year];
+
+          const monthsWithData = Object.keys(chartData.chart[year]);
+          const maxData = Math.max(
+            ...monthsWithData.map((month) => yearData[month].length)
+          );
+          const maxParticipants = Math.max(
+            ...monthsWithData.map((month) =>
+              Math.max(...yearData[month].map((event) => event.Participants))
+            )
+          );
+          const minParticipants = Math.min(
+            ...monthsWithData.map((month) =>
+              Math.min(...yearData[month].map((event) => event.Participants))
+            )
+          );
+          const margin = { top: 60, right: 20, bottom: 0, left: 20 };
+          const radius = 75;
+          const segmentLength = 70;
+          const width =
+            600 +
+            (segmentLength + 20) * Math.max(0, maxData - 1) -
+            margin.left -
+            margin.right;
+          const height =
+            600 +
+            (segmentLength + 20) * Math.max(0, maxData - 1) -
+            margin.top -
+            margin.bottom;
+          d3.select(`#${wrapperId} svg`)
+            .attr("width", width)
+            .attr("height", height)
+            .attr("viewBox", `0 0 ${width} ${height}`)
+            .attr("preserveAspectRatio", "xMidYMid meet");
+
+          d3.select(`#${wrapperId} svg g`).attr(
+            "transform",
+            `translate(${width / 2}, ${height / 2})`
+          );
+
+          const colorScale = d3
+            .scaleLinear()
+            .domain([minParticipants, maxParticipants])
+            .range(yearColors);
+
+          monthsWithData.forEach((month, i) => {
+            const angle = startAngle + angleStep * months.indexOf(month);
+            const x = radius * Math.cos(angle);
+            const y = radius * Math.sin(angle);
+            const events = yearData[month] || [];
+            events.forEach((ev, j) => {
+              const segmentStart = radius + 20 + j * (segmentLength + 15);
+              const segmentEnd = segmentStart + segmentLength;
+
+              const x1 = segmentStart * Math.cos(angle);
+              const y1 = segmentStart * Math.sin(angle);
+              const x2 = segmentEnd * Math.cos(angle);
+              const y2 = segmentEnd * Math.sin(angle);
+
+              const strokeColor = colorScale(ev.Participants);
+              const strokeWidth = Math.max(1.5, (3 * ev.Duration) / 2);
+
+              let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev.Date}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
+              if (ev.Link) {
+                html += `<p>Click to view the training</p>`;
+              }
+              const link = ev.Link;
+
+              svg
+                .append("a")
+                .attr("data-bs-html", "true")
+                .attr("data-bs-placement", "top")
+                .attr("data-bs-toggle", "popover")
+                .attr("data-bs-trigger", "hover")
+                .attr("data-bs-content", function (d) {
+                  return html;
+                })
+                .attr("target", "_blank")
+                .attr("href", function (d) {
+                  return link ? link : null;
+                })
+                .classed("image", true)
+                .append("line")
+                .attr("x1", x1)
+                .attr("y1", y1)
+                .attr("x2", x1)
+                .attr("y2", y1)
+                .attr("stroke", strokeColor)
+                .attr("stroke-width", strokeWidth)
+                .attr("stroke-linecap", "round")
+                .transition()
+                .duration(750)
+                .delay(100 * j)
+                .attr("x2", x2)
+                .attr("y2", y2);
+
+              $(function () {
+                Tooltip.Default.allowList.p = ["style"];
+                $('[data-bs-toggle="popover"]').popover();
+              });
+            });
+          });
+          const legendContainer = d3
+            .select(`#${wrapperId}`)
+            .append("div")
+            .attr("class", "legend-container")
+            .style("display", "flex")
+            .style("justify-content", "end");
+
+          const gradientStart = adjustColor(colors[year], 60);
+          const gradientEnd = adjustColor(colors[year], -60);
+          const leg = legendContainer
+            .append("div")
+            .style("display", "flex")
+            .style("flex-direction", "column")
+            .style("align-items", "start");
+
+          leg
+            .append("div")
+            .text("Number of participants")
+            .style("margin-bottom", "5px")
+            .style("font-size", "17px");
+
+          const gradientDiv = leg
+            .append("div")
+            .style("height", "10px")
+            .style("width", "200px")
+            .style(
+              "background",
+              `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`
+            );
+
+          leg
+            .append("div")
+            .text("Duration")
+            .style("margin-top", "10px")
+            .style("font-size", "17px");
+
+          const numLines = 4;
+          const lineWidth = 150;
+          const strokeWidths = [2, 4, 6, 8];
+
+          const durationLineContainer = leg
+            .append("div")
+            .style("display", "flex")
+            .style("align-items", "center")
+            .style("height", "10px")
+            .style("width", `200px`);
+
+          for (let i = 0; i < numLines; i++) {
+            durationLineContainer
+              .append("div")
+              .style("height", `${strokeWidths[i]}px`)
+              .style("width", "50px")
+              .style("background-color", `black`)
+              .style("margin-right", "2px")
+              .style("border-radius", "5px");
+          }
+        }
+      }
+
+      function buildSynergiesChart(wrapperId, chartData) {
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
+        function hexToRgb(hex) {
+          hex = hex.replace("#", "");
+          let r = parseInt(hex.substring(0, 2), 16);
+          let g = parseInt(hex.substring(2, 4), 16);
+          let b = parseInt(hex.substring(4, 6), 16);
+          return { r, g, b };
+        }
+
+        function rgbToHex(r, g, b) {
+          return (
+            "#" +
+            ((1 << 24) | (r << 16) | (g << 8) | b)
+              .toString(16)
+              .slice(1)
+              .toUpperCase()
+          );
+        }
+
+        function adjustColor(color, amount) {
+          let { r, g, b } = hexToRgb(color);
+          r = Math.min(255, Math.max(0, r + amount));
+          g = Math.min(255, Math.max(0, g + amount));
+          b = Math.min(255, Math.max(0, b + amount));
+          return rgbToHex(r, g, b);
+        }
+
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+        const width = 900 - margin.left - margin.right;
+        const height = 650 - margin.top - margin.bottom;
+        const outerRadius = 140;
+        const innerRadius = outerRadius - 50;
+
+        // Extract the fifth category for the inner pie
+        const years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
+        const data = chartData.chart[latestYear];
+        const innerCategory =
+          "External initiatives seeking synergies with PARC";
+        const innerValue = data[innerCategory];
+        const outerCategories = Object.keys(data).filter(
+          (category) => category !== innerCategory
+        );
+        const outerValues = outerCategories.map((category) => data[category]);
+        const animationDuration = 300;
+        const animationDelay = 40;
+        const svg = d3
+          .select(
+            `#${wrapperId} .indicator-scrollable-container .indicator-container`
+          )
+          .append("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr(
+            "transform",
+            `translate(${width / 2 + margin.left}, ${height / 2 + margin.top})`
+          );
+
+        // Add central text
+        svg
+          .append("text")
+          .classed("inner-text", true)
+          .attr("text-anchor", "middle")
+          .style("font-size", "16px")
+          .style("font-weight", "bold")
+          .text(innerValue + "\n" + innerCategory)
+          .style("opacity", "0")
+          .transition()
+          .duration(animationDuration)
+          .delay(0)
+          .style("opacity", "1"); // Value for the category
+
+        d3.selectAll(".inner-text").call(wrap, innerRadius * 2 - 20);
+
+        // Draw radial lines for the inner pie
+        const totalLines = innerValue;
+        const angleStep = (2 * Math.PI) / totalLines;
+
+        for (let i = 0; i < totalLines; i++) {
+          const angle = i * angleStep - Math.PI / 2;
+          const x1 = Math.cos(angle) * innerRadius;
+          const y1 = Math.sin(angle) * innerRadius;
+          const x2 = Math.cos(angle) * outerRadius;
+          const y2 = Math.sin(angle) * outerRadius;
+
+          svg
+            .append("line")
+            .attr("x1", x1)
+            .attr("y1", y1)
+            .attr("x2", x1)
+            .attr("y2", y1)
+            .attr("stroke", `${adjustColor(colors[latestYear], -90)}`) // Dark blue color
+            .attr("stroke-width", 12)
+            .attr("stroke-linecap", "round")
+            .transition()
+            .duration(animationDuration)
+            .delay(animationDelay * i)
+            .attr("x2", x2)
+            .attr("y2", y2);
+        }
+        const outerRadiusStart = outerRadius + 20; // Start just outside the inner chart
+        const outerRadiusEnd = outerRadius + 90; // Adjust to desired size
+        const totalOuterLines = outerCategories
+          .slice(0, 4)
+          .reduce((sum, category) => sum + data[category], 0);
+        const outerAngleStep = (2 * Math.PI) / totalOuterLines;
+        let currentAngle = -Math.PI / 2; // Start at the top
+
+        let categoryColors = [
+          adjustColor(colors[latestYear], -60),
+          adjustColor(colors[latestYear], -30),
+          adjustColor(colors[latestYear], 30),
+          adjustColor(colors[latestYear], 60),
+        ];
+
+        outerCategories.slice(0, 4).forEach((category, index) => {
+          const categoryValue = data[category];
+          const rotationOffset = -Math.PI / 2;
+          let categoryAngle = currentAngle;
+
+          for (let i = 0; i < categoryValue; i++) {
+            const x1 = Math.cos(currentAngle) * outerRadiusStart;
+            const y1 = Math.sin(currentAngle) * outerRadiusStart;
+            const x2 = Math.cos(currentAngle) * outerRadiusEnd;
+            const y2 = Math.sin(currentAngle) * outerRadiusEnd;
+
+            // Draw each line
+            svg
+              .append("line")
+              .attr("x1", x1)
+              .attr("y1", y1)
+              .attr("x2", x1)
+              .attr("y2", y1)
+              .attr("stroke", categoryColors[index]) // Unique color per category
+              .attr("stroke-width", 4)
+              .transition()
+              .duration(animationDuration)
+              .delay(animationDelay * i)
+              .attr("x2", x2)
+              .attr("y2", y2);
+
+            // Increment the angle
+            currentAngle += outerAngleStep;
+          }
+          const labelX =
+            Math.cos((categoryAngle + currentAngle) / 2) *
+            (outerRadiusEnd + 20); // Position slightly beyond the outer radius
+          const labelY =
+            Math.sin((categoryAngle + currentAngle) / 2) *
+            (outerRadiusEnd + 20);
+
+          let addToX = 0; // Default value for X adjustment
+          let addToY = 20; // Default value for Y adjustment
+
+          categoryAngle = (categoryAngle + currentAngle) / 2;
+
+          if (categoryAngle > -Math.PI / 9 && categoryAngle < Math.PI / 9) {
+            // On top (near -20° to 20°)
+            addToY = -40;
+          } else if (
+            categoryAngle > (8 * Math.PI) / 9 &&
+            categoryAngle < (10 * Math.PI) / 9
+          ) {
+            // On bottom (near 160° to 200°)
+            addToY = 40;
+          } else if (
+            categoryAngle > Math.PI / 2 &&
+            categoryAngle < (3 * Math.PI) / 2
+          ) {
+            // On the left
+            addToX = -60;
+          } else {
+            // On the right
+            addToX = 60;
+          }
+
+          let addToX2 =
+            categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2
+              ? -60
+              : 60;
+
+          svg
+            .append("text")
+            .attr("x", labelX + addToX)
+            .attr("y", labelY + addToY)
+            .attr(
+              "text-anchor",
+              categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2
+                ? "end"
+                : "start"
+            )
+            .attr("alignment-baseline", "middle")
+            .style("font-size", "18px")
+            .style("fill", `${categoryColors[index]}`)
+            .style("font-weight", "700")
+            .text(category)
+            .style("opacity", "0")
+            .transition()
+            .duration(animationDuration)
+            .delay(index * animationDelay)
+            .style("opacity", "1");
+          svg
+            .append("text")
+            .attr("x", labelX + addToX + addToX2)
+            .attr("y", labelY + addToY + 20) // Slightly below for the value
+            .attr(
+              "text-anchor",
+              categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2
+                ? "end"
+                : "start"
+            )
+            .attr("alignment-baseline", "middle")
+            .style("font-size", "18px")
+            .style("font-weight", "700")
+            .style("fill", `${categoryColors[index]}`)
+            .text(categoryValue)
+            .style("opacity", "0")
+            .transition()
+            .duration(animationDuration)
+            .delay(index * animationDelay)
+            .style("opacity", "1");
+        });
+        const legend = d3
+          .select("#" + wrapperId)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map((year) => ({ year, color: colors[year] })))
+          .enter()
+          .append("div")
+          .style("cursor", "pointer")
+          .on("click", function (event, d) {
+            updateChart(d.year);
+          });
+
+        legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => d.color);
+
+        legend
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d.year)
+          .text((d) => d.year);
+
+        const legendContainer = d3
+          .select(`#${wrapperId}`)
+          .append("div")
+          .attr("class", "legend-container")
+          .style("display", "flex")
+          .style("justify-content", "center");
+
+        const leg = legendContainer
+          .append("div")
+          .style("display", "flex")
+          .style("flex-direction", "column")
+          .style("align-items", "start");
+
+        leg
+          .append("div")
+          .text(
+            "Potential synergies per thematic area for the external initiatives (multiple possible per external initiative)"
+          )
+          .style("margin-bottom", "5px")
+          .style("font-size", "17px")
+          .style("text-align", "center")
+          .style("width", "500px");
+
+        function wrap(text, width) {
+          text.each(function () {
+            let text = d3.select(this),
+              words = text.text().split(/\s+/).reverse(),
+              lineHeight = 1.1, // ems
+              y = text.attr("y"),
+              dy = parseFloat(text.attr("dy")),
+              tspan = text
+                .text(null)
+                .append("tspan")
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("dy", 0 + "em"),
+              firstTspan = tspan;
+            let line = [],
+              lineNumber = 0,
+              word,
+              tspanNode = tspan.node();
+            if (words.length) {
+              let firstWord = words.pop();
+              tspan.text(firstWord); // First word in its own tspan
+              tspan = text
+                .append("tspan")
+                .attr("x", 0)
+                .attr("dy", lineHeight + "em");
+            }
+            while ((word = words.pop())) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              tspanNode = tspan.node();
+              if (tspanNode.getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text
+                  .append("tspan")
+                  .attr("x", 0)
+                  .attr("dy", lineHeight + "em")
+                  .text(word);
+                lineNumber++;
+              }
+            }
+            text.attr("x", 0).attr("y", (-lineNumber * lineHeight) / 2 + "em");
+            firstTspan.attr("dy", (-(lineNumber - 1) * lineHeight) / 2 + "em");
+          });
+        }
+        function updateChart(year) {
+          // Check if the year exists in the data
+          if (!chartData.chart[year]) {
+            console.error(`Data for year ${year} is not available.`);
+            return;
+          }
+
+          // Clear the existing chart
+          svg.selectAll("*").remove();
+
+          // Extract data for the selected year
+          const data = chartData.chart[year];
+          const innerCategory =
+            "External initiatives seeking synergies with PARC";
+          const innerValue = data[innerCategory];
+          const outerCategories = Object.keys(data).filter(
+            (category) => category !== innerCategory
+          );
+          const outerValues = outerCategories.map((category) => data[category]);
+
+          // Add central text
+          svg
+            .append("text")
+            .classed("inner-text", true)
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px")
+            .style("font-weight", "bold")
+            .text(innerValue + "\n" + innerCategory)
+            .style("opacity", 0)
+            .transition()
+            .duration(animationDuration)
+            .style("opacity", 1);
+
+          d3.selectAll(".inner-text").call(wrap, innerRadius * 2 - 20);
+
+          // Draw radial lines for the inner pie
+          const totalLines = innerValue;
+          const angleStep = (2 * Math.PI) / totalLines;
+
+          for (let i = 0; i < totalLines; i++) {
+            const angle = i * angleStep - Math.PI / 2;
+            const x1 = Math.cos(angle) * innerRadius;
+            const y1 = Math.sin(angle) * innerRadius;
+            const x2 = Math.cos(angle) * outerRadius;
+            const y2 = Math.sin(angle) * outerRadius;
+
+            svg
+              .append("line")
+              .attr("x1", x1)
+              .attr("y1", y1)
+              .attr("x2", x1)
+              .attr("y2", y1)
+              .attr("stroke", `${adjustColor(colors[year], -90)}`) // Dark blue color
+              .attr("stroke-width", 12)
+              .attr("stroke-linecap", "round")
+              .transition()
+              .duration(animationDuration)
+              .delay(animationDelay * i)
+              .attr("x2", x2)
+              .attr("y2", y2);
+          }
+
+          // Outer pie
+          const outerRadiusStart = outerRadius + 20;
+          const outerRadiusEnd = outerRadius + 90;
+          const totalOuterLines = outerCategories
+            .slice(0, 4)
+            .reduce((sum, category) => sum + data[category], 0);
+          const outerAngleStep = (2 * Math.PI) / totalOuterLines;
+          let currentAngle = -Math.PI / 2;
+
+          let categoryColors = [
+            adjustColor(colors[year], -60),
+            adjustColor(colors[year], -30),
+            adjustColor(colors[year], 30),
+            adjustColor(colors[year], 60),
+          ];
+
+          outerCategories.slice(0, 4).forEach((category, index) => {
+            const categoryValue = data[category];
+            let categoryAngle = currentAngle;
+
+            for (let i = 0; i < categoryValue; i++) {
+              const x1 = Math.cos(currentAngle) * outerRadiusStart;
+              const y1 = Math.sin(currentAngle) * outerRadiusStart;
+              const x2 = Math.cos(currentAngle) * outerRadiusEnd;
+              const y2 = Math.sin(currentAngle) * outerRadiusEnd;
+
+              svg
+                .append("line")
+                .attr("x1", x1)
+                .attr("y1", y1)
+                .attr("x2", x1)
+                .attr("y2", y1)
+                .attr("stroke", categoryColors[index])
+                .attr("stroke-width", 4)
+                .transition()
+                .duration(animationDuration)
+                .delay(animationDelay * i)
+                .attr("x2", x2)
+                .attr("y2", y2);
+
+              currentAngle += outerAngleStep;
+            }
+            const labelX =
+              Math.cos((categoryAngle + currentAngle) / 2) *
+              (outerRadiusEnd + 20); // Position slightly beyond the outer radius
+            const labelY =
+              Math.sin((categoryAngle + currentAngle) / 2) *
+              (outerRadiusEnd + 20);
+
+            let addToX = 0; // Default value for X adjustment
+            let addToY = 20; // Default value for Y adjustment
+
+            categoryAngle = (categoryAngle + currentAngle) / 2;
+
+            if (categoryAngle > -Math.PI / 9 && categoryAngle < Math.PI / 9) {
+              // On top (near -20° to 20°)
+              addToY = -40;
+            } else if (
+              categoryAngle > (8 * Math.PI) / 9 &&
+              categoryAngle < (10 * Math.PI) / 9
+            ) {
+              // On bottom (near 160° to 200°)
+              addToY = 40;
+            } else if (
+              categoryAngle > Math.PI / 2 &&
+              categoryAngle < (3 * Math.PI) / 2
+            ) {
+              // On the left
+              addToX = -60;
+            } else {
+              // On the right
+              addToX = 60;
+            }
+
+            let addToX2 =
+              categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2
+                ? -60
+                : 60;
+
+            svg
+              .append("text")
+              .attr("x", labelX + addToX)
+              .attr("y", labelY + addToY)
+              .attr(
+                "text-anchor",
+                categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2
+                  ? "end"
+                  : "start"
+              )
+              .attr("alignment-baseline", "middle")
+              .style("font-size", "18px")
+              .style("fill", `${categoryColors[index]}`)
+              .style("font-weight", "700")
+              .text(category)
+              .style("opacity", "0")
+              .transition()
+              .duration(animationDuration)
+              .delay(index * animationDelay)
+              .style("opacity", "1");
+            svg
+              .append("text")
+              .attr("x", labelX + addToX + addToX2)
+              .attr("y", labelY + addToY + 20) // Slightly below for the value
+              .attr(
+                "text-anchor",
+                categoryAngle > Math.PI / 2 && categoryAngle < (3 * Math.PI) / 2
+                  ? "end"
+                  : "start"
+              )
+              .attr("alignment-baseline", "middle")
+              .style("font-size", "18px")
+              .style("font-weight", "700")
+              .style("fill", `${categoryColors[index]}`)
+              .text(categoryValue)
+              .style("opacity", "0")
+              .transition()
+              .duration(animationDuration)
+              .delay(index * animationDelay)
+              .style("opacity", "1");
+          });
+        }
+      }
+
       function addPlayButtonToLegend(selector, wrapperId) {
         const legendContainer = $(selector);
 
@@ -2449,24 +3380,29 @@
 
   Drupal.behaviors.addLegendToPublicationsChart = {
     attach: function (context, settings) {
-      if($('#publicationsChart').length && !d3.select('#publicationsChart .legend').node()){
+      if (
+        !$("#publicationsChart").length ||
+        d3.select("#publicationsChart .legend").node()
+      ) {
+        return;
+      }
 
-        const columns = document.querySelectorAll('.column');
+      if (!d3.select("#publicationsChart .legend").node()) {
+        const columns = document.querySelectorAll(".column");
         const yearsSet = new Set();
-  
-        columns.forEach(column => {
+
+        columns.forEach((column) => {
           const classList = column.classList;
-          const year = [...classList].find(cls => /^\d{4}$/.test(cls));
+          const year = [...classList].find((cls) => /^\d{4}$/.test(cls));
           if (year) {
             yearsSet.add(year);
           }
         });
-  
-        const yearsArray = Array.from(yearsSet).map(year => ({ year }));
 
-        const latestYear = yearsArray[yearsArray.length-1].year;
+        const yearsArray = Array.from(yearsSet).map((year) => ({ year }));
 
-  
+        const latestYear = yearsArray[yearsArray.length - 1].year;
+
         const legend = d3
           .select(`#publicationsChart .indicator-chart`)
           .append("div")
@@ -2479,34 +3415,38 @@
           .on("click", function (event, d) {
             updateChart(d.year);
           });
-  
+
         legend
           .append("span")
           .attr("class", "legend-color")
-          .style("background-color", 'black');  
-  
+          .style("background-color", "black");
+
         legend
           .append("span")
           .attr("class", (d) => "legend-text")
-          .text((d) => d.year); 
+          .text((d) => d.year);
 
-        $('#publicationsChart .legend div:last').addClass('active');
-  
-        function updateChart(year){
+        $("#publicationsChart .legend div:last").addClass("active");
+
+        function updateChart(year) {
           $(".column").each(function () {
-            $(this).find('> *').addClass('visibility-hidden');
+            $(this).find("> *").addClass("visibility-hidden");
           });
 
           $(".column").attr("style", "display: none;");
           $(`.column.${year}`).attr("style", "display: flex;");
 
           let idx = 1;
-          $(`.column.${year}`).each(function () {        
-            $($(this).find('> *').get().reverse()).each(function () {
+          $(`.column.${year}`).each(function () {
+            $($(this).find("> *").get().reverse()).each(function () {
               let el = $(this);
-              setTimeout(function () {
-                el.removeClass('visibility-hidden');
-              }, idx * 20, el); 
+              setTimeout(
+                function () {
+                  el.removeClass("visibility-hidden");
+                },
+                idx * 20,
+                el
+              );
               idx++;
             });
           });
@@ -2514,8 +3454,8 @@
         updateChart(latestYear);
 
         function addPlayButtonToLegend() {
-          const legendContainer = $('#publicationsChart .legend');
-  
+          const legendContainer = $("#publicationsChart .legend");
+
           const playButtonSvg = `
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
@@ -2529,10 +3469,10 @@
             .attr("data-chart-id", "publicationsChart")
             .on("click", handlePlayButtonClick)
             .html(playButtonSvg);
-  
+
           legendContainer.prepend(playButton);
         }
-        function handlePlayButtonClick() {  
+        function handlePlayButtonClick() {
           const legendItems = $(`#publicationsChart .legend > div`);
           legendItems.each((index, item) => {
             setTimeout(() => {
@@ -2543,7 +3483,6 @@
 
         addPlayButtonToLegend();
       }
-    }
-  }
-
+    },
+  };
 })(jQuery, Drupal, once, drupalSettings);

@@ -42,7 +42,7 @@ class Indicator9Sub2 extends IndicatorChartPluginBase {
       $data = array_combine($header, $row);
       $chart_data[$year] = $data;
     }
-
+    
     return [
       'chart' => $chart_data,
       'label_x' => $this->t('Number of external laboratory networks'),
