@@ -1,0 +1,21 @@
+uuid: 2d0aa752-ea1a-40ca-81a3-7259a9014dfc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_accessiblity
+    - node.type.learning_material
+  module:
+    - options
+id: node.learning_material.field_course_accessiblity
+field_name: field_course_accessiblity
+entity_type: node
+bundle: learning_material
+label: 'Accessiblity '
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

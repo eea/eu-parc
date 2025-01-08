@@ -1,0 +1,21 @@
+uuid: 0705d670-5564-4c37-b85d-3af7b921553b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_education
+    - node.type.learning_material
+  module:
+    - options
+id: node.learning_material.field_course_education
+field_name: field_course_education
+entity_type: node
+bundle: learning_material
+label: 'Type of education/Training material'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

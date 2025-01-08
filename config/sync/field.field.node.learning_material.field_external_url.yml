@@ -1,0 +1,23 @@
+uuid: 616f7c6e-16de-4411-96a3-6eec09573edf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_url
+    - node.type.learning_material
+  module:
+    - link
+id: node.learning_material.field_external_url
+field_name: field_external_url
+entity_type: node
+bundle: learning_material
+label: 'External link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 16
+field_type: link
