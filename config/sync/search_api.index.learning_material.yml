@@ -1,0 +1,101 @@
+uuid: 2ad6b95d-d95b-455b-b487-3b4973eb3f42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_accessiblity
+    - field.storage.node.field_course_education
+    - field.storage.node.field_course_stakeholder
+    - field.storage.node.field_course_topics
+    - field.storage.node.field_domains_of_interest
+    - field.storage.node.field_expertise
+    - field.storage.node.field_reading_time
+    - search_api.server.database
+  module:
+    - search_api
+    - node
+id: learning_material
+name: 'Learning material'
+description: ''
+read_only: false
+field_settings:
+  field_course_accessiblity:
+    label: 'Accessiblity '
+    datasource_id: 'entity:node'
+    property_path: field_course_accessiblity
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_course_accessiblity
+  field_course_education:
+    label: 'Type of education/Training material'
+    datasource_id: 'entity:node'
+    property_path: field_course_education
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_course_education
+  field_course_stakeholder:
+    label: Stakeholder
+    datasource_id: 'entity:node'
+    property_path: field_course_stakeholder
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_course_stakeholder
+  field_course_topics:
+    label: 'Related topics'
+    datasource_id: 'entity:node'
+    property_path: field_course_topics
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_course_topics
+  field_domains_of_interest:
+    label: 'Domain of interest'
+    datasource_id: 'entity:node'
+    property_path: field_domains_of_interest
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_domains_of_interest
+  field_expertise:
+    label: 'Level of expertise'
+    datasource_id: 'entity:node'
+    property_path: field_expertise
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_expertise
+  field_reading_time:
+    label: 'Reading time'
+    datasource_id: 'entity:node'
+    property_path: field_reading_time
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_reading_time
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - learning_material
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  custom_value: {  }
+  entity_type: {  }
+  language_with_fallback: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  cron_limit: 50
+  index_directly: true
+  track_changes_in_references: true
+server: database
