@@ -18,8 +18,8 @@ settings:
       value: video
       label: Video
     -
-      value: brochure_report_book
-      label: Brochure/report/book
+      value: brochure
+      label: Brochure
     -
       value: webinar
       label: Webinar
@@ -32,6 +32,12 @@ settings:
     -
       value: training_library
       label: 'Training library'
+    -
+      value: report
+      label: Report
+    -
+      value: book
+      label: Book
   allowed_values_function: ''
 module: options
 locked: false

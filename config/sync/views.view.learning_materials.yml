@@ -138,7 +138,13 @@ display:
       arguments: {  }
       filters: {  }
       style:
-        type: default
+        type: grid_responsive
+        options:
+          uses_fields: false
+          columns: 4
+          cell_min_width: 100
+          grid_gutter: 10
+          alignment: horizontal
       row:
         type: search_api
         options:
