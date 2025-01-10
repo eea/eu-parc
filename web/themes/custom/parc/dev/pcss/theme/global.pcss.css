@@ -359,4 +359,31 @@ blockquote {
   align-items: center;
   justify-content: center;
   display: flex;
+  position: absolute;
+  width: 286px;
+  height: 292px;
+  border-radius: 5px;
+}
+
+.learning-material {
+  position: absolute;
+  width: 286px;
+  height: 292px;
+  padding: 20px;
+  text-decoration: unset;
+
+  .bottom-left {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 13px;
+    margin-left: 10px;
+  }
+  .bottom-right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 13px;
+    margin-right: 10px;
+  }
 }

@@ -20,7 +20,7 @@
 {% endif %}
 
 <div style="height: 300px;">
-  <div class="background-svg" style="position: absolute; background-color: {{ bg_color }}; width: 286px; height: 292px; border-radius: 5px;">
+  <div class="background-svg" style="background-color: {{ bg_color }};">
     {% if content.field_course_education[0]['#markup'] == 'Training library' %}
       <svg width="199" height="191" viewBox="0 0 199 191" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M47.5286 5.08691C61.2958 7.70505 72.1813 18.4564 74.9968 32.1527" stroke="{{ bg_image_color }}" stroke-width="8" stroke-linecap="round"/>
@@ -137,7 +137,7 @@
     {% endif %}
   </div>
 
-  <div style="position: absolute; width: 286px; height: 292px; padding: 20px;">
+  <a class="learning-material" href="{{ content.field_external_url[0]['#url'] }}">
     <div class="d-flex" style="height:40px;">
       <div class="col-md-8" style="line-height: 15px;">
         <b style="font-size: 14px;">{{ content.field_domains_of_interest[0]['#title']}}</b>
@@ -150,11 +150,11 @@
     <div>
       <h4>{{ label }}</h4>
     </div>
-    <div style="position: absolute; left: 0; bottom: 0; font-size: 13px; margin-left: 10px;">
+    <div class="bottom-left">
       <p>{{ content.field_course_education[0]['#markup'] }}</p>
     </div>
-    <div style="position: absolute; right: 0; bottom: 0; font-size: 13px; margin-right: 10px;">
+    <div class="bottom-right">
       <p>{{ content.field_course_accessiblity[0]['#markup'] }}</p>
     </div>
-  </div>
+  </a>
 </div>
