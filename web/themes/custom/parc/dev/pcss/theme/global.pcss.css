@@ -505,16 +505,26 @@ blockquote {
 
 
 .ckeditor-accordion-container {
-  dl {
+  border-bottom: 1px solid #999898;
+  dl.styled {
     border: unset;
     dt {
-      border-top: 1px solid #000000;
+      border-top: 1px solid #999898;
       .ckeditor-accordion-toggler {
         background-color: #FFF;
         color: #000;
         border-bottom: unset;
+        text-decoration: none;
+        padding-left: 15px;
+        &:hover {
+          background-color: #FFF;
+          color: #000;
+          text-decoration: underline;
+        }
         .ckeditor-accordion-toggle {
-          &::before, .ckeditor-accordion-toggle::after {
+          left: unset;
+          right: 11px;
+          &::before, &::after {
             background-color: #000;
           }
         }
@@ -522,6 +532,15 @@ blockquote {
       &:last-child {
         border-bottom: 1px solid #000000;
       }
+      &.active {
+        .ckeditor-accordion-toggler {
+          font-weight: bold;
+
+        }
+      }
+    }
+    dd.active {
+      margin-bottom: 15px;
     }
   }
 }
