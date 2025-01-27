@@ -500,7 +500,10 @@ blockquote {
 }
 
 .page--ssbd .field {
-
+  h5 {
+    font-size: 24px;
+    color: #6E009A
+  }
 }
 
 
@@ -508,6 +511,7 @@ blockquote {
   border-bottom: 1px solid #999898;
   dl.styled {
     border: unset;
+    margin-bottom: 0;
     dt {
       border-top: 1px solid #999898;
       .ckeditor-accordion-toggler {
@@ -538,9 +542,6 @@ blockquote {
 
         }
       }
-    }
-    dd.active {
-      margin-bottom: 15px;
     }
   }
 }
