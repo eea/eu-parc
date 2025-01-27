@@ -1,0 +1,21 @@
+uuid: d06416cb-4808-40e3-b21a-3c7a2b341f3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_stakeholder
+    - node.type.learning_material
+  module:
+    - options
+id: node.learning_material.field_course_stakeholder
+field_name: field_course_stakeholder
+entity_type: node
+bundle: learning_material
+label: Stakeholder
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
