@@ -19,7 +19,6 @@ tags:
   title: '[node:title] | [site:name]'
   twitter_cards_creator: '@PARC_chemicals'
   twitter_cards_image: '[node:field_cover:entity:url]'
-  twitter_cards_page_url: '[site:url]/scientific-publications#parc--publications-[node:nid]'
   twitter_cards_site: '@PARC_chemicals'
   twitter_cards_title: '[node:title]'
   twitter_cards_type: summary_large_image

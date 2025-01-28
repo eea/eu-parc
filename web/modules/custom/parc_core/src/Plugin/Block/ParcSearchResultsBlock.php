@@ -43,6 +43,13 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
   protected $searchManager;
 
   /**
+   * The current route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $routeMatch;
+
+  /**
    * Creates a ParcSearchResultsBlock object.
    *
    * @param array $configuration
