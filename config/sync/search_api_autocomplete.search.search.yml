@@ -7,7 +7,6 @@ dependencies:
     - views.view.search
   module:
     - views
-    - search_api_autocomplete
 id: search
 label: Search
 index_id: global_search

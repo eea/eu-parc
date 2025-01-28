@@ -9,7 +9,6 @@ dependencies:
     - field.storage.node.field_substance_group
     - search_api.server.database
   module:
-    - search_api
     - node
 id: labs
 name: Labs
