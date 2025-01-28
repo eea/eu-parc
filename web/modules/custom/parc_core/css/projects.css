@@ -82,6 +82,11 @@
 .projects-chart .project-title span {
   line-height: 18px;
   display: inline;
+  color: #898989;
+}
+
+.projects-chart .project-title span a:hover {
+  text-decoration: underline;
 }
 
 .projects-chart .project-title::before {
