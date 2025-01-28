@@ -5,6 +5,10 @@
 }
 
 .node--project--full {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--project-color, #000);
+  }
+
   .field--name-field-partners {
     > div:last-child {
       > div {
