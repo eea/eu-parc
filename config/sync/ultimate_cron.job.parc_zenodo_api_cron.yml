@@ -8,7 +8,7 @@ title: 'Parc Zenodo Api CRON'
 id: parc_zenodo_api_cron
 weight: 0
 module: parc_zenodo_api
-callback: parc_zenodo_api_cron
+callback: 'parc_zenodo_api#cron'
 scheduler:
   id: crontab
   configuration:

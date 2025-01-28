@@ -22,9 +22,6 @@ tags:
   twitter_cards_creator: '@PARC_chemicals'
   twitter_cards_image: '[site:url]themes/custom/parc/img/parc.png'
   twitter_cards_image_alt: 'Partnership for the Assessment of Risks from Chemicals'
-  twitter_cards_image_height: '315'
-  twitter_cards_image_width: '851'
-  twitter_cards_page_url: '[current-page:url]'
   twitter_cards_site: '@PARC_chemicals'
   twitter_cards_title: '[node:title]'
   twitter_cards_type: summary_large_image

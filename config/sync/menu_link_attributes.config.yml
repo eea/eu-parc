@@ -1,9 +1,9 @@
 attributes:
   class:
-    label: ''
-    description: ''
+    label: 'Link class(es)'
+    description: 'CSS class for the link (&lt;a href&gt;). Separate multiple classes by space.'
   target:
-    label: ''
+    label: 'Link target'
     description: ''
     options:
       _blank: 'New window (_blank)'
@@ -16,3 +16,6 @@ attributes:
       'true': 'Yes'
       'false': 'No'
     default_value: 'false'
+  container_class:
+    label: 'Container class(es)'
+    description: 'CSS class for the menu list item (&lt;li&gt;). Separate multiple classes by space.'
