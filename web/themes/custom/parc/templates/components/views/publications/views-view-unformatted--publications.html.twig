@@ -22,25 +22,13 @@
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
-<div class="views--2col">
-  <div class="left-col">
-    {% for row in rows %}
-      {% set row_classes = [
-        default_row_class ? 'views-row',
-      ] %}
-      <div{{ row.attributes.addClass(row_classes) }} {% if loop.index is odd %}data-row="{{ (loop.index / 2) | number_format}}"{% endif %}>
-        {{- row.content -}}
-      </div>
-    {% endfor %}
-  </div>
-
-  <div class="right-col d-none d-xl-block">
-    {% for row in rows %}
-      {% if loop.index is even %}
-        <div{{ row.attributes.addClass(row_classes) }} data-row="{{ (loop.index / 2) | number_format }}">
-          {{- row.content -}}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+<div class="">
+  {% for row in rows %}
+    {% set row_classes = [
+      default_row_class ? 'views-row',
+    ] %}
+    <div{{ row.attributes.addClass(row_classes) }}>
+      {{- row.content -}}
+    </div>
+  {% endfor %}
 </div>
