@@ -18,6 +18,11 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: 'Setup nodejs'
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: 'web/themes/custom/parc/.nvmrc'
+
       - name: 'Install dependencies'
         uses: eaudeweb/drupal-install-action@v1.1
         with:
