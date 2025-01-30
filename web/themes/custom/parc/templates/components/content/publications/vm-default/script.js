@@ -76,17 +76,10 @@
 
       setTimeout(function () {
         if (type) {
-          let item1 = $('.left-col [data-' + type + '="' + query_parameter + '"]');
-          let item2 = $('.right-col [data-' + type + '="' + query_parameter + '"]');
-
-          if (window.innerWidth >= 1280 && item2.length) {
-            $('html, body').animate({scrollTop: item2.offset().top - 100}, 100);
-          }
-          else {
-            $('html, body').animate({scrollTop: item1.offset().top - 100}, 100);
-          }
+          let item = $('[data-' + type + '="' + query_parameter + '"]');
+          $('html, body').animate({scrollTop: item.offset().top - 100}, 100);
         }
-      }, .3, publication, message);
+      }, .3);
 
       $('.js-copy-to-clipboard').click(function (e) {
         var btn = $(this);
