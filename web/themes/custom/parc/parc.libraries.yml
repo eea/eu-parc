@@ -282,10 +282,6 @@ n--publications:
   css:
     component:
       css/components/content/publications/vm-default/style.css: {}
-  js:
-    templates/components/content/publications/vm-default/script.js: {}
-  dependencies:
-    - core/once
 
 n--publications-teaser:
   css:
