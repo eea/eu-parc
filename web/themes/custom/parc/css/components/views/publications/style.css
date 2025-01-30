@@ -1,1 +1,0 @@
-@media (min-width:80rem){.views--2col{display:flex;gap:1.5rem}.views--2col>*{flex:0 0 calc(50% - 0.75rem);max-width:100%;overflow:hidden}.views--2col .left-col .views-row:nth-child(2n){display:none}}

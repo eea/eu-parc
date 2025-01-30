@@ -109,6 +109,9 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "platform": {
+            "php": "8.2"
+        },
         "allow-plugins": {
             "composer/installers": true,
             "drupal/core-composer-scaffold": true,
@@ -210,5 +213,11 @@
     },
     "require-dev": {
         "drupal/stage_file_proxy": "^2.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Composer\\Config::disableProcessTimeout",
+            "cd web/themes/custom/parc && npm install && npm run build"
+        ]
     }
 }
