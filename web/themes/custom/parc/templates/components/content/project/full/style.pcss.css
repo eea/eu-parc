@@ -9,6 +9,10 @@
     color: var(--project-color, #000);
   }
 
+  .svg-title h2 {
+    color: #000;
+  }
+
   .field--name-field-partners {
     > div:last-child {
       > div {
