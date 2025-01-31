@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.project.field_project_keywords
     - field.field.node.project.field_project_potential_impacts
     - field.field.node.project.field_project_topics
+    - field.field.node.project.field_related_projects
     - field.field.node.project.field_related_publications
     - field.field.node.project.field_show_link
     - field.field.node.project.field_slideshow_items
@@ -94,6 +95,7 @@ hidden:
   addtoany: true
   field_audio_file: true
   field_date_range: true
+  field_related_projects: true
   field_related_publications: true
   field_show_link: true
   field_slideshow_items: true

@@ -806,3 +806,26 @@ function parc_preprocess_menu__indicator_topics(array &$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for node__project__related.
+ */
+function parc_preprocess_node__project__related(array &$variables) {
+  $node = $variables['node'];
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
+  $colors = [];
+  foreach ($node->get('field_project_topics') as $item) {
+    /** @var \Drupal\taxonomy\TermInterface $topic */
+    $topic = $item->entity;
+    if (!$topic instanceof TermInterface) {
+      continue;
+    }
+
+    $colors[] = $topic->get('field_color')->color;
+  }
+  $variables['colors'] = $colors;
+  $variables['disabled'] = !$node->get('field_show_link')->value;
+}
