@@ -40,7 +40,7 @@ jobs:
       - name: 'Setup nodejs'
         uses: actions/setup-node@v3
         with:
-          node-version-file: 'web/themes/custom/frontend/.nvmrc'
+          node-version-file: 'web/themes/custom/parc/.nvmrc'
 
       - name: 'Install dependencies'
         uses: eaudeweb/drupal-install-action@1.x

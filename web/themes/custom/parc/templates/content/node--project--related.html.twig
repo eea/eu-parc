@@ -1,0 +1,10 @@
+<div class="related-project {% if disabled %}disabled{% endif %}">
+  <a {% if not disabled %}href="{{ url }}"{% endif %}>
+    <div class="related-project__title">{{ label }}</div>
+    <div class="colors">
+      {% for color in colors %}
+        <div class="colors__color" style="background-color: {{ color }};"></div>
+      {% endfor %}
+    </div>
+  </a>
+</div>

@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.project.field_project_keywords
     - field.field.node.project.field_project_potential_impacts
     - field.field.node.project.field_project_topics
+    - field.field.node.project.field_related_projects
     - field.field.node.project.field_related_publications
     - field.field.node.project.field_show_link
     - field.field.node.project.field_slideshow_items
@@ -48,6 +49,7 @@ third_party_settings:
         - title
         - body
         - field_related_publications
+        - field_related_projects
         - field_slideshow_items
         - field_slideshow_position
       label: Content
@@ -197,6 +199,16 @@ content:
       match_operator: CONTAINS
       match_limit: 10
     third_party_settings: {  }
+  field_related_projects:
+    type: select2_entity_reference
+    weight: 4
+    region: content
+    settings:
+      width: 100%
+      autocomplete: true
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
   field_related_publications:
     type: select2_entity_reference
     weight: 3
@@ -216,14 +228,14 @@ content:
     third_party_settings: {  }
   field_slideshow_items:
     type: media_library_widget
-    weight: 4
+    weight: 5
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_slideshow_position:
     type: options_select
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
