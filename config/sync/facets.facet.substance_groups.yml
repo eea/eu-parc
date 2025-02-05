@@ -54,8 +54,8 @@ processor_configs:
     weights:
       build: 100
     settings: {  }
-  list_item:
-    processor_id: list_item
+  translate_entity:
+    processor_id: translate_entity
     weights:
       build: 5
     settings: {  }
