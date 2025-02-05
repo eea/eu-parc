@@ -10,7 +10,7 @@ dependencies:
 id: related_topics
 name: 'Related topics'
 weight: -1
-min_count: 0
+min_count: 1
 missing: false
 missing_label: others
 url_alias: related_topics
@@ -19,7 +19,7 @@ field_identifier: field_course_topics
 query_operator: or
 hard_limit: 0
 exclude: false
-use_hierarchy: true
+use_hierarchy: false
 keep_hierarchy_parents_active: false
 hierarchy:
   type: taxonomy
@@ -43,6 +43,51 @@ only_visible_when_facet_source_is_visible: false
 show_only_one_result: false
 show_title: false
 processor_configs:
+  dependent_processor:
+    processor_id: dependent_processor
+    weights:
+      build: 5
+    settings:
+      accessiblity:
+        enable: false
+        condition: null
+        values: ''
+        negate: false
+      course_date:
+        enable: false
+        condition: null
+        values: ''
+        negate: false
+      domain_of_interest:
+        enable: true
+        condition: not_empty
+        values: ''
+        negate: false
+      level_of_expertise:
+        enable: false
+        condition: null
+        values: ''
+        negate: false
+      reading_time:
+        enable: false
+        condition: null
+        values: ''
+        negate: false
+      stakeholder:
+        enable: false
+        condition: null
+        values: ''
+        negate: false
+      substance_groups:
+        enable: false
+        condition: null
+        values: ''
+        negate: false
+      type_of_education_training_material:
+        enable: false
+        condition: null
+        values: ''
+        negate: false
   hierarchy_processor:
     processor_id: hierarchy_processor
     weights:

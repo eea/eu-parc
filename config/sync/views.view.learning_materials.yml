@@ -115,7 +115,18 @@ display:
       cache:
         type: search_api_none
         options: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: 'No results found'
+          tokenize: false
       sorts: {  }
       arguments: {  }
       filters: {  }
@@ -139,6 +150,7 @@ display:
           preserve_facet_query_args: false
           query_tags: {  }
       relationships: {  }
+      use_ajax: true
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -159,7 +171,9 @@ display:
     position: 1
     display_options:
       display_extenders:
-        ajax_history: {  }
+        ajax_history:
+          enable_history: false
+          exclude_args: ''
         simple_sitemap_display_extender: {  }
         metatag_display_extender:
           metatags: {  }
