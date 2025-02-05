@@ -1,0 +1,39 @@
+uuid: d359e6af-9785-4c32-8909-78b1c84cd216
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_course_stakeholder
+field_name: field_course_stakeholder
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: education
+      label: Education
+    -
+      value: industry
+      label: Industry
+    -
+      value: regulation_policy
+      label: Regulation/policy
+    -
+      value: academia
+      label: Academia
+    -
+      value: ngos
+      label: NGOs
+    -
+      value: consultants
+      label: Consultants
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

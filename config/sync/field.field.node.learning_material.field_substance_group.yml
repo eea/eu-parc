@@ -1,0 +1,29 @@
+uuid: 78d6312c-3aa5-4491-88f4-c45f4657d947
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_substance_group
+    - node.type.learning_material
+    - taxonomy.vocabulary.substance_groups
+id: node.learning_material.field_substance_group
+field_name: field_substance_group
+entity_type: node
+bundle: learning_material
+label: 'Substance group'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      substance_groups: substance_groups
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

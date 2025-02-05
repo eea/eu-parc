@@ -1,0 +1,42 @@
+uuid: a692991c-8477-47fa-a914-ae290fe599b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_course_type
+field_name: field_course_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: presentation_slides
+      label: Presentation/slides
+    -
+      value: video
+      label: Video
+    -
+      value: brochure
+      label: Brochure/report/e-book
+    -
+      value: webinar
+      label: Webinar
+    -
+      value: course
+      label: Course
+    -
+      value: e_learning_tool
+      label: 'E-learning tool'
+    -
+      value: training_library
+      label: 'Training library'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

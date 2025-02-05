@@ -1,0 +1,131 @@
+uuid: 0195d265-762f-40c1-9a6a-4420bdf664e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card_item
+    - field.field.node.learning_material.body
+    - field.field.node.learning_material.field_course_accessibility
+    - field.field.node.learning_material.field_course_stakeholder
+    - field.field.node.learning_material.field_course_topics
+    - field.field.node.learning_material.field_course_type
+    - field.field.node.learning_material.field_d_date
+    - field.field.node.learning_material.field_domains_of_interest
+    - field.field.node.learning_material.field_expertise
+    - field.field.node.learning_material.field_external_url
+    - field.field.node.learning_material.field_owner
+    - field.field.node.learning_material.field_reading_time
+    - field.field.node.learning_material.field_substance_group
+    - node.type.learning_material
+  module:
+    - datetime
+    - layout_builder
+    - link
+    - options
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.learning_material.card_item
+targetEntityType: node
+bundle: learning_material
+mode: card_item
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_course_accessibility:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_course_stakeholder:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_course_topics:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_course_type:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_d_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_domains_of_interest:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_expertise:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_external_url:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  field_owner:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
+    region: content
+  field_reading_time:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  addtoany: true
+  field_substance_group: true
+  search_api_excerpt: true
