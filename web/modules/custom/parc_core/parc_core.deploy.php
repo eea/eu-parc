@@ -896,6 +896,7 @@ function parc_core_deploy_10004() {
     'Advanced (nano)materials',
     'Chemicals Mixtures',
     'Natural Toxins',
+    'Pesticides',
     'Volatile Anaesthetics',
     'Volatile Organic Compounds (VOCs)',
   ];
