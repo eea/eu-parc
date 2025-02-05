@@ -136,6 +136,18 @@
     width: auto !important;
   }
 
+  .px-0 {
+    height: auto !important;
+  }
+
+  @media (min-width: 1921px) {
+    .px-0 > :last-child > div {
+      position: static;
+      width: auto;
+      left: unset;
+    }
+  }
+
   @media screen and (min-width: 40.0001em) {
     .px-0 {
       padding-right: 1.25rem !important;
