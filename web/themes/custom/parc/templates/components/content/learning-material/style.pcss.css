@@ -7,13 +7,13 @@
   height: 100%;
   border: 1px solid var(--bg-color);
 
-  path {
-    stroke: var(--icon-color);
-  }
-
-  svg {
+  .learning-material__body__icon svg {
     height: 120px;
     width: auto;
+
+    path {
+      stroke: var(--icon-color);
+    }
   }
 
   > a {
@@ -98,6 +98,16 @@
     }
   }
 
+  .go-to {
+    visibility: hidden;
+
+    svg {
+      margin-left: 5px;
+      width: 7px;
+      margin-bottom: 1px;
+    }
+  }
+
   &:hover {
     background: #FFF;
     border: 1px solid var(--bg-color);
@@ -114,6 +124,12 @@
     .learning-material__title {
       text-decoration: underline;
       color: var(--text-color);
+    }
+
+    .go-to {
+      visibility: visible;
+      color: var(--text-color);
+      text-decoration: underline;
     }
   }
 }
