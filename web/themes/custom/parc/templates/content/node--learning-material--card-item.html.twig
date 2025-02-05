@@ -1,7 +1,7 @@
 {{ attach_library('parc_interactive_map/interactive_map') }}
 {{ attach_library('parc/n--learning-material') }}
 
-<div class="learning-material" style="--bg-color: {{ bg_color }}; --icon-color: {{ icon_color }}; --text-color: {{ text-color }}">
+<div class="learning-material" style="--bg-color: {{ bg_color }}; --icon-color: {{ icon_color }}; --text-color: {{ text_color }}">
   <a href="{{ content.field_external_url[0]['#url'] }}">
     <div class="learning-material__top">
       <div class="learning-material__top__domain">
@@ -29,6 +29,15 @@
 
     <div class="learning-material__bottom">
       <div class="learning-material__bottom__left">
+        {% set course_type = content.field_course_type | render | striptags %}
+        <div class="go-to">
+          {% trans %}
+            Go to {{ course_type }}
+          {% endtrans %}
+          <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.31174 10.4537L5.379 5.72203L0.966992 1.31003" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         {{ content.field_course_type }}
         {% set owner = content.field_owner | render | striptags %}
         <div>
