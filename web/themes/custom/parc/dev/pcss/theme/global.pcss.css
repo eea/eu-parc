@@ -354,3 +354,9 @@ blockquote {
     left: 0;
   }
 }
+
+.background-svg {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

@@ -1,0 +1,15 @@
+{% set color = '' %}
+
+{% if value == 'Policy and regulation' %}
+  {% set color = '#31D9C4'%}
+{% elseif value == 'Exposure Assessment' %}
+  {% set color = '#F58296'%}
+{% elseif value == 'Hazard and Risk' %}
+  {% set color = '#AA7ABD'%}
+{% elseif value == 'FAIR data and data management' %}
+  {% set color = '#C5A858'%}
+{% elseif value == 'Statistics SSdB' %}
+  {% set color = '#7AB7FF'%}
+{% endif %}
+
+<div style="color: {{color}};">{{ value }}</div>
