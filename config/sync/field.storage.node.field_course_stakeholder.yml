@@ -12,17 +12,17 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: citizens
-      label: Citizens
-    -
       value: education
       label: Education
+    -
+      value: industry
+      label: Industry
     -
       value: regulation_policy
       label: Regulation/policy
     -
-      value: research
-      label: Research
+      value: academia
+      label: Academia
     -
       value: ngos
       label: NGOs
@@ -32,7 +32,7 @@ settings:
   allowed_values_function: ''
 module: options
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

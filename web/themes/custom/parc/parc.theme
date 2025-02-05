@@ -304,7 +304,9 @@ function parc_preprocess_facets_result_item(&$variables) {
     if ($term instanceof TermInterface && !empty($term->getDescription())) {
       $variables['tooltip'] = [
         'text' => $term->getDescription(),
-        'background' => $term->get('field_color')->color,
+        'background' => $term->hasField('field_color')
+          ? $term->get('field_color')->color
+          : NULL,
       ];
     }
   }

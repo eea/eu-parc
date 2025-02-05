@@ -825,3 +825,194 @@ function parc_core_deploy_10003() {
     $result->save();
   }
 }
+
+/**
+ * Create training topics.
+ */
+function parc_core_deploy_10004() {
+  $terms = [
+    'Ethics framework' => '#008475',
+    'Policy and regulation' => '#D87283',
+    'Exposure assessment' => '#8B33AE',
+    'Hazard and risk ' => '#2CC7B4',
+    'FAIR data and data management ' => '#B2984F',
+    'Statistics ' => '#0475F9',
+    'SSbD ' => '#E45C4D',
+  ];
+
+  $weight = 0;
+  foreach ($terms as $name => $color) {
+    $term = Term::create([
+      'vid' => 'course_domains_of_interest',
+      'name' => $name,
+      'field_color' => [
+        'color' => $color,
+      ],
+      'weight' => $weight++,
+    ]);
+    $term->save();
+  }
+
+  $terms = [
+    'Chemicals Prioritization' => '#D87283',
+    'Regulatory Policy Frameworks' => '#D87283',
+    'Risk Communication' => '#D87283',
+
+    'Environmental monitoring' => '#8B33AE',
+    'HBM' => '#8B33AE',
+    'Innovative' => '#8B33AE',
+    'Modelling' => '#8B33AE',
+    'QA/QC' => '#8B33AE',
+
+    'In vivo Testing' => '#2CC7B4',
+    'NAMs' => '#2CC7B4',
+    'IATAs' => '#2CC7B4',
+    'AOPs' => '#2CC7B4',
+    'IVIVE' => '#2CC7B4',
+    'Risk assessment methods/frameworks' => '#2CC7B4',
+
+    'FAIR' => '#B2984F',
+    'Databases' => '#B2984F',
+  ];
+  $weight = 0;
+  foreach ($terms as $name => $color) {
+    $term = Term::create([
+      'vid' => 'course_topics',
+      'name' => $name,
+      'field_color' => [
+        'color' => $color,
+      ],
+      'weight' => $weight++,
+    ]);
+    $term->save();
+  }
+
+  $terms = [
+    'Alkaloid',
+    'Anilines and MOCA',
+    'Care products',
+    'DINCH',
+    'Glycol Ethers',
+    'Advanced (nano)materials',
+    'Chemicals Mixtures',
+    'Natural Toxins',
+    'Volatile Anaesthetics',
+    'Volatile Organic Compounds (VOCs)',
+  ];
+  foreach ($terms as $name => $color) {
+    $term = Term::create([
+      'vid' => 'substance_groups',
+      'name' => $name,
+    ]);
+    $term->save();
+  }
+}
+
+/**
+ * Import courses.
+ */
+function parc_core_deploy_10005_dd() {
+  $courses_path = \Drupal::service('extension.list.module')->getPath('parc_core') . '/data/courses.csv';
+  $file = fopen($courses_path, 'r');
+  $headers = fgetcsv($file);
+  $data = [];
+  while (($row = fgetcsv($file)) !== FALSE) {
+    $rowData = array_combine($headers, $row);
+    foreach ($rowData as &$value) {
+      $value = trim($value);
+    }
+    $data[] = $rowData;
+  }
+  fclose($file);
+
+  foreach ($data as $row) {
+    $domains = [];
+    $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    if (!empty($row['Domain'])) {
+      foreach (explode(';', $row['Domain']) as $domain) {
+        $domain = trim($domain);
+        if (empty($domain)) {
+          continue;
+        }
+        $term = $term_storage->loadByProperties([
+          'name' => $domain,
+          'vid' => 'course_domains_of_interest',
+        ]);
+        if (empty($term)) {
+          continue;
+        }
+
+        $term = reset($term);
+        $domains[] = $term;
+      }
+    }
+
+    $topics = [];
+    $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    if (!empty($row['Topic'])) {
+      foreach (explode(';', $row['Topic']) as $topic) {
+        $topic = trim($topic);
+        if (empty($topic)) {
+          continue;
+        }
+        $term = $term_storage->loadByProperties([
+          'name' => $topic,
+          'vid' => 'course_topics',
+        ]);
+        if (empty($term)) {
+          continue;
+        }
+
+        $term = reset($term);
+        $topics[] = $term;
+      }
+    }
+
+    $substances = [];
+    $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    if (!empty($row['Substance'])) {
+      foreach (explode(';', $row['Substance Group']) as $substance) {
+        $substance = trim($substance);
+        if (empty($substance)) {
+          continue;
+        }
+        $term = $term_storage->loadByProperties([
+          'name' => $substance,
+          'vid' => 'substance_groups',
+        ]);
+        if (empty($term)) {
+          continue;
+        }
+
+        $term = reset($term);
+        $substances[] = $term;
+      }
+    }
+
+    $node_data = [
+      'type' => 'learning_material',
+      'title' => $row['Resource'],
+      'field_course_accessibility' => $row['Accessibility'],
+      'body' => [
+        'format' => 'full_html',
+        'value' => $row['Additional remarks'],
+      ],
+      'field_d_date' => !empty($row['Date of development/publication'])
+        ? date('Y-m-d', strtotime($row['Date of development/publication']))
+        : NULL,
+      'field_domains_of_interest' => $domains,
+      'field_external_url' => [
+        'uri' => $row['URL']
+      ],
+      'field_expertise' => explode(';', $row['Level of expertise']),
+      'field_owner' => $row['Owner'],
+      'field_reading_time' => $row['Reading time'],
+      'field_course_topics' => $topics,
+      'field_course_stakeholder' => explode(';', $row['Stakeholder']),
+      'field_substance_group' => $substances,
+      'field_course_type' => $row['Type of education/training material'],
+    ];
+    $node = \Drupal::entityTypeManager()->getStorage('node')->create($node_data);
+    $node->save();
+  }
+}

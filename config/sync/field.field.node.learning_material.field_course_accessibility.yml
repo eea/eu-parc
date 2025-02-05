@@ -1,14 +1,14 @@
-uuid: 2d0aa752-ea1a-40ca-81a3-7259a9014dfc
+uuid: 2d0aa752-ea1a-40ca-81a3-7259a9014dfb
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_course_accessiblity
+    - field.storage.node.field_course_accessibility
     - node.type.learning_material
   module:
     - options
-id: node.learning_material.field_course_accessiblity
-field_name: field_course_accessiblity
+id: node.learning_material.field_course_accessibility
+field_name: field_course_accessibility
 entity_type: node
 bundle: learning_material
 label: 'Accessiblity '

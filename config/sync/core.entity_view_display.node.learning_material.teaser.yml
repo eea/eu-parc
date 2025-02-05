@@ -5,15 +5,17 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.learning_material.body
-    - field.field.node.learning_material.field_course_accessiblity
-    - field.field.node.learning_material.field_course_education
+    - field.field.node.learning_material.field_course_accessibility
+    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_course_stakeholder
     - field.field.node.learning_material.field_course_topics
     - field.field.node.learning_material.field_d_date
     - field.field.node.learning_material.field_domains_of_interest
     - field.field.node.learning_material.field_expertise
     - field.field.node.learning_material.field_external_url
+    - field.field.node.learning_material.field_owner
     - field.field.node.learning_material.field_reading_time
+    - field.field.node.learning_material.field_substance_group
     - node.type.learning_material
   module:
     - datetime
@@ -41,6 +43,14 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
+  field_substance_group:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 8
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -48,12 +58,13 @@ content:
     region: content
 hidden:
   addtoany: true
-  field_course_accessiblity: true
-  field_course_education: true
+  field_course_accessibility: true
   field_course_stakeholder: true
   field_course_topics: true
+  field_course_type: true
   field_domains_of_interest: true
   field_expertise: true
   field_external_url: true
+  field_owner: true
   field_reading_time: true
   search_api_excerpt: true

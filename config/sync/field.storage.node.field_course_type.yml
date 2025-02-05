@@ -1,12 +1,12 @@
-uuid: a692991c-8477-47fa-a914-ae290fe599b6
+uuid: a692991c-8477-47fa-a914-ae290fe599b7
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - options
-id: node.field_course_education
-field_name: field_course_education
+id: node.field_course_type
+field_name: field_course_type
 entity_type: node
 type: list_string
 settings:
@@ -19,7 +19,7 @@ settings:
       label: Video
     -
       value: brochure
-      label: Brochure
+      label: Brochure/report/e-book
     -
       value: webinar
       label: Webinar
@@ -32,12 +32,6 @@ settings:
     -
       value: training_library
       label: 'Training library'
-    -
-      value: report
-      label: Report
-    -
-      value: book
-      label: Book
   allowed_values_function: ''
 module: options
 locked: false

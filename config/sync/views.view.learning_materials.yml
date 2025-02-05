@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_course_accessiblity
+    - field.storage.node.field_course_accessibility
     - search_api.index.learning_material
   module:
     - options
@@ -24,10 +24,10 @@ display:
     display_options:
       title: 'Learning materials'
       fields:
-        field_course_accessiblity:
-          id: field_course_accessiblity
+        field_course_accessibility:
+          id: field_course_accessibility
           table: search_api_index_learning_material
-          field: field_course_accessiblity
+          field: field_course_accessibility
           relationship: none
           group_type: group
           admin_label: ''
@@ -96,27 +96,9 @@ display:
             multi_type: separator
             multi_separator: ', '
       pager:
-        type: full
+        type: none
         options:
           offset: 0
-          pagination_heading_level: h4
-          items_per_page: 18
-          total_pages: null
-          id: 0
-          tags:
-            next: 'Next ›'
-            previous: '‹ Previous'
-            first: '« First'
-            last: 'Last »'
-          expose:
-            items_per_page: false
-            items_per_page_label: 'Items per page'
-            items_per_page_options: '5, 10, 25, 50'
-            items_per_page_options_all: false
-            items_per_page_options_all_label: '- All -'
-            offset: false
-            offset_label: Offset
-          quantity: 9
       exposed_form:
         type: basic
         options:
@@ -167,10 +149,9 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
         - 'user.node_grants:view'
       tags:
-        - 'config:field.storage.node.field_course_accessiblity'
+        - 'config:field.storage.node.field_course_accessibility'
         - 'config:search_api.index.learning_material'
         - 'search_api_list:learning_material'
   block_1:
@@ -190,9 +171,8 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url.query_args
         - 'user.node_grants:view'
       tags:
-        - 'config:field.storage.node.field_course_accessiblity'
+        - 'config:field.storage.node.field_course_accessibility'
         - 'config:search_api.index.learning_material'
         - 'search_api_list:learning_material'
