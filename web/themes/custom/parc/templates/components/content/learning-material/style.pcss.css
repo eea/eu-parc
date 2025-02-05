@@ -162,6 +162,10 @@
       width: auto;
       left: unset;
     }
+
+    .node--page {
+      overflow: visible !important;
+    }
   }
 
   @media screen and (min-width: 40.0001em) {
