@@ -10,7 +10,7 @@ dependencies:
 id: accessiblity
 name: 'Accessiblity '
 weight: -1
-min_count: 0
+min_count: 1
 missing: false
 missing_label: others
 url_alias: accessiblity
@@ -19,7 +19,7 @@ field_identifier: field_course_accessibility
 query_operator: or
 hard_limit: 0
 exclude: false
-use_hierarchy: true
+use_hierarchy: false
 keep_hierarchy_parents_active: false
 hierarchy:
   type: taxonomy

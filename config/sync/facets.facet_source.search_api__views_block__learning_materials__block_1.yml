@@ -1,0 +1,9 @@
+uuid: 9fbf0e9c-09c1-4913-bc1f-d7086e57adb9
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_block__learning_materials__block_1
+name: 'search_api:views_block__learning_materials__block_1'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }
