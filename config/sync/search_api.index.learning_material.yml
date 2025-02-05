@@ -4,15 +4,16 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_course_accessibility
-    - field.storage.node.field_course_type
     - field.storage.node.field_course_stakeholder
     - field.storage.node.field_course_topics
+    - field.storage.node.field_course_type
+    - field.storage.node.field_d_date
     - field.storage.node.field_domains_of_interest
     - field.storage.node.field_expertise
     - field.storage.node.field_reading_time
+    - field.storage.node.field_substance_group
     - search_api.server.database
   module:
-    - search_api
     - node
 id: learning_material
 name: 'Learning material'
@@ -51,6 +52,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_course_type
+  field_d_date:
+    label: Date
+    datasource_id: 'entity:node'
+    property_path: field_d_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_d_date
   field_domains_of_interest:
     label: 'Domain of interest'
     datasource_id: 'entity:node'
@@ -75,6 +84,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_reading_time
+  field_substance_group:
+    label: 'Substance group'
+    datasource_id: 'entity:node'
+    property_path: field_substance_group
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_substance_group
 datasource_settings:
   'entity:node':
     bundles:

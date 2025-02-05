@@ -899,7 +899,7 @@ function parc_core_deploy_10004() {
     'Volatile Anaesthetics',
     'Volatile Organic Compounds (VOCs)',
   ];
-  foreach ($terms as $name => $color) {
+  foreach ($terms as $name) {
     $term = Term::create([
       'vid' => 'substance_groups',
       'name' => $name,
@@ -911,7 +911,7 @@ function parc_core_deploy_10004() {
 /**
  * Import courses.
  */
-function parc_core_deploy_10005_dd() {
+function parc_core_deploy_10005() {
   $courses_path = \Drupal::service('extension.list.module')->getPath('parc_core') . '/data/courses.csv';
   $file = fopen($courses_path, 'r');
   $headers = fgetcsv($file);

@@ -1,0 +1,51 @@
+{{ attach_library('parc_interactive_map/interactive_map') }}
+{{ attach_library('parc/n--learning-material') }}
+
+<div class="learning-material" style="--bg-color: {{ bg_color }}; --icon-color: {{ icon_color }}; --text-color: {{ text-color }}">
+  <a href="{{ content.field_external_url[0]['#url'] }}">
+    <div class="learning-material__top">
+      <div class="learning-material__top__domain">
+        {{ content.field_domains_of_interest[0]}}
+      </div>
+      <div class="learning-material__top__date">
+        {{ content.field_d_date }}
+      </div>
+    </div>
+
+    <div class="learning-material__title">
+      {{ label }}
+    </div>
+
+    <div class="learning-material__body">
+      {% if icon %}
+        <div class="learning-material__body__icon">
+          {{ include(icon) }}
+        </div>
+      {% endif %}
+      <div class="learning-material__body__text">
+        {{ content.body }}
+      </div>
+    </div>
+
+    <div class="learning-material__bottom">
+      <div class="learning-material__bottom__left">
+        {{ content.field_course_type }}
+        {% set owner = content.field_owner | render | striptags %}
+        <div>
+          {% trans %}
+            By {{ owner }}
+          {% endtrans %}
+        </div>
+      </div>
+      <div class="learning-material__bottom__right">
+        {% if node.field_course_accessibility.value == 'free_of_charge' %}
+          {{ "Free" | t }}
+        {% elseif node.field_course_accessibility.value == 'registration_needed' %}
+          {{ "Registration" | t }}
+        {% elseif node.field_course_accessibility.value == 'paid_fee_subscribtion' %}
+          {{ "Paid" | t }}
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</div>

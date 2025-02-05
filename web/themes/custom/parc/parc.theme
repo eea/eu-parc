@@ -263,7 +263,9 @@ function parc_preprocess_facets_item_list(&$variables) {
   }
 
   if ($facet->id() == 'category'
-    || $facet->id() == 'lab_type') {
+    || $facet->id() == 'lab_type'
+    || $facet->id() == 'related_topics'
+    || $facet->id() == 'domain_of_interest') {
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
     foreach ($items as $item) {
       $tid = $item['value']['#title']['#raw_value'];
@@ -830,4 +832,76 @@ function parc_preprocess_node__project__related(array &$variables) {
   }
   $variables['colors'] = $colors;
   $variables['disabled'] = !$node->get('field_show_link')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node__learning_material__card_item.
+ */
+function parc_preprocess_node__learning_material__card_item(array &$variables) {
+  $node = $variables['node'];
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
+  $topic = $node->get('field_domains_of_interest')->entity;
+  if ($topic instanceof TermInterface) {
+    $color = $topic->get('field_color')->color;
+    $variables['bg_color'] = _parc_get_course_color($color, 'background');
+    $variables['icon_color'] = _parc_get_course_color($color, 'icon');
+    $variables['text_color'] = $color;
+  }
+
+  $type = $node->get('field_course_type')->value;
+  if (!empty($type) && !str_contains($type, '/')) {
+    $icon_path = \Drupal::service('extension.list.theme')->get('parc')->getPath() . "/img/course/$type.svg";
+    if (file_exists($icon_path)) {
+      $variables['icon'] = $icon_path;
+    }
+  }
+}
+
+/**
+ * Get a course color from a topic color.
+ *
+ * @param string $topic_color
+ *   The topic color.
+ * @param string $type
+ *   The color type.
+ *
+ * @return string
+ *   The course color.
+ */
+function _parc_get_course_color(string $topic_color, string $type) {
+  $colors = [
+    '#008475' => [
+      'background' => '#5EB6AB',
+      'icon' => '#008475',
+    ],
+    '#D87283' => [
+      'background' => '#FBCDD5',
+      'icon' => '#F58296',
+    ],
+    '#8B33AE' => [
+      'background' => '#E0C7F5',
+      'icon' => '#8631A7',
+    ],
+    '#2CC7B4' => [
+      'background' => '#B0E5DF',
+      'icon' => '#31D9C4',
+    ],
+    '#B2984F' => [
+      'background' => '#F4EACA',
+      'icon' => '#EAC96E',
+    ],
+    '#0475F9' => [
+      'background' => '#AED3FF',
+      'icon' => '#7AB7FF',
+    ],
+    '#E45C4D' => [
+      'background' => '#F58296',
+      'icon' => '#E06558',
+    ],
+  ];
+
+  return $colors[$topic_color][$type] ?? '#000';
 }

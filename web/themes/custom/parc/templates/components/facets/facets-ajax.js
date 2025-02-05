@@ -40,6 +40,7 @@
           $('#collapsefacet-blocklab-type').collapse('hide');
           $('#collapsefacet-blocklab-sampling-type').collapse('hide');
           $('#collapsefacet-blocklab-substance-group').collapse('hide');
+          $('.learning-materials-page .block-facets .collapse').collapse('hide');
         }
       });
 

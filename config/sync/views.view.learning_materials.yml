@@ -120,13 +120,11 @@ display:
       arguments: {  }
       filters: {  }
       style:
-        type: grid_responsive
+        type: default
         options:
+          row_class: ''
+          default_row_class: true
           uses_fields: false
-          columns: 4
-          cell_min_width: 100
-          grid_gutter: 10
-          alignment: horizontal
       row:
         type: search_api
         options:

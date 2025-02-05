@@ -6,9 +6,9 @@ dependencies:
     - core.entity_view_mode.node.card_item
     - field.field.node.learning_material.body
     - field.field.node.learning_material.field_course_accessibility
-    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_course_stakeholder
     - field.field.node.learning_material.field_course_topics
+    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_d_date
     - field.field.node.learning_material.field_domains_of_interest
     - field.field.node.learning_material.field_expertise
@@ -38,36 +38,36 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 101
+    weight: 2
     region: content
   field_course_accessibility:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 108
+    weight: 9
     region: content
   field_course_stakeholder:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 104
+    weight: 5
     region: content
   field_course_topics:
     type: entity_reference_label
     label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 103
+    weight: 4
     region: content
   field_course_type:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 105
+    weight: 6
     region: content
   field_d_date:
     type: datetime_default
@@ -76,22 +76,22 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
   field_domains_of_interest:
     type: entity_reference_label
     label: hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
-    weight: 102
+    weight: 3
     region: content
   field_expertise:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 106
+    weight: 7
     region: content
   field_external_url:
     type: link
@@ -103,22 +103,29 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    weight: 109
+    weight: 10
+    region: content
+  field_owner:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 11
     region: content
   field_reading_time:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 107
+    weight: 8
     region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 1
     region: content
 hidden:
   addtoany: true
-  field_owner: true
   field_substance_group: true
   search_api_excerpt: true
