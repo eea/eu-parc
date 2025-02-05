@@ -896,6 +896,7 @@ function parc_core_deploy_10004() {
     'Advanced (nano)materials',
     'Chemicals Mixtures',
     'Natural Toxins',
+    'Pesticides',
     'Volatile Anaesthetics',
     'Volatile Organic Compounds (VOCs)',
   ];
@@ -970,7 +971,7 @@ function parc_core_deploy_10005() {
 
     $substances = [];
     $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-    if (!empty($row['Substance'])) {
+    if (!empty($row['Substance Group'])) {
       foreach (explode(';', $row['Substance Group']) as $substance) {
         $substance = trim($substance);
         if (empty($substance)) {

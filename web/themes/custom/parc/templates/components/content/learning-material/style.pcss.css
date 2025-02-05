@@ -155,6 +155,8 @@
 
     .layout > :first-child {
       margin-top: 0 !important;
+      position: sticky;
+      top: 80px;
     }
   }
 
