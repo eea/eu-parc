@@ -582,6 +582,7 @@ blockquote {
 
   > dl dd {
     padding: 0;
+    padding-bottom: 20px;
   }
 
   dl.styled {
