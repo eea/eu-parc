@@ -1,0 +1,34 @@
+uuid: 027a35dc-42da-428d-8886-900b88c2d886
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.indicator_topics.field_color
+    - field.field.taxonomy_term.indicator_topics.field_icon
+    - taxonomy.vocabulary.indicator_topics
+  module:
+    - text
+id: taxonomy_term.indicator_topics.default
+targetEntityType: taxonomy_term
+bundle: indicator_topics
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_icon:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: svg
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_color: true
+  search_api_excerpt: true
