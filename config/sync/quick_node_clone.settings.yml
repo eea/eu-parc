@@ -1,0 +1,8 @@
+_core:
+  default_config_hash: AnuWTMxlpjS5FV0gwAgn51u6B6M1Gw1JVZF6xTRwYyw
+text_to_prepend_to_title: 'Clone of'
+exclude:
+  node: {  }
+  paragraph: {  }
+clone_status: false
+create_group_relationships: true

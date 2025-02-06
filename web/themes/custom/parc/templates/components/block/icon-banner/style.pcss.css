@@ -1,0 +1,17 @@
+.icon-banner {
+  .media-field {
+    max-width: 320px;
+    max-height: 320px;
+  }
+
+  @media (--lg) {
+    .col-content {
+      flex: 0 0 auto;
+      width: 75%;
+    }
+
+    .media-field {
+      margin-left: 8.3333%;
+    }
+  }
+}

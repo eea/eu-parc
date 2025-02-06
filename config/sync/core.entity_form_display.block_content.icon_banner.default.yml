@@ -1,0 +1,39 @@
+uuid: 7e4dcad7-575c-4d5c-bff4-e023cdff6551
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_banner
+    - field.field.block_content.icon_banner.field_color
+    - field.field.block_content.icon_banner.field_icon
+  module:
+    - color_field
+    - media_library
+id: block_content.icon_banner.default
+targetEntityType: block_content
+bundle: icon_banner
+mode: default
+content:
+  field_color:
+    type: color_field_widget_box
+    weight: 27
+    region: content
+    settings:
+      default_colors: '#aed3ff,#e0c7f5,#fbcdd5,#f4eaca'
+    third_party_settings: {  }
+  field_icon:
+    type: media_library_widget
+    weight: 26
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,29 @@
+uuid: 1a31e467-db9f-4782-b4d0-278e7fa38dae
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_banner
+    - field.storage.block_content.field_icon
+    - media.type.thematic_areas
+id: block_content.icon_banner.field_icon
+field_name: field_icon
+entity_type: block_content
+bundle: icon_banner
+label: Icon
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      thematic_areas: thematic_areas
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

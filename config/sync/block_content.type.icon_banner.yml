@@ -1,0 +1,8 @@
+uuid: bd475677-14f4-4785-b179-f4a5ba0f5994
+langcode: en
+status: true
+dependencies: {  }
+id: icon_banner
+label: 'Icon banner'
+revision: false
+description: null
