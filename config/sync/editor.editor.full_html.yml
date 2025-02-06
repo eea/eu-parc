@@ -29,6 +29,7 @@ settings:
       - '|'
       - bulletedList
       - numberedList
+      - Accordion
       - '|'
       - blockQuote
       - drupalInsertImage
@@ -37,7 +38,6 @@ settings:
       - horizontalLine
       - '|'
       - sourceEditing
-      - Accordion
   plugins:
     ckeditor5_alignment:
       enabled_alignments:
@@ -112,6 +112,9 @@ settings:
         -
           label: 'News blockquote'
           element: '<blockquote class="news-blockquote">'
+        -
+          label: 'Caption text'
+          element: '<p class="text--caption">'
     media_media:
       allow_view_mode_override: false
 image_upload:

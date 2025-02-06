@@ -1,0 +1,35 @@
+uuid: a4e52c97-d1fd-42d2-aaf4-c3f4b11eed5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icon_banner
+    - field.field.block_content.icon_banner.field_color
+    - field.field.block_content.icon_banner.field_icon
+  module:
+    - color_field
+id: block_content.icon_banner.default
+targetEntityType: block_content
+bundle: icon_banner
+mode: default
+content:
+  field_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_icon:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: svg
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

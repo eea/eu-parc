@@ -304,6 +304,11 @@ b--carousel:
     component:
       css/components/block/carousel/style.css: {}
 
+b--icon-banner:
+  css:
+    component:
+      css/components/block/icon-banner/style.css: {}
+
 # Paragraph.
 p--svg-text:
   css:

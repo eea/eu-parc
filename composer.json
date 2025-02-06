@@ -76,6 +76,7 @@
         "drupal/paragraphs": "^1.15",
         "drupal/pathauto": "^1.11",
         "drupal/publishcontent": "^1.6",
+        "drupal/quick_node_clone": "^1.20",
         "drupal/rabbit_hole": "^1.0@beta",
         "drupal/raven": "^4.0",
         "drupal/search_api": "^1.29",
@@ -205,6 +206,9 @@
             },
             "drupal/conditional_fields": {
                 "#3344587 - Support for field hidden by condition loosing its required status": "https://www.drupal.org/files/issues/2024-03-27/3344587-required-fields-that-59-with-fix.patch"
+            },
+            "drupal/quick_node_clone": {
+                "#3100117 - Inline blocks from layout builder not cloned properly": "patches/quick_node_clone/22.diff "
             }
         },
         "drupal-lenient" : {
