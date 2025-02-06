@@ -1022,7 +1022,7 @@ function parc_core_deploy_10005() {
 /**
  * Create SSBD menu entries.
  */
-function parc_core_deploy_10005() {
+function parc_core_deploy_10006() {
   $entries = [
     [
       'title' => 'Introduction to SSbD',
