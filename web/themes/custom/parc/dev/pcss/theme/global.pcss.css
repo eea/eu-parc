@@ -354,3 +354,174 @@ blockquote {
     left: 0;
   }
 }
+
+.nav-ssbd-repository  {
+  .nav-item{
+    border-top: 1px solid #000000;
+    display: flex;
+    .nav-link {
+      font-size: 16px;
+      font-weight: 500;
+      padding: 20px 0;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      &::before {
+        content: "";
+
+
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        height: 75px;
+        width: 75px;
+        margin-right: 20px;
+      }
+    }
+
+    .ssbd-menu-introduction-to-ssbd {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/introduction-to-ssbd.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/introduction-to-ssbd-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-eu-legislation-link-to-the-ssbd {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/eu-legislation-link-to-the-ssbd.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/eu-legislation-link-to-the-ssbd-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-test-guidelines-and-standards {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/test-guidelines-and-standards.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/test-guidelines-and-standards-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-tools-methods {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/tools-methods.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/tools-methods-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-data-databases {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/data-databases.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/data-databases-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-education-training {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/education-training.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/education-training-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-case-studies-practical-application {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/case-studies-practical-application.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/case-studies-practical-application-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-user-community {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/user-community.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/user-community-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-announcements {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/announcements.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/announcements-hover.svg');
+        }
+      }
+    }
+
+    .ssbd-menu-faqs {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/faqs.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/faqs-hover.svg');
+        }
+      }
+    }
+
+
+    &:last-child {
+      border-bottom: 1px solid #000000;
+    }
+
+  }
+}
+
+.page--ssbd .field {
+
+}
+
+
+.ckeditor-accordion-container {
+  dl {
+    border: unset;
+    dt {
+      border-top: 1px solid #000000;
+      .ckeditor-accordion-toggler {
+        background-color: #FFF;
+        color: #000;
+        border-bottom: unset;
+        .ckeditor-accordion-toggle {
+          &::before, .ckeditor-accordion-toggle::after {
+            background-color: #000;
+          }
+        }
+      }
+      &:last-child {
+        border-bottom: 1px solid #000000;
+      }
+    }
+  }
+}
