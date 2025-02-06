@@ -37,6 +37,7 @@ settings:
       - horizontalLine
       - '|'
       - sourceEditing
+      - Accordion
   plugins:
     ckeditor5_alignment:
       enabled_alignments:

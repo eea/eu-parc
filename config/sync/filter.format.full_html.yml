@@ -84,5 +84,6 @@ filters:
       allowed_view_modes: {  }
       allowed_media_types:
         image: image
+        remote_video: remote_video
         vector: vector
         video: video
