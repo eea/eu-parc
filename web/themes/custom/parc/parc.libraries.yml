@@ -525,3 +525,14 @@ indicators:
     - core/once
     - edwt/collapse
     - edwt/tab
+
+indicators_menu:
+  css:
+    component:
+      css/components/indicators/indicators-menu.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - edwt/collapse
+    - edwt/tab

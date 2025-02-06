@@ -1,0 +1,29 @@
+uuid: 7b7d1de8-a3f4-431f-9770-2c69d5bb39c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_icon
+    - media.type.vector
+    - taxonomy.vocabulary.indicator_topics
+id: taxonomy_term.indicator_topics.field_icon
+field_name: field_icon
+entity_type: taxonomy_term
+bundle: indicator_topics
+label: Icon
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: thematic_areas
+field_type: entity_reference
