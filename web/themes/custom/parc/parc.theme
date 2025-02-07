@@ -829,3 +829,13 @@ function parc_preprocess_node__project__related(array &$variables) {
   $variables['colors'] = $colors;
   $variables['disabled'] = !$node->get('field_show_link')->value;
 }
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function parc_library_info_alter(array &$libraries, $module) {
+  if ($module === 'edwt') {
+    $libraries['tooltip']['dependencies'][] = 'parc/parc-popper';
+    $libraries['popover']['dependencies'][] = 'parc/parc-popper';
+  }
+}
