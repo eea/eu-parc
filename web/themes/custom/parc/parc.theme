@@ -905,3 +905,13 @@ function _parc_get_course_color(string $topic_color, string $type) {
 
   return $colors[$topic_color][$type] ?? '#000';
 }
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function parc_library_info_alter(array &$libraries, $module) {
+  if ($module === 'edwt') {
+    $libraries['tooltip']['dependencies'][] = 'parc/parc-popper';
+    $libraries['popover']['dependencies'][] = 'parc/parc-popper';
+  }
+}
