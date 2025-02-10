@@ -43,15 +43,20 @@
 
   <div class="layout pt-0 container container-fluid">
     {{ content.description }}
-    <div class="topic-icon">
-      {{ content.field_icon }}
-    </div>
   </div>
 
   <div class="layout mb-5">
     <div class="container">
       <div class="topic-indicators">
         {{ drupal_block('parc_indicators') }}
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray">
+    <div class="layout pb-5 pt-5">
+      <div class="container">
+        {{ drupal_block('parc_indicators_menu') }}
       </div>
     </div>
   </div>
