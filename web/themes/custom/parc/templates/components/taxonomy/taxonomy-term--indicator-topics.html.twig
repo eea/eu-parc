@@ -34,28 +34,29 @@
 {{ attach_library('parc/indicators') }}
 
 {{ attach_library('layout_builder/twocol_section') }}
-<div{{attributes.setAttribute('id','taxonomy-term-'~term.id).addClass(classes)}}>
+<div{{attributes.setAttribute('id','taxonomy-term-'~term.id).addClass(classes)}} style="--topic-color: {{ term.field_color.color }}">
   <div class="layout">
     <div class="svg-title d-flex justify-content-center">
       <h1>{{ "Indicators" | t }}</h1>
     </div>
   </div>
 
-  <div class="layout layout--twocol-section layout--twocol-section--25-75 container-fluid pt-0">
-
-    <div class="layout__region layout__region--first">
-      {{ drupal_menu('indicator-topics', 1, 2) }}
-    </div>
-
-    <div class="layout__region layout__region--second">
-      {{ content }}
-    </div>
+  <div class="layout pt-0 container container-fluid">
+    {{ content.description }}
   </div>
 
   <div class="layout mb-5">
     <div class="container">
       <div class="topic-indicators">
         {{ drupal_block('parc_indicators') }}
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-gray">
+    <div class="layout pb-5 pt-5">
+      <div class="container">
+        {{ drupal_block('parc_indicators_menu') }}
       </div>
     </div>
   </div>

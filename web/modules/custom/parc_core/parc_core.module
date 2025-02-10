@@ -83,6 +83,11 @@ function parc_core_theme() {
         'rows' => [],
       ],
     ],
+    'parc_indicators_menu' => [
+      'variables' => [
+        'topics' => [],
+      ],
+    ]
   ];
 }
 
