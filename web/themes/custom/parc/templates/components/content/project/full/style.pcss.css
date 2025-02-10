@@ -109,13 +109,36 @@
     margin-right: 10px;
   }
 
+  .left-icon path {
+    stroke: var(--project-color);
+  }
+
   .btn {
     width: 100%;
+    color: var(--project-color);
 
     .title {
       text-align: left;
       width: 100%;
     }
+  }
+
+  .btn-arrow:before {
+    display: none;
+  }
+
+  .expand-icon {
+    order: -1;
+    padding-top: 10px;
+    margin-left: 10px;
+
+    path {
+      fill: var(--project-color);
+    }
+  }
+
+  .collapse.show {
+    padding: 10px 0;
   }
 }
 
