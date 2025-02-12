@@ -4,7 +4,6 @@ extlink_use_external_js_file: false
 extlink_exclude_admin_routes: false
 extlink_target: true
 extlink_target_no_override: true
-extlink_title_no_override: false
 extlink_nofollow: false
 extlink_noreferrer: true
 extlink_follow_no_override: false
@@ -32,5 +31,6 @@ extlink_font_awesome_classes:
   links: 'fa fa-external-link'
   mailto: 'fa fa-envelope-o'
 extlink_icon_placement: append
-extlink_prevent_orphan: false
 whitelisted_domains: {  }
+extlink_title_no_override: false
+extlink_prevent_orphan: false
