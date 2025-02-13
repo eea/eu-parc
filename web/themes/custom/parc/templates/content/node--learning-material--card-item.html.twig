@@ -28,32 +28,34 @@
     </div>
 
     <div class="learning-material__bottom">
-      <div class="learning-material__bottom__left">
-        {% set course_type = content.field_course_type | render | striptags %}
-        <div class="go-to">
-          {% trans %}
-            Go to {{ course_type }}
-          {% endtrans %}
-          <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1.31174 10.4537L5.379 5.72203L0.966992 1.31003" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        {{ content.field_course_type }}
-        {% set owner = content.field_owner | render | striptags %}
-        <div>
-          {% trans %}
-            By {{ owner }}
-          {% endtrans %}
-        </div>
+      {% set course_type = content.field_course_type | render | striptags %}
+      <div class="go-to">
+        {% trans %}
+          Go to {{ course_type }}
+        {% endtrans %}
+        <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.31174 10.4537L5.379 5.72203L0.966992 1.31003" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-      <div class="learning-material__bottom__right">
-        {% if node.field_course_accessibility.value == 'free_of_charge' %}
-          {{ "Free" | t }}
-        {% elseif node.field_course_accessibility.value == 'registration_needed' %}
-          {{ "Registration" | t }}
-        {% elseif node.field_course_accessibility.value == 'paid_fee_subscribtion' %}
-          {{ "Paid" | t }}
-        {% endif %}
+      <div class="learning-material__bottom__wrapper">
+        <div class="learning-material__bottom__left">
+          {{ content.field_course_type }}
+          {% set owner = content.field_owner | render | striptags %}
+          <div>
+            {% trans %}
+              By {{ owner }}
+            {% endtrans %}
+          </div>
+        </div>
+        <div class="learning-material__bottom__right">
+          {% if node.field_course_accessibility.value == 'free_of_charge' %}
+            {{ "Free" | t }}
+          {% elseif node.field_course_accessibility.value == 'registration_needed' %}
+            {{ "Registration" | t }}
+          {% elseif node.field_course_accessibility.value == 'paid_fee_subscribtion' %}
+            {{ "Paid" | t }}
+          {% endif %}
+        </div>
       </div>
     </div>
   </a>

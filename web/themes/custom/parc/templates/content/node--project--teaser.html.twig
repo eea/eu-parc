@@ -95,6 +95,13 @@
 ' %}
 {% endif %}
 
+{% if project_color == '#2C4E3B' %}
+  {% set icon = '<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.92578 2L14.6125 15" stroke="#2C4E3B" stroke-width="2" stroke-linecap="round"/>
+</svg>
+' %}
+{% endif %}
+
 {% if project_color == '#759875' %}
   {% set icon = '<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M1.50781 15L14.1946 2" stroke="#759875" stroke-width="2" stroke-linecap="round"/>
@@ -116,6 +123,9 @@
       {{ icon | raw }}
     </span>
     <span class="title">{{ label }}</span>
+    <svg class="expand-icon" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0.248047 5.3H5.22305V0.325H7.77305V5.3H12.748V7.85H7.77305V12.85H5.22305V7.85H0.248047V5.3Z" fill="#C4A858"/>
+    </svg>
   </button>
   <div class="collapse" id="{{collpaseID}}">
     {{ content.field_date_range }}

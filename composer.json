@@ -56,6 +56,7 @@
         "drupal/eu_cookie_compliance": "^1.24",
         "drupal/extlink": "^2.0",
         "drupal/facets": "^2.0",
+        "drupal/facets_custom_order": "^1.0",
         "drupal/field_group": "^3.4",
         "drupal/filter_external_link_icon": "^1.0.4",
         "drupal/geocoder": "^3.20 || ^4.0",

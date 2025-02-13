@@ -49,6 +49,7 @@
     font-size: 24px;
     line-height: 35px;
     margin-bottom: 10px;
+    z-index: 1;
   }
 
   &__body {
@@ -58,7 +59,6 @@
     align-items: center;
     flex-wrap: nowrap;
     min-height: 140px;
-    position: relative;
     height: 100%;
 
     &__text {
@@ -71,18 +71,22 @@
 
     &__icon {
       position: absolute;
-      bottom: 20px;
+      bottom: 110px;
     }
   }
 
   &__bottom {
-    display: flex;
-    flex-wrap: nowrap;
     margin-top: auto;
     font-size: 16px;
     line-height: 17px;
     gap: 40px;
     font-weight: 500;
+    z-index: 1;
+
+    &__wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+    }
 
     &__left {
       display: flex;
@@ -100,6 +104,7 @@
 
   .go-to {
     visibility: hidden;
+    margin-bottom: 10px;
 
     svg {
       margin-left: 5px;
