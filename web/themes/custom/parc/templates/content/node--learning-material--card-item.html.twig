@@ -13,15 +13,17 @@
     </div>
 
     <div class="learning-material__title">
-      {{ label }}
+      <div class="learning-material__title__long">{{ label }}</div>
+      <div class="learning-material__title__short">{{ label }}</div>
     </div>
 
+    {% if icon %}
+      <div class="learning-material__icon">
+        {{ include(icon) }}
+      </div>
+    {% endif %}
+
     <div class="learning-material__body">
-      {% if icon %}
-        <div class="learning-material__body__icon">
-          {{ include(icon) }}
-        </div>
-      {% endif %}
       <div class="learning-material__body__text">
         {{ content.body }}
       </div>

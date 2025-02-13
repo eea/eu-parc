@@ -1,13 +1,13 @@
 .learning-material {
   background-color: var(--bg-color);
   border-radius: 4px;
-  min-height: 286px;
+  min-height: 470px;
   position: relative;
   padding: 15px;
   height: 100%;
   border: 1px solid var(--bg-color);
 
-  .learning-material__body__icon svg {
+  .learning-material__icon svg {
     height: 120px;
     width: auto;
 
@@ -50,6 +50,29 @@
     line-height: 35px;
     margin-bottom: 10px;
     z-index: 1;
+    position: relative;
+
+    &__short {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &__long {
+      visibility: hidden;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
   }
 
   &__body {
@@ -67,11 +90,6 @@
       font-size: 16px;
       line-height: 20px;
       margin-bottom: 40px;
-    }
-
-    &__icon {
-      position: absolute;
-      bottom: 110px;
     }
   }
 
@@ -117,7 +135,7 @@
     background: #FFF;
     border: 1px solid var(--bg-color);
 
-    .learning-material__body__icon {
+    .learning-material__icon {
       display: none;
     }
 
@@ -129,6 +147,14 @@
     .learning-material__title {
       text-decoration: underline;
       color: var(--text-color);
+
+      &__long {
+        visibility: visible;
+      }
+
+      &__short {
+        display: none;
+      }
     }
 
     .go-to {
