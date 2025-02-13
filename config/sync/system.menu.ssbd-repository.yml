@@ -1,0 +1,13 @@
+uuid: 63ad1be7-b39b-44a5-9262-fa859f0d2a72
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_trail_by_path
+third_party_settings:
+  menu_trail_by_path:
+    trail_source: ''
+id: ssbd-repository
+label: 'SSbD Repository'
+description: ''
+locked: false

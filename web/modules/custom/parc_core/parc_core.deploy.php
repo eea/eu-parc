@@ -6,6 +6,7 @@ use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Create default event image.
@@ -1015,5 +1016,90 @@ function parc_core_deploy_10005() {
     ];
     $node = \Drupal::entityTypeManager()->getStorage('node')->create($node_data);
     $node->save();
+  }
+}
+
+/**
+ * Create SSBD menu entries.
+ */
+function parc_core_deploy_10006() {
+  $entries = [
+    [
+      'title' => 'Introduction to SSbD',
+      'url' => '/ssbd',
+      'class' => 'ssbd-menu-introduction-to-ssbd',
+    ],
+    [
+      'title' => 'EU legislation & link to the SSbD',
+      'url' => '/ssbd/eu-legislation-link-to-the-ssbd',
+      'class' => 'ssbd-menu-eu-legislation-link-to-the-ssbd',
+    ],
+    [
+      'title' => 'Test guidelines and standards',
+      'url' => '/ssbd/test-guidelines-and-standards',
+      'class' => 'ssbd-menu-test-guidelines-and-standards',
+    ],
+    [
+      'title' => 'Tools & methods',
+      'url' => '/ssbd/tools-methods',
+      'class' => 'ssbd-menu-tools-methods',
+    ],
+    [
+      'title' => 'Data & databases',
+      'url' => '/ssbd/data-databases',
+      'class' => 'ssbd-menu-data-databases',
+    ],
+    [
+      'title' => 'Education & training',
+      'url' => '/ssbd/education-training',
+      'class' => 'ssbd-menu-education-training',
+    ],
+    [
+      'title' => 'Case studies & practical application',
+      'url' => '/ssbd/case-studies-practical-application',
+      'class' => 'ssbd-menu-case-studies-practical-application',
+    ],
+    [
+      'title' => 'User community',
+      'url' => '/ssbd/user-community',
+      'class' => 'ssbd-menu-user-community',
+    ],
+    [
+      'title' => 'Announcements',
+      'url' => '/ssbd/announcements',
+      'class' => 'ssbd-menu-announcements',
+    ],
+    [
+      'title' => 'FAQs',
+      'url' => '/ssbd/faqs',
+      'class' => 'ssbd-menu-faqs',
+    ],
+  ];
+
+  $menu_name = 'ssbd-repository';
+
+  foreach ($entries as $idx => $entry) {
+    // Check if the menu link already exists.
+    $existing_links = \Drupal::entityTypeManager()
+      ->getStorage('menu_link_content')
+      ->loadByProperties(['title' => $entry['title'], 'menu_name' => $menu_name]);
+    if ($existing_links) {
+      $existing_link = reset($existing_links);
+      $existing_link->delete();
+    }
+
+    // Create a new menu link entity.
+    $menu_link = MenuLinkContent::create([
+      'title' => $entry['title'],
+      'link' => [
+        'uri' => 'internal:' . $entry['url'],
+        'options' => ['attributes' => ['class' => [$entry['class']]]],
+      ],
+      'menu_name' => $menu_name,
+      'expanded' => TRUE,
+      'weight' => $idx,
+    ]);
+
+    $menu_link->save();
   }
 }

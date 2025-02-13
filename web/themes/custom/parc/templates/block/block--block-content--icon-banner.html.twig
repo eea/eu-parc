@@ -1,0 +1,12 @@
+{{ attach_library('parc/b--icon-banner') }}
+
+<div class="icon-banner" style="background-color: {{ content.field_color | render | striptags | trim }}">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg"></div>
+      <div class="col-content">
+        {{ content.field_icon }}
+      </div>
+    </div>
+  </div>
+</div>

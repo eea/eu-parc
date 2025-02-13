@@ -835,6 +835,16 @@ function parc_preprocess_node__project__related(array &$variables) {
 }
 
 /**
+ * Implements hook_library_info_alter().
+ */
+function parc_library_info_alter(array &$libraries, $module) {
+  if ($module === 'edwt') {
+    $libraries['tooltip']['dependencies'][] = 'parc/parc-popper';
+    $libraries['popover']['dependencies'][] = 'parc/parc-popper';
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for node__learning_material__card_item.
  */
 function parc_preprocess_node__learning_material__card_item(array &$variables) {
