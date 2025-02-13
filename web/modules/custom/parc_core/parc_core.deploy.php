@@ -855,9 +855,9 @@ function parc_core_deploy_10004() {
   }
 
   $terms = [
-    'Chemicals Prioritization' => '#D87283',
-    'Regulatory Policy Frameworks' => '#D87283',
-    'Risk Communication' => '#D87283',
+    'Chemicals prioritization' => '#D87283',
+    'Regulatory policy frameworks' => '#D87283',
+    'Risk communication' => '#D87283',
 
     'Environmental monitoring' => '#8B33AE',
     'HBM' => '#8B33AE',
@@ -865,7 +865,7 @@ function parc_core_deploy_10004() {
     'Modelling' => '#8B33AE',
     'QA/QC' => '#8B33AE',
 
-    'In vivo Testing' => '#2CC7B4',
+    'In vivo testing' => '#2CC7B4',
     'NAMs' => '#2CC7B4',
     'IATAs' => '#2CC7B4',
     'AOPs' => '#2CC7B4',

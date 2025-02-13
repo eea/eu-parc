@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f096bcbee6fe95ea2ed9ee422754819e",
+    "content-hash": "9aa32a16079168c9597f1130ee93b258",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3522,6 +3522,51 @@
                 "source": "https://git.drupalcode.org/project/facets",
                 "issues": "https://www.drupal.org/project/issues/facets",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/facets_custom_order",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/facets_custom_order.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/facets_custom_order-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "8543d3db896f03b0c24bf3da8d77ff439a8e7498"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10  || ^11",
+                "drupal/facets": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0",
+                    "datestamp": "1731340447",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "uniquename",
+                    "homepage": "https://www.drupal.org/user/532810"
+                }
+            ],
+            "description": "Sorts facets in a predifined custom order.",
+            "homepage": "https://www.drupal.org/project/facets_custom_order",
+            "support": {
+                "source": "https://git.drupalcode.org/project/facets_custom_order"
             }
         },
         {

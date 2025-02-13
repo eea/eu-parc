@@ -43,11 +43,13 @@ only_visible_when_facet_source_is_visible: false
 show_only_one_result: false
 show_title: false
 processor_configs:
-  display_value_widget_order:
-    processor_id: display_value_widget_order
+  custom_widget_order:
+    processor_id: custom_widget_order
     weights:
       sort: 40
     settings:
+      custom_order: "0_60_minutes\r\n1_4_hr\r\n1_day\r\nmore_than_1_day"
+      display_values: false
       sort: ASC
   hierarchy_processor:
     processor_id: hierarchy_processor
