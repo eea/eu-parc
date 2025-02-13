@@ -1,0 +1,21 @@
+uuid: ed76c33e-85af-4082-9ddf-af0df3c7cd5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expertise
+    - node.type.learning_material
+  module:
+    - options
+id: node.learning_material.field_expertise
+field_name: field_expertise
+entity_type: node
+bundle: learning_material
+label: 'Level of expertise'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

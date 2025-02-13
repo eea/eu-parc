@@ -295,6 +295,11 @@ n--search-teaser:
     component:
       css/components/content/search-teaser/style.css: {}
 
+n--learning-material:
+  css:
+    component:
+      css/components/content/learning-material/style.css: {}
+
 # Block.
 b--carousel:
   css:

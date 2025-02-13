@@ -1,0 +1,9 @@
+uuid: dcf31661-175b-4b40-bb38-18e4e48c190a
+langcode: en
+status: true
+dependencies: {  }
+name: '[Learning materials] Topics'
+vid: course_topics
+description: null
+weight: 0
+new_revision: false

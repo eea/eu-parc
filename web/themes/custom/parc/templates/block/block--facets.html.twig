@@ -44,8 +44,13 @@
   {{ title_prefix }}
 
   {% if plugin_id|clean_class == 'facet-blocklab-type'
-    or plugin_id|clean_class == 'facet-blockcategory' %}
+    or plugin_id|clean_class == 'facet-blockcategory'
+  %}
     <div class="facets-section-title">{{ "Filter" | t }}</div>
+  {% endif %}
+
+  {% if plugin_id|clean_class == 'facet-blockdomain-of-interest' %}
+    <div class="facets-section-title">{{ "Filter one or multiple items" | t }}</div>
   {% endif %}
 
   {% if label %}

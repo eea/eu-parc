@@ -1,0 +1,33 @@
+uuid: 8a68a366-f513-4091-9e6f-eb77c460faca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.course_topics.field_color
+    - taxonomy.vocabulary.course_topics
+  module:
+    - color_field
+    - text
+id: taxonomy_term.course_topics.default
+targetEntityType: taxonomy_term
+bundle: course_topics
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

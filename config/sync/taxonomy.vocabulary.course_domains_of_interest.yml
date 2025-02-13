@@ -1,0 +1,9 @@
+uuid: ba2f5798-ec4b-4e99-8201-9520a9cc7936
+langcode: en
+status: true
+dependencies: {  }
+name: '[Learning materials] Domains of interest'
+vid: course_domains_of_interest
+description: null
+weight: 0
+new_revision: false

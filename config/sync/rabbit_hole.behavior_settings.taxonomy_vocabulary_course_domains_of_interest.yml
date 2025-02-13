@@ -1,0 +1,14 @@
+uuid: 6a799607-8163-40cf-bfad-d9a4588dc711
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.course_domains_of_interest
+id: taxonomy_vocabulary_course_domains_of_interest
+entity_type_id: taxonomy_vocabulary
+entity_id: course_domains_of_interest
+action: display_page
+allow_override: 1
+redirect: ''
+redirect_code: 301
+redirect_fallback_action: access_denied

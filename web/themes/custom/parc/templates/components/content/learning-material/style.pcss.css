@@ -1,0 +1,234 @@
+.learning-material {
+  background-color: var(--bg-color);
+  border-radius: 4px;
+  min-height: 470px;
+  position: relative;
+  padding: 15px;
+  height: 100%;
+  border: 1px solid var(--bg-color);
+
+  .learning-material__icon svg {
+    height: 120px;
+    width: auto;
+
+    path {
+      stroke: var(--icon-color);
+    }
+  }
+
+  > a {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: transparent;
+    height: 100%;
+  }
+
+  &__top {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 15px;
+
+    &__domain {
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 14px;
+    }
+
+    &__date {
+      font-size: 14px;
+      line-height: 14px;
+      font-weight: bold;
+      margin-left: auto;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+
+    &__short {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &__long {
+      visibility: hidden;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    flex-wrap: nowrap;
+    min-height: 140px;
+    height: 100%;
+
+    &__text {
+      visibility: hidden;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &__bottom {
+    margin-top: auto;
+    font-size: 16px;
+    line-height: 17px;
+    gap: 40px;
+    font-weight: 500;
+    z-index: 1;
+
+    &__wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    &__right {
+      margin-left: auto;
+      margin-top: auto;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+  }
+
+  .go-to {
+    visibility: hidden;
+    margin-bottom: 10px;
+
+    svg {
+      margin-left: 5px;
+      width: 7px;
+      margin-bottom: 1px;
+    }
+  }
+
+  &:hover {
+    background: #FFF;
+    border: 1px solid var(--bg-color);
+
+    .learning-material__icon {
+      display: none;
+    }
+
+    .learning-material__body__text {
+      visibility: visible;
+      color: var(--text-color);
+    }
+
+    .learning-material__title {
+      text-decoration: underline;
+      color: var(--text-color);
+
+      &__long {
+        visibility: visible;
+      }
+
+      &__short {
+        display: none;
+      }
+    }
+
+    .go-to {
+      visibility: visible;
+      color: var(--text-color);
+      text-decoration: underline;
+    }
+  }
+}
+
+.view-learning-materials {
+  display: grid;
+  gap: 15px;
+
+  @media (--lg) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (--xl) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.learning-materials-page {
+  .px-0 > :last-child > div {
+    width: auto !important;
+  }
+
+  .px-0 {
+    height: auto !important;
+  }
+
+  @media (min-width: 1921px) {
+    .px-0 > :last-child > div {
+      position: static;
+      width: auto;
+      left: unset;
+    }
+
+    .node--page {
+      overflow: visible !important;
+    }
+  }
+
+  @media screen and (min-width: 40.0001em) {
+    .px-0 {
+      padding-right: 1.25rem !important;
+    }
+
+    .layout > :first-child {
+      margin-top: 0 !important;
+      position: sticky;
+      top: 80px;
+    }
+  }
+
+  @media screen and (max-width: 40em) {
+    .px-0 > :first-child {
+      overflow: auto;
+      position: static;
+      width: auto;
+      max-height: unset;
+      z-index: 0;
+      padding-top: 20px !important;
+    }
+
+    .layout__region {
+      padding-left: 1.25rem !important;
+      padding-right: 1.25rem !important;
+    }
+  }
+
+  .layout {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+}

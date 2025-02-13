@@ -1,0 +1,30 @@
+uuid: d6f9a520-62d1-467e-b038-8f9908a4f17b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_course_accessibility
+field_name: field_course_accessibility
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: free_of_charge
+      label: 'Free of charge'
+    -
+      value: registration_needed
+      label: 'Registration needed'
+    -
+      value: paid_fee_subscribtion
+      label: Paid/fee/subscribtion
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

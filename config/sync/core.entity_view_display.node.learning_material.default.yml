@@ -1,0 +1,132 @@
+uuid: 05ff3234-f8b8-4f21-88b4-5b46509571a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.learning_material.body
+    - field.field.node.learning_material.field_course_accessibility
+    - field.field.node.learning_material.field_course_type
+    - field.field.node.learning_material.field_course_stakeholder
+    - field.field.node.learning_material.field_course_topics
+    - field.field.node.learning_material.field_d_date
+    - field.field.node.learning_material.field_domains_of_interest
+    - field.field.node.learning_material.field_expertise
+    - field.field.node.learning_material.field_external_url
+    - field.field.node.learning_material.field_owner
+    - field.field.node.learning_material.field_reading_time
+    - field.field.node.learning_material.field_substance_group
+    - node.type.learning_material
+  module:
+    - datetime
+    - link
+    - options
+    - text
+    - user
+id: node.learning_material.default
+targetEntityType: node
+bundle: learning_material
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_course_accessibility:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_course_stakeholder:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_course_topics:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_course_type:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_d_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_domains_of_interest:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_expertise:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_external_url:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_owner:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_reading_time:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_substance_group:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  search_api_excerpt: true
