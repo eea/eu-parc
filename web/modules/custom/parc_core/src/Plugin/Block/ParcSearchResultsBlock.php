@@ -127,6 +127,9 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
       'institution',
       'laboratory',
       'basic_page',
+      'indicator',
+      'project',
+      'learning_material',
     ];
 
     $views = [];

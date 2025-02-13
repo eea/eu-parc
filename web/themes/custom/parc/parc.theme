@@ -427,6 +427,7 @@ function parc_preprocess_node__search_teaser(&$variables) {
     'deliverables' => 'field_media',
     'institution' => 'field_media_image',
     'laboratory' => 'field_media_image',
+    'indicator' => 'field_image',
   ];
 
   /** @var \Drupal\node\NodeInterface $node */
@@ -439,6 +440,59 @@ function parc_preprocess_node__search_teaser(&$variables) {
     $variables['content']['field_address_data'] = [
       '#markup' => $node->get('field_address_data')->value,
     ];
+  }
+
+  if ($node->bundle() == 'indicator') {
+    $topic = $node->get('field_indicator_topic')->entity;
+    if ($topic instanceof TermInterface) {
+      $main_topic = $topic->get('parent')->entity;
+      if ($main_topic instanceof TermInterface) {
+        $variables['content']['field_image'] = $main_topic->get('field_icon')->view('default');
+      }
+    }
+  }
+
+  if ($node->bundle() == 'learning_material') {
+    $type = $node->get('field_course_type')->value;
+    if (!empty($type) && !str_contains($type, '/')) {
+      $icon_path = \Drupal::service('extension.list.theme')->get('parc')->getPath() . "/img/course/$type.svg";
+      if (file_exists($icon_path)) {
+        $variables['icon'] = $icon_path;
+      }
+    }
+
+    $topic = $node->get('field_domains_of_interest')->entity;
+    if ($topic instanceof TermInterface) {
+      $color = $topic->get('field_color')->color;
+      $variables['bg_color'] = _parc_get_course_color($color, 'background');
+      $variables['icon_color'] = _parc_get_course_color($color, 'icon');
+    }
+  }
+
+  if ($node->bundle() == 'project') {
+    $topics = array_column($node->get('field_project_topics')->getValue(), 'target_id');
+    $icon = NULL;
+    if (count($topics) == 1) {
+      $icon = 'default.svg';
+      $topic = $node->get('field_project_topics')->entity;
+
+      if ($topic instanceof TermInterface) {
+        $variables['icon_color'] = $topic->get('field_color')->color;
+      }
+    }
+    elseif (count($topics) > 1) {
+      sort($topics);
+      $icon = implode('-', $topics) . '.svg';
+    }
+
+    if (!$icon) {
+      return;
+    }
+
+    $icon_path = \Drupal::service('extension.list.theme')->get('parc')->getPath() . "/img/project/$icon";
+    if (file_exists($icon_path)) {
+      $variables['icon'] = $icon_path;
+    }
   }
 }
 

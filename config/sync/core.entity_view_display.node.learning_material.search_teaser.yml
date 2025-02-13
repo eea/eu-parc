@@ -1,9 +1,9 @@
-uuid: 2c4cec50-9b58-46c0-bc9c-b2b1562dfe43
+uuid: e1724ec7-0792-4242-aa36-cf44b179c19c
 langcode: en
-status: false
+status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.info
+    - core.entity_view_mode.node.search_teaser
     - field.field.node.learning_material.body
     - field.field.node.learning_material.field_course_accessibility
     - field.field.node.learning_material.field_course_stakeholder
@@ -18,20 +18,49 @@ dependencies:
     - field.field.node.learning_material.field_substance_group
     - node.type.learning_material
   module:
+    - layout_builder
+    - smart_trim
     - user
-id: node.learning_material.info
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.learning_material.search_teaser
 targetEntityType: node
 bundle: learning_material
-mode: info
+mode: search_teaser
 content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
 hidden:
   addtoany: true
-  body: true
   field_course_accessibility: true
   field_course_stakeholder: true
   field_course_topics: true
