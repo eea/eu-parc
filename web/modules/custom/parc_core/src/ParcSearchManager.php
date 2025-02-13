@@ -9,6 +9,7 @@ use Drupal\Core\Url;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
+use Drupal\taxonomy\TermInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -61,7 +62,7 @@ class ParcSearchManager {
    * @param \Drupal\node\NodeInterface $node
    *   The node.
    *
-   * @return \Drupal\Core\Url
+   * @return \Drupal\Core\Url|null
    *   The URL to the node.
    */
   public function getNodeSearchTeaserUrl(NodeInterface $node) {
@@ -89,6 +90,26 @@ class ParcSearchManager {
             'publication' => $node->id(),
           ],
         ]);
+      case 'indicator':
+        $topic = $node->get('field_indicator_topic')->entity;
+        if (!$topic instanceof TermInterface) {
+          return NULL;
+        }
+        $query = ['tab' => $node->get('field_indicator_type')->value . '-' . $topic->id() . '-tab'];
+        return Url::fromRoute(
+          'entity.taxonomy_term.canonical',
+          ['taxonomy_term' => $topic->id()],
+          ['query' => $query, 'fragment' => 'indicator-' . $node->id()],
+        );
+
+      case 'project':
+        if (!$node->get('field_show_link')->value) {
+          return Url::fromUserInput('/projects');
+        }
+        return $node->toUrl();
+
+      case 'learning_material':
+        return Url::fromUserInput('/learning-materials', ['fragment' => 'material-' . $node->id()]);
 
       default:
         return $node->toUrl();
@@ -139,6 +160,15 @@ class ParcSearchManager {
 
       case 'publications':
         return $this->t('Publications')->__toString();
+
+      case 'learning_material':
+        return $this->t('Learning materials')->__toString();
+
+      case 'project':
+        return $this->t('Projects')->__toString();
+
+      case 'indicator':
+        return $this->t('Indicators')->__toString();
 
       default:
         return $this->t('Other content')->__toString();

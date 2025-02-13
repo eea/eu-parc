@@ -1,7 +1,7 @@
 {{ attach_library('parc_interactive_map/interactive_map') }}
 {{ attach_library('parc/n--learning-material') }}
 
-<div class="learning-material" style="--bg-color: {{ bg_color }}; --icon-color: {{ icon_color }}; --text-color: {{ text_color }}">
+<div class="learning-material" style="--bg-color: {{ bg_color }}; --icon-color: {{ icon_color }}; --text-color: {{ text_color }}" id="material-{{ node.id() }}">
   <a href="{{ content.field_external_url[0]['#url'] }}">
     <div class="learning-material__top">
       <div class="learning-material__top__domain">

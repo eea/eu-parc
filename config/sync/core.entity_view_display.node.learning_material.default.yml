@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_course_stakeholder
     - field.field.node.learning_material.field_course_topics
+    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_d_date
     - field.field.node.learning_material.field_domains_of_interest
     - field.field.node.learning_material.field_expertise

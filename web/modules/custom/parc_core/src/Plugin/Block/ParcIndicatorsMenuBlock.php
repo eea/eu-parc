@@ -7,6 +7,7 @@ use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
+use Drupal\parc_core\ParcSearchManager;
 use Drupal\taxonomy\TermInterface;
 use Drupal\views\Views;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,6 +31,13 @@ class ParcIndicatorsMenuBlock extends BlockBase implements ContainerFactoryPlugi
   protected $entityTypeManager;
 
   /**
+   * The search manager.
+   *
+   * @var \Drupal\parc_core\ParcSearchManager
+   */
+  protected $searchManager;
+
+  /**
    * Construct a ParcProjectBlock instance.
    *
    * @param array $configuration
@@ -40,10 +48,13 @@ class ParcIndicatorsMenuBlock extends BlockBase implements ContainerFactoryPlugi
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\parc_core\ParcSearchManager $search_manager
+   *   The search manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, ParcSearchManager $search_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entity_type_manager;
+    $this->searchManager = $search_manager;
   }
 
   /**
@@ -54,7 +65,8 @@ class ParcIndicatorsMenuBlock extends BlockBase implements ContainerFactoryPlugi
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('parc_core.search_manager')
     );
   }
 
@@ -106,12 +118,10 @@ class ParcIndicatorsMenuBlock extends BlockBase implements ContainerFactoryPlugi
 
         foreach ($indicators as $indicator) {
           $type = $indicator->get('field_indicator_type')->value;
-          $options = ['fragment' => 'indicator-' . $indicator->id()];
+
           $groups[$type]['items'][] = [
             '#type' => 'link',
-            '#url' => Url::fromRoute('entity.taxonomy_term.canonical', [
-              'taxonomy_term' => $main_topic->id(),
-            ], $options),
+            '#url' => $this->searchManager->getNodeSearchTeaserUrl($indicator),
             '#title' => $indicator->label(),
           ];
         }
