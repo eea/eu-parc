@@ -52,7 +52,16 @@
                 </button>
               </div>
             {% else %}
-              {{ link(item.title, item.url, { 'class': classes_link }) }}
+              {% if 'fakelink' in item.url.getOptions()['attributes'].class[0] %}
+                <div class="mobile--show">
+                  {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
+                </div>
+                <div class="mobile--hide">
+                  {{ link(item.title, item.url, { 'class': classes_link }) }}
+                </div>
+              {% else %}
+                {{ link(item.title, item.url, { 'class': classes_link }) }}
+              {% endif %}
             {% endif %}
 
             {% if item.below %}

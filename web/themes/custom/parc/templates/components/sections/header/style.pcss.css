@@ -541,3 +541,21 @@ header {
 .search-link {
   cursor: pointer;
 }
+
+.mobile--show {
+  @media (--lg) {
+    display: none;
+  }
+
+  .second-level {
+    padding-left: 0;
+  }
+}
+
+.mobile--hide {
+  display: none;
+
+  @media (--lg) {
+    display: block;
+  }
+}
