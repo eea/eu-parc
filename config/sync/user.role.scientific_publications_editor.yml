@@ -81,6 +81,8 @@ permissions:
   - 'publish any node type publications'
   - 'publish editable content'
   - 'publish editable node type publications'
+  - 'publish own node type events'
+  - 'publish own node type opportunity'
   - 'publish own node type publications'
   - 'revert publications revisions'
   - 'unpublish any node type publications'

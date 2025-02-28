@@ -13,10 +13,10 @@ settings:
   allowed_values:
     -
       value: 0_60_minutes
-      label: '0-60 minutes'
+      label: 'Less than 1 h'
     -
       value: 1_4_hr
-      label: '1-4 hr'
+      label: '1-4 h'
     -
       value: 1_day
       label: '1 day'
