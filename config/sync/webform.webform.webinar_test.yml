@@ -25,13 +25,7 @@ elements: |-
       '#title_display': after
       '#description_display': before
       '#options': yes_no
-      '#states':
-        required:
-          - ':input[name="do_you_confirm_that_you_have_read_and_accept_the_information_sta"]':
-              empty: true
-          - or
-          - ':input[name="do_you_confirm_that_you_have_read_and_accept_the_information_sta"]':
-              value: 'NO'
+      '#required': true
   personal_details:
     '#type': webform_wizard_page
     '#title': 'Personal Details'
@@ -267,10 +261,7 @@ handlers:
     label: Email
     notes: ''
     status: true
-    conditions:
-      enabled:
-        ':input[name="e_mail_adress"]':
-          filled: true
+    conditions: {  }
     weight: 0
     settings:
       states:
