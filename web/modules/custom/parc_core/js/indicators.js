@@ -3016,10 +3016,10 @@
             categoryAngle < (3 * Math.PI) / 2
           ) {
             // On the left
-            addToX = -60;
+            addToX = -30;
           } else {
             // On the right
-            addToX = 60;
+            addToX = 30;
           }
 
           let addToX2 =
