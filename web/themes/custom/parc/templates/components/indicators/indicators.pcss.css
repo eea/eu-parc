@@ -509,6 +509,12 @@ text.axis-label {
 
   &[data-chart-type="radial"] {
     .indicator-container {
+      min-height: 560px;
+    }
+  }
+
+  &[data-indicator-id="indicator_2_2"] {
+    .indicator-container {
       min-height: 840px;
     }
   }
