@@ -69,6 +69,7 @@ function parc_core_theme() {
       'variables' => [
         'id' => '',
         'chart_type' => '',
+        'indicator_id' => '',
       ],
     ],
     'parc_publications_timeline' => [
@@ -81,6 +82,7 @@ function parc_core_theme() {
         'year_header' => [],
         'month_header' => [],
         'rows' => [],
+        'current_year' => '',
       ],
     ],
     'parc_indicators_menu' => [

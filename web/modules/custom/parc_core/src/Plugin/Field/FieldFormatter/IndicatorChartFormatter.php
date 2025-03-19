@@ -86,6 +86,7 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
 
     return [
       '#theme' => 'parc_indicator_chart',
+      '#indicator_id' => $indicator_type,
       '#chart_type' => $chart_type,
       '#id' => $parent->id(),
       '#attached' => [

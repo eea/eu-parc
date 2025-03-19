@@ -50,8 +50,8 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
    * {@inheritdoc}
    */
   public function build(): array {
-    $current_year = date('Y', time());
-    $year_header = [$current_year, $current_year + 1];
+    $current_calendar_year = $this->getCurrentCalendarYear();
+    $year_header = range(2024, $current_calendar_year + 1);
     $events_per_month = [];
     foreach ($year_header as $year) {
       for ($i = 1; $i <= 12; $i++) {
@@ -92,7 +92,10 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
         $month_header = [$format];
         foreach ($year_header as $year) {
           for ($i = 1; $i <= 12; $i++) {
-            $month_header[] = $i;
+            $month_header[] = [
+              'month' => $i,
+              'year' => $year,
+            ];
           }
         }
       }
@@ -140,7 +143,6 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
           ],
           'months' => $events_per_month,
         ];
-
         foreach ($dates as $item) {
           $value = (int) $item->value;
           if ($event->bundle() == 'resource') {
@@ -149,6 +151,7 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
 
           $date_value = date('Y-m', $value);
           $row['months'][$date_value] = TRUE;
+          $row['years'][] = date('Y', $value);
         }
 
         $rows[] = $row;
@@ -159,6 +162,7 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
       '#theme' => 'parc_events_table',
       '#year_header' => $year_header,
       '#month_header' => $month_header,
+      '#current_year' => $current_calendar_year,
       '#rows' => $rows,
       '#attached' => ['library' => ['parc_core/events_table']],
     ];
@@ -192,13 +196,59 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
       ->condition('status', TRUE)
       // Events.
       ->condition('field_categories', 91)
-      // Events after January 1st of current year.
-      ->condition('field_date', strtotime(date('Y') . '-01-01', time()), '>=')
       ->condition('field_event_format', $format)
       ->condition('field_organizer', 'external', '!=')
       ->sort('field_date')
       ->execute();
     return $node_storage->loadMultiple($events);
+  }
+
+  /**
+   * Get the current calendar year.
+   *
+   * This is the year where the last resource or event exists,
+   * but cannot be higher than current year.
+   *
+   * @return int
+   *   The current calendar year.
+   */
+  protected function getCurrentCalendarYear() {
+    /** @var \Drupal\node\NodeStorageInterface $node_storage */
+    $node_storage = $this->entityTypeManager->getStorage('node');
+
+    $event = $node_storage
+      ->getQuery()
+      ->accessCheck()
+      ->condition('type', 'events')
+      ->condition('status', TRUE)
+      // Events.
+      ->condition('field_categories', 91)
+      ->condition('field_organizer', 'external', '!=')
+      ->sort('field_date', 'DESC')
+      ->range(0, 1)
+      ->execute();
+    $event = reset($event);
+    $event = $node_storage->load($event);
+    $dates = $event->get('field_date')->getValue();
+    $date = end($dates);
+    $last_event_year = date('Y', (int) $date['value']);
+
+    $resource = $node_storage
+      ->getQuery()
+      ->accessCheck()
+      ->condition('type', 'resource')
+      ->condition('status', TRUE)
+      ->sort('field_d_date', 'DESC')
+      ->range(0, 1)
+      ->execute();
+    $resource = reset($resource);
+    $resource = $node_storage->load($resource);
+    $date = $resource->get('field_d_date')->value;
+    $last_resource_year = date('Y', strtotime($date));
+
+    $max_year = max($last_resource_year, $last_event_year);
+    $current_year = date('Y');
+    return min($current_year, $max_year);
   }
 
   /**
@@ -216,11 +266,17 @@ final class ParcTrainingsTableBlock extends BlockBase implements ContainerFactor
       ->accessCheck()
       ->condition('type', 'resource')
       ->condition('status', TRUE)
-      // Events after January 1st of current year.
-      ->condition('field_d_date', strtotime(date('Y') . '-01-01', time()), '>=')
-      ->sort('field_date')
+      ->sort('field_d_date')
       ->execute();
     return $node_storage->loadMultiple($events);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCacheMaxAge() {
+    // Cache for a week to make sure the new year is displayed.
+    return 60 * 60 * 24 * 7;
   }
 
 }

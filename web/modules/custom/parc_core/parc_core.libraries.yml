@@ -86,3 +86,8 @@ events_table:
   css:
     component:
       css/events-table.css: {}
+  js:
+    js/events-table.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
