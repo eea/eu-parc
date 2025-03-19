@@ -501,3 +501,45 @@ text.axis-label {
   width: 131px;
   height: auto;
 }
+
+.indicator-chart {
+  .indicator-container {
+    min-height: 600px;
+  }
+
+  &[data-chart-type="radial"] {
+    .indicator-container {
+      min-height: 840px;
+    }
+  }
+
+  &[data-chart-type="synergies"] {
+    .indicator-container {
+      min-height: 650px;
+    }
+  }
+
+  &[data-chart-type="map"] {
+    .indicator-container {
+      min-height: 778px;
+    }
+  }
+
+  &[data-chart-type="pie"] {
+    .indicator-container {
+      min-height: 583px;
+    }
+  }
+
+  &[data-chart-type="group_pie"] {
+    .indicator-container {
+      min-height: 800px;
+    }
+  }
+
+  &[data-chart-type="bar"] {
+    .indicator-container {
+      min-height: 343px;
+    }
+  }
+}
