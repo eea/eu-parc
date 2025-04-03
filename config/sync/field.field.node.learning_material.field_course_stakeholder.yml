@@ -11,7 +11,7 @@ id: node.learning_material.field_course_stakeholder
 field_name: field_course_stakeholder
 entity_type: node
 bundle: learning_material
-label: Stakeholder
+label: 'Target stakeholder'
 description: ''
 required: true
 translatable: false

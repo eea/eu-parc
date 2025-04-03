@@ -1,0 +1,390 @@
+uuid: aa182554-3c6a-4ea4-8193-5bdf1107c193
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 20
+template: false
+archive: false
+id: application_form_quality_assuran
+title: 'Application Form | Quality Assurance and Quality Control'
+description: '<p><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1st PARC training needs survey, PARC is now organising an in-person training course on </span><em><span lang="EN-US"><strong>Quality Assurance and Quality Control</strong></span></em><span lang="EN-US">. This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that while there are no registration fees, participants are responsible for covering their travel, accommodation, and any other incidental expenses.</span></p><p><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymized data will also be used for PARC project reporting.</span></p><p><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e.&nbsp;</span><span style="color:black;font-size:10.5pt;line-height:107%;" lang="EN-US">Jožef Stefan Institute, Slovenia).&nbsp;</span><span lang="EN-US">Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US">Deadline for application: <strong>08.04.2025</strong></span></p><p><span lang="EN-US">If you have any questions, please contact Milena Horvat (</span><a href="mailto:milena.horvat@ijs.si"><span lang="EN-US">milena.horvat@ijs.si</span></a><span lang="EN-US">) and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-US">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-US">).</span></p><p><span lang="EN-US">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders,</span></p><p>Milena Horvat &amp; Carla Trindade Costa</p>'
+categories: {  }
+elements: |-
+  context_and_consent:
+    '#type': webform_wizard_page
+    '#title': 'Context and Consent'
+    i_confirm_that_i_have_read_and_i_accept_the_information_stated_a:
+      '#type': checkbox
+      '#title': 'I confirm that I have read and I accept the information stated above'
+      '#description': '<h5><strong>Context and Consent</strong></h5><p><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1<sup>st</sup> PARC training needs survey, PARC is now organising an in-person training course on </span><em><span lang="EN-US"><strong>Quality Assurance and Quality Control </strong></span></em><span lang="EN-US">(26<sup>th</sup>-28<sup>th</sup> of May 2025, Ljubljana, Slovenia). This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that while there are no registration fees, participants are responsible for covering their travel, accommodation, and any other incidental expenses.</span></p><p><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymized data will also be used for PARC project reporting.</span></p><p><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (i.e.&nbsp;</span><span style="color:black;font-size:10.5pt;line-height:107%;" lang="EN-US">Jožef Stefan Institute, Slovenia).&nbsp;</span><span lang="EN-US">Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US">Deadline for application: <strong>08.04.2025</strong></span></p><p><span lang="EN-US">If you have any questions, please contact Milena Horvat (</span><a href="mailto:milena.horvat@ijs.si"><span lang="EN-US">milena.horvat@ijs.si</span></a><span lang="EN-US">) and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-US">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-US">).</span></p><p><span lang="EN-US">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders,</span></p><p>Milena Horvat &amp; Carla Trindade Costa</p><p style="text-align:justify;">&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  personal_details:
+    '#type': webform_wizard_page
+    '#title': 'Personal Details'
+    first_name:
+      '#type': textfield
+      '#title': 'First Name'
+      '#description': '<p>First Name</p>'
+      '#field_suffix': '        '
+      '#required': true
+    last_name:
+      '#type': textfield
+      '#title': 'Last Name'
+      '#required': true
+    e_mail_address:
+      '#type': email
+      '#title': 'E-mail address'
+      '#required': true
+    gender:
+      '#type': radios
+      '#title': Gender
+      '#options':
+        Woman: Woman
+        Man: Man
+        Non-Binary: Non-Binary
+        Other: Other
+        'Prefer not to answer': 'Prefer not to answer'
+      '#required': true
+    age:
+      '#type': number
+      '#title': Age
+      '#required': true
+    nationality:
+      '#type': select
+      '#title': Nationality
+      '#options': country_names
+      '#required': true
+  education:
+    '#type': webform_wizard_page
+    '#title': Education
+    phd:
+      '#type': radios
+      '#title': PhD
+      '#options': yes_no
+      '#required': true
+    indicate_here_field_and_year_of_graduation_e_g_biomedical_scienc:
+      '#type': textfield
+      '#title': 'Indicate here field and year of graduation (e.g. Biomedical Sciences; 2010)'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="phd"]':
+            value: 'Yes'
+    msc:
+      '#type': radios
+      '#title': MSc
+      '#options': yes_no
+      '#required': true
+    indicate_here_field_and_year_of_graduation_e_g_toxicology_2006:
+      '#type': textfield
+      '#title': 'Indicate here field and year of graduation (e.g. Toxicology; 2006)'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="msc"]':
+            value: 'Yes'
+    bsc:
+      '#type': radios
+      '#title': BSc
+      '#options': yes_no
+      '#required': true
+    indicate_here_field_and_year_of_graduation_e_g_biology_2004:
+      '#type': textfield
+      '#title': 'Indicate here field and year of graduation (e.g. Biology; 2004)'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="bsc"]':
+            value: 'Yes'
+  professional_activity:
+    '#type': webform_wizard_page
+    '#title': 'Professional Activity'
+    current_affiliation_institution_department_and_country:
+      '#type': textfield
+      '#title': 'Current Affiliation (Institution, Department and Country)'
+      '#required': true
+    position:
+      '#type': textfield
+      '#title': Position
+      '#required': true
+    field_of_work_indicate_up_to_three_options_2:
+      '#type': webform_checkboxes_other
+      '#title': 'Field of Work (indicate up to three options) '
+      '#multiple': 3
+      '#options':
+        'Human toxicology': 'Human toxicology'
+        'Environmental toxicology': 'Environmental toxicology'
+        'Biomedical sciences': 'Biomedical sciences'
+        'Cellular and molecular biology': 'Cellular and molecular biology'
+        Epidemiology: Epidemiology
+        'Risk/Health Impact assessment': 'Risk/Health Impact assessment'
+        'Data Science (e.g., modelling)': 'Data Science (e.g., modelling)'
+        'Healthcare (e.g., medicine, nursing)': 'Healthcare (e.g., medicine, nursing)'
+        Nutrition: Nutrition
+        Microbiology: Microbiology
+        'Chemical Sciences': 'Chemical Sciences'
+        'Environmental Health': 'Environmental Health'
+        'Public Health': 'Public Health'
+        'Social Sciences': 'Social Sciences'
+      '#required': true
+    number_of_years_of_experience:
+      '#type': number
+      '#title': 'Number of years of experience'
+      '#required': true
+    are_you_involved_in_parc_activities:
+      '#type': radios
+      '#title': 'Are you involved in PARC activities?'
+      '#options': yes_no
+      '#required': true
+    please_indicate_in_which_wp_s:
+      '#type': checkboxes
+      '#title': 'Please indicate in which WP(s): '
+      '#options':
+        'WP1: Coordination and management ': 'WP1: Coordination and management '
+        'WP2: A common science-policy agenda ': 'WP2: A common science-policy agenda '
+        'WP3: Synergies, collaborations and awareness ': 'WP3: Synergies, collaborations and awareness '
+        'WP4: Monitoring and exposure ': 'WP4: Monitoring and exposure '
+        'WP5: Hazard assessment ': 'WP5: Hazard assessment '
+        'WP6: Innovation in regulatory risk assessment ': 'WP6: Innovation in regulatory risk assessment '
+        'WP7: FAIR data ': 'WP7: FAIR data '
+        'WP8: Concepts and toolboxes ': 'WP8: Concepts and toolboxes '
+        'WP9: Building infrastructural and human capacities ': 'WP9: Building infrastructural and human capacities '
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="are_you_involved_in_parc_activities"]':
+            value: 'Yes'
+  previous_knowledge_in_chemical_exposure_modelling:
+    '#type': webform_wizard_page
+    '#title': 'Previous Knowledge on Quality Assurance and Quality Control'
+    please_describe_here_your_current_knowledge_about_nams_and_chemi:
+      '#type': textarea
+      '#title': 'Please describe here your current knowledge on the topic of this course (also previous training, autonomy, etc.)'
+      '#required': true
+  motivation:
+    '#type': webform_wizard_page
+    '#title': Motivation
+    please_describe_here_what_motivates_your_application_how_the_top:
+      '#type': textarea
+      '#title': 'Please describe here what motivates your application (how the topic relates to your current work; what you hope to learn from it, and how it will benefit your professional development, and/or your institution, and/or PARC activities)'
+      '#required': true
+    how_did_you_learn_about_this_course_e_g_parc_website_social_medi:
+      '#type': textfield
+      '#title': 'How did you learn about this course? (e.g. PARC website, social media, internal communication in my institution/university, etc.)'
+      '#required': true
+    would_you_like_to_be_added_to_parc_training_mailing_list_to_rece:
+      '#type': radios
+      '#title': 'Would you like to be added to PARC training mailing list to receive updates on upcoming sessions and resources?'
+      '#options': yes_no
+      '#required': true
+    we_will_send_information_on_new_parc_courses_and_learning_materi:
+      '#type': email
+      '#title': 'We will send information on new PARC courses and learning materials to the email address provided earlier in this form. If you prefer to receive it at a different email address , please provide it here.'
+      '#states':
+        visible:
+          ':input[name="would_you_like_to_be_added_to_parc_training_mailing_list_to_rece"]':
+            value: 'Yes'
+  final_statement:
+    '#type': webform_wizard_page
+    '#title': 'Final statement'
+    do_you_certify_the_accuracy_of_the_information_above:
+      '#type': checkbox
+      '#title': 'I certify the accuracy of the information above.'
+      '#required': true
+    do_you_confirm_your_full_commitment_to_attending_the_training_co:
+      '#type': checkbox
+      '#title': 'I confirm your full commitment to attending the training course if selected.'
+      '#required': true
+    do_you_confirm_that_you_are_aware_that_if_selected_you_will_be_r:
+      '#type': checkbox
+      '#title': 'I confirm that you are aware that if selected, you will be responsible for covering your travel, accommodation, and any other incidental expense.'
+      '#required': true
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: '<p><em><span lang="EN-US"><strong>Thank you for your application!</strong></span></em></p>'
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

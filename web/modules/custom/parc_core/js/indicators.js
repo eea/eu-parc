@@ -2473,6 +2473,16 @@
         const maxData = Math.max(
           ...monthsWithData.map((month) => yearData[month].length)
         );
+        const maxDuration = Math.max(
+          ...monthsWithData.map((month) =>
+            Math.max(...yearData[month].map((event) => event.Duration))
+          )
+        );
+        const minDuration = Math.min(
+          ...monthsWithData.map((month) =>
+            Math.min(...yearData[month].map((event) => event.Duration))
+          )
+        );
         const maxParticipants = Math.max(
           ...monthsWithData.map((month) =>
             Math.max(...yearData[month].map((event) => event.Participants))
@@ -2492,12 +2502,12 @@
         const segmentLength = 70;
         const width =
           600 +
-          (segmentLength + 20) * Math.max(0, maxData - 1) -
+          (segmentLength + 40) * Math.max(0, maxData) -
           margin.left -
           margin.right;
         const height =
           600 +
-          (segmentLength + 20) * Math.max(0, maxData - 1) -
+          (segmentLength + 40) * Math.max(0, maxData) -
           margin.top -
           margin.bottom;
         const svg = d3
@@ -2517,8 +2527,12 @@
 
         const colorScale = d3
           .scaleLinear()
-          .domain([minParticipants, maxParticipants])
+          .domain([minDuration, maxDuration])
           .range(latestYearColors);
+        const widthScale = d3
+          .scaleLinear()
+          .domain([minParticipants, maxParticipants])
+          .range([3, 16]);
         months.forEach((month, i) => {
           const angle = startAngle + angleStep * i;
           const x = radius * Math.cos(angle);
@@ -2544,11 +2558,10 @@
             const x2 = segmentEnd * Math.cos(angle);
             const y2 = segmentEnd * Math.sin(angle);
 
-            let strokeColor = colorScale(ev.Participants);
+            let strokeColor = colorScale(ev.Duration);
+            let strokeWidth = widthScale(ev.Participants);
 
-            const strokeWidth = Math.max(1.5, (3 * ev.Duration) / 2);
-
-            let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev.Date}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
+            let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
             if (ev.Link) {
               html += `<p>Click to view the training</p>`;
             }
@@ -2627,7 +2640,7 @@
 
         leg
           .append("div")
-          .text("Number of participants")
+          .text("Duration")
           .style("margin-bottom", "5px")
           .style("font-size", "17px");
 
@@ -2642,7 +2655,7 @@
 
         leg
           .append("div")
-          .text("Duration")
+          .text("Number of participants")
           .style("margin-top", "10px")
           .style("font-size", "17px");
 
