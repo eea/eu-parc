@@ -548,4 +548,10 @@ text.axis-label {
       min-height: 343px;
     }
   }
+
+  &[data-chart-type="trainings"] {
+    .indicator-container {
+      width: 1200px;
+    }
+  }
 }
