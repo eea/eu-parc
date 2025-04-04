@@ -62,14 +62,14 @@
                   $(this).css('text-anchor', 'middle');
                 });
               }
-              let svg2, svgArr;
+              let cloneSvg, svgArr;
               if (svg.find('a').length > 0) {
-                svg2 = svg.clone();
-                getCleanedSVG(svg2[0]);
-                document.body.appendChild(svg2[0]);
+                cloneSvg = svg.clone();
+                getCleanedSVG(cloneSvg[0]);
+                document.body.appendChild(cloneSvg[0]);
               }
-              if (svg2) {
-                svgArr = svg2.toArray();
+              if (cloneSvg) {
+                svgArr = cloneSvg.toArray();
               }
               else {
                 svgArr = svg.toArray();
@@ -95,8 +95,6 @@
                 let img = new Image();
                 let svgData = new XMLSerializer().serializeToString(svgElement);
 
-                console.log(svgData);
-
                 img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
 
                 img.onload = function () {
@@ -111,8 +109,8 @@
                   if (i === totalSVGs - 1) {
 
                     download(canvas.toDataURL('image/png'), filename + '-' + year);
-                    if (svg2) {
-                      svg2[0].parentNode.removeChild(svg2[0]);
+                    if (cloneSvg) {
+                      cloneSvg[0].parentNode.removeChild(cloneSvg[0]);
                     }
                   }
                 };
