@@ -10,6 +10,16 @@
         document.body.removeChild(a);
       }
 
+      function getCleanedSVG(originalSVG) {
+        originalSVG.querySelectorAll("a").forEach(aTag => {
+            while (aTag.firstChild) {
+                aTag.parentNode.insertBefore(aTag.firstChild, aTag);
+            }
+            aTag.remove();
+        });
+
+      }
+
       $(once('download', '.download-image-button')).on('click', function (event) {
         event.preventDefault();
         const filename = $(this).closest('.indicator').data("filename");
@@ -35,7 +45,7 @@
               if (svg.length === 0) {
                 let scrollToTop = wrapper.offset().top - 100;
                 $('html, body').animate({scrollTop: scrollToTop}, 500, downloadSVG(3));
-
+                return;
               }
 
               svg.css('font-family', '"Satoshi",sans-serif');
@@ -52,31 +62,40 @@
                   $(this).css('text-anchor', 'middle');
                 });
               }
-
-              svg = svg.toArray();
-              if (!svg) {
+              let svg2, svgArr;
+              if (svg.find('a').length > 0) {
+                svg2 = svg.clone();
+                getCleanedSVG(svg2[0]);
+                document.body.appendChild(svg2[0]);
+              }
+              if (svg2) {
+                svgArr = svg2.toArray();
+              }
+              else {
+                svgArr = svg.toArray();
+              }
+              if (!svgArr) {
                 console.error("Can't find the SVG");
                 return;
               }
 
               let canvas = document.createElement('canvas');
-              let totalSVGs = svg.length;
+              let totalSVGs = svgArr.length;
               let columns = totalSVGs < 4 ? totalSVGs : 4;
               let rows = totalSVGs > 0 ? Math.ceil(totalSVGs / columns) : 0;
-              console.log(svg);
 
-              canvas.width = svg[0].clientWidth * columns;
-              canvas.height = svg[0].clientHeight * rows;
+              canvas.width = svgArr[0].clientWidth * columns;
+              canvas.height = svgArr[0].clientHeight * rows;
               let ctx = canvas.getContext('2d');
               ctx.fillStyle = 'white';
               ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-              svg.forEach((svgElement, i) => {
+              svgArr.forEach((svgElement, i) => {
 
                 let img = new Image();
                 let svgData = new XMLSerializer().serializeToString(svgElement);
 
-
+                console.log(svgData);
 
                 img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
 
@@ -92,6 +111,9 @@
                   if (i === totalSVGs - 1) {
 
                     download(canvas.toDataURL('image/png'), filename + '-' + year);
+                    if (svg2) {
+                      svg2[0].parentNode.removeChild(svg2[0]);
+                    }
                   }
                 };
 
@@ -100,6 +122,7 @@
                 };
               });
             }, sleep*1000);
+
           }
           downloadSVG();
         }
