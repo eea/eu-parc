@@ -12,14 +12,20 @@
   max-width: 100%;
   overflow: auto;
   padding-bottom: 20px;
+  padding-right: 28px;
 }
 
 .events-table * {
   height: 36px;
 }
 
+.events-table__year {
+  position: relative;
+}
+
 .events-table__year__item,
-.events-table__month__item {
+.events-table__month__item,
+.events-table__year__arrow {
   background: #FBCDD550;
   color: #E45C4D;
   font-weight: bold;
@@ -38,6 +44,7 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden;
+  min-width: 1200px;
 }
 
 .events-table__row {
@@ -115,4 +122,57 @@
 
 .events-table .disabled {
   pointer-events: none;
+}
+
+.events-table__year__arrow {
+  cursor: pointer;
+  position: absolute;
+  right: -28px;
+  top: 20px;
+  background: transparent;
+}
+
+.events-table__year__arrow.arrow-left {
+  right: 964px;
+}
+
+.events-table__year__arrow::after {
+  height: 16px;
+  width: 20px;
+  content: '';
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12.155' height='10.056' viewBox='0 0 12.155 10.056'%3E%3Cg id='Group_1' data-name='Group 1' transform='translate(-597.944 -456.944)'%3E%3Cpath id='Path_6' data-name='Path 6' d='M11.043,1.243l-4.384,5.3a.8.8,0,0,1-1.274,0L1,1.243' transform='translate(598 456.757)' fill='none' stroke='%23000' stroke-linecap='round' stroke-width='1.5'/%3E%3Crect id='Rectangle_1' data-name='Rectangle 1' width='12' height='10' transform='translate(598 457)' fill='none'/%3E%3C/g%3E%3C/svg%3E%0A");
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12.155' height='10.056' viewBox='0 0 12.155 10.056'%3E%3Cg id='Group_1' data-name='Group 1' transform='translate(-597.944 -456.944)'%3E%3Cpath id='Path_6' data-name='Path 6' d='M11.043,1.243l-4.384,5.3a.8.8,0,0,1-1.274,0L1,1.243' transform='translate(598 456.757)' fill='none' stroke='%23000' stroke-linecap='round' stroke-width='1.5'/%3E%3Crect id='Rectangle_1' data-name='Rectangle 1' width='12' height='10' transform='translate(598 457)' fill='none'/%3E%3C/g%3E%3C/svg%3E%0A");
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background: #E45C4D;
+  transform: rotate(90deg);
+}
+
+.events-table__year__arrow.arrow-right::after {
+  transform: rotate(-90deg);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.disabled-arrow {
+  opacity: .5;
+  cursor: default;
+}
+
+.event-row:not(.hidden) + .filler-row {
+  display: grid !important;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
+.row-move-up {
+  margin-top: -38px;
+}
+
+.events-table__row__empty-sub {
+  min-width: 240px;
 }
