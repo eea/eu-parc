@@ -140,9 +140,12 @@ datasource_settings:
         - basic_page
         - deliverables
         - events
+        - indicator
         - institution
         - laboratory
+        - learning_material
         - page
+        - project
         - publications
         - thematic_areas
     languages:
@@ -154,6 +157,7 @@ processor_settings:
   content_access:
     weights:
       preprocess_query: -30
+  custom_value: {  }
   entity_type: {  }
   html_filter:
     weights:
@@ -228,6 +232,7 @@ tracker_settings:
     indexing_order: fifo
 options:
   cron_limit: 50
+  delete_on_fail: true
   index_directly: true
   track_changes_in_references: false
 server: database

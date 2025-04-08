@@ -1,14 +1,14 @@
 uuid: e0acc7b7-ebd8-4c53-ba9b-7fe6a03f22a7
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.header
     - field.field.node.learning_material.body
     - field.field.node.learning_material.field_course_accessibility
-    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_course_stakeholder
     - field.field.node.learning_material.field_course_topics
+    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_d_date
     - field.field.node.learning_material.field_domains_of_interest
     - field.field.node.learning_material.field_expertise
