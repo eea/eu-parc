@@ -2467,7 +2467,8 @@
           "NOV",
           "DEC",
         ];
-        const latestYear = 2024;
+        const latestYear = years[years.length - 1];
+
         const monthsWithData = Object.keys(chartData.chart[latestYear]);
         const yearData = chartData.chart[latestYear];
         const maxData = Math.max(
@@ -2532,7 +2533,7 @@
         const widthScale = d3
           .scaleLinear()
           .domain([minParticipants, maxParticipants])
-          .range([3, 16]);
+          .range([3, 13]);
         months.forEach((month, i) => {
           const angle = startAngle + angleStep * i;
           const x = radius * Math.cos(angle);
@@ -2695,6 +2696,16 @@
           const maxData = Math.max(
             ...monthsWithData.map((month) => yearData[month].length)
           );
+          const maxDuration = Math.max(
+            ...monthsWithData.map((month) =>
+              Math.max(...yearData[month].map((event) => event.Duration))
+            )
+          );
+          const minDuration = Math.min(
+            ...monthsWithData.map((month) =>
+              Math.min(...yearData[month].map((event) => event.Duration))
+            )
+          );
           const maxParticipants = Math.max(
             ...monthsWithData.map((month) =>
               Math.max(...yearData[month].map((event) => event.Participants))
@@ -2733,6 +2744,10 @@
             .scaleLinear()
             .domain([minParticipants, maxParticipants])
             .range(yearColors);
+          const widthScale = d3
+            .scaleLinear()
+            .domain([minParticipants, maxParticipants])
+            .range([3, 13]);
 
           monthsWithData.forEach((month, i) => {
             const angle = startAngle + angleStep * months.indexOf(month);
@@ -2748,8 +2763,8 @@
               const x2 = segmentEnd * Math.cos(angle);
               const y2 = segmentEnd * Math.sin(angle);
 
-              const strokeColor = colorScale(ev.Participants);
-              const strokeWidth = Math.max(1.5, (3 * ev.Duration) / 2);
+              let strokeColor = colorScale(ev.Duration);
+              let strokeWidth = widthScale(ev.Participants);
 
               let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev.Date}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
               if (ev.Link) {
