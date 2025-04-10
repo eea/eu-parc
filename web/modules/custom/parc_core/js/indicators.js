@@ -2562,7 +2562,8 @@
             let strokeColor = colorScale(ev.Duration);
             let strokeWidth = widthScale(ev.Participants);
 
-            let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
+            let hours_string = ev.Duration == 1 ? 'hour' : 'hours';
+            let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} ${hours_string}</b></p>`;
             if (ev.Link) {
               html += `<p>Click to view the training</p>`;
             }
@@ -2766,7 +2767,8 @@
               let strokeColor = colorScale(ev.Duration);
               let strokeWidth = widthScale(ev.Participants);
 
-              let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev.Date}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} hours</b></p>`;
+              let hours_string = ev.Duration == 1 ? 'hour' : 'hours';
+              let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} ${hours_string}</b></p>`;
               if (ev.Link) {
                 html += `<p>Click to view the training</p>`;
               }
