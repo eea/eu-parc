@@ -1,6 +1,6 @@
 uuid: 2a1bd5eb-6072-4632-9ad5-c1beea7683f4
 langcode: en
-status: open
+status: closed
 dependencies: {  }
 weight: 0
 open: null
@@ -221,7 +221,7 @@ settings:
   form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
-  form_close_message: '<p><em><span lang="EN-US"><strong>Thank you for your application!</strong></span></em></p>'
+  form_close_message: '<p><em><span lang="EN-US"><strong>Thank you for your interest. Applications are now closed.</strong></span></em></p>'
   form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false
