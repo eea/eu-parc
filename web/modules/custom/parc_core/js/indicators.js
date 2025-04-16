@@ -1944,7 +1944,7 @@
             .attr("x", 0)
             .attr("width", 0) // Start with width 0 for the transition
             .attr("height", Math.min(y.bandwidth(), maxWidth)) // Start with height 0 for the transition
-            .attr("class", (d) => `bar${years.indexOf(d.year)}`)
+            .attr("fill", (d) => colors[d.year])
             .attr("rx", 10) // Rounded corners
             .attr("ry", 10) // Rounded corners
             .attr("transform", function (d) {
