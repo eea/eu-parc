@@ -655,3 +655,20 @@ iframe.media-oembed-content {
     }
   }
 }
+
+.survey-form-wrapper {
+  background-color: #B0E5DF;
+  padding: 30px;
+
+  form {
+    text-align: center;
+    .survey-results {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      li {
+
+      }
+    }
+  }
+}
