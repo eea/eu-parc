@@ -155,7 +155,7 @@ class SurveyForm extends FormBase {
 
     foreach ($votes as $vote) {
       $voteValue = $vote->get('value')->value;
-      $vote_counts[$voteValue]++;
+      $vote_counts[$voteValue] = isset($vote_counts[$voteValue]) ? $vote_counts[$voteValue] + 1 : 1;
     }
     $form['results']['#markup'] .= '<ul class="survey-results">';
     foreach ($options as $index => $option) {
