@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.project.field_show_link
     - field.field.node.project.field_slideshow_items
     - field.field.node.project.field_slideshow_position
+    - field.field.node.project.field_survey
     - node.type.project
   module:
     - layout_builder
@@ -52,4 +53,5 @@ hidden:
   field_show_link: true
   field_slideshow_items: true
   field_slideshow_position: true
+  field_survey: true
   search_api_excerpt: true

@@ -146,5 +146,23 @@
       $autocomplete.autocomplete( "option", "position", { my : "right top-7", at: "right bottom" } );
     }
   };
+
+  Drupal.behaviors.survey = {
+    attach: function (context, settings) {
+      $('.survey-result-percent').each(function () {
+        var $this = $(this);
+        var parent = $this.parent();
+        var percent = parent.attr('data-percent');
+        var parentHeight = parent.outerHeight();
+        var maxHeight = parentHeight - 20;
+        console.log(maxHeight);
+
+        var height = Math.round((percent / 100) * maxHeight);
+
+        $this.attr('style', `max-height: ${height}px`);
+
+      });
+    }
+  }
 })(jQuery, Drupal, once);
 

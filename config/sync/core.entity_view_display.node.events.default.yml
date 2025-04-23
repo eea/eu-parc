@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_survey
     - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
@@ -29,6 +30,7 @@ dependencies:
   module:
     - addtoany
     - ctools
+    - entity_reference_revisions
     - layout_builder
     - link
     - menu_block
@@ -148,6 +150,23 @@ third_party_settings:
               expand_all_items: false
               parent: 'main:taxonomy_menu.menu_link:taxonomy_menu.menu_link.events.91'
               suggestion: sidebar_dropdown
+            weight: 0
+            additional: {  }
+          f5af215b-f87b-4142-89ef-0af46053cc38:
+            uuid: f5af215b-f87b-4142-89ef-0af46053cc38
+            region: first
+            configuration:
+              id: 'field_block:node:events:field_survey'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
             weight: 0
             additional: {  }
         third_party_settings: {  }
@@ -401,6 +420,15 @@ content:
       link: true
     third_party_settings: {  }
     weight: 108
+    region: first
+  field_survey:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 127
     region: first
   field_tentative_event:
     type: boolean

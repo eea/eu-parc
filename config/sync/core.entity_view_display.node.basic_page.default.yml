@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
     - field.field.node.basic_page.field_seo_keyword
+    - field.field.node.basic_page.field_survey
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
@@ -112,5 +113,6 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_survey: true
   links: true
   search_api_excerpt: true

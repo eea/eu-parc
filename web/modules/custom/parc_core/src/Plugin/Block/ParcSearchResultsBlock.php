@@ -122,14 +122,14 @@ class ParcSearchResultsBlock extends BlockBase implements ContainerFactoryPlugin
       'article',
       'events',
       'thematic_areas',
+      'project',
       'publications',
       'deliverables',
+      'indicator',
+      'learning_material',
       'institution',
       'laboratory',
       'basic_page',
-      'indicator',
-      'project',
-      'learning_material',
     ];
 
     $views = [];
