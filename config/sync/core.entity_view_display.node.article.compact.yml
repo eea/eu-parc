@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.article.field_metatags
     - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_slideshow_items
+    - field.field.node.article.field_survey
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
     - node.type.article
@@ -69,6 +70,7 @@ hidden:
   comment: true
   field_metatags: true
   field_seo_keyword: true
+  field_survey: true
   field_svg_hover: true
   links: true
   search_api_excerpt: true

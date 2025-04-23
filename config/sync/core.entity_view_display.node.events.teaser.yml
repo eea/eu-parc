@@ -22,6 +22,7 @@ dependencies:
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_survey
     - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
@@ -107,6 +108,7 @@ hidden:
   field_parc_training: true
   field_registration: true
   field_seo_keyword: true
+  field_survey: true
   field_tentative_event: true
   field_website: true
   links: true

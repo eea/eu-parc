@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.project.field_show_link
     - field.field.node.project.field_slideshow_items
     - field.field.node.project.field_slideshow_position
+    - field.field.node.project.field_survey
     - node.type.project
   module:
     - datetime_range
@@ -134,6 +135,15 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 12
+    region: content
+  field_survey:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 9
     region: content
   links:
     settings: {  }
