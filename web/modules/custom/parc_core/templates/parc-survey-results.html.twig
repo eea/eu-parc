@@ -1,0 +1,13 @@
+<ul class="survey-results">
+  {% for result in results %}
+    {% if not result.text %}
+      <li class="survey-result"></li>
+    {% else %}
+      <li class="survey-result" data-percent="{{ result.value }}">
+        <p>{{ result.text }}</p>
+        <p>{{ result.value }}%</p>
+        <div class='survey-result-percent'></div>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

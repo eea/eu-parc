@@ -3,14 +3,26 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.survey.field_background_color
     - field.field.paragraph.survey.field_options
     - field.field.paragraph.survey.field_question
     - paragraphs.paragraphs_type.survey
+  module:
+    - color_field
 id: paragraph.survey.default
 targetEntityType: paragraph
 bundle: survey
 mode: default
 content:
+  field_background_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
   field_options:
     type: string
     label: above

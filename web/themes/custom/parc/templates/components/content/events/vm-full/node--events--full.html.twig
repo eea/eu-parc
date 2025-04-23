@@ -35,6 +35,10 @@
 
   {{ content }}
 
+  {% if survey_form %}
+    {{ survey_form }}
+  {% endif %}
+
   <div class="card-styled-border d-xl-none">
     <svg class="svg-footer" width="1280" height="30" viewbox="0 0 1280 30" ref="svg" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g style="mix-blend-mode:multiply"><path class="line1" d="M24 14H224" stroke="#6E009A" stroke-width="16" stroke-linecap="round"/></g>

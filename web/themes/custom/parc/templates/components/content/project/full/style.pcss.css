@@ -5,7 +5,7 @@
 }
 
 .node--project--full {
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3:not(.survey-title), h4, h5, h6 {
     color: var(--project-color, #000);
   }
 
@@ -53,7 +53,7 @@
     flex-grow: 0;
   }
 
-  .container {
+  .container:not(.survey-container) {
     display: flex;
     gap: 50px;
 
