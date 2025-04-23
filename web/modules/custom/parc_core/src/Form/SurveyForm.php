@@ -31,7 +31,6 @@ class SurveyForm extends FormBase {
     $options = $survey_paragraph->get('field_options')->getValue();
     $options = array_column($options, 'value');
 
-    // If already voted, show results.
     $hasVoted = \Drupal::entityQuery('vote')
     ->condition('entity_type', 'node')
     ->condition('entity_id', $nid)
@@ -46,6 +45,7 @@ class SurveyForm extends FormBase {
     ->count()
     ->accessCheck(FALSE)
     ->execute();
+
     $form['question'] = [
       '#markup' => "<p>Contribute to our survey</p><h3>$question</h3><p>Number of answers: $numberOfVotes</p>",
     ];
@@ -55,32 +55,74 @@ class SurveyForm extends FormBase {
     }
 
     $form['options'] = [
-      '#type' => 'radios',
-      '#options' => $options,
-      '#required' => TRUE,
-      '#attribute' => [
-        'class' => ['survey-options'],
-      ],
+      '#type' => 'container',
+      '#attributes' => ['class' => ['survey-options']],
     ];
 
-    $form['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Vote'),
-      '#ajax' => [
-        'callback' => '::ajaxSubmit',
-        'wrapper' => 'survey-form-wrapper',
-      ],
-    ];
+    foreach ($options as $index => $label) {
+      $form['options'][$index] = [
+        '#type' => 'submit',
+        '#value' => $label,
+        '#name' => 'vote_' . $index,
+        '#attributes' => [
+          'class' => ['survey-option-link'],
+        ],
+        '#ajax' => [
+          'callback' => '::ajaxSubmit',
+          'wrapper' => 'survey-form-wrapper',
+          'progress' => [
+            'type' => 'none',
+          ]
+        ],
+        '#submit' => ['::ajaxVoteSubmit'],
+        '#prefix' => '<div class="survey-option">',
+        '#suffix' => '</div>',
+      ];
+    }
+
     $form['#attributes']['class'][] = 'container';
 
-    $form['#prefix'] = '<div class="survey-form-wrapper">';
+    $form['#prefix'] = '<div class="survey-form-wrapper" id="survey-form-wrapper">';
     $form['#suffix'] = '</div>';
     return $form;
   }
 
   public function ajaxSubmit(array &$form, FormStateInterface $form_state) {
-    return $this->buildResults($form, array_column($form_state->getValue('options'), 'value'), $this->node->id());
+    if ($form_state->get('voted')) {
+      $options = $this->node->get('field_survey')->first()?->entity->get('field_options')->getValue();
+      $options = array_column($options, 'value');
+      return $this->buildResults($form, $options, $this->node->id());
+    }
+
+    return $form;
   }
+
+
+  public function ajaxVoteSubmit(array &$form, FormStateInterface $form_state) {
+    $triggering_element = $form_state->getTriggeringElement();
+    $clicked_button_name = $triggering_element['#name'];
+    $option_index = str_replace('vote_', '', $clicked_button_name);
+
+    $nid = $this->node->id();
+
+    $vote = Vote::create([
+      'entity_type' => 'node',
+      'entity_id' => $nid,
+      'value_type' => 'percent',
+      'value' => $option_index,
+      'tag' => 'parc_core',
+      'type' => 'vote',
+    ]);
+    $vote->save();
+
+    \Drupal::service('page_cache_kill_switch')->trigger();
+
+    $form_state->set('voted', TRUE);
+    $form_state->set('option_index', $option_index);
+
+    $form_state->setRebuild(TRUE);
+  }
+
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $selected_option = $form_state->getValue('options');
@@ -98,7 +140,6 @@ class SurveyForm extends FormBase {
 
 
     \Drupal::service('page_cache_kill_switch')->trigger();
-    // \Drupal::service('page_cache_response_policy')->addCacheableDependency(new Response())->headers->setCookie($cookie);
   }
 
   private function buildResults(array $form, array $options, $nid) {
@@ -121,8 +162,7 @@ class SurveyForm extends FormBase {
 
       $label = $option;
       $percent = $totalVotes > 0 ? ($vote_counts[$index] / $totalVotes) * 100 : 0;
-      // Replace with real vote percentage calculation
-      $form['results']['#markup'] .= "<li>$label: $percent%</li>";
+      $form['results']['#markup'] .= "<li class='survey-result' data-percent='$percent'><p>$label</p> <p>$percent%</p><div class='survey-result-percent'></div></li>";
     }
     $form['#attributes']['class'][] = 'container';
     $form['results']['#markup'] .= '</ul>';
