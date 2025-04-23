@@ -151,7 +151,8 @@ class SurveyForm extends FormBase {
     ]);
     $totalVotes = count($votes);
     $question = $this->node->get('field_survey')->first()?->entity->get('field_question')->value;
-    $form['results'] = ['#markup' =>"<p>Contribute to our survey</p><h3>$question</h3><p>Number of answers: $totalVotes</p>"];
+
+    $form['results']['#markup'] = "<p>Contribute to our survey</p><h3>$question</h3><p>Number of answers: $totalVotes</p>";
 
     foreach ($votes as $vote) {
       $voteValue = $vote->get('value')->value;
@@ -159,15 +160,14 @@ class SurveyForm extends FormBase {
     }
     $form['results']['#markup'] .= '<ul class="survey-results">';
     foreach ($options as $index => $option) {
-
       $label = $option;
       $percent = $totalVotes > 0 ? ($vote_counts[$index] / $totalVotes) * 100 : 0;
       $form['results']['#markup'] .= "<li class='survey-result' data-percent='$percent'><p>$label</p> <p>$percent%</p><div class='survey-result-percent'></div></li>";
     }
     $form['#attributes']['class'][] = 'container';
     $form['results']['#markup'] .= '</ul>';
-    $form['#prefix'] = '<div class="survey-form-wrapper">';
-    $form['#suffix'] = '</div>';
+    $form['#prefix'] = '<div class="survey-form-wrapper" id="survey-form-wrapper"><div class="container"';
+    $form['#suffix'] = '</div></div>';
     return $form;
   }
 }
