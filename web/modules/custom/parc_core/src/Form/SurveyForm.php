@@ -1,23 +1,51 @@
 <?php
+
 namespace Drupal\parc_core\Form;
 
-use Drupal\Core\Ajax\HtmlCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Response;
+use Drupal\Core\Render\Markup;
 use Drupal\votingapi\Entity\Vote;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\InvokeCommand;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * The survey form.
+ */
 class SurveyForm extends FormBase {
 
+  /**
+   * The current node.
+   *
+   * @var \Drupal\node\NodeInterface
+   */
   protected $node;
 
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * {@inheritdoc}
+   */
   public function getFormId() {
     return 'eu_parc_survey_form';
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    $instance = parent::create($container);
+    $instance->entityTypeManager = $container->get('entity_type.manager');
+    return $instance;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state, $node = NULL) {
     $this->node = $node;
 
@@ -31,23 +59,33 @@ class SurveyForm extends FormBase {
     $options = $survey_paragraph->get('field_options')->getValue();
     $options = array_column($options, 'value');
 
-    $hasVoted = \Drupal::entityQuery('vote')
-    ->condition('entity_type', 'node')
-    ->condition('entity_id', $nid)
-    ->condition('vote_source', Vote::getCurrentIp())
-    ->count()
-    ->accessCheck(FALSE)
-    ->execute();
+    $voteStorage = $this->entityTypeManager
+      ->getStorage('vote');
 
-    $numberOfVotes = \Drupal::entityQuery('vote')
-    ->condition('entity_type', 'node')
-    ->condition('entity_id', $nid)
-    ->count()
-    ->accessCheck(FALSE)
-    ->execute();
+    $hasVoted = $voteStorage
+      ->getQuery()
+      ->condition('entity_type', 'node')
+      ->condition('entity_id', $nid)
+      ->condition('vote_source', Vote::getCurrentIp())
+      ->count()
+      ->accessCheck(FALSE)
+      ->execute();
+
+    $numberOfVotes = $voteStorage
+      ->getQuery()
+      ->condition('entity_type', 'node')
+      ->condition('entity_id', $nid)
+      ->count()
+      ->accessCheck(FALSE)
+      ->execute();
 
     $form['question'] = [
-      '#markup' => "<p>Contribute to our survey</p><h3>$question</h3><p>Number of answers: $numberOfVotes</p>",
+      '#type' => 'inline_template',
+      '#template' => '<p>{{ "Contribute to our survey" | t }}</p><h3 class="survey-title">{{ question }}</h3><p>{{ "Number of answers:" | t }} {{ number }}</p>',
+      '#context' => [
+        'question' => $question,
+        'number' => $numberOfVotes,
+      ],
     ];
 
     if ($hasVoted) {
@@ -80,13 +118,28 @@ class SurveyForm extends FormBase {
       ];
     }
 
-    $form['#attributes']['class'][] = 'container';
+    if (count($options) % 2 == 1) {
+      $form['options'][$index + 1] = [
+        '#markup' => '<div class="survey-option"></div>',
+      ];
+    }
 
-    $form['#prefix'] = '<div class="survey-form-wrapper" id="survey-form-wrapper">';
+    $form['#attributes']['class'][] = 'container';
+    $form['#attributes']['class'][] = 'survey-container';
+
+    $color = $survey_paragraph->get('field_background_color')->color;
+    $color_class = '';
+    if ($color) {
+      $color_class = 'override-color';
+    }
+    $form['#prefix'] = Markup::create("<div class=\"survey-form-wrapper $color_class\" style=\"--survey-color: $color;\" id=\"survey-form-wrapper\">");
     $form['#suffix'] = '</div>';
     return $form;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function ajaxSubmit(array &$form, FormStateInterface $form_state) {
     if ($form_state->get('voted')) {
       $options = $this->node->get('field_survey')->first()?->entity->get('field_options')->getValue();
@@ -97,7 +150,14 @@ class SurveyForm extends FormBase {
     return $form;
   }
 
-
+  /**
+   * Ajax form submit.
+   *
+   * @param array $form
+   *   The form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The form state.
+   */
   public function ajaxVoteSubmit(array &$form, FormStateInterface $form_state) {
     $triggering_element = $form_state->getTriggeringElement();
     $clicked_button_name = $triggering_element['#name'];
@@ -105,7 +165,7 @@ class SurveyForm extends FormBase {
 
     $nid = $this->node->id();
 
-    $vote = Vote::create([
+    $vote = $this->entityTypeManager->getStorage('vote')->create([
       'entity_type' => 'node',
       'entity_id' => $nid,
       'value_type' => 'percent',
@@ -115,20 +175,20 @@ class SurveyForm extends FormBase {
     ]);
     $vote->save();
 
-    \Drupal::service('page_cache_kill_switch')->trigger();
-
     $form_state->set('voted', TRUE);
     $form_state->set('option_index', $option_index);
 
     $form_state->setRebuild(TRUE);
   }
 
-
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $selected_option = $form_state->getValue('options');
     $nid = $this->node->id();
 
-    $vote = Vote::create([
+    $vote = $this->entityTypeManager->getStorage('vote')->create([
       'entity_type' => 'node',
       'entity_id' => $nid,
       'value_type' => 'percent',
@@ -137,37 +197,88 @@ class SurveyForm extends FormBase {
       'type' => 'vote',
     ]);
     $vote->save();
-
-
-    \Drupal::service('page_cache_kill_switch')->trigger();
   }
 
+  /**
+   * @param array $form
+   *   The form.
+   * @param array $options
+   *   The options.
+   * @param $nid
+   *   The node id.
+   *
+   * @return array
+   *   The results build
+   */
   private function buildResults(array $form, array $options, $nid) {
     $form = [];
     $vote_counts = [];
-    $votes = \Drupal::entityTypeManager()->getStorage('vote')->loadByProperties([
+    $votes = $this->entityTypeManager->getStorage('vote')->loadByProperties([
       'entity_type' => 'node',
       'entity_id' => $nid,
     ]);
     $totalVotes = count($votes);
-    $question = $this->node->get('field_survey')->first()?->entity->get('field_question')->value;
+    $survey_paragraph = $this->node->get('field_survey')->first()?->entity;
+    $question = $survey_paragraph->get('field_question')->value;
 
-    $form['results']['#markup'] = "<p>Contribute to our survey</p><h3>$question</h3><p>Number of answers: $totalVotes</p>";
+    $form['results']['intro'] = [
+      '#type' => 'inline_template',
+      '#template' => '<p>{{ "Contribute to our survey" | t }}</p><h3 class="survey-title">{{ question }}</h3><p>{{ "Number of answers:" | t }} {{ number }}</p>',
+      '#context' => [
+        'question' => $question,
+        'number' => $totalVotes,
+      ],
+    ];
 
     foreach ($votes as $vote) {
       $voteValue = $vote->get('value')->value;
       $vote_counts[$voteValue] = isset($vote_counts[$voteValue]) ? $vote_counts[$voteValue] + 1 : 1;
     }
-    $form['results']['#markup'] .= '<ul class="survey-results">';
+
+    $results = [];
+    $max = 0;
+    $max_index = 0;
+    $total = 0;
     foreach ($options as $index => $option) {
       $label = $option;
-      $percent = $totalVotes > 0 ? ($vote_counts[$index] / $totalVotes) * 100 : 0;
-      $form['results']['#markup'] .= "<li class='survey-result' data-percent='$percent'><p>$label</p> <p>$percent%</p><div class='survey-result-percent'></div></li>";
+      $percent = $totalVotes > 0 ? (($vote_counts[$index] ?? 0) / $totalVotes) * 100 : 0;
+      $percent = floor($percent);
+
+      if ($percent > $max) {
+        $max = $percent;
+        $max_index = $index;
+      }
+      $total += $percent;
+
+      $results[] = [
+        'text' => $label,
+        'value' => $percent,
+      ];
     }
-    $form['#attributes']['class'][] = 'container';
-    $form['results']['#markup'] .= '</ul>';
-    $form['#prefix'] = '<div class="survey-form-wrapper" id="survey-form-wrapper"><div class="container"';
+
+    if ($total < 100) {
+      $results[$max_index]['value'] += (100 - $total);
+    }
+
+    if (count($options) % 2 == 1) {
+      $results[] = [
+        'text' => NULL,
+        'value' => NULL,
+      ];
+    }
+    $form['results']['results'] = [
+      '#theme' => 'parc_survey_results',
+      '#results' => $results
+    ];
+
+    $color = $survey_paragraph->get('field_background_color')->color;
+    $color_class = '';
+    if ($color) {
+      $color_class = 'override-color';
+    }
+    $form['#prefix'] = Markup::create("<div class=\"survey-form-wrapper $color_class\" style=\"--survey-color: $color\" id=\"survey-form-wrapper\"><div class=\"container survey-container\">");
     $form['#suffix'] = '</div></div>';
     return $form;
   }
+
 }

@@ -298,7 +298,7 @@ display:
         type: some
         options:
           offset: 0
-          items_per_page: 0
+          items_per_page: 4
       empty: {  }
       arguments:
         nid:

@@ -18,6 +18,7 @@ use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\parc_core\ParcEventsManager;
+use Drupal\parc_core\Form\SurveyForm;
 
 /**
  * Implements hook_theme().
@@ -89,7 +90,12 @@ function parc_core_theme() {
       'variables' => [
         'topics' => [],
       ],
-    ]
+    ],
+    'parc_survey_results' => [
+      'variables' => [
+        'results' => [],
+      ],
+    ],
   ];
 }
 
@@ -707,7 +713,8 @@ function parc_core_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full') {
     $node = $variables['node'];
     if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
-      $variables['content']['survey_form'] = \Drupal::formBuilder()->getForm(\Drupal\parc_core\Form\SurveyForm::class, $node);
+      $variables['#cache']['max-age'] = 0;
+      $variables['survey_form'] = \Drupal::formBuilder()->getForm(SurveyForm::class, $node);
     }
   }
 }

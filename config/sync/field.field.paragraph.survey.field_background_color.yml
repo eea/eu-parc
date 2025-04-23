@@ -1,0 +1,22 @@
+uuid: 731aa8d1-a711-47e7-84c8-ac83ab91f2b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_color
+    - paragraphs.paragraphs_type.survey
+  module:
+    - color_field
+id: paragraph.survey.field_background_color
+field_name: field_background_color
+entity_type: paragraph
+bundle: survey
+label: 'Background color'
+description: 'If not set, it will default to the primary color of the page'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type
