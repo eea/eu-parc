@@ -704,8 +704,10 @@ function template_preprocess_parc_indicator_groups(array &$variables) {
  * Implements hook_preprocess_HOOK() for node templates.
  */
 function parc_core_preprocess_node(&$variables) {
-  $node = $variables['node'];
-  if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
-    $variables['content']['survey_form'] = \Drupal::formBuilder()->getForm(\Drupal\parc_core\Form\SurveyForm::class, $node);
+  if ($variables['view_mode'] == 'full') {
+    $node = $variables['node'];
+    if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
+      $variables['content']['survey_form'] = \Drupal::formBuilder()->getForm(\Drupal\parc_core\Form\SurveyForm::class, $node);
+    }
   }
 }
