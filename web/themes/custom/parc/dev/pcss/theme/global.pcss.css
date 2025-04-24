@@ -38,13 +38,20 @@ main {
   padding-block: 80px;
 
   /* Temp. */
-  .block-views:not(.block-views-blocknews-events-block-related-news) {
+  .block-views {
     h2 {
       font-size: 24px;
       margin-bottom: 40px;
 
       .field--name-name {
         display: inline;
+      }
+    }
+
+    .svg-title {
+      h2 {
+        font-size: var(--svg-title-size);
+        line-height: var(--svg-title-size);
       }
     }
   }
