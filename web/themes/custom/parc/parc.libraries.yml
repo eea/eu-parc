@@ -547,3 +547,14 @@ indicators_menu:
     - core/once
     - edwt/collapse
     - edwt/tab
+
+survey:
+  css:
+    component:
+      css/components/parc/survey.css: {}
+  js:
+    js/survey.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal

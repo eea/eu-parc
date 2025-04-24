@@ -969,3 +969,10 @@ function _parc_get_course_color(string $topic_color, string $type) {
 
   return $colors[$topic_color][$type] ?? '#000';
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter() for eu_parc_survey_form.
+ */
+function parc_form_eu_parc_survey_form_alter(array &$form, FormStateInterface $form_state) {
+  $form['#attached']['library'][] = 'parc/survey';
+}
