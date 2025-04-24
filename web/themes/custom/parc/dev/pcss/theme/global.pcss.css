@@ -666,6 +666,10 @@ iframe.media-oembed-content {
 .survey-form-wrapper {
   background-color: #B0E5DF;
 
+  h3 + p {
+    margin-bottom: 60px;
+  }
+
   &.override-color {
     background-color: var(--survey-color, #B0E5D) !important;
   }
@@ -705,7 +709,6 @@ iframe.media-oembed-content {
 
     .survey-option, .survey-result {
       display: flex;
-      justify-content: start;
       align-items: center;
       text-align: center;
       font-size: 24px;
@@ -714,14 +717,15 @@ iframe.media-oembed-content {
       flex: 1 1 calc(50% - 40px);
       position: relative;
       margin-left: 40px;
-      min-height: 229px;
+      min-height: 430px;
+      justify-content: center;
 
       &:nth-of-type(1), &:nth-of-type(2) {
         &::before {
           content: '';
           display: block;
           position: absolute;
-          top: 0;
+          top: -10px;
           left: 0;
           width: 100%;
           height: 10px;
@@ -743,7 +747,6 @@ iframe.media-oembed-content {
       }
 
       &:nth-of-type(odd) {
-        justify-content: end;
         margin-left: 0;
         margin-right: 40px;
 
@@ -769,6 +772,12 @@ iframe.media-oembed-content {
       }
     }
 
+    &:has(> *:nth-child(3)) {
+      .survey-option, .survey-result {
+        min-height: 220px;
+      }
+    }
+
     .survey-option-link {
       background-color: unset;
       border: unset;
@@ -776,6 +785,7 @@ iframe.media-oembed-content {
       padding: 100px 0;
       width: 100%;
       font-size: 22px;
+      height: 100%;
 
       &:hover {
         background-color: #77CABF4D;

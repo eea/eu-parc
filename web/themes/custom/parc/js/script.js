@@ -154,13 +154,11 @@
         var parent = $this.parent();
         var percent = parent.attr('data-percent');
         var parentHeight = parent.outerHeight();
-        var maxHeight = parentHeight - 20;
-        console.log(maxHeight);
+        var maxHeight = parentHeight - 10;
 
         var height = Math.round((percent / 100) * maxHeight);
 
         $this.attr('style', `max-height: ${height}px`);
-
       });
     }
   }
