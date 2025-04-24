@@ -123,7 +123,9 @@
       font-size: 22px;
       height: 100%;
 
-      &:hover {
+      &:hover,
+      &:active,
+      &:focus {
         background-color: #77CABF4D;
         text-decoration: none;
       }
