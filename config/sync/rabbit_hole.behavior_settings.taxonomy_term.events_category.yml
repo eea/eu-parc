@@ -1,0 +1,16 @@
+uuid: aa7803dc-f59e-4275-a0b2-9545d0e65fce
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.events_category
+id: taxonomy_term.events_category
+targetEntityType: taxonomy_term
+bundle: events_category
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: '/events?category%5B[term:tid]%5D=[term:tid]'
+  redirect_code: 301
+  redirect_fallback_action: access_denied

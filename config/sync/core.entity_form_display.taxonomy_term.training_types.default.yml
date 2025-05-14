@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.training_types.field_color
+    - field.field.taxonomy_term.training_types.rabbit_hole__settings
     - taxonomy.vocabulary.training_types
   module:
     - color_field
     - path
+    - rabbit_hole
 id: taxonomy_term.training_types.default
 targetEntityType: taxonomy_term
 bundle: training_types
@@ -32,6 +34,13 @@ content:
     weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox

@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.article.field_survey
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
+    - field.field.node.article.rabbit_hole__settings
     - node.type.article
   module:
     - user
@@ -37,4 +38,5 @@ hidden:
   field_survey: true
   field_svg_hover: true
   field_tags: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

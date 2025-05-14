@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.laboratory.field_substance_group
     - field.field.node.laboratory.field_substances_matrix
     - field.field.node.laboratory.field_website
+    - field.field.node.laboratory.rabbit_hole__settings
     - node.type.laboratory
   module:
     - entity_reference_revisions
@@ -159,4 +160,5 @@ content:
     region: content
 hidden:
   addtoany: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

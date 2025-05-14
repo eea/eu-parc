@@ -1,0 +1,13 @@
+uuid: f38b9a91-0417-46ba-bf9b-ffbf9b5aac8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.learning_material
+id: node.learning_material
+targetEntityType: node
+bundle: learning_material
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

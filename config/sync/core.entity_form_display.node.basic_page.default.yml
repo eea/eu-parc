@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
+    - field.field.node.basic_page.rabbit_hole__settings
     - node.type.basic_page
   module:
     - field_group
@@ -20,6 +21,7 @@ dependencies:
     - metatag
     - paragraphs
     - path
+    - rabbit_hole
     - text
     - viewsreference
 third_party_settings:
@@ -197,6 +199,13 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 10

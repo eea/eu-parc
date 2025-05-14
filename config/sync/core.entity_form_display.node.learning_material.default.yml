@@ -5,9 +5,9 @@ dependencies:
   config:
     - field.field.node.learning_material.body
     - field.field.node.learning_material.field_course_accessibility
-    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_course_stakeholder
     - field.field.node.learning_material.field_course_topics
+    - field.field.node.learning_material.field_course_type
     - field.field.node.learning_material.field_d_date
     - field.field.node.learning_material.field_domains_of_interest
     - field.field.node.learning_material.field_expertise
@@ -15,12 +15,14 @@ dependencies:
     - field.field.node.learning_material.field_owner
     - field.field.node.learning_material.field_reading_time
     - field.field.node.learning_material.field_substance_group
+    - field.field.node.learning_material.rabbit_hole__settings
     - node.type.learning_material
   module:
     - allowed_formats
     - datetime
     - link
     - path
+    - rabbit_hole
     - select2
     - text
 id: node.learning_material.default
@@ -146,6 +148,13 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 4

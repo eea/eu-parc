@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.institution.field_original_abbreviation
     - field.field.node.institution.field_original_name
     - field.field.node.institution.field_website
+    - field.field.node.institution.rabbit_hole__settings
     - image.style.large
     - node.type.institution
   module:
@@ -153,4 +154,5 @@ content:
     region: content
 hidden:
   addtoany: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

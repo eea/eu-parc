@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.lab_types.field_color
+    - field.field.taxonomy_term.lab_types.rabbit_hole__settings
     - taxonomy.vocabulary.lab_types
   module:
     - color_field
+    - rabbit_hole
     - text
 id: taxonomy_term.lab_types.default
 targetEntityType: taxonomy_term
@@ -36,6 +38,13 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox

@@ -25,6 +25,7 @@ dependencies:
     - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
+    - field.field.node.events.rabbit_hole__settings
     - node.type.events
     - system.menu.main
   module:
@@ -468,4 +469,5 @@ content:
 hidden:
   addtoany: true
   field_categories: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

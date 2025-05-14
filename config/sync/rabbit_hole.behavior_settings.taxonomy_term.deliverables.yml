@@ -1,0 +1,13 @@
+uuid: 5c04deb4-adab-49ff-b504-716600b99e06
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.deliverables
+id: taxonomy_term.deliverables
+targetEntityType: taxonomy_term
+bundle: deliverables
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

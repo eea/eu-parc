@@ -1,0 +1,13 @@
+uuid: 72bb46f7-9a14-4eca-94be-bae23059ce56
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.institution_roles
+id: taxonomy_term.institution_roles
+targetEntityType: taxonomy_term
+bundle: institution_roles
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

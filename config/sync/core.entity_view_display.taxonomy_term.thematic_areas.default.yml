@@ -8,6 +8,7 @@ dependencies:
     - field.field.taxonomy_term.thematic_areas.field_icon
     - field.field.taxonomy_term.thematic_areas.field_seo_keywords
     - field.field.taxonomy_term.thematic_areas.field_teaser_icon
+    - field.field.taxonomy_term.thematic_areas.rabbit_hole__settings
     - system.menu.main
     - taxonomy.vocabulary.thematic_areas
   module:
@@ -171,4 +172,5 @@ content:
     weight: 4
     region: content
 hidden:
+  rabbit_hole__settings: true
   search_api_excerpt: true
