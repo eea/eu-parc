@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.project.field_show_link
     - field.field.node.project.field_slideshow_items
     - field.field.node.project.field_slideshow_position
+    - field.field.node.project.rabbit_hole__settings
     - node.type.project
   module:
     - datetime_range
@@ -24,6 +25,7 @@ dependencies:
     - media_library
     - paragraphs
     - path
+    - rabbit_hole
     - select2
     - text
 third_party_settings:
@@ -251,6 +253,13 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 3

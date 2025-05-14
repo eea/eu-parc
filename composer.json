@@ -78,7 +78,7 @@
         "drupal/pathauto": "^1.11",
         "drupal/publishcontent": "^1.6",
         "drupal/quick_node_clone": "^1.20",
-        "drupal/rabbit_hole": "^1.0@beta",
+        "drupal/rabbit_hole": "^2.0@beta",
         "drupal/raven": "^4.0",
         "drupal/search_api": "^1.29",
         "drupal/search_api_autocomplete": "^1.7",

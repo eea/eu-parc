@@ -1,0 +1,13 @@
+uuid: 9c156655-9c45-4be6-b720-d211645c6c71
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.course_topics
+id: taxonomy_term.course_topics
+targetEntityType: taxonomy_term
+bundle: course_topics
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

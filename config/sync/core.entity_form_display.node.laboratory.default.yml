@@ -17,12 +17,14 @@ dependencies:
     - field.field.node.laboratory.field_substance_group
     - field.field.node.laboratory.field_substances_matrix
     - field.field.node.laboratory.field_website
+    - field.field.node.laboratory.rabbit_hole__settings
     - node.type.laboratory
   module:
     - geolocation
     - link
     - media_library
     - paragraphs
+    - rabbit_hole
     - select2
     - text
 id: node.laboratory.default
@@ -138,6 +140,13 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   status:
     type: boolean_checkbox

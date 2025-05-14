@@ -1,0 +1,13 @@
+uuid: 26b88688-3189-409c-a700-507c5fbddb82
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.training_types
+id: taxonomy_term.training_types
+targetEntityType: taxonomy_term
+bundle: training_types
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

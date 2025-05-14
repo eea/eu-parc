@@ -6,6 +6,7 @@ dependencies:
     - field.field.taxonomy_term.countries.field_iso2
     - field.field.taxonomy_term.countries.field_iso3
     - field.field.taxonomy_term.countries.field_official_name
+    - field.field.taxonomy_term.countries.rabbit_hole__settings
     - taxonomy.vocabulary.countries
   module:
     - text
@@ -46,4 +47,5 @@ content:
     weight: 3
     region: content
 hidden:
+  rabbit_hole__settings: true
   search_api_excerpt: true

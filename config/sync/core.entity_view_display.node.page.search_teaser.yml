@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.page.field_metatags
     - field.field.node.page.field_seo_keyword
     - field.field.node.page.layout_builder__layout
+    - field.field.node.page.rabbit_hole__settings
     - image.style.thumbnail
     - node.type.page
   module:
@@ -82,4 +83,5 @@ hidden:
   field_seo_keyword: true
   layout_builder__layout: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

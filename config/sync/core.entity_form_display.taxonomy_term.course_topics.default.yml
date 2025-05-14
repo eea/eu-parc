@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.course_topics.field_color
+    - field.field.taxonomy_term.course_topics.rabbit_hole__settings
     - taxonomy.vocabulary.course_topics
   module:
     - color_field
     - path
+    - rabbit_hole
     - text
 id: taxonomy_term.course_topics.default
 targetEntityType: taxonomy_term
@@ -42,6 +44,13 @@ content:
     weight: 30
     region: content
     settings: {  }
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 10

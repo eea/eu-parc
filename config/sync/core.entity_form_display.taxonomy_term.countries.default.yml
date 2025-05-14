@@ -6,9 +6,11 @@ dependencies:
     - field.field.taxonomy_term.countries.field_iso2
     - field.field.taxonomy_term.countries.field_iso3
     - field.field.taxonomy_term.countries.field_official_name
+    - field.field.taxonomy_term.countries.rabbit_hole__settings
     - taxonomy.vocabulary.countries
   module:
     - path
+    - rabbit_hole
     - text
 id: taxonomy_term.countries.default
 targetEntityType: taxonomy_term
@@ -60,6 +62,13 @@ content:
     weight: 3
     region: content
     settings: {  }
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 2

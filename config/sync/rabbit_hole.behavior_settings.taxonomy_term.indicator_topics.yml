@@ -1,0 +1,13 @@
+uuid: 1b603049-d39b-4462-a57b-1d7c1e03c13c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.indicator_topics
+id: taxonomy_term.indicator_topics
+targetEntityType: taxonomy_term
+bundle: indicator_topics
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

@@ -24,6 +24,7 @@ dependencies:
     - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
+    - field.field.node.events.rabbit_hole__settings
     - node.type.events
   module:
     - conditional_fields
@@ -33,6 +34,7 @@ dependencies:
     - media_library
     - metatag
     - path
+    - rabbit_hole
     - select2
     - smart_date
     - text
@@ -290,6 +292,13 @@ content:
     weight: 5
     region: content
     settings: {  }
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 3

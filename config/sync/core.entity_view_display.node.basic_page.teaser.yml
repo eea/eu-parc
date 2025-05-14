@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
+    - field.field.node.basic_page.rabbit_hole__settings
     - node.type.basic_page
   module:
     - text
@@ -45,4 +46,5 @@ hidden:
   field_svg_title: true
   field_views_reference: true
   field_views_reference_bottom: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.project.field_show_link
     - field.field.node.project.field_slideshow_items
     - field.field.node.project.field_slideshow_position
+    - field.field.node.project.rabbit_hole__settings
     - node.type.project
   module:
     - entity_reference_revisions
@@ -100,4 +101,5 @@ hidden:
   field_show_link: true
   field_slideshow_items: true
   field_slideshow_position: true
+  rabbit_hole__settings: true
   search_api_excerpt: true
