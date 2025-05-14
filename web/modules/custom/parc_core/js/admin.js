@@ -2,7 +2,7 @@
 
   Drupal.behaviors.parcSmartDate = {
     attach: function (context, settings) {
-      $(once('parcSmartDate', '.node-events-form .allday, .node-events-edit-form .allday')).on('change', function () {
+      $(once('parcSmartDate', '.node-events-form,.node-events-edit-form')).on('change', '.allday', function () {
         if ($(this).is(':checked')) {
           $(this).closest('tr').addClass('all-day-selected');
         }
@@ -11,7 +11,7 @@
         }
       });
 
-      $(once('initElement', '.node-events-form .allday, .node-events-edit-form .allday')).each(function () {
+      $(once('parcSmartDateInit', '.node-events-form .allday, .node-events-edit-form .allday')).each(function () {
         if ($(this).is(':checked')) {
           $(this).closest('tr').addClass('all-day-selected');
         }
