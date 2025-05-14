@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df30957cdb6956634351098f150c2971",
+    "content-hash": "514709264c71a3788dbc16086297d15b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6004,26 +6004,26 @@
         },
         {
             "name": "drupal/tablefield",
-            "version": "2.4.0",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/tablefield.git",
-                "reference": "8.x-2.4"
+                "reference": "3.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/tablefield-8.x-2.4.zip",
-                "reference": "8.x-2.4",
-                "shasum": "ef024051b3a02aaf8c41b50fc27ab535d7618980"
+                "url": "https://ftp.drupal.org/files/projects/tablefield-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "a43507eb3b3f4ba2f6889d62cc53883272b1ec52"
             },
             "require": {
-                "drupal/core": "^9.1 || ^10"
+                "drupal/core": "^10.3 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.4",
-                    "datestamp": "1677254141",
+                    "version": "3.0.0",
+                    "datestamp": "1742478991",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
