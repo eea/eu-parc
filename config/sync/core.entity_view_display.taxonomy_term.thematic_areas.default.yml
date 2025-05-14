@@ -7,6 +7,7 @@ dependencies:
     - field.field.taxonomy_term.thematic_areas.field_color
     - field.field.taxonomy_term.thematic_areas.field_icon
     - field.field.taxonomy_term.thematic_areas.field_seo_keywords
+    - field.field.taxonomy_term.thematic_areas.field_survey
     - field.field.taxonomy_term.thematic_areas.field_teaser_icon
     - field.field.taxonomy_term.thematic_areas.rabbit_hole__settings
     - system.menu.main
@@ -14,6 +15,7 @@ dependencies:
   module:
     - color_field
     - ctools
+    - entity_reference_revisions
     - layout_builder
     - layout_discovery
     - system
@@ -161,6 +163,15 @@ content:
       link: true
     third_party_settings: {  }
     weight: 5
+    region: content
+  field_survey:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 6
     region: content
   field_teaser_icon:
     type: entity_reference_entity_view

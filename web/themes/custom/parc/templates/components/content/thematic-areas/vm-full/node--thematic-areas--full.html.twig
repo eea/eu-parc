@@ -17,9 +17,15 @@
   ]
 %}
 
-<article{{attributes.addClass(classes).setAttribute('style','--tta--c-heading:'~color~';')}}>
+{% set survey_color = node.field_categories.entity ? node.field_categories.entity.field_bg_color.color : '#b0e5df' %}
+
+<article{{attributes.addClass(classes).setAttribute('style','--tta--c-heading:'~color~';'~'--tta--bg:'~survey_color~';')}}>
   {{ title_prefix }}
   {{ title_suffix }}
 
   {{ content }}
+
+  {% if survey_form %}
+    {{ survey_form }}
+  {% endif %}
 </article>
