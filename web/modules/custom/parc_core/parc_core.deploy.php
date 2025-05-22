@@ -1107,7 +1107,7 @@ function parc_core_deploy_10006() {
 /**
  * Import labs.
  */
-function parc_core_deploy_import_labszzz() {
+function parc_core_deploy_import_labs() {
   $groups_map = [
     'pfas' => 'Per- and polyfluoroalkyl substances (PFAS)',
     'phthalates' => 'Phthalates',
