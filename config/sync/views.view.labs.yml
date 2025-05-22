@@ -121,7 +121,48 @@ display:
       empty: {  }
       sorts: {  }
       arguments: {  }
-      filters: {  }
+      filters:
+        field_lab_category:
+          id: field_lab_category
+          table: search_api_index_labs
+          field: field_lab_category
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: search_api_options
+          operator: or
+          value:
+            hbm: hbm
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
       style:
         type: interactive_map
         options:
@@ -154,7 +195,7 @@ display:
         - 'search_api_list:labs'
   labs_map:
     id: labs_map
-    display_title: 'Labs Map'
+    display_title: 'HBM Labs Map'
     display_plugin: block
     position: 1
     display_options:
