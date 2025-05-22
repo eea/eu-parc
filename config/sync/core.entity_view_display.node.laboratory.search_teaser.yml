@@ -10,7 +10,9 @@ dependencies:
     - field.field.node.laboratory.field_contact_name
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_external_id
     - field.field.node.laboratory.field_institute_name
+    - field.field.node.laboratory.field_lab_category
     - field.field.node.laboratory.field_lab_contacts
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
@@ -97,7 +99,9 @@ hidden:
   field_contact_email: true
   field_contact_name: true
   field_coordinates: true
+  field_external_id: true
   field_institute_name: true
+  field_lab_category: true
   field_lab_contacts: true
   field_lab_type: true
   field_sampling_type: true
