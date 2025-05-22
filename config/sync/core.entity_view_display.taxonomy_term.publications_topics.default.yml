@@ -1,0 +1,24 @@
+uuid: bcb89696-841e-4010-a24e-9ca20d53ca5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.publications_topics.rabbit_hole__settings
+    - taxonomy.vocabulary.publications_topics
+  module:
+    - text
+id: taxonomy_term.publications_topics.default
+targetEntityType: taxonomy_term
+bundle: publications_topics
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  rabbit_hole__settings: true
+  search_api_excerpt: true

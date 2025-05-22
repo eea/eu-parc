@@ -1,0 +1,16 @@
+uuid: 7e2fd06a-f1c9-42f0-aa7f-c0adc7577a80
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.indicator
+id: node.indicator
+targetEntityType: node
+bundle: indicator
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /indicators
+  redirect_code: 301
+  redirect_fallback_action: access_denied

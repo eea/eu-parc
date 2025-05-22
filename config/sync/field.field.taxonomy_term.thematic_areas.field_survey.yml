@@ -1,0 +1,67 @@
+uuid: f8ebe4d4-4f84-40f6-bb50-5870a43e4eec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_survey
+    - paragraphs.paragraphs_type.survey
+    - taxonomy.vocabulary.thematic_areas
+  module:
+    - entity_reference_revisions
+id: taxonomy_term.thematic_areas.field_survey
+field_name: field_survey
+entity_type: taxonomy_term
+bundle: thematic_areas
+label: Survey
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      survey: survey
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 14
+        enabled: false
+      card:
+        weight: 15
+        enabled: false
+      carousel_item:
+        weight: 16
+        enabled: false
+      contact:
+        weight: 17
+        enabled: false
+      grid:
+        weight: 18
+        enabled: false
+      lab_matrix:
+        weight: 19
+        enabled: false
+      links_list:
+        weight: 20
+        enabled: false
+      media:
+        weight: 21
+        enabled: false
+      newsletter:
+        weight: 22
+        enabled: false
+      partner:
+        weight: 23
+        enabled: false
+      survey:
+        weight: 24
+        enabled: true
+      svg_text:
+        weight: 25
+        enabled: false
+      what_we_do:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

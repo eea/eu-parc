@@ -28,6 +28,11 @@
       });
 
       $(document).ready(function(){
+        if ($('body').hasClass('facetsInit')) {
+          return;
+        }
+        $('body').addClass('facetsInit');
+
         var windowWidth = $(window).width();
         if (windowWidth <= 767) {
           $('#collapsecountry').collapse('hide');
@@ -50,6 +55,17 @@
 
       $(once('facetCollapseCollapse', '.facets-widget-parc_checkbox li.collapse')).on('hidden.bs.collapse', function () {
         $(this).prev().removeClass('facet-collapse-expanded');
+      });
+
+      const resetFiltersButton = $('.reset-filters');
+      $(once('resetVisibility', '.layout__region--first input[type="checkbox"]')).on('change', function () {
+        let visible = $('.layout__region--first input[type="checkbox"]:is(:checked)').length > 0;
+        if (visible) {
+          resetFiltersButton.removeClass('hidden');
+        }
+        else {
+          resetFiltersButton.addClass('hidden');
+        }
       });
     },
   };

@@ -14,11 +14,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class SurveyForm extends FormBase {
 
   /**
-   * The current node.
+   * The current node/term.
    *
-   * @var \Drupal\node\NodeInterface
+   * @var \Drupal\node\NodeInterface|\Drupal\taxonomy\TermInterface
    */
-  protected $node;
+  protected $entity;
 
   /**
    * The entity type manager.
@@ -46,11 +46,11 @@ class SurveyForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $node = NULL) {
-    $this->node = $node;
+  public function buildForm(array $form, FormStateInterface $form_state, $entity = NULL) {
+    $this->entity = $entity;
 
-    $nid = $node->id();
-    $survey_paragraph = $node->get('field_survey')->first()?->entity;
+    $entity_id = $entity->id();
+    $survey_paragraph = $entity->get('field_survey')->first()?->entity;
     if (!$survey_paragraph) {
       return $form;
     }
@@ -64,8 +64,8 @@ class SurveyForm extends FormBase {
 
     $hasVoted = $voteStorage
       ->getQuery()
-      ->condition('entity_type', 'node')
-      ->condition('entity_id', $nid)
+      ->condition('entity_type', $entity->getEntityTypeId())
+      ->condition('entity_id', $entity_id)
       ->condition('vote_source', Vote::getCurrentIp())
       ->count()
       ->accessCheck(FALSE)
@@ -73,8 +73,8 @@ class SurveyForm extends FormBase {
 
     $numberOfVotes = $voteStorage
       ->getQuery()
-      ->condition('entity_type', 'node')
-      ->condition('entity_id', $nid)
+      ->condition('entity_type', $entity->getEntityTypeId())
+      ->condition('entity_id', $entity_id)
       ->count()
       ->accessCheck(FALSE)
       ->execute();
@@ -89,7 +89,7 @@ class SurveyForm extends FormBase {
     ];
 
     if ($hasVoted) {
-      return $this->buildResults($form, $options, $nid);
+      return $this->buildResults($form, $options, $entity_id);
     }
 
     $form['options'] = [
@@ -142,9 +142,9 @@ class SurveyForm extends FormBase {
    */
   public function ajaxSubmit(array &$form, FormStateInterface $form_state) {
     if ($form_state->get('voted')) {
-      $options = $this->node->get('field_survey')->first()?->entity->get('field_options')->getValue();
+      $options = $this->entity->get('field_survey')->first()?->entity->get('field_options')->getValue();
       $options = array_column($options, 'value');
-      return $this->buildResults($form, $options, $this->node->id());
+      return $this->buildResults($form, $options, $this->entity->id());
     }
 
     return $form;
@@ -163,10 +163,10 @@ class SurveyForm extends FormBase {
     $clicked_button_name = $triggering_element['#name'];
     $option_index = str_replace('vote_', '', $clicked_button_name);
 
-    $nid = $this->node->id();
+    $nid = $this->entity->id();
 
     $vote = $this->entityTypeManager->getStorage('vote')->create([
-      'entity_type' => 'node',
+      'entity_type' => $this->entity->getEntityTypeId(),
       'entity_id' => $nid,
       'value_type' => 'percent',
       'value' => $option_index,
@@ -186,10 +186,10 @@ class SurveyForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $selected_option = $form_state->getValue('options');
-    $nid = $this->node->id();
+    $nid = $this->entity->id();
 
     $vote = $this->entityTypeManager->getStorage('vote')->create([
-      'entity_type' => 'node',
+      'entity_type' => $this->entity->getEntityTypeId(),
       'entity_id' => $nid,
       'value_type' => 'percent',
       'value' => $selected_option,
@@ -204,21 +204,21 @@ class SurveyForm extends FormBase {
    *   The form.
    * @param array $options
    *   The options.
-   * @param $nid
-   *   The node id.
+   * @param $entity_id
+   *   The entity id.
    *
    * @return array
    *   The results build
    */
-  private function buildResults(array $form, array $options, $nid) {
+  private function buildResults(array $form, array $options, $entity_id) {
     $form = [];
     $vote_counts = [];
     $votes = $this->entityTypeManager->getStorage('vote')->loadByProperties([
-      'entity_type' => 'node',
-      'entity_id' => $nid,
+      'entity_type' => $this->entity->getEntityTypeId(),
+      'entity_id' => $entity_id,
     ]);
     $totalVotes = count($votes);
-    $survey_paragraph = $this->node->get('field_survey')->first()?->entity;
+    $survey_paragraph = $this->entity->get('field_survey')->first()?->entity;
     $question = $survey_paragraph->get('field_question')->value;
 
     $form['results']['intro'] = [

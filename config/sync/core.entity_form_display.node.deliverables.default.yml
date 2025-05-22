@@ -10,11 +10,13 @@ dependencies:
     - field.field.node.deliverables.field_display_label
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
+    - field.field.node.deliverables.rabbit_hole__settings
     - node.type.deliverables
   module:
     - datetime
     - media_library
     - path
+    - rabbit_hole
     - select2
 id: node.deliverables.default
 targetEntityType: node
@@ -83,6 +85,13 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 4

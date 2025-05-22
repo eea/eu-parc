@@ -1,0 +1,21 @@
+uuid: b5de034f-1460-41f5-8cbb-70b31560ebd3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.rabbit_hole__settings
+    - taxonomy.vocabulary.sampling_types
+  module:
+    - rabbit_hole
+id: taxonomy_term.sampling_types.rabbit_hole__settings
+field_name: rabbit_hole__settings
+entity_type: taxonomy_term
+bundle: sampling_types
+label: 'Rabbit Hole settings'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: rabbit_hole

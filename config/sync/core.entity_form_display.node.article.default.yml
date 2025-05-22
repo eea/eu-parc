@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.article.field_survey
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
+    - field.field.node.article.rabbit_hole__settings
     - image.style.thumbnail
     - node.type.article
   module:
@@ -19,6 +20,7 @@ dependencies:
     - metatag
     - paragraphs
     - path
+    - rabbit_hole
     - svg_image
     - text
 _core:
@@ -122,6 +124,13 @@ content:
     region: content
     settings:
       display_label: true
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 10

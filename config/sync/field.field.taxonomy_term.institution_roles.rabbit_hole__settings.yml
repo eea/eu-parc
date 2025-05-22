@@ -1,0 +1,21 @@
+uuid: 1f8aa5f9-88e5-4273-8730-9ee9ef8ddfbe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.rabbit_hole__settings
+    - taxonomy.vocabulary.institution_roles
+  module:
+    - rabbit_hole
+id: taxonomy_term.institution_roles.rabbit_hole__settings
+field_name: rabbit_hole__settings
+entity_type: taxonomy_term
+bundle: institution_roles
+label: 'Rabbit Hole settings'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: rabbit_hole

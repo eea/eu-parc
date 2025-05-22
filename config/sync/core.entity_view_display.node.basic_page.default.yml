@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
+    - field.field.node.basic_page.rabbit_hole__settings
     - node.type.basic_page
   module:
     - entity_reference_revisions
@@ -115,4 +116,5 @@ hidden:
   addtoany: true
   field_survey: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

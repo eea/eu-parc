@@ -15,9 +15,13 @@
   ]
 %}
 
-<div{{attributes.setAttribute('id','taxonomy-term-'~term.id).setAttribute('style','--tta--c-heading:'~term.field_color.0.color).addClass(classes)}}>
+<div{{attributes.setAttribute('id','taxonomy-term-'~term.id).setAttribute('style','--tta--c-heading:'~term.field_color.0.color~';'~'--tta--bg:'~term.field_bg_color.color~';').addClass(classes)}}>
   {{ title_prefix }}
   {{ title_suffix }}
 
   {{ content }}
+
+  {% if survey_form %}
+    {{ survey_form }}
+  {% endif %}
 </div>

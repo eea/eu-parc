@@ -1,0 +1,13 @@
+uuid: a7fd24eb-6c11-45fe-9b64-2a2fd6177b19
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.project_keywords
+id: taxonomy_term.project_keywords
+targetEntityType: taxonomy_term
+bundle: project_keywords
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

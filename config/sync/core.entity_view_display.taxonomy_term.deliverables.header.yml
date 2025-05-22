@@ -8,6 +8,7 @@ dependencies:
     - field.field.taxonomy_term.deliverables.field_color
     - field.field.taxonomy_term.deliverables.field_order
     - field.field.taxonomy_term.deliverables.field_title_svg
+    - field.field.taxonomy_term.deliverables.rabbit_hole__settings
     - taxonomy.vocabulary.deliverables
   module:
     - layout_builder
@@ -41,4 +42,5 @@ hidden:
   field_alternate_color: true
   field_color: true
   field_order: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

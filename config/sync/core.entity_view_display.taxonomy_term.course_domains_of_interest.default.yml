@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.course_domains_of_interest.field_color
+    - field.field.taxonomy_term.course_domains_of_interest.rabbit_hole__settings
     - taxonomy.vocabulary.course_domains_of_interest
   module:
     - color_field
@@ -30,4 +31,5 @@ content:
     weight: 2
     region: content
 hidden:
+  rabbit_hole__settings: true
   search_api_excerpt: true

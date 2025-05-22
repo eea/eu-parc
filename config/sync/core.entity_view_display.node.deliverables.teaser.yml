@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.deliverables.field_display_label
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
+    - field.field.node.deliverables.rabbit_hole__settings
     - node.type.deliverables
   module:
     - datetime
@@ -54,4 +55,5 @@ hidden:
   field_deliverable_type: true
   field_display_label: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

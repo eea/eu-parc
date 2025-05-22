@@ -1,0 +1,13 @@
+uuid: e97db8d1-c5fc-4d64-92ef-a6b309d9e617
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.countries
+id: taxonomy_term.countries
+targetEntityType: taxonomy_term
+bundle: countries
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

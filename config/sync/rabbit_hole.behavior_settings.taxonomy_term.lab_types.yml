@@ -1,0 +1,13 @@
+uuid: ba094667-c5ad-47e1-8b82-bb6e03f05190
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.lab_types
+id: taxonomy_term.lab_types
+targetEntityType: taxonomy_term
+bundle: lab_types
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

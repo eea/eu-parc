@@ -12,6 +12,11 @@ openlayers:
     component:
       https://cdn.jsdelivr.net/npm/ol@7.3.0/ol.css: { type: external, minified: true }
 
+map_style:
+  css:
+    component:
+      css/style.css: { }
+
 interactive_map:
   css:
     component:
@@ -20,6 +25,7 @@ interactive_map:
     js/interactive-map.js: {}
   dependencies:
     - parc_interactive_map/openlayers
+    - parc_interactive_map/map_style
     - core/jquery
     - core/once
     - core/drupalSettings

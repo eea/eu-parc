@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.taxonomy_term.institution_roles.field_color
     - field.field.taxonomy_term.institution_roles.field_role_type
+    - field.field.taxonomy_term.institution_roles.rabbit_hole__settings
     - taxonomy.vocabulary.institution_roles
   module:
     - color_field
     - path
+    - rabbit_hole
     - text
 id: taxonomy_term.institution_roles.default
 targetEntityType: taxonomy_term
@@ -50,6 +52,13 @@ content:
     weight: 3
     region: content
     settings: {  }
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 2

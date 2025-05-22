@@ -1,0 +1,13 @@
+uuid: a2783270-7e9d-4d60-a082-b1a24a4d17f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.substance_groups
+id: taxonomy_term.substance_groups
+targetEntityType: taxonomy_term
+bundle: substance_groups
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

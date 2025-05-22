@@ -1,6 +1,6 @@
 uuid: 308ffa6e-3e15-4f28-b8e0-c608535fbab3
 langcode: en
-status: open
+status: closed
 dependencies: {  }
 weight: 0
 open: null
@@ -1209,7 +1209,7 @@ settings:
   form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
-  form_close_message: '<p><em><span lang="EN-US"><strong>Thank you for your application!</strong></span></em></p>'
+  form_close_message: '<p class="" data-start="28" data-end="138">Thank you for your interest. This questionnaire is now closed. We appreciate your participation and support.</p><p class="" data-start="140" data-end="205">For any further inquiries, please feel free to reach out to us <a href="(carla.trindade@insa.min-saude.pt">(carla.trindade@insa.min-saude.pt</a>).&nbsp;</p>'
   form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false

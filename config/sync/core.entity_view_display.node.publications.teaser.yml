@@ -23,6 +23,7 @@ dependencies:
     - field.field.node.publications.field_updated_date
     - field.field.node.publications.field_volume
     - field.field.node.publications.field_zenodo_id
+    - field.field.node.publications.rabbit_hole__settings
     - image.style.large
     - node.type.publications
   module:
@@ -265,4 +266,5 @@ hidden:
   field_updated_date: true
   field_zenodo_id: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

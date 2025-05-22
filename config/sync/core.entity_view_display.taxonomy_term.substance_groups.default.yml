@@ -1,0 +1,24 @@
+uuid: 3346716e-d868-474e-9105-fa4e73efcbd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.substance_groups.rabbit_hole__settings
+    - taxonomy.vocabulary.substance_groups
+  module:
+    - text
+id: taxonomy_term.substance_groups.default
+targetEntityType: taxonomy_term
+bundle: substance_groups
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  rabbit_hole__settings: true
+  search_api_excerpt: true

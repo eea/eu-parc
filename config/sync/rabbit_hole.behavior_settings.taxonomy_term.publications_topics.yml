@@ -1,0 +1,13 @@
+uuid: aa01334f-a0e5-431a-a1c7-266dcd871179
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.publications_topics
+id: taxonomy_term.publications_topics
+targetEntityType: taxonomy_term
+bundle: publications_topics
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }
