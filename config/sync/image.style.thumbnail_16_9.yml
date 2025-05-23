@@ -1,0 +1,15 @@
+uuid: 012586ee-10d4-4b46-920c-d520dd36061e
+langcode: en
+status: true
+dependencies: {  }
+name: thumbnail_16_9
+label: 'Thumbnail (16:9)'
+effects:
+  1849b2e7-79e2-4f7b-8148-f639983a0c08:
+    uuid: 1849b2e7-79e2-4f7b-8148-f639983a0c08
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1404
+      height: 790
+      anchor: center-center
