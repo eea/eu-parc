@@ -61,7 +61,8 @@
 
     .field--type-text-long,
     .field--type-text-with-summary {
-      &:not(.field--name-field-address-data) > *:not(blockquote):not(div) {
+      &:not(.field--name-field-address-data) > *:not(blockquote):not(div),
+      &:not(.field--name-field-address-data) .ckeditor-accordion-container {
         margin-inline: 8.3333% 16.6666%;
       }
 
