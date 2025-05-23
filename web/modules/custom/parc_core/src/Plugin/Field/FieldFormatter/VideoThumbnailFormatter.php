@@ -82,7 +82,7 @@ class VideoThumbnailFormatter extends FileVideoFormatter implements ContainerFac
       }
 
       $attributes = $element['#attributes'];
-      $attributes->setAttribute('poster', '/sites/default/files/styles/thumbnail_16_9/public/2025-05/thumbnails/tj.png?itok=2J29tVMi');
+      $attributes->setAttribute('poster', $thumbnail_url);
     }
 
     return $elements;
