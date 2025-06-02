@@ -964,7 +964,7 @@
         // Dimensions and margins
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const width = 600 - margin.left - margin.right;
-        const height = 600 - margin.top - margin.bottom;
+        const height = 800 - margin.top - margin.bottom;
         const radius = Math.min(width, height) / 2 - 80;
 
         // Color scale
@@ -981,6 +981,8 @@
           .scaleOrdinal()
           .domain(Object.keys(data))
           .range(colorss);
+
+        const translateHeight = height / 2 + margin.top - 100;
         // Create SVG element
         const svg = d3
           .select(
@@ -991,9 +993,8 @@
           .attr("width", "1100")
           .attr("height", height + margin.top + margin.bottom)
           .append("g")
-          .attr("transform", `translate(${width},${height / 2 + margin.top})`); // Adjusted for margins
+          .attr("transform", `translate(${width},${translateHeight})`);
 
-        // Prepare data for pie layout
         const pie = d3
           .pie()
           .startAngle(-Math.PI / 2)
@@ -1170,7 +1171,7 @@
             .append("g")
             .attr(
               "transform",
-              `translate(${width},${height / 2 + margin.top})`
+              `translate(${width},${translateHeight})`
             ); // Adjusted for margins
 
           // Prepare data for pie layout
@@ -1303,45 +1304,56 @@
             .attr("cy", 0)
             .attr("r", 5)
             .attr("fill", "white");
+
+          const legendGroup = svg.append("g")
+            .attr("class", "legend-container")
+            .attr("transform", `translate(${-width + margin.left}, ${translateHeight})`);
+
+          const legendItems = legendGroup.selectAll(".legend-item")
+            .data(Object.entries(data))
+            .enter()
+            .append("g")
+            .attr("class", "legend-item")
+            .attr("transform", (d, i) => `translate(0, ${i * 24})`);
+
+          legendItems.append("circle")
+            .attr("cx", 8)
+            .attr("cy", 8)
+            .attr("r", 8)
+            .attr("fill", d => color(d[0]));
+
+          legendItems.append("text")
+            .attr("x", 24)
+            .attr("y", 12)
+            .attr("font-size", "12px")
+            .attr("fill", "gray")
+            .text(d => d[0]);
         }
 
-        const legendContainer = d3
-          .select(`#${wrapperId}`)
-          .append("div")
+        const legendGroup = svg.append("g")
           .attr("class", "legend-container")
-          .style("display", "flex")
-          .style("flex-direction", "column")
-          .style("margin-top", "10px");
+          .attr("transform", `translate(${-width + margin.left}, ${translateHeight})`);
 
-        // Add legend items for each category
-        const legendItems = legendContainer
-          .selectAll(".legend-item")
+        const legendItems = legendGroup.selectAll(".legend-item")
           .data(Object.entries(data))
           .enter()
-          .append("div")
+          .append("g")
           .attr("class", "legend-item")
-          .style("display", "flex")
-          .style("align-items", "center")
-          .style("margin-bottom", "5px");
+          .attr("transform", (d, i) => `translate(0, ${i * 24})`);
 
-        legendItems
-          .append("span")
-          .style("width", "16px")
-          .style("height", "16px")
-          .style("display", "inline-block")
-          .style("margin-right", "5px")
-          .style("border-radius", "50%")
-          .style("flex-shrink", "0")
-          .style("background-color", (d) => color(d[0]));
+        legendItems.append("circle")
+          .attr("cx", 8)
+          .attr("cy", 8)
+          .attr("r", 8)
+          .attr("fill", d => color(d[0]));
 
-        legendItems
-          .append("span")
-          .text((d) => `${d[0]}`)
-          .style("font-size", "12px")
-          .style("color", "gray")
-          .style("height", "auto")
-          .style("display", "block")
-          .style("line-height", "18px");
+        legendItems.append("text")
+          .attr("x", 24)
+          .attr("y", 12)
+          .attr("font-size", "12px")
+          .attr("fill", "gray")
+          .text(d => d[0]);
+
 
         const legend = d3
           .select(`#${wrapperId}`)
@@ -1366,7 +1378,6 @@
           .text((d) => d.year);
       }
 
-      // Function to wrap text within a specified width using <tspan>
       function wrap(text, width, i) {
         text.each(function () {
           let text = d3.select(this),
@@ -2501,25 +2512,29 @@
         const margin = { top: 60, right: 20, bottom: 0, left: 20 };
         const radius = 75;
         const segmentLength = 70;
-        const width =
+        const minWidth = d3.select(`#${wrapperId}`).node().getBoundingClientRect().width;
+        const width = Math.max(minWidth,
           600 +
           (segmentLength + 40) * Math.max(0, maxData) -
           margin.left -
-          margin.right;
+          margin.right);
         const height =
-          600 +
-          (segmentLength + 40) * Math.max(0, maxData) -
+          720 +
+          (segmentLength + 20) * Math.max(0, maxData - 1) -
           margin.top -
           margin.bottom;
+        
+        const transformHeight = height / 2 - 120;
+
         const svg = d3
           .select(
             `#${wrapperId} .indicator-scrollable-container .indicator-container`
           )
           .append("svg")
-          .attr("width", width)
+          .attr("width", Math.max(width, 1200))
           .attr("height", height)
           .append("g")
-          .attr("transform", `translate(${width / 2}, ${height / 2})`);
+          .attr("transform", `translate(${width / 2}, ${transformHeight})`);
 
         $(`#${wrapperId}`).attr("style", "text-align: center");
 
@@ -2528,11 +2543,11 @@
 
         const colorScale = d3
           .scaleLinear()
-          .domain([minDuration, maxDuration])
+          .domain([minParticipants, maxParticipants])
           .range(latestYearColors);
         const widthScale = d3
           .scaleLinear()
-          .domain([minParticipants, maxParticipants])
+          .domain([minDuration, maxDuration])
           .range([3, 13]);
         months.forEach((month, i) => {
           const angle = startAngle + angleStep * i;
@@ -2559,8 +2574,8 @@
             const x2 = segmentEnd * Math.cos(angle);
             const y2 = segmentEnd * Math.sin(angle);
 
-            let strokeColor = colorScale(ev.Duration);
-            let strokeWidth = widthScale(ev.Participants);
+            let strokeColor = colorScale(ev.Participants);
+            let strokeWidth = widthScale(ev.Duration);
 
             let hours_string = ev.Duration == 1 ? 'hour' : 'hours';
             let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} ${hours_string}</b></p>`;
@@ -2624,72 +2639,82 @@
           .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
 
-        const legendContainer = d3
-          .select(`#${wrapperId}`)
-          .append("div")
+        const legendGroup = svg.append("g")
           .attr("class", "legend-container")
-          .style("display", "flex")
-          .style("justify-content", "end")
-          .style("margin-top", "10px");
+          .attr("transform", `translate(${width / 2 - margin.left - 220}, ${transformHeight + 100})`);
 
         const gradientStart = adjustColor(colors[latestYear], 60);
         const gradientEnd = adjustColor(colors[latestYear], -60);
-        const leg = legendContainer
-          .append("div")
-          .style("display", "flex")
-          .style("flex-direction", "column")
-          .style("align-items", "start");
 
-        leg
-          .append("div")
-          .text("Duration")
-          .style("margin-bottom", "5px")
-          .style("font-size", "17px");
+        const defs = svg.append("defs");
+        const gradient = defs.append("linearGradient")
+          .attr("id", "participants-gradient")
+          .attr("x1", "0%")
+          .attr("x2", "100%")
+          .attr("y1", "0%")
+          .attr("y2", "0%");
 
-        const gradientDiv = leg
-          .append("div")
-          .style("height", "10px")
-          .style("width", "200px")
-          .style(
-            "background",
-            `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`
-          );
+        gradient.append("stop")
+          .attr("offset", "0%")
+          .attr("stop-color", gradientStart);
+        gradient.append("stop")
+          .attr("offset", "100%")
+          .attr("stop-color", gradientEnd);
 
-        leg
-          .append("div")
+        legendGroup.append("text")
+          .attr("class", "legend-title")
           .text("Number of participants")
-          .style("margin-top", "10px")
-          .style("font-size", "17px");
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("font-size", "17px")
+          .attr("dy", "1em");
 
-        const numLines = 4;
-        const lineWidth = 150;
         const strokeWidths = [2, 4, 6, 8];
+        const strokeLength = 50;
 
-        const durationLineContainer = leg
-          .append("div")
-          .style("display", "flex")
-          .style("align-items", "center")
-          .style("height", "10px")
-          .style("width", `200px`);
+        legendGroup.append("rect")
+          .attr("x", 0)
+          .attr("y", 30)
+          .attr("width", (strokeLength + 2) * strokeWidths.length)
+          .attr("height", 10)
+          .attr("fill", "url(#participants-gradient)");
 
-        for (let i = 0; i < numLines; i++) {
-          durationLineContainer
-            .append("div")
-            .style("height", `${strokeWidths[i]}px`)
-            .style("width", "50px")
-            .style("background-color", `black`)
-            .style("margin-right", "2px")
-            .style("border-radius", "5px");
-        }
+        legendGroup.append("text")
+          .attr("class", "legend-title")
+          .text("Duration")
+          .attr("x", 0)
+          .attr("y", 60)
+          .attr("font-size", "17px")
+          .attr("dy", "1em");
+
+
+        legendGroup.selectAll(".duration-bar")
+          .data(strokeWidths)
+          .enter()
+          .append("rect")
+          .attr("class", "duration-bar")
+          .attr("x", (d, i) => i * 52)
+          .attr("y", (d, i) => 100 + (strokeWidths.length - i))
+          .attr("width", strokeLength)
+          .attr("height", d => d)
+          .attr("fill", "black")
+          .attr("rx", 5)
+          .attr("ry", 5);
+
 
         function updateChart(year) {
           svg.selectAll("line").remove();
           d3.select(`#${wrapperId}`).selectAll(".legend-container").remove();
 
-          const yearColors = [
-            adjustColor(colors[year], 60),
-            adjustColor(colors[year], -60),
+          let minus60Color = adjustColor(colors[year], -60);
+          let plus60Color = adjustColor(colors[year], 60);
+
+          let yearColors = [
+            plus60Color,
+            minus60Color,
           ];
+
+          console.log(yearColors, latestYearColors, year, colors, colors[year], plus60Color, minus60Color);
 
           const yearData = chartData.chart[year];
 
@@ -2720,25 +2745,26 @@
           const margin = { top: 60, right: 20, bottom: 0, left: 20 };
           const radius = 75;
           const segmentLength = 70;
-          const width =
+          const width = Math.max(minWidth,
             600 +
-            (segmentLength + 20) * Math.max(0, maxData - 1) -
+            (segmentLength + 40) * Math.max(0, maxData) -
             margin.left -
-            margin.right;
+            margin.right);
           const height =
-            600 +
+            720 +
             (segmentLength + 20) * Math.max(0, maxData - 1) -
             margin.top -
             margin.bottom;
+          
+          const transformHeight = height / 2 - 120;
+
           d3.select(`#${wrapperId} svg`)
             .attr("width", width)
-            .attr("height", height)
-            .attr("viewBox", `0 0 ${width} ${height}`)
-            .attr("preserveAspectRatio", "xMidYMid meet");
+            .attr("height", height);
 
           d3.select(`#${wrapperId} svg g`).attr(
             "transform",
-            `translate(${width / 2}, ${height / 2})`
+            `translate(${width / 2}, ${transformHeight})`
           );
 
           const colorScale = d3
@@ -2747,7 +2773,7 @@
             .range(yearColors);
           const widthScale = d3
             .scaleLinear()
-            .domain([minParticipants, maxParticipants])
+            .domain([minDuration, maxDuration])
             .range([3, 13]);
 
           monthsWithData.forEach((month, i) => {
@@ -2764,8 +2790,8 @@
               const x2 = segmentEnd * Math.cos(angle);
               const y2 = segmentEnd * Math.sin(angle);
 
-              let strokeColor = colorScale(ev.Duration);
-              let strokeWidth = widthScale(ev.Participants);
+              let strokeColor = colorScale(ev.Participants);
+              let strokeWidth = widthScale(ev.Duration);
 
               let hours_string = ev.Duration == 1 ? 'hour' : 'hours';
               let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} ${hours_string}</b></p>`;
@@ -2808,62 +2834,67 @@
               });
             });
           });
-          const legendContainer = d3
-            .select(`#${wrapperId}`)
-            .append("div")
+          const legendGroup = svg.append("g")
             .attr("class", "legend-container")
-            .style("display", "flex")
-            .style("justify-content", "end");
-
+            .attr("transform", `translate(${width / 2 - margin.left - 220}, ${transformHeight + 100})`);
+  
           const gradientStart = adjustColor(colors[year], 60);
           const gradientEnd = adjustColor(colors[year], -60);
-          const leg = legendContainer
-            .append("div")
-            .style("display", "flex")
-            .style("flex-direction", "column")
-            .style("align-items", "start");
-
-          leg
-            .append("div")
+          console.log(minus60Color, plus60Color);
+          let defs = svg.append("defs");
+          let gradient = defs.append("linearGradient")
+            .attr("id", `participants-gradient-${year}`)
+            .attr("x1", "0%")
+            .attr("x2", "100%")
+            .attr("y1", "0%")
+            .attr("y2", "0%");
+  
+          gradient.append("stop")
+            .attr("offset", "0%")
+            .attr("stop-color", plus60Color);
+          gradient.append("stop")
+            .attr("offset", "100%")
+            .attr("stop-color", minus60Color);
+  
+          legendGroup.append("text")
+            .attr("class", "legend-title")
             .text("Number of participants")
-            .style("margin-bottom", "5px")
-            .style("font-size", "17px");
-
-          const gradientDiv = leg
-            .append("div")
-            .style("height", "10px")
-            .style("width", "200px")
-            .style(
-              "background",
-              `linear-gradient(to right, ${gradientStart}, ${gradientEnd})`
-            );
-
-          leg
-            .append("div")
-            .text("Duration")
-            .style("margin-top", "10px")
-            .style("font-size", "17px");
-
-          const numLines = 4;
-          const lineWidth = 150;
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("font-size", "17px")
+            .attr("dy", "1em");
+  
           const strokeWidths = [2, 4, 6, 8];
-
-          const durationLineContainer = leg
-            .append("div")
-            .style("display", "flex")
-            .style("align-items", "center")
-            .style("height", "10px")
-            .style("width", `200px`);
-
-          for (let i = 0; i < numLines; i++) {
-            durationLineContainer
-              .append("div")
-              .style("height", `${strokeWidths[i]}px`)
-              .style("width", "50px")
-              .style("background-color", `black`)
-              .style("margin-right", "2px")
-              .style("border-radius", "5px");
-          }
+          const strokeLength = 50;
+  
+          legendGroup.append("rect")
+            .attr("x", 0)
+            .attr("y", 30)
+            .attr("width", (strokeLength + 2) * strokeWidths.length)
+            .attr("height", 10)
+            .attr("fill", `url(#participants-gradient-${year})`);
+  
+          legendGroup.append("text")
+            .attr("class", "legend-title")
+            .text("Duration")
+            .attr("x", 0)
+            .attr("y", 60)
+            .attr("font-size", "17px")
+            .attr("dy", "1em");
+  
+  
+          legendGroup.selectAll(".duration-bar")
+            .data(strokeWidths)
+            .enter()
+            .append("rect")
+            .attr("class", "duration-bar")
+            .attr("x", (d, i) => i * 52)
+            .attr("y", (d, i) => 100 + (strokeWidths.length - i))
+            .attr("width", strokeLength)
+            .attr("height", d => d)
+            .attr("fill", "black")
+            .attr("rx", 5)
+            .attr("ry", 5);
         }
       }
 
