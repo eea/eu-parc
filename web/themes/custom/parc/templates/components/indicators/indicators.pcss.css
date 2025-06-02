@@ -245,10 +245,15 @@
     flex-direction: column;
   }
 
-
   .text {
     font-size: 20px;
     text-anchor: middle;
+  }
+
+  .legend-container {
+    .legend-title {
+      font-size: 17px;
+    }
   }
 
   .legend rect {
@@ -283,7 +288,6 @@
   }
 
   .legend-color {
-    //display: inline-block;
     display: none;
     width: 12px;
     height: 12px;
