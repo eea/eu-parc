@@ -2543,11 +2543,11 @@
 
         const colorScale = d3
           .scaleLinear()
-          .domain([minParticipants, maxParticipants])
+          .domain([minDuration, maxDuration])
           .range(latestYearColors);
         const widthScale = d3
           .scaleLinear()
-          .domain([minDuration, maxDuration])
+          .domain([minParticipants, maxParticipants])
           .range([3, 13]);
         months.forEach((month, i) => {
           const angle = startAngle + angleStep * i;
@@ -2574,8 +2574,8 @@
             const x2 = segmentEnd * Math.cos(angle);
             const y2 = segmentEnd * Math.sin(angle);
 
-            let strokeColor = colorScale(ev.Participants);
-            let strokeWidth = widthScale(ev.Duration);
+            let strokeColor = colorScale(ev.Duration);
+            let strokeWidth = widthScale(ev.Participants);
 
             let hours_string = ev.Duration == 1 ? 'hour' : 'hours';
             let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} ${hours_string}</b></p>`;
@@ -2663,7 +2663,7 @@
 
         legendGroup.append("text")
           .attr("class", "legend-title")
-          .text("Number of participants")
+          .text("Duration")
           .attr("x", 0)
           .attr("y", 0)
           .attr("font-size", "17px")
@@ -2681,7 +2681,7 @@
 
         legendGroup.append("text")
           .attr("class", "legend-title")
-          .text("Duration")
+          .text("Number of participants")
           .attr("x", 0)
           .attr("y", 60)
           .attr("font-size", "17px")
@@ -2769,11 +2769,11 @@
 
           const colorScale = d3
             .scaleLinear()
-            .domain([minParticipants, maxParticipants])
+            .domain([minDuration, maxDuration])
             .range(yearColors);
           const widthScale = d3
             .scaleLinear()
-            .domain([minDuration, maxDuration])
+            .domain([minParticipants, maxParticipants])
             .range([3, 13]);
 
           monthsWithData.forEach((month, i) => {
@@ -2790,8 +2790,8 @@
               const x2 = segmentEnd * Math.cos(angle);
               const y2 = segmentEnd * Math.sin(angle);
 
-              let strokeColor = colorScale(ev.Participants);
-              let strokeWidth = widthScale(ev.Duration);
+              let strokeColor = colorScale(ev.Duration);
+              let strokeWidth = widthScale(ev.Participants);
 
               let hours_string = ev.Duration == 1 ? 'hour' : 'hours';
               let html = `<p style="font-size: 12px; color: ${strokeColor}" class="font-small">${ev['displayed_date']}</p><p><b>${ev.Title}</b></p><p style="color: ${strokeColor}"><b>${ev.Participants} participants, ${ev.Duration} ${hours_string}</b></p>`;
@@ -2840,7 +2840,6 @@
   
           const gradientStart = adjustColor(colors[year], 60);
           const gradientEnd = adjustColor(colors[year], -60);
-          console.log(minus60Color, plus60Color);
           let defs = svg.append("defs");
           let gradient = defs.append("linearGradient")
             .attr("id", `participants-gradient-${year}`)
@@ -2858,7 +2857,7 @@
   
           legendGroup.append("text")
             .attr("class", "legend-title")
-            .text("Number of participants")
+            .text("Duration")
             .attr("x", 0)
             .attr("y", 0)
             .attr("font-size", "17px")
@@ -2876,7 +2875,7 @@
   
           legendGroup.append("text")
             .attr("class", "legend-title")
-            .text("Duration")
+            .text("Number of participants")
             .attr("x", 0)
             .attr("y", 60)
             .attr("font-size", "17px")
