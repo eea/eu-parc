@@ -6,9 +6,9 @@ use Drupal\Core\Database\Database;
 use Drupal\search_api\Event\ProcessingResultsEvent;
 use Drupal\search_api\Item\Item;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\search_api\SearchApiEvents;
-use Drupal\search_api\Condition\ConditionGroup;
-use Drupal\search_api\Condition\Condition;
+use Drupal\search_api\Event\SearchApiEvents;
+use Drupal\search_api\Query\ConditionGroup;
+use Drupal\search_api\Query\Condition;
 
 /**
  * Appends results of the query on field_projects_abbreviation to the fulltext search results.
@@ -21,7 +21,7 @@ class SearchApiEventSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents() {
     return [
       // Listen to the processing results event to alter the search results.
-      \Drupal\search_api\Event\SearchApiEvents::PROCESSING_RESULTS  => ['onProcessingResults'],
+      SearchApiEvents::PROCESSING_RESULTS  => ['onProcessingResults'],
     ];
   }
 
@@ -45,7 +45,7 @@ class SearchApiEventSubscriber implements EventSubscriberInterface {
     }
 
     if ($this->queryHasAnyTypeCondition($query->getConditionGroup()) && 
-        !$this->queryHasTypeCondition($query->getConditionGroup(), 'project')) {
+      !$this->queryHasTypeCondition($query->getConditionGroup(), 'project')) {
       return;
     }
 
@@ -79,22 +79,22 @@ class SearchApiEventSubscriber implements EventSubscriberInterface {
    */
   protected function queryHasTypeCondition($condition_group, $type_value) {
     foreach ($condition_group->getConditions() as $condition) {
-      if ($condition instanceof \Drupal\search_api\Query\ConditionGroup) {
+      if ($condition instanceof ConditionGroup) {
         if ($this->queryHasTypeCondition($condition, $type_value)) {
-          return true;
+          return TRUE;
         }
       }
-      elseif ($condition instanceof \Drupal\search_api\Query\Condition) {
+      elseif ($condition instanceof Condition) {
         if (
           $condition->getField() === 'type' &&
           $condition->getValue() === $type_value &&
           $condition->getOperator() === '='
         ) {
-          return true;
+          return TRUE;
         }
       }
     }
-    return false;
+    return FALSE;
   }
 
   /**
@@ -108,18 +108,18 @@ class SearchApiEventSubscriber implements EventSubscriberInterface {
    */
   protected function queryHasAnyTypeCondition($condition_group) {
     foreach ($condition_group->getConditions() as $condition) {
-      if ($condition instanceof \Drupal\search_api\Query\ConditionGroup) {
+      if ($condition instanceof ConditionGroup) {
         if ($this->queryHasAnyTypeCondition($condition)) {
-          return true;
+          return TRUE;
         }
       }
-      elseif ($condition instanceof \Drupal\search_api\Query\Condition) {
+      elseif ($condition instanceof Condition) {
         if ($condition->getField() === 'type') {
-          return true;
+          return TRUE;
         }
       }
     }
-    return false;
+    return FALSE;
   }
 
 }
