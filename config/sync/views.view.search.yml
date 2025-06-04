@@ -316,36 +316,48 @@ display:
             operator: search_api_fulltext_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: text
+            identifier: search_api_fulltext
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              news_events_editor: '0'
+              scientific_publications_editor: '0'
               content_editor: '0'
               administrator: '0'
+              survey_coordinator: '0'
+              edw_healthcheck_role: '0'
             expose_fields: false
             placeholder: ''
             searched_fields_id: search_api_fulltext_searched_fields
+            value_maxlength: 128
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'Fulltext search'
+            description: null
+            identifier: search_api_fulltext
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
           parse_mode: terms
           min_length: null
           fields:
             - body
             - rendered_item
             - title
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: default
       row:

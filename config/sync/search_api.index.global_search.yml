@@ -7,6 +7,7 @@ dependencies:
     - field.storage.node.field_address_data
     - field.storage.node.field_city
     - field.storage.node.field_country
+    - field.storage.node.field_project_abbreviation
     - search_api.server.database
   module:
     - node
@@ -48,6 +49,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_city
+  field_project_abbreviation:
+    label: 'Internal technical title of the project'
+    datasource_id: 'entity:node'
+    property_path: field_project_abbreviation
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_project_abbreviation
   language_with_fallback:
     label: 'Language (with fallback)'
     property_path: language_with_fallback
@@ -86,12 +95,17 @@ field_settings:
         - anonymous
       view_mode:
         'entity:node':
+          ':default': ''
           article: ''
           basic_page: ''
           deliverables: ''
           events: ''
+          indicator: ':default'
           institution: ''
+          laboratory: ':default'
+          learning_material: ':default'
           page: default
+          project: ':default'
           publications: ''
           thematic_areas: ''
   status:
