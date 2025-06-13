@@ -30,7 +30,7 @@
     </div>
 
     <div class="learning-material__bottom">
-      {% set course_type = content.field_course_type | render | striptags %}
+      {% set course_type = content.field_course_type | render | striptags | lower %}
       <div class="go-to">
         {% trans %}
           Go to {{ course_type }}
