@@ -477,6 +477,17 @@ blockquote {
       }
     }
 
+    .ssbd-menu-contact {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/contact.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/contact-hover.svg');
+        }
+      }
+    }
+
     .nav-link {
       font-size: 16px;
       font-weight: 500;
@@ -556,6 +567,12 @@ blockquote {
         .ssbd-menu-faqs {
           &::before {
             background-image: url('../../img/ssbd-menu-icons/faqs-hover.svg');
+          }
+        }
+
+        .ssbd-menu-contact {
+          &::before {
+            background-image: url('../../img/ssbd-menu-icons/contact-hover.svg');
           }
         }
       }

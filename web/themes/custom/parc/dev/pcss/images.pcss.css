@@ -43,3 +43,7 @@
     justify-content: center;
   }
 }
+
+a:has(img) .external-link-mark {
+  display: none;
+}
