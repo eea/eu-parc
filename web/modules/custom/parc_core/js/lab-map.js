@@ -26,7 +26,6 @@
         var $a = $('a[data-id="' + $id + '"]');
         $this.on('click', function (e) {
           e.preventDefault();
-          console.log($a);
           if ($a.length && $a.attr('href')) {
             window.location.href = $a.attr('href');
           }
