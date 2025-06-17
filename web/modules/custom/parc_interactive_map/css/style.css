@@ -458,3 +458,9 @@ button.ol-zoom-out:after {
   height: 2px;
   background: #000;
 }
+
+.hide-mobile.block {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
