@@ -96,6 +96,12 @@ function parc_core_theme() {
         'results' => [],
       ],
     ],
+    'parc_lab_map_type_switcher' => [
+      'variables' => [
+        'lab_categories' => [],
+        'active' => '',
+      ],
+    ],
   ];
 }
 
