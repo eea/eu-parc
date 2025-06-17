@@ -44,6 +44,16 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
 
+    /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $adapter */
+    $adapter = $items->getParent();
+    /** @var \Drupal\node\NodeInterface $entity */
+    $entity = $adapter->getEntity();
+    $lab_category = $entity->get('field_lab_category')->value;
+
+    if ($entity->id() == 1352) {
+      $lab_category = 'air';
+    }
+
     $substances = [];
     $paragraphs = $this->getEntitiesToView($items, $langcode);
     $paragraphs_data = [];
@@ -75,9 +85,15 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
       $substance_group = $entity->get('field_substance_group')->entity;
       $sampling_type = $entity->get('field_sampling_type')->entity;
       $qualified = $entity->get('field_qualified')->value;
+      $air_environment = $entity->get('field_air_environment')->value;
 
       if (!$substance_group instanceof TermInterface
         || !$sampling_type instanceof TermInterface) {
+        continue;
+      }
+
+      if ($lab_category == 'air') {
+        $substances[$air_environment][$substance_group->label()][$sampling_type->label()] = $qualified;
         continue;
       }
 
@@ -87,6 +103,7 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
     $elements[] = [
       '#theme' => 'parc_lab_matrix',
       '#substances' => $substances,
+      '#lab_category' => $lab_category,
     ];
 
     return $elements;
