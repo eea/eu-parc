@@ -477,6 +477,17 @@ blockquote {
       }
     }
 
+    .ssbd-menu-contact {
+      &::before {
+        background-image: url('../../img/ssbd-menu-icons/contact.svg');
+      }
+      &:hover {
+        &::before {
+          background-image: url('../../img/ssbd-menu-icons/contact-hover.svg');
+        }
+      }
+    }
+
     .nav-link {
       font-size: 16px;
       font-weight: 500;
@@ -556,6 +567,12 @@ blockquote {
         .ssbd-menu-faqs {
           &::before {
             background-image: url('../../img/ssbd-menu-icons/faqs-hover.svg');
+          }
+        }
+
+        .ssbd-menu-contact {
+          &::before {
+            background-image: url('../../img/ssbd-menu-icons/contact-hover.svg');
           }
         }
       }
@@ -662,6 +679,7 @@ iframe.media-oembed-content {
     }
   }
 }
+<<<<<<< 30776-lab-switcher
 .block-parc-core-parc-lab-map-type-switcher {
   border-bottom: 1px solid #d9d9d9;
   margin-bottom: 1.25rem;
@@ -738,3 +756,11 @@ iframe.media-oembed-content {
 
 }
 
+=======
+
+.hide-mobile.block {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+>>>>>>> main
