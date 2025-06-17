@@ -679,3 +679,9 @@ iframe.media-oembed-content {
     }
   }
 }
+
+.hide-mobile.block {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
