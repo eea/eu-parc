@@ -1,4 +1,4 @@
-{{ attach_library('parc_interactive_map/interactive_map') }}
+{{ attach_library('parc_interactive_map/map_style') }}
 {{ attach_library('parc/n--learning-material') }}
 
 <div class="learning-material" style="--bg-color: {{ bg_color }}; --icon-color: {{ icon_color }}; --text-color: {{ text_color }}" id="material-{{ node.id() }}">
@@ -42,7 +42,7 @@
       <div class="learning-material__bottom__wrapper">
         <div class="learning-material__bottom__left">
           {{ content.field_course_type }}
-          {% set owner = content.field_owner | render | striptags %}
+          {% set owner = node.field_owner.value %}
           <div>
             {% trans %}
               By {{ owner }}

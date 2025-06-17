@@ -751,6 +751,27 @@ function parc_preprocess_block__block_content__carousel(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for block__facets.
+ */
+function parc_preprocess_block__facets(array &$variables) {
+  $first_facets = [
+    'domain_of_interest',
+    'category',
+    'lab_type',
+  ];
+
+  if (in_array($variables['derivative_plugin_id'], $first_facets)) {
+    $variables['is_first_facet'] = TRUE;
+
+    $params = \Drupal::request()->query->all();
+    $variables['reset_url'] = Url::fromRoute('<current>')->toString();
+    if (!empty($params)) {
+      $variables['reset_url_visible'] = TRUE;
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for paragraph__carousel_item.
  */
 function parc_preprocess_paragraph__carousel_item(array &$variables) {
