@@ -13,22 +13,25 @@ settings:
   allowed_values:
     -
       value: education
-      label: Education
+      label: 'Education (schools and undergraduates)'
     -
       value: industry
       label: Industry
     -
       value: regulation_policy
-      label: Regulation/policy
+      label: "Regulator,\_policy maker, risk assessor"
     -
       value: academia
-      label: Academia
+      label: 'Academia (PhD and MSc student, professor, researcher)'
     -
       value: ngos
       label: NGOs
     -
       value: consultants
       label: Consultants
+    -
+      value: citizens
+      label: Citizens
   allowed_values_function: ''
 module: options
 locked: false

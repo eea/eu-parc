@@ -10,7 +10,7 @@ dependencies:
 id: lab_type
 name: 'Type of laboratory'
 weight: 0
-min_count: 0
+min_count: 1
 missing: false
 missing_label: others
 url_alias: lab_type

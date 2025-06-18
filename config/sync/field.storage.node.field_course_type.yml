@@ -13,16 +13,16 @@ settings:
   allowed_values:
     -
       value: presentation_slides
-      label: Presentation/slides
+      label: 'Presentation / slides'
     -
       value: video
       label: Video
     -
       value: brochure
-      label: Brochure/report/e-book
+      label: 'Reading materials'
     -
       value: webinar
-      label: Webinar
+      label: 'Webinar recording'
     -
       value: course
       label: Course

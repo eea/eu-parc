@@ -11,7 +11,7 @@ id: node.learning_material.field_course_type
 field_name: field_course_type
 entity_type: node
 bundle: learning_material
-label: 'Type of education/Training material'
+label: 'Type of material'
 description: ''
 required: true
 translatable: false
