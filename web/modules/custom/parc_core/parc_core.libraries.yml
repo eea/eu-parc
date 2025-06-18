@@ -91,3 +91,7 @@ events_table:
   dependencies:
     - core/drupal
     - core/once
+
+lab_map:
+  js:
+    js/lab-map.js: {}

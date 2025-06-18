@@ -1285,3 +1285,337 @@ function parc_core_deploy_import_labs() {
     $lab->save();
   }
 }
+
+/**
+ * Set lab category for existing labs.
+ */
+function parc_core_deploy_update_hbm_labs() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $existing_labs = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+  ]);
+  foreach ($existing_labs as $existing_lab) {
+    $existing_lab->set('field_lab_category', 'hbm');
+    $existing_lab->save();
+  }
+}
+
+/**
+ * Import air labs.
+ */
+function parc_core_deploy_update_hbm_labs_import() {
+  $groups_map = [
+    'pfas' => 'Per- and polyfluoroalkyl substances (PFAS)',
+    'phthalates' => 'Phthalates',
+    'metals' => 'Metals and trace elements',
+    'flame_retardants' => 'Flame retardants',
+    'bisphenols' => 'Bisphenols',
+    'pahs' => 'Polycyclic aromatic hydrocarbons (PAHs)',
+    'cotinine' => 'Cotinine',
+    'pcbs' => 'Polychlorinated biphenyls (PCBs)',
+    'acrylamide' => 'Acrylamide',
+    'mycotoxins' => 'Mycotoxins',
+    'pest_pyrethroids' => 'Pesticides-pyrethroids',
+    'pest_organophos' => 'Pesticides-organophosphates',
+    'pest_phenylpyr' => 'Pesticides-phenylpyrazoles',
+    'pest_glyphosate' => 'Pesticides-glyphosate',
+    'pest_organochlorines' => 'Pesticides-organochlorines',
+    'pest_neonicotinoids' => 'Pesticides-neonicotinoids',
+    'pest_others' => 'Pesticides-others',
+    'aproticsolvents' => 'Aprotic solvents',
+    'uvfilters_benzophenones' => 'UV filters-benzophenones',
+    'diisocyanates' => 'Diisocyanates',
+    'aromatic_amines' => 'Aromatic amines',
+    'parabens' => 'Parabens',
+    'dioxins_furans' => 'Furans',
+    'other_chemicals' => 'Other chemicals',
+    'musks' => 'Musks',
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($groups_map as $id => $name) {
+    $term = $term_storage->loadByProperties([
+      'name' => $name,
+      'vid' => 'substance_groups',
+    ]);
+
+    if (empty($term)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($term);
+    $term->set('machine_name', $id);
+    $term->save();
+  }
+
+  $sample_map = [
+    'serum' => 'Serum',
+    'plasma' => 'Plasma',
+    'urine' => 'Urine',
+    'wholeblood' => 'Whole blood',
+    'dbs' => 'Dried blood spot samples',
+    'breastmilk' => 'Breast milk',
+    'cordblood' => 'Cord blood',
+    'placenta' => 'Placenta',
+    'othermatrix' => 'Other matrix',
+    'semen' => 'Semen',
+    'meconium' => 'Meconium',
+    'hair' => 'Hair',
+    'nails' => 'Nails',
+    'saliva' => 'Saliva',
+    'faeces' => 'Faeces',
+    'adiposetissue' => 'Adipose tissue',
+    'vams' => 'Volumetric absorptive microsamples',
+  ];
+  foreach ($sample_map as $id => $name) {
+    $term = $term_storage->loadByProperties([
+      'name' => $name,
+      'vid' => 'sampling_types',
+    ]);
+
+    if (empty($term)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($term);
+    $term->set('machine_name', $id);
+    $term->save();
+  }
+
+  $terms = [
+    'sampling_types' => [
+      'gas' => 'Gas phase',
+      'part' => 'Particle phase',
+    ],
+    'substance_groups' => [
+      'nh3' => 'Ammonia',
+      'c6h6' => 'Benzene',
+      'co2' => 'Carbon dioxide ',
+      'co' => 'Carbon monoxide ',
+      'no' => 'Nitrogen oxide',
+      'no2' => 'Nitrogen dioxide ',
+      'o3' => 'Ozone ',
+      'so2' => 'Sulfur dioxide ',
+      'asb' => 'Asbestos',
+      'benzoth' => 'Benzothiazoles',
+      'bc' => 'Black carbon',
+      'chlorpar' => 'Chlorinated paraffins',
+      'dechlor' => 'Dechloranes',
+      'disbyprod' => 'Disinfection by-products',
+      'dioxfur' => 'Dioxins and furans',
+      'form' => 'Formaldehyde',
+      'halan' => 'Halogenated anaesthetics',
+      'lys' => 'Lysmeral',
+      'mdi_tdi' => 'MDI/TDI',
+      'hg' => 'Mercury',
+      'nitrosam' => 'Nitrosamines',
+      'odour' => 'Odour',
+      'oilmist' => 'Oil mist',
+      'ocec' => 'Organic and elemental carbon',
+      'opes' => 'Organophosphate ester plasticizers (OPEs)',
+      'phenols' => 'Phenols',
+      'plasticmon' => 'Plastic monomers',
+      'rn' => 'Radon',
+      'si' => 'Silicon',
+      'siloxanes' => 'Siloxanes',
+      'sugars_tetrols' => 'Sugars, sugar alcohols, tetrols',
+      'vocs' => 'Volatile and semi-volatile organic compounds (VOCs and SVOCs)',
+      'volflcl' => 'Volatile fluorinated and chlorinated substances ',
+      'wsi' => 'Water soluble ions ',
+      'pm10' => 'Particles (PM10)',
+      'pm25' => 'Particles (PM2.5)',
+      'part_total' => 'Particles (total)',
+      'ufp' => 'Ultrafine particles',
+      'as10' => 'Arsenic (As) in PM10',
+      'as25' => 'Arsenic (As) in PM2.5',
+      'benzoapyrene10' => 'Benzo(a)pyrene in PM10',
+      'cd10' => 'Cadmium (Cd) in PM10',
+      'cd25' => 'Cadmium (Cd) in PM2.5',
+      'ni10' => 'Nickel (Ni) in PM10',
+      'ni25' => 'Nickel (Ni) in PM2.5',
+      'pb10' => 'Lead (Pb) in PM10',
+      'pb25' => 'Lead (Pb) in PM2.5',
+    ],
+  ];
+
+  foreach ($terms as $vid => $term_lists) {
+    foreach ($term_lists as $machine_name => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'machine_name' => $machine_name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
+      $term = $term_storage->create([
+        'vid' => $vid,
+        'name' => $name,
+        'machine_name' => $machine_name,
+      ]);
+      $term->save();
+    }
+  }
+
+  $map = [
+    'acryl' => 'acrylamide',
+    'aprsolv' => 'aproticsolvents',
+    'aram' => 'aromatic_amines',
+    'bis' => 'bisphenols',
+    'cot' => 'cotinine',
+    'diisocy' => 'diisocyanates',
+    'flameret' => 'flame_retardants',
+    'metals' => 'metals',
+    'musks' => 'musks',
+    'mycotox' => 'mycotoxins',
+    'parab' => 'parabens',
+    'pfas' => 'pfas',
+    'pest_glyph' => 'pest_glyphosate',
+    'pest_neonicot' => 'pest_neonicotinoids',
+    'pest_orgchlor' => 'pest_organochlorines',
+    'pest_orgphos' => 'pest_organophos',
+    'pest_phenylpyr' => 'pest_phenylpyr',
+    'pest_pyreth' => 'pest_pyrethroids',
+    'phthalates' => 'phthalates',
+    'pcbs' => 'pcbs',
+    'pahs' => 'pahs',
+    'uvfilters_benzoph' => 'uvfilters_benzophenones',
+    'other_chem' => 'other_chemicals',
+  ];
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_core');
+  $file_path = $module_path . '/data/air_labs.csv';
+
+  $file = fopen($file_path, 'r');
+  $headers = fgetcsv($file);
+
+  $lats = [];
+
+  $existing_nodes = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+    'field_lab_category' => 'air',
+  ]);
+  foreach ($existing_nodes as $node) {
+    $node->delete();
+  }
+
+  while (FALSE !== ($line = fgetcsv($file))) {
+    $row = array_combine($headers, $line);
+
+    $country = $row['lab_country'];
+    $country_term = $term_storage->loadByProperties([
+      'vid' => 'countries',
+      'name' => $country,
+    ]);
+    if (empty($country_term)) {
+      continue;
+    }
+    $country_term = reset($country_term);
+
+    $institute = $row['lab_inst'];
+    $title = $row['lab_nm'] ?? $row['lab_name'];
+    $address = $row['lab_adress'] ?? $row['lab_address'];
+    $city = $row['lab_city'];
+    $latitude = $row['Latitude'] ?? $row['latitude'];
+    if (in_array($latitude, $lats)) {
+      $latitude += 0.0006;
+    }
+    $lats[] = $latitude;
+
+    $longitude = $row['Longitude'] ?? $row['longitude'];
+    $external_id = $row['pid'] ?? $row['id'];
+
+    $lab_type = $row['lab_type'];
+    $lab_type_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $lab_type,
+    ]);
+    if (empty($lab_type_term)) {
+      continue;
+    }
+    $lab_type_term = reset($lab_type_term);
+
+    $contact_name = $row['lab_person_name'];
+    $contact_email = $row['lab_person_email'];
+
+    $matrix_entries = [];
+    foreach ($headers as $column) {
+      if (!str_contains($column, '__')) {
+        continue;
+      }
+
+      if (empty(trim($row[$column]))) {
+        continue;
+      }
+
+      [$sampling_type, $substance_group] = explode('__', $column);
+      if (str_contains($sampling_type, 'out_')) {
+        $air_environment = 'out';
+        $sampling_type = str_replace('out_', '', $sampling_type);
+      }
+      else {
+        $sampling_type = str_replace('in_', '', $sampling_type);
+        $air_environment = 'in';
+      }
+
+      $substance_group = trim($substance_group);
+      $substance_group = $map[$substance_group] ?? $substance_group;
+      $substance_group_term = $term_storage->loadByProperties([
+        'vid' => 'substance_groups',
+        'machine_name' => $substance_group,
+      ]);
+      if (empty($substance_group_term)) {
+        continue;
+      }
+      $substance_group_term = reset($substance_group_term);
+
+      $sampling_type = trim($sampling_type);
+      $sampling_type_term = $term_storage->loadByProperties([
+        'vid' => 'sampling_types',
+        'machine_name' => $sampling_type,
+      ]);
+      if (empty($sampling_type_term)) {
+        continue;
+      }
+      $sampling_type_term = reset($sampling_type_term);
+
+      /** @var \Drupal\paragraphs\ParagraphInterface $matrix_entry */
+      $matrix_entry = $paragraph_storage->create([
+        'type' => 'lab_matrix',
+        'field_sampling_type' => $sampling_type_term,
+        'field_substance_group' => $substance_group_term,
+        'field_air_environment' => $air_environment,
+      ]);
+      $matrix_entry->save();
+      $matrix_entries[] = [
+        'target_id' => $matrix_entry->id(),
+        'target_revision_id' => $matrix_entry->getRevisionId(),
+      ];
+    }
+
+    $lab = $node_storage->create([
+      'type' => 'laboratory',
+      'title' => $title,
+      'field_institute_name' => $institute,
+      'field_country' => $country_term,
+      'field_address_data' => $address,
+      'field_city' => $city,
+      'field_coordinates' => [
+        'lat' => $latitude,
+        'lng' => $longitude,
+      ],
+      'field_lab_type' => $lab_type_term,
+      'field_contact_name' => $contact_name,
+      'field_contact_email' => $contact_email,
+      'field_substances_matrix' => $matrix_entries,
+      'field_external_id' => $external_id,
+      'field_lab_category' => 'air',
+    ]);
+    $lab->save();
+  }
+}

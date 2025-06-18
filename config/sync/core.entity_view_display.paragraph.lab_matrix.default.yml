@@ -3,15 +3,25 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.paragraph.lab_matrix.field_air_environment
     - field.field.paragraph.lab_matrix.field_qualified
     - field.field.paragraph.lab_matrix.field_sampling_type
     - field.field.paragraph.lab_matrix.field_substance_group
     - paragraphs.paragraphs_type.lab_matrix
+  module:
+    - options
 id: paragraph.lab_matrix.default
 targetEntityType: paragraph
 bundle: lab_matrix
 mode: default
 content:
+  field_air_environment:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_qualified:
     type: boolean
     label: above

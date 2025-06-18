@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c1e5eca4aceddaab0d37ba4dec9c91a",
+    "content-hash": "eca372548bb7f0fd0a1ab1345a3bd2f3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -6088,6 +6088,68 @@
             "homepage": "https://www.drupal.org/project/tablefield",
             "support": {
                 "source": "https://git.drupalcode.org/project/tablefield"
+            }
+        },
+        {
+            "name": "drupal/taxonomy_machine_name",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/taxonomy_machine_name.git",
+                "reference": "2.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/taxonomy_machine_name-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "5801284f1120a0553b8b81214ecc0d78413c31b4"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/search_api": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.1",
+                    "datestamp": "1732210448",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Sébastien MALOT (Sebastien @Actualys)",
+                    "homepage": "https://www.drupal.org/u/sebastien-actualys",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Sorin Dediu (sdstyles)",
+                    "homepage": "https://www.drupal.org/u/sdstyles",
+                    "role": "Co-Maintainer"
+                },
+                {
+                    "name": "Sebastien M.",
+                    "homepage": "https://www.drupal.org/user/380104"
+                }
+            ],
+            "description": "This module create a new property named machine_name.",
+            "homepage": "https://www.drupal.org/project/taxonomy_machine_name",
+            "keywords": [
+                "Drupal",
+                "taxonomy_machine_name"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/taxonomy_machine_name",
+                "issues": "https://drupal.org/project/issues/taxonomy_machine_name"
             }
         },
         {
