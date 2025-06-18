@@ -50,10 +50,6 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
     $entity = $adapter->getEntity();
     $lab_category = $entity->get('field_lab_category')->value;
 
-    if ($entity->id() == 1352) {
-      $lab_category = 'air';
-    }
-
     $substances = [];
     $paragraphs = $this->getEntitiesToView($items, $langcode);
     $paragraphs_data = [];
