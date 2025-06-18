@@ -61,48 +61,51 @@ final class ParcLabMapTypeSwitcherBlock extends BlockBase implements ContainerFa
 
     $storage = $this->entityTypeManager->getStorage('node');
 
-    $query = $storage->getQuery()
-      ->accessCheck(TRUE)
-      ->condition('type', 'laboratory')
-      ->condition('status', 1);
-
-    $nids = $query->execute();
-    $nodes = $storage->loadMultiple($nids);
+    $options = $this->entityTypeManager
+      ->getStorage('field_config')
+      ->load('node.laboratory.field_lab_category')
+      ->getFieldStorageDefinition()
+      ->getSettings()['allowed_values'];
 
     $lab_categories = [];
-    $active = NULL;
-    foreach ($nodes as $node) {
-      if ($node->hasField('field_lab_category') && !$node->get('field_lab_category')->isEmpty()) {
-        $category_field = $node->get('field_lab_category');
-        $category = $category_field->value;
-        $label = $category_field->getSetting('allowed_values')[$category];        
-        if (!isset($lab_categories[$category])) {
-          $path = "/{$category}labnetwork";
-          $lab_categories[$category] = [
-            'label' => $label,
-            'count' => 0,
-            'path' => $path,
-            'active' => $current_path === $path ? TRUE : FALSE,
-          ];
-        }
-        $lab_categories[$category]['count']++;
-        if ($current_path === $lab_categories[$category]['path']) {
-          $active = [
-            'label' => $label,
-            'count' => $lab_categories[$category]['count'],
-          ];
-        }
+    $active = [];
+
+    foreach ($options as $category => $label) {
+      $count = $storage->getQuery()
+        ->accessCheck()
+        ->condition('type', 'laboratory')
+        ->condition('status', 1)
+        ->condition('field_lab_category', $category)
+        ->count()
+        ->execute();
+
+      if (empty($count)) {
+        continue;
+      }
+
+      $path = "/{$category}labnetwork";
+      $is_active = $current_path === $path;
+      $lab_categories[$category] = [
+        'label' => $label,
+        'count' => $count,
+        'path' => $path,
+        'active' => $is_active,
+      ];
+
+      if ($is_active) {
+        $active = [
+          'label' => $label,
+          'count' => $count,
+        ];
       }
     }
 
     ksort($lab_categories);
-
-    $build = [
+    return [
       '#theme' => 'parc_lab_map_type_switcher',
       '#lab_categories' => $lab_categories,
       '#active' => $active,
     ];
-    return $build;
   }
 
 }

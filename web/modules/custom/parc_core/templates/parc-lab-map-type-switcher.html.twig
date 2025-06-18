@@ -9,7 +9,7 @@
   {% for id, category in lab_categories %}
   <div class="lab-map-type-header__switcher-item">
     <div class="lab-checkbox {{ category.active ? 'active' : '' }}">
-      <input type="checkbox" id="lab-{{ id }}">
+      <input type="radio" id="lab-{{ id }}">
       <label for="lab-{{ id }}" class="lab-map-type-header__switcher-label">
         <span class="label">{{ category.label }}</span>
         <span class="count">{{ category.count }}</span>
