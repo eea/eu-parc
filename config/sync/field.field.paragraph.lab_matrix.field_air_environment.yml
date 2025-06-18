@@ -1,0 +1,21 @@
+uuid: 5e0703e1-1c36-445c-9678-8d340730dffe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_air_environment
+    - paragraphs.paragraphs_type.lab_matrix
+  module:
+    - options
+id: paragraph.lab_matrix.field_air_environment
+field_name: field_air_environment
+entity_type: paragraph
+bundle: lab_matrix
+label: 'Air environment'
+description: 'Relevant for air laboratories'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

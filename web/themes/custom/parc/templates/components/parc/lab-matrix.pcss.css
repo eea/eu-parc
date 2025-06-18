@@ -5,6 +5,10 @@
   border: 1px solid var(--node-color, #CCC);
   margin-bottom: 35px;
 
+  &__air {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   .table-cell {
     padding: 10px;
     font-size: 14px;
@@ -62,7 +66,7 @@
     border-radius: 5px 0 0 0;
   }
 
-  .table-cell-header:nth-child(2) {
+  .table-cell-header:last-child(2) {
     border-radius: 0 5px 0 0;
   }
 

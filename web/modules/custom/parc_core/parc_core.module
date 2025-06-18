@@ -32,6 +32,7 @@ function parc_core_theme() {
       'variables' => [
         'substances' => [],
         'show_qualified_in_parc' => FALSE,
+        'lab_category' => 'hbm',
       ],
     ],
     'parc_projects' => [

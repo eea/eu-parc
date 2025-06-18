@@ -84,7 +84,6 @@ module:
   node: 0
   options: 0
   parc_core: 0
-  parc_interactive_map: 0
   parc_zenodo_api: 0
   path: 0
   path_alias: 0
@@ -110,6 +109,7 @@ module:
   system: 0
   tablefield: 0
   taxonomy: 0
+  taxonomy_machine_name: 0
   taxonomy_menu: 0
   text: 0
   token: 0
@@ -133,6 +133,7 @@ module:
   selective_better_exposed_filters: 1
   views: 10
   paragraphs: 11
+  parc_interactive_map: 20
   standard: 1000
   eu_cookie_compliance: 1001
 theme:
