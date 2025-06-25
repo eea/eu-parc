@@ -209,6 +209,7 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:facets.facet.air_environment'
         - 'config:facets.facet.lab_sampling_type'
         - 'config:facets.facet.lab_substance_group'
         - 'config:facets.facet.lab_type'
