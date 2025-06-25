@@ -312,6 +312,13 @@ function parc_preprocess_facets_result_item(&$variables) {
       ];
     }
   }
+
+  $text = $variables['value'];
+  if (str_contains($text, 'PM10') || str_contains($text, 'PM2.5')) {
+    $text = str_replace('PM10', 'PM<sub>10</sub>', $text);
+    $text = str_replace('PM2.5', 'PM<sub>2.5</sub>', $text);
+    $variables['value'] = Markup::create($text);
+  }
 }
 
 /**

@@ -1619,3 +1619,61 @@ function parc_core_deploy_update_hbm_labs_import() {
     $lab->save();
   }
 }
+
+/**
+ * Migrate lab contacts.
+ */
+function parc_core_deploy_update_hbm_labs_import_2() {
+  $node_storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()
+    ->getStorage('paragraph');
+
+  $results = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'laboratory')
+    ->execute();
+
+  foreach ($results as $result) {
+    $result = $node_storage->load($result);
+
+    // Skip nodes that already have the new field populated.
+    if (!$result->get('field_lab_contacts')->isEmpty()) {
+      continue;
+    }
+
+    $contact_names = $result->get('field_contact_name')->value;
+    $contact_emails = $result->get('field_contact_email')->value;
+
+    // If either field is empty, skip this node.
+    if (empty($contact_names) || empty($contact_emails)) {
+      continue;
+    }
+
+    $contact_names = explode(';', $contact_names);
+    $contact_emails = explode(';', $contact_emails);
+
+    for ($i = 0; $i < count($contact_names); $i++) {
+      // Create a new paragraph item.
+      $paragraph = $paragraph_storage->create([
+        'type' => 'contact',
+        'field_name' => [
+          'value' => trim($contact_names[$i]),
+        ],
+        'field_email' => [
+          'value' => trim($contact_emails[$i]),
+        ],
+      ]);
+
+      // Save the paragraph item.
+      $paragraph->save();
+
+      // Add the paragraph item to the node's field_contacts field.
+      $result->get('field_lab_contacts')->appendItem($paragraph);
+    }
+
+    // Save the node.
+    $result->save();
+  }
+}

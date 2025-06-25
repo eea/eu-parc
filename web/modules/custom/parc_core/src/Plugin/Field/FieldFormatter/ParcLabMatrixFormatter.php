@@ -89,7 +89,7 @@ class ParcLabMatrixFormatter extends EntityReferenceFormatterBase {
       }
 
       if ($lab_category == 'air') {
-        $substances[$air_environment][$substance_group->label()][$sampling_type->label()] = $qualified;
+        $substances[$air_environment][$sampling_type->label()][$substance_group->label()] = $qualified;
         continue;
       }
 

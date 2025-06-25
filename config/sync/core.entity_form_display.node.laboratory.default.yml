@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.laboratory.field_address_data
+    - field.field.node.laboratory.field_air_environment
     - field.field.node.laboratory.field_city
     - field.field.node.laboratory.field_contact_email
     - field.field.node.laboratory.field_contact_name
@@ -190,6 +191,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_air_environment: true
   field_contact_email: true
   field_contact_name: true
   field_sampling_type: true

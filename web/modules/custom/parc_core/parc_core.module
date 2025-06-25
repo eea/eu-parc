@@ -635,6 +635,7 @@ function parc_core_node_presave(NodeInterface $node) {
       if (!$node->get('field_substances_matrix')->isEmpty()) {
         $substance_groups = [];
         $sampling_types = [];
+        $air_environments = [];
 
         foreach ($node->get('field_substances_matrix')->referencedEntities() as $paragraph) {
 
@@ -644,6 +645,7 @@ function parc_core_node_presave(NodeInterface $node) {
 
           $substance_groups[] = $paragraph->get('field_substance_group')->target_id;
           $sampling_types[] = $paragraph->get('field_sampling_type')->target_id;
+          $air_environments[] = $paragraph->get('field_air_environment')->value;
         }
 
         $substance_groups = array_unique($substance_groups);
@@ -651,6 +653,7 @@ function parc_core_node_presave(NodeInterface $node) {
 
         $node->set('field_substance_group', $substance_groups);
         $node->set('field_sampling_type', $sampling_types);
+        $node->set('field_air_environment', $air_environments);
       }
 
       break;

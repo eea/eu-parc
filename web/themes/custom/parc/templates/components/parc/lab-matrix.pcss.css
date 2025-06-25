@@ -5,10 +5,6 @@
   border: 1px solid var(--node-color, #CCC);
   margin-bottom: 35px;
 
-  &__air {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
   .table-cell {
     padding: 10px;
     font-size: 14px;
@@ -21,6 +17,11 @@
 
     &:not(.last) {
       border-bottom: 1px solid var(--node-color, #CCC);
+    }
+
+    &:has(.skip-cell) {
+      margin-top: -1px;
+      border-top: 1px solid #FFF;
     }
   }
 
@@ -49,8 +50,7 @@
   }
 
   .matrix-item {
-    justify-content: center;
-    display: flex;
+    display: block;
   }
 
   .table-cell-header {
@@ -102,5 +102,21 @@
 
   .substance {
     display: inline-block;
+  }
+
+  &__air {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .substances {
+      padding: 0;
+
+      > * {
+        padding: 10px;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--node-color, #ccc);
+        }
+      }
+    }
   }
 }

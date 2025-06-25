@@ -1,18 +1,28 @@
 {{ attach_library('parc/lab_matrix') }}
 
+{% set prev_air = '' %}
+{% set prev_sg = '' %}
+
 {% if lab_category == 'air' %}
   <div class="matrix-table matrix-table__air">
     <div class="table-cell table-cell-header">{{ "Air environment" | t }}</div>
-    <div class="table-cell table-cell-header">{{ "Substance group" | t }}</div>
     <div class="table-cell table-cell-header">{{ "Matrix" | t }}</div>
+    <div class="table-cell table-cell-header">{{ "Substance group" | t }}</div>
     {% for air_env, substance_groups in substances %}
       {% set last_air = loop.last %}
       {% for substance_group, matrices in substance_groups %}
         <div class="table-cell matrix-item {% if loop.last and last_air %}last{% endif %}">
-          {{ air_env == 'in' ? 'Indoor air' : 'Outdoor air' }}
+          {% if prev_air == air_env %}
+            <span class="skip-cell"></span>
+          {% else %}
+            {{ air_env == 'in' ? 'Indoor air' : 'Outdoor air' }}
+          {% endif %}
+          {% set prev_air = air_env %}
         </div>
-        <div class="table-cell matrix-item {% if loop.last and last_air %}last{% endif %}">{{ substance_group }}</div>
-        <div class="table-cell {% if loop.last and last_air %}last{% endif %}">
+        <div class="table-cell matrix-item {% if loop.last and last_air %}last{% endif %}">
+          {{ substance_group|replace({'PM10': 'PM<sub>10</sub>', 'PM2.5': 'PM<sub>2.5</sub>'})|raw }}
+        </div>
+        <div class="table-cell {% if loop.last and last_air %}last{% endif %} substances">
           {% for matrix, qualified in matrices %}
             <div class="substance-qualified">
               {% if show_qualified_in_parc %}
@@ -33,7 +43,9 @@
                   {% endif %}
                 </div>
               {% endif %}
-              <div class="substance">{{ matrix }}</div>
+              <div class="substance">
+                {{ matrix|replace({'PM10': 'PM<sub>10</sub>', 'PM2.5': 'PM<sub>2.5</sub>'})|raw }}
+              </div>
             </div>
           {% endfor %}
           {% if loop.last and show_qualified_in_parc %}

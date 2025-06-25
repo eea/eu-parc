@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.laboratory.field_address_data
+    - field.field.node.laboratory.field_air_environment
     - field.field.node.laboratory.field_city
     - field.field.node.laboratory.field_contact_email
     - field.field.node.laboratory.field_contact_name
@@ -25,6 +26,7 @@ dependencies:
     - entity_reference_revisions
     - geolocation
     - link
+    - options
     - parc_core
     - spamspan
     - text
@@ -40,6 +42,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_air_environment:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 15
     region: content
   field_city:
     type: string
