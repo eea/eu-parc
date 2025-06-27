@@ -1,6 +1,8 @@
 <?php
 
 use Drupal\node\NodeInterface;
+use Drupal\search_api\Query\QueryInterface;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Implements hook_theme().
@@ -60,5 +62,25 @@ function parc_interactive_map_preprocess_node(&$variables) {
       $placeholderImage = $node->get('field_media_image')->view('teaser');
       $variables['content']['field_media_image'] = $placeholderImage;
     }
+  }
+}
+
+/**
+ * Implements hook_search_api_query_alter().
+ */
+function parc_interactive_map_search_api_query_alter(QueryInterface $query) {
+  if ($query->getSearchId() != 'views_block:labs__labs_map') {
+    return;
+  }
+
+  $url = \Drupal::request()->getRequestUri();
+  $types = FieldConfig::load('node.laboratory.field_lab_category')->getFieldStorageDefinition()->getSettings()['allowed_values'];
+  foreach ($types as $type => $label) {
+    $subpath = "{$type}labnetwork";
+    if (!str_contains($url, $subpath)) {
+      continue;
+    }
+
+    $query->addCondition('field_lab_category', $type);
   }
 }

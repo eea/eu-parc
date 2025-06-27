@@ -18,6 +18,11 @@
     &:not(.last) {
       border-bottom: 1px solid var(--node-color, #CCC);
     }
+
+    &:has(.skip-cell) {
+      margin-top: -1px;
+      border-top: 1px solid #FFF;
+    }
   }
 
   .substance-qualified {
@@ -45,8 +50,7 @@
   }
 
   .matrix-item {
-    justify-content: center;
-    display: flex;
+    display: block;
   }
 
   .table-cell-header {
@@ -62,7 +66,7 @@
     border-radius: 5px 0 0 0;
   }
 
-  .table-cell-header:nth-child(2) {
+  .table-cell-header:last-child(2) {
     border-radius: 0 5px 0 0;
   }
 
@@ -98,5 +102,21 @@
 
   .substance {
     display: inline-block;
+  }
+
+  &__air {
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .substances {
+      padding: 0;
+
+      > * {
+        padding: 10px;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--node-color, #ccc);
+        }
+      }
+    }
   }
 }

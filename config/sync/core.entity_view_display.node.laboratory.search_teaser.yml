@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.search_teaser
     - field.field.node.laboratory.field_address_data
+    - field.field.node.laboratory.field_air_environment
     - field.field.node.laboratory.field_city
     - field.field.node.laboratory.field_contact_email
     - field.field.node.laboratory.field_contact_name
@@ -96,6 +97,7 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_air_environment: true
   field_contact_email: true
   field_contact_name: true
   field_coordinates: true

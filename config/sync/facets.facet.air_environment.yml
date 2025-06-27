@@ -1,4 +1,4 @@
-uuid: 8ba62652-6e39-4afa-85e0-9564da11cedb
+uuid: 8d3353df-8fdf-4bb1-a8f5-6260ce8f4e0f
 langcode: en
 status: true
 dependencies:
@@ -7,15 +7,15 @@ dependencies:
     - views.view.labs
   module:
     - search_api
-id: lab_type
-name: 'Type of laboratory'
+id: air_environment
+name: 'Air environment'
 weight: 0
 min_count: 1
 missing: false
 missing_label: others
-url_alias: lab_type
+url_alias: air_environment
 facet_source_id: 'search_api:views_block__labs__labs_map'
-field_identifier: field_lab_type
+field_identifier: field_air_environment
 query_operator: or
 hard_limit: 0
 exclude: false
@@ -43,19 +43,19 @@ only_visible_when_facet_source_is_visible: false
 show_only_one_result: false
 show_title: false
 processor_configs:
+  display_value_widget_order:
+    processor_id: display_value_widget_order
+    weights:
+      sort: 40
+    settings:
+      sort: ASC
   hierarchy_processor:
     processor_id: hierarchy_processor
     weights:
       build: 100
     settings: {  }
-  term_weight_widget_order:
-    processor_id: term_weight_widget_order
-    weights:
-      sort: 60
-    settings:
-      sort: ASC
-  translate_entity:
-    processor_id: translate_entity
+  list_item:
+    processor_id: list_item
     weights:
       build: 5
     settings: {  }
