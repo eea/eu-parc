@@ -325,6 +325,12 @@
     height: auto;
   }
 
+  @media screen and (max-width: 40em) {
+    .view-display-id-labs_map .interactive-map .results {
+      bottom: 56px;
+    }
+  }
+
   .interactive-map .accordion-item {
     margin: 0;
   }
