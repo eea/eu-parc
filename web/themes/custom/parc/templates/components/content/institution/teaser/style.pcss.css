@@ -10,6 +10,7 @@
   flex-direction: column;
   max-width: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   @media (--downMd) {
     max-height: 250px;
   }
