@@ -1,0 +1,437 @@
+uuid: a6163866-252e-4657-b821-30c775b533e2
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 20
+template: false
+archive: false
+id: qa_qc_training_course_registrati
+title: 'QA/QC | Training Course Registration Form '
+description: ''
+categories: {  }
+elements: |-
+  context_and_consent:
+    '#type': webform_wizard_page
+    '#title': 'Context and Consent'
+    i_understand_that_by_selecting_this_checkbox_i_confirm_that_i_ha:
+      '#type': checkbox
+      '#title': 'I understand that by selecting this checkbox, I confirm that I have read and accept the information stated above.  '
+      '#description': '<div class="OutlineElement Ltr SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);clear:both;color:rgb(0, 0, 0);cursor:text;direction:ltr;font-family:&quot;Segoe UI&quot;, &quot;Segoe UI Web&quot;, Arial, Verdana, sans-serif;font-size:12px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:0px;orphans:2;overflow:visible;padding:0px;position:relative;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:normal;widows:2;word-spacing:0px;"><p class="Paragraph SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-color:transparent;color:windowtext;font-kerning:none;font-style:normal;font-weight:normal;margin:0px 0px 10.6667px;overflow-wrap:break-word;padding:0px;text-align:justify;text-indent:0px;user-select:text;vertical-align:baseline;white-space:pre-wrap;" paraid="65980106" paraeid="{5ac152d7-6dfb-4d61-ab59-515499e8ca37}{54}"><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Following your selection to participate in the PARC training course on <strong>Quality assurance and quality control (QA/QC)</strong>, we kindly request you to </span><span class="TrackedChange SCXW45887354 BCX8 TextRun NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">confirm your participation in </span><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">this registration form. The information collected is necessary for the </span><span class="TextRun SCXW45887354 BCX8 NormalTextRun SpellingErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-image:url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjQiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRUIwMDAwIiBkPSJNMCAzYzEuMjUgMCAxLjI1LTIgMi41LTJTMy43NSAzIDUgMyIvPjxwYXRoIGQ9Ik0wIDBoNXY0SDB6Ii8+PC9nPjwvc3ZnPg==&quot;);background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">organisation</span><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> and coordination of the event.</span><span class="EOP SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559739&quot;:160,&quot;335559740&quot;:259}">&nbsp;</span></p><p class="Paragraph SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-color:transparent;color:windowtext;font-kerning:none;font-style:normal;font-weight:normal;margin:0px 0px 10.6667px;overflow-wrap:break-word;padding:0px;text-align:justify;text-indent:0px;user-select:text;vertical-align:baseline;white-space:pre-wrap;" paraid="65980106" paraeid="{5ac152d7-6dfb-4d61-ab59-515499e8ca37}{54}"><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the National Institute of Health, Portugal, and transferred only to local </span><span class="TextRun SCXW45887354 BCX8 NormalTextRun SpellingErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-image:url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjQiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRUIwMDAwIiBkPSJNMCAzYzEuMjUgMCAxLjI1LTIgMi41LTJTMy43NSAzIDUgMyIvPjxwYXRoIGQ9Ik0wIDBoNXY0SDB6Ii8+PC9nPjwvc3ZnPg==&quot;);background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">organisers</span><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> (</span><em><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">i.e.</span></em><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> </span><em><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Jozef Stefan Institute</span></em><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span><span class="EOP SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559739&quot;:160,&quot;335559740&quot;:259}">&nbsp;</span></p><p class="Paragraph SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-color:transparent;color:windowtext;font-kerning:none;font-style:normal;font-weight:normal;margin:0px 0px 10.6667px;overflow-wrap:break-word;padding:0px;text-align:justify;text-indent:0px;user-select:text;vertical-align:baseline;white-space:pre-wrap;" paraid="65980106" paraeid="{5ac152d7-6dfb-4d61-ab59-515499e8ca37}{54}"><span class="TextRun Underlined SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;text-decoration:underline;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Deadline for registration</span><span class="TextRun SCXW45887354 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">: <strong>18</strong></span><span class="TrackedChange SCXW45887354 BCX8 TextRun NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>.07.2025</strong></span><span class="EOP SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559739&quot;:160,&quot;335559740&quot;:259}"><strong>&nbsp;</strong></span></p><p class="Paragraph SCXW45887354 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-color:transparent;color:windowtext;font-kerning:none;font-style:normal;font-weight:normal;margin:0px 0px 10.6667px;overflow-wrap:break-word;padding:0px;text-align:justify;text-indent:0px;user-select:text;vertical-align:baseline;white-space:pre-wrap;" paraid="806545587" paraeid="{5ac152d7-6dfb-4d61-ab59-515499e8ca37}{113}">&nbsp;</p></div>'
+      '#description_display': before
+      '#required': true
+  personal_details:
+    '#type': webform_wizard_page
+    '#title': Confirmation
+    please_enter_the_code_provided_in_your_confirmation_email:
+      '#type': textfield
+      '#title': 'First Name '
+      '#description': '<h2><em><strong>Personal Details</strong></em></h2><h3>&nbsp;</h3><h5><strong>First Name</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_1:
+      '#type': webform_markup
+      '#markup': '<br>'
+    last_name:
+      '#type': textfield
+      '#title': 'Last Name'
+      '#description': '<h5><strong>Last Name</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_9:
+      '#type': webform_markup
+      '#markup': '<br>'
+    email:
+      '#type': email
+      '#title': Email
+      '#description': '<h5><strong>Email</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_10:
+      '#type': webform_markup
+      '#markup': '<br>'
+    following_your_selection_do_you_hereby_confirm_your_participatio:
+      '#type': radios
+      '#title': 'Following your selection, do you hereby confirm your participation in this training course? '
+      '#description': '<h5><strong>Following your selection, do you hereby confirm your participation in this training course?&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+    spacer_2:
+      '#type': webform_markup
+      '#markup': '<br>'
+    please_indicate_the_reason_for_your_withdrawal:
+      '#type': webform_radios_other
+      '#title': 'Please indicate the reason for your withdrawal:  '
+      '#description': '<h5><strong>Please indicate the reason for your withdrawal: &nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'No longer interested in the training topic ': 'No longer interested in the training topic '
+        'Work scheduling conflict / workload ': 'Work scheduling conflict / workload '
+        'Personal or family reasons ': 'Personal or family reasons '
+        'Health-related reasons ': 'Health-related reasons '
+        'Funding or financial constraints ': 'Funding or financial constraints '
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'No'
+    please_let_us_know_if_you_expect_to_arrive_late_or_leave_early:
+      '#type': radios
+      '#title': 'Please let us know if you expect to arrive late or leave early. '
+      '#description': '<h5><span class="TextRun SCXW31211296 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-GB" lang="EN-GB"><strong>Please let us know if you expect to arrive late or leave early.</strong></span><span class="EOP SCXW31211296 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559740&quot;:259}">&nbsp;</span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'I will complete the entire training. ': 'I will complete the entire training. '
+        'I expect to arrive late.': 'I expect to arrive late.'
+        'I expect to leave early.': 'I expect to leave early.'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'Yes'
+    spacer_4:
+      '#type': webform_markup
+      '#markup': '<br>'
+    indicate_expected_day_and_hour_of_arrival:
+      '#type': textfield
+      '#title': 'Indicate expected day and hour of arrival '
+      '#description': '<h5><span class="TextRun SCXW237352009 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-GB" lang="EN-GB"><strong>Indicate expected day and hour of arrival</strong></span><span class="EOP SCXW237352009 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559740&quot;:259}"><strong>&nbsp;</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="please_let_us_know_if_you_expect_to_arrive_late_or_leave_early"]':
+            value: 'I expect to arrive late.'
+    indicate_expected_day_and_hour_of_departure:
+      '#type': textfield
+      '#title': 'Indicate expected day and hour of departure'
+      '#description': '<h5><span class="TextRun SCXW237352009 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-GB" lang="EN-GB"><strong>Indicate expected day and hour of departure</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="please_let_us_know_if_you_expect_to_arrive_late_or_leave_early"]':
+            value: 'I expect to leave early.'
+    spacer_6:
+      '#type': webform_markup
+      '#markup': '<br>'
+      '#states':
+        visible:
+          ':input[name="do_you_need_any_special_assistance_e_g_reduced_mobility"]':
+            value: 'Yes'
+    do_you_plan_to_join_the_social_event:
+      '#type': radios
+      '#title': 'Do you plan to join the social event'
+      '#description': '<h5><strong>Do you plan to join the social event, which will take place on the first day after the training session?</strong></h5><p data-start="110" data-end="159" data-is-last-node="" data-is-only-node="">Please note that participation is free of charge.</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'Yes'
+    spacer_11:
+      '#type': webform_markup
+      '#markup': '<br>'
+    do_you_plan_to_join_the_social_event_2:
+      '#type': radios
+      '#title': 'Do you plan to join the dinner event'
+      '#description': '<h5><strong>Do you plan to join the dinner event?</strong></h5><p>Please note that this activity will be self-payed, with an estimated cost of approximately 35 EUR per person.</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'Yes'
+    spacer_13:
+      '#type': webform_markup
+      '#markup': '<br>'
+    do_you_need_any_special_assistance_e_g_reduced_mobility:
+      '#type': radios
+      '#title': 'Do you have access to Excel?'
+      '#description': '<h2><em><span class="TextRun SCXW221715176 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Technical &amp; Access Needs</strong></span><span class="EOP SCXW221715176 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559739&quot;:160,&quot;335559740&quot;:259}">&nbsp;</span></em></h2><h3>&nbsp;</h3><h5><span class="TextRun SCXW75077892 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Do you have access to Excel?</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'Yes'
+    do_you_need_any_special_assistance_e_g_reduced_mobility_2:
+      '#type': radios
+      '#title': 'Do you need any special assistance (e.g. reduced mobility)? '
+      '#description': '<h5><span style="color:windowtext;font-family:&quot;Aptos&quot;,sans-serif;font-size:11.0pt;letter-spacing:0pt;line-height:107%;" lang="EN-US"><strong>Do you need any special assistance (e.g. reduced mobility)?</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'Yes'
+    spacer_12:
+      '#type': webform_markup
+      '#states':
+        visible:
+          ':input[name="do_you_need_any_special_assistance_e_g_reduced_mobility_2"]':
+            value: 'Yes'
+    please_specify:
+      '#type': textfield
+      '#title': 'Please specify '
+      '#description': '<h5><strong>Please specify&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="do_you_need_any_special_assistance_e_g_reduced_mobility_2"]':
+            value: 'Yes'
+    spacer_7:
+      '#type': webform_markup
+      '#markup': '<br>'
+    do_you_have_any_special_dietary_requirements_vegetarian_allergie:
+      '#type': radios
+      '#title': 'Do you have any special dietary requirements? (vegetarian, allergies, etc.) '
+      '#description': '<h5><span class="TextRun SCXW148587081 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Do you have any special dietary requirements? </strong></span></h5><h5><span class="TextRun SCXW148587081 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">(vegetarian, allergies, etc.)</span><span class="EOP SCXW148587081 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559740&quot;:259}">&nbsp;</span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'Yes'
+    spacer_8:
+      '#type': webform_markup
+      '#markup': '<br>'
+      '#states':
+        visible:
+          ':input[name="do_you_have_any_special_dietary_requirements_vegetarian_allergie"]':
+            value: 'Yes'
+    please_specify_2:
+      '#type': textfield
+      '#title': 'Please specify  '
+      '#description': '<h5><span class="TextRun SCXW202067221 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Please specify&nbsp;</strong></span><span class="EOP SCXW202067221 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:18.3458px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559740&quot;:259}"><strong>&nbsp;</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="do_you_have_any_special_dietary_requirements_vegetarian_allergie"]':
+            value: 'Yes'
+    spacer_14:
+      '#type': webform_markup
+      '#markup': '<br>'
+    i_understand_that_by_selecting_this_checkbox_i_confirm_that_1:
+      '#type': checkbox
+      '#title': "I confirm I have read and understood the photography notice for\_this\_event"
+      '#description': '<div class="OutlineElement Ltr SCXW249679705 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);clear:both;color:rgb(0, 0, 0);cursor:text;direction:ltr;font-family:&quot;Segoe UI&quot;, &quot;Segoe UI Web&quot;, Arial, Verdana, sans-serif;font-size:12px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:0px;orphans:2;overflow:visible;padding:0px;position:relative;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:normal;widows:2;word-spacing:0px;"><div class="OutlineElement Ltr SCXW236425438 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);clear:both;color:rgb(0, 0, 0);cursor:text;direction:ltr;font-family:&quot;Segoe UI&quot;, &quot;Segoe UI Web&quot;, Arial, Verdana, sans-serif;font-size:12px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:0px;orphans:2;overflow:visible;padding:0px;position:relative;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:normal;widows:2;word-spacing:0px;"><p class="Paragraph SCXW236425438 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-color:transparent;color:windowtext;font-kerning:none;font-style:normal;font-weight:normal;margin:0px 0px 10.6667px;overflow-wrap:break-word;padding:0px;text-align:justify;text-indent:0px;user-select:text;vertical-align:baseline;white-space:pre-wrap;" paraid="1125438768" paraeid="{4ed81426-4bc7-46f2-ad2b-a9b7eac2a73a}{88}"><span class="EOP SCXW236425438 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559739&quot;:160,&quot;335559740&quot;:259}">&nbsp;</span></p></div><div class="OutlineElement Ltr SCXW236425438 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);clear:both;color:rgb(0, 0, 0);cursor:text;direction:ltr;font-family:&quot;Segoe UI&quot;, &quot;Segoe UI Web&quot;, Arial, Verdana, sans-serif;font-size:12px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;margin:0px;orphans:2;overflow:visible;padding:0px;position:relative;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:normal;widows:2;word-spacing:0px;"><h2><em><span class="TextRun SCXW236425438 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Notice of Photography</strong></span><span class="EOP SCXW236425438 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559739&quot;:160,&quot;335559740&quot;:259}">&nbsp;</span></em></h2><h2>&nbsp;</h2></div><h5><span class="TextRun SCXW249679705 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">During the course, images may be captured for communication purposes. These photos may be published </span><span class="TextRun SCXW249679705 BCX8 NormalTextRun ContextualSpellingAndGrammarErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-image:url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjMiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMzVGIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0wIC41aDVNMCAyLjVoNSIvPjwvZz48L3N2Zz4=&quot;);background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">in</span><span class="TextRun SCXW249679705 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> PARC website, its social media channels, or in print publications.</span></h5><h5><span class="TextRun SCXW249679705 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Photography will be stored by Task 9.4 leaders (Training) and accessed by WP3 (handling communication).&nbsp;</span><span class="EOP SCXW249679705 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559740&quot;:259}">&nbsp;</span></h5><h5><span class="TextRun SCXW249679705 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">If you do not want to have your image captured or used; or you wish to have your images erased, please contact the local </span><span class="TextRun SCXW249679705 BCX8 NormalTextRun SpellingErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-image:url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjQiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRUIwMDAwIiBkPSJNMCAzYzEuMjUgMCAxLjI1LTIgMi41LTJTMy43NSAzIDUgMyIvPjxwYXRoIGQ9Ik0wIDBoNXY0SDB6Ii8+PC9nPjwvc3ZnPg==&quot;);background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">organiser</span><span class="TextRun SCXW249679705 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> (</span><span style="color:windowtext;font-family:&quot;Aptos&quot;,sans-serif;font-size:11.0pt;letter-spacing:0pt;line-height:107%;" lang="EN-US">igor.zivkovic@ijs.si</span><span class="TextRun SCXW249679705 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;font-variant-ligatures:none !important;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">).</span><span class="EOP SCXW249679705 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:windowtext;font-family:Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;font-size:11pt;line-height:18.3458px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559740&quot;:259}">&nbsp;</span></h5><p class="Paragraph SCXW249679705 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;background-color:transparent;color:windowtext;font-kerning:none;font-style:normal;font-weight:normal;margin:0px 0px 10.6667px;overflow-wrap:break-word;padding:0px;text-align:justify;text-indent:0px;user-select:text;vertical-align:baseline;white-space:pre-wrap;" paraid="33572572" paraeid="{4ed81426-4bc7-46f2-ad2b-a9b7eac2a73a}{118}">&nbsp;</p></div>'
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="following_your_selection_do_you_hereby_confirm_your_participatio"]':
+            value: 'Yes'
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p><span class="TextRun SCXW77811384 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:24px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>Thank you for taking the time and focus to complete this survey.</strong></span><span class="EOP SCXW77811384 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:24px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559731&quot;:360,&quot;335559739&quot;:80,&quot;335559740&quot;:312}"><strong>&nbsp;</strong></span></p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
