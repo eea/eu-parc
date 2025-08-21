@@ -9,7 +9,11 @@
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @media (--downMd) {
+    max-height: 250px;
+  }
 
   .field--name-field-lab-contacts {
     display: inline;
