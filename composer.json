@@ -195,7 +195,7 @@
                 "3064418 HTML5 widget for unlimited values needs improvements":"https://www.drupal.org/files/issues/2020-12-12/3064418-12--color-field-html5-widget-clear.patch"
             },
             "drupal/facets": {
-                "Facets with AJAX not working in most of situations": "https://www.drupal.org/files/issues/2024-10-10/3052574-265-2.0.9.patch"
+                "Facets with AJAX not working in most of situations": "https://www.drupal.org/files/issues/2025-08-28/facets-3354943-306-2.0.10.patch"
             },
             "drupal/publishcontent": {
                 "Set the status as unpublished if the author does not have publish access": "https://www.drupal.org/files/issues/2023-06-21/3368259-publish-default-value-2.patch"
