@@ -19,7 +19,8 @@ elements: |-
     i_confirm_that_i_have_read_and_i_accept_the_information_stated_a:
       '#type': checkbox
       '#title': 'I confirm that I have read and I accept the information stated above'
-      '#description': '<h5><strong>Context and Consent</strong></h5><p style="text-align:justify;"><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1<sup>st</sup> PARC training needs survey, PARC is now organising a remote training course on </span><em><span lang="EN-US">Metrological Traceability, Interlaboratory comparisons and Reference Materials</span></em><span lang="EN-US">.&nbsp;</span><span style="color:black;" lang="EN-GB">This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that there are no registration fees.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymised data will also be used for PARC project reporting.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the National Institute of Health (INSA), Portugal, and transferred only to local organisers (</span><em><span lang="EN-US">i.e.</span></em><span lang="EN-US"> General Chemical State Laboratory, Greece). Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US"><u>Deadline for application</u>: <strong>19.09.2025</strong></span></p><p style="text-align:justify;"><span lang="EN-GB">If you have any questions, please contact Ilias Kakoulidis (</span><span lang="EN-US">i.kakoulidis@aade.gr</span><span lang="EN-GB">) and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-GB">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-GB">)</span></p><p><span lang="EN-GB">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders</span></p><p><span>Ilias Kakoulidis &amp; Carla Trindade Costa</span><br>&nbsp;</p><p style="text-align:justify;"><span style="color:#212121;font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;line-height:107%;" lang="EN-US"><strong>Do you confirm that you have read and accept the information stated above?</strong></span></p>'
+      '#description': '<h3><strong>Context and Consent</strong></h3><p style="text-align:justify;"><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1<sup>st</sup> PARC training needs survey, PARC is now organising a remote training course on </span><em><span lang="EN-US">Metrological Traceability, Interlaboratory comparisons and Reference Materials</span></em><span lang="EN-US">.&nbsp;</span><span style="color:black;" lang="EN-GB">This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that there are no registration fees.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymised data will also be used for PARC project reporting.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the <strong>National Institute of Health (INSA</strong>), Portugal, and transferred only to <strong>local organisers (</strong></span><em><span lang="EN-US"><strong>i.e.</strong></span></em><span lang="EN-US"><strong> General Chemical State Laboratory, Greece).</strong> Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US"><u>Deadline for application</u>: <strong>19.09.2025</strong></span></p><p style="text-align:justify;"><span lang="EN-GB">If you have any questions, please contact Ilias Kakoulidis (</span><span lang="EN-US">i.kakoulidis@aade.gr</span><span lang="EN-GB">) and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-GB">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-GB">)</span></p><p><span lang="EN-GB">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders</span></p><p><span>Ilias Kakoulidis &amp; Carla Trindade Costa</span><br>&nbsp;</p><h5>&nbsp;</h5>'
+      '#title_display': inline
       '#description_display': before
       '#required': true
   personal_details:
@@ -28,7 +29,9 @@ elements: |-
     first_name:
       '#type': textfield
       '#title': 'First Name'
-      '#description': '<p>First Name</p>'
+      '#description': '<h3><strong>Personal Details</strong></h3><h5><br><strong>First Name</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#field_suffix': '        '
       '#required': true
     spacer_1:
@@ -37,6 +40,9 @@ elements: |-
     last_name:
       '#type': textfield
       '#title': 'Last Name'
+      '#description': '<h5><strong>Last Name</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_2:
       '#type': webform_markup
@@ -44,6 +50,9 @@ elements: |-
     e_mail_address:
       '#type': email
       '#title': 'E-mail address'
+      '#description': '<h5><strong>E-mail address</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_3:
       '#type': webform_markup
@@ -51,6 +60,9 @@ elements: |-
     gender:
       '#type': radios
       '#title': Gender
+      '#description': '<h5><strong>Gender</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options':
         Woman: Woman
         Man: Man
@@ -64,6 +76,9 @@ elements: |-
     age:
       '#type': number
       '#title': Age
+      '#description': '<h5><strong>Age</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_5:
       '#type': webform_markup
@@ -71,6 +86,9 @@ elements: |-
     nationality:
       '#type': select
       '#title': Nationality
+      '#description': '<h5><strong>Nationality</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options': country_names
       '#required': true
   education:
@@ -79,6 +97,9 @@ elements: |-
     phd:
       '#type': radios
       '#title': PhD
+      '#description': '<h3><strong>Education</strong><br><br><strong>PhD</strong></h3>'
+      '#title_display': invisible
+      '#description_display': before
       '#options': yes_no
       '#required': true
     spacer_6:
@@ -90,6 +111,9 @@ elements: |-
     indicate_here_field_and_year_of_graduation_e_g_biomedical_scienc:
       '#type': textfield
       '#title': 'Indicate here field and year of graduation (e.g. Biomedical Sciences; 2010)'
+      '#description': '<h5><strong>Indicate here field and year of graduation (e.g. Biomedical Sciences; 2010)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
       '#states':
         visible:
@@ -101,6 +125,9 @@ elements: |-
     msc:
       '#type': radios
       '#title': MSc
+      '#description': '<h5><strong>MSc</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options': yes_no
       '#required': true
     spacer_8:
@@ -112,6 +139,9 @@ elements: |-
     indicate_here_field_and_year_of_graduation_e_g_toxicology_2006:
       '#type': textfield
       '#title': 'Indicate here field and year of graduation (e.g. Toxicology; 2006)'
+      '#description': '<h5><strong>Indicate here field and year of graduation (e.g. Toxicology; 2006)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
       '#states':
         visible:
@@ -123,6 +153,9 @@ elements: |-
     bsc:
       '#type': radios
       '#title': BSc
+      '#description': '<h5><strong>BSc</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options': yes_no
       '#required': true
     spacer_10:
@@ -134,6 +167,9 @@ elements: |-
     indicate_here_field_and_year_of_graduation_e_g_biology_2004:
       '#type': textfield
       '#title': 'Indicate here field and year of graduation (e.g. Biology; 2004)'
+      '#description': '<h5><strong>Indicate here field and year of graduation (e.g. Biology; 2004)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
       '#states':
         visible:
@@ -145,6 +181,9 @@ elements: |-
     current_affiliation_institution_department_and_country:
       '#type': textfield
       '#title': 'Current Affiliation (Institution, Department)'
+      '#description': '<h3><strong>Professional Activity</strong></h3><p>&nbsp;</p><h5><strong>Current Affiliation (Institution, Department)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_11:
       '#type': webform_markup
@@ -152,6 +191,9 @@ elements: |-
     current_affiliation_country:
       '#type': select
       '#title': 'Current Affiliation (Country)'
+      '#description': '<h5><strong>Current Affiliation (Country)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options': country_names
       '#required': true
     spacer_12:
@@ -160,7 +202,7 @@ elements: |-
     current_affiliation_institution_type:
       '#type': webform_radios_other
       '#title': 'Current Affiliation (Institution type)'
-      '#description': '<h3><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;line-height:107%;" lang="EN-US"><strong>Current Affiliation (</strong>Institution type<strong>)</strong></span></h3>'
+      '#description': '<h5><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;line-height:107%;" lang="EN-US"><strong>Current Affiliation (Institution type)</strong></span></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options':
@@ -176,6 +218,9 @@ elements: |-
     position:
       '#type': textfield
       '#title': Position
+      '#description': '<h5><strong>Position</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_14:
       '#type': webform_markup
@@ -184,6 +229,9 @@ elements: |-
       '#type': webform_checkboxes_other
       '#title': 'Field of Work (indicate up to three options) '
       '#multiple': 3
+      '#description': '<h5><strong>Field of Work (indicate up to three options)&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options':
         'Human toxicology': 'Human toxicology'
         'Environmental toxicology': 'Environmental toxicology'
@@ -206,6 +254,9 @@ elements: |-
     number_of_years_of_experience:
       '#type': number
       '#title': 'Number of years of experience'
+      '#description': '<h5><strong>Number of years of experience</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_16:
       '#type': webform_markup
@@ -213,6 +264,9 @@ elements: |-
     are_you_involved_in_parc_activities:
       '#type': radios
       '#title': 'Are you involved in PARC activities?'
+      '#description': '<h5><strong>Are you involved in PARC activities?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options': yes_no
       '#required': true
     spacer_17:
@@ -224,6 +278,9 @@ elements: |-
     please_indicate_in_which_wp_s:
       '#type': checkboxes
       '#title': 'Please indicate in which WP(s): '
+      '#description': '<h5><strong>Please indicate in which WP(s):&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options':
         'WP1: Coordination and management ': 'WP1: Coordination and management '
         'WP2: A common science-policy agenda ': 'WP2: A common science-policy agenda '
@@ -245,6 +302,9 @@ elements: |-
     please_describe_here_your_current_knowledge_about_nams_and_chemi:
       '#type': textarea
       '#title': 'Please describe here your current knowledge on the topic of this course (also previous training, autonomy, etc.)'
+      '#description': '<h3><strong>Previous Knowledge in Metrological Traceability, Interlaboratory comparisons and Reference Materials</strong></h3><p>&nbsp;</p><h5><strong>Please describe here your current knowledge on the topic of this course (also previous training, autonomy, etc.)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
   motivation:
     '#type': webform_wizard_page
@@ -252,6 +312,9 @@ elements: |-
     please_describe_here_what_motivates_your_application_how_the_top:
       '#type': textarea
       '#title': 'Please describe here what motivates your application (how the topic relates to your current work; what you hope to learn from it, and how it will benefit your professional development, and/or your institution, and/or PARC activities)'
+      '#description': '<h3><strong>Motivation</strong></h3><p>&nbsp;</p><h5><strong>Please describe here what motivates your application (how the topic relates to your current work; what you hope to learn from it, and how it will benefit your professional development, and/or your institution, and/or PARC activities)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_18:
       '#type': webform_markup
@@ -259,6 +322,9 @@ elements: |-
     how_did_you_learn_about_this_course_e_g_parc_website_social_medi:
       '#type': textfield
       '#title': 'How did you learn about this course? (e.g. PARC website, social media, internal communication in my institution/university, etc.)'
+      '#description': '<h5><strong>How did you learn about this course? (e.g. PARC website, social media, internal communication in my institution/university, etc.)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#required': true
     spacer_19:
       '#type': webform_markup
@@ -266,6 +332,9 @@ elements: |-
     would_you_like_to_be_added_to_parc_training_mailing_list_to_rece:
       '#type': radios
       '#title': 'Would you like to be added to the PARCopedia Training Group to receive updates on upcoming sessions and resources?'
+      '#description': '<h5><strong>Would you like to be added to the PARCopedia Training Group to receive updates on upcoming sessions and resources?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#options': yes_no
       '#required': true
     spacer_20:
@@ -274,6 +343,9 @@ elements: |-
     we_will_send_information_on_new_parc_courses_and_learning_materi:
       '#type': email
       '#title': 'We will send information on new PARC courses and learning materials to the email address provided earlier in this form. If you prefer to receive it at a different email address , please provide it here.'
+      '#description': '<h5><strong>We will send information on new PARC courses and learning materials to the email address provided earlier in this form. If you prefer to receive it at a different email address , please provide it here.</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
       '#states':
         visible:
           ':input[name="would_you_like_to_be_added_to_parc_training_mailing_list_to_rece"]':
@@ -284,6 +356,9 @@ elements: |-
     do_you_certify_the_accuracy_of_the_information_above:
       '#type': checkbox
       '#title': 'I certify the accuracy of the information above.'
+      '#description': '<h3><strong>Final Statement</strong></h3><p>&nbsp;</p><p>&nbsp;</p>'
+      '#title_display': inline
+      '#description_display': before
       '#required': true
     spacer_21:
       '#type': webform_markup
