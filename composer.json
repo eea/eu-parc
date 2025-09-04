@@ -212,6 +212,9 @@
             },
             "drupal/quick_node_clone": {
                 "#3100117 - Inline blocks from layout builder not cloned properly": "patches/quick_node_clone/22.diff"
+            },
+            "drupal/edwt": {
+                "Fix collapse firing twice after ajax load": "patches/edwt/fix-collapse.patch"
             }
         },
         "drupal-lenient" : {
