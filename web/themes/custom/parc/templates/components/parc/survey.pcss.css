@@ -1,6 +1,13 @@
 
 .survey-form-wrapper {
   background-color: #B0E5DF;
+  position: relative;
+
+  #survey {
+    visibility: hidden;
+    position: absolute;
+    top: -60px;
+  }
 
   h3 + p {
     margin-bottom: 60px;
