@@ -1,6 +1,6 @@
 uuid: a6163866-252e-4657-b821-30c775b533e2
 langcode: en
-status: open
+status: closed
 dependencies: {  }
 weight: 0
 open: null
@@ -265,7 +265,7 @@ settings:
   form_title: source_entity_webform
   form_submit_once: false
   form_open_message: ''
-  form_close_message: ''
+  form_close_message: '<p>Thank you for your interest. Registrations to this course are now closed.</p>'
   form_exception_message: ''
   form_previous_submissions: true
   form_confidential: false

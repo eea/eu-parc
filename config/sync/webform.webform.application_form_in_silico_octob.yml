@@ -1,15 +1,15 @@
-uuid: e69b4e83-6c1a-418d-ba61-f9974bc639e8
+uuid: 915cad08-883d-486a-8a77-3aa496a6495d
 langcode: en
-status: scheduled
+status: open
 dependencies: {  }
 weight: 0
-open: '2025-09-15T12:00:10'
-close: '2025-10-10T23:59:59'
+open: null
+close: null
 uid: 20
 template: false
 archive: false
-id: application_form_metrological_tr
-title: 'Application Form | Metrological Traceability, Interlaboratory comparisons and Reference Materials'
+id: application_form_in_silico_octob
+title: 'Application Form | In Silico October 2025'
 description: ''
 categories: {  }
 elements: |-
@@ -19,7 +19,7 @@ elements: |-
     i_confirm_that_i_have_read_and_i_accept_the_information_stated_a:
       '#type': checkbox
       '#title': 'I confirm that I have read and I accept the information stated above'
-      '#description': '<h3><strong>Context and Consent</strong></h3><p style="text-align:justify;"><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1<sup>st</sup> PARC training needs survey, PARC is now organising a remote training course on </span><em><span lang="EN-US">Metrological Traceability, Interlaboratory comparisons and Reference Materials</span></em><span lang="EN-US">.&nbsp;</span><span style="color:black;" lang="EN-GB">This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that there are no registration fees.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymised data will also be used for PARC project reporting.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the <strong>National Institute of Health (INSA</strong>), Portugal, and transferred only to <strong>local organisers (</strong></span><em><span lang="EN-US"><strong>i.e.</strong></span></em><span lang="EN-US"><strong> General Chemical State Laboratory, Greece).</strong> Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US"><u>Deadline for application</u>: <strong>10.10.2025</strong></span></p><p style="text-align:justify;"><span lang="EN-GB">If you have any questions, please contact Ilias Kakoulidis (</span><span lang="EN-US">i.kakoulidis@aade.gr</span><span lang="EN-GB">) and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-GB">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-GB">)</span></p><p><span lang="EN-GB">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders</span></p><p><span>Ilias Kakoulidis &amp; Carla Trindade Costa</span><br>&nbsp;</p>'
+      '#description': '<h3><strong>Context and Consent</strong></h3><p style="text-align:justify;"><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1<sup>st</sup> PARC training needs survey, PARC is now organising a hands-on remote training course on the </span><em><span lang="EN-US">Results of In Silico Models and Read-Across Using VEGAHUB. </span></em><span style="color:black;" lang="EN-GB">This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that there are no registration fees.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymised data will also be used for PARC project reporting.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the <strong>National Institute of Health (INSA</strong>), Portugal, and transferred only to <strong>local organisers (</strong></span><em><span lang="EN-US"><strong>i.e. </strong></span></em><span lang="EN-US"><strong>Istituto Mario Negri (IRFMN), Italy).</strong> Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US"><u>Deadline for application</u>: <strong>13.10.2025</strong></span></p><p style="text-align:justify;"><span lang="EN-GB">If you have any questions, please contact Emilio Benfenati </span><a href="(emilio.benfenati@marionegri.it"><span lang="EN-GB">(emilio.benfenati@marionegri.it</span></a><span lang="EN-GB"> ) &nbsp;and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-GB">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-GB">)</span></p><p><span lang="EN-GB">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders</span></p><p><span>Emilio Benfenati &amp; Carla Trindade Costa</span><br>&nbsp;</p>'
       '#title_display': inline
       '#description_display': before
       '#required': true
@@ -296,33 +296,27 @@ elements: |-
         visible:
           ':input[name="are_you_involved_in_parc_activities"]':
             value: 'Yes'
-  previous_knowledge_in_chemical_exposure_modelling:
-    '#type': webform_wizard_page
-    '#title': 'Previous Knowledge in Metrological Traceability, Interlaboratory comparisons and Reference Materials'
-    please_describe_here_your_current_knowledge_about_nams_and_chemi:
-      '#type': textarea
-      '#title': 'Please describe here your current knowledge on the topic of this course (also previous training, autonomy, etc.)'
-      '#description': '<h3><strong>Previous Knowledge in Metrological Traceability, Interlaboratory comparisons and Reference Materials</strong></h3><p>&nbsp;</p><h5><strong>Please describe here your current knowledge on the topic of this course (also previous training, autonomy, etc.)</strong></h5>'
-      '#title_display': invisible
-      '#description_display': before
-      '#required': true
   motivation:
     '#type': webform_wizard_page
-    '#title': Motivation
-    please_describe_here_what_motivates_your_application_how_the_top:
-      '#type': textarea
-      '#title': 'Please describe here what motivates your application (how the topic relates to your current work; what you hope to learn from it, and how it will benefit your professional development, and/or your institution, and/or PARC activities)'
-      '#description': '<h3><strong>Motivation</strong></h3><p>&nbsp;</p><h5><strong>Please describe here what motivates your application (how the topic relates to your current work; what you hope to learn from it, and how it will benefit your professional development, and/or your institution, and/or PARC activities)</strong></h5>'
+    '#title': 'Training Course '
+    1_this_training_course_will_be_divided_into_two_modules_the_firs:
+      '#type': checkboxes
+      '#title': "1.\tThis training course will be divided into two modules. The first module will address models for mutagenicity, genotoxicity, carcinogenicity, endocrine disruption, and tools for cosmetics. The second module will focus on ecotoxicity and environmental properties. Please indicate which lecture(s) you would like to attend:"
+      '#description': '<h3><strong>Training Course</strong></h3><p>&nbsp;</p><h5><strong>This training course will be divided into two modules. The first module will address models for mutagenicity, genotoxicity, carcinogenicity, endocrine disruption, and tools for cosmetics. The second module will focus on ecotoxicity and environmental properties. Please indicate which lecture(s) you would like to attend:</strong></h5><p>&nbsp;</p>'
+      '#more': '<p><em>Each module will be delivered twice on the same day, once in the morning and once in the afternoon. Both sessions are identical. Participants will be assigned to the morning session until it reaches 12 registrations; subsequent participants will be allocated to the afternoon session.</em></p>'
       '#title_display': invisible
       '#description_display': before
+      '#options':
+        'Assessing cosmetics | 23 of October': 'Assessing cosmetics | 23 of October'
+        'Environmental and ecotoxicological properties | 24 of October': 'Environmental and ecotoxicological properties | 24 of October'
       '#required': true
-    spacer_18:
-      '#type': webform_markup
-      '#markup': '<br>'
+  final_statement:
+    '#type': webform_wizard_page
+    '#title': 'Final statement'
     how_did_you_learn_about_this_course_e_g_parc_website_social_medi:
       '#type': textfield
       '#title': 'How did you learn about this course? (e.g. PARC website, social media, internal communication in my institution/university, etc.)'
-      '#description': '<h5><strong>How did you learn about this course? (e.g. PARC website, social media, internal communication in my institution/university, etc.)</strong></h5>'
+      '#description': '<h3><strong>Final Statement</strong><br>&nbsp;</h3><h5><strong>How did you learn about this course? (e.g. PARC website, social media, internal communication in my institution/university, etc.)</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#required': true
@@ -350,13 +344,12 @@ elements: |-
         visible:
           ':input[name="would_you_like_to_be_added_to_parc_training_mailing_list_to_rece"]':
             value: 'Yes'
-  final_statement:
-    '#type': webform_wizard_page
-    '#title': 'Final statement'
+    spacer_18:
+      '#type': webform_markup
+      '#markup': '<br>'
     do_you_certify_the_accuracy_of_the_information_above:
       '#type': checkbox
       '#title': 'I certify the accuracy of the information above.'
-      '#description': '<h3><strong>Final Statement</strong></h3><p>&nbsp;</p><p>&nbsp;</p>'
       '#title_display': inline
       '#description_display': before
       '#required': true
