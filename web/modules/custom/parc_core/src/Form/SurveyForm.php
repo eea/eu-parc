@@ -79,6 +79,10 @@ class SurveyForm extends FormBase {
       ->accessCheck(FALSE)
       ->execute();
 
+    $form['anchor'] = [
+      '#markup' => '<div id="survey"></div>',
+    ];
+
     $form['question'] = [
       '#type' => 'inline_template',
       '#template' => '<p>{{ "Contribute to our survey" | t }}</p><h3 class="survey-title">{{ question }}</h3><p>{{ "Number of answers:" | t }} {{ number }}</p>',
@@ -212,6 +216,10 @@ class SurveyForm extends FormBase {
    */
   private function buildResults(array $form, array $options, $entity_id) {
     $form = [];
+    $form['anchor'] = [
+      '#markup' => '<div id="survey"></div>',
+    ];
+
     $vote_counts = [];
     $votes = $this->entityTypeManager->getStorage('vote')->loadByProperties([
       'entity_type' => $this->entity->getEntityTypeId(),

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.svg_text.field_body
+    - field.field.paragraph.svg_text.field_link_one
     - field.field.paragraph.svg_text.field_svg
     - paragraphs.paragraphs_type.svg_text
   module:
@@ -30,4 +31,5 @@ content:
     weight: 0
     region: content
 hidden:
+  field_link_one: true
   search_api_excerpt: true
