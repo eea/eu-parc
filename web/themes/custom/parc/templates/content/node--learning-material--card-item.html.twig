@@ -43,11 +43,13 @@
         <div class="learning-material__bottom__left">
           {{ content.field_course_type }}
           {% set owner = node.field_owner.value %}
-          <div>
-            {% trans %}
-              By {{ owner }}
-            {% endtrans %}
-          </div>
+          {% if owner %}
+            <div>
+              {% trans %}
+                By {{ owner }}
+              {% endtrans %}
+            </div>
+          {% endif %}
         </div>
         <div class="learning-material__bottom__right">
           {% if node.field_course_accessibility.value == 'free_of_charge' %}
