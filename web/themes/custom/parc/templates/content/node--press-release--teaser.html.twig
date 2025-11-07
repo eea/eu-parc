@@ -16,7 +16,7 @@
       {% endif %}
 
       {% if not node.field_external_url.isEmpty %}
-        <a class="copy-link" href="{{ node.field_external_url.uri }}">{{ "Go to link" | t }}</a>
+        <a class="copy-link" target="_blank" href="{{ node.field_external_url.uri }}">{{ "Go to link" | t }}</a>
       {% endif %}
     </div>
   </div>

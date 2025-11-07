@@ -5,11 +5,13 @@ dependencies:
   config:
     - field.field.taxonomy_term.media_assets.field_asset_type
     - field.field.taxonomy_term.media_assets.field_file
+    - field.field.taxonomy_term.media_assets.field_link
     - field.field.taxonomy_term.media_assets.field_media_image
     - image.style.media_asset
     - taxonomy.vocabulary.media_assets
   module:
     - file
+    - link
     - media
     - options
     - text
@@ -38,6 +40,18 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_media_image:
     type: media_thumbnail

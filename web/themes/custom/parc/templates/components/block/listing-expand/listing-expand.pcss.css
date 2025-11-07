@@ -23,7 +23,7 @@
       background-color: var(--main-color, #F4EACA);
     }
 
-    &.expand {
+    &.expand:not(.listing-expand--media_assets) {
       border: none;
       background-color: transparent;
     }
@@ -64,6 +64,7 @@
         position: static;
         margin-top: auto;
         margin-left: auto;
+        padding-top: 20px;
       }
     }
 
@@ -152,6 +153,12 @@
         margin-left: calc(-1 * var(--gutter-x));
         margin-right: calc(-1 * var(--gutter-x));
       }
+    }
+  }
+
+  &--media_assets {
+    .listing-expand__expand__view {
+      padding: 20px;
     }
   }
 }

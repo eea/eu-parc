@@ -573,3 +573,8 @@ n--press-release:
   css:
     component:
       css/components/content/press-release/press-release.css: {}
+
+t--media-assets:
+  css:
+    component:
+      css/components/taxonomy/media-assets/media-assets.css: { }

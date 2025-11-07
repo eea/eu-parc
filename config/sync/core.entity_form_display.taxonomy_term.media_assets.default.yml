@@ -5,10 +5,12 @@ dependencies:
   config:
     - field.field.taxonomy_term.media_assets.field_asset_type
     - field.field.taxonomy_term.media_assets.field_file
+    - field.field.taxonomy_term.media_assets.field_link
     - field.field.taxonomy_term.media_assets.field_media_image
     - taxonomy.vocabulary.media_assets
   module:
     - file
+    - link
     - media_library
 id: taxonomy_term.media_assets.default
 targetEntityType: taxonomy_term
@@ -28,6 +30,14 @@ content:
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 4
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
   field_media_image:
     type: media_library_widget
     weight: 2
@@ -45,7 +55,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 4
+    weight: 5
     region: content
     settings:
       display_label: true
