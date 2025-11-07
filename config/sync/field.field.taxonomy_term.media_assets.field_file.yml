@@ -1,0 +1,27 @@
+uuid: aa3c5f36-20ca-410a-9ac9-a9b0ce09dcea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_file
+    - taxonomy.vocabulary.media_assets
+  module:
+    - file
+id: taxonomy_term.media_assets.field_file
+field_name: field_file
+entity_type: taxonomy_term
+bundle: media_assets
+label: File
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: media-assets
+  file_extensions: 'pdf doc docx png jpg jpeg gif webp ttf woff woff2'
+  max_filesize: ''
+  description_field: false
+field_type: file

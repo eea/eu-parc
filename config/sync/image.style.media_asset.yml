@@ -1,0 +1,15 @@
+uuid: 0d4c5eb5-f9bc-46d9-86ad-5678a806ac8b
+langcode: en
+status: true
+dependencies: {  }
+name: media_asset
+label: 'Media asset'
+effects:
+  81f8367e-5e6a-4087-8abf-19a580753a90:
+    uuid: 81f8367e-5e6a-4087-8abf-19a580753a90
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 204
+      height: 224
+      anchor: center-center

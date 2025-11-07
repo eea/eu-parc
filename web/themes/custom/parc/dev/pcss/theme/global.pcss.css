@@ -778,3 +778,9 @@ iframe.media-oembed-content {
     display: none;
   }
 }
+
+.bg-grey {
+  .node--page--full {
+    background-color: #FAFAFA;
+  }
+}

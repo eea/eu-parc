@@ -7,12 +7,10 @@ dependencies:
     - field.field.node.thematic_areas.field_categories
     - field.field.node.thematic_areas.field_seo_keyword
     - field.field.node.thematic_areas.field_survey
-    - field.field.node.thematic_areas.rabbit_hole__settings
     - node.type.thematic_areas
   module:
     - paragraphs
     - path
-    - rabbit_hole
     - text
 id: node.thematic_areas.default
 targetEntityType: node
@@ -83,13 +81,6 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  rabbit_hole__settings:
-    type: rabbit_hole_default
-    weight: 12
-    region: content
-    settings:
-      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 5

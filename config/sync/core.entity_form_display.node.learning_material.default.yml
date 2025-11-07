@@ -15,14 +15,12 @@ dependencies:
     - field.field.node.learning_material.field_owner
     - field.field.node.learning_material.field_reading_time
     - field.field.node.learning_material.field_substance_group
-    - field.field.node.learning_material.rabbit_hole__settings
     - node.type.learning_material
   module:
     - allowed_formats
     - datetime
     - link
     - path
-    - rabbit_hole
     - select2
     - text
 id: node.learning_material.default
@@ -148,13 +146,6 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  rabbit_hole__settings:
-    type: rabbit_hole_default
-    weight: 100
-    region: content
-    settings:
-      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 4

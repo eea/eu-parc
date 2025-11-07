@@ -1,0 +1,16 @@
+uuid: f52f24b4-5fa6-4180-9cfe-23b24899966c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.institution
+id: node.institution
+targetEntityType: node
+bundle: institution
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /partners
+  redirect_code: 301
+  redirect_fallback_action: access_denied

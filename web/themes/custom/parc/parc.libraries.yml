@@ -558,3 +558,18 @@ survey:
     - core/jquery
     - core/once
     - core/drupal
+
+b--listing-expand:
+  css:
+    component:
+      css/components/block/listing-expand/listing-expand.css: {}
+  js:
+    js/expand.js: {}
+  dependencies:
+    - core/once
+    - core/drupal
+
+n--press-release:
+  css:
+    component:
+      css/components/content/press-release/press-release.css: {}

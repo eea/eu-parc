@@ -1,0 +1,54 @@
+uuid: effce9dd-9ead-4d09-b383-c7d298522586
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.media_assets.field_asset_type
+    - field.field.taxonomy_term.media_assets.field_file
+    - field.field.taxonomy_term.media_assets.field_media_image
+    - image.style.media_asset
+    - taxonomy.vocabulary.media_assets
+  module:
+    - file
+    - media
+    - options
+    - text
+id: taxonomy_term.media_assets.default
+targetEntityType: taxonomy_term
+bundle: media_assets
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_asset_type:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_file:
+    type: file_url_plain
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: media_asset
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

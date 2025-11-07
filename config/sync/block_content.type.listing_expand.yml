@@ -1,0 +1,8 @@
+uuid: 34ba210b-ac91-451d-bf5b-ba4ea1588e9f
+langcode: en
+status: true
+dependencies: {  }
+id: listing_expand
+label: 'Listing expand'
+revision: false
+description: null

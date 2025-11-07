@@ -1,0 +1,23 @@
+{{ attach_library('parc/n--press-release') }}
+
+<div class="press-release">
+  <div class="press-release__image">{{ content.field_media_image }}</div>
+  <div class="press-release__main">
+    <div class="press-release__main__heading">
+      <div class="press-release__main__heading__type">{{ "Press release #" | t }}</div>
+      <div class="press-release__main__heading__date">{{ content.field_publication_date }}</div>
+    </div>
+
+    <div class="press-release__main__title">{{ label }}</div>
+    <div class="press-release__main__subtitle">{{ content.body }}</div>
+    <div class="press-release__main__links">
+      {% if not node.field_media_document.isEmpty and download_link %}
+        <a class="download-link" download href="{{ download_link }}">{{ "Download article" | t }}</a>
+      {% endif %}
+
+      {% if not node.field_external_url.isEmpty %}
+        <a class="copy-link" href="{{ node.field_external_url.uri }}">{{ "Go to link" | t }}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
