@@ -563,11 +563,8 @@ b--listing-expand:
   css:
     component:
       css/components/block/listing-expand/listing-expand.css: {}
-  js:
-    js/expand.js: {}
   dependencies:
-    - core/once
-    - core/drupal
+    - parc/expand
 
 n--press-release:
   css:
@@ -578,3 +575,17 @@ t--media-assets:
   css:
     component:
       css/components/taxonomy/media-assets/media-assets.css: { }
+
+b--call-to-action:
+  css:
+    component:
+      css/components/block/call-to-action/call-to-action.css: { }
+  dependencies:
+    - parc/expand
+
+expand:
+  js:
+    js/expand.js: {}
+  dependencies:
+    - core/once
+    - core/drupal

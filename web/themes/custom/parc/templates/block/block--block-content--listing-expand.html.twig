@@ -8,7 +8,26 @@
   {% set text_color = '#480363' %}
 {% endif %}
 
-<div class="listing-expand listing-expand--{{ style }} js-expand" data-expand-target="listing-expand-{{ id }}" style="--main-color: {{ main_color }}; --text-color: {{ text_color }}">
+{%
+  set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+  'listing-expand',
+  'listing-expand--' ~ style,
+  'js-expand',
+]
+%}
+
+<div {{attributes.addClass(classes)}} data-expand-target="listing-expand-{{ id }}" style="--main-color: {{ main_color }}; --text-color: {{ text_color }}">
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{title_attributes.addClass('block--title')}}>
+      {{- label -}}
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
   <div class="listing-expand__visible">
     <div class="listing-expand__image">{{ content.field_media_image }}</div>
     <div class="listing-expand__main">

@@ -1007,7 +1007,7 @@ function parc_form_eu_parc_survey_form_alter(array &$form, FormStateInterface $f
 }
 
 /**
- * Implements hook_preprocess_HOOL() bfor block__block_content__listing_expand().
+ * Implements hook_preprocess_HOOL() for block__block_content__listing_expand().
  */
 function parc_preprocess_block__block_content__listing_expand(array &$variables) {
   /** @var \Drupal\block_content\Entity\BlockContent $block */
@@ -1056,6 +1056,9 @@ function parc_preprocess_block__block_content__listing_expand(array &$variables)
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK() for node__press_release__teaser.
+ */
 function parc_preprocess_node__press_release__teaser(array &$variables) {
   $node = $variables['node'];
   $media_document = $node->get('field_media_document')->entity;
@@ -1069,4 +1072,19 @@ function parc_preprocess_node__press_release__teaser(array &$variables) {
   }
 
   $variables['download_link'] = $file->createFileUrl();
+}
+
+/**
+ * Implements hook_preprocess_HOOL() for block__block_content__call_to_action().
+ */
+function parc_preprocess_block__block_content__call_to_action(array &$variables) {
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['content']['#block_content'];
+  $variables['id'] = $block->id();
+  $style = $block->get('field_style')->value ?? 'green';
+  $variables['style'] = $style;
+  $variables['has_image'] = !$block->get('field_media_image')->isEmpty();
+  $variables['has_subtitle'] = !$block->get('field_subtitle')->isEmpty();
+  $variables['has_text'] = !$block->get('body')->isEmpty();
+  $variables['has_link'] = !$block->get('field_link')->isEmpty();
 }

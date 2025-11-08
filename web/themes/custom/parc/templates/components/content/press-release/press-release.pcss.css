@@ -16,7 +16,10 @@
       height: 100%;
       object-fit: contain;
       border-radius: 6px;
-      filter: grayscale(1);
+
+      @media (--lg) {
+        filter: grayscale(1);
+      }
     }
   }
 
