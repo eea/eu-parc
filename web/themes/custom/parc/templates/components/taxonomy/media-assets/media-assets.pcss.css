@@ -28,6 +28,7 @@
     display: flex;
     gap: 8px;
     flex-direction: column;
+    flex-wrap: wrap;
 
     @media (--md) {
       flex-direction: row;
@@ -41,6 +42,7 @@
       display: flex;
       align-items: flex-end;
       gap: 5px;
+      white-space: nowrap;
     }
   }
 
