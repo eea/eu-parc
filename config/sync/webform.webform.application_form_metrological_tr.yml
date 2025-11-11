@@ -1,10 +1,10 @@
 uuid: e69b4e83-6c1a-418d-ba61-f9974bc639e8
 langcode: en
-status: open
+status: scheduled
 dependencies: {  }
 weight: 0
-open: null
-close: null
+open: '2025-09-15T12:00:10'
+close: '2025-10-10T23:59:59'
 uid: 20
 template: false
 archive: false
@@ -19,7 +19,7 @@ elements: |-
     i_confirm_that_i_have_read_and_i_accept_the_information_stated_a:
       '#type': checkbox
       '#title': 'I confirm that I have read and I accept the information stated above'
-      '#description': '<h3><strong>Context and Consent</strong></h3><p style="text-align:justify;"><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1<sup>st</sup> PARC training needs survey, PARC is now organising a remote training course on </span><em><span lang="EN-US">Metrological Traceability, Interlaboratory comparisons and Reference Materials</span></em><span lang="EN-US">.&nbsp;</span><span style="color:black;" lang="EN-GB">This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that there are no registration fees.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymised data will also be used for PARC project reporting.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the <strong>National Institute of Health (INSA</strong>), Portugal, and transferred only to <strong>local organisers (</strong></span><em><span lang="EN-US"><strong>i.e.</strong></span></em><span lang="EN-US"><strong> General Chemical State Laboratory, Greece).</strong> Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US"><u>Deadline for application</u>: <strong>19.09.2025</strong></span></p><p style="text-align:justify;"><span lang="EN-GB">If you have any questions, please contact Ilias Kakoulidis (</span><span lang="EN-US">i.kakoulidis@aade.gr</span><span lang="EN-GB">) and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-GB">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-GB">)</span></p><p><span lang="EN-GB">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders</span></p><p><span>Ilias Kakoulidis &amp; Carla Trindade Costa</span><br>&nbsp;</p><h5>&nbsp;</h5>'
+      '#description': '<h3><strong>Context and Consent</strong></h3><p style="text-align:justify;"><span lang="EN-US">Aligned with its mission to empower researchers through interdisciplinary knowledge, and based on the results of the 1<sup>st</sup> PARC training needs survey, PARC is now organising a remote training course on </span><em><span lang="EN-US">Metrological Traceability, Interlaboratory comparisons and Reference Materials</span></em><span lang="EN-US">.&nbsp;</span><span style="color:black;" lang="EN-GB">This training course welcomes both PARC members and non-members, even though priority will be given to PARC members. Please note that there are no registration fees.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">To ensure the best possible fit for our training program, we kindly request some essential personal and professional details in this application form. This information will be used solely for trainee selection purposes. Anonymised data will also be used for PARC project reporting.&nbsp;</span></p><p style="text-align:justify;"><span lang="EN-US">Data collected will be saved and stored for the duration of PARC project by the <strong>National Institute of Health (INSA</strong>), Portugal, and transferred only to <strong>local organisers (</strong></span><em><span lang="EN-US"><strong>i.e.</strong></span></em><span lang="EN-US"><strong> General Chemical State Laboratory, Greece).</strong> Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-US"><u>Deadline for application</u>: <strong>10.10.2025</strong></span></p><p style="text-align:justify;"><span lang="EN-GB">If you have any questions, please contact Ilias Kakoulidis (</span><span lang="EN-US">i.kakoulidis@aade.gr</span><span lang="EN-GB">) and Carla Trindade Costa (</span><a href="mailto:carla.trindade@insa.min-saude.pt"><span lang="EN-GB">carla.trindade@insa.min-saude.pt</span></a><span lang="EN-GB">)</span></p><p><span lang="EN-GB">On behalf of the scientific coordination of the training course and Task 9.4 co-leaders</span></p><p><span>Ilias Kakoulidis &amp; Carla Trindade Costa</span><br>&nbsp;</p>'
       '#title_display': inline
       '#description_display': before
       '#required': true
@@ -370,10 +370,6 @@ elements: |-
     spacer_22:
       '#type': webform_markup
       '#markup': '<br>'
-    do_you_confirm_that_you_are_aware_that_if_selected_you_will_be_r:
-      '#type': checkbox
-      '#title': 'I confirm that I am aware that if selected,I will be responsible for covering my travel, accommodation, and any other incidental expense.'
-      '#required': true
 css: ''
 javascript: ''
 settings:

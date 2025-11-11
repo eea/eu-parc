@@ -22,7 +22,6 @@ dependencies:
     - field.field.node.publications.field_updated_date
     - field.field.node.publications.field_volume
     - field.field.node.publications.field_zenodo_id
-    - field.field.node.publications.rabbit_hole__settings
     - node.type.publications
   module:
     - color_field
@@ -31,7 +30,6 @@ dependencies:
     - link
     - media_library
     - path
-    - rabbit_hole
     - text
 third_party_settings:
   field_group:
@@ -226,13 +224,6 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  rabbit_hole__settings:
-    type: rabbit_hole_default
-    weight: 100
-    region: content
-    settings:
-      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 5

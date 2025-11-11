@@ -1,0 +1,9 @@
+uuid: 40126939-18e0-4b30-9d65-eeda8cd2d966
+langcode: en
+status: true
+dependencies: {  }
+name: 'Media assets'
+vid: media_assets
+description: null
+weight: 0
+new_revision: false

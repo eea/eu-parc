@@ -1,0 +1,17 @@
+uuid: 891e0e6e-0fec-4c9c-b290-310058c7af8e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Press release'
+type: press_release
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: false

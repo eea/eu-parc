@@ -1,0 +1,23 @@
+uuid: e8767677-4787-454c-9b34-9bb1ff41d3aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.call_to_action
+    - field.storage.block_content.field_style
+  module:
+    - options
+id: block_content.call_to_action.field_style
+field_name: field_style
+entity_type: block_content
+bundle: call_to_action
+label: Style
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: blue
+default_value_callback: ''
+settings: {  }
+field_type: list_string
