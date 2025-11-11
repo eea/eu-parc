@@ -1,0 +1,23 @@
+{{ attach_library('parc/n--press-clipping') }}
+
+{% set type = node.field_press_clipping_type.value %}
+{% if type == 'broadcasting_media' %}
+  {% set text_color = '#1C85FF' %}
+  {% set bg_color = '#AED3FF' %}
+{% elseif type =='digital_media' %}
+  {% set text_color = '#008475' %}
+  {% set bg_color = '#B0E5DF' %}
+{% else %}
+  {% set text_color = '#E45C4D' %}
+  {% set bg_color = '#FBCDD5' %}
+{% endif %}
+
+<div class="pc-compact" style="--text-color: {{ text_color }}; --bg-color: {{ bg_color }}">
+  <a href="{{ link('', node.field_external_url.uri)['#url'].toString }}">
+    <div class="pc-compact__top">
+      <div class="pc-compact__top__type">{{ content.field_press_clipping_type }}</div>
+      <div class="pc-compact__top__date">{{ content.field_publication_date }}</div>
+    </div>
+    <div class="pc-compact__title">{{ label }}</div>
+  </a>
+</div>

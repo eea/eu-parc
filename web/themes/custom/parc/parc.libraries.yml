@@ -589,3 +589,8 @@ expand:
   dependencies:
     - core/once
     - core/drupal
+
+n--press-clipping:
+  css:
+    component:
+      css/components/content/press-clipping/press-clipping.css: { }

@@ -1,0 +1,17 @@
+{% if main_item %}
+  <div class="featured-pc">{{ main_item }}</div>
+{% endif %}
+
+<div class="all-pc">
+  {% for row in rows %}
+    {%
+      set row_classes = [
+      default_row_class ? 'views-row',
+      'clearfix',
+    ]
+    %}
+    <div{{ row.attributes.addClass(row_classes) }}>
+      {{- row.content -}}
+    </div>
+  {% endfor %}
+</div>
