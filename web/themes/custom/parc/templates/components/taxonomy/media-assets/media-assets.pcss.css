@@ -99,6 +99,12 @@
   row-gap: 20px;
 
   @media (--md) {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 42px;
+    row-gap: 30px;
+  }
+
+  @media (--lg) {
     grid-template-columns: repeat(5, 1fr);
     column-gap: 42px;
     row-gap: 30px;
