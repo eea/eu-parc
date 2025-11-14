@@ -1,10 +1,10 @@
 uuid: e69b4e83-6c1a-418d-ba61-f9974bc639e8
 langcode: en
-status: scheduled
+status: closed
 dependencies: {  }
 weight: 0
-open: '2025-09-15T12:00:10'
-close: '2025-10-10T23:59:59'
+open: null
+close: null
 uid: 20
 template: false
 archive: false
