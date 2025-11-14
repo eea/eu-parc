@@ -784,3 +784,23 @@ iframe.media-oembed-content {
     background-color: #FAFAFA;
   }
 }
+
+.bg-grey-mobile {
+  .node--page--full {
+    @media (--downLg) {
+      background-color: #FAFAFA;
+    }
+  }
+}
+
+.py-small {
+  @media (--downLg) {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+
+  > .layout__region {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

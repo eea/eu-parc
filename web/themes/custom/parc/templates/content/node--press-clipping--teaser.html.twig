@@ -13,8 +13,7 @@
 {% endif %}
 
 <div class="pc-teaser" style="--text-color: {{ text_color }}; --bg-color: {{ bg_color }}">
-  <div class="pc-teaser__image">{{ content.field_media_image }}</div>
-  <div class="pc-teaser__top">
+  <div class="pc-teaser__top top-1">
     <div class="pc-teaser__top__left">
       {{ content.field_press_clipping_type }}
       {{ content.field_publication }}
@@ -24,14 +23,27 @@
       {{ content.field_country }}
     </div>
   </div>
-  <div class="pc-teaser__title">{{ label }}</div>
-  <div class="pc-teaser__links">
-    {% if download_link %}
-      <a class="download-link" download href="{{ download_link }}">{{ "Download article" | t }}</a>
-    {% endif %}
+  <div class="pc-teaser__image">{{ content.field_media_image }}</div>
+  <div class="pc-teaser__main">
+    <div class="pc-teaser__top top-2">
+      <div class="pc-teaser__top__left">
+        {{ content.field_press_clipping_type }}
+        {{ content.field_publication }}
+      </div>
+      <div class="pc-teaser__top__right">
+        {{ content.field_publication_date }}
+        {{ content.field_country }}
+      </div>
+    </div>
+    <div class="pc-teaser__title">{{ label }}</div>
+    <div class="pc-teaser__links">
+      {% if download_link %}
+        <a class="download-link" download href="{{ download_link }}">{{ "Download article" | t }}</a>
+      {% endif %}
 
-    {% if not node.field_external_url.isEmpty %}
-      <a class="copy-link" target="_blank" href="{{ node.field_external_url.uri }}">{{ "Go to link" | t }}</a>
-    {% endif %}
+      {% if not node.field_external_url.isEmpty %}
+        <a class="copy-link" target="_blank" href="{{ node.field_external_url.uri }}">{{ "Go to link" | t }}</a>
+      {% endif %}
+    </div>
   </div>
 </div>

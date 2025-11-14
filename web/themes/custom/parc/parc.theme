@@ -1067,17 +1067,19 @@ function parc_preprocess_block__block_content__listing_expand(array &$variables)
  */
 function parc_preprocess_node__press_release__teaser(array &$variables) {
   $node = $variables['node'];
-  $media_document = $node->get('field_media_document')->entity;
-  if (!$media_document instanceof MediaInterface) {
-    return;
-  }
+  $media_document = $node?->get('field_media_document')?->entity;
+  $file = $media_document?->get('field_media_document')?->entity;
+  $variables['download_link'] = $file?->createFileUrl();
+}
 
-  $file = $media_document->get('field_media_document')->entity;
-  if (!$file instanceof FileInterface) {
-    return;
-  }
-
-  $variables['download_link'] = $file->createFileUrl();
+/**
+ * Implements hook_preprocess_HOOK() for node__press_clipping__teaser.
+ */
+function parc_preprocess_node__press_clipping__teaser(array &$variables) {
+  $node = $variables['node'];
+  $media_document = $node?->get('field_media_document')?->entity;
+  $file = $media_document?->get('field_media_document')?->entity;
+  $variables['download_link'] = $file?->createFileUrl();
 }
 
 /**
@@ -1099,7 +1101,7 @@ function parc_preprocess_block__block_content__call_to_action(array &$variables)
  * Implements hook_preprocess_HOOK() for views_view_unformatted__press_clippings__featured().
  */
 function parc_preprocess_views_view_unformatted__press_clippings__featured(array &$variables) {
-  // Find the first main article, move it to a separate section.
+  // Find the first main article, move it to a separate section.s
   foreach ($variables['rows'] as $idx => $row) {
     $node = $row['content']['#node'];
     if (!$node instanceof NodeInterface

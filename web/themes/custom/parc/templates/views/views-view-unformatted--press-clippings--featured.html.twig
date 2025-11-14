@@ -2,16 +2,20 @@
   <div class="featured-pc">{{ main_item }}</div>
 {% endif %}
 
+{%
+  set row_classes = [
+    default_row_class ? 'views-row',
+  ]
+%}
+
 <div class="all-pc">
-  {% for row in rows %}
-    {%
-      set row_classes = [
-      default_row_class ? 'views-row',
-      'clearfix',
-    ]
-    %}
-    <div{{ row.attributes.addClass(row_classes) }}>
-      {{- row.content -}}
+  {% for group in rows|batch(3) %}
+    <div class="row-wrapper">
+      {% for row in group %}
+        <div{{ row.attributes.addClass(row_classes) }}>
+          {{ row.content }}
+        </div>
+      {% endfor %}
     </div>
   {% endfor %}
 </div>
