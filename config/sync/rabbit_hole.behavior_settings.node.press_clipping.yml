@@ -1,0 +1,16 @@
+uuid: aa467102-37e8-48b4-8503-c9ef5aa8c511
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.press_clipping
+id: node.press_clipping
+targetEntityType: node
+bundle: press_clipping
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /press-clippings
+  redirect_code: 301
+  redirect_fallback_action: access_denied

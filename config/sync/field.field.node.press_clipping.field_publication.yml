@@ -1,0 +1,19 @@
+uuid: 7ca41ef7-ec6a-4857-88d8-1cf8d6ca1f3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_publication
+    - node.type.press_clipping
+id: node.press_clipping.field_publication
+field_name: field_publication
+entity_type: node
+bundle: press_clipping
+label: Publication
+description: 'Name of the publication where the article was published (e.g. The Guardian)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
