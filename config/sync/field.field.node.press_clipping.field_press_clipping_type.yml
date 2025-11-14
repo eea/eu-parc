@@ -1,0 +1,21 @@
+uuid: 94e34f79-4728-4ec6-8551-99f9ee5e0d3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_press_clipping_type
+    - node.type.press_clipping
+  module:
+    - options
+id: node.press_clipping.field_press_clipping_type
+field_name: field_press_clipping_type
+entity_type: node
+bundle: press_clipping
+label: 'Media type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

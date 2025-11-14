@@ -1,0 +1,21 @@
+uuid: 79714b72-4e24-4112-bd4d-283b8455f9cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_press_clipping_featured
+    - node.type.press_clipping
+  module:
+    - options
+id: node.press_clipping.field_press_clipping_featured
+field_name: field_press_clipping_featured
+entity_type: node
+bundle: press_clipping
+label: Featured
+description: 'The most recent main articles appears at the top of the list, above all other featured or main articles.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -59,6 +59,7 @@
         "drupal/facets_custom_order": "^1.0",
         "drupal/field_group": "^3.4",
         "drupal/filter_external_link_icon": "^1.0.4",
+        "drupal/focal_point": "^2.1",
         "drupal/geocoder": "^3.20 || ^4.0",
         "drupal/geofield": "^1.52",
         "drupal/geolocation": "^3.12",

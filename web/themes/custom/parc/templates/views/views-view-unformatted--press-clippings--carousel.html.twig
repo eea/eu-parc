@@ -1,0 +1,5 @@
+{% embed 'parc:carousel' with {
+  arrows: true,
+  slides: rows|map(row => row.content),
+} %}
+{% endembed %}

@@ -1,0 +1,16 @@
+uuid: 084bd882-1dc7-4f1d-95db-404f87dfbb0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.press_release
+id: node.press_release
+targetEntityType: node
+bundle: press_release
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /press-room
+  redirect_code: 301
+  redirect_fallback_action: access_denied

@@ -1,0 +1,29 @@
+uuid: 50da85ab-615f-4431-98e2-3d401e7ec2cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - node.type.press_clipping
+    - taxonomy.vocabulary.countries
+id: node.press_clipping.field_country
+field_name: field_country
+entity_type: node
+bundle: press_clipping
+label: Country
+description: 'The country where there article was published'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      countries: countries
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

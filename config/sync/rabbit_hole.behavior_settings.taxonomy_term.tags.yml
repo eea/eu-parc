@@ -1,0 +1,13 @@
+uuid: c6d62947-013f-4f60-b619-71d1c03c0dfa
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.tags
+id: taxonomy_term.tags
+targetEntityType: taxonomy_term
+bundle: tags
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

@@ -1,0 +1,13 @@
+uuid: 8ca2e93c-d6d3-4b82-ad23-8ea1279db5cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.publications
+id: taxonomy_term.publications
+targetEntityType: taxonomy_term
+bundle: publications
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

@@ -1,0 +1,27 @@
+uuid: 5f4dc426-a363-4f9a-a55c-5e22c72f4af2
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - options
+id: block_content.field_listing_type
+field_name: field_listing_type
+entity_type: block_content
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: press_releases
+      label: 'Press releases'
+    -
+      value: media_assets
+      label: 'Media assets'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

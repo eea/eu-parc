@@ -1,0 +1,16 @@
+uuid: 797f7833-3923-4ef4-a928-b566069b4fc1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.deliverables
+id: node.deliverables
+targetEntityType: node
+bundle: deliverables
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /deliverables
+  redirect_code: 301
+  redirect_fallback_action: access_denied

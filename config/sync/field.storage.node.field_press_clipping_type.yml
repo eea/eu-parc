@@ -1,0 +1,30 @@
+uuid: 20bc8a42-8813-4ab6-9775-9b444f1225cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_press_clipping_type
+field_name: field_press_clipping_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: broadcasting_media
+      label: 'Broadcasting media'
+    -
+      value: digital_media
+      label: 'Digital media'
+    -
+      value: print_media
+      label: 'Print media'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

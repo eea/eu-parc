@@ -16,14 +16,12 @@ dependencies:
     - field.field.node.institution.field_original_abbreviation
     - field.field.node.institution.field_original_name
     - field.field.node.institution.field_website
-    - field.field.node.institution.rabbit_hole__settings
     - node.type.institution
   module:
     - geolocation
     - link
     - media_library
     - path
-    - rabbit_hole
     - select2
     - text
 id: node.institution.default
@@ -152,13 +150,6 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  rabbit_hole__settings:
-    type: rabbit_hole_default
-    weight: 100
-    region: content
-    settings:
-      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 3

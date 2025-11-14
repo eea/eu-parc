@@ -1,0 +1,13 @@
+uuid: dafd6f10-b019-42ed-8215-014eee992eca
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.seo_keywords
+id: taxonomy_term.seo_keywords
+targetEntityType: taxonomy_term
+bundle: seo_keywords
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

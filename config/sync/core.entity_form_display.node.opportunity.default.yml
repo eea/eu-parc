@@ -9,12 +9,10 @@ dependencies:
     - field.field.node.opportunity.field_deadline
     - field.field.node.opportunity.field_institute_name
     - field.field.node.opportunity.field_position_category
-    - field.field.node.opportunity.rabbit_hole__settings
     - node.type.opportunity
   module:
     - datetime
     - path
-    - rabbit_hole
     - select2
     - text
 id: node.opportunity.default
@@ -90,13 +88,6 @@ content:
     region: content
     settings:
       display_label: true
-    third_party_settings: {  }
-  rabbit_hole__settings:
-    type: rabbit_hole_default
-    weight: 100
-    region: content
-    settings:
-      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 5

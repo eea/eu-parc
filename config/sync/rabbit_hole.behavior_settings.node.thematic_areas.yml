@@ -1,0 +1,16 @@
+uuid: 57cc650a-4af0-4d94-bb84-c18e2c7edb3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.thematic_areas
+id: node.thematic_areas
+targetEntityType: node
+bundle: thematic_areas
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /thematic-areas/building-infrastructure-and-human-capacities/trainings
+  redirect_code: 301
+  redirect_fallback_action: access_denied

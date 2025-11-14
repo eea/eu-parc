@@ -24,6 +24,7 @@ module:
   config: 0
   contact: 0
   contextual: 0
+  crop: 0
   ctools: 0
   datetime: 0
   datetime_range: 0
@@ -42,6 +43,7 @@ module:
   file: 0
   filter: 0
   filter_external_link_icon: 0
+  focal_point: 0
   geocoder: 0
   geocoder_address: 0
   geocoder_field: 0

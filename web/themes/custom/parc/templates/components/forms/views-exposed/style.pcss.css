@@ -69,11 +69,15 @@
 
   summary {
     list-style: none;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: var(--fw-medium);
     position: relative;
     z-index: 2;
     line-height: 33px;
+
+    @media (--downLg) {
+      font-size: 18px;
+    }
 
     &:hover {
       text-decoration: underline;
