@@ -29,11 +29,28 @@
     display: flex;
     flex-wrap: nowrap;
     margin-bottom: 15px;
+    gap: 15px;
 
     &__domain {
       font-size: 14px;
-      font-weight: bold;
       line-height: 14px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      span {
+        font-weight: bold;
+      }
+
+      &.multiple {
+        span {
+          + span {
+            &:before {
+              content: ' / ';
+            }
+          }
+        }
+      }
     }
 
     &__date {
@@ -170,11 +187,11 @@
   gap: 15px;
 
   @media (--lg) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @media (--xl) {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

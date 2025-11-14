@@ -1,11 +1,17 @@
 {{ attach_library('parc_interactive_map/map_style') }}
 {{ attach_library('parc/n--learning-material') }}
+{{ attach_library('edwt/tooltip') }}
+{{ attach_library('parc/tooltip') }}
 
 <div class="learning-material" style="--bg-color: {{ bg_color }}; --icon-color: {{ icon_color }}; --text-color: {{ text_color }}" id="material-{{ node.id() }}">
   <a href="{{ content.field_external_url[0]['#url'] }}">
     <div class="learning-material__top">
-      <div class="learning-material__top__domain">
-        {{ content.field_domains_of_interest[0]}}
+      <div class="learning-material__top__domain {% if domains_count <= 2 %}multiple{% endif %}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ domains_tooltip }}">
+        {% if domains_count <= 2 %}
+          {{ content.field_domains_of_interest }}
+        {% else %}
+          <span>{{ content.field_domains_of_interest[0] }}</span> and <span>{{ domains_count - 1 }} others</span>
+        {% endif %}
       </div>
       <div class="learning-material__top__date">
         {{ content.field_d_date }}

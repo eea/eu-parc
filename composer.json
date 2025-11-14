@@ -215,6 +215,9 @@
             },
             "drupal/edwt": {
                 "Fix collapse firing twice after ajax load": "patches/edwt/fix-collapse.patch"
+            },
+            "drupal/extlink": {
+                "#3523382 - configure extlink title": "patches/extlink/3523382.patch"
             }
         },
         "drupal-lenient" : {
