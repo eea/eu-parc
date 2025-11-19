@@ -60,7 +60,7 @@
   .download-link {
     &:after {
       content: '';
-      background-image: url("../../../../img/link.svg");
+      background-image: url("../../../../img/link-2.svg");
 
       width: 12px;
       height: 12px;
@@ -235,7 +235,7 @@
   .download-link {
     &:after {
       content: '';
-      background-image: url("../../../../img/link.svg");
+      background-image: url("../../../../img/link-2.svg");
 
       width: 12px;
       height: 12px;

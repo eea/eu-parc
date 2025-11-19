@@ -7,6 +7,20 @@
   min-height: 160px;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
+
+  &.has-full-link {
+    padding: 0;
+
+    > .full-link {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      padding: 30px;
+    }
+  }
 
   &__visible {
     height: 100%;

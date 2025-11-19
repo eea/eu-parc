@@ -1104,7 +1104,11 @@ function parc_preprocess_block__block_content__call_to_action(array &$variables)
   $variables['has_image'] = !$block->get('field_media_image')->isEmpty();
   $variables['has_subtitle'] = !$block->get('field_subtitle')->isEmpty();
   $variables['has_text'] = !$block->get('body')->isEmpty();
-  $variables['has_link'] = !$block->get('field_link')->isEmpty();
+
+  $variables['link'] = !empty($block->get('field_link')->uri)
+    ? Url::fromUri($block->get('field_link')->uri)->toString()
+    : NULL;
+  $variables['link_text'] = $block->get('field_link')->title;
 }
 
 /**

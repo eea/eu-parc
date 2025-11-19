@@ -37,6 +37,8 @@
 
   &__main {
     width: 100%;
+    display: flex;
+    flex-direction: column;
 
     &__heading {
       text-transform: uppercase;
@@ -87,6 +89,8 @@
       display: flex;
       gap: 15px;
       justify-content: flex-end;
+      margin-top: auto;
+      font-weight: 700;
 
       @media (--lg) {
         visibility: hidden;
@@ -111,9 +115,12 @@
 
   .copy-link,
   .download-link {
+    align-items: flex-end;
+
     &:after {
       content: '';
-      background-image: url("../../../../img/link.svg");
+      background-image: url("../../../../img/link-2.svg");
+      margin-bottom: 8px;
 
       width: 12px;
       height: 12px;
@@ -128,14 +135,15 @@
 
   .download-link {
     &:after {
-      background-image: url("../../../../img/download.svg");
+      background-image: url("../../../../img/download-2.svg");
+      margin-bottom: 5px;
     }
   }
 }
 
 .view-press-releases {
   .views-row:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .views-row {
