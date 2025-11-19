@@ -962,7 +962,11 @@ function parc_preprocess_node__learning_material__card_item(array &$variables) {
 
     $domains[] = $domain;
   }
-  $variables['domains_tooltip'] = implode(', ', $domains);
+
+  if (count($domains) > 2) {
+    array_shift($domains);
+    $variables['domains_tooltip'] = implode(', ', $domains);
+  }
 }
 
 /**
