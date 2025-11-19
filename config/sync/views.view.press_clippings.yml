@@ -430,6 +430,7 @@ display:
           relationship: none
           view_mode: teaser
       defaults:
+        pager: true
         exposed_form: false
         style: false
         row: false

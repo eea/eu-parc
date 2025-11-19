@@ -1083,6 +1083,16 @@ function parc_preprocess_node__press_clipping__teaser(array &$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for node__press_clipping__compact.
+ */
+function parc_preprocess_node__press_clipping__compact(array &$variables) {
+  $node = $variables['node'];
+  $media_document = $node?->get('field_media_document')?->entity;
+  $file = $media_document?->get('field_media_document')?->entity;
+  $variables['download_link'] = $file?->createFileUrl();
+}
+
+/**
  * Implements hook_preprocess_HOOK() for block__block_content__call_to_action().
  */
 function parc_preprocess_block__block_content__call_to_action(array &$variables) {
