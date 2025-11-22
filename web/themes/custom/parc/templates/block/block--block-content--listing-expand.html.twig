@@ -15,11 +15,10 @@
   'block-' ~ plugin_id|clean_class,
   'listing-expand',
   'listing-expand--' ~ style,
-  'js-expand',
 ]
 %}
 
-<div {{attributes.addClass(classes)}} data-expand-target="listing-expand-{{ id }}" style="--main-color: {{ main_color }}; --text-color: {{ text_color }}">
+<div {{attributes.addClass(classes)}} style="--main-color: {{ main_color }}; --text-color: {{ text_color }}">
   {{ title_prefix }}
   {% if label %}
     <h2{{title_attributes.addClass('block--title')}}>
@@ -28,7 +27,7 @@
   {% endif %}
   {{ title_suffix }}
 
-  <div class="listing-expand__visible">
+  <div class="listing-expand__visible js-expand expand-toggle-parent" data-expand-target="listing-expand-{{ id }}">
     <div class="listing-expand__image">{{ content.field_media_image }}</div>
     <div class="listing-expand__main">
       {% if last_update or count %}

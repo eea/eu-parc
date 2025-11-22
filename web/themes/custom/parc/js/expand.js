@@ -16,6 +16,10 @@
 
           const targets = context.querySelectorAll(`[data-expand="${targetValue}"]`);
           el.classList.toggle('expand');
+          if (el.classList.contains('expand-toggle-parent')) {
+            el.parentElement.classList.toggle('expand');
+          }
+
           if (targets.length) {
             targets.forEach(function (target) {
               target.classList.toggle('expand');
