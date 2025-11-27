@@ -305,7 +305,7 @@
 
 @media (min-width: 1200px) {
   .projects-chart {
-    display: block;
+    display: flex;
   }
 
   .projects-mobile {

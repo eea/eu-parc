@@ -73,18 +73,13 @@ class ParcProjectsMobileBlock extends BlockBase implements ContainerFactoryPlugi
     /** @var \Drupal\node\NodeInterface[] $projects */
     $projects = $node_storage->loadMultiple($nids);
 
-    $view_builder = $this->entityTypeManager->getViewBuilder('node');
-
     foreach ($projects as $project) {
-      $render = $view_builder->view($project, 'teaser');
-
       /** @var \Drupal\taxonomy\TermInterface $topic */
       foreach ($project->get('field_project_topics')->referencedEntities() as $topic) {
         $projects_by_topic[$topic->id()]['label'] = $topic->label();
         $projects_by_topic[$topic->id()]['id'] = $topic->id();
         $projects_by_topic[$topic->id()]['color'] = $topic->get('field_color')->color;
         $projects_by_topic[$topic->id()]['projects'][] = [
-          'render' => $render,
           'id' => $project->id(),
           'label' => $project->label(),
         ];
@@ -96,7 +91,6 @@ class ParcProjectsMobileBlock extends BlockBase implements ContainerFactoryPlugi
         $projects_by_keyword[$keyword->id()]['id'] = $keyword->id();
         $projects_by_keyword[$keyword->id()]['color'] = $keyword->get('field_color')->color;
         $projects_by_keyword[$keyword->id()]['projects'][] = [
-          'render' => $render,
           'id' => $project->id(),
           'label' => $project->label(),
         ];
@@ -107,6 +101,11 @@ class ParcProjectsMobileBlock extends BlockBase implements ContainerFactoryPlugi
       '#theme' => 'parc_projects_mobile',
       '#projects_by_topic' => $projects_by_topic,
       '#projects_by_keyword' => $projects_by_keyword,
+      '#attached' => [
+        'library' => [
+          'parc_core/projects_mobile',
+        ],
+      ],
     ];
   }
 

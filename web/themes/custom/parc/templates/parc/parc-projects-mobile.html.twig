@@ -29,8 +29,7 @@
             <div class="projects-mobile__project" type="button" data-bs-toggle="collapse" data-bs-target="#topic-project-{{ project.id }}" aria-expanded="false" aria-controls="topic-project-{{ project.id }}">
               <div class="projects-mobile__project__label">{{ project.label }}</div>
 
-              <div class="projects-mobile__project__expanded collapse" id="topic-project-{{ project.id }}">
-                {{ project.render }}
+              <div class="projects-mobile__project__expanded collapse" id="topic-project-{{ project.id }}" data-project-id="{{ project.id }}">
               </div>
             </div>
           {% endfor %}
@@ -60,8 +59,7 @@
             <div class="projects-mobile__project" type="button" data-bs-toggle="collapse" data-bs-target="#topic-project-{{ project.id }}" aria-expanded="false" aria-controls="topic-project-{{ project.id }}">
               <div class="projects-mobile__project__label">{{ project.label }}</div>
 
-              <div class="projects-mobile__project__expanded collapse" id="topic-project-{{ project.id }}">
-                {{ project.render }}
+              <div class="projects-mobile__project__expanded collapse" id="topic-project-{{ project.id }}" data-project-id="{{ project.id }}">
               </div>
             </div>
           {% endfor %}
