@@ -558,3 +558,8 @@ survey:
     - core/jquery
     - core/once
     - core/drupal
+
+projects:
+  css:
+    component:
+      css/components/parc/projects.css: {}
