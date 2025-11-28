@@ -30,11 +30,9 @@
   width: 20%;
   font-weight: bold;
   font-size: 18px;
-  gap: 20px;
 }
 
 .projects-chart .left-col {
-  gap: 220px;
 }
 
 .projects-chart .middle-col {
@@ -61,6 +59,8 @@
   padding-right: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .projects-chart .project-title {
@@ -114,6 +114,8 @@
   padding-left: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .projects-chart .project-keyword::before {
@@ -311,4 +313,8 @@
   .projects-mobile {
     display: none;
   }
+}
+
+.projects-chart {
+  padding: 20px 0;
 }

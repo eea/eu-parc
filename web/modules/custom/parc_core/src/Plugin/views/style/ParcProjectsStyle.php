@@ -185,11 +185,13 @@ class ParcProjectsStyle extends StylePluginBase {
       foreach ($projects_list as &$p) {
         $p['percentage'] = 100 / $total_projects;
       }
+      $sum = array_sum(array_column($topics, 'count'));
       foreach ($topics as &$topic) {
-        $topic['percentage'] = $topic['count'] / $total_projects * 100;
+        $topic['percentage'] = $topic['count'] / $sum * 100 * 0.9;
       }
+      $sum = array_sum(array_column($keywords, 'count'));
       foreach ($keywords as &$keyword) {
-        $keyword['percentage'] = $keyword['count'] / $total_projects * 100;
+        $keyword['percentage'] = $keyword['count'] / $sum * 100 * 0.9;
       }
     }
 
