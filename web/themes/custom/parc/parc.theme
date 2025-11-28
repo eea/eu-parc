@@ -205,6 +205,9 @@ function parc_theme($existing, $type, $theme, $path) {
     'views_exposed_form__news_events__page_news' => [
       'render element' => 'form',
     ],
+    'views_exposed_form__projects__block_1' => [
+      'render element' => 'form',
+    ],
   ];
 }
 

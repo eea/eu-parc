@@ -10,6 +10,8 @@
 
       $(context).find("details[data-drupal-selector='edit-category-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-deliverable-type-collapsible'] .bef-checkboxes input" +
+        ",details[data-drupal-selector='edit-topics-collapsible'] .bef-checkboxes input" +
+        ",details[data-drupal-selector='edit-keywords-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-training-topic-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;
         var labelClass = label.toLowerCase().replace(" ", "-");

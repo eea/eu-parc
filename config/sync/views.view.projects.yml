@@ -345,7 +345,7 @@ display:
           admin_label: 'field_topics: Taxonomy term'
           plugin_id: standard
           required: false
-      use_ajax: true
+      use_ajax: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -367,6 +367,7 @@ display:
       display_extenders:
         ajax_history:
           enable_history: false
+          exclude_args: ''
         simple_sitemap_display_extender: {  }
         metatag_display_extender:
           metatags: {  }

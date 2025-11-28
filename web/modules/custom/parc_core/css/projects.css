@@ -318,3 +318,28 @@
 .projects-chart {
   padding: 20px 0;
 }
+
+.projects-filters__filters {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.projects-filters__filters > :nth-child(1) {
+  width: 550px;
+}
+
+.projects-filters__filters > :nth-child(2) {
+  width: auto;
+  margin-right: 30%;
+}
+
+.projects-filters__label {
+  white-space: nowrap;
+}
+
+.projects-filters__top {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 18px;
+}
