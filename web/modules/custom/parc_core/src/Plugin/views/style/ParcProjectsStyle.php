@@ -5,6 +5,7 @@ namespace Drupal\parc_core\Plugin\views\style;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\Core\Annotation\Translation;
 use Drupal\views\Annotation\ViewsStyle;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Style plugin to render projects as a chart/list.
@@ -30,6 +31,22 @@ class ParcProjectsStyle extends StylePluginBase {
   protected $usesFields = FALSE;
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    $instance = parent::create($container, $configuration, $plugin_id, $plugin_definition);
+    $instance->entityTypeManager = $container->get('entity_type.manager');
+    return $instance;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function render() {
@@ -38,9 +55,6 @@ class ParcProjectsStyle extends StylePluginBase {
     $keywords = [];
     $projects_list = [];
     $relations = [];
-
-    $projects_by_topic = [];
-    $projects_by_keyword = [];
 
     $results = $this->view->result;
 
@@ -102,15 +116,6 @@ class ParcProjectsStyle extends StylePluginBase {
             }
             $topics[$topic->id()]['count']++;
             $topics[$topic->id()]['projects'][] = $project->id();
-
-            // Mobile data
-            $projects_by_topic[$topic->id()]['label'] = $topic->label();
-            $projects_by_topic[$topic->id()]['id'] = $topic->id();
-            $projects_by_topic[$topic->id()]['color'] = $topic->get('field_color')->color;
-            $projects_by_topic[$topic->id()]['projects'][] = [
-              'id' => $project->id(),
-              'label' => $project->label(),
-            ];
           }
         }
       }
@@ -132,15 +137,6 @@ class ParcProjectsStyle extends StylePluginBase {
             }
             $keywords[$keyword->id()]['count']++;
             $keywords[$keyword->id()]['projects'][] = $project->id();
-
-            // Mobile data
-            $projects_by_keyword[$keyword->id()]['label'] = $keyword->label();
-            $projects_by_keyword[$keyword->id()]['id'] = $keyword->id();
-            $projects_by_keyword[$keyword->id()]['color'] = $keyword->get('field_color')->color;
-            $projects_by_keyword[$keyword->id()]['projects'][] = [
-              'id' => $project->id(),
-              'label' => $project->label(),
-            ];
           }
         }
       }
@@ -195,14 +191,6 @@ class ParcProjectsStyle extends StylePluginBase {
       }
     }
 
-    // Sort for mobile
-    uasort($projects_by_topic, function ($a, $b) {
-      return strnatcasecmp($a['label'], $b['label']);
-    });
-    uasort($projects_by_keyword, function ($a, $b) {
-      return strnatcasecmp($a['label'], $b['label']);
-    });
-
     return [
       'desktop' => [
         '#attached' => [
@@ -214,7 +202,7 @@ class ParcProjectsStyle extends StylePluginBase {
               'relations' => $relations,
               'topics' => $topics,
               'keywords' => $keywords,
-              'projects_list' => $projects_list
+              'projects_list' => $projects_list,
             ],
           ],
         ],
@@ -223,14 +211,62 @@ class ParcProjectsStyle extends StylePluginBase {
         '#keywords' => $keywords,
         '#projects' => $projects_list,
       ],
-      'mobile' => [
-        '#theme' => 'parc_projects_mobile',
-        '#projects_by_topic' => $projects_by_topic,
-        '#projects_by_keyword' => $projects_by_keyword,
-        '#attached' => [
-          'library' => [
-            'parc_core/projects_mobile',
-          ],
+      'mobile' => $this->getMobileRender(),
+    ];
+  }
+
+  /**
+   * Get the mobile render.
+   *
+   * @return array
+   *   The render.
+   */
+  protected function getMobileRender() {
+    $projects_by_topic = [];
+    $projects_by_keyword = [];
+
+    $node_storage = $this->entityTypeManager->getStorage('node');
+    $query = $node_storage->getQuery()
+      ->accessCheck()
+      ->condition('type', 'project')
+      ->condition('status', 1)
+      ->sort('title');
+
+    $nids = $query->execute();
+    /** @var \Drupal\node\NodeInterface[] $projects */
+    $projects = $node_storage->loadMultiple($nids);
+
+    foreach ($projects as $project) {
+      /** @var \Drupal\taxonomy\TermInterface $topic */
+      foreach ($project->get('field_project_topics')->referencedEntities() as $topic) {
+        $projects_by_topic[$topic->id()]['label'] = $topic->label();
+        $projects_by_topic[$topic->id()]['id'] = $topic->id();
+        $projects_by_topic[$topic->id()]['color'] = $topic->get('field_color')->color;
+        $projects_by_topic[$topic->id()]['projects'][] = [
+          'id' => $project->id(),
+          'label' => $project->label(),
+        ];
+      }
+
+      /** @var \Drupal\taxonomy\TermInterface $keyword */
+      foreach ($project->get('field_project_keywords')->referencedEntities() as $keyword) {
+        $projects_by_keyword[$keyword->id()]['label'] = $keyword->label();
+        $projects_by_keyword[$keyword->id()]['id'] = $keyword->id();
+        $projects_by_keyword[$keyword->id()]['color'] = $keyword->get('field_color')->color;
+        $projects_by_keyword[$keyword->id()]['projects'][] = [
+          'id' => $project->id(),
+          'label' => $project->label(),
+        ];
+      }
+    }
+
+    return [
+      '#theme' => 'parc_projects_mobile',
+      '#projects_by_topic' => $projects_by_topic,
+      '#projects_by_keyword' => $projects_by_keyword,
+      '#attached' => [
+        'library' => [
+          'parc_core/projects_mobile',
         ],
       ],
     ];
