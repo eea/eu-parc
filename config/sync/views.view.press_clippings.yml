@@ -12,6 +12,7 @@ dependencies:
     - node
     - options
     - user
+    - views_infinite_scroll
 id: press_clippings
 label: 'Press clippings'
 module: views
@@ -256,6 +257,32 @@ display:
     display_plugin: block
     position: 2
     display_options:
+      pager:
+        type: infinite_scroll
+        options:
+          offset: 0
+          pagination_heading_level: h4
+          items_per_page: 10
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          views_infinite_scroll:
+            button_text: 'Load More'
+            automatically_load_content: true
+            initially_load_all_pages: false
+          pagecontrol: true
+          items_first_page: 10
+          items_other_page: 9
       exposed_form:
         type: bef
         options:
@@ -430,7 +457,7 @@ display:
           relationship: none
           view_mode: teaser
       defaults:
-        pager: true
+        pager: false
         exposed_form: false
         style: false
         row: false
@@ -451,6 +478,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
         - 'user.node_grants:view'

@@ -1115,7 +1115,15 @@ function parc_preprocess_block__block_content__call_to_action(array &$variables)
  * Implements hook_preprocess_HOOK() for views_view_unformatted__press_clippings__featured().
  */
 function parc_preprocess_views_view_unformatted__press_clippings__featured(array &$variables) {
-  // Find the first main article, move it to a separate section.s
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+
+  // Only apply this logic on the first page.
+  if (!empty($view->query->offset)) {
+    return;
+  }
+
+  // Find the first main article, move it to a separate section.
   foreach ($variables['rows'] as $idx => $row) {
     $node = $row['content']['#node'];
     if (!$node instanceof NodeInterface
