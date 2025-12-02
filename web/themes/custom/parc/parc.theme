@@ -18,6 +18,7 @@ use Drupal\block_content\Entity\BlockContent;
 use Drupal\media\MediaInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -203,6 +204,9 @@ function parc_theme($existing, $type, $theme, $path) {
       'render element' => 'form',
     ],
     'views_exposed_form__news_events__page_news' => [
+      'render element' => 'form',
+    ],
+    'views_exposed_form__projects__block_1' => [
       'render element' => 'form',
     ],
     'views_exposed_form__press_clippings__carousel' => [
@@ -670,6 +674,9 @@ function parc_preprocess_node__project(array &$variables) {
   $plugin_block = $block_manager->createInstance('parc_projects', []);
   $variables['projects_block'] = $plugin_block->build();
 
+  $teaser = \Drupal::entityTypeManager()->getViewBuilder('node')->view($node, 'teaser');
+  $variables['teaser'] = $teaser;
+
   $plugin_block = $block_manager->createInstance('parc_project_title', []);
   $variables['project_title'] = $plugin_block->build();
 }
@@ -956,6 +963,22 @@ function parc_preprocess_node__learning_material__card_item(array &$variables) {
     if (file_exists($icon_path)) {
       $variables['icon'] = $icon_path;
     }
+  }
+
+  $variables['domains_count'] = $node->get('field_domains_of_interest')->count();
+  $domains = [];
+  foreach (Element::children($variables['elements']['field_domains_of_interest']) as $key) {
+    $domain = trim($variables['elements']['field_domains_of_interest'][$key]['#plain_text'] ?? '');
+    if (empty($domain)) {
+      continue;
+    }
+
+    $domains[] = $domain;
+  }
+
+  if (count($domains) > 2) {
+    array_shift($domains);
+    $variables['domains_tooltip'] = implode(', ', $domains);
   }
 }
 

@@ -95,3 +95,12 @@ events_table:
 lab_map:
   js:
     js/lab-map.js: {}
+
+projects_mobile:
+  js:
+    js/projects-mobile.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
+    - core/drupal.ajax

@@ -559,6 +559,11 @@ survey:
     - core/once
     - core/drupal
 
+projects:
+  css:
+    component:
+      css/components/parc/projects.css: {}
+
 b--listing-expand:
   css:
     component:

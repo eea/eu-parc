@@ -217,6 +217,9 @@
             "drupal/edwt": {
                 "Fix collapse firing twice after ajax load": "patches/edwt/fix-collapse.patch"
             },
+            "drupal/extlink": {
+                "#3523382 - configure extlink title": "patches/extlink/3523382.patch"
+            },
             "drupal/views_infinite_scroll": {
                 "#2852080 - Different item count for 1st and other pages": "https://www.drupal.org/files/issues/2025-09-17/Add-Page-Control-2852080-%2378.patch"
             }

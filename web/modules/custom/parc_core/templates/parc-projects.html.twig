@@ -10,9 +10,6 @@
     {% endfor %}
   </svg>
   <div class="left-col">
-    <div class="col-title">
-      {{ "Topics" | t }}
-    </div>
     {% for id, topic in topics %}
       <div data-topic="{{ id }}" class="project-topic" style="height: {{ topic.percentage }}%;">
         <span class="projects-hoverable">
@@ -22,9 +19,6 @@
     {% endfor %}
   </div>
   <div class="middle-col">
-    <div class="col-title">
-      {{ "PARC Projects" | t }}
-    </div>
     {% for project in projects %}
       <div data-project="{{ project.id }}" class="project-title">
         <span class="projects-hoverable">
@@ -38,9 +32,6 @@
     {% endfor %}
   </div>
   <div class="right-col">
-    <div class="col-title">
-      {{ "Keywords" | t }}
-    </div>
     {% for id, keyword in keywords %}
       <div data-keyword="{{ id }}" class="project-keyword" style="height: {{ keyword.percentage }}%;">
         <span class="projects-hoverable">
