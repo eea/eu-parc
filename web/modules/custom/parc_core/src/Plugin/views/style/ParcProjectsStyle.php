@@ -245,6 +245,7 @@ class ParcProjectsStyle extends StylePluginBase {
         $projects_by_topic[$topic->id()]['projects'][] = [
           'id' => $project->id(),
           'label' => $project->label(),
+          'show_link' => $project->get('field_show_link')->value,
         ];
       }
 
@@ -256,6 +257,7 @@ class ParcProjectsStyle extends StylePluginBase {
         $projects_by_keyword[$keyword->id()]['projects'][] = [
           'id' => $project->id(),
           'label' => $project->label(),
+          'show_link' => $project->get('field_show_link')->value,
         ];
       }
     }

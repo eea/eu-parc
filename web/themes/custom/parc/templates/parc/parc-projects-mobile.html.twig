@@ -26,8 +26,8 @@
 
         <div class="collapse" id="topic-{{ topic.id }}">
           {% for project in topic.projects %}
-            <div class="projects-mobile__project" type="button" data-bs-toggle="collapse" data-bs-target="#topic-project-{{ project.id }}" aria-expanded="false" aria-controls="topic-project-{{ project.id }}">
-              <div class="projects-mobile__project__label">{{ project.label }}</div>
+            <div class="projects-mobile__project" {% if project.show_link %}type="button" data-bs-toggle="collapse" data-bs-target="#topic-project-{{ project.id }}" aria-expanded="false" aria-controls="topic-project-{{ project.id }}"{% endif %}>
+              <div class="projects-mobile__project__label {% if project.show_link %}icon-expand{% endif %}">{{ project.label }}</div>
 
               <div class="projects-mobile__project__expanded collapse" id="topic-project-{{ project.id }}" data-project-id="{{ project.id }}">
               </div>

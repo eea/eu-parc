@@ -203,7 +203,7 @@
       align-items: center;
       gap: 10px;
 
-      &:after {
+      &.icon-expand:after {
         content: '';
         mask-image: url("../../../img/plus.svg");
         flex-grow: 0;
