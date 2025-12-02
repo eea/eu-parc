@@ -15,6 +15,8 @@ use Drupal\parc_core\ParcEventsManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
 
 /**
  * Controller for PARC routes.
@@ -61,13 +63,6 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
    *   The request stack.
    */
-  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager, RequestStack $request_stack, EntityTypeManagerInterface $entity_type_manager) {
-    $this->themeExtensionList = $theme_extension_list;
-    $this->eventsManager = $events_manager;
-    $this->request = $request_stack->getCurrentRequest();
-    $this->entityTypeManager = $entity_type_manager;
-  }
-
   /**
    * {@inheritdoc}
    */
@@ -76,8 +71,59 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
       $container->get('extension.list.theme'),
       $container->get('parc_core.events_manager'),
       $container->get('request_stack'),
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('renderer')
     );
+  }
+
+  /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
+   * Constructs a ParcController object.
+   *
+   * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
+   *   The theme extension list.
+   * @param \Drupal\parc_core\ParcEventsManager $events_manager
+   *   The event manager.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
+   */
+  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager, RequestStack $request_stack, EntityTypeManagerInterface $entity_type_manager, \Drupal\Core\Render\RendererInterface $renderer) {
+    $this->themeExtensionList = $theme_extension_list;
+    $this->eventsManager = $events_manager;
+    $this->request = $request_stack->getCurrentRequest();
+    $this->entityTypeManager = $entity_type_manager;
+    $this->renderer = $renderer;
+  }
+
+
+  /**
+   * Renders a node teaser.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node.
+   *
+   * @return \Drupal\Core\Ajax\AjaxResponse
+   *   The AJAX response.
+   */
+  public function renderNodeTeaser(NodeInterface $node) {
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+    $render = $view_builder->view($node, 'teaser');
+    
+    $response = new AjaxResponse();
+    $selector = '#topic-project-' . $node->id();
+    $response->addCommand(new HtmlCommand($selector, $render));
+
+    return $response;
   }
 
   /**

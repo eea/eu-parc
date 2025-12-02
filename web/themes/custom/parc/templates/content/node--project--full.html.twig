@@ -81,53 +81,90 @@
 {{ attach_library('parc/n--project-full') }}
 
 <div class="projects-page">
-  <div class="layout">
-    <div class="svg-title d-flex justify-content-center">
-      <h1>{{ "PARC Projects" | t }}</h1>
+  <div class="hidden-mobile">
+    <div class="layout">
+      <div class="svg-title d-flex justify-content-center">
+        <h1>{{ "PARC Projects" | t }}</h1>
+      </div>
     </div>
+
+    <article{{ attributes.addClass(classes) }} style="--project-color: {{ project_color }};">
+      <div class="layout">
+        <div class="container">
+          {{ project_title }}
+        </div>
+      </div>
+      <div class="bg-gray layout content-section">
+        <div class="container">
+          <div class="info">
+            {{ content.field_date_range }}
+            {{ content.field_project_potential_impacts }}
+            {{ content.field_partners }}
+            {{ content.field_project_contacts }}
+            {{ content.field_audio_file }}
+          </div>
+          <div class="content">
+            {% if node.field_slideshow_position.value == 'top' %}
+              {{ content.field_slideshow_items }}
+            {% endif %}
+            {{ content.body }}
+          </div>
+        </div>
+      </div>
+      {% if not node.field_slideshow_items.isEmpty and node.field_slideshow_position.value == 'bottom' %}
+        <div class="layout bg-gray content-section pt-0">
+          <div class="container full-slideshow">
+            {{ content.field_slideshow_items }}
+          </div>
+        </div>
+      {% endif %}
+      {% if not node.field_related_publications.isEmpty %}
+        <div class="layout container flex-direction-column pb-0">
+          <div class="svg-title py-0">
+            <h2>{{ "Related Publications" | t }}</h2>
+          </div>
+          {{ content.field_related_publications }}
+        </div>
+      {% endif %}
+      {% if not node.field_related_projects.isEmpty %}
+        <div class="layout container flex-direction-column pb-0">
+          <div class="svg-title py-0">
+            <h2>{{ "Related Projects" | t }}</h2>
+          </div>
+          <div class="related-projects">
+            {{ content.field_related_projects }}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if survey_form %}
+        {{ survey_form }}
+      {% endif %}
+
+      {% if projects_block %}
+        <div class="layout">
+          <div class="container justify-content-center">
+            {{ projects_block }}
+          </div>
+        </div>
+      {% endif %}
+    </article>
   </div>
 
-  <article{{ attributes.addClass(classes) }} style="--project-color: {{ project_color }};">
+  <div class="hidden-desktop pb-5" style="--project-color: {{ project_color }};">
     <div class="layout">
       <div class="container">
-        {{ project_title }}
+        <div class="svg-title d-flex justify-content-center">
+          <h1>{{ label }}</h1>
+        </div>
+
+        {{ teaser }}
       </div>
     </div>
-    <div class="bg-gray layout content-section">
-      <div class="container">
-        <div class="info">
-          {{ content.field_date_range }}
-          {{ content.field_project_potential_impacts }}
-          {{ content.field_partners }}
-          {{ content.field_project_contacts }}
-          {{ content.field_audio_file }}
-        </div>
-        <div class="content">
-          {% if node.field_slideshow_position.value == 'top' %}
-            {{ content.field_slideshow_items }}
-          {% endif %}
-          {{ content.body }}
-        </div>
-      </div>
-    </div>
-    {% if not node.field_slideshow_items.isEmpty and node.field_slideshow_position.value == 'bottom' %}
-      <div class="layout bg-gray content-section pt-0">
-        <div class="container full-slideshow">
-          {{ content.field_slideshow_items }}
-        </div>
-      </div>
-    {% endif %}
-    {% if not node.field_related_publications.isEmpty %}
-      <div class="layout container flex-direction-column pb-0">
-        <div class="svg-title py-0">
-          <h2>{{ "Related Publications" | t }}</h2>
-        </div>
-        {{ content.field_related_publications }}
-      </div>
-    {% endif %}
+
     {% if not node.field_related_projects.isEmpty %}
       <div class="layout container flex-direction-column pb-0">
-        <div class="svg-title py-0">
+        <div class="svg-title">
           <h2>{{ "Related Projects" | t }}</h2>
         </div>
         <div class="related-projects">
@@ -139,13 +176,5 @@
     {% if survey_form %}
       {{ survey_form }}
     {% endif %}
-
-    {% if projects_block %}
-      <div class="layout">
-        <div class="container justify-content-center">
-          {{ projects_block }}
-        </div>
-      </div>
-    {% endif %}
-  </article>
+  </div>
 </div>

@@ -1,72 +1,3 @@
-{#
-/**
- * @file
- * Theme override to display a node.
- *
- * Available variables:
- * - node: The node entity with limited access to object properties and methods.
- *   Only method names starting with "get", "has", or "is" and a few common
- *   methods such as "id", "label", and "bundle" are available. For example:
- *   - node.getCreatedTime() will return the node creation timestamp.
- *   - node.hasField('field_example') returns TRUE if the node bundle includes
- *     field_example. (This does not indicate the presence of a value in this
- *     field.)
- *   - node.isPublished() will return whether the node is published or not.
- *   Calling other methods, such as node.delete(), will result in an exception.
- *   See \Drupal\node\Entity\Node for a full list of public properties and
- *   methods for the node object.
- * - label: (optional) The title of the node.
- * - content: All node items. Use {{ content }} to print them all,
- *   or print a subset such as {{ content.field_example }}. Use
- *   {{ content|without('field_example') }} to temporarily suppress the printing
- *   of a given child element.
- * - author_picture: The node author user entity, rendered using the "compact"
- *   view mode.
- * - metadata: Metadata for this node.
- * - date: (optional) Themed creation date field.
- * - author_name: (optional) Themed author name field.
- * - url: Direct URL of the current node.
- * - display_submitted: Whether submission information should be displayed.
- * - attributes: HTML attributes for the containing element.
- *   The attributes.class element may contain one or more of the following
- *   classes:
- *   - node: The current template type (also known as a "theming hook").
- *   - node--type-[type]: The current node type. For example, if the node is an
- *     "Article" it would result in "node--type-article". Note that the machine
- *     name will often be in a short form of the human readable label.
- *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
- *     teaser would result in: "node--view-mode-teaser", and
- *     full: "node--view-mode-full".
- *   The following are controlled through the node publishing options.
- *   - node--promoted: Appears on nodes promoted to the front page.
- *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
- *     teaser listings.
- *   - node--unpublished: Appears on unpublished nodes visible only to site
- *     admins.
- * - title_attributes: Same as attributes, except applied to the main title
- *   tag that appears in the template.
- * - content_attributes: Same as attributes, except applied to the main
- *   content tag that appears in the template.
- * - author_attributes: Same as attributes, except applied to the author of
- *   the node tag that appears in the template.
- * - title_prefix: Additional output populated by modules, intended to be
- *   displayed in front of the main title tag that appears in the template.
- * - title_suffix: Additional output populated by modules, intended to be
- *   displayed after the main title tag that appears in the template.
- * - view_mode: View mode; for example, "teaser" or "full".
- * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
- * - page: Flag for the full page state. Will be true if view_mode is 'full'.
- * - readmore: Flag for more state. Will be true if the teaser content of the
- *   node cannot hold the main body content.
- * - logged_in: Flag for authenticated user status. Will be true when the
- *   current user is a logged-in member.
- * - is_admin: Flag for admin user status. Will be true when the current user
- *   is an administrator.
- *
- * @see template_preprocess_node()
- *
- */
-#}
 {% set classes = [
   'node',
   'node--' ~ node.bundle|clean_class,
@@ -74,104 +5,74 @@
   node.isPromoted() ? 'node--promoted',
   node.isSticky() ? 'node--sticky',
   not node.isPublished() ? 'node--unpublished',
+  'node--project--full',
 ] %}
 
 {{ attach_library('edwt/collapse') }}
 {{ attach_library('parc/n--project-full') }}
 
-{% set collpaseID = 'node-' ~ node.id() %}
+<article{{ attributes.addClass(classes) }}>
+  {{ content.field_date_range }}
+  {{ content.field_project_potential_impacts }}
+  {{ content.field_partners }}
+  {{ content.field_audio_file }}
+  {{ content.body }}
 
-{% set icon = '<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g style="mix-blend-mode:multiply">
-<path d="M9.76797 17.5506C14.2643 17.5506 17.868 13.8225 17.868 9.27531C17.868 4.72812 14.2643 1 9.76797 1C5.27161 1 1.66797 4.72812 1.66797 9.27531C1.66797 13.8225 5.27161 17.5506 9.76797 17.5506Z" stroke="#C5A858" stroke-width="2"/>
-</g>
-</svg>
-' %}
-
-
-{% if project_color == '#2C4E3B' %}
-  {% set icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-<path d="M1.92578 2L14.6125 15" stroke="#2C4E3B" stroke-width="2" stroke-linecap="round"/>
-</svg>
-' %}
-{% endif %}
-
-{% if project_color == '#759875' %}
-  {% set icon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-<path d="M1.50781 15L14.1946 2" stroke="#759875" stroke-width="2" stroke-linecap="round"/>
-</svg>
-' %}
-{% endif %}
-
-
-{% if project_color == '#6D424D' %}
-  {% set icon = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="2" viewBox="0 0 22 2" fill="none">
-<path d="M1.58203 1H20.1242" stroke="#6D424D" stroke-width="2" stroke-linecap="round"/>
-</svg>
-' %}
-{% endif %}
-
-<article{{ attributes.addClass(classes) }} data-topics="{{ topics }}" data-nid="{{ node.id() }}" style="--project-color: {{ project_color }};">
-  <button class="btn btn-clear btn-arrow" type="button" data-bs-toggle="collapse" data-bs-target="#{{ collpaseID }}" aria-expanded="false" aria-controls="{{ collpaseID }}">
-    <span class="left-icon">
-      {{ icon | raw }}
-    </span>
-    <span class="title">{{ label }}</span>
-    <svg class="expand-icon" width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0.248047 5.3H5.22305V0.325H7.77305V5.3H12.748V7.85H7.77305V12.85H5.22305V7.85H0.248047V5.3Z" fill="#C4A858"/>
-    </svg>
-  </button>
-  <div class="collapse" id="{{collpaseID}}">
-    {{ content.field_date_range }}
-    {{ content.field_project_potential_impacts }}
-    {{ content.field_partners }}
-    {{ content.field_audio_file }}
-    {{ content.body }}
-
-    {% if not node.field_project_contacts.isEmpty %}
-      <div class="separator">
-        <svg width="335" height="10" viewBox="0 0 335 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="239.937" y1="4.80078" x2="201.827" y2="4.80077" stroke="#F58296" stroke-width="8" stroke-linecap="round"/>
-          <line x1="42.1875" y1="4.80078" x2="4.07716" y2="4.80077" stroke="#F58296" stroke-width="8" stroke-linecap="round"/>
-          <line x1="305.898" y1="4.80078" x2="266.993" y2="4.80077" stroke="#7AB7FF" stroke-width="8" stroke-linecap="round"/>
-          <line x1="108.789" y1="5.12207" x2="69.8837" y2="5.12206" stroke="#7AB7FF" stroke-width="8" stroke-linecap="round"/>
-          <circle cx="330.766" cy="4.83398" r="4" transform="rotate(-180 330.766 4.83398)" fill="black"/>
-          <circle cx="133.602" cy="4.83398" r="4" transform="rotate(-180 133.602 4.83398)" fill="black"/>
-          <circle cx="267.164" cy="4.83398" r="4" transform="rotate(-180 267.164 4.83398)" fill="black"/>
-          <circle cx="70" cy="4.83398" r="4" transform="rotate(-180 70 4.83398)" fill="black"/>
-          <circle cx="42" cy="4.83398" r="4" transform="rotate(-180 42 4.83398)" fill="black"/>
-          <circle cx="4" cy="4.83398" r="4" transform="rotate(-180 4 4.83398)" fill="black"/>
-          <circle cx="198.789" cy="4.83398" r="4" transform="rotate(-180 198.789 4.83398)" fill="black"/>
-        </svg>
-      </div>
-      <div class="svg-title">
-        {{ "Contacts" | t }}
-      </div>
-      {{ content.field_project_contacts }}
-    {% endif %}
-
+  {% if not node.field_project_contacts.isEmpty %}
     <div class="separator">
-      <svg width="335" height="9" viewBox="0 0 335 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <line x1="239.937" y1="4.57617" x2="201.827" y2="4.57616" stroke="#C5A858" stroke-width="8" stroke-linecap="round"/>
-        <line x1="42.1875" y1="4.57617" x2="4.07716" y2="4.57616" stroke="#C5A858" stroke-width="8" stroke-linecap="round"/>
-        <line x1="305.898" y1="4.57617" x2="266.993" y2="4.57616" stroke="#F5D475" stroke-width="8" stroke-linecap="round"/>
-        <line x1="108.789" y1="4.89746" x2="69.8837" y2="4.89745" stroke="#F5D475" stroke-width="8" stroke-linecap="round"/>
-        <circle cx="330.766" cy="4.60937" r="4" transform="rotate(-180 330.766 4.60937)" fill="black"/>
-        <circle cx="133.602" cy="4.60937" r="4" transform="rotate(-180 133.602 4.60937)" fill="black"/>
-        <circle cx="267.164" cy="4.60937" r="4" transform="rotate(-180 267.164 4.60937)" fill="black"/>
-        <circle cx="70" cy="4.60937" r="4" transform="rotate(-180 70 4.60937)" fill="black"/>
-        <circle cx="42" cy="4.60937" r="4" transform="rotate(-180 42 4.60937)" fill="black"/>
-        <circle cx="4" cy="4.60937" r="4" transform="rotate(-180 4 4.60937)" fill="black"/>
-        <circle cx="198.789" cy="4.60937" r="4" transform="rotate(-180 198.789 4.60937)" fill="black"/>
+      <svg width="335" height="10" viewBox="0 0 335 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="239.937" y1="4.80078" x2="201.827" y2="4.80077" stroke="#F58296" stroke-width="8" stroke-linecap="round"/>
+        <line x1="42.1875" y1="4.80078" x2="4.07716" y2="4.80077" stroke="#F58296" stroke-width="8" stroke-linecap="round"/>
+        <line x1="305.898" y1="4.80078" x2="266.993" y2="4.80077" stroke="#7AB7FF" stroke-width="8" stroke-linecap="round"/>
+        <line x1="108.789" y1="5.12207" x2="69.8837" y2="5.12206" stroke="#7AB7FF" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="330.766" cy="4.83398" r="4" transform="rotate(-180 330.766 4.83398)" fill="black"/>
+        <circle cx="133.602" cy="4.83398" r="4" transform="rotate(-180 133.602 4.83398)" fill="black"/>
+        <circle cx="267.164" cy="4.83398" r="4" transform="rotate(-180 267.164 4.83398)" fill="black"/>
+        <circle cx="70" cy="4.83398" r="4" transform="rotate(-180 70 4.83398)" fill="black"/>
+        <circle cx="42" cy="4.83398" r="4" transform="rotate(-180 42 4.83398)" fill="black"/>
+        <circle cx="4" cy="4.83398" r="4" transform="rotate(-180 4 4.83398)" fill="black"/>
+        <circle cx="198.789" cy="4.83398" r="4" transform="rotate(-180 198.789 4.83398)" fill="black"/>
       </svg>
     </div>
-    <div class="row">
+    <div class="svg-title">
+      {{ "Contacts" | t }}
+    </div>
+    {{ content.field_project_contacts }}
+  {% endif %}
+
+  <div class="separator">
+    <svg width="335" height="9" viewBox="0 0 335 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="239.937" y1="4.57617" x2="201.827" y2="4.57616" stroke="#C5A858" stroke-width="8" stroke-linecap="round"/>
+      <line x1="42.1875" y1="4.57617" x2="4.07716" y2="4.57616" stroke="#C5A858" stroke-width="8" stroke-linecap="round"/>
+      <line x1="305.898" y1="4.57617" x2="266.993" y2="4.57616" stroke="#F5D475" stroke-width="8" stroke-linecap="round"/>
+      <line x1="108.789" y1="4.89746" x2="69.8837" y2="4.89745" stroke="#F5D475" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="330.766" cy="4.60937" r="4" transform="rotate(-180 330.766 4.60937)" fill="black"/>
+      <circle cx="133.602" cy="4.60937" r="4" transform="rotate(-180 133.602 4.60937)" fill="black"/>
+      <circle cx="267.164" cy="4.60937" r="4" transform="rotate(-180 267.164 4.60937)" fill="black"/>
+      <circle cx="70" cy="4.60937" r="4" transform="rotate(-180 70 4.60937)" fill="black"/>
+      <circle cx="42" cy="4.60937" r="4" transform="rotate(-180 42 4.60937)" fill="black"/>
+      <circle cx="4" cy="4.60937" r="4" transform="rotate(-180 4 4.60937)" fill="black"/>
+      <circle cx="198.789" cy="4.60937" r="4" transform="rotate(-180 198.789 4.60937)" fill="black"/>
+    </svg>
+  </div>
+  {% if not node.field_project_topics.isEmpty %}
+    <div class="row bottom-details field">
       <div class="col-sm-6">
+        <div class="f-label">{{ "Topics" | t }}</div>
+      </div>
+      <div class="col-sm-6 values">
         {{ content.field_project_topics }}
       </div>
+    </div>
+  {% endif %}
+  {% if not node.field_project_keywords.isEmpty %}
+    <div class="row bottom-details">
       <div class="col-sm-6">
+        <div class="f-label">{{ "Keywords" | t }}</div>
+      </div>
+      <div class="col-sm-6 values">
         {{ content.field_project_keywords }}
       </div>
     </div>
-  </div>
+  {% endif %}
 </article>

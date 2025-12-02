@@ -6,9 +6,11 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - node.type.project
     - taxonomy.vocabulary.project_keywords
+    - taxonomy.vocabulary.project_topics
   module:
     - better_exposed_filters
     - node
+    - parc_core
     - taxonomy
     - user
 id: projects
@@ -108,7 +110,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
                   collapsible: true
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
                 select_all_none: false
                 select_all_none_nested: false
@@ -116,6 +120,24 @@ display:
                 options_show_only_used: false
                 options_show_only_used_filtered: false
                 options_hide_when_empty: false
+                options_show_items_count: 0
+              field_project_topics_target_id:
+                plugin_id: bef
+                advanced:
+                  sort_options: false
+                  rewrite:
+                    filter_rewrite_values: ''
+                    filter_rewrite_values_key: false
+                  collapsible: true
+                  collapsible_disable_automatic_open: false
+                  is_secondary: false
+                select_all_none: false
+                select_all_none_nested: false
+                display_inline: false
+                options_show_only_used: false
+                options_show_only_used_filtered: false
+                options_hide_when_empty: false
+                options_show_items_count: 0
       access:
         type: perm
         options:
@@ -213,7 +235,7 @@ display:
             operator: field_project_keywords_target_id_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: field_project_keywords_target_id
+            identifier: keywords
             required: false
             remember: false
             multiple: true
@@ -224,6 +246,7 @@ display:
               scientific_publications_editor: '0'
               content_editor: '0'
               administrator: '0'
+              survey_coordinator: '0'
               edw_healthcheck_role: '0'
             reduce: false
           is_grouped: false
@@ -244,8 +267,62 @@ display:
           hierarchy: false
           limit: true
           error_message: true
+        field_project_topics_target_id:
+          id: field_project_topics_target_id
+          table: node__field_project_topics
+          field: field_project_topics_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_project_topics_target_id_op
+            label: Topics
+            description: ''
+            use_operator: false
+            operator: field_project_topics_target_id_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: topics
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              news_events_editor: '0'
+              scientific_publications_editor: '0'
+              content_editor: '0'
+              administrator: '0'
+              survey_coordinator: '0'
+              edw_healthcheck_role: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          vid: project_topics
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
       style:
-        type: default
+        type: parc_projects_style
+        options:
+          uses_fields: false
       row:
         type: 'entity:node'
         options:
@@ -268,7 +345,7 @@ display:
           admin_label: 'field_topics: Taxonomy term'
           plugin_id: standard
           required: false
-      use_ajax: true
+      use_ajax: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -278,7 +355,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -291,6 +367,7 @@ display:
       display_extenders:
         ajax_history:
           enable_history: false
+          exclude_args: ''
         simple_sitemap_display_extender: {  }
         metatag_display_extender:
           metatags: {  }
@@ -301,7 +378,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

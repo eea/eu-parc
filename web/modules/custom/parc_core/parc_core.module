@@ -42,6 +42,12 @@ function parc_core_theme() {
         'keywords' => [],
       ],
     ],
+    'parc_projects_mobile' => [
+      'variables' => [
+        'projects_by_topic' => [],
+        'projects_by_keyword' => [],
+      ],
+    ],
     'parc_project_title' => [
       'variables' => [
         'topics' => [],

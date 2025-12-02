@@ -205,6 +205,9 @@ function parc_theme($existing, $type, $theme, $path) {
     'views_exposed_form__news_events__page_news' => [
       'render element' => 'form',
     ],
+    'views_exposed_form__projects__block_1' => [
+      'render element' => 'form',
+    ],
   ];
 }
 
@@ -663,6 +666,9 @@ function parc_preprocess_node__project(array &$variables) {
   $block_manager = \Drupal::service('plugin.manager.block');
   $plugin_block = $block_manager->createInstance('parc_projects', []);
   $variables['projects_block'] = $plugin_block->build();
+
+  $teaser = \Drupal::entityTypeManager()->getViewBuilder('node')->view($node, 'teaser');
+  $variables['teaser'] = $teaser;
 
   $plugin_block = $block_manager->createInstance('parc_project_title', []);
   $variables['project_title'] = $plugin_block->build();

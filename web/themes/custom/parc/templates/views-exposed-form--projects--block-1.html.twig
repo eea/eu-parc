@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a 'form' element.
+ */
+#}
+<div class="projects-filters">
+  <div class="projects-filters__top">
+    <div class="projects-filters__label">{{ "Filter by" | t }}</div>
+    <div class="projects-filters__selected">
+      <div id="js-selected-category" class="w--labels d-flex gap-2"></div>
+    </div>
+  </div>
+  <div class="projects-filters__filters">
+    {{ form.topics_collapsible }}
+    {{ form.keywords_collapsible }}
+  </div>
+</div>
+
+{{ form|without('sort_bef_combine', 'topics_collapsible', 'keywords_collapsible') }}

@@ -184,14 +184,6 @@ class ParcProjectBlock extends BlockBase implements ContainerFactoryPluginInterf
         '#keywords' => $keywords,
         '#projects' => $projects_list,
       ],
-      'mobile' => [
-        '#type' => 'view',
-        '#name' => 'projects',
-        '#display_id' => 'block_1',
-        '#attributes' => [
-          'class' => ['mobile-projects'],
-        ],
-      ],
     ];
   }
 

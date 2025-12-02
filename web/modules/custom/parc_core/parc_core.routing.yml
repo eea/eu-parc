@@ -46,3 +46,14 @@ parc_core.download_svg_data:
   options:
     parameters:
       node_id: entity:node
+
+parc_core.node_teaser:
+  path: '/parc/ajax/node-teaser/{node}'
+  defaults:
+    _controller: '\Drupal\parc_core\Controller\ParcController::renderNodeTeaser'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node
