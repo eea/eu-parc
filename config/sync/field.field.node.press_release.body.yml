@@ -1,0 +1,24 @@
+uuid: e21447e6-2fdc-40b3-bc3d-3c27deaab626
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.press_release
+  module:
+    - text
+id: node.press_release.body
+field_name: body
+entity_type: node
+bundle: press_release
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

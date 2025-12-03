@@ -11,7 +11,6 @@ dependencies:
     - field.field.node.deliverables.field_display_label
     - field.field.node.deliverables.field_media
     - field.field.node.deliverables.field_order
-    - field.field.node.deliverables.rabbit_hole__settings
     - image.style.thumbnail
     - node.type.deliverables
   module:
@@ -71,5 +70,4 @@ hidden:
   field_display_label: true
   field_order: true
   links: true
-  rabbit_hole__settings: true
   search_api_excerpt: true

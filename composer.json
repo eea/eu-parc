@@ -59,6 +59,7 @@
         "drupal/facets_custom_order": "^1.0",
         "drupal/field_group": "^3.4",
         "drupal/filter_external_link_icon": "^1.0.4",
+        "drupal/focal_point": "^2.1",
         "drupal/geocoder": "^3.20 || ^4.0",
         "drupal/geofield": "^1.52",
         "drupal/geolocation": "^3.12",
@@ -218,6 +219,9 @@
             },
             "drupal/extlink": {
                 "#3523382 - configure extlink title": "patches/extlink/3523382.patch"
+            },
+            "drupal/views_infinite_scroll": {
+                "#2852080 - Different item count for 1st and other pages": "https://www.drupal.org/files/issues/2025-09-17/Add-Page-Control-2852080-%2378.patch"
             }
         },
         "drupal-lenient" : {

@@ -563,3 +563,39 @@ projects:
   css:
     component:
       css/components/parc/projects.css: {}
+
+b--listing-expand:
+  css:
+    component:
+      css/components/block/listing-expand/listing-expand.css: {}
+  dependencies:
+    - parc/expand
+
+n--press-release:
+  css:
+    component:
+      css/components/content/press-release/press-release.css: {}
+
+t--media-assets:
+  css:
+    component:
+      css/components/taxonomy/media-assets/media-assets.css: { }
+
+b--call-to-action:
+  css:
+    component:
+      css/components/block/call-to-action/call-to-action.css: { }
+  dependencies:
+    - parc/expand
+
+expand:
+  js:
+    js/expand.js: {}
+  dependencies:
+    - core/once
+    - core/drupal
+
+n--press-clipping:
+  css:
+    component:
+      css/components/content/press-clipping/press-clipping.css: { }

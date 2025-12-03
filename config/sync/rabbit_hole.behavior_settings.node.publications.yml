@@ -1,0 +1,16 @@
+uuid: 47fa4bae-5b74-4ab1-9762-ce2ff0cfd0e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.publications
+id: node.publications
+targetEntityType: node
+bundle: publications
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /scientific-publications
+  redirect_code: 301
+  redirect_fallback_action: access_denied

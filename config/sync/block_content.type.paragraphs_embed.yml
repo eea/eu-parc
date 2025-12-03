@@ -1,0 +1,8 @@
+uuid: 6a6e0f84-cbfd-458c-add6-1b7364eb7966
+langcode: en
+status: true
+dependencies: {  }
+id: paragraphs_embed
+label: 'Paragraphs embed'
+revision: false
+description: null

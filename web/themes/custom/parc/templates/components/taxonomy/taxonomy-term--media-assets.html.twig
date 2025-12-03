@@ -1,0 +1,18 @@
+{{ attach_library('parc/t--media-assets') }}
+
+<div class="media-asset">
+  <div class="media-asset__image">
+    {{ content.field_media_image }}
+  </div>
+  <div class="media-asset__title">{{ name }}</div>
+  <div class="media-asset__links">
+    {% if not term.field_file.isEmpty %}
+      {% set file_url = file_url(term.field_file.entity.fileuri) %}
+      <a class="download-link" download href="{{ file_url }}">{{ "Download" | t }}</a>
+    {% endif %}
+
+    {% if not term.field_link.isEmpty %}
+      <a class="copy-link" target="_blank" href="{{ link('', term.field_link.uri)['#url'].toString }}">{{ "Go to link" | t }}</a>
+    {% endif %}
+  </div>
+</div>

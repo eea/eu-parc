@@ -1,0 +1,32 @@
+uuid: b77f1ae4-f8f0-4d72-b593-d4173bec452b
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.related
+    - field.field.node.press_release.body
+    - field.field.node.press_release.field_external_url
+    - field.field.node.press_release.field_media_document
+    - field.field.node.press_release.field_media_image
+    - field.field.node.press_release.field_publication_date
+    - node.type.press_release
+  module:
+    - user
+id: node.press_release.related
+targetEntityType: node
+bundle: press_release
+mode: related
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  body: true
+  field_external_url: true
+  field_media_document: true
+  field_media_image: true
+  field_publication_date: true
+  search_api_excerpt: true

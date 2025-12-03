@@ -1,0 +1,19 @@
+uuid: d6f23452-55ab-42a2-a602-48fc0629d5dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.listing_expand
+    - field.storage.block_content.field_title
+id: block_content.listing_expand.field_title
+field_name: field_title
+entity_type: block_content
+bundle: listing_expand
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

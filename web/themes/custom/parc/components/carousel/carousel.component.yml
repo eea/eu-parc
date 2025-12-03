@@ -1,0 +1,22 @@
+name: Carousel
+props:
+  type: object
+  properties:
+    arrows:
+      type: boolean
+      title: Arrows
+    slides:
+      type: array
+      title: Slides
+      items:
+        type: object
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+  js:
+    swiper/swiper.min.js: { minified: true }
+    carousel.js: {}
+  css:
+    component:
+      swiper/swiper.min.css: { minified: true }

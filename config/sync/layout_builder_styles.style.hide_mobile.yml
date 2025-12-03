@@ -1,0 +1,12 @@
+uuid: e56e47da-ff86-4b38-93c1-c0fca82870a5
+langcode: en
+status: true
+dependencies: {  }
+id: hide_mobile
+label: 'Hide on mobile'
+classes: 'd-none d-lg-block'
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 3
