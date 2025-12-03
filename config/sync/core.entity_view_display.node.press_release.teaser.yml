@@ -5,10 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.press_release.body
+    - field.field.node.press_release.field_d_date
     - field.field.node.press_release.field_external_url
     - field.field.node.press_release.field_media_document
     - field.field.node.press_release.field_media_image
-    - field.field.node.press_release.field_publication_date
     - image.style.large
     - node.type.press_release
   module:
@@ -28,6 +28,15 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  field_d_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 1
+    region: content
   field_media_image:
     type: media_thumbnail
     label: hidden
@@ -38,15 +47,6 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 3
-    region: content
-  field_publication_date:
-    type: datetime_default
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 1
     region: content
   links:
     settings: {  }

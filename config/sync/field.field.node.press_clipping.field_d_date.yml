@@ -1,17 +1,17 @@
-uuid: 777c855b-1aec-44f2-b297-cecc37c1c95e
+uuid: d3f47b44-f1a5-4843-98cf-6bac59f08a71
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_publication_date
-    - node.type.press_release
+    - field.storage.node.field_d_date
+    - node.type.press_clipping
   module:
     - datetime
-id: node.press_release.field_publication_date
-field_name: field_publication_date
+id: node.press_clipping.field_d_date
+field_name: field_d_date
 entity_type: node
-bundle: press_release
-label: 'Date of publication'
+bundle: press_clipping
+label: 'Publication date'
 description: ''
 required: true
 translatable: false

@@ -5,10 +5,10 @@ dependencies:
   config:
     - core.entity_view_mode.node.archive
     - field.field.node.press_release.body
+    - field.field.node.press_release.field_d_date
     - field.field.node.press_release.field_external_url
     - field.field.node.press_release.field_media_document
     - field.field.node.press_release.field_media_image
-    - field.field.node.press_release.field_publication_date
     - node.type.press_release
   module:
     - user
@@ -25,8 +25,8 @@ content:
 hidden:
   addtoany: true
   body: true
+  field_d_date: true
   field_external_url: true
   field_media_document: true
   field_media_image: true
-  field_publication_date: true
   search_api_excerpt: true

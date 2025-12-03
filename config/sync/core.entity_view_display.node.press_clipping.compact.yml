@@ -5,13 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.compact
     - field.field.node.press_clipping.field_country
+    - field.field.node.press_clipping.field_d_date
     - field.field.node.press_clipping.field_external_url
     - field.field.node.press_clipping.field_media_document
     - field.field.node.press_clipping.field_media_image
     - field.field.node.press_clipping.field_press_clipping_featured
     - field.field.node.press_clipping.field_press_clipping_type
     - field.field.node.press_clipping.field_publication
-    - field.field.node.press_clipping.field_publication_date
     - node.type.press_clipping
   module:
     - datetime
@@ -27,21 +27,21 @@ targetEntityType: node
 bundle: press_clipping
 mode: compact
 content:
-  field_press_clipping_type:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_publication_date:
+  field_d_date:
     type: datetime_default
     label: hidden
     settings:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 1
+    weight: 2
+    region: content
+  field_press_clipping_type:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
     region: content
   links:
     settings: {  }

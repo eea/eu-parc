@@ -4,13 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.node.press_clipping.field_country
+    - field.field.node.press_clipping.field_d_date
     - field.field.node.press_clipping.field_external_url
     - field.field.node.press_clipping.field_media_document
     - field.field.node.press_clipping.field_media_image
     - field.field.node.press_clipping.field_press_clipping_featured
     - field.field.node.press_clipping.field_press_clipping_type
     - field.field.node.press_clipping.field_publication
-    - field.field.node.press_clipping.field_publication_date
     - node.type.press_clipping
   module:
     - datetime
@@ -29,6 +29,15 @@ content:
       link: true
     third_party_settings: {  }
     weight: 113
+    region: content
+  field_d_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_external_url:
     type: link
@@ -72,15 +81,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 102
-    region: content
-  field_publication_date:
-    type: datetime_default
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 7
     region: content
   links:
     settings: {  }
