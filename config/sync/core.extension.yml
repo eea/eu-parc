@@ -34,6 +34,7 @@ module:
   editor: 0
   edw_healthcheck: 0
   embed_block: 0
+  entity_print: 0
   entity_reference_revisions: 0
   facets: 0
   facets_custom_order: 0
@@ -129,6 +130,7 @@ module:
   viewsreference: 0
   votingapi: 0
   webform: 0
+  webform_entity_print: 0
   webform_ui: 0
   extlink: 1
   pathauto: 1
