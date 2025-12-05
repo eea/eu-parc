@@ -7,7 +7,7 @@ dependencies:
 id: node.project
 targetEntityType: node
 bundle: project
-action: page_redirect
+action: display_page
 no_bypass: false
 bypass_message: false
 configuration:
