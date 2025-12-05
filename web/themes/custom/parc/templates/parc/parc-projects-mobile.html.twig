@@ -1,0 +1,70 @@
+{{ attach_library('edwt/collapse') }}
+{{ attach_library('edwt/tab') }}
+{{ attach_library('parc/projects') }}
+
+<div class="projects-mobile">
+  <div class="projects-mobile__type" role="tablist">
+    <div id="topics-tab" data-bs-toggle="tab" data-bs-target="#projects-by-topic" type="button" role="tab" aria-selected="true" class="projects-mobile__type__dropdown active">{{ "Topics" | t }}</div>
+    <div id="keywords-tab" data-bs-toggle="tab" data-bs-target="#projects-by-keyword" type="button" role="tab" aria-selected="true" class="projects-mobile__type__dropdown">{{ "Keywords" | t }}</div>
+  </div>
+
+  <div class="tab-pane projects-mobile__main show active" id="projects-by-topic" role="tabpanel" aria-labelledby="topics-tab">
+    {% for topic in projects_by_topic %}
+      <div style="--project-color: {{ topic.color }}" class="projects-mobile__main__category projects-mobile__main__category--topic">
+        {% set height = topic.projects|length * 4 %}
+        {% set height = max(160, height) %}
+        <div style="--height: {{ height }}px;" class="category-info" type="button" data-bs-toggle="collapse" data-bs-target="#topic-{{ topic.id }}" aria-expanded="false" aria-controls="topic-{{ topic.id }}">
+          <div class="category-count">{{ topic.projects|length }} projects</div>
+          <div class="category-label">{{ topic.label }}</div>
+
+          <div class="lines">
+            {% for project in topic.projects %}
+              <div class="line"></div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="collapse" id="topic-{{ topic.id }}">
+          {% for project in topic.projects %}
+            <div class="projects-mobile__project" {% if project.show_link %}type="button" data-bs-toggle="collapse" data-bs-target="#topic-project-{{ project.id }}" aria-expanded="false" aria-controls="topic-project-{{ project.id }}"{% endif %}>
+              <div class="projects-mobile__project__label {% if project.show_link %}icon-expand{% endif %}">{{ project.label }}</div>
+
+              <div class="projects-mobile__project__expanded collapse" id="topic-project-{{ project.id }}" data-project-id="{{ project.id }}">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="tab-pane projects-mobile__main" id="projects-by-keyword" role="tabpanel" aria-labelledby="keywords-tab">
+    {% for topic in projects_by_keyword %}
+      <div style="--project-color: {{ topic.color }}" class="projects-mobile__main__category projects-mobile__main__category--keyword">
+        {% set height = topic.projects|length * 4 %}
+        {% set height = max(160, height) %}
+        <div style="--height: {{ height }}px;" class="category-info" type="button" data-bs-toggle="collapse" data-bs-target="#topic-{{ topic.id }}" aria-expanded="false" aria-controls="topic-{{ topic.id }}">
+          <div class="category-count">{{ topic.projects|length }} projects</div>
+          <div class="category-label">{{ topic.label }}</div>
+
+          <div class="lines">
+            {% for project in topic.projects %}
+              <div class="line"></div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="collapse" id="topic-{{ topic.id }}">
+          {% for project in topic.projects %}
+            <div class="projects-mobile__project" type="button" data-bs-toggle="collapse" data-bs-target="#topic-project-{{ project.id }}" aria-expanded="false" aria-controls="topic-project-{{ project.id }}">
+              <div class="projects-mobile__project__label">{{ project.label }}</div>
+
+              <div class="projects-mobile__project__expanded collapse" id="topic-project-{{ project.id }}" data-project-id="{{ project.id }}">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

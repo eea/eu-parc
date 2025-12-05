@@ -1,0 +1,16 @@
+uuid: ddb60cbf-f720-4a9a-989c-b882690321d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.opportunity
+id: node.opportunity
+targetEntityType: node
+bundle: opportunity
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /about-us/opportunities
+  redirect_code: 301
+  redirect_fallback_action: access_denied

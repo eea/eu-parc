@@ -9,10 +9,13 @@ dependencies:
     - field.field.node.article.field_metatags
     - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_slideshow_items
+    - field.field.node.article.field_survey
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
+    - field.field.node.article.rabbit_hole__settings
     - node.type.article
   module:
+    - entity_reference_revisions
     - image_field_caption
     - metatag
     - parc_core
@@ -70,6 +73,15 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
+  field_survey:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 9
+    region: content
   field_tags:
     type: entity_reference_label
     label: above
@@ -82,4 +94,5 @@ hidden:
   comment: true
   field_svg_hover: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

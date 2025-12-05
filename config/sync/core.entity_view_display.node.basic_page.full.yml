@@ -10,9 +10,11 @@ dependencies:
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
     - field.field.node.basic_page.field_seo_keyword
+    - field.field.node.basic_page.field_survey
     - field.field.node.basic_page.field_svg_title
     - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
+    - field.field.node.basic_page.rabbit_hole__settings
     - node.type.basic_page
     - system.menu.main
   module:
@@ -287,8 +289,10 @@ hidden:
   field_paragraphs: true
   field_paragraphs_in: true
   field_seo_keyword: true
+  field_survey: true
   field_views_reference: true
   field_views_reference_bottom: true
   layout_builder__layout: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

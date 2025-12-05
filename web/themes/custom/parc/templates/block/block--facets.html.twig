@@ -34,6 +34,8 @@
   ]
 %}
 
+{% set clean_class_plugin_id = plugin_id|clean_class %}
+
 {{ attach_library('parc/tooltip') }}
 {{ attach_library('parc/facets') }}
 {{ attach_library('parc/facets_ajax') }}
@@ -43,18 +45,25 @@
 <div{{attributes.addClass(classes)}}>
   {{ title_prefix }}
 
-  {% if plugin_id|clean_class == 'facet-blocklab-type'
-    or plugin_id|clean_class == 'facet-blockcategory' %}
-    <div class="facets-section-title">{{ "Filter" | t }}</div>
+  {% if is_first_facet %}
+    <div class="facets-top">
+      <div class="facets-section-title">
+        {{ "Filter" | t }}
+      </div>
+
+      {% if reset_url %}
+        <a class="reset-filters {{ not reset_url_visible ? 'hidden' }}" href="{{ reset_url }}">{{ "Reset filters" | t }}</a>
+      {% endif %}
+    </div>
   {% endif %}
 
   {% if label %}
-    <a class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse{{ plugin_id|clean_class }}" role="button" aria-expanded="true" aria-controls="collapse{{ plugin_id|clean_class }}">
+    <a class="facets-collapse accordion-button" data-bs-toggle="collapse" href="#collapse{{ clean_class_plugin_id }}" role="button" aria-expanded="true" aria-controls="collapse{{ clean_class_plugin_id }}">
       <h3 class="facets-title">{{ label }}</h3>
     </a>
   {% endif %}
 
-  <div class="collapse show" id="collapse{{ plugin_id|clean_class }}">
+  <div class="collapse show" id="collapse{{ clean_class_plugin_id }}">
     {% block content %}
       <div{{content_attributes.addClass('block__content')}}>
         {{- content -}}

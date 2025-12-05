@@ -1,0 +1,29 @@
+uuid: a36ad5b6-1470-4af9-8843-ede970915fc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domains_of_interest
+    - node.type.learning_material
+    - taxonomy.vocabulary.course_domains_of_interest
+id: node.learning_material.field_domains_of_interest
+field_name: field_domains_of_interest
+entity_type: node
+bundle: learning_material
+label: 'Domain of interest'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      course_domains_of_interest: course_domains_of_interest
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

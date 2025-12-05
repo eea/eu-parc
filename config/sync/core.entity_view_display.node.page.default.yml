@@ -9,9 +9,12 @@ dependencies:
     - field.field.node.page.field_media_image
     - field.field.node.page.field_metatags
     - field.field.node.page.field_seo_keyword
+    - field.field.node.page.field_survey
     - field.field.node.page.layout_builder__layout
+    - field.field.node.page.rabbit_hole__settings
     - node.type.page
   module:
+    - entity_reference_revisions
     - layout_builder
     - layout_discovery
     - metatag
@@ -79,6 +82,23 @@ third_party_settings:
                     attribute: lazy
                 third_party_settings: {  }
             weight: 0
+            additional: {  }
+          6fea1417-18e1-4143-9964-c9fd6f89db34:
+            uuid: 6fea1417-18e1-4143-9964-c9fd6f89db34
+            region: content
+            configuration:
+              id: 'field_block:node:page:field_survey'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_revisions_entity_view
+                label: above
+                settings:
+                  view_mode: default
+                  link: ''
+                third_party_settings: {  }
+            weight: 2
             additional: {  }
         third_party_settings: {  }
       -
@@ -183,6 +203,15 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
+  field_survey:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 106
+    region: content
   links:
     settings: {  }
     third_party_settings: {  }
@@ -192,4 +221,5 @@ hidden:
   addtoany: true
   field_banner: true
   layout_builder__layout: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

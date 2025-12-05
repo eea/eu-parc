@@ -1,0 +1,13 @@
+uuid: 04131faf-7db1-4d5d-98a7-63c98f726293
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.sampling_types
+id: taxonomy_term.sampling_types
+targetEntityType: taxonomy_term
+bundle: sampling_types
+action: page_not_found
+no_bypass: false
+bypass_message: false
+configuration: {  }

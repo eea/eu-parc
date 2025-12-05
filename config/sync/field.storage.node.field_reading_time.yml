@@ -1,0 +1,33 @@
+uuid: 756f9e3a-3bbe-47c3-a936-e55b7e472841
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_reading_time
+field_name: field_reading_time
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 0_60_minutes
+      label: 'Less than 1 h'
+    -
+      value: 1_4_hr
+      label: '1-4 h'
+    -
+      value: 1_day
+      label: '1 day'
+    -
+      value: more_than_1_day
+      label: 'More than 1 day'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,59 @@
+uuid: 30ed2326-e5d4-4355-bdee-45dad27fe941
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.compact
+    - field.field.node.press_clipping.field_country
+    - field.field.node.press_clipping.field_d_date
+    - field.field.node.press_clipping.field_external_url
+    - field.field.node.press_clipping.field_media_document
+    - field.field.node.press_clipping.field_media_image
+    - field.field.node.press_clipping.field_press_clipping_featured
+    - field.field.node.press_clipping.field_press_clipping_type
+    - field.field.node.press_clipping.field_publication
+    - node.type.press_clipping
+  module:
+    - datetime
+    - layout_builder
+    - options
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.press_clipping.compact
+targetEntityType: node
+bundle: press_clipping
+mode: compact
+content:
+  field_d_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_press_clipping_type:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_country: true
+  field_external_url: true
+  field_media_document: true
+  field_media_image: true
+  field_press_clipping_featured: true
+  field_publication: true
+  search_api_excerpt: true

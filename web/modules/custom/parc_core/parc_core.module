@@ -18,6 +18,7 @@ use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\taxonomy\TermInterface;
 use Drupal\parc_core\ParcEventsManager;
+use Drupal\parc_core\Form\SurveyForm;
 
 /**
  * Implements hook_theme().
@@ -31,6 +32,7 @@ function parc_core_theme() {
       'variables' => [
         'substances' => [],
         'show_qualified_in_parc' => FALSE,
+        'lab_category' => 'hbm',
       ],
     ],
     'parc_projects' => [
@@ -38,6 +40,12 @@ function parc_core_theme() {
         'projects' => [],
         'topics' => [],
         'keywords' => [],
+      ],
+    ],
+    'parc_projects_mobile' => [
+      'variables' => [
+        'projects_by_topic' => [],
+        'projects_by_keyword' => [],
       ],
     ],
     'parc_project_title' => [
@@ -69,6 +77,7 @@ function parc_core_theme() {
       'variables' => [
         'id' => '',
         'chart_type' => '',
+        'indicator_id' => '',
       ],
     ],
     'parc_publications_timeline' => [
@@ -81,13 +90,25 @@ function parc_core_theme() {
         'year_header' => [],
         'month_header' => [],
         'rows' => [],
+        'current_year' => '',
       ],
     ],
     'parc_indicators_menu' => [
       'variables' => [
         'topics' => [],
       ],
-    ]
+    ],
+    'parc_survey_results' => [
+      'variables' => [
+        'results' => [],
+      ],
+    ],
+    'parc_lab_map_type_switcher' => [
+      'variables' => [
+        'lab_categories' => [],
+        'active' => '',
+      ],
+    ],
   ];
 }
 
@@ -620,6 +641,7 @@ function parc_core_node_presave(NodeInterface $node) {
       if (!$node->get('field_substances_matrix')->isEmpty()) {
         $substance_groups = [];
         $sampling_types = [];
+        $air_environments = [];
 
         foreach ($node->get('field_substances_matrix')->referencedEntities() as $paragraph) {
 
@@ -629,6 +651,7 @@ function parc_core_node_presave(NodeInterface $node) {
 
           $substance_groups[] = $paragraph->get('field_substance_group')->target_id;
           $sampling_types[] = $paragraph->get('field_sampling_type')->target_id;
+          $air_environments[] = $paragraph->get('field_air_environment')->value;
         }
 
         $substance_groups = array_unique($substance_groups);
@@ -636,6 +659,7 @@ function parc_core_node_presave(NodeInterface $node) {
 
         $node->set('field_substance_group', $substance_groups);
         $node->set('field_sampling_type', $sampling_types);
+        $node->set('field_air_environment', $air_environments);
       }
 
       break;
@@ -695,5 +719,31 @@ function template_preprocess_parc_indicator_groups(array &$variables) {
     ];
 
     $group['color'] = $colors[$type];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node templates.
+ */
+function parc_core_preprocess_node(&$variables) {
+  if ($variables['view_mode'] == 'full') {
+    $node = $variables['node'];
+    if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
+      $variables['#cache']['max-age'] = 0;
+      $variables['survey_form'] = \Drupal::formBuilder()->getForm(SurveyForm::class, $node);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for taxonomy_term templates.
+ */
+function parc_core_preprocess_taxonomy_term(&$variables) {
+  if ($variables['view_mode'] == 'full') {
+    $term = $variables['term'];
+    if ($term instanceof TermInterface && $term->hasField('field_survey') && !$term->get('field_survey')->isEmpty()) {
+      $variables['#cache']['max-age'] = 0;
+      $variables['survey_form'] = \Drupal::formBuilder()->getForm(SurveyForm::class, $term);
+    }
   }
 }

@@ -1,0 +1,61 @@
+uuid: 7402ed65-80cb-45eb-9bfc-9dfa094f20b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.indicator.body
+    - field.field.node.indicator.field_indicator_data
+    - field.field.node.indicator.field_indicator_id
+    - field.field.node.indicator.field_indicator_topic
+    - field.field.node.indicator.field_indicator_type
+    - node.type.indicator
+  module:
+    - layout_builder
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.indicator.search_teaser
+targetEntityType: node
+bundle: indicator
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_indicator_data: true
+  field_indicator_id: true
+  field_indicator_topic: true
+  field_indicator_type: true
+  search_api_excerpt: true

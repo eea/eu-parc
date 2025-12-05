@@ -8,24 +8,22 @@
 
 .svg-title {
   &, > * {
+    --svg-title-size: 33px;
     font-family: "PARC";
     text-align: center;
-    font-size: 33px;
-    line-height: 33px;
+    font-size: var(--svg-title-size);
+    line-height: var(--svg-title-size);
 
     @media (--sm) {
-      font-size: 44px;
-      line-height: 44px;
+      --svg-title-size: 44px;
     }
 
     @media (--md) {
-      font-size: 66px;
-      line-height: 66px;
+      --svg-title-size: 66px;
     }
 
     @media (--lg) {
-      font-size: 88px;
-      line-height: 88px;
+      --svg-title-size: 88px;
     }
   }
 }

@@ -4,10 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.media.video.field_caption
+    - field.field.media.video.field_media_image
     - field.field.media.video.field_media_video_file
     - media.type.video
   module:
-    - file
+    - parc_core
 _core:
   default_config_hash: SxvbuGh-6cQMxl9bBV27-hGI46u7ZvwlMm5ObaJMNnw
 id: media.video.default
@@ -15,16 +16,8 @@ targetEntityType: media
 bundle: video
 mode: default
 content:
-  field_caption:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_media_video_file:
-    type: file_video
+    type: parc_video_thumbnail
     label: hidden
     settings:
       controls: true
@@ -39,6 +32,8 @@ content:
     region: content
 hidden:
   created: true
+  field_caption: true
+  field_media_image: true
   name: true
   search_api_excerpt: true
   thumbnail: true

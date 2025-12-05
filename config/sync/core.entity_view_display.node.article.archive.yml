@@ -10,8 +10,10 @@ dependencies:
     - field.field.node.article.field_metatags
     - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_slideshow_items
+    - field.field.node.article.field_survey
     - field.field.node.article.field_svg_hover
     - field.field.node.article.field_tags
+    - field.field.node.article.rabbit_hole__settings
     - node.type.article
   module:
     - layout_builder
@@ -85,5 +87,7 @@ hidden:
   field_metatags: true
   field_seo_keyword: true
   field_slideshow_items: true
+  field_survey: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

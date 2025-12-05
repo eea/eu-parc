@@ -1,0 +1,16 @@
+uuid: bc9b9c33-b07e-4121-ae51-b922a17992b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.news_category
+id: taxonomy_term.news_category
+targetEntityType: taxonomy_term
+bundle: news_category
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: '/news?category%5B[term:tid]%5D=[term:tid]'
+  redirect_code: 301
+  redirect_fallback_action: access_denied

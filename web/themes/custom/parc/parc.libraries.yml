@@ -279,6 +279,10 @@ n--publications:
   css:
     component:
       css/components/content/publications/vm-default/style.css: {}
+  js:
+    templates/components/content/publications/vm-default/script.js: { }
+  dependencies:
+    - core/once
 
 n--publications-teaser:
   css:
@@ -294,6 +298,11 @@ n--search-teaser:
   css:
     component:
       css/components/content/search-teaser/style.css: {}
+
+n--learning-material:
+  css:
+    component:
+      css/components/content/learning-material/style.css: {}
 
 # Block.
 b--carousel:
@@ -538,3 +547,55 @@ indicators_menu:
     - core/once
     - edwt/collapse
     - edwt/tab
+
+survey:
+  css:
+    component:
+      css/components/parc/survey.css: {}
+  js:
+    js/survey.js: {}
+  dependencies:
+    - core/jquery
+    - core/once
+    - core/drupal
+
+projects:
+  css:
+    component:
+      css/components/parc/projects.css: {}
+
+b--listing-expand:
+  css:
+    component:
+      css/components/block/listing-expand/listing-expand.css: {}
+  dependencies:
+    - parc/expand
+
+n--press-release:
+  css:
+    component:
+      css/components/content/press-release/press-release.css: {}
+
+t--media-assets:
+  css:
+    component:
+      css/components/taxonomy/media-assets/media-assets.css: { }
+
+b--call-to-action:
+  css:
+    component:
+      css/components/block/call-to-action/call-to-action.css: { }
+  dependencies:
+    - parc/expand
+
+expand:
+  js:
+    js/expand.js: {}
+  dependencies:
+    - core/once
+    - core/drupal
+
+n--press-clipping:
+  css:
+    component:
+      css/components/content/press-clipping/press-clipping.css: { }

@@ -1,0 +1,13 @@
+uuid: 9a6ad6bd-16a5-4355-9e43-ded26106971b
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.media_assets
+id: taxonomy_term.media_assets
+targetEntityType: taxonomy_term
+bundle: media_assets
+action: access_denied
+no_bypass: false
+bypass_message: false
+configuration: {  }

@@ -4,12 +4,15 @@ status: true
 dependencies:
   config:
     - field.field.node.laboratory.field_address_data
+    - field.field.node.laboratory.field_air_environment
     - field.field.node.laboratory.field_city
     - field.field.node.laboratory.field_contact_email
     - field.field.node.laboratory.field_contact_name
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_external_id
     - field.field.node.laboratory.field_institute_name
+    - field.field.node.laboratory.field_lab_category
     - field.field.node.laboratory.field_lab_contacts
     - field.field.node.laboratory.field_lab_type
     - field.field.node.laboratory.field_media_image
@@ -32,13 +35,13 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   field_address_data:
     type: text_textarea
-    weight: 6
+    weight: 7
     region: content
     settings:
       rows: 5
@@ -46,7 +49,7 @@ content:
     third_party_settings: {  }
   field_city:
     type: string_textfield
-    weight: 5
+    weight: 6
     region: content
     settings:
       size: 60
@@ -54,19 +57,27 @@ content:
     third_party_settings: {  }
   field_coordinates:
     type: geolocation_latlng
-    weight: 7
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   field_country:
     type: select2_entity_reference
-    weight: 4
+    weight: 5
     region: content
     settings:
       width: 100%
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
+    third_party_settings: {  }
+  field_external_id:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_institute_name:
     type: string_textfield
@@ -76,9 +87,15 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_lab_category:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_lab_contacts:
     type: paragraphs
-    weight: 10
+    weight: 12
     region: content
     settings:
       title: Contact
@@ -97,7 +114,7 @@ content:
     third_party_settings: {  }
   field_lab_type:
     type: select2_entity_reference
-    weight: 8
+    weight: 10
     region: content
     settings:
       width: 100%
@@ -107,14 +124,14 @@ content:
     third_party_settings: {  }
   field_media_image:
     type: media_library_widget
-    weight: 11
+    weight: 13
     region: content
     settings:
       media_types: {  }
     third_party_settings: {  }
   field_substances_matrix:
     type: paragraphs
-    weight: 12
+    weight: 14
     region: content
     settings:
       title: 'Substance matrix'
@@ -133,7 +150,7 @@ content:
     third_party_settings: {  }
   field_website:
     type: link_default
-    weight: 9
+    weight: 11
     region: content
     settings:
       placeholder_url: ''
@@ -141,7 +158,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 13
+    weight: 16
     region: content
     settings:
       display_label: true
@@ -156,7 +173,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -165,6 +182,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  field_air_environment: true
   field_contact_email: true
   field_contact_name: true
   field_sampling_type: true

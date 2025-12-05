@@ -353,13 +353,17 @@ display:
         options:
           view_modes:
             'entity:node':
+              ':default': search_teaser
               article: search_teaser
               basic_page: search_teaser
               deliverables: search_teaser
               events: search_teaser
+              indicator: search_teaser
               institution: search_teaser
               laboratory: search_teaser
+              learning_material: search_teaser
               page: search_teaser
+              project: search_teaser
               publications: search_teaser
               thematic_areas: search_teaser
       query:

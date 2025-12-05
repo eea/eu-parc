@@ -1,0 +1,19 @@
+uuid: 705e72f0-7f8f-4391-9102-36821c6097c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_question
+    - paragraphs.paragraphs_type.survey
+id: paragraph.survey.field_question
+field_name: field_question
+entity_type: paragraph
+bundle: survey
+label: Question
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

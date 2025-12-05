@@ -8,7 +8,9 @@ dependencies:
     - field.field.taxonomy_term.thematic_areas.field_color
     - field.field.taxonomy_term.thematic_areas.field_icon
     - field.field.taxonomy_term.thematic_areas.field_seo_keywords
+    - field.field.taxonomy_term.thematic_areas.field_survey
     - field.field.taxonomy_term.thematic_areas.field_teaser_icon
+    - field.field.taxonomy_term.thematic_areas.rabbit_hole__settings
     - taxonomy.vocabulary.thematic_areas
   module:
     - color_field
@@ -45,4 +47,6 @@ hidden:
   field_bg_color: true
   field_icon: true
   field_seo_keywords: true
+  field_survey: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

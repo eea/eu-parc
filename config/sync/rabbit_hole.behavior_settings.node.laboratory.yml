@@ -1,0 +1,16 @@
+uuid: 6830e8d7-424d-4d97-bd37-6bef014d0985
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.laboratory
+id: node.laboratory
+targetEntityType: node
+bundle: laboratory
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /hbmlabnetwork
+  redirect_code: 301
+  redirect_fallback_action: access_denied

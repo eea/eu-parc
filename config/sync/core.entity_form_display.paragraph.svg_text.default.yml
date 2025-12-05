@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.svg_text.field_body
+    - field.field.paragraph.svg_text.field_link_one
     - field.field.paragraph.svg_text.field_svg
     - paragraphs.paragraphs_type.svg_text
   module:
+    - link_class
     - media_library
     - text
 id: paragraph.svg_text.default
@@ -21,6 +23,17 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_link_one:
+    type: link_class_field_widget
+    weight: 2
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      link_class_mode: force_class
+      link_class_force: 'btn btn-clear btn-arrow stretched-link'
+      link_class_select: ''
     third_party_settings: {  }
   field_svg:
     type: media_library_widget

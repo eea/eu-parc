@@ -1,0 +1,81 @@
+uuid: 0b7d3891-76c4-41d5-8f96-6d2d057360e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.project.body
+    - field.field.node.project.field_audio_file
+    - field.field.node.project.field_date_range
+    - field.field.node.project.field_partners
+    - field.field.node.project.field_project_abbreviation
+    - field.field.node.project.field_project_contacts
+    - field.field.node.project.field_project_keywords
+    - field.field.node.project.field_project_potential_impacts
+    - field.field.node.project.field_project_topics
+    - field.field.node.project.field_related_projects
+    - field.field.node.project.field_related_publications
+    - field.field.node.project.field_show_link
+    - field.field.node.project.field_slideshow_items
+    - field.field.node.project.field_slideshow_position
+    - field.field.node.project.field_survey
+    - node.type.project
+  module:
+    - layout_builder
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.project.search_teaser
+targetEntityType: node
+bundle: project
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_audio_file: true
+  field_date_range: true
+  field_partners: true
+  field_project_abbreviation: true
+  field_project_contacts: true
+  field_project_keywords: true
+  field_project_potential_impacts: true
+  field_project_topics: true
+  field_related_projects: true
+  field_related_publications: true
+  field_show_link: true
+  field_slideshow_items: true
+  field_slideshow_position: true
+  field_survey: true
+  search_api_excerpt: true

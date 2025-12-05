@@ -1,0 +1,25 @@
+{{ attach_library('parc_core/lab_map') }}
+<div class="lab-map-type-header">
+  <div class="lab-map-type-header__button">
+    <h2 class="facets-section-title">{{ 'Select laboratory network'|t }}</h2>
+  </div>
+</div>
+<div class="lab-map-type__switcher">
+  {% for id, category in lab_categories %}
+  <div class="lab-map-type-header__switcher-item">
+    <div class="lab-checkbox {{ category.active ? 'active' : '' }}">
+      <input type="radio" id="lab-{{ id }}">
+      <label for="lab-{{ id }}" class="lab-map-type-header__switcher-label">
+        <span class="label">{{ category.label }}</span>
+        <span class="count">{{ category.count }}</span>
+      </label>
+    </div>
+    <a href="{{ category.path }}" class="lab-map-type-header__switcher-link" data-id="lab-{{id}}" style="display: none;"></a>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="lab-map-type">
+  <div class="label">{{ active.label }}</div>
+  <div class="count">{{ active.count }}</div>
+</div>

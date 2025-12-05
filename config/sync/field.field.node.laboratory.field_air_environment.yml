@@ -1,0 +1,21 @@
+uuid: a0c2d881-a6b5-4432-8411-417d2954462b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_air_environment
+    - node.type.laboratory
+  module:
+    - options
+id: node.laboratory.field_air_environment
+field_name: field_air_environment
+entity_type: node
+bundle: laboratory
+label: 'Air environment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,4 +1,18 @@
 .node--search-teaser {
+  .icon-wrapper {
+    background: var(--bg-color);
+
+    svg {
+      padding: 5px;
+    }
+  }
+
+  .icon-color {
+    path {
+      stroke: var(--icon-color);
+    }
+  }
+
   .image {
     min-width: 36px;
   }

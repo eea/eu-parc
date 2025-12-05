@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.thematic_areas.body
     - field.field.node.thematic_areas.field_categories
     - field.field.node.thematic_areas.field_seo_keyword
+    - field.field.node.thematic_areas.field_survey
     - node.type.thematic_areas
     - system.menu.main
   module:
+    - entity_reference_revisions
     - layout_builder
     - layout_discovery
     - system
@@ -144,6 +146,15 @@ content:
       link: true
     third_party_settings: {  }
     weight: 103
+    region: content
+  field_survey:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 9
     region: content
   links:
     settings: {  }

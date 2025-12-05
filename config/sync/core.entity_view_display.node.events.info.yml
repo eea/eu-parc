@@ -22,9 +22,11 @@ dependencies:
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_survey
     - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
+    - field.field.node.events.rabbit_hole__settings
     - node.type.events
   module:
     - layout_builder
@@ -128,7 +130,9 @@ hidden:
   field_organizer: true
   field_parc_training: true
   field_seo_keyword: true
+  field_survey: true
   field_tentative_event: true
   field_training_type: true
   links: true
+  rabbit_hole__settings: true
   search_api_excerpt: true

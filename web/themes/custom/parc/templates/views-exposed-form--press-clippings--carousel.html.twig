@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for a 'form' element.
+ */
+#}
+<div class="row align-items-center flex-wrap flex-md-nowrap justify-content-md-start align-items-md-start">
+  <div class="col-auto col-md-1 order-1 order-md-3 d-flex justify-content-end w--sort-by">
+    {{ form.sort_bef_combine }}
+  </div>
+</div>
+
+{{ form|without('sort_bef_combine', 'category_collapsible') }}

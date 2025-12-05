@@ -1,0 +1,22 @@
+uuid: 993edb81-6c49-4cb0-9d48-60abe30153e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.press_clipping
+id: node.press_clipping.promote
+field_name: promote
+entity_type: node
+bundle: press_clipping
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

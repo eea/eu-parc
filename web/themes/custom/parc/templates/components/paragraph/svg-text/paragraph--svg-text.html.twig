@@ -7,5 +7,11 @@
 {% extends "paragraph.html.twig" %}
 
 {% block content %}
-  {{ content }}
+  {% if paragraph.field_link_one.isEmpty %}
+    {{ content }}
+  {% else %}
+    <a href="{{ link('', paragraph.field_link_one.uri)['#url'].toString }}">
+      {{ content }}
+    </a>
+  {% endif %}
 {% endblock %}

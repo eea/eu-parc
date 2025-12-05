@@ -1,0 +1,42 @@
+uuid: d359e6af-9785-4c32-8909-78b1c84cd216
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_course_stakeholder
+field_name: field_course_stakeholder
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: education
+      label: 'Education (schools and undergraduates)'
+    -
+      value: industry
+      label: Industry
+    -
+      value: regulation_policy
+      label: "Regulator,\_policy maker, risk assessor"
+    -
+      value: academia
+      label: 'Academia (PhD and MSc student, professor, researcher)'
+    -
+      value: ngos
+      label: NGOs
+    -
+      value: consultants
+      label: Consultants
+    -
+      value: citizens
+      label: Citizens
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

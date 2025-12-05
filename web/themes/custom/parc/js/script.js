@@ -147,4 +147,3 @@
     }
   };
 })(jQuery, Drupal, once);
-

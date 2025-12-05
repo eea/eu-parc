@@ -1,0 +1,13 @@
+uuid: db4d4949-c3d9-4da5-ab42-8ae8e6c17b89
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.resource
+id: node.resource
+targetEntityType: node
+bundle: resource
+action: access_denied
+no_bypass: false
+bypass_message: false
+configuration: {  }

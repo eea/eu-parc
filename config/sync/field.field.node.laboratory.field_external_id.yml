@@ -1,0 +1,19 @@
+uuid: f8398259-aa7a-4bd0-b28d-66acaa0885f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_id
+    - node.type.laboratory
+id: node.laboratory.field_external_id
+field_name: field_external_id
+entity_type: node
+bundle: laboratory
+label: 'External ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

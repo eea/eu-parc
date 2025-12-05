@@ -1,0 +1,24 @@
+uuid: cafd6913-039d-4ae2-9ddc-286e40fc0b51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_d_date
+    - node.type.press_release
+  module:
+    - datetime
+id: node.press_release.field_d_date
+field_name: field_d_date
+entity_type: node
+bundle: press_release
+label: 'Publication date'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

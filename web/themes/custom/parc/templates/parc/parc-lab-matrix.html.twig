@@ -1,42 +1,104 @@
 {{ attach_library('parc/lab_matrix') }}
 
-<div class="matrix-table">
-  <div class="table-cell table-cell-header">{{ "Substance group" | t }}</div>
-  <div class="table-cell table-cell-header">{{ "Matrix" | t }}</div>
-  {% for sample_type, substance_group in substances %}
-    <div class="table-cell matrix-item {% if loop.last %}last{% endif %}">{{ sample_type }}</div>
-    <div class="table-cell {% if loop.last %}last{% endif %}">
-      {% for substance, qualified in substance_group %}
-        <div class="substance-qualified">
-          {% if show_qualified_in_parc %}
-            <div class="qualified">
-              {% if qualified %}
-                <svg style="margin-left: 2px" width="15" height="15" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.14844 4.45886L4.63023 7.94066L11.7747 0.796387" stroke="#008475" stroke-width="0.960253"
-                        stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              {% else %}
-                <svg class="not-qualified-svg" width="14" height="14" viewBox="0 0 9 9" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1.14844 1.21533L8.19019 8.25708" stroke="#F58296" stroke-width="0.960253"
-                        stroke-linecap="round"/>
-                  <path d="M8.19092 1.43481L1.14917 8.47656" stroke="#F58296" stroke-width="0.960253"
-                        stroke-linecap="round"/>
-                </svg>
-              {% endif %}
-            </div>
+{% set prev_air = '' %}
+{% set prev_sg = '' %}
+
+{% if lab_category == 'air' %}
+  <div class="matrix-table matrix-table__air">
+    <div class="table-cell table-cell-header">{{ "Air environment" | t }}</div>
+    <div class="table-cell table-cell-header">{{ "Matrix" | t }}</div>
+    <div class="table-cell table-cell-header">{{ "Substance group" | t }}</div>
+    {% for air_env, substance_groups in substances %}
+      {% set last_air = loop.last %}
+      {% for substance_group, matrices in substance_groups %}
+        <div class="table-cell matrix-item {% if loop.last and last_air %}last{% endif %}">
+          {% if prev_air == air_env %}
+            <span class="skip-cell"></span>
+          {% else %}
+            {{ air_env == 'in' ? 'Indoor air' : 'Outdoor air' }}
           {% endif %}
-          <div class="substance">{{ substance }}</div>
+          {% set prev_air = air_env %}
+        </div>
+        <div class="table-cell matrix-item {% if loop.last and last_air %}last{% endif %}">
+          {{ substance_group|replace({'PM10': 'PM<sub>10</sub>', 'PM2.5': 'PM<sub>2.5</sub>'})|raw }}
+        </div>
+        <div class="table-cell {% if loop.last and last_air %}last{% endif %} substances">
+          {% for matrix, qualified in matrices %}
+            <div class="substance-qualified">
+              {% if show_qualified_in_parc %}
+                <div class="qualified">
+                  {% if qualified %}
+                    <svg style="margin-left: 2px" width="15" height="15" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.14844 4.45886L4.63023 7.94066L11.7747 0.796387" stroke="#008475" stroke-width="0.960253"
+                            stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {% else %}
+                    <svg class="not-qualified-svg" width="14" height="14" viewBox="0 0 9 9" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.14844 1.21533L8.19019 8.25708" stroke="#F58296" stroke-width="0.960253"
+                            stroke-linecap="round"/>
+                      <path d="M8.19092 1.43481L1.14917 8.47656" stroke="#F58296" stroke-width="0.960253"
+                            stroke-linecap="round"/>
+                    </svg>
+                  {% endif %}
+                </div>
+              {% endif %}
+              <div class="substance">
+                {{ matrix|replace({'PM10': 'PM<sub>10</sub>', 'PM2.5': 'PM<sub>2.5</sub>'})|raw }}
+              </div>
+            </div>
+          {% endfor %}
+          {% if loop.last and show_qualified_in_parc %}
+            <div class="qualified-in-parc-arrow">
+              <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.851562 0.480469V18.54C0.851562 20.1969 2.19471 21.54 3.85156 21.54H19.0969" stroke="#CCCCCC"/>
+              </svg>
+            </div>
+            <div class="qualified-in-parc-tooltip">{{ "Qualified in PARC" | t }}</div>
+          {% endif %}
         </div>
       {% endfor %}
-      {% if loop.last and show_qualified_in_parc %}
-        <div class="qualified-in-parc-arrow">
-          <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0.851562 0.480469V18.54C0.851562 20.1969 2.19471 21.54 3.85156 21.54H19.0969" stroke="#CCCCCC"/>
-          </svg>
-        </div>
-        <div class="qualified-in-parc-tooltip">{{ "Qualified in PARC" | t }}</div>
-      {% endif %}
-    </div>
-  {% endfor %}
-</div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="matrix-table">
+    <div class="table-cell table-cell-header">{{ "Substance group" | t }}</div>
+    <div class="table-cell table-cell-header">{{ "Matrix" | t }}</div>
+    {% for sample_type, substance_group in substances %}
+      <div class="table-cell matrix-item {% if loop.last %}last{% endif %}">{{ sample_type }}</div>
+      <div class="table-cell {% if loop.last %}last{% endif %}">
+        {% for substance, qualified in substance_group %}
+          <div class="substance-qualified">
+            {% if show_qualified_in_parc %}
+              <div class="qualified">
+                {% if qualified %}
+                  <svg style="margin-left: 2px" width="15" height="15" viewBox="0 0 13 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.14844 4.45886L4.63023 7.94066L11.7747 0.796387" stroke="#008475" stroke-width="0.960253"
+                          stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {% else %}
+                  <svg class="not-qualified-svg" width="14" height="14" viewBox="0 0 9 9" fill="none"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1.14844 1.21533L8.19019 8.25708" stroke="#F58296" stroke-width="0.960253"
+                          stroke-linecap="round"/>
+                    <path d="M8.19092 1.43481L1.14917 8.47656" stroke="#F58296" stroke-width="0.960253"
+                          stroke-linecap="round"/>
+                  </svg>
+                {% endif %}
+              </div>
+            {% endif %}
+            <div class="substance">{{ substance }}</div>
+          </div>
+        {% endfor %}
+        {% if loop.last and show_qualified_in_parc %}
+          <div class="qualified-in-parc-arrow">
+            <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0.851562 0.480469V18.54C0.851562 20.1969 2.19471 21.54 3.85156 21.54H19.0969" stroke="#CCCCCC"/>
+            </svg>
+          </div>
+          <div class="qualified-in-parc-tooltip">{{ "Qualified in PARC" | t }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,21 @@
+uuid: a5de059a-992e-4444-a398-506caa1affab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.rabbit_hole__settings
+    - taxonomy.vocabulary.course_domains_of_interest
+  module:
+    - rabbit_hole
+id: taxonomy_term.course_domains_of_interest.rabbit_hole__settings
+field_name: rabbit_hole__settings
+entity_type: taxonomy_term
+bundle: course_domains_of_interest
+label: 'Rabbit Hole settings'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: rabbit_hole

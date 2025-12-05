@@ -1,0 +1,21 @@
+uuid: 3be6ce1a-587a-4980-b274-6a62541a4bb2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lab_category
+    - node.type.laboratory
+  module:
+    - options
+id: node.laboratory.field_lab_category
+field_name: field_lab_category
+entity_type: node
+bundle: laboratory
+label: 'Lab category'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,12 @@
+uuid: 1b082de8-a615-45d0-984f-22898cfdd838
+langcode: en
+status: true
+dependencies: {  }
+id: small_vertical_padding
+label: 'Small vertical padding'
+classes: py-small
+type: section
+group: default
+block_restrictions: {  }
+layout_restrictions: {  }
+weight: 0

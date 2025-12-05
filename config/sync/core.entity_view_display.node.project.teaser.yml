@@ -18,8 +18,10 @@ dependencies:
     - field.field.node.project.field_show_link
     - field.field.node.project.field_slideshow_items
     - field.field.node.project.field_slideshow_position
+    - field.field.node.project.field_survey
     - node.type.project
   module:
+    - datetime_range
     - entity_reference_revisions
     - parc_core
     - text
@@ -35,6 +37,17 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_date_range:
+    type: daterange_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+      from_to: both
+      separator: '-'
+    third_party_settings: {  }
+    weight: 8
     region: content
   field_partners:
     type: parc_partners
@@ -62,7 +75,7 @@ content:
     region: content
   field_project_keywords:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
@@ -79,7 +92,7 @@ content:
     region: content
   field_project_topics:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
@@ -94,10 +107,10 @@ content:
 hidden:
   addtoany: true
   field_audio_file: true
-  field_date_range: true
   field_related_projects: true
   field_related_publications: true
   field_show_link: true
   field_slideshow_items: true
   field_slideshow_position: true
+  field_survey: true
   search_api_excerpt: true

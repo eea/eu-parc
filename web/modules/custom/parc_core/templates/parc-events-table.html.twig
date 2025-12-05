@@ -1,8 +1,10 @@
-<div class="events-table">
+<div class="events-table" data-current-year="{{ current_year }}">
   <div class="events-table__year">
     <div class="events-table__row__empty-sub"></div>
+    <div class="events-table__year__arrow arrow-left"></div>
+    <div class="events-table__year__arrow arrow-right disabled-arrow"></div>
     {% for year in year_header %}
-      <div class="events-table__year__item">{{ year }}</div>
+      <div class="events-table__year__item {% if year < current_year %}hidden{% endif %}" data-year="{{ year }}">{{ year }}</div>
     {% endfor %}
   </div>
   <div class="events-table__month">
@@ -10,12 +12,12 @@
       {% if loop.first %}
         <div class="events-table__row__format">{{ item }}</div>
       {% else %}
-        <div class="events-table__month__item">{{ item }}</div>
+        <div class="events-table__month__item {% if item.year < current_year %}hidden{% endif %}" data-year="{{ item.year }}">{{ item.month }}</div>
       {% endif %}
     {% endfor %}
   </div>
   {% for row in rows %}
-    <div class="events-table__row" {% if row.event %}style="--event-color: {{ row.event.color }};"{% endif %}>
+    <div class="events-table__row {% if row.format %}format-row{% elseif row.event %}event-row{% else %}filler-row{% endif%} {% if row.years and row.years|last < current_year %}hidden{% endif %}" {% if row.event %}style="--event-color: {{ row.event.color }};"{% endif %} {% if row.years %}data-year="{{ row.years|first }}" data-year-end="{{ row.years|last }}"{% endif %}>
       {% if row.format %}
         <div class="events-table__row__format">{{ row.format }}</div>
       {% elseif row.event %}
@@ -25,8 +27,9 @@
       {% else %}
         <div class="events-table__row__empty-sub"></div>
       {% endif %}
-      {% for month in row.months %}
-        <div class="events-table__row__month">
+      {% for date, month in row.months %}
+        {% set cell_year = date|slice(0, 4) %}
+        <div data-year="{{ cell_year }}" class="events-table__row__month {% if cell_year < current_year %}hidden{% endif %}">
           {% if month %}
             <a title="{{ row.event.title }}" class="events-table__row__month__link {% if not row.event.link or row.event.tentative == "1" %}disabled{% endif %}" target="_blank" href="{{ row.event.tentative == "1" ? "#" : row.event.link }}">{{ row.event.title }}</a>
           {% endif %}

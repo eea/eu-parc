@@ -1,0 +1,21 @@
+uuid: 6eaf218f-9698-464d-8e0c-a4e24dc16d7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_reading_time
+    - node.type.learning_material
+  module:
+    - options
+id: node.learning_material.field_reading_time
+field_name: field_reading_time
+entity_type: node
+bundle: learning_material
+label: 'Reading time'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

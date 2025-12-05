@@ -21,9 +21,11 @@ dependencies:
     - field.field.node.events.field_parc_training
     - field.field.node.events.field_registration
     - field.field.node.events.field_seo_keyword
+    - field.field.node.events.field_survey
     - field.field.node.events.field_tentative_event
     - field.field.node.events.field_training_type
     - field.field.node.events.field_website
+    - field.field.node.events.rabbit_hole__settings
     - node.type.events
   module:
     - conditional_fields
@@ -32,7 +34,9 @@ dependencies:
     - link
     - media_library
     - metatag
+    - paragraphs
     - path
+    - rabbit_hole
     - select2
     - smart_date
     - text
@@ -119,6 +123,7 @@ content:
       hide_date: true
       allday: true
       remove_seconds: false
+      duration_overlay: true
       separator: to
     third_party_settings: {  }
   field_duration:
@@ -241,6 +246,26 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_survey:
+    type: paragraphs
+    weight: 28
+    region: content
+    settings:
+      title: Survey
+      title_plural: Surveys
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
+    third_party_settings: {  }
   field_tentative_event:
     type: boolean_checkbox
     weight: 27
@@ -290,6 +315,13 @@ content:
     weight: 5
     region: content
     settings: {  }
+    third_party_settings: {  }
+  rabbit_hole__settings:
+    type: rabbit_hole_default
+    weight: 100
+    region: content
+    settings:
+      advanced: true
     third_party_settings: {  }
   simple_sitemap:
     weight: 3

@@ -1,0 +1,24 @@
+{% set id = random(10000, 99999) %}
+
+{# Make sure loop works #}
+{% set slides = slides|merge(slides) %}
+{% set slides = slides|merge(slides) %}
+
+<div class="carousel__wrapper carousel__wrapper--{{ type | default('partners') }} ">
+  <div data-id="{{ id }}" class="carousel carousel--{{ type | default('partners') }} swiper" data-type="{{ type | default('partners') }}">
+    <div class="carousel__slides swiper-wrapper">
+      {% for slide in slides %}
+        <div class="carousel__slides__slide swiper-slide">
+          {{ slide }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% if arrows %}
+    <div class="carousel__controls">
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,16 @@
+uuid: f38b9a91-0417-46ba-bf9b-ffbf9b5aac8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.learning_material
+id: node.learning_material
+targetEntityType: node
+bundle: learning_material
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /learning-materials
+  redirect_code: 301
+  redirect_fallback_action: access_denied

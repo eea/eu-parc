@@ -1,0 +1,75 @@
+uuid: e1724ec7-0792-4242-aa36-cf44b179c19c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_teaser
+    - field.field.node.learning_material.body
+    - field.field.node.learning_material.field_course_accessibility
+    - field.field.node.learning_material.field_course_stakeholder
+    - field.field.node.learning_material.field_course_topics
+    - field.field.node.learning_material.field_course_type
+    - field.field.node.learning_material.field_d_date
+    - field.field.node.learning_material.field_domains_of_interest
+    - field.field.node.learning_material.field_expertise
+    - field.field.node.learning_material.field_external_url
+    - field.field.node.learning_material.field_owner
+    - field.field.node.learning_material.field_reading_time
+    - field.field.node.learning_material.field_substance_group
+    - node.type.learning_material
+  module:
+    - layout_builder
+    - smart_trim
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.learning_material.search_teaser
+targetEntityType: node
+bundle: learning_material
+mode: search_teaser
+content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: ...
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  addtoany: true
+  field_course_accessibility: true
+  field_course_stakeholder: true
+  field_course_topics: true
+  field_course_type: true
+  field_d_date: true
+  field_domains_of_interest: true
+  field_expertise: true
+  field_external_url: true
+  field_owner: true
+  field_reading_time: true
+  field_substance_group: true
+  search_api_excerpt: true

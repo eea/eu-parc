@@ -1,0 +1,16 @@
+uuid: 88279211-36eb-4ee9-bbde-df5db1fe67bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.project
+id: node.project
+targetEntityType: node
+bundle: project
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /projects
+  redirect_code: 301
+  redirect_fallback_action: access_denied

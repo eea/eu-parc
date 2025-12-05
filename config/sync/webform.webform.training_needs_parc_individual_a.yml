@@ -1,0 +1,1381 @@
+uuid: 308ffa6e-3e15-4f28-b8e0-c608535fbab3
+langcode: en
+status: closed
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 20
+template: false
+archive: false
+id: training_needs_parc_individual_a
+title: 'Training Needs: PARC Individual Assessment Survey'
+description: ''
+categories: {  }
+elements: |-
+  context_and_consent:
+    '#type': webform_wizard_page
+    '#title': 'Context and Consent'
+    i_confirm_that_i_have_read_and_i_accept_the_information_stated_a:
+      '#type': checkbox
+      '#title': 'I confirm that I have read and I agree that information provided may be used for PARC project purposes, such as project reports, scientific articles, presentations and exchange among partners in the terms mentioned above.'
+      '#description': '<h3><strong>Context and Consent</strong></h3><h5>&nbsp;</h5><h5><strong>Make your opinion count for safer chemicals management in Europe. Please take part in Training needs: PARC Individual Assessment Survey.&nbsp;</strong></h5><h5>&nbsp;</h5><p><strong>Survey Context:</strong> Task 9.4 ‘Training’ of WP9 ‘Building infrastructural and human capacities’ of the Partnership for the Assessment of Risks from Chemicals (PARC) project is responsible for i) mapping training needs, ii) collecting and compiling training opportunities, and iii) providing support for the organisation of training. &nbsp;</p><p>To capture individual training needs in PARC-scientific related topics, Task 9.4 is now distributing among PARC partners, and stakeholders the<em> <strong>Training Needs: PARC Individual Assessment Survey</strong></em>. The collection of this information will help the Task 9.4 team to comply and strategically prioritise training events to be carried out in 2026 and 2027, aligned with the previously identified institutional training needs and the objectives of the PARC project. Simultaneously, we would like to collect your feedback on the PARC 1<sup>st</sup> Training Plan and its implementation to date.</p><p>Therefore, please complete this survey as accurately as possible. Your input is essential to ensure that T9.4 can identify current as well as emerging needs for training and capacity building in the era of next-generation risk assessment.</p><p><strong>PARC objectives:</strong> PARC is an EU-wide research and innovation partnership program to support EU and national chemical risk assessment and risk management bodies with new data, knowledge, methods, networks, and skills to address current, emerging, and novel chemical safety challenges.</p><p>PARC organises its activities to reach three specific objectives:</p><ol><li>&nbsp;An EU-wide sustainable cross-disciplinary network to identify and agree on research and innovation needs and to support research uptake into regulatory chemical risk assessment.</li><li>Joint EU research and innovation activities responding to identified priorities in support of current regulatory risk assessment processes for chemical substances and to emerging challenges.</li><li>Strengthening existing capacities and building new transdisciplinary platforms to support chemical risk assessment of the next generation.</li></ol><p><strong>Data management:</strong> Data obtained from this survey will be saved and stored by the National Institute of Health Dr. Ricardo Jorge, Portugal (INSA); names and email contacts will be removed from the database before transfer to Task 9.4 key partners that will also participate in data analysis. Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679). The results of the survey will become available by June 2025.</p><p><strong>Deadline for completion:</strong> Make sure to submit the survey before<strong> 30.04.2025</strong>.</p><p>If you have any questions, please contact Carla Trindade Costa (carla.trindade@insa.min-saude.pt). &nbsp;</p><p>Thank you for taking the time and focus to complete this survey.</p><p>Task 9.4 leaders</p><p>João Paulo Teixeira &amp; Carla Trindade Costa</p><p>NATIONAL INSTITUTE OF HEALTH DOUTOR RICARDO JORGE</p><p>Porto | Portugal</p><p>www.insa.min-saude.pt &nbsp;</p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  personal_details:
+    '#type': webform_wizard_page
+    '#title': 'Personal Details'
+    first_name:
+      '#type': textfield
+      '#title': Name
+      '#description': '<h3><strong>Personal Details</strong></h3><h5>&nbsp;</h5><h5><strong>Name</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_1:
+      '#type': webform_markup
+      '#markup': '<br>'
+    e_mail_address:
+      '#type': email
+      '#title': 'E-mail address'
+      '#description': '<h5><strong>E-mail address</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+  professional_activity:
+    '#type': webform_wizard_page
+    '#title': 'Professional Activity'
+    current_affiliation_institution_department_and_country:
+      '#type': textfield
+      '#title': 'Current Affiliation (Institution and Department)'
+      '#description': '<h3><strong>Professional Activity</strong><br>&nbsp;</h3><h5><strong>Current Affiliation (</strong>Institution and Department<strong>)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_2:
+      '#type': webform_markup
+      '#markup': '<br>'
+    current_affiliation_country:
+      '#type': select
+      '#title': 'Current Affiliation (Country )'
+      '#description': '<h5><strong>Current Affiliation (</strong>Country<strong>)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        Austria: Austria
+        Belgium: Belgium
+        Croatia: Croatia
+        Cyprus: Cyprus
+        'Czechia (Czech Republic)': 'Czechia (Czech Republic)'
+        Denmark: Denmark
+        Estonia: Estonia
+        Finland: Finland
+        France: France
+        Germany: Germany
+        Greece: Greece
+        Hungary: Hungary
+        Iceland: Iceland
+        Ireland: Ireland
+        Israel: Israel
+        Italy: Italy
+        Latvia: Latvia
+        Lithuania: Lithuania
+        Luxembourg: Luxembourg
+        Netherlands: Netherlands
+        Norway: Norway
+        Poland: Poland
+        Portugal: Portugal
+        Slovakia: Slovakia
+        Slovenia: Slovenia
+        Spain: Spain
+        Sweden: Sweden
+        Switzerland: Switzerland
+        'United Kingdom': 'United Kingdom'
+      '#required': true
+    spacer_3:
+      '#type': webform_markup
+      '#markup': '<br>'
+    current_affiliation_institution_type:
+      '#type': webform_radios_other
+      '#title': 'Current Affiliation (Institution type)'
+      '#description': '<h5><strong>Current Affiliation (</strong>Institution type<strong>)</strong></h5><p><strong>(select one option)&nbsp;</strong></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        Academia: Academia
+        'R&D': 'R&D'
+        ' Regulatory body or organisation': ' Regulatory body or organisation'
+        'Authority/government agency ': 'Authority/government agency '
+        'Business & Industry (including industry associations) ': 'Business & Industry (including industry associations) '
+        NGOs: NGOs
+      '#required': true
+    spacer_4:
+      '#type': webform_markup
+      '#markup': '<br>'
+    field_of_work_indicate_up_to_three_options_2:
+      '#type': webform_checkboxes_other
+      '#title': 'Field of Work (indicate up to three options) '
+      '#multiple': 3
+      '#description': '<h5><strong>Field of Work&nbsp;</strong></h5><p>(indicate up to three options)<strong>&nbsp;</strong></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'Human toxicology': 'Human toxicology'
+        'Environmental toxicology': 'Environmental toxicology'
+        'Biomedical sciences': 'Biomedical sciences'
+        'Cellular and molecular biology': 'Cellular and molecular biology'
+        Epidemiology: Epidemiology
+        'Risk/Health Impact assessment': 'Risk/Health Impact assessment'
+        'Data Science (e.g., modelling)': 'Data Science (e.g., modelling)'
+        'Healthcare (e.g., medicine, nursing)': 'Healthcare (e.g., medicine, nursing)'
+        Nutrition: Nutrition
+        Microbiology: Microbiology
+        'Chemical Sciences': 'Chemical Sciences'
+        'Environmental Health': 'Environmental Health'
+        'Public Health': 'Public Health'
+        'Social Sciences': 'Social Sciences'
+      '#required': true
+    spacer_5:
+      '#type': webform_markup
+      '#markup': '<br>'
+    are_you_involved_in_parc_activities:
+      '#type': radios
+      '#title': 'Are you involved in PARC activities?'
+      '#description': '<h5><strong>Are you involved in PARC activities?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+    spacer_6:
+      '#type': webform_markup
+      '#markup': '<br>'
+    please_indicate_in_which_wp_s:
+      '#type': checkboxes
+      '#title': 'Please indicate in which WP(s): '
+      '#description': '<h5><strong>Please indicate in which WP(s):&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'WP1: Coordination and management ': 'WP1: Coordination and management '
+        'WP2: A common science-policy agenda ': 'WP2: A common science-policy agenda '
+        'WP3: Synergies, collaborations and awareness ': 'WP3: Synergies, collaborations and awareness '
+        'WP4: Monitoring and exposure ': 'WP4: Monitoring and exposure '
+        'WP5: Hazard assessment ': 'WP5: Hazard assessment '
+        'WP6: Innovation in regulatory risk assessment ': 'WP6: Innovation in regulatory risk assessment '
+        'WP7: FAIR data ': 'WP7: FAIR data '
+        'WP8: Concepts and toolboxes ': 'WP8: Concepts and toolboxes '
+        'WP9: Building infrastructural and human capacities ': 'WP9: Building infrastructural and human capacities '
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="are_you_involved_in_parc_activities"]':
+            value: 'Yes'
+  previous_knowledge_in_chemical_exposure_modelling:
+    '#type': webform_wizard_page
+    '#title': 'First PARC Training Plan '
+    spacer_7:
+      '#type': webform_markup
+      '#markup': '<br>'
+    are_you_aware_of_the_parc_training_plan:
+      '#type': radios
+      '#title': "First PARC Training Plan\_"
+      '#description': '<h3><strong>1<sup>st </sup>PARC Training Plan</strong>&nbsp;</h3><p>&nbsp;</p><h5><span class="TextRun SCXW128078426 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Data collected in the 1</span><span class="TextRun SCXW128078426 BCX8 NormalTextRun Superscript" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:9.5pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US" data-fontsize="12"><sup>st</sup></span><span class="TextRun SCXW128078426 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> PARC training needs survey provided ground for the definition of a comprehensive training plan, covering November 2023 to October 2025. This training plan includes both the </span><span class="TextRun SCXW128078426 BCX8 NormalTextRun SpellingErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);background-image:var(--urlSpellingErrorV2,url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjQiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggc3Ryb2tlPSIjRUIwMDAwIiBkPSJNMCAzYzEuMjUgMCAxLjI1LTIgMi41LTJTMy43NSAzIDUgMyIvPjxwYXRoIGQ9Ik0wIDBoNXY0SDB6Ii8+PC9nPjwvc3ZnPg==&quot;));background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">organisation</span><span class="TextRun SCXW128078426 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> of training courses (in person and remote) and the development of open-access online resources, as you can see </span><a href="https://snspt-my.sharepoint.com/:i:/g/personal/mariana_bessa_insa_min-saude_pt/ERDSYRHi8tlFrXEPWYXMBu8BV3ZPEUIoMMm2-IlZpqemeA?e=DhTScr"><span class="TextRun SCXW128078426 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">here</span></a><span class="TextRun SCXW128078426 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">.</span></h5><p>&nbsp;</p><h5><span class="EOP SCXW128078426 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:426,&quot;335559739&quot;:80,&quot;335559740&quot;:312}"><strong>Are you aware of the PARC Training plan? </strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+    spacer_8:
+      '#type': webform_markup
+      '#markup': '<br>'
+    we_have_been_disseminating_training_information_via_the_parc_web:
+      '#type': textfield
+      '#title': 'We have been disseminating training information via the PARC website and social media. If you have any further suggestions on additional dissemination channels, please provide them here.'
+      '#description': '<h5><strong>We have been disseminating training information via the PARC website and social media. If you have any further suggestions on additional dissemination channels, please provide them here.</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+    spacer_9:
+      '#type': webform_markup
+      '#markup': '<br>'
+    did_the_first_training_plan_addressed_any_of_your_training_needs:
+      '#type': radios
+      '#title': 'Did the first Training Plan addressed any of your training needs? '
+      '#description': '<h5><strong>Did the 1<sup>st</sup> Training Plan addressed any of your training needs?&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+    spacer_10:
+      '#type': webform_markup
+      '#markup': '<br>'
+    in_which_topics:
+      '#type': textfield
+      '#title': 'In which topics?'
+      '#description': '<h5><strong>In which topics?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="did_the_first_training_plan_addressed_any_of_your_training_needs"]':
+            value: 'Yes'
+    spacer_11:
+      '#type': webform_markup
+      '#markup': '<br>'
+    have_you_or_any_member_of_your_team_participated_or_plans_to_par:
+      '#type': radios
+      '#title': 'Have you or any member of your team  participated (or plans to participate) in any of the courses included in the PARC Training Plan? '
+      '#description': '<h5><strong>Have you or any colleague participated (or plans to participate) in any of the courses included in the PARC Training Plan?&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        "I don't know": "I don't know"
+      '#required': true
+    spacer_12:
+      '#type': webform_markup
+      '#markup': '<br>'
+    in_which:
+      '#type': radios
+      '#title': 'In which?'
+      '#description': '<h5><strong>In which?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'FAIR Data and Databases': 'FAIR Data and Databases'
+        'Chemical Exposure & Modelling': 'Chemical Exposure & Modelling'
+        'Second SSbD Bootcamp': 'Second SSbD Bootcamp'
+        'Health Risk Assessment of Chemicals - Principles and Applications': 'Health Risk Assessment of Chemicals - Principles and Applications'
+        'In Silico Modelling': 'In Silico Modelling'
+        'Quality Assurance and Quality Control': 'Quality Assurance and Quality Control'
+        NAMs: NAMs
+        'AOPs and IATAs': 'AOPs and IATAs'
+        'Proficiency Testing and Reference Materials': 'Proficiency Testing and Reference Materials'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="have_you_or_any_member_of_your_team_participated_or_plans_to_par"]':
+            value: 'Yes'
+    were_training_insights_shared_in_your_institution:
+      '#type': radios
+      '#title': 'Were training insights shared in your institution? '
+      '#description': '<h5><strong>Were training insights shared in your institution?&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="have_you_or_any_member_of_your_team_participated_or_plans_to_par"]':
+            value: 'Yes'
+    spacer_14:
+      '#type': webform_markup
+      '#markup': '<br>'
+    how_was_information_shared:
+      '#type': webform_checkboxes_other
+      '#title': 'How was information shared? (choose all that apply) '
+      '#description': '<h5><span class="TextRun SCXW160401094 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:160px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>How was information shared? </strong></span></h5><h5><span class="TextRun SCXW160401094 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:160px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB">(choose all that apply)</span><span class="EOP SCXW160401094 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:160px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335559731&quot;:491,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;469777462&quot;:[1276,2410],&quot;469777927&quot;:[0,0],&quot;469777928&quot;:[1,1]}">&nbsp;</span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        ' Internal presentations ': ' Internal presentations '
+        ' Reports or summaries ': ' Reports or summaries '
+        ' Informal discussions ': ' Informal discussions '
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="were_training_insights_shared_in_your_institution"]':
+            value: 'Yes'
+    why:
+      '#type': webform_radios_other
+      '#title': 'Why? (select one option)'
+      '#description': '<h5><strong>Why?&nbsp;</strong></h5><p>(select one option)</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'Lack of awareness of the training courses': 'Lack of awareness of the training courses'
+        'No budget for participation ': 'No budget for participation '
+        'No availability ': 'No availability '
+        'No interest in the topics ': 'No interest in the topics '
+        'Short deadline for application and practical arrangements ': 'Short deadline for application and practical arrangements '
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="have_you_or_any_member_of_your_team_participated_or_plans_to_par"]':
+            value: 'No'
+    do_you_have_any_comments_or_feedback_on_the_first_parc_training:
+      '#type': textfield
+      '#title': 'Do you have any comments or feedback on the First PARC Training plan?'
+      '#description': '<h5><strong>Do you have any comments or feedback on the 1<sup>st</sup> PARC Training plan?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+  motivation:
+    '#type': webform_wizard_page
+    '#title': 'Training Topics '
+    training_topics:
+      '#type': radios
+      '#title': 'Training Topics '
+      '#description': '<h3><strong>Training Topics</strong></h3><p>&nbsp;</p><p>Considering PARC’s objectives, we invite you to list up to 5 training topics to be addressed in the 2<sup>nd </sup>PARC training plan (November 2025 to October 2027). As this is an individual assessment, topics identified here must answer to skills, knowledge, and abilities that can place you in a position to better contribute to current and emerging challenges in novel chemical safety and next-generation risk assessment.&nbsp;</p><p>&nbsp;</p><h5><strong>Would you like to indicate topics to be addressed in PARC 2<sup>nd</sup> training plan?&nbsp;</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'Yes': 'Yes'
+        ' No, I have no training needs to report': ' No, I have no training needs to report'
+      '#required': true
+  training_topics_i:
+    '#type': webform_wizard_page
+    '#title': 'Training Topics I'
+    '#states':
+      visible:
+        ':input[name="training_topics"]':
+          value: 'Yes'
+    topic_1:
+      '#type': webform_section
+      '#title': 'Topic 1 '
+      '#description': '<h4><strong>Topic 1&nbsp;</strong></h4>'
+      '#title_display': invisible
+      '#title_tag': label
+      '#states':
+        visible:
+          ':input[name="training_topics"]':
+            value: 'Yes'
+      spacer_13:
+        '#type': webform_markup
+        '#markup': '<br>'
+      topic_description:
+        '#type': textfield
+        '#title': 'Topic Description '
+        '#description': '<h5><strong>Topic Description&nbsp;</strong></h5><p><span class="TextRun SCXW108320811 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Please indicate here the main topic and related key subjects to be addressed (i.e. content)</span><span class="EOP SCXW108320811 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="training_topics"]':
+              value: 'Yes'
+      spacer_15:
+        '#type': webform_markup
+      importance_of_the_topic1:
+        '#type': radios
+        '#title': 'Importance of the topic1'
+        '#description': '<h5><strong>Importance of the topic</strong></h5><p>In your opinion, how important is it to address this topic? (select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          ' slightly important ': ' slightly important '
+          ' important ': ' important '
+          ' fairly important ': ' fairly important '
+          ' very important ': ' very important '
+          ' extremely important ': ' extremely important '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="training_topics"]':
+              value: 'Yes'
+      spacer_16:
+        '#type': webform_markup
+      please_comment:
+        '#type': textfield
+        '#title': 'Please Comment'
+        '#description': '<h5><strong>Please comment:&nbsp;</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#states':
+          visible:
+            ':input[name="importance_of_the_topic1"]':
+              filled: true
+        '#required': true
+      spacer_99:
+        '#type': webform_markup
+      target_audience:
+        '#type': webform_checkboxes_other
+        '#title': 'Target audience '
+        '#description': '<h5><strong>Target audience&nbsp;</strong></h5><p><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">In your opinion, who will benefit the most </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun ContextualSpellingAndGrammarErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);background-image:var(--urlContextualSpellingAndGrammarErrorV2,url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjMiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMzVGIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0wIC41aDVNMCAyLjVoNSIvPjwvZz48L3N2Zz4=&quot;));background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">of</span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> this training? </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">(choose all that apply)</span><span class="EOP SCXW266541693 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          'Researchers including PhD students ': 'Researchers including PhD students '
+          'Regulators and Policy makers ': 'Regulators and Policy makers '
+          ' Industry ': ' Industry '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="training_topics"]':
+              value: 'Yes'
+      spacer_17:
+        '#type': webform_markup
+      difficulty_level:
+        '#type': radios
+        '#title': 'Difficulty level '
+        '#description': '<h5><strong>Difficulty level</strong></h5><p>In your opinion, which would be the most adequate level of difficulty for this training? &nbsp;(select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          Beginner: Beginner
+          Intermediate: Intermediate
+          Advanced: Advanced
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="training_topics"]':
+              value: 'Yes'
+      spacer_98:
+        '#type': webform_markup
+      delivery_format:
+        '#type': webform_likert
+        '#title': 'Delivery format '
+        '#description': '<h5><strong>Delivery format&nbsp;</strong></h5><p><span class="TextRun SCXW133272566 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">For this topic, please indicate which delivery format you find to be the most adequate by rating the different options presented here:</span><span class="EOP SCXW133272566 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="training_topics"]':
+              value: 'Yes'
+        '#questions':
+          'In-person (trainees and instructors gather in the same physical location, at the same time) ': 'In-person (trainees and instructors gather in the same physical location, at the same time) '
+          'Hybrid (online activities are mixed with in-person meetings) ': 'Hybrid (online activities are mixed with in-person meetings) '
+          'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)': 'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)'
+          'Online resources (all the learning takes place online, with all required activities happening asynchronously) ': 'Online resources (all the learning takes place online, with all required activities happening asynchronously) '
+        '#answers':
+          'Not adequate ': 'Not adequate '
+          Neutral: Neutral
+          Adequate: Adequate
+      spacer_18:
+        '#type': webform_markup
+      available_training:
+        '#type': radios
+        '#title': 'Available training '
+        '#description': '<h5><strong>Available training</strong></h5><p>Are you aware of any existing training on this topic?<br>&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="training_topics"]':
+              value: 'Yes'
+      spacer_19:
+        '#type': webform_markup
+      please_provide_details:
+        '#type': textfield
+        '#title': 'Please provide details:'
+        '#description': '<h5><strong>Please provide details:</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="available_training"]':
+              value: 'Yes'
+      do_you_wish_to_add_another_topic:
+        '#type': radios
+        '#title': 'Do you wish to add another topic?'
+        '#description': '<h5><strong>Do you wish to add another topic?</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="training_topics"]':
+              value: 'Yes'
+  training_topics_topic_2:
+    '#type': webform_wizard_page
+    '#title': 'Training Topics II'
+    '#states':
+      visible:
+        ':input[name="do_you_wish_to_add_another_topic"]':
+          value: 'Yes'
+    topic_2:
+      '#type': webform_section
+      '#title': 'Topic 2'
+      '#description': '<h3><strong>Training Topics</strong></h3><p>&nbsp;</p><h4><strong>Topic 2</strong></h4>'
+      '#title_display': invisible
+      '#states':
+        visible:
+          ':input[name="do_you_wish_to_add_another_topic"]':
+            value: 'Yes'
+      spacer_95:
+        '#type': webform_markup
+      topic_description_2:
+        '#type': textfield
+        '#title': 'Topic Description 2'
+        '#description': '<h5><strong>Topic Description&nbsp;</strong></h5><p><span class="TextRun SCXW108320811 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Please indicate here the main topic and related key subjects to be addressed (i.e. content)</span><span class="EOP SCXW108320811 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic"]':
+              value: 'Yes'
+      spacer_21:
+        '#type': webform_markup
+      importance_of_the_topic2:
+        '#type': radios
+        '#title': 'Importance of the topic2'
+        '#description': '<h5><strong>Importance of the topic</strong></h5><p>In your opinion, how important is it to address this topic? (select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          ' slightly important ': ' slightly important '
+          ' important ': ' important '
+          ' fairly important ': ' fairly important '
+          ' very important ': ' very important '
+          ' extremely important ': ' extremely important '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic"]':
+              value: 'Yes'
+      spacer_20:
+        '#type': webform_markup
+      please_comment_2:
+        '#type': textfield
+        '#title': 'Please Comment2'
+        '#description': '<h5><strong>Please comment:&nbsp;</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="importance_of_the_topic2"]':
+              filled: true
+      spacer_97:
+        '#type': webform_markup
+      target_audience_2:
+        '#type': webform_checkboxes_other
+        '#title': 'Target audience 2'
+        '#description': '<h5><strong>Target audience&nbsp;</strong></h5><p><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">In your opinion, who will benefit the most </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun ContextualSpellingAndGrammarErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);background-image:var(--urlContextualSpellingAndGrammarErrorV2,url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjMiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMzVGIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0wIC41aDVNMCAyLjVoNSIvPjwvZz48L3N2Zz4=&quot;));background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">of</span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> this training? </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">(choose all that apply)</span><span class="EOP SCXW266541693 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          'Researchers including PhD students ': 'Researchers including PhD students '
+          'Regulators and Policy makers ': 'Regulators and Policy makers '
+          ' Industry ': ' Industry '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic"]':
+              value: 'Yes'
+      spacer_96:
+        '#type': webform_markup
+      difficulty_level_2:
+        '#type': radios
+        '#title': 'Difficulty level 2'
+        '#description': '<h5><strong>Difficulty level</strong></h5><p>In your opinion, which would be the most adequate level of difficulty for this training? &nbsp;(select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          Beginner: Beginner
+          Intermediate: Intermediate
+          Advanced: Advanced
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic"]':
+              value: 'Yes'
+      spacer_22:
+        '#type': webform_markup
+      delivery_format_2:
+        '#type': webform_likert
+        '#title': 'Delivery format '
+        '#description': '<h5><strong>Delivery format&nbsp;</strong></h5><p><span class="TextRun SCXW133272566 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">For this topic, please indicate which delivery format you find to be the most adequate by rating the different options presented here:</span><span class="EOP SCXW133272566 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic"]':
+              value: 'Yes'
+        '#questions':
+          'In-person (trainees and instructors gather in the same physical location, at the same time) ': 'In-person (trainees and instructors gather in the same physical location, at the same time) '
+          'Hybrid (online activities are mixed with in-person meetings) ': 'Hybrid (online activities are mixed with in-person meetings) '
+          'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)': 'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)'
+          'Online resources (all the learning takes place online, with all required activities happening asynchronously) ': 'Online resources (all the learning takes place online, with all required activities happening asynchronously) '
+        '#answers':
+          'Not adequate ': 'Not adequate '
+          Neutral: Neutral
+          Adequate: Adequate
+      spacer_23:
+        '#type': webform_markup
+      available_training_2:
+        '#type': radios
+        '#title': 'Available training '
+        '#description': '<h5><strong>Available training</strong></h5><p>Are you aware of any existing training on this topic?&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic"]':
+              value: 'Yes'
+      spacer_24:
+        '#type': webform_markup
+      please_provide_details_2:
+        '#type': textfield
+        '#title': 'Please provide details:'
+        '#description': '<h5><strong>Please provide details:</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="available_training_2"]':
+              value: 'Yes'
+      do_you_wish_to_add_another_topic_2:
+        '#type': radios
+        '#title': 'Do you wish to add another topic? 2'
+        '#description': '<h5><strong>Do you wish to add another topic?</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic"]':
+              value: 'Yes'
+  training_topics_iii:
+    '#type': webform_wizard_page
+    '#title': 'Training Topics III'
+    '#states':
+      visible:
+        ':input[name="do_you_wish_to_add_another_topic_2"]':
+          value: 'Yes'
+    topic_3:
+      '#type': webform_section
+      '#title': 'Topic 3'
+      '#description': '<h3><strong>Training Topics</strong></h3><h4>&nbsp;</h4><h4><strong>Topic 3</strong></h4>'
+      '#title_display': invisible
+      '#description_display': before
+      '#title_tag': label
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="do_you_wish_to_add_another_topic_2"]':
+            value: 'Yes'
+      spacer_94:
+        '#type': webform_markup
+      topic_description_3:
+        '#type': textfield
+        '#title': 'Topic Description_3'
+        '#description': '<h5><strong>Topic Description&nbsp;</strong></h5><p><span class="TextRun SCXW108320811 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Please indicate here the main topic and related key subjects to be addressed (i.e. content)</span><span class="EOP SCXW108320811 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_2"]':
+              value: 'Yes'
+      spacer_25:
+        '#type': webform_markup
+      importance_of_the_topic3:
+        '#type': radios
+        '#title': 'Importance of the topic3'
+        '#description': '<h5><strong>Importance of the topic</strong></h5><p>In your opinion, how important is it to address this topic? (select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          ' slightly important ': ' slightly important '
+          ' important ': ' important '
+          ' fairly important ': ' fairly important '
+          ' very important ': ' very important '
+          ' extremely important ': ' extremely important '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_2"]':
+              value: 'Yes'
+      spacer_92:
+        '#type': webform_markup
+      please_comment2:
+        '#type': textfield
+        '#title': 'Please Comment3'
+        '#description': '<h5><strong>Please comment:&nbsp;</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="importance_of_the_topic3"]':
+              filled: true
+      spacer_26:
+        '#type': webform_markup
+      target_audience_3:
+        '#type': webform_checkboxes_other
+        '#title': 'Target audience_3'
+        '#description': '<h5><strong>Target audience</strong></h5><p><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">In your opinion, who will benefit the most </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun ContextualSpellingAndGrammarErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);background-image:var(--urlContextualSpellingAndGrammarErrorV2,url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjMiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMzVGIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0wIC41aDVNMCAyLjVoNSIvPjwvZz48L3N2Zz4=&quot;));background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">of</span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> this training? </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">(choose all that apply)</span><span class="EOP SCXW266541693 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          'Researchers including PhD students ': 'Researchers including PhD students '
+          'Regulators and Policy makers ': 'Regulators and Policy makers '
+          ' Industry ': ' Industry '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_2"]':
+              value: 'Yes'
+      spacer_27:
+        '#type': webform_markup
+      difficulty_level_3:
+        '#type': radios
+        '#title': 'Difficulty level 3'
+        '#description': '<h5><strong>Difficulty level</strong></h5><p>In your opinion, which would be the most adequate level of difficulty for this training? &nbsp;(select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          Beginner: Beginner
+          Intermediate: Intermediate
+          Advanced: Advanced
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_2"]':
+              value: 'Yes'
+      spacer_93:
+        '#type': webform_markup
+      delivery_format_3:
+        '#type': webform_likert
+        '#title': 'Delivery format 3'
+        '#description': '<h5><strong>Delivery format&nbsp;</strong></h5><p><span class="TextRun SCXW133272566 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">For this topic, please indicate which delivery format you find to be the most adequate by rating the different options presented here:</span><span class="EOP SCXW133272566 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_2"]':
+              value: 'Yes'
+        '#questions':
+          'In-person (trainees and instructors gather in the same physical location, at the same time) ': 'In-person (trainees and instructors gather in the same physical location, at the same time) '
+          'Hybrid (online activities are mixed with in-person meetings) ': 'Hybrid (online activities are mixed with in-person meetings) '
+          'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)': 'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)'
+          'Online resources (all the learning takes place online, with all required activities happening asynchronously) ': 'Online resources (all the learning takes place online, with all required activities happening asynchronously) '
+        '#answers':
+          'Not adequate ': 'Not adequate '
+          Neutral: Neutral
+          Adequate: Adequate
+      spacer_28:
+        '#type': webform_markup
+      available_training_3:
+        '#type': radios
+        '#title': 'Available training 3'
+        '#description': '<h5><span class="TextRun SCXW81645916 BCX8 NormalTextRun" style="-webkit-border-image:none;-webkit-box-align:stretch;-webkit-box-decoration-break:slice;-webkit-box-direction:normal;-webkit-box-flex:0;-webkit-box-ordinal-group:1;-webkit-box-orient:horizontal;-webkit-box-pack:start;-webkit-font-smoothing:auto;-webkit-line-break:auto;-webkit-line-clamp:none;-webkit-locale:&quot;EN-US&quot;;-webkit-mask-box-image-outset:0;-webkit-mask-box-image-repeat:stretch;-webkit-mask-box-image-slice:0 fill;-webkit-mask-box-image-source:none;-webkit-mask-box-image-width:auto;-webkit-print-color-adjust:economy;-webkit-rtl-ordering:logical;-webkit-ruby-position:before;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-text-combine:none;-webkit-text-decorations-in-effect:none;-webkit-text-fill-color:rgb(0, 0, 0);-webkit-text-orientation:vertical-right;-webkit-text-security:none;-webkit-text-stroke:0px rgb(0, 0, 0);-webkit-user-drag:none;-webkit-user-modify:read-only;-webkit-writing-mode:horizontal-tb;accent-color:auto;alignment-baseline:auto;anchor-name:none;anchor-scope:none;animation-composition:replace;animation:0s ease 0s 1 normal none running none;app-region:none;appearance:none;aspect-ratio:auto;backdrop-filter:none;backface-visibility:visible;background-blend-mode:normal;background:none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);baseline-shift:0px;baseline-source:auto;block-size:auto;border-block-end:0px none rgb(0, 0, 0);border-block-start:0px none rgb(0, 0, 0);border-collapse:separate;border-color:rgb(0, 0, 0);border-end-end-radius:0px;border-end-start-radius:0px;border-image:none 100% / 1 / 0 stretch;border-inline-end:0px none rgb(0, 0, 0);border-inline-start:0px none rgb(0, 0, 0);border-radius:0px;border-spacing:0px;border-start-end-radius:0px;border-start-start-radius:0px;border-style:none;border-width:0px;box-decoration-break:slice;box-shadow:none;box-sizing:content-box;break-after:auto;break-before:auto;break-inside:auto;buffered-rendering:auto;caption-side:top;caret-color:rgb(0, 0, 0);clear:none;clip-path:none;clip-rule:nonzero;clip:auto;color-interpolation-filters:linearrgb;color-interpolation:srgb;color-rendering:auto;color-scheme:normal;color:rgb(0, 0, 0);column-fill:balance;column-rule:0px rgb(0, 0, 0);column-span:none;columns:auto;contain-intrinsic-block-size:none;contain-intrinsic-inline-size:none;contain-intrinsic-size:none;contain:none;container:none;content-visibility:visible;content:normal;counter-increment:none;counter-reset:none;counter-set:none;cursor:text;cx:0px;cy:0px;d:none;direction:ltr;display:inline;dominant-baseline:auto;empty-cells:show;field-sizing:fixed;fill-opacity:1;fill-rule:nonzero;fill:rgb(0, 0, 0);filter:none;flex-flow:row;flex:0 1 auto;float:none;flood-color:rgb(0, 0, 0);flood-opacity:1;font-family:WordVisi_MSFontService, Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-feature-settings:normal;font-kerning:none;font-optical-sizing:auto;font-palette:normal;font-size-adjust:none;font-size:16px;font-stretch:100%;font-style:normal;font-synthesis:weight style small-caps;font-variant:none;font-variation-settings:normal;font-weight:400;forced-color-adjust:auto;gap:normal;grid-area:auto;grid:none;height:auto;hyphenate-character:auto;hyphenate-limit-chars:auto;hyphens:manual;image-orientation:from-image;image-rendering:auto;initial-letter:normal;inline-size:auto;inset-block:auto;inset-inline:auto;inset:auto;interpolate-size:numeric-only;isolation:auto;letter-spacing:normal;lighting-color:rgb(255, 255, 255);line-break:auto;line-height:28.6px;list-style:outside none disc;margin-block:0px;margin-inline:0px;margin:0px;marker:none;mask-type:luminance;mask:none;math-depth:0;math-shift:normal;math-style:normal;max-block-size:none;max-height:none;max-inline-size:none;max-width:none;min-block-size:0px;min-height:0px;min-inline-size:0px;min-width:0px;mix-blend-mode:normal;object-fit:fill;object-position:50% 50%;object-view-box:none;offset:normal;opacity:1;order:0;orphans:2;outline-offset:0px;outline:rgb(0, 0, 0) none 0px;overflow-anchor:auto;overflow-clip-margin:0px;overflow-wrap:break-word;overflow:visible;overlay:none;overscroll-behavior-block:auto;overscroll-behavior-inline:auto;overscroll-behavior:auto;padding-block:0px;padding-inline:0px;padding:0px;page:auto;paint-order:normal;perspective-origin:0px 0px;perspective:none;place-content:normal;place-items:normal;place-self:auto;pointer-events:auto;position-anchor:auto;position-area:none;position-try:none;position-visibility:always;position:static;quotes:auto;r:0px;resize:none;rotate:none;ruby-align:space-around;ruby-position:over;rx:auto;ry:auto;scale:none;scroll-behavior:auto;scroll-initial-target:none;scroll-margin-block:0px;scroll-margin-inline:0px;scroll-margin:0px;scroll-padding-block:auto;scroll-padding-inline:auto;scroll-padding:auto;scroll-snap-align:none;scroll-snap-stop:normal;scroll-snap-type:none;scroll-timeline:none;scrollbar-color:auto;scrollbar-gutter:auto;scrollbar-width:auto;shape-image-threshold:0;shape-margin:0px;shape-outside:none;shape-rendering:auto;speak:normal;stop-color:rgb(0, 0, 0);stop-opacity:1;stroke-dasharray:none;stroke-dashoffset:0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-width:1px;stroke:none;tab-size:8;table-layout:auto;text-align-last:auto;text-align:justify;text-anchor:start;text-box:normal;text-combine-upright:none;text-decoration-skip-ink:auto;text-decoration:none solid rgb(0, 0, 0);text-emphasis-position:over;text-emphasis:none rgb(0, 0, 0);text-indent:0px;text-orientation:mixed;text-overflow:clip;text-rendering:auto;text-shadow:none;text-size-adjust:auto;text-spacing-trim:normal;text-transform:none;text-underline-offset:auto;text-underline-position:auto;text-wrap:wrap;timeline-scope:none;touch-action:auto;transform-box:view-box;transform-origin:0px 0px;transform-style:flat;transform:none;transition:all;translate:none;unicode-bidi:normal;user-select:text;vector-effect:none;vertical-align:baseline;view-timeline:none;view-transition-class:none;view-transition-name:none;visibility:visible;white-space-collapse:preserve;widows:2;width:auto;will-change:auto;word-break:normal;word-spacing:0px;writing-mode:horizontal-tb;x:0px;y:0px;z-index:auto;zoom:1;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Available training</strong></span><br><span class="TextRun SCXW81645916 BCX8 NormalTextRun" style="-webkit-border-image:none;-webkit-box-align:stretch;-webkit-box-decoration-break:slice;-webkit-box-direction:normal;-webkit-box-flex:0;-webkit-box-ordinal-group:1;-webkit-box-orient:horizontal;-webkit-box-pack:start;-webkit-font-smoothing:auto;-webkit-line-break:auto;-webkit-line-clamp:none;-webkit-locale:&quot;EN-US&quot;;-webkit-mask-box-image-outset:0;-webkit-mask-box-image-repeat:stretch;-webkit-mask-box-image-slice:0 fill;-webkit-mask-box-image-source:none;-webkit-mask-box-image-width:auto;-webkit-print-color-adjust:economy;-webkit-rtl-ordering:logical;-webkit-ruby-position:before;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-text-combine:none;-webkit-text-decorations-in-effect:none;-webkit-text-fill-color:rgb(0, 0, 0);-webkit-text-orientation:vertical-right;-webkit-text-security:none;-webkit-text-stroke:0px rgb(0, 0, 0);-webkit-user-drag:none;-webkit-user-modify:read-only;-webkit-writing-mode:horizontal-tb;accent-color:auto;alignment-baseline:auto;anchor-name:none;anchor-scope:none;animation-composition:replace;animation:0s ease 0s 1 normal none running none;app-region:none;appearance:none;aspect-ratio:auto;backdrop-filter:none;backface-visibility:visible;background-blend-mode:normal;background:none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);baseline-shift:0px;baseline-source:auto;block-size:auto;border-block-end:0px none rgb(0, 0, 0);border-block-start:0px none rgb(0, 0, 0);border-collapse:separate;border-color:rgb(0, 0, 0);border-end-end-radius:0px;border-end-start-radius:0px;border-image:none 100% / 1 / 0 stretch;border-inline-end:0px none rgb(0, 0, 0);border-inline-start:0px none rgb(0, 0, 0);border-radius:0px;border-spacing:0px;border-start-end-radius:0px;border-start-start-radius:0px;border-style:none;border-width:0px;box-decoration-break:slice;box-shadow:none;box-sizing:content-box;break-after:auto;break-before:auto;break-inside:auto;buffered-rendering:auto;caption-side:top;caret-color:rgb(0, 0, 0);clear:none;clip-path:none;clip-rule:nonzero;clip:auto;color-interpolation-filters:linearrgb;color-interpolation:srgb;color-rendering:auto;color-scheme:normal;color:rgb(0, 0, 0);column-fill:balance;column-rule:0px rgb(0, 0, 0);column-span:none;columns:auto;contain-intrinsic-block-size:none;contain-intrinsic-inline-size:none;contain-intrinsic-size:none;contain:none;container:none;content-visibility:visible;content:normal;counter-increment:none;counter-reset:none;counter-set:none;cursor:text;cx:0px;cy:0px;d:none;direction:ltr;display:inline;dominant-baseline:auto;empty-cells:show;field-sizing:fixed;fill-opacity:1;fill-rule:nonzero;fill:rgb(0, 0, 0);filter:none;flex-flow:row;flex:0 1 auto;float:none;flood-color:rgb(0, 0, 0);flood-opacity:1;font-family:WordVisi_MSFontService, Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-feature-settings:normal;font-kerning:none;font-optical-sizing:auto;font-palette:normal;font-size-adjust:none;font-size:16px;font-stretch:100%;font-style:normal;font-synthesis:weight style small-caps;font-variant:none;font-variation-settings:normal;font-weight:400;forced-color-adjust:auto;gap:normal;grid-area:auto;grid:none;height:auto;hyphenate-character:auto;hyphenate-limit-chars:auto;hyphens:manual;image-orientation:from-image;image-rendering:auto;initial-letter:normal;inline-size:auto;inset-block:auto;inset-inline:auto;inset:auto;interpolate-size:numeric-only;isolation:auto;letter-spacing:normal;lighting-color:rgb(255, 255, 255);line-break:auto;line-height:28.6px;list-style:outside none disc;margin-block:0px;margin-inline:0px;margin:0px;marker:none;mask-type:luminance;mask:none;math-depth:0;math-shift:normal;math-style:normal;max-block-size:none;max-height:none;max-inline-size:none;max-width:none;min-block-size:0px;min-height:0px;min-inline-size:0px;min-width:0px;mix-blend-mode:normal;object-fit:fill;object-position:50% 50%;object-view-box:none;offset:normal;opacity:1;order:0;orphans:2;outline-offset:0px;outline:rgb(0, 0, 0) none 0px;overflow-anchor:auto;overflow-clip-margin:0px;overflow-wrap:break-word;overflow:visible;overlay:none;overscroll-behavior-block:auto;overscroll-behavior-inline:auto;overscroll-behavior:auto;padding-block:0px;padding-inline:0px;padding:0px;page:auto;paint-order:normal;perspective-origin:0px 0px;perspective:none;place-content:normal;place-items:normal;place-self:auto;pointer-events:auto;position-anchor:auto;position-area:none;position-try:none;position-visibility:always;position:static;quotes:auto;r:0px;resize:none;rotate:none;ruby-align:space-around;ruby-position:over;rx:auto;ry:auto;scale:none;scroll-behavior:auto;scroll-initial-target:none;scroll-margin-block:0px;scroll-margin-inline:0px;scroll-margin:0px;scroll-padding-block:auto;scroll-padding-inline:auto;scroll-padding:auto;scroll-snap-align:none;scroll-snap-stop:normal;scroll-snap-type:none;scroll-timeline:none;scrollbar-color:auto;scrollbar-gutter:auto;scrollbar-width:auto;shape-image-threshold:0;shape-margin:0px;shape-outside:none;shape-rendering:auto;speak:normal;stop-color:rgb(0, 0, 0);stop-opacity:1;stroke-dasharray:none;stroke-dashoffset:0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-width:1px;stroke:none;tab-size:8;table-layout:auto;text-align-last:auto;text-align:justify;text-anchor:start;text-box:normal;text-combine-upright:none;text-decoration-skip-ink:auto;text-decoration:none solid rgb(0, 0, 0);text-emphasis-position:over;text-emphasis:none rgb(0, 0, 0);text-indent:0px;text-orientation:mixed;text-overflow:clip;text-rendering:auto;text-shadow:none;text-size-adjust:auto;text-spacing-trim:normal;text-transform:none;text-underline-offset:auto;text-underline-position:auto;text-wrap:wrap;timeline-scope:none;touch-action:auto;transform-box:view-box;transform-origin:0px 0px;transform-style:flat;transform:none;transition:all;translate:none;unicode-bidi:normal;user-select:text;vector-effect:none;vertical-align:baseline;view-timeline:none;view-transition-class:none;view-transition-name:none;visibility:visible;white-space-collapse:preserve;widows:2;width:auto;will-change:auto;word-break:normal;word-spacing:0px;writing-mode:horizontal-tb;x:0px;y:0px;z-index:auto;zoom:1;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Are you aware of any existing training on this topic?</span></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_2"]':
+              value: 'Yes'
+      spacer_29:
+        '#type': webform_markup
+      please_provide_details_3:
+        '#type': textfield
+        '#title': 'Please provide details:'
+        '#description': '<h5><strong>Please provide details:</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="available_training_3"]':
+              value: 'Yes'
+      spacer_30:
+        '#type': webform_markup
+      do_you_wish_to_add_another_topic_3:
+        '#type': radios
+        '#title': 'Do you wish to add another topic?_3'
+        '#description': '<h5><strong>Do you wish to add another topic?</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_2"]':
+              value: 'Yes'
+  training_topics_iv:
+    '#type': webform_wizard_page
+    '#title': 'Training Topics IV'
+    '#states':
+      visible:
+        ':input[name="do_you_wish_to_add_another_topic_3"]':
+          value: 'Yes'
+    topic_4:
+      '#type': webform_section
+      '#title': 'Topic 4'
+      '#description': '<h3><strong>Training Topics</strong></h3><h3>&nbsp;</h3><h4><strong>Topic 4</strong></h4>'
+      '#title_display': invisible
+      '#title_tag': label
+      '#states':
+        visible:
+          ':input[name="do_you_wish_to_add_another_topic_3"]':
+            value: 'Yes'
+      spacer_31:
+        '#type': webform_markup
+      topic_description_4:
+        '#type': textfield
+        '#title': 'Topic Description_4'
+        '#description': '<h5><strong>Topic Description&nbsp;</strong></h5><p><span class="TextRun SCXW108320811 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Please indicate here the main topic and related key subjects to be addressed (i.e. content)</span><span class="EOP SCXW108320811 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_3"]':
+              value: 'Yes'
+      spacer_32:
+        '#type': webform_markup
+      importance_of_the_topic4:
+        '#type': radios
+        '#title': 'Importance of the topic4'
+        '#description': '<h5><strong>Importance of the topic</strong></h5><p>In your opinion, how important is it to address this topic? (select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          ' slightly important ': ' slightly important '
+          ' important ': ' important '
+          ' fairly important ': ' fairly important '
+          ' very important ': ' very important '
+          ' extremely important': ' extremely important'
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_3"]':
+              value: 'Yes'
+      spacer_33:
+        '#type': webform_markup
+      please_comment4:
+        '#type': textfield
+        '#title': 'Please Comment4'
+        '#description': '<h5><strong>Please comment:&nbsp;</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="importance_of_the_topic4"]':
+              filled: true
+      spacer_91:
+        '#type': webform_markup
+      target_audience_4:
+        '#type': webform_checkboxes_other
+        '#title': 'Target audience_4'
+        '#description': '<h5><strong>Target audience</strong></h5><p><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">In your opinion, who will benefit the most </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun ContextualSpellingAndGrammarErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);background-image:var(--urlContextualSpellingAndGrammarErrorV2,url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjMiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMzVGIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0wIC41aDVNMCAyLjVoNSIvPjwvZz48L3N2Zz4=&quot;));background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">of</span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> this training? </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">(choose all that apply)</span><span class="EOP SCXW266541693 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          'Researchers including PhD students ': 'Researchers including PhD students '
+          'Regulators and Policy makers ': 'Regulators and Policy makers '
+          ' Industry ': ' Industry '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_3"]':
+              value: 'Yes'
+      spacer_34:
+        '#type': webform_markup
+      difficulty_level_4:
+        '#type': radios
+        '#title': 'Difficulty level 4'
+        '#description': '<h5><strong>Difficulty level</strong></h5><p>In your opinion, which would be the most adequate level of difficulty for this training? &nbsp;(select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          Beginner: Beginner
+          Intermediate: Intermediate
+          Advanced: Advanced
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_3"]':
+              value: 'Yes'
+      spacer_90:
+        '#type': webform_markup
+      delivery_format_4:
+        '#type': webform_likert
+        '#title': 'Delivery format  4'
+        '#description': '<h5><strong>Delivery format&nbsp;</strong></h5><p><span class="TextRun SCXW133272566 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">For this topic, please indicate which delivery format you find to be the most adequate by rating the different options presented here:</span><span class="EOP SCXW133272566 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_3"]':
+              value: 'Yes'
+        '#questions':
+          'In-person (trainees and instructors gather in the same physical location, at the same time) ': 'In-person (trainees and instructors gather in the same physical location, at the same time) '
+          'Hybrid (online activities are mixed with in-person meetings) ': 'Hybrid (online activities are mixed with in-person meetings) '
+          'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)': 'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)'
+          'Online resources (all the learning takes place online, with all required activities happening asynchronously) ': 'Online resources (all the learning takes place online, with all required activities happening asynchronously) '
+        '#answers':
+          'Not adequate ': 'Not adequate '
+          Neutral: Neutral
+          Adequate: Adequate
+      spacer_35:
+        '#type': webform_markup
+      available_training_4:
+        '#type': radios
+        '#title': 'Available training 4'
+        '#description': '<h5><span class="TextRun SCXW81645916 BCX8 NormalTextRun" style="-webkit-border-image:none;-webkit-box-align:stretch;-webkit-box-decoration-break:slice;-webkit-box-direction:normal;-webkit-box-flex:0;-webkit-box-ordinal-group:1;-webkit-box-orient:horizontal;-webkit-box-pack:start;-webkit-font-smoothing:auto;-webkit-line-break:auto;-webkit-line-clamp:none;-webkit-locale:&quot;EN-US&quot;;-webkit-mask-box-image-outset:0;-webkit-mask-box-image-repeat:stretch;-webkit-mask-box-image-slice:0 fill;-webkit-mask-box-image-source:none;-webkit-mask-box-image-width:auto;-webkit-print-color-adjust:economy;-webkit-rtl-ordering:logical;-webkit-ruby-position:before;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-text-combine:none;-webkit-text-decorations-in-effect:none;-webkit-text-fill-color:rgb(0, 0, 0);-webkit-text-orientation:vertical-right;-webkit-text-security:none;-webkit-text-stroke:0px rgb(0, 0, 0);-webkit-user-drag:none;-webkit-user-modify:read-only;-webkit-writing-mode:horizontal-tb;accent-color:auto;alignment-baseline:auto;anchor-name:none;anchor-scope:none;animation-composition:replace;animation:0s ease 0s 1 normal none running none;app-region:none;appearance:none;aspect-ratio:auto;backdrop-filter:none;backface-visibility:visible;background-blend-mode:normal;background:none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);baseline-shift:0px;baseline-source:auto;block-size:auto;border-block-end:0px none rgb(0, 0, 0);border-block-start:0px none rgb(0, 0, 0);border-collapse:separate;border-color:rgb(0, 0, 0);border-end-end-radius:0px;border-end-start-radius:0px;border-image:none 100% / 1 / 0 stretch;border-inline-end:0px none rgb(0, 0, 0);border-inline-start:0px none rgb(0, 0, 0);border-radius:0px;border-spacing:0px;border-start-end-radius:0px;border-start-start-radius:0px;border-style:none;border-width:0px;box-decoration-break:slice;box-shadow:none;box-sizing:content-box;break-after:auto;break-before:auto;break-inside:auto;buffered-rendering:auto;caption-side:top;caret-color:rgb(0, 0, 0);clear:none;clip-path:none;clip-rule:nonzero;clip:auto;color-interpolation-filters:linearrgb;color-interpolation:srgb;color-rendering:auto;color-scheme:normal;color:rgb(0, 0, 0);column-fill:balance;column-rule:0px rgb(0, 0, 0);column-span:none;columns:auto;contain-intrinsic-block-size:none;contain-intrinsic-inline-size:none;contain-intrinsic-size:none;contain:none;container:none;content-visibility:visible;content:normal;counter-increment:none;counter-reset:none;counter-set:none;cursor:text;cx:0px;cy:0px;d:none;direction:ltr;display:inline;dominant-baseline:auto;empty-cells:show;field-sizing:fixed;fill-opacity:1;fill-rule:nonzero;fill:rgb(0, 0, 0);filter:none;flex-flow:row;flex:0 1 auto;float:none;flood-color:rgb(0, 0, 0);flood-opacity:1;font-family:WordVisi_MSFontService, Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-feature-settings:normal;font-kerning:none;font-optical-sizing:auto;font-palette:normal;font-size-adjust:none;font-size:16px;font-stretch:100%;font-style:normal;font-synthesis:weight style small-caps;font-variant:none;font-variation-settings:normal;font-weight:400;forced-color-adjust:auto;gap:normal;grid-area:auto;grid:none;height:auto;hyphenate-character:auto;hyphenate-limit-chars:auto;hyphens:manual;image-orientation:from-image;image-rendering:auto;initial-letter:normal;inline-size:auto;inset-block:auto;inset-inline:auto;inset:auto;interpolate-size:numeric-only;isolation:auto;letter-spacing:normal;lighting-color:rgb(255, 255, 255);line-break:auto;line-height:28.6px;list-style:outside none disc;margin-block:0px;margin-inline:0px;margin:0px;marker:none;mask-type:luminance;mask:none;math-depth:0;math-shift:normal;math-style:normal;max-block-size:none;max-height:none;max-inline-size:none;max-width:none;min-block-size:0px;min-height:0px;min-inline-size:0px;min-width:0px;mix-blend-mode:normal;object-fit:fill;object-position:50% 50%;object-view-box:none;offset:normal;opacity:1;order:0;orphans:2;outline-offset:0px;outline:rgb(0, 0, 0) none 0px;overflow-anchor:auto;overflow-clip-margin:0px;overflow-wrap:break-word;overflow:visible;overlay:none;overscroll-behavior-block:auto;overscroll-behavior-inline:auto;overscroll-behavior:auto;padding-block:0px;padding-inline:0px;padding:0px;page:auto;paint-order:normal;perspective-origin:0px 0px;perspective:none;place-content:normal;place-items:normal;place-self:auto;pointer-events:auto;position-anchor:auto;position-area:none;position-try:none;position-visibility:always;position:static;quotes:auto;r:0px;resize:none;rotate:none;ruby-align:space-around;ruby-position:over;rx:auto;ry:auto;scale:none;scroll-behavior:auto;scroll-initial-target:none;scroll-margin-block:0px;scroll-margin-inline:0px;scroll-margin:0px;scroll-padding-block:auto;scroll-padding-inline:auto;scroll-padding:auto;scroll-snap-align:none;scroll-snap-stop:normal;scroll-snap-type:none;scroll-timeline:none;scrollbar-color:auto;scrollbar-gutter:auto;scrollbar-width:auto;shape-image-threshold:0;shape-margin:0px;shape-outside:none;shape-rendering:auto;speak:normal;stop-color:rgb(0, 0, 0);stop-opacity:1;stroke-dasharray:none;stroke-dashoffset:0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-width:1px;stroke:none;tab-size:8;table-layout:auto;text-align-last:auto;text-align:justify;text-anchor:start;text-box:normal;text-combine-upright:none;text-decoration-skip-ink:auto;text-decoration:none solid rgb(0, 0, 0);text-emphasis-position:over;text-emphasis:none rgb(0, 0, 0);text-indent:0px;text-orientation:mixed;text-overflow:clip;text-rendering:auto;text-shadow:none;text-size-adjust:auto;text-spacing-trim:normal;text-transform:none;text-underline-offset:auto;text-underline-position:auto;text-wrap:wrap;timeline-scope:none;touch-action:auto;transform-box:view-box;transform-origin:0px 0px;transform-style:flat;transform:none;transition:all;translate:none;unicode-bidi:normal;user-select:text;vector-effect:none;vertical-align:baseline;view-timeline:none;view-transition-class:none;view-transition-name:none;visibility:visible;white-space-collapse:preserve;widows:2;width:auto;will-change:auto;word-break:normal;word-spacing:0px;writing-mode:horizontal-tb;x:0px;y:0px;z-index:auto;zoom:1;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Available training</strong></span><br><span class="TextRun SCXW81645916 BCX8 NormalTextRun" style="-webkit-border-image:none;-webkit-box-align:stretch;-webkit-box-decoration-break:slice;-webkit-box-direction:normal;-webkit-box-flex:0;-webkit-box-ordinal-group:1;-webkit-box-orient:horizontal;-webkit-box-pack:start;-webkit-font-smoothing:auto;-webkit-line-break:auto;-webkit-line-clamp:none;-webkit-locale:&quot;EN-US&quot;;-webkit-mask-box-image-outset:0;-webkit-mask-box-image-repeat:stretch;-webkit-mask-box-image-slice:0 fill;-webkit-mask-box-image-source:none;-webkit-mask-box-image-width:auto;-webkit-print-color-adjust:economy;-webkit-rtl-ordering:logical;-webkit-ruby-position:before;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-text-combine:none;-webkit-text-decorations-in-effect:none;-webkit-text-fill-color:rgb(0, 0, 0);-webkit-text-orientation:vertical-right;-webkit-text-security:none;-webkit-text-stroke:0px rgb(0, 0, 0);-webkit-user-drag:none;-webkit-user-modify:read-only;-webkit-writing-mode:horizontal-tb;accent-color:auto;alignment-baseline:auto;anchor-name:none;anchor-scope:none;animation-composition:replace;animation:0s ease 0s 1 normal none running none;app-region:none;appearance:none;aspect-ratio:auto;backdrop-filter:none;backface-visibility:visible;background-blend-mode:normal;background:none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);baseline-shift:0px;baseline-source:auto;block-size:auto;border-block-end:0px none rgb(0, 0, 0);border-block-start:0px none rgb(0, 0, 0);border-collapse:separate;border-color:rgb(0, 0, 0);border-end-end-radius:0px;border-end-start-radius:0px;border-image:none 100% / 1 / 0 stretch;border-inline-end:0px none rgb(0, 0, 0);border-inline-start:0px none rgb(0, 0, 0);border-radius:0px;border-spacing:0px;border-start-end-radius:0px;border-start-start-radius:0px;border-style:none;border-width:0px;box-decoration-break:slice;box-shadow:none;box-sizing:content-box;break-after:auto;break-before:auto;break-inside:auto;buffered-rendering:auto;caption-side:top;caret-color:rgb(0, 0, 0);clear:none;clip-path:none;clip-rule:nonzero;clip:auto;color-interpolation-filters:linearrgb;color-interpolation:srgb;color-rendering:auto;color-scheme:normal;color:rgb(0, 0, 0);column-fill:balance;column-rule:0px rgb(0, 0, 0);column-span:none;columns:auto;contain-intrinsic-block-size:none;contain-intrinsic-inline-size:none;contain-intrinsic-size:none;contain:none;container:none;content-visibility:visible;content:normal;counter-increment:none;counter-reset:none;counter-set:none;cursor:text;cx:0px;cy:0px;d:none;direction:ltr;display:inline;dominant-baseline:auto;empty-cells:show;field-sizing:fixed;fill-opacity:1;fill-rule:nonzero;fill:rgb(0, 0, 0);filter:none;flex-flow:row;flex:0 1 auto;float:none;flood-color:rgb(0, 0, 0);flood-opacity:1;font-family:WordVisi_MSFontService, Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-feature-settings:normal;font-kerning:none;font-optical-sizing:auto;font-palette:normal;font-size-adjust:none;font-size:16px;font-stretch:100%;font-style:normal;font-synthesis:weight style small-caps;font-variant:none;font-variation-settings:normal;font-weight:400;forced-color-adjust:auto;gap:normal;grid-area:auto;grid:none;height:auto;hyphenate-character:auto;hyphenate-limit-chars:auto;hyphens:manual;image-orientation:from-image;image-rendering:auto;initial-letter:normal;inline-size:auto;inset-block:auto;inset-inline:auto;inset:auto;interpolate-size:numeric-only;isolation:auto;letter-spacing:normal;lighting-color:rgb(255, 255, 255);line-break:auto;line-height:28.6px;list-style:outside none disc;margin-block:0px;margin-inline:0px;margin:0px;marker:none;mask-type:luminance;mask:none;math-depth:0;math-shift:normal;math-style:normal;max-block-size:none;max-height:none;max-inline-size:none;max-width:none;min-block-size:0px;min-height:0px;min-inline-size:0px;min-width:0px;mix-blend-mode:normal;object-fit:fill;object-position:50% 50%;object-view-box:none;offset:normal;opacity:1;order:0;orphans:2;outline-offset:0px;outline:rgb(0, 0, 0) none 0px;overflow-anchor:auto;overflow-clip-margin:0px;overflow-wrap:break-word;overflow:visible;overlay:none;overscroll-behavior-block:auto;overscroll-behavior-inline:auto;overscroll-behavior:auto;padding-block:0px;padding-inline:0px;padding:0px;page:auto;paint-order:normal;perspective-origin:0px 0px;perspective:none;place-content:normal;place-items:normal;place-self:auto;pointer-events:auto;position-anchor:auto;position-area:none;position-try:none;position-visibility:always;position:static;quotes:auto;r:0px;resize:none;rotate:none;ruby-align:space-around;ruby-position:over;rx:auto;ry:auto;scale:none;scroll-behavior:auto;scroll-initial-target:none;scroll-margin-block:0px;scroll-margin-inline:0px;scroll-margin:0px;scroll-padding-block:auto;scroll-padding-inline:auto;scroll-padding:auto;scroll-snap-align:none;scroll-snap-stop:normal;scroll-snap-type:none;scroll-timeline:none;scrollbar-color:auto;scrollbar-gutter:auto;scrollbar-width:auto;shape-image-threshold:0;shape-margin:0px;shape-outside:none;shape-rendering:auto;speak:normal;stop-color:rgb(0, 0, 0);stop-opacity:1;stroke-dasharray:none;stroke-dashoffset:0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-width:1px;stroke:none;tab-size:8;table-layout:auto;text-align-last:auto;text-align:justify;text-anchor:start;text-box:normal;text-combine-upright:none;text-decoration-skip-ink:auto;text-decoration:none solid rgb(0, 0, 0);text-emphasis-position:over;text-emphasis:none rgb(0, 0, 0);text-indent:0px;text-orientation:mixed;text-overflow:clip;text-rendering:auto;text-shadow:none;text-size-adjust:auto;text-spacing-trim:normal;text-transform:none;text-underline-offset:auto;text-underline-position:auto;text-wrap:wrap;timeline-scope:none;touch-action:auto;transform-box:view-box;transform-origin:0px 0px;transform-style:flat;transform:none;transition:all;translate:none;unicode-bidi:normal;user-select:text;vector-effect:none;vertical-align:baseline;view-timeline:none;view-transition-class:none;view-transition-name:none;visibility:visible;white-space-collapse:preserve;widows:2;width:auto;will-change:auto;word-break:normal;word-spacing:0px;writing-mode:horizontal-tb;x:0px;y:0px;z-index:auto;zoom:1;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Are you aware of any existing training on this topic?</span></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_3"]':
+              value: 'Yes'
+      spacer_36:
+        '#type': webform_markup
+      please_provide_details_4:
+        '#type': textfield
+        '#title': 'Please provide details:'
+        '#description': '<h5><strong>Please provide details:</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="available_training_4"]':
+              value: 'Yes'
+      spacer_37:
+        '#type': webform_markup
+      do_you_wish_to_add_another_topic__4:
+        '#type': radios
+        '#title': 'Do you wish to add another topic?_4'
+        '#description': '<h5><strong>Do you wish to add another topic?</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic_3"]':
+              value: 'Yes'
+  training_topics_v:
+    '#type': webform_wizard_page
+    '#title': 'Training Topics V'
+    '#states':
+      visible:
+        ':input[name="do_you_wish_to_add_another_topic__4"]':
+          value: 'Yes'
+    topic_5:
+      '#type': webform_section
+      '#title': 'Topic 5'
+      '#description': '<h3><strong>Training Topics</strong></h3><h3>&nbsp;</h3><h4><strong>Topic 5</strong></h4>'
+      '#title_display': invisible
+      '#states':
+        visible:
+          ':input[name="do_you_wish_to_add_another_topic__4"]':
+            value: 'Yes'
+      spacer_38:
+        '#type': webform_markup
+      topic_description_5:
+        '#type': textfield
+        '#title': 'Topic Description_5'
+        '#description': '<h5><strong>Topic Description&nbsp;</strong></h5><p><span class="TextRun SCXW108320811 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Please indicate here the main topic and related key subjects to be addressed (i.e. content)</span><span class="EOP SCXW108320811 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic__4"]':
+              value: 'Yes'
+      spacer_39:
+        '#type': webform_markup
+      importance_of_the_topic5:
+        '#type': radios
+        '#title': 'Importance of the topic5'
+        '#description': '<h5><strong>Importance of the topic</strong></h5><p>In your opinion, how important is it to address this topic? (select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          ' slightly important ': ' slightly important '
+          ' important ': ' important '
+          ' fairly important ': ' fairly important '
+          ' very important': ' very important'
+          ' extremely important ': ' extremely important '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic__4"]':
+              value: 'Yes'
+      spacer_50:
+        '#type': webform_markup
+      please_comment5:
+        '#type': textfield
+        '#title': 'Please Comment5'
+        '#description': '<h5><strong>Please comment:&nbsp;</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="importance_of_the_topic5"]':
+              filled: true
+      spacer_40:
+        '#type': webform_markup
+      target_audience_5:
+        '#type': webform_checkboxes_other
+        '#title': 'Target audience_5'
+        '#description': '<h5><strong>Target audience</strong></h5><p><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">In your opinion, who will benefit the most </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun ContextualSpellingAndGrammarErrorV2Themed" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);background-image:var(--urlContextualSpellingAndGrammarErrorV2,url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjMiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMzVGIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0wIC41aDVNMCAyLjVoNSIvPjwvZz48L3N2Zz4=&quot;));background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">of</span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> this training? </span><span class="TextRun SCXW266541693 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">(choose all that apply)</span><span class="EOP SCXW266541693 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          'Researchers including PhD students ': 'Researchers including PhD students '
+          'Regulators and Policy makers ': 'Regulators and Policy makers '
+          ' Industry ': ' Industry '
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic__4"]':
+              value: 'Yes'
+      spacer_41:
+        '#type': webform_markup
+      difficulty_level_5:
+        '#type': radios
+        '#title': 'Difficulty level 5'
+        '#description': '<h5><strong>Difficulty level</strong></h5><p>In your opinion, which would be the most adequate level of difficulty for this training? &nbsp;(select one option)&nbsp;</p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options':
+          Beginner: Beginner
+          Intermediate: Intermediate
+          Advanced: Advanced
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic__4"]':
+              value: 'Yes'
+      spacer_49:
+        '#type': webform_markup
+      delivery_format_5:
+        '#type': webform_likert
+        '#title': 'Delivery format  5'
+        '#description': '<h5><strong>Delivery format&nbsp;</strong></h5><p><span class="TextRun SCXW133272566 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">For this topic, please indicate which delivery format you find to be the most adequate by rating the different options presented here:</span><span class="EOP SCXW133272566 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:28.6px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559685&quot;:1211,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic__4"]':
+              value: 'Yes'
+        '#questions':
+          'In-person (trainees and instructors gather in the same physical location, at the same time) ': 'In-person (trainees and instructors gather in the same physical location, at the same time) '
+          'Hybrid (online activities are mixed with in-person meetings) ': 'Hybrid (online activities are mixed with in-person meetings) '
+          'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)': 'Remote (learning takes place online; it may be a mixture of asynchronous and synchronous activities, or exclusively synchronous)'
+          'Online resources (all the learning takes place online, with all required activities happening asynchronously) ': 'Online resources (all the learning takes place online, with all required activities happening asynchronously) '
+        '#answers':
+          'Not adequate ': 'Not adequate '
+          Neutral: Neutral
+          Adequate: Adequate
+      spacer_42:
+        '#type': webform_markup
+      available_training_5:
+        '#type': radios
+        '#title': 'Available training 5'
+        '#description': '<h5><span class="TextRun SCXW81645916 BCX8 NormalTextRun" style="-webkit-border-image:none;-webkit-box-align:stretch;-webkit-box-decoration-break:slice;-webkit-box-direction:normal;-webkit-box-flex:0;-webkit-box-ordinal-group:1;-webkit-box-orient:horizontal;-webkit-box-pack:start;-webkit-font-smoothing:auto;-webkit-line-break:auto;-webkit-line-clamp:none;-webkit-locale:&quot;EN-US&quot;;-webkit-mask-box-image-outset:0;-webkit-mask-box-image-repeat:stretch;-webkit-mask-box-image-slice:0 fill;-webkit-mask-box-image-source:none;-webkit-mask-box-image-width:auto;-webkit-print-color-adjust:economy;-webkit-rtl-ordering:logical;-webkit-ruby-position:before;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-text-combine:none;-webkit-text-decorations-in-effect:none;-webkit-text-fill-color:rgb(0, 0, 0);-webkit-text-orientation:vertical-right;-webkit-text-security:none;-webkit-text-stroke:0px rgb(0, 0, 0);-webkit-user-drag:none;-webkit-user-modify:read-only;-webkit-writing-mode:horizontal-tb;accent-color:auto;alignment-baseline:auto;anchor-name:none;anchor-scope:none;animation-composition:replace;animation:0s ease 0s 1 normal none running none;app-region:none;appearance:none;aspect-ratio:auto;backdrop-filter:none;backface-visibility:visible;background-blend-mode:normal;background:none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);baseline-shift:0px;baseline-source:auto;block-size:auto;border-block-end:0px none rgb(0, 0, 0);border-block-start:0px none rgb(0, 0, 0);border-collapse:separate;border-color:rgb(0, 0, 0);border-end-end-radius:0px;border-end-start-radius:0px;border-image:none 100% / 1 / 0 stretch;border-inline-end:0px none rgb(0, 0, 0);border-inline-start:0px none rgb(0, 0, 0);border-radius:0px;border-spacing:0px;border-start-end-radius:0px;border-start-start-radius:0px;border-style:none;border-width:0px;box-decoration-break:slice;box-shadow:none;box-sizing:content-box;break-after:auto;break-before:auto;break-inside:auto;buffered-rendering:auto;caption-side:top;caret-color:rgb(0, 0, 0);clear:none;clip-path:none;clip-rule:nonzero;clip:auto;color-interpolation-filters:linearrgb;color-interpolation:srgb;color-rendering:auto;color-scheme:normal;color:rgb(0, 0, 0);column-fill:balance;column-rule:0px rgb(0, 0, 0);column-span:none;columns:auto;contain-intrinsic-block-size:none;contain-intrinsic-inline-size:none;contain-intrinsic-size:none;contain:none;container:none;content-visibility:visible;content:normal;counter-increment:none;counter-reset:none;counter-set:none;cursor:text;cx:0px;cy:0px;d:none;direction:ltr;display:inline;dominant-baseline:auto;empty-cells:show;field-sizing:fixed;fill-opacity:1;fill-rule:nonzero;fill:rgb(0, 0, 0);filter:none;flex-flow:row;flex:0 1 auto;float:none;flood-color:rgb(0, 0, 0);flood-opacity:1;font-family:WordVisi_MSFontService, Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-feature-settings:normal;font-kerning:none;font-optical-sizing:auto;font-palette:normal;font-size-adjust:none;font-size:16px;font-stretch:100%;font-style:normal;font-synthesis:weight style small-caps;font-variant:none;font-variation-settings:normal;font-weight:400;forced-color-adjust:auto;gap:normal;grid-area:auto;grid:none;height:auto;hyphenate-character:auto;hyphenate-limit-chars:auto;hyphens:manual;image-orientation:from-image;image-rendering:auto;initial-letter:normal;inline-size:auto;inset-block:auto;inset-inline:auto;inset:auto;interpolate-size:numeric-only;isolation:auto;letter-spacing:normal;lighting-color:rgb(255, 255, 255);line-break:auto;line-height:28.6px;list-style:outside none disc;margin-block:0px;margin-inline:0px;margin:0px;marker:none;mask-type:luminance;mask:none;math-depth:0;math-shift:normal;math-style:normal;max-block-size:none;max-height:none;max-inline-size:none;max-width:none;min-block-size:0px;min-height:0px;min-inline-size:0px;min-width:0px;mix-blend-mode:normal;object-fit:fill;object-position:50% 50%;object-view-box:none;offset:normal;opacity:1;order:0;orphans:2;outline-offset:0px;outline:rgb(0, 0, 0) none 0px;overflow-anchor:auto;overflow-clip-margin:0px;overflow-wrap:break-word;overflow:visible;overlay:none;overscroll-behavior-block:auto;overscroll-behavior-inline:auto;overscroll-behavior:auto;padding-block:0px;padding-inline:0px;padding:0px;page:auto;paint-order:normal;perspective-origin:0px 0px;perspective:none;place-content:normal;place-items:normal;place-self:auto;pointer-events:auto;position-anchor:auto;position-area:none;position-try:none;position-visibility:always;position:static;quotes:auto;r:0px;resize:none;rotate:none;ruby-align:space-around;ruby-position:over;rx:auto;ry:auto;scale:none;scroll-behavior:auto;scroll-initial-target:none;scroll-margin-block:0px;scroll-margin-inline:0px;scroll-margin:0px;scroll-padding-block:auto;scroll-padding-inline:auto;scroll-padding:auto;scroll-snap-align:none;scroll-snap-stop:normal;scroll-snap-type:none;scroll-timeline:none;scrollbar-color:auto;scrollbar-gutter:auto;scrollbar-width:auto;shape-image-threshold:0;shape-margin:0px;shape-outside:none;shape-rendering:auto;speak:normal;stop-color:rgb(0, 0, 0);stop-opacity:1;stroke-dasharray:none;stroke-dashoffset:0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-width:1px;stroke:none;tab-size:8;table-layout:auto;text-align-last:auto;text-align:justify;text-anchor:start;text-box:normal;text-combine-upright:none;text-decoration-skip-ink:auto;text-decoration:none solid rgb(0, 0, 0);text-emphasis-position:over;text-emphasis:none rgb(0, 0, 0);text-indent:0px;text-orientation:mixed;text-overflow:clip;text-rendering:auto;text-shadow:none;text-size-adjust:auto;text-spacing-trim:normal;text-transform:none;text-underline-offset:auto;text-underline-position:auto;text-wrap:wrap;timeline-scope:none;touch-action:auto;transform-box:view-box;transform-origin:0px 0px;transform-style:flat;transform:none;transition:all;translate:none;unicode-bidi:normal;user-select:text;vector-effect:none;vertical-align:baseline;view-timeline:none;view-transition-class:none;view-transition-name:none;visibility:visible;white-space-collapse:preserve;widows:2;width:auto;will-change:auto;word-break:normal;word-spacing:0px;writing-mode:horizontal-tb;x:0px;y:0px;z-index:auto;zoom:1;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"><strong>Available training</strong></span><br><span class="TextRun SCXW81645916 BCX8 NormalTextRun" style="-webkit-border-image:none;-webkit-box-align:stretch;-webkit-box-decoration-break:slice;-webkit-box-direction:normal;-webkit-box-flex:0;-webkit-box-ordinal-group:1;-webkit-box-orient:horizontal;-webkit-box-pack:start;-webkit-font-smoothing:auto;-webkit-line-break:auto;-webkit-line-clamp:none;-webkit-locale:&quot;EN-US&quot;;-webkit-mask-box-image-outset:0;-webkit-mask-box-image-repeat:stretch;-webkit-mask-box-image-slice:0 fill;-webkit-mask-box-image-source:none;-webkit-mask-box-image-width:auto;-webkit-print-color-adjust:economy;-webkit-rtl-ordering:logical;-webkit-ruby-position:before;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-text-combine:none;-webkit-text-decorations-in-effect:none;-webkit-text-fill-color:rgb(0, 0, 0);-webkit-text-orientation:vertical-right;-webkit-text-security:none;-webkit-text-stroke:0px rgb(0, 0, 0);-webkit-user-drag:none;-webkit-user-modify:read-only;-webkit-writing-mode:horizontal-tb;accent-color:auto;alignment-baseline:auto;anchor-name:none;anchor-scope:none;animation-composition:replace;animation:0s ease 0s 1 normal none running none;app-region:none;appearance:none;aspect-ratio:auto;backdrop-filter:none;backface-visibility:visible;background-blend-mode:normal;background:none 0% 0% / auto repeat scroll padding-box border-box rgba(0, 0, 0, 0);baseline-shift:0px;baseline-source:auto;block-size:auto;border-block-end:0px none rgb(0, 0, 0);border-block-start:0px none rgb(0, 0, 0);border-collapse:separate;border-color:rgb(0, 0, 0);border-end-end-radius:0px;border-end-start-radius:0px;border-image:none 100% / 1 / 0 stretch;border-inline-end:0px none rgb(0, 0, 0);border-inline-start:0px none rgb(0, 0, 0);border-radius:0px;border-spacing:0px;border-start-end-radius:0px;border-start-start-radius:0px;border-style:none;border-width:0px;box-decoration-break:slice;box-shadow:none;box-sizing:content-box;break-after:auto;break-before:auto;break-inside:auto;buffered-rendering:auto;caption-side:top;caret-color:rgb(0, 0, 0);clear:none;clip-path:none;clip-rule:nonzero;clip:auto;color-interpolation-filters:linearrgb;color-interpolation:srgb;color-rendering:auto;color-scheme:normal;color:rgb(0, 0, 0);column-fill:balance;column-rule:0px rgb(0, 0, 0);column-span:none;columns:auto;contain-intrinsic-block-size:none;contain-intrinsic-inline-size:none;contain-intrinsic-size:none;contain:none;container:none;content-visibility:visible;content:normal;counter-increment:none;counter-reset:none;counter-set:none;cursor:text;cx:0px;cy:0px;d:none;direction:ltr;display:inline;dominant-baseline:auto;empty-cells:show;field-sizing:fixed;fill-opacity:1;fill-rule:nonzero;fill:rgb(0, 0, 0);filter:none;flex-flow:row;flex:0 1 auto;float:none;flood-color:rgb(0, 0, 0);flood-opacity:1;font-family:WordVisi_MSFontService, Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-feature-settings:normal;font-kerning:none;font-optical-sizing:auto;font-palette:normal;font-size-adjust:none;font-size:16px;font-stretch:100%;font-style:normal;font-synthesis:weight style small-caps;font-variant:none;font-variation-settings:normal;font-weight:400;forced-color-adjust:auto;gap:normal;grid-area:auto;grid:none;height:auto;hyphenate-character:auto;hyphenate-limit-chars:auto;hyphens:manual;image-orientation:from-image;image-rendering:auto;initial-letter:normal;inline-size:auto;inset-block:auto;inset-inline:auto;inset:auto;interpolate-size:numeric-only;isolation:auto;letter-spacing:normal;lighting-color:rgb(255, 255, 255);line-break:auto;line-height:28.6px;list-style:outside none disc;margin-block:0px;margin-inline:0px;margin:0px;marker:none;mask-type:luminance;mask:none;math-depth:0;math-shift:normal;math-style:normal;max-block-size:none;max-height:none;max-inline-size:none;max-width:none;min-block-size:0px;min-height:0px;min-inline-size:0px;min-width:0px;mix-blend-mode:normal;object-fit:fill;object-position:50% 50%;object-view-box:none;offset:normal;opacity:1;order:0;orphans:2;outline-offset:0px;outline:rgb(0, 0, 0) none 0px;overflow-anchor:auto;overflow-clip-margin:0px;overflow-wrap:break-word;overflow:visible;overlay:none;overscroll-behavior-block:auto;overscroll-behavior-inline:auto;overscroll-behavior:auto;padding-block:0px;padding-inline:0px;padding:0px;page:auto;paint-order:normal;perspective-origin:0px 0px;perspective:none;place-content:normal;place-items:normal;place-self:auto;pointer-events:auto;position-anchor:auto;position-area:none;position-try:none;position-visibility:always;position:static;quotes:auto;r:0px;resize:none;rotate:none;ruby-align:space-around;ruby-position:over;rx:auto;ry:auto;scale:none;scroll-behavior:auto;scroll-initial-target:none;scroll-margin-block:0px;scroll-margin-inline:0px;scroll-margin:0px;scroll-padding-block:auto;scroll-padding-inline:auto;scroll-padding:auto;scroll-snap-align:none;scroll-snap-stop:normal;scroll-snap-type:none;scroll-timeline:none;scrollbar-color:auto;scrollbar-gutter:auto;scrollbar-width:auto;shape-image-threshold:0;shape-margin:0px;shape-outside:none;shape-rendering:auto;speak:normal;stop-color:rgb(0, 0, 0);stop-opacity:1;stroke-dasharray:none;stroke-dashoffset:0px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-width:1px;stroke:none;tab-size:8;table-layout:auto;text-align-last:auto;text-align:justify;text-anchor:start;text-box:normal;text-combine-upright:none;text-decoration-skip-ink:auto;text-decoration:none solid rgb(0, 0, 0);text-emphasis-position:over;text-emphasis:none rgb(0, 0, 0);text-indent:0px;text-orientation:mixed;text-overflow:clip;text-rendering:auto;text-shadow:none;text-size-adjust:auto;text-spacing-trim:normal;text-transform:none;text-underline-offset:auto;text-underline-position:auto;text-wrap:wrap;timeline-scope:none;touch-action:auto;transform-box:view-box;transform-origin:0px 0px;transform-style:flat;transform:none;transition:all;translate:none;unicode-bidi:normal;user-select:text;vector-effect:none;vertical-align:baseline;view-timeline:none;view-transition-class:none;view-transition-name:none;visibility:visible;white-space-collapse:preserve;widows:2;width:auto;will-change:auto;word-break:normal;word-spacing:0px;writing-mode:horizontal-tb;x:0px;y:0px;z-index:auto;zoom:1;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">Are you aware of any existing training on this topic?</span></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#options': yes_no
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="do_you_wish_to_add_another_topic__4"]':
+              value: 'Yes'
+      spacer_43:
+        '#type': webform_markup
+      please_provide_details_5:
+        '#type': textfield
+        '#title': 'Please provide details_5'
+        '#description': '<h5><strong>Please provide details:</strong></h5>'
+        '#title_display': invisible
+        '#description_display': before
+        '#required': true
+        '#states':
+          visible:
+            ':input[name="available_training_5"]':
+              value: 'Yes'
+      spacer_88:
+        '#type': webform_markup
+        '#markup': '<br>'
+  trainer_s_identification:
+    '#type': webform_wizard_page
+    '#title': 'Trainer’s identification '
+    have_you_or_anyone_in_your_institution_ever_provided_training_on:
+      '#type': radios
+      '#title': 'Have you or anyone in your institution ever provided training on PARC-scientific related topics? '
+      '#description': '<h3><strong>Trainer’s identification&nbsp;</strong></h3><h5>&nbsp;</h5><h5><span class="TextRun SCXW233378763 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-variant-ligatures:none !important;line-height:31.2px;margin:0px;padding:0px;user-select:text;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>Ha</strong></span><span class="TrackedChange SCXW233378763 BCX8 TextRun NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-variant-ligatures:none !important;line-height:31.2px;margin:0px;padding:0px;user-select:text;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>ve you or anyone in</strong></span><span class="TextRun SCXW233378763 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-variant-ligatures:none !important;line-height:31.2px;margin:0px;padding:0px;user-select:text;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong> your institution ever provided training on PARC-scientific related topics?</strong></span><span class="EOP SCXW233378763 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;line-height:31.2px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335559685&quot;:993,&quot;335559739&quot;:80,&quot;335559740&quot;:312}"><strong>&nbsp;</strong></span></h5><p><span class="TextRun SCXW233378763 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-ligatures:none !important;line-height:28.6px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">For guidance, you can find more information on the topics identified in the 1</span><span class="TextRun SCXW233378763 BCX8 NormalTextRun Superscript" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:9.5pt;font-variant-ligatures:none !important;line-height:28.6px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US" data-fontsize="12"><sup>st</sup></span><span class="TextRun SCXW233378763 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-ligatures:none !important;line-height:28.6px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US"> PARC Training Needs Survey </span><a class="Hyperlink SCXW233378763 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;color:inherit;cursor:text;margin:0px;padding:0px;text-decoration:none;user-select:text;" href="https://www.eu-parc.eu/sites/default/files/2023-11/PARC%20training%20needs%20survey_short%20report_12.09.2022.pdf" target="_blank" rel="noreferrer noopener"><span class="TextRun Underlined SCXW233378763 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-ligatures:none !important;line-height:28.6px;margin:0px;padding:0px;text-decoration:underline;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US" data-ccp-charstyle="Hyperlink">here</span></a><span class="TextRun SCXW233378763 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;font-variant-ligatures:none !important;line-height:28.6px;margin:0px;padding:0px;user-select:text;" data-contrast="auto" xml:lang="EN-US" lang="EN-US">. However, we encourage you to indicate your training experience in any additional topics that you consider relevant for PARC.</span><span class="EOP SCXW233378763 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-user-drag:none;font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:12pt;line-height:28.6px;margin:0px;padding:0px;user-select:text;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335559685&quot;:993,&quot;335559739&quot;:80,&quot;335559740&quot;:312,&quot;335559991&quot;:360}">&nbsp;</span></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        "I don't know": "I don't know"
+      '#required': true
+    spacer_44:
+      '#type': webform_markup
+      '#states':
+        visible:
+          ':input[name="have_you_or_anyone_in_your_institution_ever_provided_training_on"]':
+            value: 'Yes'
+    in_which_topics_2:
+      '#type': textarea
+      '#title': 'In which topics?'
+      '#description': '<h5><strong>In which topics?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="have_you_or_anyone_in_your_institution_ever_provided_training_on"]':
+            value: 'Yes'
+    spacer_45:
+      '#type': webform_markup
+    would_you_be_willing_to_provide_training_on_parc_scientific_rela:
+      '#type': radios
+      '#title': 'Would you be willing to provide training on PARC-scientific related topics? '
+      '#description': '<h5><span class="TextRun SCXW264125107 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>Would you be willing to provide training on PARC-scientific related topics?</strong></span><span class="EOP SCXW264125107 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;134233279&quot;:false,&quot;201341983&quot;:0,&quot;335559685&quot;:993,&quot;335559739&quot;:80,&quot;335559740&quot;:312}"><strong>&nbsp;</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+    spacer_46:
+      '#type': webform_markup
+      '#states':
+        visible:
+          ':input[name="would_you_like_to_be_added_to_parc_training_mailing_list_to_rece"]':
+            value: 'Yes'
+    in_which_topics_3:
+      '#type': textarea
+      '#title': 'In which topics?'
+      '#description': '<h5><strong>In which topics?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="would_you_be_willing_to_provide_training_on_parc_scientific_rela"]':
+            value: 'Yes'
+  final_statement:
+    '#type': webform_wizard_page
+    '#title': 'Final comments'
+    would_you_like_to_be_added_to_parc_training_mailing_list_to_rece:
+      '#type': radios
+      '#title': 'Would you like to be added to PARC training mailing list to receive updates on upcoming sessions and resources?'
+      '#description': '<h3><strong>Final comments</strong></h3><p>&nbsp;</p><h5><span style="border:none windowtext 1.0pt;color:black;font-family:Satoshi;padding:0cm;" lang="EN-GB"><strong>Would you like to be added to PARC training mailing list to receive updates on upcoming sessions and resources?</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options': yes_no
+      '#required': true
+    spacer_47:
+      '#type': webform_markup
+      '#markup': '<br>'
+    we_will_send_information_on_new_parc_courses_and_learning_materi:
+      '#type': email
+      '#title': 'We will send information on new PARC courses and learning materials to the email address provided earlier in this form. If you prefer to receive it at a different email address , please provide it here.'
+      '#description': '<h5><span class="NormalTextRun SCXW172032447 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none;font-weight:400;letter-spacing:normal;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:48px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;"><strong>We will send information on new PARC courses and learning materials to the email address provided earlier in this form. If you prefer to receive it at a different email </strong></span><span class="NormalTextRun ContextualSpellingAndGrammarErrorV2Themed SCXW172032447 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);background-image:var(--urlContextualSpellingAndGrammarErrorV2,url(&quot;data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjMiPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMzVGIiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxwYXRoIGQ9Ik0wIC41aDVNMCAyLjVoNSIvPjwvZz48L3N2Zz4=&quot;));background-position:0px 100%;background-repeat:repeat-x;border-bottom:1px solid transparent;color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none;font-weight:400;letter-spacing:normal;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:48px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;"><strong>address,</strong></span><span class="NormalTextRun SCXW172032447 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:16px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none;font-weight:400;letter-spacing:normal;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:48px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;"><strong> please provide it here.</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#states':
+        visible:
+          ':input[name="would_you_like_to_be_added_to_parc_training_mailing_list_to_rece"]':
+            value: 'Yes'
+    spacer_48:
+      '#type': webform_markup
+      '#markup': '<br>'
+    please_include_here_any_general_remarks_or_comments_you_would_li:
+      '#type': textarea
+      '#title': 'Please include here any general remarks, or comments you would like to add regarding training that were not addressed above. '
+      '#description': '<h5><span class="TextRun SCXW23025988 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>Please include here any general remarks, or comments you would like to add regarding training that were not addressed above.</strong></span><span class="EOP SCXW23025988 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:left;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335559685&quot;:360,&quot;335559739&quot;:80,&quot;335559740&quot;:312}"><strong>&nbsp;</strong></span></h5>'
+      '#title_display': invisible
+      '#description_display': before
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: '<p class="" data-start="28" data-end="138">Thank you for your interest. This questionnaire is now closed. We appreciate your participation and support.</p><p class="" data-start="140" data-end="205">For any further inquiries, please feel free to reach out to us <a href="(carla.trindade@insa.min-saude.pt">(carla.trindade@insa.min-saude.pt</a>).&nbsp;</p>'
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<h5><span class="TextRun SCXW77811384 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:24px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>Thank you for taking the time and focus to complete this survey.</strong></span><span class="EOP SCXW77811384 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:24px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559731&quot;:360,&quot;335559739&quot;:80,&quot;335559740&quot;:312}"><strong>&nbsp;</strong></span></h5>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

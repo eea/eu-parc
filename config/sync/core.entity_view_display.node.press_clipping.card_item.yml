@@ -1,0 +1,50 @@
+uuid: af512c42-9c0c-40a7-8204-6bd71704ac10
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.card_item
+    - field.field.node.press_clipping.field_country
+    - field.field.node.press_clipping.field_d_date
+    - field.field.node.press_clipping.field_external_url
+    - field.field.node.press_clipping.field_media_document
+    - field.field.node.press_clipping.field_media_image
+    - field.field.node.press_clipping.field_press_clipping_featured
+    - field.field.node.press_clipping.field_press_clipping_type
+    - field.field.node.press_clipping.field_publication
+    - node.type.press_clipping
+  module:
+    - link
+    - user
+id: node.press_clipping.card_item
+targetEntityType: node
+bundle: press_clipping
+mode: card_item
+content:
+  field_external_url:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 10
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  field_country: true
+  field_d_date: true
+  field_media_document: true
+  field_media_image: true
+  field_press_clipping_featured: true
+  field_press_clipping_type: true
+  field_publication: true
+  search_api_excerpt: true
