@@ -81,6 +81,7 @@
         "drupal/quick_node_clone": "^1.20",
         "drupal/rabbit_hole": "^2.0@beta",
         "drupal/raven": "^4.0",
+        "drupal/redirect": "^1.12",
         "drupal/search_api": "^1.29",
         "drupal/search_api_autocomplete": "^1.7",
         "drupal/select2": "^1.15",
