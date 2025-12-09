@@ -970,7 +970,7 @@
         // Dimensions and margins
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const svgWidth = Math.min(containerWidth, 650); // Max width of 800px
-        const svgHeight = 1000;
+        const svgHeight = svgWidth <= 418 ? 600 : 1000;
         const width = svgWidth - margin.left - margin.right;
         const height = svgHeight - margin.top - margin.bottom;
         const radius = Math.min(width, height) / 2 - 80;
@@ -1212,7 +1212,7 @@
           );
           const containerWidth = containerElement ? containerElement.clientWidth : 1100;
           const svgWidth = Math.min(containerWidth, 650); // Max width of 800px
-          const svgHeight = 1000;
+          const svgHeight = svgWidth <= 418 ? 600 : 1000;
 
           // Create SVG element again with calculated dimensions
           const svg = container
