@@ -961,10 +961,18 @@
         const latestYear = years[years.length - 1];
         const data = chartData.chart[latestYear]; // Extract data for the year 2022
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+        
         // Dimensions and margins
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-        const width = 600 - margin.left - margin.right;
-        const height = 800 - margin.top - margin.bottom;
+        const svgWidth = Math.min(containerWidth, 650); // Max width of 800px
+        const svgHeight = 1000;
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
         const radius = Math.min(width, height) / 2 - 80;
 
         // Color scale
@@ -983,17 +991,18 @@
           .range(colorss);
 
         const translateHeight = height / 2 + margin.top - 100;
-        // Create SVG element
+        
+        // Create SVG element with calculated dimensions
         const svg = d3
           .select(
             `#${wrapperId} .indicator-scrollable-container .indicator-container`
           )
           .append("svg")
           .attr("class", "indicator-chart-svg")
-          .attr("width", "1100")
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
-          .attr("transform", `translate(${width},${translateHeight})`);
+          .attr("transform", `translate(${svgWidth / 2},${translateHeight})`);
 
         const pie = d3
           .pie()
@@ -1029,6 +1038,10 @@
           .innerRadius(0) // Start at the center (or you can set a small inner radius)
           .outerRadius(radius * 1.2); // Outer radius extends beyond the lines
 
+        // Calculate responsive outerRadius factor for labels
+        // On large screens (1100+), use 1.2. On smaller screens, increase up to 1.35
+        const responsiveFactor = svgWidth >= 450 ? 1.15 : 1.30;
+        const labelOuterRadius = radius * responsiveFactor;
         pieData.forEach((slice, i) => {
           const numLines = slice.data.value; // Number of lines for this segment
           const angleStep = (slice.endAngle - slice.startAngle) / numLines;
@@ -1042,7 +1055,6 @@
             const x2 = Math.cos(angle) * radius;
             const y2 = Math.sin(angle) * radius;
             outerRadius = radius * 1.2;
-
             // Draw line
             svg
               .append("line")
@@ -1084,8 +1096,8 @@
 
             if (j === 0) {
               const angleInDegrees = angle * (180 / Math.PI); // Convert angle to degrees
-              const x = outerRadius * Math.cos(angle);
-              const y = outerRadius * Math.sin(angle);
+              const x = labelOuterRadius * Math.cos(angle);
+              const y = labelOuterRadius * Math.sin(angle);
               const gapX = x2 + Math.cos(angle) * gapLength;
               const gapY = y2 + Math.sin(angle) * gapLength;
               const labelLineLength = 20; // Length of the connecting line
@@ -1107,8 +1119,40 @@
                 )
                 .attr("dy", "0.35em")
                 .style("fill", color(i))
-                .html(`${slice.data.value} projects`) // Display number of projects and category name
                 .attr("text-anchor", angle > Math.PI ? "end" : "start");
+
+              // Check if text would go out of bounds
+              const tempText = svg.append("text")
+                .style("visibility", "hidden")
+                .text(`${slice.data.value} projects`);
+              const textWidth = tempText.node().getComputedTextLength();
+              tempText.remove();
+              
+              // Calculate if text would overflow
+              const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
+              const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
+              console.log(xPos);
+              const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 80 < 0) || 
+                                   (textAnchor === "start" && xPos + textWidth + 80 > svgWidth);
+
+              if (wouldOverflow) {
+                // Split into two lines
+                label.append("tspan")
+                  .attr("x", 0)
+                  .attr("dy", 0)
+                  .text(`${slice.data.value}`);
+                
+                label.append("tspan")
+                  .attr("x", 0)
+                  .attr("dy", "1.2em")
+                  .text("projects");
+                
+                label.attr("y", "-0.6em"); // Center the two-line text
+              } else {
+                // Keep on one line
+                const labelText = slice.data.value == 1 ? "project" : "projects";
+                label.text(`${slice.data.value} ${labelText}`);
+              }
 
               if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
                 label.attr("text-anchor", "end");
@@ -1162,16 +1206,24 @@
           // Extract data for the selected year
           const data = chartData.chart[selectedYear];
 
-          // Create SVG element again
+          // Get container dimensions dynamically
+          const containerElement = document.querySelector(
+            `.indicator-chart__wrapper`
+          );
+          const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+          const svgWidth = Math.min(containerWidth, 650); // Max width of 800px
+          const svgHeight = 1000;
+
+          // Create SVG element again with calculated dimensions
           const svg = container
             .insert("svg", ":first-child") // Insert SVG as the first child
-            .attr("width", "1100")
             .attr("class", "indicator-chart-svg")
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", svgWidth)
+            .attr("height", svgHeight)
             .append("g")
             .attr(
               "transform",
-              `translate(${width},${translateHeight})`
+              `translate(${svgWidth / 2},${translateHeight})`
             ); // Adjusted for margins
 
           // Prepare data for pie layout
@@ -1182,20 +1234,23 @@
             }))
           );
 
+          // Calculate responsive outerRadius factor for labels
+          // On large screens (1100+), use 1.2. On smaller screens, increase up to 1.5
+          const responsiveFactor = svgWidth >= 450 ? 1.15 : 1.30;
+          const labelOuterRadius = radius * responsiveFactor;
+
           // Draw pie chart
           pieData.forEach((slice, i) => {
             const numLines = slice.data.value;
             const angleStep = (slice.endAngle - slice.startAngle) / numLines;
 
             let rotationAngle;
-            let outerRadius;
             for (let j = 0; j < numLines; j++) {
               const angle = slice.startAngle + j * angleStep;
               const x1 = 0;
               const y1 = 0;
               const x2 = Math.cos(angle) * radius;
               const y2 = Math.sin(angle) * radius;
-              outerRadius = radius * 1.2;
 
               svg
                 .append("line")
@@ -1237,8 +1292,8 @@
                 });
               if (j === 0) {
                 const angleInDegrees = angle * (180 / Math.PI);
-                const x = outerRadius * Math.cos(angle);
-                const y = outerRadius * Math.sin(angle);
+                const x = labelOuterRadius * Math.cos(angle);
+                const y = labelOuterRadius * Math.sin(angle);
                 const gapX = x2 + Math.cos(angle) * gapLength;
                 const gapY = y2 + Math.sin(angle) * gapLength;
                 const labelLineLength = 20;
@@ -1259,9 +1314,40 @@
                   )
                   .attr("dy", "0.35em")
                   .style("fill", color(i))
-                  .html(`${slice.data.value} projects`)
                   .attr("text-anchor", angle > Math.PI ? "end" : "start")
                   .attr("data-index", i);
+
+                // Check if text would go out of bounds
+                const tempText = svg.append("text")
+                  .style("visibility", "hidden")
+                  .text(`${slice.data.value} projects`);
+                const textWidth = tempText.node().getComputedTextLength();
+                tempText.remove();
+                
+                // Calculate if text would overflow
+                const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
+                const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
+                const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 80 < 0) || 
+                                     (textAnchor === "start" && xPos + textWidth + 80 > svgWidth);
+
+                if (wouldOverflow) {
+                  // Split into two lines
+                  label.append("tspan")
+                    .attr("x", 0)
+                    .attr("dy", 0)
+                    .text(`${slice.data.value}`);
+                  
+                  label.append("tspan")
+                    .attr("x", 0)
+                    .attr("dy", "1.2em")
+                    .text("projects");
+                  
+                  label.attr("y", "-0.6em"); // Center the two-line text
+                } else {
+                  const labelText = slice.data.value == 1 ? "project" : "projects";
+                  // Keep on one line
+                  label.text(`${slice.data.value} ${labelText}`);
+                }
 
                 // wrap(label, 200, i);
                 if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
@@ -1305,16 +1391,61 @@
             .attr("r", 5)
             .attr("fill", "white");
 
+          // Calculate line counts for each item first
+          const lineHeightPx = 14.4; // 12px font * 1.2 line height
+          const baseItemHeight = 20; // Base height for circle and padding
+          const maxTextWidth = svgWidth / 1.3;
+          
+          // Helper to calculate lines needed for text
+          function calculateLineCount(text, width, fontSize = 12) {
+            const tempText = svg.append("text")
+              .attr("font-size", `${fontSize}px`)
+              .text(text)
+              .style("visibility", "hidden");
+            
+            const words = text.split(/\s+/).reverse();
+            let lineCount = 0;
+            let line = [];
+            let word;
+            
+            while (word = words.pop()) {
+              line.push(word);
+              tempText.text(line.join(" "));
+              if (tempText.node().getComputedTextLength() > width) {
+                lineCount++;
+                line = [word];
+                tempText.text(word);
+              }
+            }
+            if (line.length > 0) lineCount++;
+            
+            tempText.remove();
+            return lineCount;
+          }
+          
+          // Calculate heights and positions
+          const dataEntries = Object.entries(data);
+          const itemHeights = dataEntries.map(([key]) => {
+            const lines = calculateLineCount(key, maxTextWidth);
+            return Math.max(baseItemHeight, lines * lineHeightPx + 8);
+          });
+          
+          // Calculate cumulative Y positions
+          const yPositions = [0];
+          for (let i = 1; i < itemHeights.length; i++) {
+            yPositions[i] = yPositions[i - 1] + itemHeights[i - 1];
+          }
+
           const legendGroup = svg.append("g")
             .attr("class", "legend-container")
-            .attr("transform", `translate(${-width + margin.left}, ${translateHeight})`);
+            .attr("transform", `translate(${-svgWidth / 2 + margin.left + 20}, ${radius * 1.5})`);
 
           const legendItems = legendGroup.selectAll(".legend-item")
-            .data(Object.entries(data))
+            .data(dataEntries)
             .enter()
             .append("g")
             .attr("class", "legend-item")
-            .attr("transform", (d, i) => `translate(0, ${i * 24})`);
+            .attr("transform", (d, i) => `translate(0, ${yPositions[i]})`);
 
           legendItems.append("circle")
             .attr("cx", 8)
@@ -1327,19 +1458,67 @@
             .attr("y", 12)
             .attr("font-size", "12px")
             .attr("fill", "gray")
-            .text(d => d[0]);
+            .text(d => d[0])
+            .each(function() {
+              d3.select(this).call(wrapLegendText, maxTextWidth);
+            });
+        }
+
+        // Calculate line counts for each item first
+        const lineHeightPx = 14.4; // 12px font * 1.2 line height
+        const baseItemHeight = 20; // Base height for circle and padding
+        const maxTextWidth = svgWidth / 1.3;
+        
+        // Helper to calculate lines needed for text
+        function calculateLineCount(text, width, fontSize = 12) {
+          const tempText = svg.append("text")
+            .attr("font-size", `${fontSize}px`)
+            .text(text)
+            .style("visibility", "hidden");
+          
+          const words = text.split(/\s+/).reverse();
+          let lineCount = 0;
+          let line = [];
+          let word;
+          
+          while (word = words.pop()) {
+            line.push(word);
+            tempText.text(line.join(" "));
+            if (tempText.node().getComputedTextLength() > width) {
+              lineCount++;
+              line = [word];
+              tempText.text(word);
+            }
+          }
+          if (line.length > 0) lineCount++;
+          
+          tempText.remove();
+          return lineCount;
+        }
+        
+        // Calculate heights and positions
+        const dataEntries = Object.entries(data);
+        const itemHeights = dataEntries.map(([key]) => {
+          const lines = calculateLineCount(key, maxTextWidth);
+          return Math.max(baseItemHeight, lines * lineHeightPx + 8);
+        });
+        
+        // Calculate cumulative Y positions
+        const yPositions = [0];
+        for (let i = 1; i < itemHeights.length; i++) {
+          yPositions[i] = yPositions[i - 1] + itemHeights[i - 1];
         }
 
         const legendGroup = svg.append("g")
           .attr("class", "legend-container")
-          .attr("transform", `translate(${-width + margin.left}, ${translateHeight})`);
+          .attr("transform", `translate(${-svgWidth / 2 + margin.left + 20}, ${radius * 1.5})`);
 
         const legendItems = legendGroup.selectAll(".legend-item")
-          .data(Object.entries(data))
+          .data(dataEntries)
           .enter()
           .append("g")
           .attr("class", "legend-item")
-          .attr("transform", (d, i) => `translate(0, ${i * 24})`);
+          .attr("transform", (d, i) => `translate(0, ${yPositions[i]})`);
 
         legendItems.append("circle")
           .attr("cx", 8)
@@ -1352,7 +1531,8 @@
           .attr("y", 12)
           .attr("font-size", "12px")
           .attr("fill", "gray")
-          .text(d => d[0]);
+          .text(d => d[0])
+          .call(wrapLegendText, maxTextWidth); // Wrap text to fit in available width
 
 
         const legend = d3
@@ -1376,6 +1556,33 @@
           .append("span")
           .attr("class", (d) => "legend-text")
           .text((d) => d.year);
+        
+        // Helper function to wrap legend text
+        function wrapLegendText(text, width) {
+          text.each(function() {
+            const text = d3.select(this);
+            const words = text.text().split(/\s+/).reverse();
+            let word;
+            let line = [];
+            let lineNumber = 0;
+            const lineHeight = 1.2; // ems
+            const x = text.attr("x");
+            const y = text.attr("y");
+            const dy = 0;
+            let tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+            
+            while (word = words.pop()) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+              }
+            }
+          });
+        }
       }
 
       function wrap(text, width, i) {
