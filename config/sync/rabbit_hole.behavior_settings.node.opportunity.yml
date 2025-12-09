@@ -7,7 +7,7 @@ dependencies:
 id: node.opportunity
 targetEntityType: node
 bundle: opportunity
-action: page_redirect
+action: display_page
 no_bypass: false
 bypass_message: false
 configuration:
