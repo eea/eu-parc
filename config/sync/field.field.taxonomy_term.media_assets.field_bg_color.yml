@@ -1,0 +1,25 @@
+uuid: 0f07f7ac-8b9f-4d64-b60e-b885a1ed5d4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_bg_color
+    - taxonomy.vocabulary.media_assets
+  module:
+    - color_field
+id: taxonomy_term.media_assets.field_bg_color
+field_name: field_bg_color
+entity_type: taxonomy_term
+bundle: media_assets
+label: 'Background color'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    color: '#71d6c4'
+    opacity: null
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

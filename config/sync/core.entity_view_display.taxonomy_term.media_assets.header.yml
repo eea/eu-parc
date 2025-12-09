@@ -1,20 +1,20 @@
-uuid: effce9dd-9ead-4d09-b383-c7d298522586
+uuid: 23185f28-f824-46b9-bc0f-615aaa4eb37b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.taxonomy_term.header
     - field.field.taxonomy_term.media_assets.field_bg_color
     - field.field.taxonomy_term.media_assets.field_color
     - field.field.taxonomy_term.media_assets.field_file
     - taxonomy.vocabulary.media_assets
   module:
     - color_field
-    - file
     - text
-id: taxonomy_term.media_assets.default
+id: taxonomy_term.media_assets.header
 targetEntityType: taxonomy_term
 bundle: media_assets
-mode: default
+mode: header
 content:
   description:
     type: text_default
@@ -25,28 +25,14 @@ content:
     region: content
   field_bg_color:
     type: color_field_formatter_text
-    label: above
-    settings:
-      format: hex
-      opacity: true
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_color:
-    type: color_field_formatter_text
-    label: above
-    settings:
-      format: hex
-      opacity: true
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_file:
-    type: file_url_plain
     label: hidden
-    settings: {  }
+    settings:
+      format: hex
+      opacity: true
     third_party_settings: {  }
-    weight: 2
+    weight: 0
     region: content
 hidden:
+  field_color: true
+  field_file: true
   search_api_excerpt: true

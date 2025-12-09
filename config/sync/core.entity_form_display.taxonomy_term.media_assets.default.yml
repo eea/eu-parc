@@ -3,25 +3,31 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.media_assets.field_asset_type
+    - field.field.taxonomy_term.media_assets.field_bg_color
+    - field.field.taxonomy_term.media_assets.field_color
     - field.field.taxonomy_term.media_assets.field_file
-    - field.field.taxonomy_term.media_assets.field_link
-    - field.field.taxonomy_term.media_assets.field_media_image
     - taxonomy.vocabulary.media_assets
   module:
+    - color_field
     - file
-    - link
-    - media_library
 id: taxonomy_term.media_assets.default
 targetEntityType: taxonomy_term
 bundle: media_assets
 mode: default
 content:
-  field_asset_type:
-    type: options_select
-    weight: 1
+  field_bg_color:
+    type: color_field_widget_html5
+    weight: 2
     region: content
-    settings: {  }
+    settings:
+      show_extra: false
+    third_party_settings: {  }
+  field_color:
+    type: color_field_widget_html5
+    weight: 2
+    region: content
+    settings:
+      show_extra: false
     third_party_settings: {  }
   field_file:
     type: file_generic
@@ -29,21 +35,6 @@ content:
     region: content
     settings:
       progress_indicator: throbber
-    third_party_settings: {  }
-  field_link:
-    type: link_default
-    weight: 4
-    region: content
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-  field_media_image:
-    type: media_library_widget
-    weight: 2
-    region: content
-    settings:
-      media_types: {  }
     third_party_settings: {  }
   name:
     type: string_textfield
