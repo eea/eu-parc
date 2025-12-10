@@ -80,7 +80,7 @@
     }
 
     &__description {
-      max-width: 760px;
+      max-width: 780px;
       margin: 54px 0;
       width: 100%;
 
@@ -191,7 +191,7 @@
         }
 
         &__description {
-          margin-top: 20px;
+          margin-top: -50px;
         }
       }
 
