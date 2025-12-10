@@ -84,9 +84,17 @@
           return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
         }
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+
         const margin = { top: 60, right: 20, bottom: 0, left: 20 };
-        const width = 600 - margin.left - margin.right;
-        const height = 600 - margin.top - margin.bottom;
+        const svgWidth = Math.min(containerWidth, 650); // Max width of 650px
+        const svgHeight = svgWidth <= 418 ? 600 : 1000;
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
         const radius = Math.min(width, height) / 2 - 60;
 
         const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
@@ -101,10 +109,10 @@
         const svg = d3
           .select(`#${wrapperId} .indicator-container`)
           .append("svg")
-          .attr("width", "1100")
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
-          .attr("transform", `translate(${width},${height / 2 + margin.top})`); // Center the pie chart
+          .attr("transform", `translate(${width / 2 + margin.left},${height / 2 + margin.top})`); // Center the pie chart
 
         // Outer pie chart (for the edges)
         const pie = d3
@@ -211,7 +219,7 @@
             let outers = [];
             let first_outer_x = 0;
             let first_outer_y = 0;
-            let font_size = 12;
+            let font_size = svgWidth < 500 ? 10 : 12;
             svg
               .selectAll(".sliceLabel")
               .data(pieData)
@@ -239,7 +247,8 @@
                   // check if the label collides with the previous label
                   outers.push(i);
                   if (outers.length == 1) {
-                    first_outer_x = x - 150;
+                    const labelDistance = svgWidth < 600 ? 80 : 150;
+                    first_outer_x = x - labelDistance;
                     first_outer_y = y - 10;
                   }
 
@@ -283,10 +292,11 @@
                 let lineX2 = centroidX; // End at newX
                 let lineY2 = newY; // Horizontal line at same Y as centroid
 
+                const horizontalOffset = svgWidth < 600 ? 5 : 10;
                 let endX =
                   newX +
                   children.item(0).getBoundingClientRect().width / 2 +
-                  10;
+                  horizontalOffset;
                 let endY = lineY2 - 20;
 
                 svg
@@ -504,7 +514,7 @@
           let outers = [];
           let first_outer_x = 0;
           let first_outer_y = 0;
-          const font_size = 12;
+          const font_size = svgWidth < 500 ? 10 : 12;
 
           svg
             .selectAll(".innerSlice")
@@ -570,7 +580,8 @@
                     [centroidX, centroidY] = outerArc.centroid(d);
                     outers.push(i);
                     if (outers.length === 1) {
-                      first_outer_x = centroidX - 150;
+                      const labelDistance = svgWidth < 600 ? 80 : 150;
+                      first_outer_x = centroidX - labelDistance;
                       first_outer_y = centroidY - 10;
                     }
 
@@ -593,7 +604,8 @@
                       // Get how many children this has
                       let children = d3.select(this).node().children;
                       labelY = labelY - index * children.length * 10;
-                      endX = labelX + bbox.width / 2 + 10; // Use bbox.width for the text width
+                      const horizontalOffset = svgWidth < 600 ? 5 : 10;
+                      endX = labelX + bbox.width / 2 + horizontalOffset; // Use bbox.width for the text width
                       endY = labelY - 20;
 
                       d3.select(this).attr(

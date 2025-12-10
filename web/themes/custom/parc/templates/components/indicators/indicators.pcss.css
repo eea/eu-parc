@@ -220,12 +220,15 @@
   }
 
   .indicator-container {
-    min-width: 1070px;
-    width: 1070px;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
+  }
+
+  .indicator-container:not(:has(.radial-chart)) {
+    min-width: 1070px;
+    width: 1070px;
   }
 
   &[data-chart-type="radial"] {
