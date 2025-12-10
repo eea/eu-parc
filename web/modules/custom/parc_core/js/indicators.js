@@ -1038,13 +1038,12 @@
           .innerRadius(0) // Start at the center (or you can set a small inner radius)
           .outerRadius(radius * 1.2); // Outer radius extends beyond the lines
 
-        // Calculate responsive outerRadius factor for labels
-        // On large screens (1100+), use 1.2. On smaller screens, increase up to 1.35
-        const responsiveFactor = svgWidth >= 450 ? 1.15 : 1.30;
-        const labelOuterRadius = radius * responsiveFactor;
+        const responsiveFactor = svgWidth < 600 ? 1.25 : 1.15;
+
         pieData.forEach((slice, i) => {
           const numLines = slice.data.value; // Number of lines for this segment
           const angleStep = (slice.endAngle - slice.startAngle) / numLines;
+          const labelOuterRadius = numLines <= 5 ? (responsiveFactor + 0.1) * radius : responsiveFactor * radius;
 
           let rotationAngle;
           let outerRadius;
@@ -1100,7 +1099,7 @@
               const y = labelOuterRadius * Math.sin(angle);
               const gapX = x2 + Math.cos(angle) * gapLength;
               const gapY = y2 + Math.sin(angle) * gapLength;
-              const labelLineLength = 20; // Length of the connecting line
+              const labelLineLength = svgWidth < 600 ? 10 : 20; // Length of the connecting line
               const labelX = gapX + Math.cos(angle) * labelLineLength;
               const labelY = gapY + Math.sin(angle) * labelLineLength;
               rotationAngle = angleInDegrees;
@@ -1132,8 +1131,8 @@
               const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
               const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
               console.log(xPos);
-              const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 80 < 0) || 
-                                   (textAnchor === "start" && xPos + textWidth + 80 > svgWidth);
+              const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 40 < 0) ||
+                (textAnchor === "start" && xPos + textWidth + 40 > svgWidth);
 
               if (wouldOverflow) {
                 // Split into two lines
@@ -1233,16 +1232,13 @@
               value: value,
             }))
           );
-
-          // Calculate responsive outerRadius factor for labels
-          // On large screens (1100+), use 1.2. On smaller screens, increase up to 1.5
-          const responsiveFactor = svgWidth >= 450 ? 1.15 : 1.30;
-          const labelOuterRadius = radius * responsiveFactor;
+          const responsiveFactor = svgWidth < 600 ? 1.25 : 1.15;
 
           // Draw pie chart
           pieData.forEach((slice, i) => {
             const numLines = slice.data.value;
             const angleStep = (slice.endAngle - slice.startAngle) / numLines;
+            const labelOuterRadius = numLines <= 5 ? (responsiveFactor + 0.1) * radius : responsiveFactor * radius;
 
             let rotationAngle;
             for (let j = 0; j < numLines; j++) {
@@ -1296,7 +1292,7 @@
                 const y = labelOuterRadius * Math.sin(angle);
                 const gapX = x2 + Math.cos(angle) * gapLength;
                 const gapY = y2 + Math.sin(angle) * gapLength;
-                const labelLineLength = 20;
+                const labelLineLength = svgWidth < 600 ? 10 : 20;
                 const labelX = gapX + Math.cos(angle) * labelLineLength;
                 const labelY = gapY + Math.sin(angle) * labelLineLength;
                 rotationAngle = angleInDegrees;
@@ -1327,8 +1323,8 @@
                 // Calculate if text would overflow
                 const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
                 const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
-                const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 80 < 0) || 
-                                     (textAnchor === "start" && xPos + textWidth + 80 > svgWidth);
+                const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 40 < 0) ||
+                  (textAnchor === "start" && xPos + textWidth + 40 > svgWidth);
 
                 if (wouldOverflow) {
                   // Split into two lines
