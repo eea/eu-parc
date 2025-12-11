@@ -1731,6 +1731,21 @@
           )
           .on("tick", ticked);
 
+        // Add map background
+        // Adjust these values to position and scale the map
+        const mapX = -40;
+        const mapY = 20;
+        const mapWidth = width + 90; // Default to full width
+        const mapHeight = height; // Default to full height
+
+        svg
+          .append("image")
+          .attr("href", "/modules/custom/parc_core/assets/europemap.png")
+          .attr("x", mapX)
+          .attr("y", mapY)
+          .attr("width", mapWidth)
+          .attr("height", mapHeight);
+
         const node = svg
           .selectAll(".bubble")
           .data(Object.values(dataYear.data))
@@ -3148,11 +3163,23 @@
           return rgbToHex(r, g, b);
         }
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-        const width = 900 - margin.left - margin.right;
-        const height = 650 - margin.top - margin.bottom;
-        const outerRadius = 140;
-        const innerRadius = outerRadius - 50;
+        const isSmallScreen = containerWidth < 500;
+        const svgWidth = Math.max(containerWidth, 600); // Min width of 600px
+        const svgHeight = isSmallScreen ? 600 : 800;
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
+
+        // Make radius responsive based on isSmallScreen
+        const baseOuterRadius = isSmallScreen ? 80 : 140;
+        const outerRadius = baseOuterRadius;
+        const innerRadius = isSmallScreen ? 50 : outerRadius - 50;
 
         // Extract the fifth category for the inner pie
         const years = Object.keys(chartData.chart);
@@ -3172,8 +3199,8 @@
             `#${wrapperId} .indicator-scrollable-container .indicator-container`
           )
           .append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
           .attr(
             "transform",
@@ -3184,8 +3211,9 @@
         svg
           .append("text")
           .classed("inner-text", true)
+          .attr("transform", isSmallScreen ? "translate(0, -10)" : "")
           .attr("text-anchor", "middle")
-          .style("font-size", "16px")
+          .style("font-size", isSmallScreen ? "12px" : "16px")
           .style("font-weight", "bold")
           .text(innerValue + "\n" + innerCategory)
           .style("opacity", "0")
@@ -3214,7 +3242,7 @@
             .attr("x2", x1)
             .attr("y2", y1)
             .attr("stroke", `${adjustColor(colors[latestYear], -90)}`) // Dark blue color
-            .attr("stroke-width", 12)
+            .attr("stroke-width", isSmallScreen ? 7 : 12)
             .attr("stroke-linecap", "round")
             .transition()
             .duration(animationDuration)
@@ -3223,7 +3251,7 @@
             .attr("y2", y2);
         }
         const outerRadiusStart = outerRadius + 20; // Start just outside the inner chart
-        const outerRadiusEnd = outerRadius + 90; // Adjust to desired size
+        const outerRadiusEnd = outerRadius + (isSmallScreen ? 70 : 90); // Adjust to desired size
         const totalOuterLines = outerCategories
           .slice(0, 4)
           .reduce((sum, category) => sum + data[category], 0);
@@ -3256,7 +3284,7 @@
               .attr("x2", x1)
               .attr("y2", y1)
               .attr("stroke", categoryColors[index]) // Unique color per category
-              .attr("stroke-width", 4)
+              .attr("stroke-width", isSmallScreen ? 3 : 4)
               .transition()
               .duration(animationDuration)
               .delay(animationDelay * i)
@@ -3314,7 +3342,7 @@
                 : "start"
             )
             .attr("alignment-baseline", "middle")
-            .style("font-size", "18px")
+            .style("font-size", isSmallScreen ? "14px" : "18px")
             .style("fill", `${categoryColors[index]}`)
             .style("font-weight", "700")
             .text(category)
@@ -3334,7 +3362,7 @@
                 : "start"
             )
             .attr("alignment-baseline", "middle")
-            .style("font-size", "18px")
+            .style("font-size", isSmallScreen ? "14px" : "18px")
             .style("font-weight", "700")
             .style("fill", `${categoryColors[index]}`)
             .text(categoryValue)
@@ -3460,8 +3488,9 @@
           svg
             .append("text")
             .classed("inner-text", true)
+            .attr("transform", isSmallScreen ? "translate(0, -10)" : "")
             .attr("text-anchor", "middle")
-            .style("font-size", "16px")
+            .style("font-size", isSmallScreen ? "12px" : "16px")
             .style("font-weight", "bold")
             .text(innerValue + "\n" + innerCategory)
             .style("opacity", 0)
@@ -3489,7 +3518,7 @@
               .attr("x2", x1)
               .attr("y2", y1)
               .attr("stroke", `${adjustColor(colors[year], -90)}`) // Dark blue color
-              .attr("stroke-width", 12)
+              .attr("stroke-width", isSmallScreen ? 7 : 12)
               .attr("stroke-linecap", "round")
               .transition()
               .duration(animationDuration)
@@ -3500,7 +3529,7 @@
 
           // Outer pie
           const outerRadiusStart = outerRadius + 20;
-          const outerRadiusEnd = outerRadius + 90;
+          const outerRadiusEnd = outerRadius + (isSmallScreen ? 70 : 90);
           const totalOuterLines = outerCategories
             .slice(0, 4)
             .reduce((sum, category) => sum + data[category], 0);
@@ -3531,7 +3560,7 @@
                 .attr("x2", x1)
                 .attr("y2", y1)
                 .attr("stroke", categoryColors[index])
-                .attr("stroke-width", 4)
+                .attr("stroke-width", isSmallScreen ? 3 : 4)
                 .transition()
                 .duration(animationDuration)
                 .delay(animationDelay * i)
@@ -3588,7 +3617,7 @@
                   : "start"
               )
               .attr("alignment-baseline", "middle")
-              .style("font-size", "18px")
+              .style("font-size", isSmallScreen ? "14px" : "18px")
               .style("fill", `${categoryColors[index]}`)
               .style("font-weight", "700")
               .text(category)
@@ -3608,7 +3637,7 @@
                   : "start"
               )
               .attr("alignment-baseline", "middle")
-              .style("font-size", "18px")
+              .style("font-size", isSmallScreen ? "14px" : "18px")
               .style("font-weight", "700")
               .style("fill", `${categoryColors[index]}`)
               .text(categoryValue)
