@@ -888,8 +888,13 @@
                 return radius * Math.sin(angle);
               });
             // Add category label just outside the slice
-            const outerRadius = svgWidth < 600 ? radius * 1.08 : radius * 1.15; // Place label closer on smaller screens
+            const baseOuterRadius = svgWidth < 600 ? radius * 1.08 : radius * 1.15; // Place label closer on smaller screens
             const labelAngle = (arc.startAngle + arc.endAngle) / 2; // Angle at the middle of the slice
+            
+            // Push north and south labels (top and bottom) further away
+            const isNorthOrSouth = Math.abs(Math.sin(labelAngle)) > 0.9; // Near top or bottom
+            const outerRadius = isNorthOrSouth ? baseOuterRadius * 1.15 : baseOuterRadius;
+            
             let anchor =
               labelAngle <= Math.PI / 2 || labelAngle >= (3 * Math.PI) / 2
                 ? "start"
