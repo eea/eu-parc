@@ -2782,7 +2782,7 @@
             `#${wrapperId} .indicator-scrollable-container .indicator-container`
           )
           .append("svg")
-          .attr("width", Math.max(width, 1200))
+          .attr("width", width)
           .attr("height", height)
           .append("g")
           .attr("transform", `translate(${width / 2}, ${transformHeight})`);
