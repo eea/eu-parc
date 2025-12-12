@@ -91,7 +91,7 @@
         const containerWidth = containerElement ? containerElement.clientWidth : 1100;
 
         const margin = { top: 60, right: 20, bottom: 0, left: 20 };
-        const svgWidth = Math.min(containerWidth, 650); // Max width of 650px
+        const svgWidth = Math.max(Math.min(containerWidth, 650), 500); // Min width 500px, max width 650px
         const svgHeight = svgWidth <= 418 ? 600 : 1000;
         const width = svgWidth - margin.left - margin.right;
         const height = svgHeight - margin.top - margin.bottom;
