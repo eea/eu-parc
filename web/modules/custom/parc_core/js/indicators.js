@@ -3192,7 +3192,7 @@
 
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const isSmallScreen = containerWidth < 500;
-        const svgWidth = Math.min(Math.max(containerWidth, 600), 1100); // Min 600px, max 1200px
+        const svgWidth = Math.min(Math.max(containerWidth, 650), 1100); // Min 650px, max 1200px
         const svgHeight = isSmallScreen ? 600 : 800;
         const width = svgWidth - margin.left - margin.right;
         const height = svgHeight - margin.top - margin.bottom;
