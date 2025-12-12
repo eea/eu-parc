@@ -746,10 +746,22 @@
 
       function buildGroupPieChart(wrapperId, chartData) {
         const data = chartData.chart;
-        const width = 1000;
-        const height = 800;
-        const radius = Math.min(width, height) / 2 - 140;
-        const innerRadius = radius / 3; // Set the inner radius for the doughnut chart
+        
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+        
+        // Calculate responsive dimensions with minimum width of 500px
+        const svgWidth = Math.max(Math.min(containerWidth, 1000), 500);
+        const svgHeight = svgWidth * 0.8; // Maintain 5:4 aspect ratio
+        const width = svgWidth;
+        const height = svgHeight;
+        
+        // Responsive radius and inner radius
+        const radius = Math.min(width, height) / 2 - (svgWidth < 600 ? 100 : 140);
+        const innerRadius = svgWidth < 600 ? radius / 4 : radius / 3;
 
         // Extract unique years from the new data structure
         let years = Object.keys(data);
@@ -787,8 +799,8 @@
               " .indicator-scrollable-container .indicator-container"
           )
           .append("svg")
-          .attr("width", width)
-          .attr("height", height)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
           .attr("transform", `translate(${width / 2},${height / 2})`);
 
@@ -857,7 +869,7 @@
               })
               .attr("stroke", color)
               .attr("stroke-linecap", "round")
-              .attr("stroke-width", "5px")
+              .attr("stroke-width", svgWidth < 600 ? "3px" : "5px")
               .style("opacity", 1)
               .transition()
               .duration(750)
@@ -876,7 +888,7 @@
                 return radius * Math.sin(angle);
               });
             // Add category label just outside the slice
-            const outerRadius = radius * 1.15; // Place label just outside the slice
+            const outerRadius = svgWidth < 600 ? radius * 1.08 : radius * 1.15; // Place label closer on smaller screens
             const labelAngle = (arc.startAngle + arc.endAngle) / 2; // Angle at the middle of the slice
             let anchor =
               labelAngle <= Math.PI / 2 || labelAngle >= (3 * Math.PI) / 2
@@ -898,11 +910,11 @@
               .attr("transform", `translate(${labelX}, ${labelY})`)
               .text(`${category}`)
               .attr("fill", color)
-              .style("font-size", "20px")
+              .style("font-size", svgWidth < 600 ? "14px" : "20px")
               .attr("text-anchor", anchor)
               .style("opacity", 1); // Show only the latest year by default
 
-            labelY += 30;
+            labelY += svgWidth < 600 ? 20 : 30;
             if (anchor == "start") {
               labelX += textObj.node().getBBox().width / 2;
             } else if (anchor == "end") {
@@ -914,7 +926,7 @@
               .attr("transform", `translate(${labelX}, ${labelY})`)
               .text(`${data[currentYear][category]}`)
               .attr("fill", color)
-              .style("font-size", "20px")
+              .style("font-size", svgWidth < 600 ? "14px" : "20px")
               .attr("text-anchor", anchor)
               .style("opacity", 1); // Show only the latest year by default
           });
@@ -3171,7 +3183,7 @@
 
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const isSmallScreen = containerWidth < 500;
-        const svgWidth = Math.max(containerWidth, 600); // Min width of 600px
+        const svgWidth = Math.min(Math.max(containerWidth, 600), 1100); // Min 600px, max 1200px
         const svgHeight = isSmallScreen ? 600 : 800;
         const width = svgWidth - margin.left - margin.right;
         const height = svgHeight - margin.top - margin.bottom;
@@ -3204,7 +3216,7 @@
           .append("g")
           .attr(
             "transform",
-            `translate(${width / 2 + margin.left}, ${height / 2 + margin.top})`
+            `translate(${svgWidth / 2}, ${svgHeight / 2})`
           );
 
         // Add central text
