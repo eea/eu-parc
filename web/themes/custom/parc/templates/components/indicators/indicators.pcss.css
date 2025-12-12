@@ -87,7 +87,10 @@
     padding: 80px 50px;
 
     @media (max-width: 800px) {
-      flex-direction: column;
+      flex-direction: row;
+      span {
+        display: none;
+      }
     }
 
     .nav-link {
