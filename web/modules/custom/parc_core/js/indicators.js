@@ -2126,10 +2126,19 @@
         ];
         const latestYear = years[years.length - 1];
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+        
+        // Calculate responsive dimensions with minimum width of 600px
+        const svgWidth = Math.max(Math.min(containerWidth, 1100), 600);
+        
         const margin = { top: 20, right: 30, bottom: 80, left: 200 },
-          width = 1100 - margin.left - margin.right,
+          width = svgWidth - margin.left - margin.right,
           height = 200 + categories.length * 20 - margin.top - margin.bottom,
-          maxWidth = 25; // Set your maximum bar width here
+          maxWidth = svgWidth < 600 ? 19 : 25; // Responsive bar thickness: 19px minimum on small screens
 
         // Colors for the years
         const colors = {
@@ -2149,7 +2158,7 @@
               " .indicator-scrollable-container .indicator-container"
           )
           .append("svg")
-          .attr("width", width + margin.left + margin.right)
+          .attr("width", svgWidth)
           .attr("height", height + margin.top + margin.bottom)
           .style("padding-right", "20px")
           .append("g")
@@ -2171,7 +2180,7 @@
             ),
           ])
           .nice()
-          .range([0, width]);
+          .range([0, svgWidth < 600 ? width * 0.7 : width]); // Shorter bars on smaller screens
 
         // Function to update the chart based on the selected year
         function updateChart(selectedYear) {
