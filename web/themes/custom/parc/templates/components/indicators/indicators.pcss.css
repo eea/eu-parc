@@ -234,6 +234,13 @@
     width: 1070px;
   }
 
+  &[data-chart-type="horizontal_bar"] {
+    .indicator-container {
+      width: max-content;
+      min-width: unset;
+    }
+  }
+
   &[data-chart-type="radial"] {
     display: flex;
     flex-wrap: wrap;

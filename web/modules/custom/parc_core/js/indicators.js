@@ -2280,6 +2280,14 @@
           .append("span")
           .attr("class", (d) => "legend-text year-" + d)
           .text((d) => d);
+        
+        // Scroll container to the left on initial render
+        setTimeout(() => {
+          const scrollContainer = document.querySelector(`#${wrapperId} .indicator-scrollable-container`);
+          if (scrollContainer) {
+            scrollContainer.scrollLeft = 0;
+          }
+        }, 100);
       }
 
       function buildVerticalBarChart(wrapperId, chartData) {
@@ -2454,6 +2462,14 @@
           .append("span")
           .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
+        
+        // Scroll container to the left on initial render
+        setTimeout(() => {
+          const scrollContainer = document.querySelector(`#${wrapperId} .indicator-scrollable-container`);
+          if (scrollContainer) {
+            scrollContainer.scrollLeft = 0;
+          }
+        }, 100);
       }
 
       function buildRadialChart(wrapperId, chartData) {
@@ -3442,7 +3458,8 @@
           .style("margin-bottom", "5px")
           .style("font-size", "17px")
           .style("text-align", "center")
-          .style("width", "500px");
+          .style("width", "100%")
+          .style("max-width", "500px");
 
         function wrap(text, width) {
           text.each(function () {
