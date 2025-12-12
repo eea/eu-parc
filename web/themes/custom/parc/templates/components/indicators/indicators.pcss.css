@@ -565,3 +565,16 @@ text.axis-label {
     }
   }
 }
+
+.vocabulary-indicator-topics {
+  .container {
+    @media (max-width: 767px) {
+      width: 100%;
+      padding: 0;
+
+      .tab-content {
+        padding: 20px;
+      }
+    }
+  }
+}
