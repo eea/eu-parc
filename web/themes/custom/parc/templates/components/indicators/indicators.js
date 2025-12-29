@@ -230,4 +230,16 @@
       });
     }
   };
+
+  Drupal.behaviors.hideSecondWord = {
+    attach: function (context, settings) {
+      $(once('hideSecondWord', '.block-parc-indicators .nav .nav-link', context)).each(function () {
+        let text = $(this).text();
+        let words = text.split(/(?<=\w)\s(?=\w)/);
+        let firstWord = words[0];
+        let secondWord = words[1];
+        $(this).html(`${firstWord} <span>${secondWord}</span>`);
+      })
+    }
+  };
 })(jQuery, Drupal, once);

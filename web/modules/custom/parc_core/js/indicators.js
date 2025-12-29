@@ -84,9 +84,17 @@
           return `rgba(${r}, ${g}, ${b}, ${adjustedOpacity})`;
         }
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+
         const margin = { top: 60, right: 20, bottom: 0, left: 20 };
-        const width = 600 - margin.left - margin.right;
-        const height = 600 - margin.top - margin.bottom;
+        const svgWidth = Math.max(Math.min(containerWidth, 650), 500); // Min width 500px, max width 650px
+        const svgHeight = svgWidth <= 418 ? 600 : 1000;
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
         const radius = Math.min(width, height) / 2 - 60;
 
         const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
@@ -101,10 +109,10 @@
         const svg = d3
           .select(`#${wrapperId} .indicator-container`)
           .append("svg")
-          .attr("width", "1100")
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
-          .attr("transform", `translate(${width},${height / 2 + margin.top})`); // Center the pie chart
+          .attr("transform", `translate(${width / 2 + margin.left},${height / 2 + margin.top})`); // Center the pie chart
 
         // Outer pie chart (for the edges)
         const pie = d3
@@ -211,7 +219,7 @@
             let outers = [];
             let first_outer_x = 0;
             let first_outer_y = 0;
-            let font_size = 12;
+            let font_size = svgWidth < 500 ? 10 : 12;
             svg
               .selectAll(".sliceLabel")
               .data(pieData)
@@ -239,7 +247,8 @@
                   // check if the label collides with the previous label
                   outers.push(i);
                   if (outers.length == 1) {
-                    first_outer_x = x - 150;
+                    const labelDistance = svgWidth < 600 ? 80 : 150;
+                    first_outer_x = x - labelDistance;
                     first_outer_y = y - 10;
                   }
 
@@ -283,10 +292,11 @@
                 let lineX2 = centroidX; // End at newX
                 let lineY2 = newY; // Horizontal line at same Y as centroid
 
+                const horizontalOffset = svgWidth < 600 ? 5 : 10;
                 let endX =
                   newX +
                   children.item(0).getBoundingClientRect().width / 2 +
-                  10;
+                  horizontalOffset;
                 let endY = lineY2 - 20;
 
                 svg
@@ -504,7 +514,7 @@
           let outers = [];
           let first_outer_x = 0;
           let first_outer_y = 0;
-          const font_size = 12;
+          const font_size = svgWidth < 500 ? 10 : 12;
 
           svg
             .selectAll(".innerSlice")
@@ -570,7 +580,8 @@
                     [centroidX, centroidY] = outerArc.centroid(d);
                     outers.push(i);
                     if (outers.length === 1) {
-                      first_outer_x = centroidX - 150;
+                      const labelDistance = svgWidth < 600 ? 80 : 150;
+                      first_outer_x = centroidX - labelDistance;
                       first_outer_y = centroidY - 10;
                     }
 
@@ -593,7 +604,8 @@
                       // Get how many children this has
                       let children = d3.select(this).node().children;
                       labelY = labelY - index * children.length * 10;
-                      endX = labelX + bbox.width / 2 + 10; // Use bbox.width for the text width
+                      const horizontalOffset = svgWidth < 600 ? 5 : 10;
+                      endX = labelX + bbox.width / 2 + horizontalOffset; // Use bbox.width for the text width
                       endY = labelY - 20;
 
                       d3.select(this).attr(
@@ -734,10 +746,22 @@
 
       function buildGroupPieChart(wrapperId, chartData) {
         const data = chartData.chart;
-        const width = 1000;
-        const height = 800;
-        const radius = Math.min(width, height) / 2 - 140;
-        const innerRadius = radius / 3; // Set the inner radius for the doughnut chart
+        
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+        
+        // Calculate responsive dimensions with minimum width of 500px
+        const svgWidth = Math.max(Math.min(containerWidth, 1000), 500);
+        const svgHeight = svgWidth * 0.8; // Maintain 5:4 aspect ratio
+        const width = svgWidth;
+        const height = svgHeight;
+        
+        // Responsive radius and inner radius
+        const radius = Math.min(width, height) / 2 - (svgWidth < 600 ? 100 : 140);
+        const innerRadius = svgWidth < 600 ? radius / 4 : radius / 3;
 
         // Extract unique years from the new data structure
         let years = Object.keys(data);
@@ -775,8 +799,8 @@
               " .indicator-scrollable-container .indicator-container"
           )
           .append("svg")
-          .attr("width", width)
-          .attr("height", height)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
           .attr("transform", `translate(${width / 2},${height / 2})`);
 
@@ -845,7 +869,7 @@
               })
               .attr("stroke", color)
               .attr("stroke-linecap", "round")
-              .attr("stroke-width", "5px")
+              .attr("stroke-width", svgWidth < 600 ? "3px" : "5px")
               .style("opacity", 1)
               .transition()
               .duration(750)
@@ -864,8 +888,13 @@
                 return radius * Math.sin(angle);
               });
             // Add category label just outside the slice
-            const outerRadius = radius * 1.15; // Place label just outside the slice
+            const baseOuterRadius = svgWidth < 600 ? radius * 1.08 : radius * 1.15; // Place label closer on smaller screens
             const labelAngle = (arc.startAngle + arc.endAngle) / 2; // Angle at the middle of the slice
+            
+            // Push north and south labels (top and bottom) further away
+            const isNorthOrSouth = Math.abs(Math.sin(labelAngle)) > 0.9; // Near top or bottom
+            const outerRadius = isNorthOrSouth ? baseOuterRadius * 1.15 : baseOuterRadius;
+            
             let anchor =
               labelAngle <= Math.PI / 2 || labelAngle >= (3 * Math.PI) / 2
                 ? "start"
@@ -886,11 +915,11 @@
               .attr("transform", `translate(${labelX}, ${labelY})`)
               .text(`${category}`)
               .attr("fill", color)
-              .style("font-size", "20px")
+              .style("font-size", svgWidth < 600 ? "14px" : "20px")
               .attr("text-anchor", anchor)
               .style("opacity", 1); // Show only the latest year by default
 
-            labelY += 30;
+            labelY += svgWidth < 600 ? 20 : 30;
             if (anchor == "start") {
               labelX += textObj.node().getBBox().width / 2;
             } else if (anchor == "end") {
@@ -902,7 +931,7 @@
               .attr("transform", `translate(${labelX}, ${labelY})`)
               .text(`${data[currentYear][category]}`)
               .attr("fill", color)
-              .style("font-size", "20px")
+              .style("font-size", svgWidth < 600 ? "14px" : "20px")
               .attr("text-anchor", anchor)
               .style("opacity", 1); // Show only the latest year by default
           });
@@ -961,10 +990,18 @@
         const latestYear = years[years.length - 1];
         const data = chartData.chart[latestYear]; // Extract data for the year 2022
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+        
         // Dimensions and margins
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-        const width = 600 - margin.left - margin.right;
-        const height = 800 - margin.top - margin.bottom;
+        const svgWidth = Math.min(containerWidth, 650); // Max width of 800px
+        const svgHeight = svgWidth <= 418 ? 600 : 1000;
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
         const radius = Math.min(width, height) / 2 - 80;
 
         // Color scale
@@ -983,17 +1020,18 @@
           .range(colorss);
 
         const translateHeight = height / 2 + margin.top - 100;
-        // Create SVG element
+        
+        // Create SVG element with calculated dimensions
         const svg = d3
           .select(
             `#${wrapperId} .indicator-scrollable-container .indicator-container`
           )
           .append("svg")
           .attr("class", "indicator-chart-svg")
-          .attr("width", "1100")
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
-          .attr("transform", `translate(${width},${translateHeight})`);
+          .attr("transform", `translate(${svgWidth / 2},${translateHeight})`);
 
         const pie = d3
           .pie()
@@ -1029,9 +1067,12 @@
           .innerRadius(0) // Start at the center (or you can set a small inner radius)
           .outerRadius(radius * 1.2); // Outer radius extends beyond the lines
 
+        const responsiveFactor = svgWidth < 600 ? 1.25 : 1.15;
+
         pieData.forEach((slice, i) => {
           const numLines = slice.data.value; // Number of lines for this segment
           const angleStep = (slice.endAngle - slice.startAngle) / numLines;
+          const labelOuterRadius = numLines <= 5 ? (responsiveFactor + 0.1) * radius : responsiveFactor * radius;
 
           let rotationAngle;
           let outerRadius;
@@ -1042,7 +1083,6 @@
             const x2 = Math.cos(angle) * radius;
             const y2 = Math.sin(angle) * radius;
             outerRadius = radius * 1.2;
-
             // Draw line
             svg
               .append("line")
@@ -1084,11 +1124,11 @@
 
             if (j === 0) {
               const angleInDegrees = angle * (180 / Math.PI); // Convert angle to degrees
-              const x = outerRadius * Math.cos(angle);
-              const y = outerRadius * Math.sin(angle);
+              const x = labelOuterRadius * Math.cos(angle);
+              const y = labelOuterRadius * Math.sin(angle);
               const gapX = x2 + Math.cos(angle) * gapLength;
               const gapY = y2 + Math.sin(angle) * gapLength;
-              const labelLineLength = 20; // Length of the connecting line
+              const labelLineLength = svgWidth < 600 ? 10 : 20; // Length of the connecting line
               const labelX = gapX + Math.cos(angle) * labelLineLength;
               const labelY = gapY + Math.sin(angle) * labelLineLength;
               rotationAngle = angleInDegrees;
@@ -1107,8 +1147,40 @@
                 )
                 .attr("dy", "0.35em")
                 .style("fill", color(i))
-                .html(`${slice.data.value} projects`) // Display number of projects and category name
                 .attr("text-anchor", angle > Math.PI ? "end" : "start");
+
+              // Check if text would go out of bounds
+              const tempText = svg.append("text")
+                .style("visibility", "hidden")
+                .text(`${slice.data.value} projects`);
+              const textWidth = tempText.node().getComputedTextLength();
+              tempText.remove();
+              
+              // Calculate if text would overflow
+              const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
+              const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
+              console.log(xPos);
+              const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 40 < 0) ||
+                (textAnchor === "start" && xPos + textWidth + 40 > svgWidth);
+
+              if (wouldOverflow) {
+                // Split into two lines
+                label.append("tspan")
+                  .attr("x", 0)
+                  .attr("dy", 0)
+                  .text(`${slice.data.value}`);
+                
+                label.append("tspan")
+                  .attr("x", 0)
+                  .attr("dy", "1.2em")
+                  .text("projects");
+                
+                label.attr("y", "-0.6em"); // Center the two-line text
+              } else {
+                // Keep on one line
+                const labelText = slice.data.value == 1 ? "project" : "projects";
+                label.text(`${slice.data.value} ${labelText}`);
+              }
 
               if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
                 label.attr("text-anchor", "end");
@@ -1162,16 +1234,24 @@
           // Extract data for the selected year
           const data = chartData.chart[selectedYear];
 
-          // Create SVG element again
+          // Get container dimensions dynamically
+          const containerElement = document.querySelector(
+            `.indicator-chart__wrapper`
+          );
+          const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+          const svgWidth = Math.min(containerWidth, 650); // Max width of 800px
+          const svgHeight = svgWidth <= 418 ? 600 : 1000;
+
+          // Create SVG element again with calculated dimensions
           const svg = container
             .insert("svg", ":first-child") // Insert SVG as the first child
-            .attr("width", "1100")
             .attr("class", "indicator-chart-svg")
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", svgWidth)
+            .attr("height", svgHeight)
             .append("g")
             .attr(
               "transform",
-              `translate(${width},${translateHeight})`
+              `translate(${svgWidth / 2},${translateHeight})`
             ); // Adjusted for margins
 
           // Prepare data for pie layout
@@ -1181,21 +1261,21 @@
               value: value,
             }))
           );
+          const responsiveFactor = svgWidth < 600 ? 1.25 : 1.15;
 
           // Draw pie chart
           pieData.forEach((slice, i) => {
             const numLines = slice.data.value;
             const angleStep = (slice.endAngle - slice.startAngle) / numLines;
+            const labelOuterRadius = numLines <= 5 ? (responsiveFactor + 0.1) * radius : responsiveFactor * radius;
 
             let rotationAngle;
-            let outerRadius;
             for (let j = 0; j < numLines; j++) {
               const angle = slice.startAngle + j * angleStep;
               const x1 = 0;
               const y1 = 0;
               const x2 = Math.cos(angle) * radius;
               const y2 = Math.sin(angle) * radius;
-              outerRadius = radius * 1.2;
 
               svg
                 .append("line")
@@ -1237,11 +1317,11 @@
                 });
               if (j === 0) {
                 const angleInDegrees = angle * (180 / Math.PI);
-                const x = outerRadius * Math.cos(angle);
-                const y = outerRadius * Math.sin(angle);
+                const x = labelOuterRadius * Math.cos(angle);
+                const y = labelOuterRadius * Math.sin(angle);
                 const gapX = x2 + Math.cos(angle) * gapLength;
                 const gapY = y2 + Math.sin(angle) * gapLength;
-                const labelLineLength = 20;
+                const labelLineLength = svgWidth < 600 ? 10 : 20;
                 const labelX = gapX + Math.cos(angle) * labelLineLength;
                 const labelY = gapY + Math.sin(angle) * labelLineLength;
                 rotationAngle = angleInDegrees;
@@ -1259,9 +1339,40 @@
                   )
                   .attr("dy", "0.35em")
                   .style("fill", color(i))
-                  .html(`${slice.data.value} projects`)
                   .attr("text-anchor", angle > Math.PI ? "end" : "start")
                   .attr("data-index", i);
+
+                // Check if text would go out of bounds
+                const tempText = svg.append("text")
+                  .style("visibility", "hidden")
+                  .text(`${slice.data.value} projects`);
+                const textWidth = tempText.node().getComputedTextLength();
+                tempText.remove();
+                
+                // Calculate if text would overflow
+                const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
+                const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
+                const wouldOverflow = (textAnchor === "end" && xPos - textWidth - 40 < 0) ||
+                  (textAnchor === "start" && xPos + textWidth + 40 > svgWidth);
+
+                if (wouldOverflow) {
+                  // Split into two lines
+                  label.append("tspan")
+                    .attr("x", 0)
+                    .attr("dy", 0)
+                    .text(`${slice.data.value}`);
+                  
+                  label.append("tspan")
+                    .attr("x", 0)
+                    .attr("dy", "1.2em")
+                    .text("projects");
+                  
+                  label.attr("y", "-0.6em"); // Center the two-line text
+                } else {
+                  const labelText = slice.data.value == 1 ? "project" : "projects";
+                  // Keep on one line
+                  label.text(`${slice.data.value} ${labelText}`);
+                }
 
                 // wrap(label, 200, i);
                 if (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) {
@@ -1305,16 +1416,61 @@
             .attr("r", 5)
             .attr("fill", "white");
 
+          // Calculate line counts for each item first
+          const lineHeightPx = 14.4; // 12px font * 1.2 line height
+          const baseItemHeight = 20; // Base height for circle and padding
+          const maxTextWidth = svgWidth / 1.3;
+          
+          // Helper to calculate lines needed for text
+          function calculateLineCount(text, width, fontSize = 12) {
+            const tempText = svg.append("text")
+              .attr("font-size", `${fontSize}px`)
+              .text(text)
+              .style("visibility", "hidden");
+            
+            const words = text.split(/\s+/).reverse();
+            let lineCount = 0;
+            let line = [];
+            let word;
+            
+            while (word = words.pop()) {
+              line.push(word);
+              tempText.text(line.join(" "));
+              if (tempText.node().getComputedTextLength() > width) {
+                lineCount++;
+                line = [word];
+                tempText.text(word);
+              }
+            }
+            if (line.length > 0) lineCount++;
+            
+            tempText.remove();
+            return lineCount;
+          }
+          
+          // Calculate heights and positions
+          const dataEntries = Object.entries(data);
+          const itemHeights = dataEntries.map(([key]) => {
+            const lines = calculateLineCount(key, maxTextWidth);
+            return Math.max(baseItemHeight, lines * lineHeightPx + 8);
+          });
+          
+          // Calculate cumulative Y positions
+          const yPositions = [0];
+          for (let i = 1; i < itemHeights.length; i++) {
+            yPositions[i] = yPositions[i - 1] + itemHeights[i - 1];
+          }
+
           const legendGroup = svg.append("g")
             .attr("class", "legend-container")
-            .attr("transform", `translate(${-width + margin.left}, ${translateHeight})`);
+            .attr("transform", `translate(${-svgWidth / 2 + margin.left + 20}, ${radius * 1.5})`);
 
           const legendItems = legendGroup.selectAll(".legend-item")
-            .data(Object.entries(data))
+            .data(dataEntries)
             .enter()
             .append("g")
             .attr("class", "legend-item")
-            .attr("transform", (d, i) => `translate(0, ${i * 24})`);
+            .attr("transform", (d, i) => `translate(0, ${yPositions[i]})`);
 
           legendItems.append("circle")
             .attr("cx", 8)
@@ -1327,19 +1483,67 @@
             .attr("y", 12)
             .attr("font-size", "12px")
             .attr("fill", "gray")
-            .text(d => d[0]);
+            .text(d => d[0])
+            .each(function() {
+              d3.select(this).call(wrapLegendText, maxTextWidth);
+            });
+        }
+
+        // Calculate line counts for each item first
+        const lineHeightPx = 14.4; // 12px font * 1.2 line height
+        const baseItemHeight = 20; // Base height for circle and padding
+        const maxTextWidth = svgWidth / 1.3;
+        
+        // Helper to calculate lines needed for text
+        function calculateLineCount(text, width, fontSize = 12) {
+          const tempText = svg.append("text")
+            .attr("font-size", `${fontSize}px`)
+            .text(text)
+            .style("visibility", "hidden");
+          
+          const words = text.split(/\s+/).reverse();
+          let lineCount = 0;
+          let line = [];
+          let word;
+          
+          while (word = words.pop()) {
+            line.push(word);
+            tempText.text(line.join(" "));
+            if (tempText.node().getComputedTextLength() > width) {
+              lineCount++;
+              line = [word];
+              tempText.text(word);
+            }
+          }
+          if (line.length > 0) lineCount++;
+          
+          tempText.remove();
+          return lineCount;
+        }
+        
+        // Calculate heights and positions
+        const dataEntries = Object.entries(data);
+        const itemHeights = dataEntries.map(([key]) => {
+          const lines = calculateLineCount(key, maxTextWidth);
+          return Math.max(baseItemHeight, lines * lineHeightPx + 8);
+        });
+        
+        // Calculate cumulative Y positions
+        const yPositions = [0];
+        for (let i = 1; i < itemHeights.length; i++) {
+          yPositions[i] = yPositions[i - 1] + itemHeights[i - 1];
         }
 
         const legendGroup = svg.append("g")
           .attr("class", "legend-container")
-          .attr("transform", `translate(${-width + margin.left}, ${translateHeight})`);
+          .attr("transform", `translate(${-svgWidth / 2 + margin.left + 20}, ${radius * 1.5})`);
 
         const legendItems = legendGroup.selectAll(".legend-item")
-          .data(Object.entries(data))
+          .data(dataEntries)
           .enter()
           .append("g")
           .attr("class", "legend-item")
-          .attr("transform", (d, i) => `translate(0, ${i * 24})`);
+          .attr("transform", (d, i) => `translate(0, ${yPositions[i]})`);
 
         legendItems.append("circle")
           .attr("cx", 8)
@@ -1352,7 +1556,8 @@
           .attr("y", 12)
           .attr("font-size", "12px")
           .attr("fill", "gray")
-          .text(d => d[0]);
+          .text(d => d[0])
+          .call(wrapLegendText, maxTextWidth); // Wrap text to fit in available width
 
 
         const legend = d3
@@ -1376,6 +1581,33 @@
           .append("span")
           .attr("class", (d) => "legend-text")
           .text((d) => d.year);
+        
+        // Helper function to wrap legend text
+        function wrapLegendText(text, width) {
+          text.each(function() {
+            const text = d3.select(this);
+            const words = text.text().split(/\s+/).reverse();
+            let word;
+            let line = [];
+            let lineNumber = 0;
+            const lineHeight = 1.2; // ems
+            const x = text.attr("x");
+            const y = text.attr("y");
+            const dy = 0;
+            let tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+            
+            while (word = words.pop()) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+              }
+            }
+          });
+        }
       }
 
       function wrap(text, width, i) {
@@ -1515,6 +1747,21 @@
             d3.forceCollide((d) => radiusScale(d.value) + 2).strength(1)
           )
           .on("tick", ticked);
+
+        // Add map background
+        // Adjust these values to position and scale the map
+        const mapX = -40;
+        const mapY = 20;
+        const mapWidth = 1240; // Default to full width
+        const mapHeight = 740; // Default to full height
+
+        svg
+          .append("image")
+          .attr("href", "/modules/custom/parc_core/assets/europemap.png")
+          .attr("x", mapX)
+          .attr("y", mapY)
+          .attr("width", mapWidth)
+          .attr("height", mapHeight);
 
         const node = svg
           .selectAll(".bubble")
@@ -1884,10 +2131,19 @@
         ];
         const latestYear = years[years.length - 1];
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+        
+        // Calculate responsive dimensions with minimum width of 600px
+        const svgWidth = Math.max(Math.min(containerWidth, 1100), 600);
+        
         const margin = { top: 20, right: 30, bottom: 80, left: 200 },
-          width = 1100 - margin.left - margin.right,
+          width = svgWidth - margin.left - margin.right,
           height = 200 + categories.length * 20 - margin.top - margin.bottom,
-          maxWidth = 25; // Set your maximum bar width here
+          maxWidth = svgWidth < 600 ? 19 : 25; // Responsive bar thickness: 19px minimum on small screens
 
         // Colors for the years
         const colors = {
@@ -1907,7 +2163,7 @@
               " .indicator-scrollable-container .indicator-container"
           )
           .append("svg")
-          .attr("width", width + margin.left + margin.right)
+          .attr("width", svgWidth)
           .attr("height", height + margin.top + margin.bottom)
           .style("padding-right", "20px")
           .append("g")
@@ -1929,7 +2185,7 @@
             ),
           ])
           .nice()
-          .range([0, width]);
+          .range([0, svgWidth < 600 ? width * 0.7 : width]); // Shorter bars on smaller screens
 
         // Function to update the chart based on the selected year
         function updateChart(selectedYear) {
@@ -2024,6 +2280,14 @@
           .append("span")
           .attr("class", (d) => "legend-text year-" + d)
           .text((d) => d);
+        
+        // Scroll container to the left on initial render
+        setTimeout(() => {
+          const scrollContainer = document.querySelector(`#${wrapperId} .indicator-scrollable-container`);
+          if (scrollContainer) {
+            scrollContainer.scrollLeft = 0;
+          }
+        }, 100);
       }
 
       function buildVerticalBarChart(wrapperId, chartData) {
@@ -2198,6 +2462,14 @@
           .append("span")
           .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
+        
+        // Scroll container to the left on initial render
+        setTimeout(() => {
+          const scrollContainer = document.querySelector(`#${wrapperId} .indicator-scrollable-container`);
+          if (scrollContainer) {
+            scrollContainer.scrollLeft = 0;
+          }
+        }, 100);
       }
 
       function buildRadialChart(wrapperId, chartData) {
@@ -2531,7 +2803,7 @@
             `#${wrapperId} .indicator-scrollable-container .indicator-container`
           )
           .append("svg")
-          .attr("width", Math.max(width, 1200))
+          .attr("width", width)
           .attr("height", height)
           .append("g")
           .attr("transform", `translate(${width / 2}, ${transformHeight})`);
@@ -2933,11 +3205,23 @@
           return rgbToHex(r, g, b);
         }
 
+        // Get container dimensions dynamically
+        const containerElement = document.querySelector(
+          `.indicator-chart__wrapper`
+        );
+        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
+
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
-        const width = 900 - margin.left - margin.right;
-        const height = 650 - margin.top - margin.bottom;
-        const outerRadius = 140;
-        const innerRadius = outerRadius - 50;
+        const isSmallScreen = containerWidth < 500;
+        const svgWidth = Math.min(Math.max(containerWidth, 650), 1100); // Min 650px, max 1200px
+        const svgHeight = isSmallScreen ? 600 : 800;
+        const width = svgWidth - margin.left - margin.right;
+        const height = svgHeight - margin.top - margin.bottom;
+
+        // Make radius responsive based on isSmallScreen
+        const baseOuterRadius = isSmallScreen ? 80 : 140;
+        const outerRadius = baseOuterRadius;
+        const innerRadius = isSmallScreen ? 50 : outerRadius - 50;
 
         // Extract the fifth category for the inner pie
         const years = Object.keys(chartData.chart);
@@ -2957,20 +3241,21 @@
             `#${wrapperId} .indicator-scrollable-container .indicator-container`
           )
           .append("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .append("g")
           .attr(
             "transform",
-            `translate(${width / 2 + margin.left}, ${height / 2 + margin.top})`
+            `translate(${svgWidth / 2}, ${svgHeight / 2})`
           );
 
         // Add central text
         svg
           .append("text")
           .classed("inner-text", true)
+          .attr("transform", isSmallScreen ? "translate(0, -10)" : "")
           .attr("text-anchor", "middle")
-          .style("font-size", "16px")
+          .style("font-size", isSmallScreen ? "12px" : "16px")
           .style("font-weight", "bold")
           .text(innerValue + "\n" + innerCategory)
           .style("opacity", "0")
@@ -2999,7 +3284,7 @@
             .attr("x2", x1)
             .attr("y2", y1)
             .attr("stroke", `${adjustColor(colors[latestYear], -90)}`) // Dark blue color
-            .attr("stroke-width", 12)
+            .attr("stroke-width", isSmallScreen ? 7 : 12)
             .attr("stroke-linecap", "round")
             .transition()
             .duration(animationDuration)
@@ -3008,7 +3293,7 @@
             .attr("y2", y2);
         }
         const outerRadiusStart = outerRadius + 20; // Start just outside the inner chart
-        const outerRadiusEnd = outerRadius + 90; // Adjust to desired size
+        const outerRadiusEnd = outerRadius + (isSmallScreen ? 70 : 90); // Adjust to desired size
         const totalOuterLines = outerCategories
           .slice(0, 4)
           .reduce((sum, category) => sum + data[category], 0);
@@ -3041,7 +3326,7 @@
               .attr("x2", x1)
               .attr("y2", y1)
               .attr("stroke", categoryColors[index]) // Unique color per category
-              .attr("stroke-width", 4)
+              .attr("stroke-width", isSmallScreen ? 3 : 4)
               .transition()
               .duration(animationDuration)
               .delay(animationDelay * i)
@@ -3099,7 +3384,7 @@
                 : "start"
             )
             .attr("alignment-baseline", "middle")
-            .style("font-size", "18px")
+            .style("font-size", isSmallScreen ? "14px" : "18px")
             .style("fill", `${categoryColors[index]}`)
             .style("font-weight", "700")
             .text(category)
@@ -3119,7 +3404,7 @@
                 : "start"
             )
             .attr("alignment-baseline", "middle")
-            .style("font-size", "18px")
+            .style("font-size", isSmallScreen ? "14px" : "18px")
             .style("font-weight", "700")
             .style("fill", `${categoryColors[index]}`)
             .text(categoryValue)
@@ -3173,7 +3458,8 @@
           .style("margin-bottom", "5px")
           .style("font-size", "17px")
           .style("text-align", "center")
-          .style("width", "500px");
+          .style("width", "100%")
+          .style("max-width", "500px");
 
         function wrap(text, width) {
           text.each(function () {
@@ -3245,8 +3531,9 @@
           svg
             .append("text")
             .classed("inner-text", true)
+            .attr("transform", isSmallScreen ? "translate(0, -10)" : "")
             .attr("text-anchor", "middle")
-            .style("font-size", "16px")
+            .style("font-size", isSmallScreen ? "12px" : "16px")
             .style("font-weight", "bold")
             .text(innerValue + "\n" + innerCategory)
             .style("opacity", 0)
@@ -3274,7 +3561,7 @@
               .attr("x2", x1)
               .attr("y2", y1)
               .attr("stroke", `${adjustColor(colors[year], -90)}`) // Dark blue color
-              .attr("stroke-width", 12)
+              .attr("stroke-width", isSmallScreen ? 7 : 12)
               .attr("stroke-linecap", "round")
               .transition()
               .duration(animationDuration)
@@ -3285,7 +3572,7 @@
 
           // Outer pie
           const outerRadiusStart = outerRadius + 20;
-          const outerRadiusEnd = outerRadius + 90;
+          const outerRadiusEnd = outerRadius + (isSmallScreen ? 70 : 90);
           const totalOuterLines = outerCategories
             .slice(0, 4)
             .reduce((sum, category) => sum + data[category], 0);
@@ -3316,7 +3603,7 @@
                 .attr("x2", x1)
                 .attr("y2", y1)
                 .attr("stroke", categoryColors[index])
-                .attr("stroke-width", 4)
+                .attr("stroke-width", isSmallScreen ? 3 : 4)
                 .transition()
                 .duration(animationDuration)
                 .delay(animationDelay * i)
@@ -3373,7 +3660,7 @@
                   : "start"
               )
               .attr("alignment-baseline", "middle")
-              .style("font-size", "18px")
+              .style("font-size", isSmallScreen ? "14px" : "18px")
               .style("fill", `${categoryColors[index]}`)
               .style("font-weight", "700")
               .text(category)
@@ -3393,7 +3680,7 @@
                   : "start"
               )
               .attr("alignment-baseline", "middle")
-              .style("font-size", "18px")
+              .style("font-size", isSmallScreen ? "14px" : "18px")
               .style("font-weight", "700")
               .style("fill", `${categoryColors[index]}`)
               .text(categoryValue)
