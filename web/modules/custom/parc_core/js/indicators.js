@@ -1752,8 +1752,8 @@
         // Adjust these values to position and scale the map
         const mapX = -40;
         const mapY = 20;
-        const mapWidth = width + 90; // Default to full width
-        const mapHeight = height; // Default to full height
+        const mapWidth = 1240; // Default to full width
+        const mapHeight = 740; // Default to full height
 
         svg
           .append("image")
