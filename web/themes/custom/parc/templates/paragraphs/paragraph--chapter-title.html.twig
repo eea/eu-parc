@@ -1,0 +1,7 @@
+<h2 class="chapter-title svg-title" id="{{ title_id }}">
+  {% if not paragraph.field_short_title.isEmpty %}
+    {{ content.field_short_title }}
+  {% else %}
+    {{ content.field_title }}
+  {% endif %}
+</h2>

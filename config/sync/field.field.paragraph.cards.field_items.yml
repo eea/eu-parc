@@ -1,0 +1,76 @@
+uuid: 50678dde-cfc2-4123-be9a-0465a448cbb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_items
+    - paragraphs.paragraphs_type.cards
+    - paragraphs.paragraphs_type.sria_card
+  module:
+    - entity_reference_revisions
+id: paragraph.cards.field_items
+field_name: field_items
+entity_type: paragraph
+bundle: cards
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      sria_card: sria_card
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 9
+        enabled: false
+      card:
+        weight: 7
+        enabled: false
+      cards:
+        weight: 19
+        enabled: false
+      carousel_item:
+        weight: 8
+        enabled: false
+      contact:
+        weight: 21
+        enabled: false
+      grid:
+        weight: 9
+        enabled: false
+      lab_matrix:
+        weight: 23
+        enabled: false
+      links_list:
+        weight: 10
+        enabled: false
+      media:
+        weight: 14
+        enabled: false
+      newsletter:
+        weight: 26
+        enabled: false
+      partner:
+        weight: 27
+        enabled: false
+      sria_card:
+        weight: 28
+        enabled: true
+      survey:
+        weight: 29
+        enabled: false
+      svg_text:
+        weight: 11
+        enabled: false
+      text:
+        weight: 31
+        enabled: false
+      what_we_do:
+        weight: 12
+        enabled: false
+field_type: entity_reference_revisions

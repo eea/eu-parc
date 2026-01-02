@@ -1,0 +1,22 @@
+uuid: 2f6f34b8-e2ce-418e-9ef2-48402ef37f61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_border_color
+    - paragraphs.paragraphs_type.sria_card
+  module:
+    - color_field
+id: paragraph.sria_card.field_border_color
+field_name: field_border_color
+entity_type: paragraph
+bundle: sria_card
+label: 'Border color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

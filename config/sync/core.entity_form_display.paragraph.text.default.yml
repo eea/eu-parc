@@ -1,0 +1,34 @@
+uuid: 1c3fb4de-3cb5-403e-a314-d678fe02aaa6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text.field_background_color
+    - field.field.paragraph.text.field_body
+    - paragraphs.paragraphs_type.text
+  module:
+    - color_field
+    - text
+id: paragraph.text.default
+targetEntityType: paragraph
+bundle: text
+mode: default
+content:
+  field_background_color:
+    type: color_field_widget_box
+    weight: 2
+    region: content
+    settings:
+      default_colors: '#ffffff'
+    third_party_settings: {  }
+  field_body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

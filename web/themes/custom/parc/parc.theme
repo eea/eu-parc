@@ -6,19 +6,17 @@
  */
 
 use Drupal\block\Entity\Block;
-use Drupal\file\FileInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\parc\ParcThemeProcess;
 use Drupal\taxonomy\TermInterface;
 use Drupal\facets\FacetInterface;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Render\Markup;
-use Drupal\views\ViewExecutable;
-use Drupal\block_content\Entity\BlockContent;
 use Drupal\media\MediaInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Component\Utility\Html;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -1158,4 +1156,14 @@ function parc_preprocess_views_view_unformatted__press_clippings__featured(array
     unset($variables['rows'][$idx]);
     return;
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__chapter_title().
+ */
+function parc_preprocess_paragraph__chapter_title(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $title = $paragraph->get('field_short_title')->value ?? $paragraph->get('field_title')->value;
+  $variables['title_id'] = Html::getId($title);
 }

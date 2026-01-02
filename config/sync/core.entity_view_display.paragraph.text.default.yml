@@ -1,0 +1,25 @@
+uuid: 993bd1e9-ae3e-4bb7-9850-75ebae113215
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text.field_background_color
+    - field.field.paragraph.text.field_body
+    - paragraphs.paragraphs_type.text
+  module:
+    - text
+id: paragraph.text.default
+targetEntityType: paragraph
+bundle: text
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_background_color: true
+  search_api_excerpt: true

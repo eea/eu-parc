@@ -39,3 +39,88 @@
     }
   }
 }
+
+.chapter-title {
+  text-align: left !important;
+  justify-content: flex-start !important;
+  padding: 40px 0 !important;
+  margin-bottom: 0 !important;
+
+  * {
+    text-align: left;
+  }
+
+  @media (--lg) {
+    margin-left: 8.3333%;
+    margin-right: 16.6666%;
+
+    &, * {
+      font-size: 160px;
+      line-height: 0.9;
+    }
+  }
+}
+
+.media-lightbox {
+  .field--name-field-caption {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    @media (--lg) {
+      margin-left: 8.3333%;
+      margin-right: 16.6666%;
+    }
+  }
+}
+
+.paragraph--icon-title {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 50px 0;
+
+  @media (--lg) {
+    margin-left: 8.3333%;
+    margin-right: 16.6666%;
+  }
+
+  .field--name-field-image {
+    width: 60px;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    @media (--lg) {
+      width: 110px;
+    }
+  }
+
+  .field--name-field-title {
+    font-family: "PARC";
+    font-size: 40px;
+    line-height: 0.9;
+    color: #008475;
+
+    @media (--lg) {
+      font-size: 70px;
+    }
+  }
+}
+
+.paragraph-text {
+  @media (--lg) {
+    margin-left: 8.3333%;
+    margin-right: 16.6666%;
+  }
+
+  p {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  &.bg-color {
+    background-color: var(--bg-color);
+    border-radius: 4px;
+    padding: 32px 42px;
+  }
+}

@@ -1,0 +1,59 @@
+uuid: a7a476c2-b630-4351-9667-8743fbb7e819
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.sria_card.field_background_color
+    - field.field.paragraph.sria_card.field_body
+    - field.field.paragraph.sria_card.field_border_color
+    - field.field.paragraph.sria_card.field_image
+    - field.field.paragraph.sria_card.field_number
+    - field.field.paragraph.sria_card.field_text_color
+    - field.field.paragraph.sria_card.field_title
+    - field.field.paragraph.sria_card.field_title_color
+    - paragraphs.paragraphs_type.sria_card
+  module:
+    - text
+id: paragraph.sria_card.default
+targetEntityType: paragraph
+bundle: sria_card
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_number:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_background_color: true
+  field_border_color: true
+  field_text_color: true
+  field_title_color: true
+  search_api_excerpt: true

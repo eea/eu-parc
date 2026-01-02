@@ -1,0 +1,10 @@
+uuid: e9cda320-ebd3-4a2d-a05f-d5e155b51ba0
+langcode: en
+status: true
+dependencies: {  }
+id: sria_card
+label: 'SRIA Card'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

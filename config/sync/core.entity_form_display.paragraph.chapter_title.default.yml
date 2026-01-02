@@ -1,0 +1,32 @@
+uuid: 28de36a2-3dc2-4a5a-939f-4271053ac29a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.chapter_title.field_short_title
+    - field.field.paragraph.chapter_title.field_title
+    - paragraphs.paragraphs_type.chapter_title
+id: paragraph.chapter_title.default
+targetEntityType: paragraph
+bundle: chapter_title
+mode: default
+content:
+  field_short_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

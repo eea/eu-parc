@@ -1,0 +1,19 @@
+uuid: af974d43-1e2f-4169-9521-8b3d5b6525e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.sria_card
+id: paragraph.sria_card.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: sria_card
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

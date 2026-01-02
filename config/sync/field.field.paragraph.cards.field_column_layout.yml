@@ -1,0 +1,23 @@
+uuid: 932918b6-abee-4b4c-a7b7-5dcc9f4f8f51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_column_layout
+    - paragraphs.paragraphs_type.cards
+  module:
+    - options
+id: paragraph.cards.field_column_layout
+field_name: field_column_layout
+entity_type: paragraph
+bundle: cards
+label: 'Column layout'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: grid--1
+default_value_callback: ''
+settings: {  }
+field_type: list_string

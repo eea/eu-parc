@@ -15,10 +15,12 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor5: 0
-  ckeditor5_font: 0
+  ckeditor5_plugin_pack: 0
+  ckeditor5_plugin_pack_font: 0
   ckeditor_accordion: 0
   ckeditor_bs_grid: 0
   color_field: 0
+  colorbox: 0
   comment: 0
   conditional_fields: 0
   config: 0

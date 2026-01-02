@@ -5,7 +5,10 @@ dependencies:
   config:
     - field.storage.node.field_paragraphs_in
     - node.type.basic_page
-    - paragraphs.paragraphs_type.grid
+    - paragraphs.paragraphs_type.cards
+    - paragraphs.paragraphs_type.chapter_title
+    - paragraphs.paragraphs_type.icon_title
+    - paragraphs.paragraphs_type.text
   module:
     - entity_reference_revisions
 id: node.basic_page.field_paragraphs_in
@@ -22,31 +25,64 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      grid: grid
+      text: text
+      chapter_title: chapter_title
+      cards: cards
+      icon_title: icon_title
     negate: 0
     target_bundles_drag_drop:
       accordion_item:
-        weight: 9
+        weight: -37
         enabled: false
       card:
-        weight: 10
+        weight: -36
         enabled: false
+      cards:
+        weight: -27
+        enabled: true
       carousel_item:
-        weight: 11
+        weight: -35
+        enabled: false
+      chapter_title:
+        weight: -28
+        enabled: true
+      contact:
+        weight: -26
         enabled: false
       grid:
-        weight: 12
+        weight: -34
+        enabled: false
+      icon_title:
+        weight: -25
         enabled: true
+      lab_matrix:
+        weight: -24
+        enabled: false
       links_list:
-        weight: 13
+        weight: -33
         enabled: false
       media:
-        weight: 14
+        weight: -32
+        enabled: false
+      newsletter:
+        weight: -23
+        enabled: false
+      partner:
+        weight: -22
+        enabled: false
+      sria_card:
+        weight: -21
+        enabled: false
+      survey:
+        weight: -20
         enabled: false
       svg_text:
-        weight: 15
+        weight: -31
         enabled: false
+      text:
+        weight: -29
+        enabled: true
       what_we_do:
-        weight: 16
+        weight: -30
         enabled: false
 field_type: entity_reference_revisions

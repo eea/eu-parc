@@ -22,6 +22,7 @@ dependencies:
     - layout_builder
     - layout_discovery
     - media
+    - parc_core
     - system
     - text
     - user
@@ -187,6 +188,17 @@ third_party_settings:
                   view_mode: default
                 third_party_settings: {  }
             weight: 2
+            additional: {  }
+          ef790608-5d88-4cf7-b71a-22daa8b4682b:
+            uuid: ef790608-5d88-4cf7-b71a-22daa8b4682b
+            region: menu
+            configuration:
+              id: parc_chapter_links
+              label: 'PARC Chapter Links'
+              label_display: '0'
+              provider: parc_core
+              context_mapping: {  }
+            weight: 1
             additional: {  }
         third_party_settings: {  }
       -

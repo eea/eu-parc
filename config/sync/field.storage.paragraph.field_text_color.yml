@@ -1,0 +1,20 @@
+uuid: 8212bfda-c5ac-47ab-8bea-ce0b6bbb5dca
+langcode: en
+status: true
+dependencies:
+  module:
+    - color_field
+    - paragraphs
+id: paragraph.field_text_color
+field_name: field_text_color
+entity_type: paragraph
+type: color_field_type
+settings:
+  format: '#HEXHEX'
+module: color_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

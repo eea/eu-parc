@@ -1,0 +1,10 @@
+uuid: 8f102716-a833-4728-93cc-221d04f92626
+langcode: en
+status: true
+dependencies: {  }
+id: chapter_title
+label: 'Chapter title'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

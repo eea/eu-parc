@@ -1,0 +1,22 @@
+uuid: b4f68b76-4a6a-45ac-89a1-bb99d3e9994d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title_color
+    - paragraphs.paragraphs_type.sria_card
+  module:
+    - color_field
+id: paragraph.sria_card.field_title_color
+field_name: field_title_color
+entity_type: paragraph
+bundle: sria_card
+label: 'Title color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

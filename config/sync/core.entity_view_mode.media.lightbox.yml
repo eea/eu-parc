@@ -1,0 +1,11 @@
+uuid: 73a183e1-4f99-44b7-a9d3-0315ab147aad
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.lightbox
+label: Lightbox
+description: ''
+targetEntityType: media
+cache: true

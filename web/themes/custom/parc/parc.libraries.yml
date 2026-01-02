@@ -17,6 +17,7 @@ global-styling:
       css/theme/layout.css: {}
       css/theme/block.css: {}
       css/components/table.css: {}
+      css/ckeditor.css: {}
   js:
     js/script.js: {}
   dependencies:

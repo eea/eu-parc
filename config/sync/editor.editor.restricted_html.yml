@@ -1,0 +1,228 @@
+uuid: cfa74256-5efe-44fe-8715-05b7e17ce5ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - ckeditor5
+format: restricted_html
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - heading
+      - bold
+      - italic
+      - underline
+      - strikethrough
+      - specialCharacters
+      - subscript
+      - superscript
+      - style
+      - undo
+      - redo
+      - '|'
+      - horizontalLine
+      - link
+      - blockQuote
+      - code
+      - bulletedList
+      - numberedList
+      - Accordion
+      - '|'
+      - fontColor
+      - drupalMedia
+      - sourceEditing
+  plugins:
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+        - heading5
+        - heading6
+    ckeditor5_list:
+      properties:
+        reversed: false
+        startIndex: true
+      multiBlock: true
+    ckeditor5_plugin_pack_font__font_color:
+      colors:
+        -
+          label: ''
+          color: '#2c9b48'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#00add8'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#f36d24'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#cf8d2a'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#007dbb'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#3faf49'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#01558a'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#87c4bd'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#c8a6e4'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#79a5e8'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#1c85ff'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#8631a7'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#d8c178'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#008475'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#00564c'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#f98555'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#480363'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#b43d18'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#1e2094'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#1b90b1'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#890223'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#d21a46'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#605601'
+          type:
+            font: font
+            background: background
+        -
+          label: ''
+          color: '#1879eb'
+          type:
+            font: font
+            background: background
+      use_default_colors: false
+      use_colorpicker: true
+      font_color_columns: 5
+      font_color_document_colors: 10
+      bg_color_columns: 5
+      bg_color_document_colors: 10
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<cite>'
+        - '<a hreflang>'
+        - '<blockquote cite>'
+        - '<ul type>'
+        - '<ol type>'
+        - '<h2 id>'
+        - '<h3 id>'
+        - '<h4 id>'
+        - '<h5 id>'
+        - '<h6 id>'
+    ckeditor5_style:
+      styles:
+        -
+          label: 'Text LG'
+          element: '<p class="text--lg">'
+    media_media:
+      allow_view_mode_override: false
+image_upload:
+  status: true
+  scheme: public
+  directory: inline-images
+  max_size: null
+  max_dimensions:
+    width: null
+    height: null

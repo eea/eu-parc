@@ -28,6 +28,19 @@
                     "type": "zip"
                 }
             }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "jackmoore/colorbox",
+                "version": "1.6.4",
+                "type": "drupal-library",
+                "license":"MIT",
+                "dist": {
+                    "url": "https://github.com/jackmoore/colorbox/archive/1.6.4.zip",
+                    "type": "zip"
+                }
+            }
         }
     ],
     "require": {
@@ -40,9 +53,11 @@
         "drupal/better_exposed_filters": "^6.0",
         "drupal/block_class": "^3.0",
         "drupal/ckeditor5_font": "^1.1@beta",
+        "drupal/ckeditor5_plugin_pack": "^1.4",
         "drupal/ckeditor_accordion": "^2.3",
         "drupal/ckeditor_bs_grid": "^2.0",
         "drupal/color_field": "^3.0",
+        "drupal/colorbox": "^2.1",
         "drupal/conditional_fields": "^4.0@alpha",
         "drupal/core-composer-scaffold": "10.4.9",
         "drupal/core-project-message": "10.4.9",
@@ -106,6 +121,7 @@
         "drush/drush": "^12.0",
         "eaudeweb/heavy-lifter": "^2.0",
         "enshrined/svg-sanitize": "dev-master as 0.16.0",
+        "jackmoore/colorbox": "^1.6",
         "mglaman/composer-drupal-lenient": "^1.0",
         "slick/slick": "^1.9",
         "symfony/css-selector": "^5.4"

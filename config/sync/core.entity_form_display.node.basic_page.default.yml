@@ -28,7 +28,6 @@ third_party_settings:
   field_group:
     group_other_content:
       children:
-        - field_views_reference
         - field_paragraphs_in
       label: 'Other content'
       region: content
@@ -88,7 +87,7 @@ content:
     third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
-    weight: 26
+    weight: 15
     region: content
     settings:
       sidebar: true
@@ -119,15 +118,17 @@ content:
     settings:
       title: Paragraph
       title_plural: Paragraphs
-      edit_mode: open
+      edit_mode: closed
       closed_mode: summary
       autocollapse: none
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: _none
       features:
+        add_above: '0'
         collapse_edit_all: collapse_edit_all
+        convert: '0'
         duplicate: duplicate
     third_party_settings: {  }
   field_seo_keyword:
@@ -142,7 +143,7 @@ content:
     third_party_settings: {  }
   field_survey:
     type: paragraphs
-    weight: 28
+    weight: 16
     region: content
     settings:
       title: Survey
@@ -169,7 +170,7 @@ content:
     third_party_settings: {  }
   field_views_reference:
     type: viewsreference_autocomplete
-    weight: 11
+    weight: 19
     region: content
     settings:
       match_operator: CONTAINS
@@ -202,7 +203,7 @@ content:
     third_party_settings: {  }
   rabbit_hole__settings:
     type: rabbit_hole_default
-    weight: 100
+    weight: 18
     region: content
     settings:
       advanced: true
@@ -248,5 +249,10 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 17
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

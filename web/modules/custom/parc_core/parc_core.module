@@ -109,6 +109,11 @@ function parc_core_theme() {
         'active' => '',
       ],
     ],
+    'parc_toc' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
   ];
 }
 

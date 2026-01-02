@@ -4,6 +4,9 @@ description: "Theme for parc"
 core_version_requirement: ^8.9 || ^9.0 || ^10.0
 base theme: edwt
 
+ckeditor5-stylesheets:
+  - css/ckeditor.css
+
 libraries-override:
   edwt/global-styling: parc/global-styling
   edwt/theme-fonts: false
