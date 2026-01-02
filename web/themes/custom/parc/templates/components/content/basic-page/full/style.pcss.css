@@ -55,17 +55,18 @@
     margin-right: 16.6666%;
 
     &, * {
-      font-size: 160px;
+      font-size: 120px;
       line-height: 0.9;
     }
   }
 }
 
 .media-lightbox {
+  margin-bottom: 40px;
+
   .field--name-field-caption {
     font-size: 14px;
     margin-top: 20px;
-    margin-bottom: 20px;
 
     @media (--lg) {
       margin-left: 8.3333%;
@@ -122,5 +123,109 @@
     background-color: var(--bg-color);
     border-radius: 4px;
     padding: 32px 42px;
+  }
+}
+
+.toc {
+  &__title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  &__items {
+    font-weight: 700;
+
+    a {
+      display: block;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.cards {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  @media (--lg) {
+    margin-left: 8.3333%;
+    margin-right: 16.6666%;
+  }
+
+  @media (--lg) {
+    &.grid--2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &.grid--3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  p {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+.sria-card {
+  border-radius: 4px;
+  background-color: var(--bg-color, #FFF);
+  border: 1px solid var(--border-color, #FFF);
+  padding: 25px 16px;
+
+  &__title {
+    color: var(--title-color, #000);
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  &__number {
+    width: 100%;
+    text-align: center;
+    font-family: "PARC";
+    font-size: 46px;
+    line-height: 0.9;
+    margin-bottom: 10px;
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 36px;
+    margin-bottom: 44px;
+
+    img {
+      max-height: 110px;
+      width: auto;
+    }
+  }
+
+  &__description {
+    color: var(--text-color, #000);
+    font-size: 14px;
+    line-height: 140%;
+  }
+}
+
+.page--sria {
+  .block-field-blocknodebasic-pagefield-banner {
+    display: none;
+  }
+
+  .layout.container-fluid {
+    background-color: #FAFAFA;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 0;
   }
 }

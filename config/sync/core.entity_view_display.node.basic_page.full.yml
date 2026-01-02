@@ -6,13 +6,13 @@ dependencies:
     - core.entity_view_mode.node.full
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
+    - field.field.node.basic_page.field_custom_classes
     - field.field.node.basic_page.field_metatags
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
     - field.field.node.basic_page.field_seo_keyword
     - field.field.node.basic_page.field_survey
     - field.field.node.basic_page.field_svg_title
-    - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
     - field.field.node.basic_page.rabbit_hole__settings
     - node.type.basic_page
@@ -146,30 +146,6 @@ third_party_settings:
                 entity: layout_builder.entity
             weight: 0
             additional: {  }
-          abd6556b-277b-4add-b575-f25cf0ab5824:
-            uuid: abd6556b-277b-4add-b575-f25cf0ab5824
-            region: second
-            configuration:
-              id: 'field_block:node:basic_page:field_views_reference'
-              label: 'Views reference'
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: viewsreference_formatter
-                label: hidden
-                settings:
-                  plugin_types:
-                    block: block
-                    embed: embed
-                    default: '0'
-                    page: '0'
-                    feed: '0'
-                third_party_settings: {  }
-            weight: 1
-            additional: {  }
           ccd5d70a-ff39-4521-b186-4f9c0e826f2f:
             uuid: ccd5d70a-ff39-4521-b186-4f9c0e826f2f
             region: second
@@ -297,12 +273,12 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_custom_classes: true
   field_metatags: true
   field_paragraphs: true
   field_paragraphs_in: true
   field_seo_keyword: true
   field_survey: true
-  field_views_reference: true
   field_views_reference_bottom: true
   layout_builder__layout: true
   links: true

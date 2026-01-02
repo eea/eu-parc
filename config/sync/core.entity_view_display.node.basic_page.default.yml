@@ -5,13 +5,13 @@ dependencies:
   config:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
+    - field.field.node.basic_page.field_custom_classes
     - field.field.node.basic_page.field_metatags
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
     - field.field.node.basic_page.field_seo_keyword
     - field.field.node.basic_page.field_survey
     - field.field.node.basic_page.field_svg_title
-    - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
     - field.field.node.basic_page.rabbit_hole__settings
     - node.type.basic_page
@@ -49,6 +49,14 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_custom_classes:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
     region: content
   field_metatags:
     type: metatag_empty_formatter
@@ -93,15 +101,6 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_views_reference:
-    type: viewsreference_formatter
-    label: above
-    settings:
-      plugin_types:
-        - block
-    third_party_settings: {  }
-    weight: 3
     region: content
   field_views_reference_bottom:
     type: viewsreference_formatter

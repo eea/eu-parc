@@ -1,0 +1,16 @@
+{%
+  set classes = [
+  'paragraph',
+  'paragraph--' ~ paragraph.bundle|clean_class,
+  view_mode ? 'paragraph--' ~ paragraph.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+  not paragraph.isPublished() ? 'paragraph--unpublished'
+]
+%}
+
+{% block paragraph %}
+  <div{{attributes.addClass(classes)}} data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

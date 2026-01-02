@@ -1,9 +1,10 @@
 <div class="sria-card" style="
-  {{ paragraph.field_background_color.color ? '--bg-color:' ~ paragraph.field_background_color.color }}
-  {{ paragraph.field_border_color.color ? '--border-color:' ~ paragraph.field_border_color.color }}
-  {{ paragraph.field_text_color.color ? '--text-color:' ~ paragraph.field_text_color.color }}
-  {{ paragraph.field_title_color.color ? '--title-color:' ~ paragraph.field_title_color.color }}
-">
+  {{ paragraph.field_background_color.color ? '--bg-color:' ~ paragraph.field_background_color.color ~ ';' }}
+  {{ paragraph.field_border_color.color ? '--border-color:' ~ paragraph.field_border_color.color ~ ';' }}
+  {{ paragraph.field_text_color.color ? '--text-color:' ~ paragraph.field_text_color.color ~ ';' }}
+  {{ paragraph.field_title_color.color ? '--title-color:' ~ paragraph.field_title_color.color ~ ';' }}"
+  data-aos="fade-up" data-aos-duration="1000" data-aos-once="true"
+>
   {% if not paragraph.field_number.isEmpty %}
     <div class="sria-card__number">{{ content.field_number }}</div>
   {% endif %}

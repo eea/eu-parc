@@ -1,3 +1,5 @@
-<div class="paragraph-text {{ paragraph.field_background_color.color ? 'bg-color' }}" style="{{ paragraph.field_background_color.color ? '--bg-color:' ~ paragraph.field_background_color.color }}">
+<div class="paragraph-text {{ paragraph.field_background_color.color ? 'bg-color' }}"
+  style="{{ paragraph.field_background_color.color ? '--bg-color:' ~ paragraph.field_background_color.color ~ ';' }}"
+  data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
   {{ content.field_body }}
 </div>

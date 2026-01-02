@@ -216,6 +216,9 @@ settings:
         -
           label: 'Text LG'
           element: '<p class="text--lg">'
+        -
+          label: 'Small margin bottom'
+          element: '<p class="mb-10">'
     media_media:
       allow_view_mode_override: false
 image_upload:

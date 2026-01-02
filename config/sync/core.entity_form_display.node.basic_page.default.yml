@@ -5,13 +5,13 @@ dependencies:
   config:
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_banner
+    - field.field.node.basic_page.field_custom_classes
     - field.field.node.basic_page.field_metatags
     - field.field.node.basic_page.field_paragraphs
     - field.field.node.basic_page.field_paragraphs_in
     - field.field.node.basic_page.field_seo_keyword
     - field.field.node.basic_page.field_survey
     - field.field.node.basic_page.field_svg_title
-    - field.field.node.basic_page.field_views_reference
     - field.field.node.basic_page.field_views_reference_bottom
     - field.field.node.basic_page.rabbit_hole__settings
     - node.type.basic_page
@@ -32,7 +32,7 @@ third_party_settings:
       label: 'Other content'
       region: content
       parent_name: ''
-      weight: 11
+      weight: 12
       format_type: details
       format_settings:
         classes: ''
@@ -48,7 +48,7 @@ third_party_settings:
       label: 'Other content Bottom (out  of content container)'
       region: content
       parent_name: ''
-      weight: 12
+      weight: 13
       format_type: details
       format_settings:
         classes: ''
@@ -85,9 +85,17 @@ content:
     settings:
       media_types: {  }
     third_party_settings: {  }
+  field_custom_classes:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_metatags:
     type: metatag_firehose
-    weight: 15
+    weight: 16
     region: content
     settings:
       sidebar: true
@@ -133,7 +141,7 @@ content:
     third_party_settings: {  }
   field_seo_keyword:
     type: entity_reference_autocomplete
-    weight: 13
+    weight: 14
     region: content
     settings:
       match_operator: CONTAINS
@@ -143,7 +151,7 @@ content:
     third_party_settings: {  }
   field_survey:
     type: paragraphs
-    weight: 16
+    weight: 17
     region: content
     settings:
       title: Survey
@@ -167,16 +175,6 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
-  field_views_reference:
-    type: viewsreference_autocomplete
-    weight: 19
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
     third_party_settings: {  }
   field_views_reference_bottom:
     type: viewsreference_autocomplete
@@ -203,18 +201,18 @@ content:
     third_party_settings: {  }
   rabbit_hole__settings:
     type: rabbit_hole_default
-    weight: 18
+    weight: 19
     region: content
     settings:
       advanced: true
     third_party_settings: {  }
   simple_sitemap:
-    weight: 10
+    weight: 11
     region: content
     settings: {  }
     third_party_settings: {  }
   simple_sitemap_index_now:
-    weight: 14
+    weight: 15
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -251,7 +249,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }

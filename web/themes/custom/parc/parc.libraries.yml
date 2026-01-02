@@ -600,3 +600,13 @@ n--press-clipping:
   css:
     component:
       css/components/content/press-clipping/press-clipping.css: { }
+
+aos:
+  css:
+    component:
+      css/libraries/aos.min.css: { minified: true }
+  js:
+    js/libs/aos.min.js: { minified: true }
+    js/aos-init.js: {}
+  dependencies:
+    - core/drupal
