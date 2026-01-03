@@ -234,6 +234,8 @@
 
   &--centered {
     text-align: center;
+    align-items: center;
+    justify-content: center;
 
     .sria-card__image {
       order: -10;
@@ -250,6 +252,7 @@
     font-weight: 700;
     font-size: 14px;
     margin-bottom: 12px;
+    line-height: 140%;
   }
 
   &__number {
