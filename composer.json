@@ -92,6 +92,7 @@
         "drupal/metatag": "^2.1",
         "drupal/paragraphs": "^1.15",
         "drupal/pathauto": "^1.11",
+        "drupal/protected_pages": "^1.9",
         "drupal/publishcontent": "^1.6",
         "drupal/quick_node_clone": "^1.20",
         "drupal/rabbit_hole": "^2.0@beta",

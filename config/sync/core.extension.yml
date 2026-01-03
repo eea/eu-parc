@@ -93,6 +93,7 @@ module:
   path: 0
   path_alias: 0
   phpass: 0
+  protected_pages: 0
   publishcontent: 0
   quick_node_clone: 0
   rabbit_hole: 0

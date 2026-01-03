@@ -12,6 +12,7 @@ dependencies:
     - filter
     - google_analytics
     - media
+    - protected_pages
     - shortcut
     - system
 _core:
@@ -23,8 +24,10 @@ is_admin: false
 permissions:
   - 'access comments'
   - 'access content'
+  - 'access protected page password screen'
   - 'access shortcuts'
   - 'access site-wide contact form'
+  - 'bypass pages password protection'
   - 'display eu cookie compliance popup'
   - 'opt-in or out of google analytics tracking'
   - 'post comments'
