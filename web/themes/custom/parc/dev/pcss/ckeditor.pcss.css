@@ -6,6 +6,10 @@ p.mb-10 {
   margin-bottom: 10px !important;
 }
 
+mark {
+  background-color: transparent !important;
+}
+
 .custom-highlight-marker-1  { color: #2c9b48; }
 .custom-highlight-marker-2  { color: #00add8; }
 .custom-highlight-marker-3  { color: #f36d24; }
