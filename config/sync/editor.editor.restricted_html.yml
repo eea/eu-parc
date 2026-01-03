@@ -31,7 +31,7 @@ settings:
       - numberedList
       - Accordion
       - '|'
-      - fontColor
+      - highlight
       - drupalMedia
       - sourceEditing
   plugins:
@@ -47,158 +47,178 @@ settings:
         reversed: false
         startIndex: true
       multiBlock: true
-    ckeditor5_plugin_pack_font__font_color:
-      colors:
+    ckeditor5_plugin_pack_highlight__highlight:
+      options:
         -
-          label: ''
+          title: color-1
           color: '#2c9b48'
+          class_suffix: '1'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-2
           color: '#00add8'
+          class_suffix: '2'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-3
           color: '#f36d24'
+          class_suffix: '3'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-4
           color: '#cf8d2a'
+          class_suffix: '4'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-5
           color: '#007dbb'
+          class_suffix: '5'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-6
           color: '#3faf49'
+          class_suffix: '6'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-7
           color: '#01558a'
+          class_suffix: '7'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-8
           color: '#87c4bd'
+          class_suffix: '8'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-9
           color: '#c8a6e4'
+          class_suffix: '9'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-10
           color: '#79a5e8'
+          class_suffix: '10'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-11
           color: '#1c85ff'
+          class_suffix: '11'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-12
           color: '#8631a7'
+          class_suffix: '12'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-13
           color: '#d8c178'
+          class_suffix: '13'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-14
           color: '#008475'
+          class_suffix: '14'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-15
           color: '#00564c'
+          class_suffix: '15'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-16
           color: '#f98555'
+          class_suffix: '16'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-17
           color: '#480363'
+          class_suffix: '17'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-18
           color: '#b43d18'
+          class_suffix: '18'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-19
           color: '#1e2094'
+          class_suffix: '19'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-20
           color: '#1b90b1'
+          class_suffix: '20'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-21
           color: '#890223'
+          class_suffix: '21'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-22
           color: '#d21a46'
+          class_suffix: '22'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-23
           color: '#605601'
+          class_suffix: '23'
           type:
-            font: font
-            background: background
+            marker: marker
+            pen: '0'
         -
-          label: ''
+          title: color-24
           color: '#1879eb'
+          class_suffix: '24'
           type:
-            font: font
-            background: background
-      use_default_colors: false
-      use_colorpicker: true
-      font_color_columns: 5
-      font_color_document_colors: 10
-      bg_color_columns: 5
-      bg_color_document_colors: 10
+            marker: marker
+            pen: '0'
+      use_default_markers: false
+      attach_styles: false
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<cite>'
@@ -211,6 +231,7 @@ settings:
         - '<h4 id>'
         - '<h5 id>'
         - '<h6 id>'
+        - '<p color>'
     ckeditor5_style:
       styles:
         -
@@ -219,6 +240,12 @@ settings:
         -
           label: 'Small margin bottom'
           element: '<p class="mb-10">'
+        -
+          label: 'PARC Font'
+          element: '<p class="svg-title">'
+        -
+          label: Subnote
+          element: '<p class="subnote">'
     media_media:
       allow_view_mode_override: false
 image_upload:

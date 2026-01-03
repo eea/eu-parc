@@ -43,8 +43,10 @@
 .chapter-title {
   text-align: left !important;
   justify-content: flex-start !important;
-  padding: 40px 0 !important;
+  padding: 20px 0 !important;
   margin-bottom: 0 !important;
+  word-break: break-word;
+  hyphens: auto;
 
   * {
     text-align: left;
@@ -108,13 +110,25 @@
   }
 }
 
+.field--name-field-paragraphs-in {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 .paragraph-text {
+  mark {
+    padding: 0;
+    margin: 0;
+  }
+
   @media (--lg) {
     margin-left: 8.3333%;
     margin-right: 16.6666%;
   }
 
   p {
+    margin-bottom: 5px;
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
@@ -123,6 +137,32 @@
     background-color: var(--bg-color);
     border-radius: 4px;
     padding: 32px 42px;
+  }
+
+  p + .media-lightbox {
+    margin-top: 40px;
+  }
+
+  ul, ol {
+    margin-left: 0;
+  }
+
+  p + :is(ol, ul) {
+    margin-top: 10px;
+  }
+
+  .media-lightbox {
+    @media (--lg) {
+      margin-left: -8.3333%;
+      width: 125%;
+    }
+  }
+
+  .svg-title {
+    font-size: 44px;
+    line-height: 100%;
+    padding: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -177,6 +217,18 @@
   background-color: var(--bg-color, #FFF);
   border: 1px solid var(--border-color, #FFF);
   padding: 25px 16px;
+  display: flex;
+  flex-direction: column;
+
+  &--centered {
+    text-align: center;
+
+    .sria-card__image {
+      order: -10;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+  }
 
   &__title {
     color: var(--title-color, #000);
@@ -222,8 +274,15 @@
     display: none;
   }
 
-  .layout.container-fluid {
+  .region-content {
     background-color: #FAFAFA;
+  }
+
+  hr {
+
+  }
+
+  .layout.container-fluid {
     padding-top: 40px;
     padding-bottom: 40px;
     margin-bottom: 0;

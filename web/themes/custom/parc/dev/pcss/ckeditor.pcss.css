@@ -5,3 +5,37 @@
 p.mb-10 {
   margin-bottom: 10px !important;
 }
+
+.custom-highlight-marker-1  { color: #2c9b48; }
+.custom-highlight-marker-2  { color: #00add8; }
+.custom-highlight-marker-3  { color: #f36d24; }
+.custom-highlight-marker-4  { color: #cf8d2a; }
+.custom-highlight-marker-5  { color: #007dbb; }
+.custom-highlight-marker-6  { color: #3faf49; }
+.custom-highlight-marker-7  { color: #01558a; }
+.custom-highlight-marker-8  { color: #87c4bd; }
+.custom-highlight-marker-9  { color: #c8a6e4; }
+.custom-highlight-marker-10 { color: #79a5e8; }
+.custom-highlight-marker-11 { color: #1c85ff; }
+.custom-highlight-marker-12 { color: #8631a7; }
+.custom-highlight-marker-13 { color: #d8c178; }
+.custom-highlight-marker-14 { color: #008475; }
+.custom-highlight-marker-15 { color: #00564c; }
+.custom-highlight-marker-16 { color: #f98555; }
+.custom-highlight-marker-17 { color: #480363; }
+.custom-highlight-marker-18 { color: #b43d18; }
+.custom-highlight-marker-19 { color: #1e2094; }
+.custom-highlight-marker-20 { color: #1b90b1; }
+.custom-highlight-marker-21 { color: #890223; }
+.custom-highlight-marker-22 { color: #d21a46; }
+.custom-highlight-marker-23 { color: #605601; }
+.custom-highlight-marker-24 { color: #1879eb; }
+
+.subnote {
+  font-size: 12px;
+  line-height: 140%;
+}
+
+.svg-title {
+  font-family: "PARC";
+}

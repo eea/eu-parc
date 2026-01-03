@@ -1,0 +1,23 @@
+uuid: c31f123e-b93a-412d-9793-a64da8d3ee3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sria_card_style
+    - paragraphs.paragraphs_type.sria_card
+  module:
+    - options
+id: paragraph.sria_card.field_sria_card_style
+field_name: field_sria_card_style
+entity_type: paragraph
+bundle: sria_card
+label: 'Card style'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: default
+default_value_callback: ''
+settings: {  }
+field_type: list_string

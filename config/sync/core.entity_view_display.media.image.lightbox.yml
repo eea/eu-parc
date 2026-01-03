@@ -6,7 +6,7 @@ dependencies:
     - core.entity_view_mode.media.lightbox
     - field.field.media.image.field_caption
     - field.field.media.image.field_media_image
-    - image.style.wide
+    - image.style.embedded_image
     - media.type.image
   module:
     - colorbox
@@ -39,7 +39,7 @@ content:
       colorbox_gallery_custom: ''
       colorbox_caption: custom
       colorbox_caption_custom: '[media:field_caption]'
-      colorbox_node_style: wide
+      colorbox_node_style: embedded_image
       colorbox_node_style_first: ''
     third_party_settings: {  }
     weight: 0

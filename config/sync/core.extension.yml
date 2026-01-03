@@ -17,6 +17,7 @@ module:
   ckeditor5: 0
   ckeditor5_plugin_pack: 0
   ckeditor5_plugin_pack_font: 0
+  ckeditor5_plugin_pack_highlight: 0
   ckeditor_accordion: 0
   ckeditor_bs_grid: 0
   color_field: 0

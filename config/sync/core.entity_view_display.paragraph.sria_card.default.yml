@@ -8,11 +8,13 @@ dependencies:
     - field.field.paragraph.sria_card.field_border_color
     - field.field.paragraph.sria_card.field_image
     - field.field.paragraph.sria_card.field_number
+    - field.field.paragraph.sria_card.field_sria_card_style
     - field.field.paragraph.sria_card.field_text_color
     - field.field.paragraph.sria_card.field_title
     - field.field.paragraph.sria_card.field_title_color
     - paragraphs.paragraphs_type.sria_card
   module:
+    - options
     - text
 id: paragraph.sria_card.default
 targetEntityType: paragraph
@@ -42,6 +44,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_sria_card_style:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
     region: content
   field_title:
     type: string

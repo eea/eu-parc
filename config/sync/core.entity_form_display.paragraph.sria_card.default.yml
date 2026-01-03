@@ -8,6 +8,7 @@ dependencies:
     - field.field.paragraph.sria_card.field_border_color
     - field.field.paragraph.sria_card.field_image
     - field.field.paragraph.sria_card.field_number
+    - field.field.paragraph.sria_card.field_sria_card_style
     - field.field.paragraph.sria_card.field_text_color
     - field.field.paragraph.sria_card.field_title
     - field.field.paragraph.sria_card.field_title_color
@@ -78,6 +79,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_sria_card_style:
+    type: options_select
+    weight: 9
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_text_color:
     type: color_field_widget_html5
