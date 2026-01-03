@@ -256,6 +256,7 @@
   }
 
   &__number {
+    color: var(--title-color, #000);
     width: 100%;
     text-align: center;
     font-family: "PARC";
@@ -295,6 +296,7 @@
 
   ul, ol {
     margin-left: 0;
+    padding-left: 20px;
   }
 
   p + :is(ol, ul) {
