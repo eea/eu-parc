@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--basic-page-full') }}
+{{ attach_library('parc/sria') }}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    'second-style',
+  ]
+%}
+
+<div class="sria-title">
+  <div class="container-fluid sria-container">
+    <div class="type-container">
+      <div id="trail-layer"></div>
+      <div id="scramble-layer"></div>
+      <div id="final-layer"></div>
+    </div>
+  </div>
+</div>
+
+<article{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {{ content }}
+
+  {% if survey_form %}
+    {{ survey_form }}
+  {% endif %}
+</article>

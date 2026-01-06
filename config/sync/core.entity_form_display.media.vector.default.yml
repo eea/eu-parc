@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.media.vector.field_caption
     - field.field.media.vector.field_media_image_1
     - image.style.thumbnail
     - media.type.vector
@@ -19,6 +20,14 @@ content:
     weight: 10
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_caption:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_media_image_1:
     type: image_image

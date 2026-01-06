@@ -610,3 +610,14 @@ aos:
     js/aos-init.js: {}
   dependencies:
     - core/drupal
+
+sria:
+  css:
+    component:
+      css/components/parc/sria.css: {}
+  js:
+    js/sria.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery

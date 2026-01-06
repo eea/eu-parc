@@ -67,6 +67,13 @@
 
 .media-lightbox {
   margin-bottom: 40px;
+  width: 100%;
+
+  &.media--vector {
+    img {
+      width: 100%;
+    }
+  }
 
   .field--name-field-caption {
     font-size: 14px;
@@ -177,7 +184,9 @@
 }
 
 .toc {
-  padding-top: 20px;
+  @media (--lg) {
+    padding-top: 20px;
+  }
 
   &__title {
     font-size: 24px;
@@ -318,6 +327,10 @@
     display: none;
   }
 
+  .layout__region--content {
+    display: none;
+  }
+
   .region-content {
     background-color: #FAFAFA;
   }
@@ -337,4 +350,25 @@
   position: absolute;
   top: -50px;
   visibility: hidden;
+}
+
+#cboxLoadedContent img[src$=".svg"] {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: contain;
+}
+
+#colorbox:has(img[src$=".svg"]),
+#colorbox:has(img[src$=".svg"]) #cboxContent,
+#colorbox:has(img[src$=".svg"]) #cboxLoadedContent {
+  width: 80vw !important;
+  max-width: none !important;
+}
+
+#colorbox:has(img[src$=".svg"]) #cboxLoadedContent {
+  width: calc(80vw - 30px) !important;
+}
+
+#colorbox:has(img[src$=".svg"]) #cboxContent {
+  width: calc(80vw - 30px) !important;
 }

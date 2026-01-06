@@ -84,3 +84,4 @@ filters:
         lightbox: lightbox
       allowed_media_types:
         image: image
+        vector: vector

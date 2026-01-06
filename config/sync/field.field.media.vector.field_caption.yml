@@ -1,0 +1,19 @@
+uuid: 900d0b92-464a-4a23-a02b-2df1314473d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_caption
+    - media.type.vector
+id: media.vector.field_caption
+field_name: field_caption
+entity_type: media
+bundle: vector
+label: Caption
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
