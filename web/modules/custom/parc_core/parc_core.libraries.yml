@@ -104,3 +104,10 @@ projects_mobile:
     - core/jquery
     - core/once
     - core/drupal.ajax
+
+toc:
+  js:
+    js/toc.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

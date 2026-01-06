@@ -1,0 +1,13 @@
+diff --git a/src/Cache/File.php b/src/Cache/File.php
+index 2dc3999..8340e01 100644
+--- a/src/Cache/File.php
++++ b/src/Cache/File.php
+@@ -50,7 +50,7 @@ abstract class File implements Cache
+     public function close()
+     {
+         $file = $this->filename();
+-        file_put_contents($file, $this->encode(self::$data));
++        @file_put_contents($file, $this->encode(self::$data));
+         @chmod($file, 0777);
+     }
+ 

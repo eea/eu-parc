@@ -41,6 +41,7 @@
 }
 
 .chapter-title {
+  position: relative;
   text-align: left !important;
   justify-content: flex-start !important;
   padding: 20px 0 !important;
@@ -115,6 +116,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  padding-top: 20px;
 }
 
 .paragraph-text {
@@ -175,6 +177,8 @@
 }
 
 .toc {
+  padding-top: 20px;
+
   &__title {
     font-size: 24px;
     margin-bottom: 10px;
@@ -189,6 +193,10 @@
     a {
       display: block;
       text-decoration: none;
+
+      &.active {
+        text-decoration: underline;
+      }
 
       &:hover {
         text-decoration: underline;
@@ -253,6 +261,7 @@
     font-size: 14px;
     margin-bottom: 12px;
     line-height: 140%;
+    letter-spacing: .1em;
   }
 
   &__number {
@@ -322,4 +331,10 @@
     padding-bottom: 40px;
     margin-bottom: 0;
   }
+}
+
+.chapter-title-anchor {
+  position: absolute;
+  top: -50px;
+  visibility: hidden;
 }

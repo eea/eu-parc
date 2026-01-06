@@ -17,6 +17,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Html;
+use Vanderlee\Syllable\Syllable;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -1165,5 +1166,8 @@ function parc_preprocess_paragraph__chapter_title(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
   $title = $paragraph->get('field_short_title')->value ?? $paragraph->get('field_title')->value;
+  $long_title = $paragraph->get('field_title')->value;
+  $syllable = new Syllable('en-gb');
+  $variables['long_title'] = $syllable->hyphenateText(strip_tags($long_title));
   $variables['title_id'] = Html::getId($title);
 }
