@@ -54,14 +54,19 @@
     text-align: left;
   }
 
+  &, * {
+    font-size: max(3.125rem, min(11vw, 10.75rem));
+    line-height: .8;
+  }
+
   @media (--lg) {
     margin-left: 3%;
     margin-right: 3%;
+  }
 
-    &, * {
-      font-size: 140px;
-      line-height: 0.9;
-    }
+  @media (--downLg) {
+    padding: 10px 0 !important;
+    margin: 0 !important;
   }
 }
 
@@ -124,6 +129,10 @@
   flex-direction: column;
   gap: 40px;
   padding-top: 20px;
+
+  @media (--downLg) {
+    gap: 24px;
+  }
 }
 
 .paragraph-text {
@@ -154,6 +163,15 @@
     background-color: var(--bg-color);
     border-radius: 4px;
     padding: 32px 42px;
+
+    @media (--downLg) {
+      font-size: 18px;
+      padding: 20px 20px;
+
+      .text--lg {
+        font-size: 22px;
+      }
+    }
   }
 
   p + .media-lightbox {
