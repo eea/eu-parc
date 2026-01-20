@@ -16,20 +16,22 @@
 
 {{ attach_library('parc/svg_title') }}
 
-<div{{attributes.addClass(classes)}}>
-  {{ title_prefix }}
-  {% if label %}
-    <div class="svg-title pt-0">
-      <h2 class="mb-0">{{ label }}</h2>
-    </div>
-  {% endif %}
-  {{ title_suffix }}
+{% if content|render|striptags|trim is not empty %}
+  <div{{attributes.addClass(classes)}}>
+    {{ title_prefix }}
+    {% if label %}
+      <div class="svg-title pt-0">
+        <h2 class="mb-0">{{ label }}</h2>
+      </div>
+    {% endif %}
+    {{ title_suffix }}
 
-  {{- content|without('field_paragraphs', 'field_row_classes') -}}
+    {{- content|without('field_paragraphs', 'field_row_classes') -}}
 
-  {% if content.field_paragraphs.0 %}
-    <div class="row g-4 {{ content.field_row_classes|render|striptags|trim }}">
-      {{content.field_paragraphs}}
-    </div>
-  {% endif %}
-</div>
+    {% if content.field_paragraphs.0 %}
+      <div class="row g-4 {{ content.field_row_classes|render|striptags|trim }}">
+        {{content.field_paragraphs}}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
