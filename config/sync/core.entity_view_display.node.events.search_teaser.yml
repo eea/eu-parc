@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.events.field_date
     - field.field.node.events.field_duration
     - field.field.node.events.field_ects
+    - field.field.node.events.field_ects_decimal
     - field.field.node.events.field_event_format
     - field.field.node.events.field_exclude_frontpage
     - field.field.node.events.field_fee
@@ -87,6 +88,7 @@ hidden:
   field_date: true
   field_duration: true
   field_ects: true
+  field_ects_decimal: true
   field_event_format: true
   field_exclude_frontpage: true
   field_fee: true

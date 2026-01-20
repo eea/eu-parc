@@ -1677,3 +1677,29 @@ function parc_core_deploy_update_hbm_labs_import_2() {
     $result->save();
   }
 }
+
+/**
+ * Migrate values from field_ects to field_ects_decimal.
+ */
+function parc_core_deploy_100007() {
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = \Drupal::entityQuery('node')
+    ->accessCheck(FALSE)
+    ->condition('type', 'events')
+    ->execute();
+
+  foreach ($nids as $nid) {
+    $revisions = $storage->revisionIds($storage->load($nid));
+    foreach ($revisions as $vid) {
+      $revision = $storage->loadRevision($vid);
+
+      if ($revision->hasField('field_ects') && $revision->hasField('field_ects_decimal') && !$revision->get('field_ects')->isEmpty()) {
+        $revision->set('field_ects_decimal', (float) $revision->get('field_ects')->value);
+        $revision->setNewRevision(FALSE);
+        $revision->isDefaultRevision(FALSE);
+        $revision->save();
+      }
+    }
+  }
+}
