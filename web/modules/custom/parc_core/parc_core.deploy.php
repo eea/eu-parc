@@ -1681,7 +1681,7 @@ function parc_core_deploy_update_hbm_labs_import_2() {
 /**
  * Migrate values from field_ects to field_ects_decimal.
  */
-function parc_core_deploy_100007() {
+function parc_core_deploy_migrate_field_ects() {
   $storage = \Drupal::entityTypeManager()->getStorage('node');
 
   $nids = \Drupal::entityQuery('node')
