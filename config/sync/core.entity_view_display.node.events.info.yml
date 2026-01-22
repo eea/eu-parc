@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.events.field_date
     - field.field.node.events.field_duration
     - field.field.node.events.field_ects
+    - field.field.node.events.field_ects_decimal
     - field.field.node.events.field_event_format
     - field.field.node.events.field_exclude_frontpage
     - field.field.node.events.field_fee
@@ -87,11 +88,13 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_ects:
-    type: number_integer
+  field_ects_decimal:
+    type: number_decimal
     label: above
     settings:
       thousand_separator: ''
+      decimal_separator: .
+      scale: 1
       prefix_suffix: true
     third_party_settings: {  }
     weight: 5
@@ -122,6 +125,7 @@ hidden:
   addtoany: true
   body: true
   field_categories: true
+  field_ects: true
   field_event_format: true
   field_exclude_frontpage: true
   field_hide_calendar: true

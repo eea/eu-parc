@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.events.field_date
     - field.field.node.events.field_duration
     - field.field.node.events.field_ects
+    - field.field.node.events.field_ects_decimal
     - field.field.node.events.field_event_format
     - field.field.node.events.field_exclude_frontpage
     - field.field.node.events.field_fee
@@ -339,6 +340,17 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 121
+    region: first
+  field_ects_decimal:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 128
     region: first
   field_event_format:
     type: list_default
