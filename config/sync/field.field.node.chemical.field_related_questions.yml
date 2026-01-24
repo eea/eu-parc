@@ -1,0 +1,85 @@
+uuid: ae17b959-6e2d-43a8-b7f1-029dcff464c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_questions
+    - node.type.chemical
+    - paragraphs.paragraphs_type.faq
+  module:
+    - entity_reference_revisions
+id: node.chemical.field_related_questions
+field_name: field_related_questions
+entity_type: node
+bundle: chemical
+label: 'Related questions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      faq: faq
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 20
+        enabled: false
+      card:
+        weight: 21
+        enabled: false
+      cards:
+        weight: 22
+        enabled: false
+      carousel_item:
+        weight: 23
+        enabled: false
+      chapter_title:
+        weight: 24
+        enabled: false
+      contact:
+        weight: 25
+        enabled: false
+      faq:
+        weight: 26
+        enabled: true
+      grid:
+        weight: 27
+        enabled: false
+      icon_title:
+        weight: 28
+        enabled: false
+      lab_matrix:
+        weight: 29
+        enabled: false
+      links_list:
+        weight: 30
+        enabled: false
+      media:
+        weight: 31
+        enabled: false
+      newsletter:
+        weight: 32
+        enabled: false
+      partner:
+        weight: 33
+        enabled: false
+      sria_card:
+        weight: 34
+        enabled: false
+      survey:
+        weight: 35
+        enabled: false
+      svg_text:
+        weight: 36
+        enabled: false
+      text:
+        weight: 37
+        enabled: false
+      what_we_do:
+        weight: 38
+        enabled: false
+field_type: entity_reference_revisions

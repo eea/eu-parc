@@ -25,6 +25,7 @@ settings:
       - '|'
       - horizontalLine
       - link
+      - insertTable
       - blockQuote
       - code
       - bulletedList

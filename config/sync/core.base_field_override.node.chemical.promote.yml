@@ -1,0 +1,22 @@
+uuid: f4f5fa36-1882-4dcb-b109-b814eac4f1e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.chemical
+id: node.chemical.promote
+field_name: promote
+entity_type: node
+bundle: chemical
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

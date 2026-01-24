@@ -1,0 +1,9 @@
+uuid: f19ca4d3-ac06-4b46-8a86-a71ad8cfc44d
+langcode: en
+status: true
+dependencies: {  }
+name: '[Chemicals] Exposure sources'
+vid: chemicals_exposure_sources
+description: null
+weight: 0
+new_revision: false

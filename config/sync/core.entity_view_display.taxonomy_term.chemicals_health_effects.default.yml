@@ -1,0 +1,53 @@
+uuid: 879c889a-07e1-40e1-85fd-39dc20e73485
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.chemicals_health_effects.field_color
+    - field.field.taxonomy_term.chemicals_health_effects.field_internal_id
+    - field.field.taxonomy_term.chemicals_health_effects.field_related_questions
+    - taxonomy.vocabulary.chemicals_health_effects
+  module:
+    - color_field
+    - entity_reference_revisions
+    - text
+id: taxonomy_term.chemicals_health_effects.default
+targetEntityType: taxonomy_term
+bundle: chemicals_health_effects
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_color:
+    type: color_field_formatter_text
+    label: hidden
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_internal_id:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_related_questions:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  search_api_excerpt: true

@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--basic-page-full') }}
+{{ attach_library('parc/chemicals') }}
+
+{% embed 'parc:tabs-header' with {
+  title: 'Chemicals',
+  color: '#B0E5DF',
+  menu_entries: [
+    {
+      title: 'Overview',
+      link: '/chemicals',
+      is_active: false
+    },
+    {
+      title: 'Health Effects',
+      link: '/chemicals/health-effects',
+      is_active: false
+    },
+    {
+      title: 'Exposure Sources',
+      link: '/chemicals/exposure-sources',
+      is_active: true
+    }
+  ]
+} %}
+{% endembed %}
+
+<div class="container-fluid chemicals-container">
+  {{ drupal_view('exposure_sources', 'grid') }}
+
+  <div style="--primary-color: #008475;" class="faq-group">
+    <h3>{{ "Related questions" }}</h3>
+
+    {% embed 'parc:faq' %}
+      {% block question %}
+        {{ "Can we live a \"chemical-free\" life? " | t }}
+      {% endblock %}
+      {% block answer %}
+        {{ "No - everything around us, including air, water, food, and our own bodies, is made of chemicals, but we can reduce exposure to harmful or unnecessary synthetic chemicals." | t }}
+      {% endblock %}
+    {% endembed %}
+
+    {% embed 'parc:faq' %}
+      {% block question %}
+        {{ "What are \"forever chemicals\"?" | t }}
+      {% endblock %}
+      {% block answer %}
+        {{ "“Forever chemicals” are PFAS (per- and polyfluoroalkyl substances) - man-made chemicals that don’t break down easily in the environment or the human body and can build up over time, potentially causing health and environmental harm." | t }}
+      {% endblock %}
+    {% endembed %}
+
+
+    {% embed 'parc:faq' %}
+      {% block question %}
+        {{ "How are chemicals regulated?" | t }}
+      {% endblock %}
+      {% block answer %}
+        {{ "Chemicals are regulated through government laws and agencies that require testing, risk assessment, and limits on how chemicals are made, used, and released to protect human health and the environment." | t }}
+      {% endblock %}
+    {% endembed %}
+  </div>
+
+  {{ drupal_view('chemicals', 'list') }}
+</div>

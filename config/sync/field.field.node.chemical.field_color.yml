@@ -1,0 +1,22 @@
+uuid: be5f2521-c315-4db6-a50d-16dff1435c8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_color
+    - node.type.chemical
+  module:
+    - color_field
+id: node.chemical.field_color
+field_name: field_color
+entity_type: node
+bundle: chemical
+label: 'Primary color'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

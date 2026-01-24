@@ -1,0 +1,72 @@
+uuid: 48fa3ae9-e2b5-4c7d-b8e8-d47ec92540ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.chemicals_health_effects.field_color
+    - field.field.taxonomy_term.chemicals_health_effects.field_internal_id
+    - field.field.taxonomy_term.chemicals_health_effects.field_related_questions
+    - taxonomy.vocabulary.chemicals_health_effects
+  module:
+    - color_field
+    - paragraphs
+id: taxonomy_term.chemicals_health_effects.default
+targetEntityType: taxonomy_term
+bundle: chemicals_health_effects
+mode: default
+content:
+  field_color:
+    type: color_field_widget_html5
+    weight: 2
+    region: content
+    settings:
+      show_extra: false
+    third_party_settings: {  }
+  field_internal_id:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_related_questions:
+    type: paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: closed
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: _none
+      features:
+        add_above: '0'
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: duplicate
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true
+  path: true
+  simple_sitemap: true
+  simple_sitemap_index_now: true

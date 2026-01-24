@@ -1,0 +1,23 @@
+<div class="chemical-exposure-sources__wrapper">
+  <h3>{{ "Possible sources of exposure" | t }}</h3>
+  <div class="chemical-exposure-sources">
+    {% for name, group in groups %}
+      <div class="chemical-exposure-sources__group">
+        <div class="chemical-exposure-sources__group-title">
+          <div class="chemical-exposure-sources__group-icon">
+            {{ source(directory ~ '/components/chemical-exposure-sources/' ~ name|clean_class ~ '.svg') }}
+          </div>
+          <span class="chemical-exposure-sources__group-title-inner">via {{ name }}</span>
+        </div>
+
+        <div class="chemical-exposure-sources__items">
+          {% for item in group %}
+            <div class="chemical-exposure-sources__item">
+              {{ item }}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,45 @@
+{% embed 'parc:chemical-accordion' with {
+  primary_color: node.field_color.color,
+  secondary_color: node.field_secondary_color.color,
+  internal_id: node.field_internal_id.value,
+} %}
+  {% block title %}{{ label }}{% endblock %}
+  {% block subtitle %}{{ content.field_subtitle }}{% endblock %}
+  {% block summary %}{{ content.body }}{% endblock %}
+
+  {% block overview %}
+    {% if not node.field_content_overview.isEmpty %}
+      {{ content.field_content_overview }}
+    {% endif %}
+  {% endblock %}
+
+  {% block what_eu_does %}
+    {% if not node.field_what_eu_does.isEmpty %}
+      {{ content.field_what_eu_does }}
+    {% endif %}
+  {% endblock %}
+
+  {% block what_parc_does %}
+    {% if not node.field_what_parc_does.isEmpty %}
+      {{ content.field_what_parc_does }}
+    {% endif %}
+  {% endblock %}
+
+  {% block related_questions %}
+    {% if not node.field_related_questions.isEmpty %}
+      {{ content.field_related_questions }}
+    {% endif %}
+  {% endblock %}
+
+  {% block related_within_parc %}
+    {% if relations %}
+      <div data-wrapper="chemical-relations-{{ node.id() }}">
+        {% include 'parc:parc-relations' with {
+          title: label,
+          items_left: relations.left,
+          items_right: relations.right,
+        } only %}
+      </div>
+    {% endif %}
+  {% endblock %}
+{% endembed %}

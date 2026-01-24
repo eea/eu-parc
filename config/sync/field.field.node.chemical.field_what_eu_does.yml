@@ -1,0 +1,96 @@
+uuid: 8a40d3d0-ea7c-481c-a0e5-00bd88851d70
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_what_eu_does
+    - node.type.chemical
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.two_column
+  module:
+    - entity_reference_revisions
+id: node.chemical.field_what_eu_does
+field_name: field_what_eu_does
+entity_type: node
+bundle: chemical
+label: 'What EU does'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      two_column: two_column
+      text: text
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: -45
+        enabled: false
+      card:
+        weight: -44
+        enabled: false
+      cards:
+        weight: -43
+        enabled: false
+      carousel_item:
+        weight: -42
+        enabled: false
+      chapter_title:
+        weight: -41
+        enabled: false
+      chemical_health_effects:
+        weight: -39
+        enabled: false
+      chemicals_exposure_sources:
+        weight: -40
+        enabled: false
+      contact:
+        weight: -38
+        enabled: false
+      faq:
+        weight: -37
+        enabled: false
+      grid:
+        weight: -36
+        enabled: false
+      icon_title:
+        weight: -35
+        enabled: false
+      lab_matrix:
+        weight: -34
+        enabled: false
+      links_list:
+        weight: -33
+        enabled: false
+      media:
+        weight: -32
+        enabled: false
+      newsletter:
+        weight: -31
+        enabled: false
+      partner:
+        weight: -30
+        enabled: false
+      sria_card:
+        weight: -29
+        enabled: false
+      survey:
+        weight: -28
+        enabled: false
+      svg_text:
+        weight: -27
+        enabled: false
+      text:
+        weight: -25
+        enabled: true
+      two_column:
+        weight: -26
+        enabled: true
+      what_we_do:
+        weight: -24
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,16 @@
+uuid: d2941e04-c0cf-4185-9dbf-0b03b0dda8d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.chemical
+id: node.chemical
+targetEntityType: node
+bundle: chemical
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /chemicals
+  redirect_code: 301
+  redirect_fallback_action: access_denied

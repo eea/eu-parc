@@ -1,0 +1,100 @@
+uuid: 11de5640-0c60-4c0c-b681-adce64242f75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_overview
+    - node.type.chemical
+    - paragraphs.paragraphs_type.chemical_health_effects
+    - paragraphs.paragraphs_type.chemicals_exposure_sources
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.two_column
+  module:
+    - entity_reference_revisions
+id: node.chemical.field_content_overview
+field_name: field_content_overview
+entity_type: node
+bundle: chemical
+label: 'Overview content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text: text
+      chemical_health_effects: chemical_health_effects
+      two_column: two_column
+      chemicals_exposure_sources: chemicals_exposure_sources
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: -43
+        enabled: false
+      card:
+        weight: -42
+        enabled: false
+      cards:
+        weight: -41
+        enabled: false
+      carousel_item:
+        weight: -40
+        enabled: false
+      chapter_title:
+        weight: -39
+        enabled: false
+      chemical_health_effects:
+        weight: -25
+        enabled: true
+      chemicals_exposure_sources:
+        weight: 28
+        enabled: true
+      contact:
+        weight: -38
+        enabled: false
+      faq:
+        weight: -37
+        enabled: false
+      grid:
+        weight: -36
+        enabled: false
+      icon_title:
+        weight: -35
+        enabled: false
+      lab_matrix:
+        weight: -34
+        enabled: false
+      links_list:
+        weight: -33
+        enabled: false
+      media:
+        weight: -32
+        enabled: false
+      newsletter:
+        weight: -31
+        enabled: false
+      partner:
+        weight: -30
+        enabled: false
+      sria_card:
+        weight: -29
+        enabled: false
+      survey:
+        weight: -28
+        enabled: false
+      svg_text:
+        weight: -27
+        enabled: false
+      text:
+        weight: -26
+        enabled: true
+      two_column:
+        weight: -24
+        enabled: true
+      what_we_do:
+        weight: -23
+        enabled: false
+field_type: entity_reference_revisions

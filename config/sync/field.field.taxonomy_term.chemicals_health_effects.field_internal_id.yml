@@ -1,0 +1,19 @@
+uuid: dd81759d-856b-4b91-9b08-0dbc1a377753
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_internal_id
+    - taxonomy.vocabulary.chemicals_health_effects
+id: taxonomy_term.chemicals_health_effects.field_internal_id
+field_name: field_internal_id
+entity_type: taxonomy_term
+bundle: chemicals_health_effects
+label: 'Internal ID'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

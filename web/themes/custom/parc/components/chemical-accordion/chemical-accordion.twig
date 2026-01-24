@@ -1,0 +1,73 @@
+<div class="chemical-accordion"
+     data-chemical="{{ internal_id }}"
+     style="--primary-color: {{ primary_color|default('#00B0D9') }}; --secondary-color: {{ secondary_color|default('#F2F2F2') }};">
+  <div class="chemical-accordion__tabs">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#overview-{{ internal_id }}" type="button"
+                role="tab" aria-selected="true">
+          {{ 'Overview'|t }}
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#eu-does-{{ internal_id }}" type="button"
+                role="tab" aria-selected="false">
+          {{ 'What EU does'|t }}
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#parc-does-{{ internal_id }}" type="button"
+                role="tab" aria-selected="false">
+          {{ 'What PARC does'|t }}
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="chemical-accordion__header js-chemical-accordion-toggle" role="button" aria-expanded="false">
+    <div class="chemical-accordion__header-left">
+      <div class="chemical-accordion__title">
+        {% block title %}{% endblock %}
+      </div>
+      <div class="chemical-accordion__subtitle">
+        {% block subtitle %}{% endblock %}
+      </div>
+    </div>
+    <div class="chemical-accordion__header-right">
+      <div class="chemical-accordion__summary">
+        {% block summary %}{% endblock %}
+      </div>
+      <div class="chemical-accordion__toggle-icon"></div>
+    </div>
+  </div>
+
+  <div class="chemical-accordion__content js-chemical-accordion-content" style="display: none;">
+    <div class="chemical-accordion__tabs-content">
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="overview-{{ internal_id }}" role="tabpanel">
+          {% block overview %}{% endblock %}
+        </div>
+        <div class="tab-pane fade" id="eu-does-{{ internal_id }}" role="tabpanel">
+          {% block what_eu_does %}{% endblock %}
+        </div>
+        <div class="tab-pane fade" id="parc-does-{{ internal_id }}" role="tabpanel">
+          {% block what_parc_does %}{% endblock %}
+        </div>
+      </div>
+    </div>
+
+    <div class="chemical-accordion__related">
+      {% if block('related_questions') is defined and block('related_questions')|trim %}
+        <div class="chemical-accordion__related-section">
+          <h3>{{ 'Related questions'|t }}</h3>
+          {% block related_questions %}{% endblock %}
+        </div>
+      {% endif %}
+      {% if block('related_within_parc') is defined and block('related_within_parc')|trim %}
+        <div class="chemical-accordion__related-section">
+          {% block related_within_parc %}{% endblock %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

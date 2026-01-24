@@ -1,0 +1,52 @@
+name: PARC Relations
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+    items_left:
+      type: array
+      items:
+        type: object
+        properties:
+          link:
+            type: object
+            properties:
+              uri:
+                type: string
+              title:
+                type: string
+          color:
+            type: string
+            title: Item Color
+          id:
+            type: string
+            title: ID
+    items_right:
+      type: array
+      items:
+        type: object
+        properties:
+          link:
+            type: object
+            properties:
+              uri:
+                type: string
+              title:
+                type: string
+          color:
+            type: string
+            title: Item Color
+          id:
+            type: string
+            title: ID
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+  js:
+    parc-relations.js: {}
+  css:
+    component:
+      parc-relations.css: {}

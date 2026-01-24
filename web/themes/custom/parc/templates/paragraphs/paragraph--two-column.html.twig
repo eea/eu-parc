@@ -1,0 +1,12 @@
+{{ attach_library('parc/p--two-column') }}
+
+{% block paragraph %}
+  <div class="paragraph--two-column">
+    <div class="paragraph--two-column__column paragraph--two-column__column--left">
+      {{ content.field_content_left }}
+    </div>
+    <div class="paragraph--two-column__column paragraph--two-column__column--right">
+      {{ content.field_content_right }}
+    </div>
+  </div>
+{% endblock %}

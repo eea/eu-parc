@@ -1,0 +1,19 @@
+uuid: 6c76d9fc-2aed-4c08-b3f9-f5bc9fd6c079
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_related_within_parc
+field_name: field_related_within_parc
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

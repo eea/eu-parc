@@ -1712,3 +1712,131 @@ function parc_core_deploy_migrate_field_ects_to_decimal() {
   }
 }
 
+/**
+ * Create terms in chemicals_exposure_sources vocabulary.
+ */
+function parc_core_deploy_10007() {
+  $terms = [
+    'House dust' => ['inhalation', 'ingestion'],
+    'Occupational exposure' => ['inhalation', 'dermal_absorption', 'ingestion'],
+    'Personal care products' => ['dermal_absorption'],
+    'Home care products' => ['inhalation', 'dermal_absorption'],
+    'Breast milk' => ['ingestion'],
+    'Contaminated drinking water' => ['ingestion'],
+    'Contaminated products' => ['dermal_absorption', 'ingestion'],
+    'Consumer food products' => ['ingestion'],
+    'Contaminated air and dust' => ['inhalation'],
+    'Contaminated food' => ['ingestion'],
+    'Certain skin-lightening cosmetic products (long-term use)' => ['dermal_absorption'],
+    'Transplacental ingestion or exposure via breastfeeding' => ['ingestion'],
+    'Food' => ['ingestion'],
+    'Textiles' => ['dermal_absorption'],
+    'Safety equipment' => ['dermal_absorption', 'inhalation'],
+    'Fabrics' => ['dermal_absorption'],
+    'Plastic tableware' => ['ingestion'],
+    'Tobacco smoke' => ['inhalation'],
+    'Pet handling' => ['dermal_absorption', 'ingestion'],
+    'Cans' => ['ingestion'],
+    'Medical products used to combat head lice and scabies' => ['dermal_absorption'],
+    'Prenatal ingestion' => ['ingestion'],
+    'Medical devices' => ['dermal_absorption'],
+    'Toys' => ['ingestion', 'dermal_absorption'],
+    'Fumes from copper or lead smelting plants and their residues' => ['inhalation'],
+    'Dental amalgam fillings or damaged items containing mercury' => ['inhalation', 'ingestion'],
+    'Residues in former agricultural lands treated with arsenic-based pesticides' => ['ingestion', 'inhalation', 'dermal_absorption'],
+    'Contaminated soil' => ['ingestion', 'dermal_absorption'],
+    'Residual air concentrations at home' => ['inhalation'],
+    'Contaminated surfaces' => ['dermal_absorption', 'ingestion'],
+  ];
+
+  $vid = 'chemicals_exposure_sources';
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  foreach ($terms as $name => $routes) {
+    $existing = $term_storage->loadByProperties([
+      'vid' => $vid,
+      'name' => $name,
+    ]);
+
+    if (!empty($existing)) {
+      $term = reset($existing);
+    }
+    else {
+      $term = Term::create([
+        'vid' => $vid,
+        'name' => $name,
+      ]);
+    }
+
+    $term->set('field_exposure_route', $routes);
+    $term->save();
+  }
+}
+
+/**
+ * Create terms in chemicals_health_effects vocabulary.
+ */
+function parc_core_deploy_health_effects() {
+  $terms = [
+    'Cancer' => [
+      'color' => '#34B4A5',
+      'id' => 'D9',
+    ],
+    'Liver and kidney toxicity' => [
+      'color' => '#31D9C4',
+      'id' => 'D8',
+    ],
+    'Immune system effects' => [
+      'color' => '#00564C',
+      'id' => 'D7',
+    ],
+    'Reproductive and developmental effects' => [
+      'color' => '#58928B',
+      'id' => 'D6',
+    ],
+    'Endocrine distruption' => [
+      'color' => '#008475',
+      'id' => 'D5',
+    ],
+    'Skin effects' => [
+      'color' => '#D9D9D9',
+      'id' => 'D4',
+    ],
+    'Metabolic disorders' => [
+      'color' => '#069A89',
+      'id' => 'D1',
+    ],
+    'Respiratory diseases' => [
+      'color' => '#01AA88',
+      'id' => 'D3',
+    ],
+    'Neurological and neuro-developmental effects' => [
+      'color' => '#A8EEE6',
+      'id' => 'D2',
+    ],
+  ];
+
+  $vid = 'chemicals_health_effects';
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  foreach ($terms as $name => $data) {
+    $existing = $term_storage->loadByProperties([
+      'vid' => $vid,
+      'name' => $name,
+    ]);
+
+    if (!empty($existing)) {
+      $term = reset($existing);
+    }
+    else {
+      $term = Term::create([
+        'vid' => $vid,
+        'name' => $name,
+      ]);
+    }
+
+    $term->set('field_color', ['color' => $data['color']]);
+    $term->set('field_internal_id', $data['id']);
+    $term->save();
+  }
+}

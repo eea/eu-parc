@@ -1,0 +1,96 @@
+uuid: 37590b4e-7326-4aa8-8dad-146d51967bb0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_what_parc_does
+    - node.type.chemical
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.two_column
+  module:
+    - entity_reference_revisions
+id: node.chemical.field_what_parc_does
+field_name: field_what_parc_does
+entity_type: node
+bundle: chemical
+label: 'What PARC does'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text: text
+      two_column: two_column
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 23
+        enabled: false
+      card:
+        weight: 24
+        enabled: false
+      cards:
+        weight: 25
+        enabled: false
+      carousel_item:
+        weight: 26
+        enabled: false
+      chapter_title:
+        weight: 27
+        enabled: false
+      chemical_health_effects:
+        weight: 29
+        enabled: false
+      chemicals_exposure_sources:
+        weight: 28
+        enabled: false
+      contact:
+        weight: 30
+        enabled: false
+      faq:
+        weight: 31
+        enabled: false
+      grid:
+        weight: 32
+        enabled: false
+      icon_title:
+        weight: 33
+        enabled: false
+      lab_matrix:
+        weight: 34
+        enabled: false
+      links_list:
+        weight: 35
+        enabled: false
+      media:
+        weight: 36
+        enabled: false
+      newsletter:
+        weight: 37
+        enabled: false
+      partner:
+        weight: 38
+        enabled: false
+      sria_card:
+        weight: 39
+        enabled: false
+      survey:
+        weight: 40
+        enabled: false
+      svg_text:
+        weight: 41
+        enabled: false
+      text:
+        weight: 42
+        enabled: true
+      two_column:
+        weight: 43
+        enabled: true
+      what_we_do:
+        weight: 44
+        enabled: false
+field_type: entity_reference_revisions

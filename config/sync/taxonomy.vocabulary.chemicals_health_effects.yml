@@ -1,0 +1,9 @@
+uuid: 6ec4028f-63af-4eee-9df0-4f54c4faa342
+langcode: en
+status: true
+dependencies: {  }
+name: '[Chemicals] Health effects'
+vid: chemicals_health_effects
+description: null
+weight: 0
+new_revision: false
