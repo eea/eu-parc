@@ -1,0 +1,74 @@
+.parc-relations {
+  display: flex;
+  width: 100%;
+  position: relative;
+  gap: 10%;
+
+  &__wrapper {
+    padding: 30px 60px;
+    background: #FFF;
+  }
+
+  &__header {
+    text-align: center;
+    font-size: 22px;
+    line-height: 140%;
+    font-weight: 700;
+    padding: 20px;
+    color: #000;
+    margin-bottom: 40px;
+  }
+
+  &__svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__title {
+    width: 100%;
+    text-align: center;
+    color: #000;
+  }
+
+  .left-col {
+    text-align: right;
+  }
+
+  .left-col,
+  .right-col {
+    width: 10%;
+    font-size: 18px;
+    font-weight: bold;
+
+    a {
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: 700;
+      z-index: 1;
+      position: relative;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .middle-col {
+    width: 60%;
+    font-size: 56px;
+    font-weight: bold;
+    line-height: 120%;
+  }
+
+  .left-col,
+  .middle-col,
+  .right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 25px;
+  }
+}

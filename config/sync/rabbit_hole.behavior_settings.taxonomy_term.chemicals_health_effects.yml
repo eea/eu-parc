@@ -1,0 +1,16 @@
+uuid: 0d4ac582-1396-4e3c-b12e-7203896bf16d
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.chemicals_health_effects
+id: taxonomy_term.chemicals_health_effects
+targetEntityType: taxonomy_term
+bundle: chemicals_health_effects
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /chemicals/health-effects
+  redirect_code: 301
+  redirect_fallback_action: access_denied

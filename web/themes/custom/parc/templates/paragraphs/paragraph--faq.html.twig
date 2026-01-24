@@ -1,0 +1,8 @@
+{% embed 'parc:faq' %}
+  {% block question %}
+    {{ content.field_title }}
+  {% endblock %}
+  {% block answer %}
+    {{ content.field_body }}
+  {% endblock %}
+{% endembed %}

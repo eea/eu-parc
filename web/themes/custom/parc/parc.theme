@@ -6,6 +6,7 @@
  */
 
 use Drupal\block\Entity\Block;
+use Drupal\paragraphs\ParagraphInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\parc\ParcThemeProcess;
 use Drupal\taxonomy\TermInterface;
@@ -1170,4 +1171,149 @@ function parc_preprocess_paragraph__chapter_title(&$variables) {
   $syllable = new Syllable('en-gb');
   $variables['long_title'] = $syllable->hyphenateText(strip_tags($long_title));
   $variables['title_id'] = Html::getId($title);
+}
+
+/**
+ * Implements hook_preprocess_node__chemical().
+ */
+function parc_preprocess_node__chemical(array &$variables) {
+  $node = $variables['node'];
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
+  $primary_color = $node->get('field_color')->color;
+  $secondary_color = $node->get('field_secondary_color')->color;
+  $relations = [];
+
+  foreach ($node->get('field_related_within_parc') as $idx => $item) {
+    // Alternate between left side and right side.
+    $side = $idx % 2 == 0 ? 'left' : 'right';
+    $relations[$side][] = [
+      'link' => [
+        'uri' => Url::fromUri($item->uri)->toString(),
+        'title' => $item->title,
+      ],
+      // Alternate colors per column and side by side.
+      'color' => $idx % 4 == 0 || $idx % 4 == 3 ? $primary_color : $secondary_color,
+      'id' => $node->id() . '-' . $idx,
+    ];
+  }
+
+  $variables['relations'] = $relations;
+  $variables['#attached']['drupalSettings']['parc_relations']['chemical-relations-' . $node->id()] = $relations;
+}
+
+/**
+ * Implements hook_preprocess_paragraph__chemical_health_effects().
+ */
+function parc_preprocess_paragraph__chemical_health_effects(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  if (!$paragraph instanceof ParagraphInterface) {
+    return;
+  }
+
+  $parent = $paragraph;
+  while ($parent instanceof ParagraphInterface) {
+    $parent = $parent->getParentEntity();
+  }
+
+  if ($parent instanceof NodeInterface) {
+    $variables['chemical_id'] = $parent->get('field_internal_id')->value;
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__chemicals_exposure_sources().
+ */
+function parc_preprocess_paragraph__chemicals_exposure_sources(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  if (!$paragraph instanceof ParagraphInterface) {
+    return;
+  }
+
+  $parent = $paragraph;
+  while ($parent instanceof ParagraphInterface) {
+    $parent = $parent->getParentEntity();
+  }
+
+  if (!$parent instanceof NodeInterface) {
+    return;
+  }
+
+  $groups = [];
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('taxonomy_term');
+  foreach ($parent->get('field_exposure_sources')->referencedEntities() as $term) {
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $options = $term->getFieldDefinition('field_exposure_route')->getSetting('allowed_values');
+    $value = $term->get('field_exposure_route')->value;
+    $label = $options[$value] ?? $value;
+    $groups[$label][] = $view_builder->view($term);
+  }
+
+  $variables['groups'] = $groups;
+}
+
+/**
+ * Implements hook_preprocess_node__2101__full().
+ */
+function parc_preprocess_node__2101__full(array &$variables) {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $chemicals = $node_storage
+    ->getQuery()
+    ->accessCheck(TRUE)
+    ->condition('type', 'chemical')
+    ->condition('status', TRUE)
+    ->exists('field_related_questions')
+    ->sort('title')
+    ->execute();
+  $chemicals = $node_storage->loadMultiple($chemicals);
+
+  foreach ($chemicals as $chemical) {
+    $variables['faq_groups'][$chemical->get('field_internal_id')->value] = [
+      'render' => $chemical->get('field_related_questions')->view('teaser'),
+      'color' => $chemical->get('field_color')->color,
+    ];
+  }
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $health_effects = $term_storage
+    ->getQuery()
+    ->accessCheck(TRUE)
+    ->condition('vid', 'chemicals_health_effects')
+    ->condition('status', TRUE)
+    ->exists('field_related_questions')
+    ->sort('name')
+    ->execute();
+  $health_effects = $term_storage->loadMultiple($health_effects);
+  foreach ($health_effects as $health_effect) {
+    $variables['faq_groups'][$health_effect->get('field_internal_id')->value] = [
+      'render' => $health_effect->get('field_related_questions')->view('teaser'),
+      'color' => $health_effect->get('field_color')->color,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_taxonomy_term__chemicals_exposure_sources__card().
+ */
+function parc_preprocess_taxonomy_term__chemicals_exposure_sources__card(array &$variables) {
+  $term = $variables['term'];
+  if (!$term instanceof TermInterface) {
+    return;
+  }
+
+  $chemicals = \Drupal::entityTypeManager()->getStorage('node')
+    ->loadByProperties([
+      'type' => 'chemical',
+      'field_exposure_sources' => $term->id(),
+    ]);
+
+  foreach ($chemicals as $chemical) {
+    $variables['chemicals'][] = [
+      'name' => $chemical->label(),
+      'color' => $chemical->get('field_color')->color,
+    ];
+  }
 }

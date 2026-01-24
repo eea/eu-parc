@@ -1,0 +1,10 @@
+name: Chemicals Interactive Body
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+  js:
+    chemicals-interactive-body.js: {}
+  css:
+    component:
+      chemicals-interactive-body.css: {}

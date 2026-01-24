@@ -1,0 +1,17 @@
+uuid: 8b79ebd5-bc69-4361-9f67-fff7f665328e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Chemical
+type: chemical
+description: null
+help: null
+new_revision: false
+preview_mode: 0
+display_submitted: false

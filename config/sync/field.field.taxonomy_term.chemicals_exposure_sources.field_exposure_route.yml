@@ -1,0 +1,21 @@
+uuid: f883fc7a-78d8-4968-a4fe-eda1fcf6aace
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_exposure_route
+    - taxonomy.vocabulary.chemicals_exposure_sources
+  module:
+    - options
+id: taxonomy_term.chemicals_exposure_sources.field_exposure_route
+field_name: field_exposure_route
+entity_type: taxonomy_term
+bundle: chemicals_exposure_sources
+label: 'Exposure route'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,20 @@
+uuid: 223fbe2c-9704-4318-b0b8-2b168a308e91
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_exposure_sources
+field_name: field_exposure_sources
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

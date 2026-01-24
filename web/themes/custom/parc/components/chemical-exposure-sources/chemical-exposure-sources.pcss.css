@@ -1,0 +1,69 @@
+.chemical-exposure-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 40px 0;
+
+  &__group {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+
+    &:not(:last-child) {
+      border-right: 3px solid var(--secondary-color);
+      padding-right: 16px;
+    }
+  }
+
+  &__items {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    flex-grow: 1;
+  }
+
+  &__group-icon {
+    margin-bottom: 16px;
+    margin-top: 32px;
+
+    svg {
+      height: 100px;
+      width: auto;
+
+      &,
+      path {
+        stroke: var(--secondary-color);
+      }
+
+      [fill] {
+        fill: var(--secondary-color);
+      }
+    }
+  }
+
+  &__group-title {
+    padding-top: 20px;
+    border-top: 3px solid #FFF;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFF;
+    text-align: center;
+    position: relative;
+
+    &:before {
+      content: '';
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="37" height="17" viewBox="0 0 37 17" fill="none"><path d="M35.252 1.5L22.0945 15.2295" stroke="white" stroke-width="3" stroke-linecap="round"/><path d="M14.6582 15.2305L1.50077 1.50098" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>');
+      background-size: 33px 13px;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 45px;
+      height: 26px;
+      background-color: var(--primary-color);
+    }
+  }
+}

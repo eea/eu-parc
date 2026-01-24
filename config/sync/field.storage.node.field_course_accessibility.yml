@@ -20,6 +20,9 @@ settings:
     -
       value: paid_fee_subscribtion
       label: 'Paid / fee / subscription'
+    -
+      value: upon_request
+      label: 'Upon request'
   allowed_values_function: ''
 module: options
 locked: false

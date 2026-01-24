@@ -1,0 +1,16 @@
+uuid: 86417867-b8ae-4dd4-b0d1-5201090a7693
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.chemicals_exposure_sources
+id: taxonomy_term.chemicals_exposure_sources
+targetEntityType: taxonomy_term
+bundle: chemicals_exposure_sources
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /chemicals
+  redirect_code: 301
+  redirect_fallback_action: access_denied

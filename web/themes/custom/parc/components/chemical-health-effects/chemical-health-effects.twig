@@ -1,0 +1,62 @@
+{% set config = {
+  'pfass': {
+    'svg': 'body_map0.svg',
+    'background': '#E45C4D',
+    'baseFill': '#FFCBD4',
+    'hoverFill': '#9B352A'
+  },
+  'phthalates': {
+    'svg': 'body_map1.svg',
+    'background': '#9B9B9B',
+    'baseFill': '#D8D8D8',
+    'hoverFill': '#555555'
+  },
+  'pesticides': {
+    'svg': 'body_map2.svg',
+    'background': '#5658E7',
+    'baseFill': '#BBBCFF',
+    'hoverFill': '#313296'
+  },
+  'arsenic': {
+    'svg': 'body_map3.svg',
+    'background': '#C064E4',
+    'baseFill': '#DDC1FF',
+    'hoverFill': '#7D3699'
+  },
+  'bisphenol': {
+    'svg': 'body_map4.svg',
+    'background': '#D7B040',
+    'baseFill': '#FBEEC8',
+    'hoverFill': '#937728'
+  },
+  'mercury': {
+    'svg': 'body_map5.svg',
+    'background': '#E21337',
+    'baseFill': '#E9CBD0',
+    'hoverFill': '#941329'
+  }
+} %}
+
+{% set chemical = chemical_id %}
+{% set chemical_cfg = config[chemical] %}
+
+<div class="chemical-health-effects js-chemical-health-effects"
+     data-chemical="{{ chemical }}"
+     {% if chemical_cfg %}
+     data-background="{{ chemical_cfg.background }}"
+     data-base-fill="{{ chemical_cfg.baseFill }}"
+     data-hover-fill="{{ chemical_cfg.hoverFill }}"
+     style="--chemical-bg: {{ chemical_cfg.background }};"
+     {% endif %}>
+  <div class="chemical-health-effects__body-wrapper">
+    {% if chemical_cfg %}
+      <div class="chemical-health-effects__map active">
+        {{ source(directory ~ '/components/chemical-health-effects/svg/' ~ chemical_cfg.svg) }}
+      </div>
+    {% else %}
+      <div class="chemical-health-effects__error">
+        {{ 'No health effects map found for chemical: @id'|t({'@id': chemical}) }}
+      </div>
+    {% endif %}
+  </div>
+</div>

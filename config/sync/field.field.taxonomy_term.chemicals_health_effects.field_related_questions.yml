@@ -1,0 +1,94 @@
+uuid: 90c68894-24ce-4a47-839c-8aa753622251
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_related_questions
+    - paragraphs.paragraphs_type.faq
+    - taxonomy.vocabulary.chemicals_health_effects
+  module:
+    - entity_reference_revisions
+id: taxonomy_term.chemicals_health_effects.field_related_questions
+field_name: field_related_questions
+entity_type: taxonomy_term
+bundle: chemicals_health_effects
+label: 'Related questions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      faq: faq
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 23
+        enabled: false
+      card:
+        weight: 24
+        enabled: false
+      cards:
+        weight: 25
+        enabled: false
+      carousel_item:
+        weight: 26
+        enabled: false
+      chapter_title:
+        weight: 27
+        enabled: false
+      chemical_health_effects:
+        weight: 29
+        enabled: false
+      chemicals_exposure_sources:
+        weight: 28
+        enabled: false
+      contact:
+        weight: 30
+        enabled: false
+      faq:
+        weight: 31
+        enabled: true
+      grid:
+        weight: 32
+        enabled: false
+      icon_title:
+        weight: 33
+        enabled: false
+      lab_matrix:
+        weight: 34
+        enabled: false
+      links_list:
+        weight: 35
+        enabled: false
+      media:
+        weight: 36
+        enabled: false
+      newsletter:
+        weight: 37
+        enabled: false
+      partner:
+        weight: 38
+        enabled: false
+      sria_card:
+        weight: 39
+        enabled: false
+      survey:
+        weight: 40
+        enabled: false
+      svg_text:
+        weight: 41
+        enabled: false
+      text:
+        weight: 42
+        enabled: false
+      two_column:
+        weight: 43
+        enabled: false
+      what_we_do:
+        weight: 44
+        enabled: false
+field_type: entity_reference_revisions

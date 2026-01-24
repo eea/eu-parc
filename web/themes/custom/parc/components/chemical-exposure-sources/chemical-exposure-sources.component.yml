@@ -1,0 +1,13 @@
+name: Chemical Exposure Sources
+props:
+  type: object
+  properties:
+    groups:
+      type: array
+      title: Exposure Groups
+      items:
+        type: object
+libraryOverrides:
+  css:
+    component:
+      chemical-exposure-sources.css: {}
