@@ -13,7 +13,7 @@
     line-height: 140%;
     font-weight: 700;
     color: #000;
-      z-index: 1;
+    z-index: 1;
   }
 
   &__icon {
@@ -22,28 +22,28 @@
     align-items: center;
     justify-content: center;
     max-width: 90%;
-      max-height: 90%;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      z-index: 0;
+    max-height: 90%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 0;
 
     img,
     svg {
-        width: 100%;
-        height: auto;
+      width: 100%;
+      height: auto;
     }
 
-      svg {
-          [fill] {
-              fill: #E4E3E3;
-          }
-
-          [stroke] {
-              stroke: #E4E3E3;
-          }
+    svg {
+      [fill] {
+        fill: #E4E3E3;
       }
+
+      [stroke] {
+        stroke: #E4E3E3;
+      }
+    }
   }
 
   &__chemicals {
@@ -55,7 +55,7 @@
     gap: 8px;
     max-width: calc(100% - 48px);
     text-align: left;
-      z-index: 1;
+    z-index: 1;
   }
 
   &__chemical {
