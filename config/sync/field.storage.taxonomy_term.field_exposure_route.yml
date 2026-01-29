@@ -1,0 +1,30 @@
+uuid: 341e3cb5-9b31-4d60-9b4f-ac02215ac958
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - taxonomy
+id: taxonomy_term.field_exposure_route
+field_name: field_exposure_route
+entity_type: taxonomy_term
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: inhalation
+      label: Inhalation
+    -
+      value: ingestion
+      label: Ingestion
+    -
+      value: dermal_absorption
+      label: 'Dermal absorption'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

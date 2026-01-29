@@ -1,0 +1,26 @@
+.paragraph--two-column {
+  gap: 30px;
+  display: grid;
+  margin-block: 40px;
+
+  @media (--md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__column {
+    &--left {
+    }
+
+    &--right {
+      @media (--downMd) {
+        border-top: 3px solid var(--secondary-color, #FFF);
+        padding-top: 30px;
+      }
+
+      @media (--md) {
+        border-left: 3px solid var(--secondary-color, #FFF);
+        padding-left: 30px;
+      }
+    }
+  }
+}

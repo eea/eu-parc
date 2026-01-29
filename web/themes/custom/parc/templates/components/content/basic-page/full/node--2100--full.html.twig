@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Parc override to display a node.
+ */
+#}
+
+{{ attach_library('parc/n--basic-page-full') }}
+{{ attach_library('parc/chemicals') }}
+
+{% embed 'parc:tabs-header' with {
+  title: 'Chemicals',
+  color: '#B0E5DF',
+  menu_entries: [
+    {
+      title: 'Overview',
+      link: '/chemicals',
+      is_active: true
+    },
+    {
+      title: 'Health Effects',
+      link: '/chemicals/health-effects',
+      is_active: false
+    },
+    {
+      title: 'Exposure Sources',
+      link: '/chemicals/exposure-sources',
+      is_active: false
+    }
+  ]
+} %}
+{% endembed %}
+
+<div class="container-fluid chemicals-container">
+  {% embed 'parc:chemicals-chart' %}{% endembed %}
+
+  {{ drupal_view('chemicals', 'list') }}
+</div>

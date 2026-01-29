@@ -1,0 +1,10 @@
+uuid: b7eb7b50-2170-4b66-b690-636c1e636f24
+langcode: en
+status: true
+dependencies: {  }
+id: chemical_health_effects
+label: 'Chemical health effects'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

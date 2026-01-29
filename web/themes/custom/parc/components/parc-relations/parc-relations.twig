@@ -1,0 +1,35 @@
+<div class="parc-relations__wrapper">
+  <div class="parc-relations__header">{{ "Related within PARC" | t }}</div>
+  <div class="parc-relations">
+    <svg class="parc-relations__svg">
+      {% for item in items_left %}
+        <path stroke-linecap="round" class="left-path" data-item="{{ item.id }}" d="" stroke="{{ item.color }}" stroke-width="6" fill="none" />
+      {% endfor %}
+      {% for item in items_right %}
+        <path stroke-linecap="round" class="right-path" data-item="{{ item.id }}" d="" stroke="{{ item.color }}" stroke-width="6" fill="none" />
+      {% endfor %}
+    </svg>
+    <div class="left-col">
+      {% for item in items_left %}
+        <div data-item="{{ item.id }}" class="relation-item">
+          <a href="{{ item.link.uri }}">{{ item.link.title }}</a>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="middle-col">
+      <div class="parc-relations__title">
+      <span class="parc-relations__title__inner">
+        {{ title }}
+      </span>
+      </div>
+    </div>
+    <div class="right-col">
+      {% for item in items_right %}
+        <div data-item="{{ item.id }}" class="relation-item">
+          <a href="{{ item.link.uri }}">{{ item.link.title }}</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,39 @@
+name: Chemical Accordion
+props:
+  type: object
+  properties:
+    primary_color:
+      type: string
+      title: Primary Color
+    secondary_color:
+      type: string
+      title: Secondary Color
+    internal_id:
+      type: string
+      title: Internal ID
+slots:
+  title:
+    title: Title
+  subtitle:
+    title: Subtitle
+  summary:
+    title: Summary
+  overview:
+    title: Overview Content
+  what_eu_does:
+    title: What EU Does Content
+  what_parc_does:
+    title: What PARC Does Content
+  related_questions:
+    title: Related Questions
+  related_within_parc:
+    title: Related Within PARC
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+  js:
+    chemical-accordion.js: {}
+  css:
+    component:
+      chemical-accordion.css: {}

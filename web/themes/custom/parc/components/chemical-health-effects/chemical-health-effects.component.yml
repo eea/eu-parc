@@ -1,0 +1,23 @@
+name: Chemical Health Effects
+props:
+  type: object
+  properties:
+    chemical_id:
+      type: string
+      title: Chemical ID
+      examples:
+        - PFASs
+        - Phthalates
+        - Pesticides
+        - Arsenic
+        - Bisphenol
+        - Mercury
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+  js:
+    chemical-health-effects.js: {}
+  css:
+    component:
+      chemical-health-effects.css: {}

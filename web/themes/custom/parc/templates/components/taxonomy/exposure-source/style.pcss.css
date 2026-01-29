@@ -1,0 +1,28 @@
+.exposure-source {
+  max-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    height: 88px;
+    width: auto;
+
+    &, path {
+      stroke: var(--secondary-color, #FFF);
+    }
+  }
+
+  &__icon  {
+    height: 88px;
+    margin-bottom: 16px;
+  }
+
+  &__name {
+    font-size: 14px;
+    line-height: 140%;
+    font-weight: 700;
+    color: #FFF;
+    text-align: center;
+  }
+}

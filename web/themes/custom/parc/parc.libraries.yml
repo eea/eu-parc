@@ -342,6 +342,11 @@ p--newsletter:
     component:
       css/components/paragraph/newsletter/style.css: {}
 
+p--two-column:
+  css:
+    component:
+      css/components/paragraph/two-column/style.css: {}
+
 # Section.
 s--header:
   css:
@@ -364,6 +369,12 @@ t--thematic-areas--full:
   css:
     component:
       css/components/taxonomy/thematic-areas/vm-full/style.css: {}
+
+t--exposure-source--full:
+  css:
+    component:
+      css/components/taxonomy/exposure-source/style.css: {}
+
 
 t--thematic-areas--header:
   css:
@@ -621,3 +632,8 @@ sria:
     - core/drupal
     - core/once
     - core/jquery
+
+chemicals:
+  css:
+    component:
+      css/components/parc/chemicals.css: {}

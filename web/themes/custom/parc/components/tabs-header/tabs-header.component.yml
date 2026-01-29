@@ -1,0 +1,26 @@
+name: Tabs Header
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+    color:
+      type: string
+      title: Background Color
+    menu_entries:
+      type: array
+      title: Menu Entries
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          link:
+            type: string
+          is_active:
+            type: boolean
+libraryOverrides:
+  css:
+    component:
+      tabs-header.css: {}

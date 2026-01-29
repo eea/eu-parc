@@ -1,0 +1,10 @@
+uuid: 6aa40b1d-cf6e-4905-af17-fa6b91f6fb16
+langcode: en
+status: true
+dependencies: {  }
+id: chemicals_exposure_sources
+label: 'Chemicals exposure sources'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

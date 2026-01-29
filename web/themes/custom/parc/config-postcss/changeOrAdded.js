@@ -11,18 +11,25 @@ module.exports = (filePath) => {
       filePath = './' + filePath;
     }
 
+    let cssFilePath;
+
+    // Handle components directory - keep files in same location
+    if (filePath.startsWith('./components/')) {
+      // Remove leading './' and '.pcss.css' extension
+      cssFilePath = filePath.slice(2, -9) + '.css';
+    }
     // Ex file ./folder/folder/file-name.scss.css
-    // Slice rome first symbols and last 9
-    if (filePath.startsWith('./dev/pcss')) {
+    // Slice from first symbols and last 9
+    else if (filePath.startsWith('./dev/pcss')) {
       var fileName = filePath.slice(10, -9);
+      cssFilePath = 'css' + fileName + '.css';
     } else if (filePath.startsWith('./templates')) {
       var fileName = filePath.slice(11, -9);
+      cssFilePath = 'css' + fileName + '.css';
     } else {
       var fileName = filePath.slice(1, -9);
+      cssFilePath = 'css' + fileName + '.css';
     }
-
-    // Add base folder
-    const cssFilePath = 'css' + fileName + '.css';
 
     fse.outputFile(cssFilePath, code)
       .then(() => {

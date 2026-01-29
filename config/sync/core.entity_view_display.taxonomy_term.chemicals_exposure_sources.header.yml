@@ -1,0 +1,37 @@
+uuid: 885e87dc-ac37-4400-9d5c-07e406f8ca7a
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.header
+    - field.field.taxonomy_term.chemicals_exposure_sources.field_chemicals
+    - field.field.taxonomy_term.chemicals_exposure_sources.field_exposure_route
+    - field.field.taxonomy_term.chemicals_exposure_sources.field_icon
+    - taxonomy.vocabulary.chemicals_exposure_sources
+  module:
+    - text
+id: taxonomy_term.chemicals_exposure_sources.header
+targetEntityType: taxonomy_term
+bundle: chemicals_exposure_sources
+mode: header
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_icon:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: svg
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_chemicals: true
+  field_exposure_route: true
+  search_api_excerpt: true

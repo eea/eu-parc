@@ -27,3 +27,60 @@ function parc_core_update_9002() {
     $user->save();
   }
 }
+
+/**
+ * Create chemicals overview pages.
+ */
+function parc_core_update_10001() {
+  $pages = [
+    [
+      'nid' => 2100,
+      'title' => 'Chemicals Overview',
+      'path' => '/chemicals',
+    ],
+    [
+      'nid' => 2101,
+      'title' => 'Chemicals Health Effects',
+      'path' => '/chemicals/health-effects',
+    ],
+    [
+      'nid' => 2102,
+      'title' => 'Chemicals Exposure Sources',
+      'path' => '/chemicals/exposure-sources',
+    ],
+  ];
+
+  foreach ($pages as $page_data) {
+    // Check if node with this nid already exists.
+    $existing_node = \Drupal::entityTypeManager()->getStorage('node')->load($page_data['nid']);
+    if ($existing_node) {
+      \Drupal::logger('parc_core')->warning('Node @nid already exists, skipping creation.', ['@nid' => $page_data['nid']]);
+      continue;
+    }
+
+    // Create the node.
+    $node = \Drupal::entityTypeManager()->getStorage('node')->create([
+      'nid' => $page_data['nid'],
+      'type' => 'page',
+      'title' => $page_data['title'],
+      'status' => 1,
+      'uid' => 1,
+    ]);
+    $node->enforceIsNew();
+    $node->save();
+
+    // Create the URL alias.
+    $path_alias = \Drupal::entityTypeManager()->getStorage('path_alias')->create([
+      'path' => '/node/' . $page_data['nid'],
+      'alias' => $page_data['path'],
+      'langcode' => 'en',
+    ]);
+    $path_alias->save();
+
+    \Drupal::logger('parc_core')->info('Created page: @title (nid: @nid) with alias @path', [
+      '@title' => $page_data['title'],
+      '@nid' => $page_data['nid'],
+      '@path' => $page_data['path'],
+    ]);
+  }
+}

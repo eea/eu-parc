@@ -140,6 +140,43 @@
       border: none;
       font-weight: var(--fw-medium);
 
+      &.bg--pfass {
+        --ci-bg: #E45C4D !important;
+      }
+
+      &.bg--arsenic {
+        --ci-bg: #C064E4 !important;
+      }
+
+      &.bg--bisphenols {
+        --ci-bg: #D7B040 !important;
+      }
+
+      &.bg--microplastics {
+        --ci-bg: #7DABE2 !important;
+      }
+      &.bg--dinch--plasticisers {
+        --ci-bg: #CF782B !important;
+      }
+      &.bg--endocrine-disruptors {
+        --ci-bg: #1B90B1 !important;
+      }
+      &.bg--nanoplastics {
+        --ci-bg: #7E1A0E !important;
+      }
+      &.bg--metals {
+        --ci-bg: #6E009A !important;
+      }
+      &.bg--phthlates {
+        --ci-bg: #9B9B9B !important;
+      }
+      &.bg--mercury {
+        --ci-bg: #E21337 !important;
+      }
+      &.bg--pesticides {
+        --ci-bg: #5658E7 !important;
+      }
+
       svg {
         width: 12px;
         height: 12px;

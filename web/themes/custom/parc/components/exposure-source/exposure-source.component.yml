@@ -1,0 +1,24 @@
+name: Exposure Source
+props:
+  type: object
+  properties:
+    name:
+      type: string
+      title: Name
+    chemicals:
+      type: array
+      title: Chemicals
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+          color:
+            type: string
+    icon:
+      type: object
+      title: Icon
+libraryOverrides:
+  css:
+    component:
+      exposure-source.css: {}

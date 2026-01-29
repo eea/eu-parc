@@ -1,0 +1,112 @@
+.chemicals-chart {
+  width: 100%;
+
+  &__desktop {
+    display: none;
+    margin: 100px 0;
+
+    @media (--md) {
+      display: block;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__mobile {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 50px;
+
+    @media (--md) {
+      display: none;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.chemicals-svg {
+  path[id^="hover"] {
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+  }
+
+  [id^="group_hover"]:not(.disabled) {
+    cursor: pointer;
+  }
+
+  [id^="group_hover"]:is(.disabled) {
+    [id^="hover"] {
+      opacity: 0 !important;
+    }
+
+    path {
+      stroke: #E4E3E3;
+    }
+
+    [id="Pesticides"],
+    [id="Bisphenols"],
+    [id="Nano plastics"],
+    [id="Endocrine disruptors"],
+    [id="Phthalates"],
+    [id="DINCH & Plasticisers"],
+    [id="Mercury"],
+    [id="Metals"],
+    [id="PFASs"],
+    [id="Microplastics"],
+    [id="Arsenic"],
+    [id="Disabled"] {
+      stroke: none;
+      fill: #E4E3E3;
+    }
+  }
+
+  [id^="group_hover"]:hover {
+    path[id^="hover"] {
+      opacity: 1;
+    }
+
+    path {
+      &[id="Pesticides"],
+      &[id="Bisphenols"],
+      &[id="Nano plastics"],
+      &[id="Endocrine disruptors"],
+      &[id="Phthalates"],
+      &[id="DINCH & Plasticisers"],
+      &[id="Mercury"],
+      &[id="Metals"],
+      &[id="PFASs"],
+      &[id="Microplastics"],
+      &[id="Arsenic"],
+      &[id="Disabled"] {
+        fill: #FFF;
+      }
+    }
+
+    &:is(.disabled) {
+      path {
+        &[id="Pesticides"],
+        &[id="Bisphenols"],
+        &[id="Nano plastics"],
+        &[id="Endocrine disruptors"],
+        &[id="Phthalates"],
+        &[id="DINCH & Plasticisers"],
+        &[id="Mercury"],
+        &[id="Metals"],
+        &[id="PFASs"],
+        &[id="Microplastics"],
+        &[id="Arsenic"],
+        &[id="Disabled"] {
+          fill: #E4E3E3;
+        }
+      }
+    }
+  }
+}
+

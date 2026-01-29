@@ -138,6 +138,32 @@
 .paragraph-text {
   max-width: 923px;
 
+  table {
+    border-width: 2px;
+    width: 100%;
+    margin-bottom: 20px;
+
+    tbody {
+      border-width: 2px;
+    }
+
+    td, th {
+      padding: 18px 26px;
+      font-size: 18px;
+      text-align: center;
+      border-width: 2px;
+    }
+
+    th {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    td {
+      font-weight: 500;
+    }
+  }
+
   mark {
     padding: 0;
     margin: 0;

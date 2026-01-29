@@ -1,0 +1,29 @@
+uuid: 51ae3581-3640-4235-ae2f-9362d60ca5ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_exposure_sources
+    - node.type.chemical
+    - taxonomy.vocabulary.chemicals_exposure_sources
+id: node.chemical.field_exposure_sources
+field_name: field_exposure_sources
+entity_type: node
+bundle: chemical
+label: 'Exposure sources'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      chemicals_exposure_sources: chemicals_exposure_sources
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
