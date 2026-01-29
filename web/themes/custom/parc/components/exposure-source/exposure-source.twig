@@ -1,17 +1,17 @@
-<div class="exposure-source-card">
-  <div class="exposure-source-card__name">
-    {{ name }}
-  </div>
+{% apply spaceless %}
+  <div class="exposure-source-card">
+    <div class="exposure-source-card__name">
+      {{ name }}
+    </div>
 
-  <div class="exposure-source-card__icon">
-    {{ icon }}
-  </div>
+    <div class="exposure-source-card__icon">
+      {{ icon }}
+    </div>
 
-  <div class="exposure-source-card__chemicals">
-    {% for chemical in chemicals %}
-      <span class="exposure-source-card__chemical" style="--chemical-color: {{ chemical.color }}">
-        {{ chemical.name }}
-      </span>
-    {% endfor %}
+    <div class="exposure-source-card__chemicals">
+      {% for chemical in chemicals %}
+        <span class="exposure-source-card__chemical" style="--chemical-color: {{ chemical.color }}">{{ chemical.name | trim }}</span>
+      {% endfor %}
+    </div>
   </div>
-</div>
+{% endapply %}
