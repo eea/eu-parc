@@ -12,9 +12,10 @@
         ",details[data-drupal-selector='edit-deliverable-type-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-topics-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-keywords-collapsible'] .bef-checkboxes input" +
+        ",details[data-drupal-selector='edit-chemicals-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-training-topic-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;
-        var labelClass = label.toLowerCase().replace(" ", "-");
+        var labelClass = label.toLowerCase().replace(" ", "-").replace('&amp; ', '-');
         var itemId = $(this).attr('id');
         var color = $(this).parent().data('color');
         if ($(this).is(':checked')) {

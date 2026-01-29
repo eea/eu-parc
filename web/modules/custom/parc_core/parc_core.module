@@ -672,6 +672,24 @@ function parc_core_node_presave(NodeInterface $node) {
 }
 
 /**
+ * Implements hook_node_insert().
+ */
+function parc_core_node_insert(NodeInterface $node) {
+  if ($node->bundle() == 'chemical') {
+    _parc_core_sync_chemical_exposure_sources($node);
+  }
+}
+
+/**
+ * Implements hook_node_update().
+ */
+function parc_core_node_update(NodeInterface $node) {
+  if ($node->bundle() == 'chemical') {
+    _parc_core_sync_chemical_exposure_sources($node);
+  }
+}
+
+/**
  * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter() for tablefield.
  */
 function parc_core_field_widget_complete_tablefield_form_alter(array &$field_widget_complete_form, FormStateInterface $form_state, $context) {
@@ -751,4 +769,55 @@ function parc_core_preprocess_taxonomy_term(&$variables) {
       $variables['survey_form'] = \Drupal::formBuilder()->getForm(SurveyForm::class, $term);
     }
   }
+}
+
+/**
+ * Syncs a chemical node with exposure source terms.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The chemical node.
+ */
+function _parc_core_sync_chemical_exposure_sources(NodeInterface $node) {
+  $node_id = $node->id();
+  if (empty($node_id)) {
+    return;
+  }
+
+  $selected_exposure_sources = array_column($node->get('field_exposure_sources')->getValue(), 'target_id');
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $all_exposure_sources = $term_storage->loadByProperties(['vid' => 'chemicals_exposure_sources']);
+
+  foreach ($all_exposure_sources as $term) {
+    $chemicals = $term->get('field_chemicals')->getValue();
+    $chemical_ids = array_column($chemicals, 'target_id');
+    $changed = FALSE;
+
+    if (in_array($term->id(), $selected_exposure_sources)) {
+      if (!in_array($node_id, $chemical_ids)) {
+        $chemicals[] = ['target_id' => $node_id];
+        $changed = TRUE;
+      }
+    }
+    elseif (in_array($node_id, $chemical_ids)) {
+      $chemicals = array_filter($chemicals, function ($item) use ($node_id) {
+        return $item['target_id'] != $node_id;
+      });
+      $changed = TRUE;
+    }
+
+    if ($changed) {
+      $term->set('field_chemicals', $chemicals);
+      $term->save();
+    }
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function parc_core_views_data_alter(array &$data) {
+  // Use entity reference for the field 'field_chemicals'.
+  $field_name = 'field_chemicals';
+  $data['taxonomy_term__' . $field_name][$field_name . '_target_id']['filter']['id'] = 'entity_reference';
 }

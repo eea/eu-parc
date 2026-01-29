@@ -1,9 +1,12 @@
 .exposure-source {
   max-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   svg {
-    width: 88px;
-    height: auto;
+    height: 88px;
+    width: auto;
 
     &, path {
       stroke: var(--secondary-color, #FFF);
