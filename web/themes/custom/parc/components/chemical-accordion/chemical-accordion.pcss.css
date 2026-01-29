@@ -51,7 +51,7 @@
     hr {
       border-color: var(--secondary-color) !important;
       border-width: 3px;
-      margin: 0 -20px;
+      margin: 40px -20px;
       opacity: 1;
     }
 
