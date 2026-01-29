@@ -30,7 +30,6 @@ settings:
       - code
       - bulletedList
       - numberedList
-      - Accordion
       - '|'
       - highlight
       - drupalMedia

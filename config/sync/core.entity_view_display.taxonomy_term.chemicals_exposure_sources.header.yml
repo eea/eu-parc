@@ -4,6 +4,7 @@ status: false
 dependencies:
   config:
     - core.entity_view_mode.taxonomy_term.header
+    - field.field.taxonomy_term.chemicals_exposure_sources.field_chemicals
     - field.field.taxonomy_term.chemicals_exposure_sources.field_exposure_route
     - field.field.taxonomy_term.chemicals_exposure_sources.field_icon
     - taxonomy.vocabulary.chemicals_exposure_sources
@@ -31,5 +32,6 @@ content:
     weight: 1
     region: content
 hidden:
+  field_chemicals: true
   field_exposure_route: true
   search_api_excerpt: true

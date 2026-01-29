@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.chemicals_exposure_sources.field_chemicals
     - field.field.taxonomy_term.chemicals_exposure_sources.field_exposure_route
     - field.field.taxonomy_term.chemicals_exposure_sources.field_icon
     - taxonomy.vocabulary.chemicals_exposure_sources
@@ -19,6 +20,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_chemicals:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
     region: content
   field_icon:
     type: entity_reference_entity_view

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.chemicals_exposure_sources.field_chemicals
     - field.field.taxonomy_term.chemicals_exposure_sources.field_exposure_route
     - field.field.taxonomy_term.chemicals_exposure_sources.field_icon
     - taxonomy.vocabulary.chemicals_exposure_sources
@@ -13,6 +14,16 @@ targetEntityType: taxonomy_term
 bundle: chemicals_exposure_sources
 mode: default
 content:
+  field_chemicals:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_exposure_route:
     type: options_select
     weight: 2
@@ -36,7 +47,7 @@ content:
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 3
+    weight: 4
     region: content
     settings:
       display_label: true

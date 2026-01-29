@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_what_parc_does
     - node.type.chemical
+    - paragraphs.paragraphs_type.faq
     - paragraphs.paragraphs_type.text
     - paragraphs.paragraphs_type.two_column
   module:
@@ -23,6 +24,7 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
+      faq: faq
       text: text
       two_column: two_column
     negate: 0
@@ -53,7 +55,7 @@ settings:
         enabled: false
       faq:
         weight: 31
-        enabled: false
+        enabled: true
       grid:
         weight: 32
         enabled: false
