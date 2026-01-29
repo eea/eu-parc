@@ -9,18 +9,22 @@
           {{ 'Overview'|t }}
         </button>
       </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#eu-does-{{ internal_id }}" type="button"
-                role="tab" aria-selected="false">
-          {{ 'What EU does'|t }}
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#parc-does-{{ internal_id }}" type="button"
-                role="tab" aria-selected="false">
-          {{ 'What PARC does'|t }}
-        </button>
-      </li>
+      {% if block('what_eu_does') is defined and block('what_eu_does')|trim %}
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#eu-does-{{ internal_id }}" type="button"
+                  role="tab" aria-selected="false">
+            {{ 'What EU does'|t }}
+          </button>
+        </li>
+      {% endif %}
+      {% if block('what_parc_does') is defined and block('what_parc_does')|trim %}
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#parc-does-{{ internal_id }}" type="button"
+                  role="tab" aria-selected="false">
+            {{ 'What PARC does'|t }}
+          </button>
+        </li>
+      {% endif %}
     </ul>
   </div>
 
@@ -47,12 +51,16 @@
         <div class="tab-pane fade show active" id="overview-{{ internal_id }}" role="tabpanel">
           {% block overview %}{% endblock %}
         </div>
-        <div class="tab-pane fade" id="eu-does-{{ internal_id }}" role="tabpanel">
-          {% block what_eu_does %}{% endblock %}
-        </div>
-        <div class="tab-pane fade" id="parc-does-{{ internal_id }}" role="tabpanel">
-          {% block what_parc_does %}{% endblock %}
-        </div>
+        {% if block('what_eu_does') is defined and block('what_eu_does')|trim %}
+          <div class="tab-pane fade" id="eu-does-{{ internal_id }}" role="tabpanel">
+            {% block what_eu_does %}{% endblock %}
+          </div>
+        {% endif %}
+        {% if block('what_parc_does') is defined and block('what_parc_does')|trim %}
+          <div class="tab-pane fade" id="parc-does-{{ internal_id }}" role="tabpanel">
+            {% block what_parc_does %}{% endblock %}
+          </div>
+        {% endif %}
       </div>
     </div>
 
