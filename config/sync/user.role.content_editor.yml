@@ -23,6 +23,8 @@ dependencies:
     - node.type.learning_material
     - node.type.opportunity
     - node.type.page
+    - node.type.press_clipping
+    - node.type.press_release
     - node.type.project
     - node.type.publications
     - node.type.resource
@@ -99,6 +101,8 @@ permissions:
   - 'create opportunity content'
   - 'create overlay media'
   - 'create page content'
+  - 'create press_clipping content'
+  - 'create press_release content'
   - 'create project content'
   - 'create publications content'
   - 'create remote_video media'

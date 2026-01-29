@@ -9,7 +9,14 @@
     width: auto;
 
     &, path {
-      stroke: var(--secondary-color, #FFF);
+
+      &[stroke] {
+        stroke: var(--secondary-color, #FFF);
+      }
+
+      &[fill] {
+        fill: var(--secondary-color, #FFF);
+      }
     }
   }
 
