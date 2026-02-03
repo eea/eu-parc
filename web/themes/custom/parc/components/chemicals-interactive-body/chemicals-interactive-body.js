@@ -83,6 +83,7 @@
         };
 
         const toggleResetBtn = (state) => {
+          return;
           const div = el.querySelector("#filter-reset-btn-cnt");
           if (div) {
             div.style.display = state ? "flex" : "none";
@@ -90,11 +91,16 @@
         };
 
         const handleFilterChange = (e) => {
-          if (e.target.matches('input[type="radio"]')) {
+          if (e.target.matches('input[name="chem-filter"]')) {
             const chem = e.target.dataset.chem;
             const targetState = e.target.checked;
 
-            if (targetState == true) {
+            if (targetState === true) {
+              // Simulate single-select behavior with checkboxes.
+              el.querySelectorAll('input[name="chem-filter"]').forEach(input => {
+                if (input !== e.target) input.checked = false;
+              });
+
               if (activeDiseaseId != null) {
                 toggleBodyLayer(null);
                 activeDiseaseId = null;
@@ -113,8 +119,9 @@
         };
 
         const resetFilter = () => {
-          const input = el.querySelector(`#filter-${activeChemicalId}`);
-          if (input) input.checked = false;
+          el.querySelectorAll('input[name="chem-filter"]').forEach(input => {
+            input.checked = false;
+          });
           activeChemicalId = null;
           toggleResetBtn(false);
           updateMenuItems();
@@ -124,22 +131,29 @@
         const initFilter = () => {
           const generateListElements = () => {
             return chemicals.map(chem => {
-              return `<li>
-                <input type="radio" name="chem-filter" data-chem="${chem}" id="filter-${chem}">
-                <label for="filter-${chem}">${chem}</label>
-              </li>`;
+              return `
+                <div class="js-form-item form-item js-form-type-checkbox">
+                  <input type="checkbox" name="chem-filter" data-chem="${chem}" id="filter-${chem}" class="form-checkbox form-check-input">
+                  <label for="filter-${chem}" class="option">${chem}</label>
+                </div>`;
             }).join('');
           };
 
-          filterMenu.innerHTML += `<ul id="filter-list">
-            ${generateListElements()}
-          </ul>`;
+          filterMenu.innerHTML = `
+            <details class="form-item js-form-wrapper form-wrapper" id="edit-chemicals-collapsible">
+              <summary role="button">${Drupal.t('Filter by chemical')}</summary>
+              <div id="edit-chemicals" class="form-checkboxes">
+                <div class="form-checkboxes bef-checkboxes">
+                  ${generateListElements()}
+                </div>
+              </div>
+            </details>
+            <div id="filter-reset-btn-cnt" style="display: none;">
+              <button id="filter-reset-btn">${Drupal.t('RESET')}</button>
+            </div>
+          `;
 
-          filterMenu.innerHTML += `<div id="filter-reset-btn-cnt">
-            <button id="filter-reset-btn">RESET</button>
-          </div>`;
-
-          const list = filterMenu.querySelector('#filter-list');
+          const list = filterMenu.querySelector('#edit-chemicals');
           list.addEventListener('change', handleFilterChange);
 
           const btn = filterMenu.querySelector('#filter-reset-btn');

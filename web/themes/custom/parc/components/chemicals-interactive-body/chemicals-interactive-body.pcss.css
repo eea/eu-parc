@@ -7,6 +7,10 @@
   aspect-ratio: 16 / 9;
   margin-bottom: 40px;
 
+  .parc--details {
+    z-index: 20;
+  }
+
   &__body-layers-wrapper,
   &__menu-items-wrapper,
   &__body-dots-wrapper {
@@ -118,102 +122,6 @@
     display: unset;
     opacity: 0;
     pointer-events: none;
-  }
-
-  &__filter-menu {
-    position: absolute;
-    /* Changed from fixed to absolute within component */
-    top: 20px;
-    left: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 10px;
-    width: 180px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 20;
-    font-family: 'Satoshi', sans-serif;
-
-    p {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      font-weight: 700;
-      color: #000000;
-    }
-
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    li {
-      display: block;
-      align-items: center;
-      font-size: 16px;
-      color: #000000;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      border-radius: 5px;
-
-      &:hover {
-        background-color: #f4f4f4;
-      }
-    }
-
-    label {
-      width: 100%;
-      cursor: pointer;
-      margin: 0;
-    }
-
-    input[type="radio"] {
-      appearance: unset;
-      border: 1px solid #000000;
-      border-radius: 6px;
-      width: 11px;
-      height: 11px;
-      padding: 0;
-      margin: 0;
-      margin-right: 5px;
-      position: center;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:checked {
-        background-color: #000000;
-      }
-
-      &:hover {
-        border-color: #6f6f6f;
-      }
-    }
-  }
-
-  #filter-reset-btn-cnt {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10px;
-    margin-top: 10px;
-    border-top: 1px solid #eee;
-
-    button {
-      background-color: transparent;
-      padding: 5px 10px;
-      border: 1px solid #000;
-      border-radius: 4px;
-      font-size: 11px;
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 600;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-
-      &:hover {
-        background: #000;
-        color: #fff;
-      }
-    }
   }
 
   [id*="TEXT"] {
