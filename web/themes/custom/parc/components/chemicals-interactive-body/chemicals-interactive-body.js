@@ -523,7 +523,11 @@
                 const handlePillClick = (chemicalId) => {
                     const target = document.querySelector(`[data-chemical="${chemicalId}"]`);
                     if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
+                        const topOffset = target.getBoundingClientRect().top + window.pageYOffset - 40;
+                        window.scrollTo({
+                            top: topOffset,
+                            behavior: 'smooth'
+                        });
                         const toggle = target.querySelector('.js-chemical-accordion-toggle');
                         if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
                             toggle.click();
