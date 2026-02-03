@@ -1,0 +1,13 @@
+name: Chemicals Global FAQ
+description: Global FAQ section for chemicals.
+props:
+  type: object
+  properties:
+    border_bottom:
+      type: boolean
+      title: Border Bottom
+      default: false
+slots: {}
+library:
+  dependencies:
+    - parc/faq

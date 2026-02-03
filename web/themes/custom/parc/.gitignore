@@ -8,3 +8,6 @@ css/map/*
 css/*
 !css/libraries
 !css/libraries/**
+
+components/*/*.css
+!components/*/*.pcss.css

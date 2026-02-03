@@ -1220,6 +1220,7 @@ function parc_preprocess_paragraph__chemical_health_effects(array &$variables) {
 
   if ($parent instanceof NodeInterface) {
     $variables['chemical_id'] = $parent->get('field_internal_id')->value;
+    $variables['chemical_title'] = $parent->label();
   }
 }
 
@@ -1314,6 +1315,7 @@ function parc_preprocess_taxonomy_term__chemicals_exposure_sources__card(array &
     $variables['chemicals'][] = [
       'name' => $chemical->label(),
       'color' => $chemical->get('field_color')->color,
+      'id' => $chemical->get('field_internal_id')->value,
     ];
   }
 }

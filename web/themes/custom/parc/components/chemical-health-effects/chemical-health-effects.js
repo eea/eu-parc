@@ -7,6 +7,7 @@
   Drupal.behaviors.chemicalHealthEffects = {
     attach(context) {
       const elements = once('chemical-health-effects', '.js-chemical-health-effects', context);
+      let revealing = false
 
       elements.forEach((el) => {
         const svg = el.querySelector('svg');
@@ -129,6 +130,9 @@
         }
 
         svg.addEventListener('mousemove', e => {
+          if (revealing) {
+            return;
+          }
           mouse.inside = true;
           const p = getSVGPoint(e);
           mouse.x = p.x;
@@ -137,6 +141,10 @@
         });
 
         svg.addEventListener('mouseleave', () => {
+          if (revealing) {
+            return;
+          }
+
           mouse.inside = false;
           resetHover();
           setActiveSpecial(null);
@@ -256,6 +264,7 @@
 
         // Initial Reveal Animation
         function initialReveal() {
+          revealing = true;
           const shuffled = dots.slice().sort(() => Math.random() - 0.5);
           shuffled.forEach((dot, i) => {
             const baseR = parseFloat(dot.dataset.baseR);
@@ -268,6 +277,7 @@
           const totalDuration = dots.length * 5 + 200;
           setTimeout(() => {
             showAllLabels();
+            revealing = false;
           }, totalDuration);
         }
 

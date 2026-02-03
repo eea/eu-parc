@@ -2,12 +2,3 @@ name: Chemicals Chart
 props:
   type: object
   properties: {}
-libraryOverrides:
-  dependencies:
-    - core/drupal
-    - core/once
-  js:
-    chemicals-chart.js: {}
-  css:
-    component:
-      chemicals-chart.css: {}

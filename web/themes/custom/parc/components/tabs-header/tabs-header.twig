@@ -3,21 +3,21 @@
     <div class="tabs-header__title">
       <div class="svg-title">{{ title }}</div>
     </div>
-    
-    {% if menu_entries %}
-      <div class="tabs-header__menu">
-        <ul class="nav nav-tabs" role="tablist">
-          {% for entry in menu_entries %}
-            <li class="nav-item" role="presentation">
-              <a class="nav-link{% if entry.is_active %} active{% endif %}" 
-                 href="{{ entry.link }}"
-                 {% if entry.is_active %}aria-current="page"{% endif %}>
-                {{ entry.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
   </div>
 </div>
+
+{% if menu_entries %}
+  <div class="tabs-header__menu shadow-sm" {% if color %}style="background-color: {{ color }};"{% endif %}>
+    <ul class="nav nav-tabs" role="tablist">
+      {% for entry in menu_entries %}
+        <li class="nav-item" role="presentation">
+          <a class="nav-link{% if entry.is_active %} active{% endif %}"
+             href="{{ entry.link }}"
+             {% if entry.is_active %}aria-current="page"{% endif %}>
+            {{ entry.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

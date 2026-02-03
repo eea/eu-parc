@@ -48,6 +48,10 @@
     margin: 0;
     padding: 20px;
 
+    a {
+      color: #FFF;
+    }
+
     hr {
       border-color: var(--secondary-color) !important;
       border-width: 3px;

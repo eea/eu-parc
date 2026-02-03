@@ -18,7 +18,3 @@ props:
     icon:
       type: object
       title: Icon
-libraryOverrides:
-  css:
-    component:
-      exposure-source.css: {}

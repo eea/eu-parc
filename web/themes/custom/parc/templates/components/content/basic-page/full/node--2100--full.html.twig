@@ -18,12 +18,12 @@
       is_active: true
     },
     {
-      title: 'Health Effects',
+      title: 'Health effects',
       link: '/chemicals/health-effects',
       is_active: false
     },
     {
-      title: 'Exposure Sources',
+      title: 'Exposure sources',
       link: '/chemicals/exposure-sources',
       is_active: false
     }
@@ -35,4 +35,6 @@
   {% embed 'parc:chemicals-chart' %}{% endembed %}
 
   {{ drupal_view('chemicals', 'list') }}
+
+  {% embed 'parc:chemicals-global-faq' with { border_bottom: false } %}{% endembed %}
 </div>

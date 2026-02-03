@@ -23,7 +23,7 @@
     'baseFill': '#DDC1FF',
     'hoverFill': '#7D3699'
   },
-  'bisphenol': {
+  'bisphenols': {
     'svg': 'body_map4.svg',
     'background': '#D7B040',
     'baseFill': '#FBEEC8',
@@ -48,6 +48,7 @@
      data-hover-fill="{{ chemical_cfg.hoverFill }}"
      style="--chemical-bg: {{ chemical_cfg.background }};"
      {% endif %}>
+  <h3>{{ title }} health effects</h3>
   <div class="chemical-health-effects__body-wrapper">
     {% if chemical_cfg %}
       <div class="chemical-health-effects__map active">
