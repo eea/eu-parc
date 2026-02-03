@@ -12,7 +12,6 @@
 .faq-group,
 .view-exposure-sources {
   margin-bottom: 40px;
-  border-bottom: 3px solid #000;
 
   h2 {
     font-size: 32px;
@@ -41,4 +40,8 @@
       color: var(--primary-color, #000);
     }
   }
+}
+
+body:has(.tabs-header) header.sticky-top {
+  position: static !important;
 }
