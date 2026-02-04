@@ -7,6 +7,10 @@
   &__wrapper {
     padding: 30px 60px;
     background: #FFF;
+
+    @media (--downMd) {
+      padding: 30px 25px 30px 10px;
+    }
   }
 
   &__header {
@@ -61,6 +65,10 @@
     font-size: 56px;
     font-weight: bold;
     line-height: 120%;
+
+    @media (--downMd) {
+      font-size: 28px;
+    }
   }
 
   .left-col,
