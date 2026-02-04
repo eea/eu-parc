@@ -1,8 +1,31 @@
+.chemical-exposure-sources__heading {
+  display: flex;
+
+  @media (--sm) {
+    display: inherit;
+  }
+
+  &__pfas {
+    display: block;
+
+    @media (--sm) {
+      display: none;
+    }
+  }
+}
+
 .chemical-exposure-sources {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin: 40px 0;
+  border-bottom: 3px solid var(--secondary-color);
+  padding-bottom: 16px;
+
+  @media (--md) {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 
   &__group {
     display: flex;
@@ -10,8 +33,56 @@
     flex-grow: 1;
 
     &:not(:last-child) {
-      border-right: 3px solid var(--secondary-color);
-      padding-right: 16px;
+      border-right: none;
+      border-bottom: 3px solid var(--secondary-color);
+      padding-right: 0;
+
+      @media (--sm) {
+        border-right: 3px solid var(--secondary-color);
+        border-bottom: 0;
+        padding-right: 16px;
+      }
+    }
+
+    &:first-child {
+      @media (--md) {
+        border-right: none;
+        border-bottom: 3px solid var(--secondary-color);
+        padding-bottom: 16px;
+      }
+
+      @media (--lg) {
+        border-right: 3px solid var(--secondary-color);
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    &:nth-child(2) {
+      @media (--lg) {
+        border-right: none;
+      }
+
+      @media (min-width: 1240px) {
+        border-right: 3px solid var(--secondary-color);
+      }
+    }
+
+    &:last-child {
+      @media (--lg) {
+        border-top: 3px solid var(--secondary-color);
+        padding-top: 16px;
+      }
+
+      @media (min-width: 1240px) {
+        border-top: none;
+        padding-top: 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      flex-direction: row-reverse;
+      padding-bottom: 10px;
     }
   }
 
@@ -21,6 +92,23 @@
     justify-content: space-around;
     margin-bottom: 25px;
     flex-grow: 1;
+    flex-direction: column;
+
+    @media (--md) {
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    @media (--sm) {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+
+    @media (--md) {
+      align-content: start;
+    }
   }
 
   &__group-icon {
@@ -40,6 +128,12 @@
         fill: var(--secondary-color);
       }
     }
+
+    @media (max-width: 576px) {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
   }
 
   &__group-title {
@@ -50,6 +144,11 @@
     color: #FFF;
     text-align: center;
     position: relative;
+
+    @media (max-width: 576px) {
+      width: 50%;
+      align-content: center;
+    }
 
     &:before {
       content: '';
@@ -64,6 +163,18 @@
       width: 45px;
       height: 26px;
       background-color: var(--primary-color);
+
+      @media (max-width: 576px) {
+        top: 50%;
+        left: 0%;
+        transform: translate(0, -50%);
+        rotate: -90deg;
+      }
+    }
+
+    @media (max-width: 576px) {
+      border-left: 3px solid #FFF;
+      border-top: none;
     }
   }
 }
