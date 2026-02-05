@@ -123,6 +123,10 @@
     }
   }
 
+  #hover:hover {
+    opacity: 1 !important;
+  }
+
   .menu-item-inactive {
     display: unset;
     opacity: 0;
