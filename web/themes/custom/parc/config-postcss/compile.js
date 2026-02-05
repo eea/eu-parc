@@ -52,6 +52,7 @@ module.exports = (filePath, callback) => {
         },
         importFrom: {
           customMedia: {
+            '--downSm': '(max-width: 575px)',
             '--sm': '(min-width: 576px)',
             '--downMd': '(max-width: 766px)',
             '--md': '(min-width: 768px)',

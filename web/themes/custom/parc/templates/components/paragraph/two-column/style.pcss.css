@@ -13,12 +13,10 @@
 
     &--right {
       @media (--downMd) {
-        border-top: none;
         padding-top: 0;
       }
 
       @media (--md) {
-        border-left: 3px solid var(--secondary-color, #FFF);
         padding-left: 30px;
       }
     }
