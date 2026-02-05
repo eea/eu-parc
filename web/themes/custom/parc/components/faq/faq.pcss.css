@@ -15,6 +15,7 @@
 
     &:hover {
       color: var(--primary-color, #000);
+      text-decoration: underline;
 
       .faq__toggle-icon::before,
       .faq__toggle-icon::after {
