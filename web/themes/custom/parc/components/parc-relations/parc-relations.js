@@ -8,6 +8,9 @@
       var relations = settings?.parc_relations ?? {};
 
       var div_spacing = 30;
+      if (window.innerWidth < 767) {
+        div_spacing = 5;
+      }
 
       function drawRelations() {
         $.each(relations, function (key, data) {

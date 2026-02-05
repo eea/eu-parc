@@ -11,6 +11,7 @@
     cursor: pointer;
     transition: color 0.3s ease;
     color: var(--primary-color, #000);
+    padding: 12px 0;
 
     &:hover {
       color: var(--primary-color, #000);
@@ -24,7 +25,7 @@
 
   &__question {
     font-size: 22px;
-    line-height: 240%;
+    line-height: 140%;
     font-weight: 700;
   }
 
@@ -57,8 +58,13 @@
 
   &__content {
     padding-bottom: 20px;
-  }
 
+    p {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
 
   &.is-expanded {
     .faq__toggle-icon::after {

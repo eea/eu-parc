@@ -29,6 +29,10 @@
     position: absolute;
     top: 0;
     left: 0;
+
+    @media (--downMd) {
+      //visibility: hidden;
+    }
   }
 
   &__title {
@@ -44,8 +48,11 @@
   .left-col,
   .right-col {
     width: 500px;
-    font-size: 18px;
     font-weight: bold;
+
+    @media (--downMd) {
+      line-height: 1;
+    }
 
     a {
       font-size: 18px;
@@ -53,6 +60,11 @@
       font-weight: 700;
       z-index: 1;
       position: relative;
+
+      @media (--downMd) {
+        font-size: 14px;
+        line-height: 1;
+      }
 
       &:hover {
         text-decoration: underline;
@@ -67,7 +79,13 @@
     line-height: 120%;
 
     @media (--downMd) {
-      font-size: 28px;
+      font-size: 20px;
+    }
+
+    .parc-relations__title {
+      @media (--downMd) {
+        color: var(--primary-color);
+      }
     }
   }
 

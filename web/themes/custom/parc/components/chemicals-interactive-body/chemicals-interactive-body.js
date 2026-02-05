@@ -11,7 +11,7 @@
       elements.forEach((el) => {
         const assetsPath = el.dataset.assetsPath;
         const bodyLayersWrapper = el.querySelector('#body-layers-wrapper');
-        const filterMenu = el.querySelector('#filter-menu');
+        const filterMenu = el.parentElement.querySelector('#filter-menu');
         const bodyDotsWrapper = el.querySelector('#body-dots-wrapper');
         const menuItemsWrapper = el.querySelector('#menu-items-wrapper');
 
