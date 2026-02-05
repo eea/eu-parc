@@ -39,9 +39,9 @@
 
   Drupal.behaviors.detailsMouse = {
     attach: function (context) {
-      $('details', context).on('mouseleave', function (e) {
+      $('body').on('mouseleave', 'details', function (e) {
         e.currentTarget.open = false;
-      });
+      })
     }
   };
 

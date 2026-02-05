@@ -10,7 +10,7 @@
 
     <div class="exposure-source-card__chemicals">
       {% for chemical in chemicals %}
-        <span class="exposure-source-card__chemical" style="--chemical-color: {{ chemical.color }}">{{ chemical.name | trim }}</span>
+        <span class="exposure-source-card__chemical" data-chemical-target="{{ chemical.id }}" style="--chemical-color: {{ chemical.color }}">{{ chemical.name | trim }}</span>
       {% endfor %}
     </div>
   </div>

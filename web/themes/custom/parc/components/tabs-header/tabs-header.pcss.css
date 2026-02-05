@@ -1,6 +1,5 @@
 .tabs-header {
   width: 100%;
-  margin-bottom: 35px;
 
   &__title {
     text-align: center;
@@ -11,16 +10,22 @@
       font-size: 50px;
 
       @media (--md) {
-        padding: 60px 0;
+        padding: 60px 0 40px 0;
         font-size: 92px;
       }
     }
   }
 
   &__menu {
+    margin-bottom: 35px;
+    position: sticky;
+    top: 0;
+    padding-top: 20px;
+
     .nav-tabs {
       justify-content: center;
       gap: 20px;
+      border: none !important;
 
       .nav-item {
         margin-bottom: -2px;

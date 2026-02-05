@@ -52,7 +52,7 @@
     left: 24px;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    column-gap: 8px;
     max-width: calc(100% - 48px);
     text-align: left;
     z-index: 1;
@@ -69,5 +69,9 @@
       color: #000;
       margin-right: 2px;
     }
+  }
+
+  [data-chemical-target] {
+    cursor: pointer;
   }
 }

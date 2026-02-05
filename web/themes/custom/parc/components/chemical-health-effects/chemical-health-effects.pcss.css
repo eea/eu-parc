@@ -3,8 +3,8 @@
   min-height: inherit;
   display: flex;
   align-items: center;
-  justify-content: center;
   transition: background-color 0.5s ease;
+  flex-direction: column;
 
   @media (--sm) {
     min-height: 100vh;

@@ -2,6 +2,9 @@ name: Chemical Health Effects
 props:
   type: object
   properties:
+    title:
+      type: string
+      title: Title
     chemical_id:
       type: string
       title: Chemical ID
