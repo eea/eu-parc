@@ -1,39 +1,50 @@
 .chemical-health-effects {
   background-color: var(--chemical-bg, #000);
-  min-height: inherit;
   display: flex;
   align-items: center;
   transition: background-color 0.5s ease;
   flex-direction: column;
 
-  @media (--sm) {
-    min-height: 100vh;
-  }
-
   &__body-wrapper {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-  }
-
-  &__map {
-    &.active {
-      display: block;
-    }
 
     svg {
-      width: 100%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
       height: auto;
-      max-height: 90vh;
       display: block;
-      margin: 0 auto;
     }
   }
 
-  &__error {
-    color: #FFF;
-    text-align: center;
-    font-size: 24px;
-    padding: 100px;
+  circle {
+    transition: r 0.25s ease-out, fill 0.2s ease-out;
+    cursor: default;
+    pointer-events: auto;
+  }
+
+  [id$="_TEXT"] {
+    transition: opacity 0.3s ease-out;
+  }
+
+  [id$="_TEXT"] line,
+  [id$="_TEXT"] path,
+  [id$="_TEXT"] polyline,
+  [id$="_TEXT"] polygon {
+    transition: stroke-dashoffset 0.4s ease-out;
+  }
+
+  [id^="body-map-"] {
+    display: none;
+    width: auto;
+    height: 100%;
+  }
+
+  [id^="body-map-"].active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

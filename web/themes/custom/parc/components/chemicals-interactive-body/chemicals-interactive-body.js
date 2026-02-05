@@ -11,7 +11,7 @@
       elements.forEach((el) => {
         const assetsPath = el.dataset.assetsPath;
         const bodyLayersWrapper = el.querySelector('#body-layers-wrapper');
-        const filterMenu = el.querySelector('#filter-menu');
+        const filterMenu = el.parentElement.querySelector('#filter-menu');
         const bodyDotsWrapper = el.querySelector('#body-dots-wrapper');
         const menuItemsWrapper = el.querySelector('#menu-items-wrapper');
 
@@ -31,6 +31,7 @@
         const BASE_FILL = '#152B29';
         const MAX_HALO_DIST = 100;
         const MAX_HALO_GROW_FACTOR = 1.8;
+        const CENTROID_RADIUS = 45;
         const chemicals = [
           "Arsenic",
           "Pesticides",

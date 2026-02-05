@@ -86,8 +86,14 @@
           dot.setAttribute('fill', cfg.baseFill);
         });
 
-        const haloRadius = 40;
-        const haloFactorMax = 2.1;
+        dots.forEach(dot => {
+          const r = parseFloat(dot.getAttribute('r')) || 2;
+          dot.dataset.baseR = r;
+          dot.dataset.baseFill = cfg.baseFill || '#722E27';
+        });
+
+        const haloRadius    = cfg.haloRadius    ?? 40;
+        const haloFactorMax = cfg.haloFactorMax ?? 2.1;
 
         dots.forEach(dot => {
           let factor = 1;
@@ -110,16 +116,15 @@
 
           const baseR = parseFloat(dot.dataset.baseR);
           dot.dataset.baseR = baseR * factor;
-          dot.setAttribute('r', baseR * factor);
         });
 
         let mouse = {x: 0, y: 0, inside: false};
         let rafId = null;
         let activeSpecial = null;
 
-        const maxDist = 100;
-        const maxFactor = 1.8;
-        const colorRadius = 40;
+        const maxDist            = cfg.maxDist     ?? 100;
+        const maxFactor          = cfg.maxFactor   ?? 1.8;
+        const colorRadius        = cfg.colorRadius ?? 40;
         const specialHoverRadius = colorRadius;
 
         function getSVGPoint(evt) {
@@ -172,7 +177,7 @@
             if (mouse.inside) {
               const dx = cx - mouse.x;
               const dy = cy - mouse.y;
-              dist = Math.hypot(dx, dy);
+              dist = Math.sqrt(dx * dx + dy * dy);
 
               if (dist < maxDist) {
                 const t = 1 - dist / maxDist;
@@ -204,7 +209,7 @@
           if (dot === activeSpecial) return;
           activeSpecial = dot;
 
-          dots.forEach(d => d.setAttribute('fill', cfg.baseFill));
+          dots.forEach(d => d.setAttribute('fill', cfg.baseFill || '#722E27'));
 
           if (!dot) {
             showAllLabels();
@@ -222,7 +227,7 @@
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist <= colorRadius) {
-              d.setAttribute('fill', cfg.hoverFill);
+              d.setAttribute('fill', cfg.hoverFill || '#491D18');
             }
           });
 
@@ -262,9 +267,13 @@
           });
         }
 
+        // Store functions on svg for later use
+        svg._showAllLabels = showAllLabels;
+        svg._dots = dots;
+        svg._labels = labels;
+
         // Initial Reveal Animation
         function initialReveal() {
-          revealing = true;
           const shuffled = dots.slice().sort(() => Math.random() - 0.5);
           shuffled.forEach((dot, i) => {
             const baseR = parseFloat(dot.dataset.baseR);
@@ -275,6 +284,7 @@
           });
 
           const totalDuration = dots.length * 5 + 200;
+          revealing = true;
           setTimeout(() => {
             showAllLabels();
             revealing = false;

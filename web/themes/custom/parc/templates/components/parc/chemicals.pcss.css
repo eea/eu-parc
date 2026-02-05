@@ -1,3 +1,11 @@
+.parc--details {
+  z-index: 20 !important;
+
+  @media (--downMd) {
+    margin-left: 20px;
+  }
+}
+
 .view-chemicals {
   .views-row {
     margin-bottom: 29px;

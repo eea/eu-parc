@@ -1,6 +1,84 @@
+@define-mixin rb-left {
+  position: relative;
+
+  &:before {
+    content: '';
+    height: 100%;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--secondary-color, #FFF);
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+}
+
+@define-mixin rb-right {
+  position: relative;
+
+  &:before {
+    content: '';
+    height: 100%;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--secondary-color, #FFF);
+    right: 0;
+    top: 0;
+    position: absolute;
+  }
+}
+
+@define-mixin rb-top {
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--secondary-color, #FFF);
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+}
+
+@define-mixin rb-bottom {
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--secondary-color, #FFF);
+    left: 0;
+    top: 100%;
+    position: absolute;
+  }
+}
+
 .chemical-accordion {
   border-radius: 6px;
   overflow: hidden;
+
+  .paragraph--two-column {
+    &__column {
+      &--left {
+      }
+
+      &--right {
+        @media (--downMd) {
+          @mixin rb-top;
+        }
+
+        @media (--md) {
+          @mixin rb-left;
+        }
+      }
+    }
+  }
+
 
   .field--name-field-what-parc-does,
   .field--name-field-what-eu-does {
@@ -71,7 +149,7 @@
     }
 
     + .paragraph-text {
-      border-top: 3px solid var(--secondary-color);
+      @mixin rb-top;
 
       @media (--downMd) {
         padding-top: 20px;
@@ -201,8 +279,9 @@
       display: block;
 
       &-content {
-        border-top: 3px solid var(--secondary-color, #FFF);
         padding-top: 20px;
+
+        @mixin rb-top;
       }
     }
 

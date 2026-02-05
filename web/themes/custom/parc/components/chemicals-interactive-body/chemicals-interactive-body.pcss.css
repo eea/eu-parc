@@ -1,3 +1,12 @@
+.form-check-input {
+  border-radius: 50%;
+}
+
+.parc--details {
+  z-index: 20;
+  margin-bottom: 0;
+}
+
 .chemicals-interactive-body {
   position: relative;
   width: 100%;
@@ -6,10 +15,6 @@
   background: #ffffff;
   aspect-ratio: 16 / 9;
   margin-bottom: 40px;
-
-  .parc--details {
-    z-index: 20;
-  }
 
   &__body-layers-wrapper,
   &__menu-items-wrapper,
@@ -116,6 +121,10 @@
     &[id^="hover"]:hover {
       opacity: 1 !important;
     }
+  }
+
+  #hover:hover {
+    opacity: 1 !important;
   }
 
   .menu-item-inactive {
