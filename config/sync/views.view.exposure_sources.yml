@@ -264,7 +264,7 @@ display:
     display_options:
       display_extenders:
         ajax_history:
-          enable_history: false
+          enable_history: true
           exclude_args: ''
         simple_sitemap_display_extender: {  }
         metatag_display_extender:

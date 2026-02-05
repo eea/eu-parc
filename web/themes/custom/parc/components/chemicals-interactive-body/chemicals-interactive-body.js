@@ -108,9 +108,23 @@
               }
               activeChemicalId = chem;
               toggleResetBtn(true);
+
+              // Update URL.
+              const url = new URL(window.location);
+              if (url.searchParams.get('chemical') !== chem) {
+                url.searchParams.set('chemical', chem);
+                window.history.pushState({}, '', url);
+              }
             } else {
               activeChemicalId = null;
               toggleResetBtn(false);
+
+              // Remove from URL.
+              const url = new URL(window.location);
+              if (url.searchParams.has('chemical')) {
+                url.searchParams.delete('chemical');
+                window.history.pushState({}, '', url);
+              }
             }
 
             updateMenuItems();
@@ -127,6 +141,12 @@
           toggleResetBtn(false);
           updateMenuItems();
           toggleChemLayer();
+          toggleFaqGroups('global');
+
+          // Remove from URL.
+          const url = new URL(window.location);
+          url.searchParams.delete('chemical');
+          window.history.pushState({}, '', url);
         };
 
         const initFilter = () => {
@@ -159,6 +179,25 @@
 
           const btn = filterMenu.querySelector('#filter-reset-btn');
           btn.addEventListener('click', resetFilter);
+
+          // Check URL for initial filter state.
+          const urlParams = new URLSearchParams(window.location.search);
+          const chemicalParam = urlParams.get('chemical');
+
+          if (chemicalParam) {
+            // Find the checkbox for this chemical (case-insensitive check might be needed if params vary).
+            // The chemicals array and checkbox Ids match the parameter (usually).
+            // Let's find a matching chemical in our list.
+            const matchingChem = chemicals.find(c => c.toLowerCase() === chemicalParam.toLowerCase());
+
+            if (matchingChem) {
+              const checkbox = filterMenu.querySelector(`input[data-chem="${matchingChem}"]`);
+              if (checkbox) {
+                // Trigger click to activate filter and run existing logic.
+                checkbox.click();
+              }
+            }
+          }
         };
 
         const toggleFaqGroups = (groupId) => {
@@ -694,8 +733,23 @@
           initFilter();
           associateMenuItems();
 
+          await initDots();
+          revealDots(null);
+          initFilter();
+          associateMenuItems();
+
           window.addEventListener('mousemove', handleMouseMove, { passive: false });
-          toggleFaqGroups('global');
+
+          // Initial state update based on URL (handled in initFilter implicitly by setting activeChemicalId? 
+          // No, initFilter just sets the variable. We need to apply it.)
+          if (activeChemicalId) {
+            updateMenuItems();
+            toggleChemLayer();
+            toggleFaqGroups(activeChemicalId.toLowerCase());
+          } else {
+            toggleFaqGroups('global');
+          }
+
           requestAnimationFrame(requestRender);
         };
 
