@@ -148,7 +148,8 @@
         --ci-bg: #C064E4 !important;
       }
 
-      &.bg--bisphenols {
+      &.bg--bisphenols,
+      &.bg--bisphenol {
         --ci-bg: #D7B040 !important;
       }
 
@@ -167,7 +168,7 @@
       &.bg--metals {
         --ci-bg: #6E009A !important;
       }
-      &.bg--phthlates {
+      &.bg--phthalates {
         --ci-bg: #9B9B9B !important;
       }
       &.bg--mercury {

@@ -98,7 +98,7 @@
 
             if (targetState === true) {
               // Simulate single-select behavior with checkboxes.
-              el.querySelectorAll('input[name="chem-filter"]').forEach(input => {
+              el.parentElement.querySelectorAll('input[name="chem-filter"]').forEach(input => {
                 if (input !== e.target) input.checked = false;
               });
 

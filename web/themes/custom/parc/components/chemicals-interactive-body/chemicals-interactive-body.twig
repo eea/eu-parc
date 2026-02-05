@@ -1,11 +1,21 @@
 {{ attach_library('parc/forms') }}
 {{ attach_library('parc/f--views-exposed') }}
 
-<div class="chemicals-interactive-body__filter-menu parc--details" id="filter-menu">
-  <p>{{ 'Filter by chemical'|t }}</p>
+<div class="row align-items-center flex-wrap flex-md-nowrap justify-content-md-start align-items-md-start chemicals-interactive-body__filter-menu parc--details">
+  <div class="col col-md-3 order-1" id="filter-menu">
+    <p>{{ 'Filter by chemical'|t }}</p>
+  </div>
+
+  <div class="col-12 col-md-8 me-auto order-2 mt-3 mt-md-0 parc-col--categories">
+    <div id="js-selected-category" class="w--labels d-flex gap-2"></div>
+  </div>
+
+  <div class="col-auto col-md-1 order-1 order-md-3 d-flex justify-content-end w--sort-by">
+    {{ form.sort_bef_combine }}
+  </div>
 </div>
 
-<div class="chemicals-interactive-body js-chemicals-interactive-body" 
+<div class="chemicals-interactive-body js-chemicals-interactive-body"
      data-assets-path="{{ '/' ~ directory ~ '/components/chemicals-interactive-body/svg/' }}">
   <div class="chemicals-interactive-body__body-dots-wrapper" id="body-dots-wrapper"></div>
   <div class="chemicals-interactive-body__menu-items-wrapper" id="menu-items-wrapper"></div>

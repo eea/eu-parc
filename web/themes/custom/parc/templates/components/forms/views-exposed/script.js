@@ -13,6 +13,7 @@
         ",details[data-drupal-selector='edit-topics-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-keywords-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-chemicals-collapsible'] .bef-checkboxes input" +
+        ",.chemicals-interactive-body__filter-menu .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-training-topic-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;
         var labelClass = label.toLowerCase().replace(" ", "-").replace('&amp; ', '-');
@@ -27,6 +28,24 @@
           }
         } else {
           $(context).find("#js-selected-category label[class*='bg--" + labelClass + "']").remove();
+        }
+      });
+
+      $('body').on('change', '.chemicals-interactive-body__filter-menu .bef-checkboxes input', function () {
+        var label = $(this)['0'].labels['0'].innerHTML;
+        var labelClass = label.toLowerCase().replace(" ", "-").replace('&amp; ', '-');
+        var itemId = $(this).attr('id');
+        var color = $(this).parent().data('color');
+        if ($(this).is(':checked')) {
+          $("#js-selected-category label").remove();
+          let form = $(this).closest('form');
+          if ($("#js-selected-category label[class*='bg--" + labelClass + "']").length === 0
+            && !form.hasClass('d-none')) {
+            var insert = '<label for="' + itemId + '" class="option bg--' + labelClass + '" style="--ci-bg: ' + color + '">' + label + svg + '</label>'
+            $("#js-selected-category").append(insert);
+          }
+        } else {
+          $("#js-selected-category label[class*='bg--" + labelClass + "']").remove();
         }
       });
 
