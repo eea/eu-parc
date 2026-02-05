@@ -1,5 +1,8 @@
 <div class="chemical-exposure-sources__wrapper">
-  <h3>{{ "Possible sources of exposure" | t }}</h3>
+  <div class="chemical-exposure-sources__heading">
+    <h3 class="chemical-exposure-sources__heading__sources">{{ "Possible sources of exposure" | t }}</h3>
+    <h3 class="chemical-exposure-sources__heading__pfas">{{ "How PFAS can enter your body" | t }}</h3>
+  </div>
   <div class="chemical-exposure-sources">
     {% for name, group in groups %}
       <div class="chemical-exposure-sources__group">

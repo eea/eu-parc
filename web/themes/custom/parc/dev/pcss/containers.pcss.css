@@ -1,5 +1,6 @@
 .container,
 .container-fluid,
+.container-chemicals,
 .container-sm,
 .container-md,
 .container-lg,
@@ -14,8 +15,14 @@
   margin-left: auto;
 }
 
-.container-fluid {
+.container-fluid,
+.container-chemicals {
   max-width: 1920px;
+}
+
+.container-chemicals {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .parc-container {
@@ -35,6 +42,11 @@
   .container-sm,
   .container-md {
     max-width: 720px;
+  }
+
+  .container-chemicals {
+    padding-right: 20px;
+    padding-left: 20px;
   }
 }
 
