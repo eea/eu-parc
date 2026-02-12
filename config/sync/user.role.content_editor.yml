@@ -59,6 +59,7 @@ dependencies:
     - node
     - path
     - publishcontent
+    - quick_node_clone
     - system
     - tablefield
     - taxonomy
@@ -72,6 +73,7 @@ label: 'Content editor'
 weight: -6
 is_admin: false
 permissions:
+  - 'Administer Quick Node Clone Settings'
   - 'access administration pages'
   - 'access content overview'
   - 'access contextual links'
@@ -84,6 +86,23 @@ permissions:
   - 'addrow tablefield'
   - 'administer nodes'
   - 'administer url aliases'
+  - 'clone article content'
+  - 'clone basic_page content'
+  - 'clone chemical content'
+  - 'clone deliverables content'
+  - 'clone events content'
+  - 'clone indicator content'
+  - 'clone institution content'
+  - 'clone laboratory content'
+  - 'clone learning_material content'
+  - 'clone opportunity content'
+  - 'clone page content'
+  - 'clone press_clipping content'
+  - 'clone press_release content'
+  - 'clone project content'
+  - 'clone publications content'
+  - 'clone resource content'
+  - 'clone thematic_areas content'
   - 'create and edit custom blocks'
   - 'create article content'
   - 'create audio media'
@@ -171,6 +190,8 @@ permissions:
   - 'delete own opportunity content'
   - 'delete own overlay media'
   - 'delete own page content'
+  - 'delete own press_clipping content'
+  - 'delete own press_release content'
   - 'delete own project content'
   - 'delete own publications content'
   - 'delete own remote_video media'
@@ -231,6 +252,8 @@ permissions:
   - 'edit any opportunity content'
   - 'edit any overlay media'
   - 'edit any page content'
+  - 'edit any press_clipping content'
+  - 'edit any press_release content'
   - 'edit any project content'
   - 'edit any publications content'
   - 'edit any remote_video media'
@@ -255,6 +278,8 @@ permissions:
   - 'edit own opportunity content'
   - 'edit own overlay media'
   - 'edit own page content'
+  - 'edit own press_clipping content'
+  - 'edit own press_release content'
   - 'edit own project content'
   - 'edit own publications content'
   - 'edit own remote_video media'
@@ -335,6 +360,8 @@ permissions:
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view page revisions'
+  - 'view press_clipping revisions'
+  - 'view press_release revisions'
   - 'view project revisions'
   - 'view publications revisions'
   - 'view resource revisions'

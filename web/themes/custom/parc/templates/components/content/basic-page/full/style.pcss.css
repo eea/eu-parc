@@ -367,6 +367,10 @@
 }
 
 .page--sria {
+  .menu--main {
+    display: none;
+  }
+
   .block-field-blocknodebasic-pagefield-banner {
     display: none;
   }
@@ -415,4 +419,27 @@
 
 #colorbox:has(img[src$=".svg"]) #cboxContent {
   width: calc(80vw - 30px) !important;
+}
+
+.toc-breadcrumb {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.1em;
+
+  ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: inline-block;
+
+      &:not(:first-child) {
+        &:before {
+          content: '|';
+        }
+      }
+    }
+  }
 }

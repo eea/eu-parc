@@ -43,3 +43,21 @@ mark {
 .svg-title {
   font-family: "PARC";
 }
+
+.link--download {
+  &:after {
+    content: '';
+    background-image: url("../../img/download.svg");
+
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 20px;
+    width: 20px;
+    margin-bottom: -7px;
+    margin-left: 5px;
+  }
+}
