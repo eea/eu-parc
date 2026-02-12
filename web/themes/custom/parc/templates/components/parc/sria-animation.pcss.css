@@ -1,0 +1,78 @@
+.sria-animation {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: calc(clamp(60px, 12vw, 120px) * 4.3);
+
+  + p, + a {
+    *  {
+      color: #000 !important;
+    }
+  }
+
+  .type-container {
+    position: absolute;
+    font-family: "PARC", sans-serif;
+    font-size: clamp(60px, 12vw, 120px);
+    line-height: 0.8;
+    letter-spacing: -0.10cap;
+    color: black;
+    white-space: pre;
+    width: 100%;
+    height: 100%;
+  }
+
+  #trail-layer,
+  #scramble-layer,
+  #final-layer {
+    position: absolute;
+    white-space: pre;
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  #trail-layer {
+    z-index: 1;
+  }
+
+  #scramble-layer {
+    z-index: 10;
+  }
+
+  #final-layer {
+    z-index: 20;
+  }
+
+  .trail-frame {
+    position: absolute;
+    opacity: 0.20;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  .final-letter {
+    color: #000;
+    opacity: 0;
+    transition: opacity 0.9s ease-out;
+  }
+
+  .last-row {
+    color: #AED3FF;
+    opacity: 0.50;
+  }
+}
+
+.container:has(.sria-animation) {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}

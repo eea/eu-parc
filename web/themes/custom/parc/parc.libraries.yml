@@ -637,3 +637,13 @@ chemicals:
   css:
     component:
       css/components/parc/chemicals.css: {}
+
+sria-animation:
+  css:
+    component:
+      css/components/parc/sria-animation.css: {}
+  js:
+    js/sria-animation.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
