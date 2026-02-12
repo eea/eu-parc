@@ -60,3 +60,19 @@
   background: #FFF;
   padding: 30px 0;
 }
+
+span.separator-text.svg-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  opacity: .9;
+  padding: 0;
+  word-break: break-all;
+  hyphens: none;
+  z-index: -1;
+}
+
+span.real-text {
+  padding-top: calc(max(3.125rem, min(11vw, 10.75rem)) * 1.5);
+}
