@@ -65,6 +65,7 @@
         "drupal/ctools": "^4.0",
         "drupal/devel": "^5.2",
         "drupal/draggableviews": "^2.1",
+        "drupal/easy_breadcrumb": "^2.0",
         "drupal/edw_healthcheck": "^1.20",
         "drupal/edwt": "2.1.4",
         "drupal/embed_block": "1.x-dev@dev",

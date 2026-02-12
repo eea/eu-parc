@@ -246,6 +246,9 @@ settings:
         -
           label: Subnote
           element: '<p class="subnote">'
+        -
+          label: 'Download link'
+          element: '<a class="link--download">'
     media_media:
       allow_view_mode_override: false
 image_upload:
