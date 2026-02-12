@@ -426,6 +426,7 @@
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.1em;
+  padding-top: 16px;
 
   ol {
     list-style-type: none;
