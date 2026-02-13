@@ -34,6 +34,7 @@ mark {
 .custom-highlight-marker-22 { color: #d21a46; }
 .custom-highlight-marker-23 { color: #605601; }
 .custom-highlight-marker-24 { color: #1879eb; }
+.custom-highlight-marker-25 { color: #03564C; }
 
 .subnote {
   font-size: 12px;
@@ -60,4 +61,8 @@ mark {
     margin-bottom: -7px;
     margin-left: 5px;
   }
+}
+
+.text--indented {
+  padding-left: 40px;
 }
