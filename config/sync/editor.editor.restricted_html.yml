@@ -217,6 +217,13 @@ settings:
           type:
             marker: marker
             pen: '0'
+        -
+          title: color-25
+          color: '#03564c'
+          class_suffix: '25'
+          type:
+            marker: marker
+            pen: '0'
       use_default_markers: false
       attach_styles: false
     ckeditor5_sourceEditing:
@@ -249,8 +256,11 @@ settings:
         -
           label: 'Download link'
           element: '<a class="link--download">'
+        -
+          label: 'Indented text'
+          element: '<p class="text--indented">'
     media_media:
-      allow_view_mode_override: false
+      allow_view_mode_override: true
 image_upload:
   status: true
   scheme: public

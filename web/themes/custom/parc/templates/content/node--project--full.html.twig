@@ -141,13 +141,11 @@
         {{ survey_form }}
       {% endif %}
 
-      {% if projects_block %}
-        <div class="layout">
-          <div class="container justify-content-center">
-            {{ projects_block }}
-          </div>
+      <div class="layout">
+        <div class="container justify-content-center">
+          {{ drupal_view('projects', 'block_1') }}
         </div>
-      {% endif %}
+      </div>
     </article>
   </div>
 

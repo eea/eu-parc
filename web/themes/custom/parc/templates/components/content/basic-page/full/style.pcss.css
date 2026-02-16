@@ -70,6 +70,15 @@
   }
 }
 
+.chapter-title-separator {
+  margin-bottom: 40px;
+
+  @media (--lg) {
+    margin-left: 3%;
+    margin-right: 3%;
+  }
+}
+
 .media-lightbox {
   margin-bottom: 40px;
   width: 100%;
@@ -367,7 +376,7 @@
 }
 
 .page--sria {
-  .menu--main {
+  .layout--parc-content .menu--main {
     display: none;
   }
 
@@ -426,6 +435,7 @@
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.1em;
+  padding-top: 16px;
 
   ol {
     list-style-type: none;
