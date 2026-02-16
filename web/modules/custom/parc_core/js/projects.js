@@ -8,6 +8,9 @@
       var project_keywords_counts = [];
       var project_topics_counts = [];
 
+      var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+
       var keywords = settings.parc_projects.keywords ?? {};
       var topics = settings.parc_projects.topics ?? {};
       var projects_list = settings.parc_projects.projects_list ?? {};
@@ -32,7 +35,7 @@
 
       function drawCurve(project, term, type) {
         let project_div = $('.projects-chart div[data-project="' + project + '"]');
-        let term_div = $('.projects-chart div[data-' + type + '="' + term  + '"]');
+        let term_div = $('.projects-chart div[data-' + type + '="' + term + '"]');
         let path_element = $('.projects-chart path[data-project="' + project + '"][data-' + type + '="' + term + '"]');
 
         let startX;
@@ -74,6 +77,7 @@
           }
 
           spacing = 3;
+
           startX = project_div.position().left + div_spacing;
           startX += project_div.outerWidth();
 
@@ -92,29 +96,75 @@
         }
 
         // https://stackoverflow.com/questions/45240401/svg-path-create-a-curvy-line-to-link-two-points
+
+        if (type == 'keyword' && isSafari) {
+          var width = Math.abs(endX - startX);
+          var height = endY - startY; // Can be negative
+
+          // Use 20% of width for the curve parts
+          var k = width * 0.2;
+
+          // Calculate dy to maintain tangent continuity
+          // dy = (k * H) / (2 * (W - k))
+          // But since we use k on both sides, total horizontal span for curves is 2k. Line is W - 2k.
+          // Wait, logic: k is span of one curve.
+          // Slope of line m = (H - 2dy) / (W - 2k).
+          // Slope of curve at join m = 2*dy / k.
+          // (H - 2*dy) * k = 2*dy * (W - 2k)
+          // k*H - 2*dy*k = 2*dy*W - 4*dy*k
+          // k*H = 2*dy*W - 2*dy*k = 2*dy*(W - k)
+          // dy = (k*H) / (2*(W-k))
+
+          var dy = (k * height) / (2 * (width - k));
+
+          var cp1x = startX + k / 2;
+          var cp1y = startY;
+          var p1x = startX + k;
+          var p1y = startY + dy;
+
+          var p2x = endX - k;
+          var p2y = endY - dy;
+          var cp2x = endX - k / 2;
+          var cp2y = endY;
+
+          if (width < 2) {
+            // Fallback for extremely small width
+            path_element.attr('d', 'M' + Math.round(startX) + ',' + Math.round(startY) + ' L' + Math.round(endX) + ',' + Math.round(endY));
+            return;
+          }
+
+          var path = 'M' + Math.round(startX) + ',' + Math.round(startY) +
+            ' Q' + Math.round(cp1x) + ',' + Math.round(cp1y) + ' ' + Math.round(p1x) + ',' + Math.round(p1y) +
+            ' L' + Math.round(p2x) + ',' + Math.round(p2y) +
+            ' Q' + Math.round(cp2x) + ',' + Math.round(cp2y) + ' ' + Math.round(endX) + ',' + Math.round(endY);
+
+          path_element.attr('d', path);
+          return;
+        }
+
         // M
-        var AX = startX;
-        var AY = startY;
+        var AX = Math.round(startX);
+        var AY = Math.round(startY);
 
         // L
-        var BX = Math.abs(endX - startX) * 0.01 + startX;
-        var BY = startY;
+        var BX = Math.round(Math.abs(endX - startX) * 0.01 + startX);
+        var BY = Math.round(startY);
 
         // C
-        var CX = (endX - startX) * 0.75 + startX;
-        var CY = startY;
-        var DX = (endX - startX) * 0.25 + startX;
-        var DY = endY;
-        var EX = - Math.abs(endX - startX) * 0.01 + endX;
-        var EY = endY;
+        var CX = Math.round((endX - startX) * 0.75 + startX);
+        var CY = Math.round(startY);
+        var DX = Math.round((endX - startX) * 0.25 + startX);
+        var DY = Math.round(endY);
+        var EX = Math.round(- Math.abs(endX - startX) * 0.01 + endX);
+        var EY = Math.round(endY);
 
         // L
-        var FX = endX;
-        var FY = endY;
+        var FX = Math.round(endX);
+        var FY = Math.round(endY);
 
         var path = 'M' + AX + ',' + AY;
         path += ' L' + BX + ',' + BY;
-        path +=  ' ' + 'C' + CX + ',' + CY;
+        path += ' ' + 'C' + CX + ',' + CY;
         path += ' ' + DX + ',' + DY;
         path += ' ' + EX + ',' + EY;
         path += ' L' + FX + ',' + FY;
@@ -126,7 +176,7 @@
         drawProjectsBlock();
       });
 
-      $(window).resize(function() {
+      $(window).resize(function () {
         drawProjectsBlock();
       });
 
@@ -141,11 +191,11 @@
         });
 
         if (topic_id) {
-          $('.projects-chart path[data-topic]:not([data-topic="' + topic_id +'"])').addClass('unfocused');
+          $('.projects-chart path[data-topic]:not([data-topic="' + topic_id + '"])').addClass('unfocused');
           $('.projects-chart .project-topic:not([data-topic="' + topic_id + '"])').addClass('unfocused');
         }
         if (keyword_id) {
-          $('.projects-chart path[data-keyword]:not([data-keyword="' + keyword_id +'"])').addClass('unfocused');
+          $('.projects-chart path[data-keyword]:not([data-keyword="' + keyword_id + '"])').addClass('unfocused');
           $('.projects-chart .project-keyword:not([data-keyword="' + keyword_id + '"])').addClass('unfocused');
         }
       }
