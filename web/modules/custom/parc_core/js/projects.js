@@ -32,7 +32,7 @@
 
       function drawCurve(project, term, type) {
         let project_div = $('.projects-chart div[data-project="' + project + '"]');
-        let term_div = $('.projects-chart div[data-' + type + '="' + term  + '"]');
+        let term_div = $('.projects-chart div[data-' + type + '="' + term + '"]');
         let path_element = $('.projects-chart path[data-project="' + project + '"][data-' + type + '="' + term + '"]');
 
         let startX;
@@ -93,28 +93,28 @@
 
         // https://stackoverflow.com/questions/45240401/svg-path-create-a-curvy-line-to-link-two-points
         // M
-        var AX = startX;
-        var AY = startY;
+        var AX = Math.round(startX);
+        var AY = Math.round(startY);
 
         // L
-        var BX = Math.abs(endX - startX) * 0.01 + startX;
-        var BY = startY;
+        var BX = Math.round(Math.abs(endX - startX) * 0.01 + startX);
+        var BY = Math.round(startY);
 
         // C
-        var CX = (endX - startX) * 0.75 + startX;
-        var CY = startY;
-        var DX = (endX - startX) * 0.25 + startX;
-        var DY = endY;
-        var EX = - Math.abs(endX - startX) * 0.01 + endX;
-        var EY = endY;
+        var CX = Math.round((endX - startX) * 0.75 + startX);
+        var CY = Math.round(startY);
+        var DX = Math.round((endX - startX) * 0.25 + startX);
+        var DY = Math.round(endY);
+        var EX = Math.round(- Math.abs(endX - startX) * 0.01 + endX);
+        var EY = Math.round(endY);
 
         // L
-        var FX = endX;
-        var FY = endY;
+        var FX = Math.round(endX);
+        var FY = Math.round(endY);
 
         var path = 'M' + AX + ',' + AY;
         path += ' L' + BX + ',' + BY;
-        path +=  ' ' + 'C' + CX + ',' + CY;
+        path += ' ' + 'C' + CX + ',' + CY;
         path += ' ' + DX + ',' + DY;
         path += ' ' + EX + ',' + EY;
         path += ' L' + FX + ',' + FY;
@@ -126,7 +126,7 @@
         drawProjectsBlock();
       });
 
-      $(window).resize(function() {
+      $(window).resize(function () {
         drawProjectsBlock();
       });
 
@@ -141,11 +141,11 @@
         });
 
         if (topic_id) {
-          $('.projects-chart path[data-topic]:not([data-topic="' + topic_id +'"])').addClass('unfocused');
+          $('.projects-chart path[data-topic]:not([data-topic="' + topic_id + '"])').addClass('unfocused');
           $('.projects-chart .project-topic:not([data-topic="' + topic_id + '"])').addClass('unfocused');
         }
         if (keyword_id) {
-          $('.projects-chart path[data-keyword]:not([data-keyword="' + keyword_id +'"])').addClass('unfocused');
+          $('.projects-chart path[data-keyword]:not([data-keyword="' + keyword_id + '"])').addClass('unfocused');
           $('.projects-chart .project-keyword:not([data-keyword="' + keyword_id + '"])').addClass('unfocused');
         }
       }
