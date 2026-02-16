@@ -101,9 +101,9 @@
         var BY = Math.round(startY);
 
         // C
-        var CX = Math.round((endX - startX) * 0.5 + startX);
+        var CX = Math.round((endX - startX) * 0.75 + startX);
         var CY = Math.round(startY);
-        var DX = Math.round((endX - startX) * 0.5 + startX);
+        var DX = Math.round((endX - startX) * 0.25 + startX);
         var DY = Math.round(endY);
         var EX = Math.round(- Math.abs(endX - startX) * 0.01 + endX);
         var EY = Math.round(endY);
