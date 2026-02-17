@@ -1,0 +1,94 @@
+uuid: 0d826072-2dde-4111-ac15-90fcd5436556
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_survey
+    - node.type.chemical
+    - paragraphs.paragraphs_type.survey
+  module:
+    - entity_reference_revisions
+id: node.chemical.field_survey
+field_name: field_survey
+entity_type: node
+bundle: chemical
+label: Survey
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      survey: survey
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 14
+        enabled: false
+      card:
+        weight: 15
+        enabled: false
+      cards:
+        weight: 25
+        enabled: false
+      carousel_item:
+        weight: 16
+        enabled: false
+      chapter_title:
+        weight: 27
+        enabled: false
+      chemical_health_effects:
+        weight: 29
+        enabled: false
+      chemicals_exposure_sources:
+        weight: 28
+        enabled: false
+      contact:
+        weight: 17
+        enabled: false
+      faq:
+        weight: 31
+        enabled: false
+      grid:
+        weight: 18
+        enabled: false
+      icon_title:
+        weight: 33
+        enabled: false
+      lab_matrix:
+        weight: 19
+        enabled: false
+      links_list:
+        weight: 20
+        enabled: false
+      media:
+        weight: 21
+        enabled: false
+      newsletter:
+        weight: 22
+        enabled: false
+      partner:
+        weight: 23
+        enabled: false
+      sria_card:
+        weight: 39
+        enabled: false
+      survey:
+        weight: 24
+        enabled: true
+      svg_text:
+        weight: 25
+        enabled: false
+      text:
+        weight: 42
+        enabled: false
+      two_column:
+        weight: 43
+        enabled: false
+      what_we_do:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

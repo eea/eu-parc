@@ -62,6 +62,10 @@
   border-radius: 6px;
   overflow: hidden;
 
+  @media (--downMd) {
+    border-radius: 0;
+  }
+
   .paragraph--two-column {
     &__column {
       &--left {
@@ -235,6 +239,9 @@
     transition: background-color 0.3s ease;
     min-height: 291px;
 
+    @media (--sm) {
+      border-radius: 6px 6px 0 0;
+    }
 
     &:hover {
       background-color: var(--primary-color);
@@ -359,6 +366,20 @@
     }
   }
 
+  .survey-form-wrapper {
+    background-color: var(--secondary-color);
+    border-radius: 6px;
+
+    .survey-result-percent {
+      background-color: var(--primary-color) !important;
+      opacity: .4 !important;
+    }
+
+    p {
+      color: #000;
+    }
+  }
+
   &.is-expanded {
     .chemical-accordion__toggle-icon::after {
       transform: rotate(90deg);
@@ -377,6 +398,7 @@
     .nav-tabs {
       justify-content: center;
       gap: 7px;
+      border: none;
 
       @media (max-width: 576px) {
         gap: 0;
@@ -397,6 +419,7 @@
         font-size: 20px;
         padding: 10px 30px;
         background-color: var(--secondary-color);
+        margin: 0;
 
         @media (max-width: 576px) {
           border-radius: 0;

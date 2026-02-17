@@ -749,8 +749,10 @@ function template_preprocess_parc_indicator_groups(array &$variables) {
  * Implements hook_preprocess_HOOK() for node templates.
  */
 function parc_core_preprocess_node(&$variables) {
-  if ($variables['view_mode'] == 'full') {
-    $node = $variables['node'];
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  
+  if ($variables['view_mode'] == 'full' || $node->bundle() == 'chemical') {
     if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
       $variables['#cache']['max-age'] = 0;
       $variables['survey_form'] = \Drupal::formBuilder()->getForm(SurveyForm::class, $node);

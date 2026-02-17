@@ -50,6 +50,12 @@
       <div class="tab-content">
         <div class="tab-pane fade show active" id="overview-{{ internal_id }}" role="tabpanel">
           {% block overview %}{% endblock %}
+          {% if block('related_questions') is defined and block('related_questions')|trim %}
+            <div class="chemical-accordion__related-section">
+              <h3>{{ 'Related questions'|t }}</h3>
+              {% block related_questions %}{% endblock %}
+            </div>
+          {% endif %}
         </div>
         {% if block('what_eu_does') is defined and block('what_eu_does')|trim %}
           <div class="tab-pane fade" id="eu-does-{{ internal_id }}" role="tabpanel">
@@ -65,12 +71,6 @@
     </div>
 
     <div class="chemical-accordion__related">
-      {% if block('related_questions') is defined and block('related_questions')|trim %}
-        <div class="chemical-accordion__related-section">
-          <h3>{{ 'Related questions'|t }}</h3>
-          {% block related_questions %}{% endblock %}
-        </div>
-      {% endif %}
       {% if block('related_within_parc') is defined and block('related_within_parc')|trim %}
         <div class="chemical-accordion__related-section">
           {% block related_within_parc %}{% endblock %}

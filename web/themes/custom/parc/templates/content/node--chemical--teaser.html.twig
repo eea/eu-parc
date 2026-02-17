@@ -16,6 +16,9 @@
   {% block what_eu_does %}
     {% if not node.field_what_eu_does.isEmpty %}
       {{ content.field_what_eu_does }}
+      {% if survey_form %}
+        {{ survey_form }}
+      {% endif %}
     {% endif %}
   {% endblock %}
 

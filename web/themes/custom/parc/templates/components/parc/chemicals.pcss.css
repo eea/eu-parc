@@ -60,3 +60,114 @@
 body:has(.tabs-header) header.sticky-top {
   position: static !important;
 }
+
+@media (--downMd) {
+  .container-chemicals {
+    .parc--details {
+      details > div {
+        padding-top: 40px;
+        background: #FFF;
+
+        &:has(input:checked) {
+          label {
+          }
+        }
+      }
+
+      input[type="checkbox"] {
+        display: none;
+
+        + label {
+          cursor: pointer;
+          width: 100%;
+          border-radius: 200px;
+          text-align: center;
+          color: #fff;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 100%;
+          padding: 8px;
+          background-color: var(--ci-bg);
+          border: 2px solid var(--ci-bg);
+          text-decoration: none;
+
+          &.bg--pfass,
+          &[for="filter-PFASs"] {
+            --ci-bg: #E45C4D !important;
+          }
+
+          &.bg--arsenic,
+          &[for="filter-Arsenic"] {
+            --ci-bg: #C064E4 !important;
+          }
+
+          &.bg--bisphenols,
+          &.bg--bisphenol,
+          &[for="filter-Bisphenol"],
+          &[for="filter-Bisphenols"] {
+            --ci-bg: #D7B040 !important;
+          }
+
+          &.bg--microplastics,
+          &[for="filter-Microplastics"] {
+            --ci-bg: #7DABE2 !important;
+          }
+
+          &.bg--dinch--plasticisers,
+          &[for="filter-DINCH & Plasticisers"] {
+            --ci-bg: #CF782B !important;
+          }
+
+          &.bg--endocrine-disruptors,
+          &[for="filter-Disruptors"] {
+            --ci-bg: #1B90B1 !important;
+          }
+
+          &.bg--nanoplastics,
+          &[for="filter-Nanoplastics"] {
+            --ci-bg: #7E1A0E !important;
+          }
+
+          &.bg--metals,
+          &[for="filter-Metals"] {
+            --ci-bg: #6E009A !important;
+          }
+
+          &.bg--phthalates,
+          &[for="filter-Phthalates"] {
+            --ci-bg: #9B9B9B !important;
+          }
+
+          &.bg--mercury,
+          &[for="filter-Mercury"] {
+            --ci-bg: #E21337 !important;
+          }
+
+          &.bg--pesticides,
+          &[for="filter-Pesticides"] {
+            --ci-bg: #5658E7 !important;
+          }
+        }
+
+        &:checked {
+          + label {
+            opacity: 1 !important;
+            border: 2px solid #000;
+          }
+        }
+      }
+    }
+  }
+
+  .row {
+    margin: 0 !important;
+    width: 100% !important;
+
+    .col {
+      padding: 0;
+      margin-left: 15px;
+      min-width: calc(100% - 30px);
+      flex-grow: 0;
+    }
+  }
+}
