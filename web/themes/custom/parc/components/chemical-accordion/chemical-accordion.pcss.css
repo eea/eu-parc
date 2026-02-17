@@ -375,6 +375,13 @@
       opacity: .4 !important;
     }
 
+    .survey-option-link:hover,
+    .survey-option-link:active,
+    .survey-option-link:focus {
+      background-color: color-mix(in srgb, var(--primary-color) 40%, transparent) !important;
+      color: #000;
+    }
+
     p {
       color: #000;
     }
