@@ -47,17 +47,18 @@ class Indicator1Sub1 extends Indicator9Sub2 {
       'CZ' => ['country' => 'Czech Republic', 'category' => 'member', 'x' => 480, 'y' => 430],
       'AT' => ['country' => 'Austria', 'category' => 'member', 'x' => 450, 'y' => 490],
       'SK' => ['country' => 'Slovakia', 'category' => 'member', 'x' => 530, 'y' => 470],
-      'HU' => ['country' => 'Hungary', 'category' => 'member', 'x' => 530, 'y' => 490],
+      'HU' => ['country' => 'Hungary', 'category' => 'member', 'x' => 520, 'y' => 490],
       'IT' => ['country' => 'Italy', 'category' => 'member', 'x' => 440, 'y' => 650],
       'SI' => ['country' => 'Slovenia', 'category' => 'member', 'x' => 460, 'y' => 510],
-      'HR' => ['country' => 'Croatia', 'category' => 'member', 'x' => 480, 'y' => 580],
-      'GR' => ['country' => 'Greece', 'category' => 'member', 'x' => 560, 'y' => 650],
+      'HR' => ['country' => 'Croatia', 'category' => 'member', 'x' => 500, 'y' => 580],
+      'GR' => ['country' => 'Greece', 'category' => 'member', 'x' => 560, 'y' => 660],
       'CY' => ['country' => 'Cyprus', 'category' => 'member', 'x' => 660, 'y' => 660],
       'IL' => ['country' => 'Israel', 'category' => 'non-associated', 'x' => 680, 'y' => 700],
       'ES' => ['country' => 'Spain', 'category' => 'member', 'x' => 230, 'y' => 630],
       'PT' => ['country' => 'Portugal', 'category' => 'member', 'x' => 180, 'y' => 630],
       'CH' => ['country' => 'Switzerland', 'category' => 'associated', 'x' => 390, 'y' => 490],
       'IE' => ['country' => 'Ireland', 'category' => 'associated', 'x' => 210, 'y' => 360],
+      'ME' => ['country' => 'Montenegro', 'category' => 'associated', 'x' => 520, 'y' => 610],
     ];
 
     $table_data = $this->transposeArray($table_data);
