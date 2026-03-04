@@ -255,6 +255,7 @@
       display: inline-block;
       white-space: nowrap;
       font-size: 20px;
+      margin-right: 22px;
     }
 
     #dropup-trigger.overflowing span,
