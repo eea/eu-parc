@@ -23,6 +23,10 @@
     padding-top: 20px;
     z-index: 50;
 
+    @media (--downLg) {
+      top: 60px;
+    }
+
     .nav-tabs {
       justify-content: center;
       gap: 20px;

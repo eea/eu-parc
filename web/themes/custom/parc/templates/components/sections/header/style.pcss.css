@@ -106,8 +106,7 @@ header {
   }
 
   .mm-collapse-1 {
-    display: none !important;
-    visibility: hidden !important;
+    position: static !important;
   }
 
   .navbar-collapse {
@@ -150,7 +149,7 @@ header {
 
       .d-lg-none {
         text-decoration: none;
-        padding: 14px 16px 14px 0;
+        padding: 14px 0 14px 0;
         color: var(--c-white);
         width: 100%;
         display: flex;
@@ -276,8 +275,36 @@ header {
     }
   }
 
+  @media (--downLg) {
+    ul {
+      padding-left: 20px !important;
+    }
+  }
+
   .second-level {
     padding-left: var(--second-level--pl);
+
+    @media (--downLg) {
+      --second-level--pl: 32px;
+
+      button {
+        color: #FFF !important;
+        font-weight: normal !important;
+        font-size: 18px !important;
+        padding: 6px 0 !important;
+        text-align: left;
+
+        &:not(.fakelink) {
+        width: auto !important;
+        }
+
+        svg {
+          flex-grow: 0;
+          flex-shrink: 0;
+          width: 14px;
+        }
+      }
+    }
   }
 
   &.nav-main {
@@ -293,33 +320,41 @@ header {
       --navbar-active-color: var(--c-dark);
     }
 
-    .mm-collapse-1 {
-      position: absolute;
-      inset-block: 0;
-      left: 100%;
-      padding-bottom: 0;
-      display: none;
-      min-width: 270px;
+    @media (--lg) {
+      .mm-collapse-1 {
+        position: absolute;
+        inset-block: 0;
+        left: 100%;
+        padding-bottom: 0;
+        display: none;
+        min-width: 270px;
+      }
     }
 
-    .mm-collapse-2 {
-      position: absolute;
-      inset-block: 0;
-      left: 100%;
-      padding-bottom: 0;
-      display: none;
-      min-width: 270px;
+    @media (--lg) {
+      .mm-collapse-2 {
+        position: absolute;
+        inset-block: 0;
+        left: 100%;
+        padding-bottom: 0;
+        display: none;
+        min-width: 270px;
+      }
     }
 
     .nav-link-level-1:hover {
       .mm-collapse-1 {
-        display: block;
+        @media (--lg) {
+          display: block;
+        }
       }
     }
 
     .nav-link-level-2:hover {
       .mm-collapse-2 {
-        display: block;
+        @media (--lg) {
+          display: block;
+        }
       }
     }
 
@@ -557,5 +592,29 @@ header {
 
   @media (--lg) {
     display: block;
+  }
+}
+
+.d-down-lg-none {
+  @media (--downLg) {
+    display: none;
+  }
+}
+
+.mm-level-2,
+.mm-level-3,
+.mm-level-4,
+.mm-level-5 {
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 3px;
+    height: calc(100% - 20px);
+    border-radius: 200px;
+    background: #FFF;
+    position: absolute;
+    top: 10px;
+    left: 3px;
   }
 }

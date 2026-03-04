@@ -98,6 +98,7 @@
 .navbar-collapse {
   flex-basis: 100%;
   flex-grow: 1;
+  z-index: 500;
 }
 
 .navbar-toggler {

@@ -97,14 +97,25 @@
       border: 1px solid #fff !important;
       border-bottom: none !important;
       width: 100%;
-      background-color: #EEEBEB;
-      color: #999898;
-      padding-top: 26px;
-      padding-bottom: 26px;
+      background-color: #FFF;
+      color: #000;
+      padding-top: 16px;
+      padding-bottom: 16px;
       text-decoration: none !important;
       font-size: 20px;
       font-weight: 500;
       border-radius: 8px 8px 0 0;
+
+      @media (--downLg) {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 14px;
+
+        &:not(.active) {
+          background-color: #FFF !important;
+          color: #000 !important;
+        }
+      }
 
       &.active, &:hover {
         background-color: #F5F5F5;
@@ -114,6 +125,13 @@
 
     > div {
       flex: 1;
+    }
+  }
+
+  @media (--downMd) {
+    .nav, .tab-content {
+      margin-left: -20px;
+      margin-right: -20px;
     }
   }
 
@@ -212,6 +230,10 @@
   align-items: center;
   position: relative;
   justify-content: center;
+
+  @media (--downMd) {
+    padding: 0;
+  }
 }
 
 .indicator-chart {
@@ -543,8 +565,39 @@ text.axis-label {
   }
 
   &[data-chart-type="map"] {
+    @media (--downMd) {
+      .legend {
+        top: 6px;
+      }
+    }
+
     .indicator-container {
       min-height: 778px;
+
+      @media (--downMd) {
+        min-height: 0;
+
+        svg {
+          height: 740px;
+
+          g:first-child {
+            transform: translateY(-23px) !important;
+          }
+
+          g.legend0 {
+            transform: translate(-1020px, 0px);
+          }
+
+          g.legend1 {
+            transform: translate(-1020px, 20px);
+          }
+
+          g.legend2 {
+            transform: translate(-1020px, 40px);
+          }
+
+        }
+      }
     }
   }
 

@@ -58,7 +58,9 @@
 }
 
 body:has(.tabs-header) header.sticky-top {
-  position: static !important;
+  @media (--lg) {
+    position: static !important;
+  }
 }
 
 @media (--downMd) {
