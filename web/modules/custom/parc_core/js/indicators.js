@@ -11,8 +11,8 @@
     attach: function (context, settings) {
       const observerOptions = {
         root: null,
-        rootMargin: "0px",
-        threshold: 1,
+        rootMargin: "50px",
+        threshold: 0.1,
       };
       Drupal.behaviors.bootstrapPopover.attach();
       const chartObserver = new IntersectionObserver((entries, observer) => {
@@ -1836,7 +1836,7 @@
           .data(Object.keys(categories))
           .enter()
           .append("g")
-          .attr("class", "legend")
+          .attr("class", (d, i) => `legend legend${i}`)
           .attr("transform", (d, i) => `translate(${-width},${i * 20})`)
           .style("cursor", "pointer")
           .on("click", function (event, d) {
