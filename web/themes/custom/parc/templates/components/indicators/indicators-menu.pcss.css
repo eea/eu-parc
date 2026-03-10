@@ -1,4 +1,8 @@
 .indicators-menu {
+  @media (--downMd) {
+    gap: 20px;
+  }
+
   &__topic {
     &__main {
       background-color: var(--c-body-bg);
