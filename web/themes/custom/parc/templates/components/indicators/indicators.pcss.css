@@ -11,6 +11,12 @@
     }
   }
 
+  .links-container {
+    @media (--downLg) {
+      padding-right: 0;
+    }
+  }
+
   .download-link,
   .copy-link {
     display: flex;
