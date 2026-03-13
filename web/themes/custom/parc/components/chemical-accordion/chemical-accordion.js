@@ -107,24 +107,26 @@
         });
       });
 
-      // Handle URL parameter on page load
-      const urlParams = new URLSearchParams(window.location.search);
-      const activeChemical = urlParams.get('chemical');
-      if (activeChemical) {
-        const targetAccordion = document.querySelector(`.chemical-accordion[data-chemical="${activeChemical}"]`);
-        if (targetAccordion) {
-          // We need to wait a bit for potential lazy loading or other scripts
-          setTimeout(() => {
-            const topOffset = targetAccordion.getBoundingClientRect().top + window.pageYOffset - 70;
-            window.scrollTo({
-              top: topOffset,
-              behavior: 'smooth'
-            });
-            const toggle = targetAccordion.querySelector('.js-chemical-accordion-toggle');
-            if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
-              toggle.click();
-            }
-          }, 500);
+      // Handle URL parameter on page load only
+      if (context === document) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const activeChemical = urlParams.get('chemical');
+        if (activeChemical) {
+          const targetAccordion = document.querySelector(`.chemical-accordion[data-chemical="${activeChemical}"]`);
+          if (targetAccordion) {
+            // We need to wait a bit for potential lazy loading or other scripts
+            setTimeout(() => {
+              const topOffset = targetAccordion.getBoundingClientRect().top + window.pageYOffset - 70;
+              window.scrollTo({
+                top: topOffset,
+                behavior: 'smooth'
+              });
+              const toggle = targetAccordion.querySelector('.js-chemical-accordion-toggle');
+              if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+                toggle.click();
+              }
+            }, 500);
+          }
         }
       }
     },

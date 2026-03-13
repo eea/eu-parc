@@ -375,6 +375,30 @@
       opacity: .4 !important;
     }
 
+    .survey-progress-bar {
+      background-color: color-mix(in srgb, var(--primary-color) 40%, var(--secondary-color)) !important;
+    }
+
+    .survey-navigation .survey-nav-actions {
+      .survey-btn-wrapper {
+        &:hover {
+          color: var(--primary-color);
+
+          &:after {
+            background-color: var(--primary-color) !important;
+          }
+        }
+      }
+
+      .survey-btn {
+        background-color: var(--primary-color);
+
+        &:hover {
+          color: var(--primary-color);
+        }
+      }
+    }
+
     .survey-option-link:hover,
     .survey-option-link:active,
     .survey-option-link:focus {

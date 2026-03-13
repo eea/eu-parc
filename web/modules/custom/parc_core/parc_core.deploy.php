@@ -1840,3 +1840,56 @@ function parc_core_deploy_health_effects() {
     $term->save();
   }
 }
+
+/**
+ * Migrate survey questions to multiple questions layout.
+ */
+function parc_core_deploy_survey_multiple_questions() {
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+  $vote_storage = \Drupal::entityTypeManager()->getStorage('vote');
+
+  // Load all paragraphs of type 'survey'
+  $survey_paragraphs = $paragraph_storage->loadByProperties(['type' => 'survey']);
+
+  foreach ($survey_paragraphs as $survey) {
+    if (!$survey->hasField('field_question') || $survey->get('field_question')->isEmpty()) {
+      continue;
+    }
+
+    $question_text = $survey->get('field_question')->value;
+    $options = $survey->get('field_options')->getValue();
+
+    // Create new survey_question paragraph
+    $survey_question = $paragraph_storage->create([
+      'type' => 'survey_question',
+      'field_question' => $question_text,
+      'field_options' => $options,
+    ]);
+    $survey_question->save();
+
+    // Attach to the survey's field_questions
+    $survey->set('field_questions', [
+      [
+        'target_id' => $survey_question->id(),
+        'target_revision_id' => $survey_question->getRevisionId(),
+      ]
+    ]);
+
+    // Migrate votes for the parent entity of this survey
+    $parent = $survey->getParentEntity();
+    if ($parent) {
+      $votes = $vote_storage->loadByProperties([
+        'entity_type' => $parent->getEntityTypeId(),
+        'entity_id' => $parent->id(),
+        'type' => 'vote',
+      ]);
+      foreach ($votes as $vote) {
+        $vote->set('entity_type', 'paragraph');
+        $vote->set('entity_id', $survey_question->id());
+        $vote->save();
+      }
+    }
+
+    $survey->save();
+  }
+}
