@@ -1,0 +1,97 @@
+uuid: ac8b4277-829f-4015-977b-17323b4e8d95
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_questions
+    - paragraphs.paragraphs_type.survey
+    - paragraphs.paragraphs_type.survey_question
+  module:
+    - entity_reference_revisions
+id: paragraph.survey.field_questions
+field_name: field_questions
+entity_type: paragraph
+bundle: survey
+label: Questions
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      survey_question: survey_question
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 24
+        enabled: false
+      card:
+        weight: 25
+        enabled: false
+      cards:
+        weight: 26
+        enabled: false
+      carousel_item:
+        weight: 27
+        enabled: false
+      chapter_title:
+        weight: 28
+        enabled: false
+      chemical_health_effects:
+        weight: 30
+        enabled: false
+      chemicals_exposure_sources:
+        weight: 29
+        enabled: false
+      contact:
+        weight: 31
+        enabled: false
+      faq:
+        weight: 32
+        enabled: false
+      grid:
+        weight: 33
+        enabled: false
+      icon_title:
+        weight: 34
+        enabled: false
+      lab_matrix:
+        weight: 35
+        enabled: false
+      links_list:
+        weight: 36
+        enabled: false
+      media:
+        weight: 37
+        enabled: false
+      newsletter:
+        weight: 38
+        enabled: false
+      partner:
+        weight: 39
+        enabled: false
+      sria_card:
+        weight: 40
+        enabled: false
+      survey:
+        weight: 41
+        enabled: false
+      survey_question:
+        weight: 42
+        enabled: true
+      svg_text:
+        weight: 43
+        enabled: false
+      text:
+        weight: 44
+        enabled: false
+      two_column:
+        weight: 45
+        enabled: false
+      what_we_do:
+        weight: 46
+        enabled: false
+field_type: entity_reference_revisions

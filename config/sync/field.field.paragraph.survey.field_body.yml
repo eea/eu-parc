@@ -1,0 +1,24 @@
+uuid: 335aad09-cb58-4aa9-a7e8-74e469d42a8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.restricted_html
+    - paragraphs.paragraphs_type.survey
+  module:
+    - text
+id: paragraph.survey.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: survey
+label: 'Finish message'
+description: 'The message shown on the final step of a multiple question survey'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - restricted_html
+field_type: text_long

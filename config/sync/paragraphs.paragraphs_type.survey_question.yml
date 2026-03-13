@@ -1,0 +1,10 @@
+uuid: 4d23631e-0dad-411f-9099-1d421597b234
+langcode: en
+status: true
+dependencies: {  }
+id: survey_question
+label: 'Survey question'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }
