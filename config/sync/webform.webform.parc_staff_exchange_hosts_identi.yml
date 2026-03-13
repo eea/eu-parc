@@ -1,0 +1,353 @@
+uuid: b85a97a3-24e1-479b-8340-e0e6bc3fd0d2
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 20
+template: false
+archive: false
+id: parc_staff_exchange_hosts_identi
+title: 'PARC Staff Exchange | Hosts Identification Survey'
+description: ''
+categories: {  }
+elements: |-
+  context_and_consent:
+    '#type': webform_wizard_page
+    '#title': 'Context and Consent'
+    training_in_parc:
+      '#type': checkbox
+      '#title': 'I confirm that I have read this information and agree that the information provided may be used in the terms mentioned above.'
+      '#description': '<h4><strong>Context and Consent</strong></h4><p>PARC facilitates staff exchange among partners for all those interested in receiving on-site, hands-on training in other laboratories. Staff exchange may be particularly useful to acquire complementary expertise on analytical methods, learn new techniques, and gain access to specific instruments and methods not available in the applicant’s institutions.</p><p>By filling in this survey you are indicating your availability to act as Host Laboratory. A few questions on institutional details and capacities, staff specific requirements, and working language(s) will follow. Data here obtained will be saved and stored by the National Institute of Health Dr. Ricardo Jorge, Portugal (INSA); names and email contacts will be used solely for the staff exchange process. Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679)</p><p>If you have any questions, please contact Carla Trindade Costa (carla.trindade@insa.min-saude.pt).</p><p>Thank you for taking the time to complete this survey.</p><p><strong>Task 9.4 co-leaders</strong><br>João Paulo Teixeira &amp; Carla Trindade Costa<br>NATIONAL INSTITUTE OF HEALTH DOUTOR RICARDO JORGE<br>Porto| Portugal<br><a href="https://www.insa.min-saude.pt">www.insa.min-saude.pt</a></p><h5>&nbsp;</h5>'
+      '#title_display': inline
+      '#description_display': before
+      '#required': true
+  institutional_details:
+    '#type': webform_wizard_page
+    '#title': 'Institutional Details'
+    dates:
+      '#type': textfield
+      '#title': Name
+      '#description': '<h4><strong>Institutional Details</strong></h4><h4>&nbsp;</h4><h5><strong>Name</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_2:
+      '#type': webform_markup
+      '#markup': '<br>'
+    organiser:
+      '#type': textfield
+      '#title': Address
+      '#description': '<h5><strong>Address</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_3:
+      '#type': webform_markup
+      '#markup': '<br>'
+  contact_person_details:
+    '#type': webform_wizard_page
+    '#title': ' Contact Person Details'
+    format:
+      '#type': textfield
+      '#title': Name
+      '#description': '<h4><strong>Contact Person Details</strong><br>(supervisor at Host Institution)</h4><h4><br><strong>Name</strong></h4>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_4:
+      '#type': webform_markup
+      '#markup': '<br>'
+    duration:
+      '#type': textfield
+      '#title': Address
+      '#description': '<h5><strong>Address</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+    spacer_5:
+      '#type': webform_markup
+      '#markup': '<br>'
+    number_of_credits:
+      '#type': email
+      '#title': Email_Address
+      '#description': '<h5><strong>Email address</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_6:
+      '#type': webform_markup
+      '#markup': '<br>'
+    fees:
+      '#type': tel
+      '#title': 'Phone Number'
+      '#description': '<h5><strong>Phone number</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_7:
+      '#type': webform_markup
+      '#markup': '<br>'
+  laboratory_description:
+    '#type': webform_wizard_page
+    '#title': '  Laboratory Description'
+    additional_comments_2:
+      '#type': textarea
+      '#title': 'Please provide some details on your lab expertise and infrastructures that may be of interest for external staff (field of work; available methodologies/instruments; involvement in international projects, namely in PARC, etc.).'
+      '#description': '<h4><strong>Laboratory Description</strong></h4><h5><br><strong>Please provide some details on your lab expertise and infrastructures that may be of interest for external staff </strong>(field of work; available methodologies/instruments; involvement in international projects, namely in PARC, etc.).</h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_8:
+      '#type': webform_markup
+      '#markup': '<br>'
+  staff_exchange_proposal:
+    '#type': webform_wizard_page
+    '#title': 'Staff Exchange Proposal'
+    objective:
+      '#type': textarea
+      '#title': Objective
+      '#description': '<h4><strong>Staff Exchange Proposal</strong></h4><h5>&nbsp;</h5><h5><strong>Objective</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_9:
+      '#type': webform_markup
+      '#markup': '<br>'
+    qualification_requirements:
+      '#type': textarea
+      '#title': 'Qualification requirements'
+      '#description': '<h5><strong>Qualification requirements</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer:
+      '#type': webform_markup
+      '#markup': '<br>'
+    minimum_and_maximum_duration_of_the_stay:
+      '#type': textarea
+      '#title': 'Minimum and maximum duration of the stay'
+      '#description': '<h5><strong>Minimum and maximum duration of the stay</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_10:
+      '#type': webform_markup
+      '#markup': '<br>'
+    best_timing_for_exchange_e_g_months_of_the_year:
+      '#type': textarea
+      '#title': 'Best timing for exchange (e.g. months of the year)'
+      '#description': '<h5><strong>Best timing for exchange (e.g. months of the year)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_11:
+      '#type': webform_markup
+      '#markup': '<br>'
+    working_language_s:
+      '#type': textfield
+      '#title': 'Working language(s)'
+      '#description': '<h5><strong>Working language(s)</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_1:
+      '#type': webform_markup
+      '#markup': '<br>'
+  additional_comments:
+    '#type': webform_wizard_page
+    '#title': 'Additional Comments'
+    please_add_here_any_additional_remarks_or_comments_you_may_have:
+      '#type': textarea
+      '#title': 'Please add here any additional remarks or comments you may have.'
+      '#description': '<h4><strong>Additional Comments</strong></h4><h5>&nbsp;</h5><h5><strong>Please add here any additional remarks or comments you may have.</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+    spacer_12:
+      '#type': webform_markup
+      '#markup': '<br>'
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: ''
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: true
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p><span class="TextRun SCXW77811384 BCX8 NormalTextRun" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:none !important;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:24px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-contrast="none" xml:lang="EN-GB" lang="EN-GB"><strong>Thank you for taking the time and focus to complete this survey.</strong></span><span class="EOP SCXW77811384 BCX8" style="-webkit-tap-highlight-color:transparent;-webkit-text-stroke-width:0px;-webkit-user-drag:none;background-color:rgb(255, 255, 255);color:rgb(0, 132, 117);font-family:Satoshi, Satoshi_EmbeddedFont, Satoshi_MSFontService, sans-serif;font-size:13pt;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;line-height:31.2px;margin:0px;orphans:2;padding:0px;text-align:justify;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:24px;text-transform:none;user-select:text;white-space:pre-wrap;widows:2;word-spacing:0px;" data-ccp-props="{&quot;201341983&quot;:0,&quot;335551550&quot;:6,&quot;335551620&quot;:6,&quot;335559731&quot;:360,&quot;335559739&quot;:80,&quot;335559740&quot;:312}"><strong>&nbsp;</strong></span></p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
