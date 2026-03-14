@@ -367,6 +367,7 @@
   }
 
   .survey-form-wrapper {
+    margin-top: 40px;
     background-color: var(--secondary-color);
     border-radius: 6px;
 

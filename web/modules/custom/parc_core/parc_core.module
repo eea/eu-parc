@@ -755,7 +755,13 @@ function parc_core_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full' || $node->bundle() == 'chemical') {
     if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
       $variables['#cache']['max-age'] = 0;
-      $variables['survey_form'] = \Drupal::formBuilder()->getForm(SurveyForm::class, $node);
+
+      /** @var \Drupal\parc_core\Form\SurveyForm $form_object */
+      $form_object = \Drupal::service('class_resolver')->getInstanceFromDefinition(SurveyForm::class);
+      $form_id = 'eu_parc_survey_form_' . $node->getEntityTypeId() . '_' . $node->id();
+      $form_object->setFormId($form_id);
+
+      $variables['survey_form'] = \Drupal::formBuilder()->getForm($form_object, $node);
     }
   }
 }
@@ -768,7 +774,13 @@ function parc_core_preprocess_taxonomy_term(&$variables) {
     $term = $variables['term'];
     if ($term instanceof TermInterface && $term->hasField('field_survey') && !$term->get('field_survey')->isEmpty()) {
       $variables['#cache']['max-age'] = 0;
-      $variables['survey_form'] = \Drupal::formBuilder()->getForm(SurveyForm::class, $term);
+
+      /** @var \Drupal\parc_core\Form\SurveyForm $form_object */
+      $form_object = \Drupal::service('class_resolver')->getInstanceFromDefinition(SurveyForm::class);
+      $form_id = 'eu_parc_survey_form_' . $term->getEntityTypeId() . '_' . $term->id();
+      $form_object->setFormId($form_id);
+
+      $variables['survey_form'] = \Drupal::formBuilder()->getForm($form_object, $term);
     }
   }
 }

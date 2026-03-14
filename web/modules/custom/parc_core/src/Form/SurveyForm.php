@@ -18,7 +18,7 @@ class SurveyForm extends FormBase {
    *
    * @var \Drupal\node\NodeInterface|\Drupal\taxonomy\TermInterface
    */
-  protected $entity;
+  // Removed global $entity to avoid clashing when multiple forms are on page.
 
   /**
    * The entity type manager.
@@ -28,9 +28,36 @@ class SurveyForm extends FormBase {
   protected $entityTypeManager;
 
   /**
+   * The custom form ID.
+   *
+   * @var string
+   */
+  protected $customFormId;
+
+  /**
+   * Sets the custom form ID.
+   *
+   * @param string $id
+   *   The form ID.
+   */
+  public function setFormId($id) {
+    $this->customFormId = $id;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {
+    if (!empty($this->customFormId)) {
+      return $this->customFormId;
+    }
+
+    // During AJAX, we need to match the ID from the request.
+    $form_id = \Drupal::request()->request->get('form_id');
+    if ($form_id && strpos($form_id, 'eu_parc_survey_form_') === 0) {
+      return $form_id;
+    }
+
     return 'eu_parc_survey_form';
   }
 
@@ -48,9 +75,18 @@ class SurveyForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, $entity = NULL) {
     if ($entity) {
-      $this->entity = $entity;
+      $form_state->set('entity_type', $entity->getEntityTypeId());
+      $form_state->set('entity_id', $entity->id());
     } else {
-      $entity = $this->entity;
+      $entity_type = $form_state->get('entity_type');
+      $entity_id = $form_state->get('entity_id');
+      if ($entity_type && $entity_id) {
+        $entity = $this->entityTypeManager->getStorage($entity_type)->load($entity_id);
+      }
+    }
+
+    if (!$entity) {
+      return $form;
     }
 
     $survey_paragraph = $entity->get('field_survey')->first()?->entity;
@@ -70,11 +106,39 @@ class SurveyForm extends FormBase {
       return $form;
     }
 
-    $current_question_index = $form_state->get('current_question') ?? 0;
-    
     $has_multiple = count($questions) > 1;
     $has_body = $survey_paragraph->hasField('field_body') && !$survey_paragraph->get('field_body')->isEmpty();
-    
+
+    $current_question_index = $form_state->get('current_question');
+    if ($current_question_index === NULL) {
+      $current_question_index = 0;
+      $all_voted = TRUE;
+      foreach ($questions as $index => $question) {
+        $q_entity_type = $question->getEntityTypeId() === 'paragraph' && $question->bundle() === 'survey_question' ? 'paragraph' : $entity->getEntityTypeId();
+        $q_vote_entity_id = $q_entity_type === 'paragraph' ? $question->id() : $entity->id();
+
+        $has_voted_on_q = $this->entityTypeManager->getStorage('vote')
+          ->getQuery()
+          ->condition('entity_type', $q_entity_type)
+          ->condition('entity_id', $q_vote_entity_id)
+          ->condition('vote_source', Vote::getCurrentIp())
+          ->count()
+          ->accessCheck(FALSE)
+          ->execute();
+
+        if (!$has_voted_on_q) {
+          $current_question_index = $index;
+          $all_voted = FALSE;
+          break;
+        }
+      }
+
+      if ($all_voted) {
+        $current_question_index = $has_multiple && $has_body ? count($questions) : count($questions) - 1;
+      }
+      $form_state->set('current_question', $current_question_index);
+    }
+
     $max_index = count($questions) - 1;
     if ($has_multiple && $has_body) {
       $max_index = count($questions);
@@ -118,8 +182,12 @@ class SurveyForm extends FormBase {
       ->accessCheck(FALSE)
       ->execute();
 
+    $anchor_id = 'survey';
+    if ($entity) {
+      $anchor_id .= '-' . $entity->getEntityTypeId() . '-' . $entity->id();
+    }
     $form['anchor'] = [
-      '#markup' => '<div id="survey"></div>',
+      '#markup' => "<div id=\"$anchor_id\"></div>",
     ];
 
     $form['question'] = [
@@ -135,7 +203,7 @@ class SurveyForm extends FormBase {
     $content_suffix = '</div>';
 
     if ($hasVoted) {
-      $form = $this->buildResults($form, $options, $vote_entity_id, $entity_type, $question_text, $numberOfVotes, $survey_paragraph, count($questions), $current_question_index);
+      $form['results'] = $this->buildResults($options, $vote_entity_id, $entity_type, $question_text, $numberOfVotes, $survey_paragraph, count($questions), $current_question_index);
       $form['results']['#prefix'] = $content_prefix;
       $form['results']['#suffix'] = $content_suffix;
     } else {
@@ -146,17 +214,24 @@ class SurveyForm extends FormBase {
         '#suffix' => $content_suffix,
       ];
 
+      $wrapper_id = 'survey-form-wrapper';
+      if ($entity) {
+        $wrapper_id .= '-' . $entity->getEntityTypeId() . '-' . $entity->id();
+      }
+
+      $button_name_prefix = 'vote_' . $entity->getEntityTypeId() . '_' . $entity->id() . '_';
+
       foreach ($options as $index => $label) {
         $form['options'][$index] = [
           '#type' => 'submit',
           '#value' => $label,
-          '#name' => 'vote_' . $index,
+          '#name' => $button_name_prefix . $index,
           '#attributes' => [
             'class' => ['survey-option-link'],
           ],
           '#ajax' => [
             'callback' => '::ajaxSubmit',
-            'wrapper' => 'survey-form-wrapper',
+            'wrapper' => $wrapper_id,
             'progress' => [
               'type' => 'none',
             ]
@@ -190,12 +265,20 @@ class SurveyForm extends FormBase {
 
     // Progress and Navigation (Only if it's new structure with multiple questions)
     if ($has_multiple) {
-      $this->buildNavigation($form, $form_state, $current_question_index, count($questions), $hasVoted, $survey_paragraph);
+      $wrapper_id = 'survey-form-wrapper';
+      if ($entity) {
+        $wrapper_id .= '-' . $entity->getEntityTypeId() . '-' . $entity->id();
+      }
+      $this->buildNavigation($form, $form_state, $current_question_index, count($questions), $hasVoted, $survey_paragraph, $wrapper_id);
     }
 
     $form['#attributes']['class'][] = 'container';
     $form['#attributes']['class'][] = 'survey-container';
     $form['#attributes']['class'][] = $is_completed ? 'is-completed' : 'not-completed';
+
+    if ($entity) {
+      $form['#id'] = 'eu-parc-survey-form-' . $entity->getEntityTypeId() . '-' . $entity->id();
+    }
 
     $color = $survey_paragraph->get('field_background_color')->color;
     $color_class = $color ? 'override-color' : '';
@@ -206,8 +289,14 @@ class SurveyForm extends FormBase {
       $color = '#B0E5DF';
     }
     
+    $form['#attached']['library'][] = 'parc/survey';
+
     if (!isset($form['#prefix'])) {
-      $form['#prefix'] = Markup::create("<div class=\"survey-form-wrapper $color_class\" style=\"--survey-color: $color;\" id=\"survey-form-wrapper\">");
+      $wrapper_id = 'survey-form-wrapper';
+      if ($entity) {
+        $wrapper_id .= '-' . $entity->getEntityTypeId() . '-' . $entity->id();
+      }
+      $form['#prefix'] = Markup::create("<div class=\"survey-form-wrapper $color_class\" style=\"--survey-color: $color;\" id=\"$wrapper_id\">");
       $form['#suffix'] = '</div>';
     }
 
@@ -232,9 +321,13 @@ class SurveyForm extends FormBase {
   public function ajaxVoteSubmit(array &$form, FormStateInterface $form_state) {
     $triggering_element = $form_state->getTriggeringElement();
     $clicked_button_name = $triggering_element['#name'];
-    $option_index = str_replace('vote_', '', $clicked_button_name);
+    $parts = explode('_', $clicked_button_name);
+    $option_index = end($parts);
+    $entity_type = $form_state->get('entity_type');
+    $entity_id = $form_state->get('entity_id');
+    $entity = $this->entityTypeManager->getStorage($entity_type)->load($entity_id);
 
-    $survey_paragraph = $this->entity->get('field_survey')->first()?->entity;
+    $survey_paragraph = $entity->get('field_survey')->first()?->entity;
     $questions = [];
     if ($survey_paragraph->hasField('field_questions') && !$survey_paragraph->get('field_questions')->isEmpty()) {
       $questions = $survey_paragraph->get('field_questions')->referencedEntities();
@@ -245,16 +338,16 @@ class SurveyForm extends FormBase {
     $current_question_index = $form_state->get('current_question') ?? 0;
     $current_question = $questions[$current_question_index];
     
-    $entity_type = $current_question->getEntityTypeId() === 'paragraph' && $current_question->bundle() === 'survey_question' ? 'paragraph' : $this->entity->getEntityTypeId();
-    $entity_id = $entity_type === 'paragraph' ? $current_question->id() : $this->entity->id();
+    $entity_type_vote = $current_question->getEntityTypeId() === 'paragraph' && $current_question->bundle() === 'survey_question' ? 'paragraph' : $entity_type;
+    $entity_id_vote = $entity_type_vote === 'paragraph' ? $current_question->id() : $entity_id;
 
     $vote_storage = $this->entityTypeManager->getStorage('vote');
     
     // Prevent double voting just in case
     $hasVoted = $vote_storage
       ->getQuery()
-      ->condition('entity_type', $entity_type)
-      ->condition('entity_id', $entity_id)
+      ->condition('entity_type', $entity_type_vote)
+      ->condition('entity_id', $entity_id_vote)
       ->condition('vote_source', Vote::getCurrentIp())
       ->count()
       ->accessCheck(FALSE)
@@ -262,8 +355,8 @@ class SurveyForm extends FormBase {
       
     if (!$hasVoted) {
       $vote = $vote_storage->create([
-        'entity_type' => $entity_type,
-        'entity_id' => $entity_id,
+        'entity_type' => $entity_type_vote,
+        'entity_id' => $entity_id_vote,
         'value_type' => 'percent',
         'value' => $option_index,
         'tag' => 'parc_core',
@@ -287,9 +380,9 @@ class SurveyForm extends FormBase {
     
     $current = $form_state->get('current_question') ?? 0;
     
-    if ($clicked_button_name === 'next_question') {
+    if (strpos($clicked_button_name, 'next_question') === 0) {
       $form_state->set('current_question', $current + 1);
-    } elseif ($clicked_button_name === 'prev_question') {
+    } elseif (strpos($clicked_button_name, 'prev_question') === 0) {
       $form_state->set('current_question', max(0, $current - 1));
     }
     
@@ -312,7 +405,10 @@ class SurveyForm extends FormBase {
   /**
    * Adds navigation buttons and progress bar to form.
    */
-  private function buildNavigation(array &$form, FormStateInterface $form_state, $current_index, $total_questions, $has_voted, $survey_paragraph = NULL) {
+  private function buildNavigation(array &$form, FormStateInterface $form_state, $current_index, $total_questions, $has_voted, $survey_paragraph = NULL, $wrapper_id = 'survey-form-wrapper') {
+    $entity_type = $form_state->get('entity_type');
+    $entity_id = $form_state->get('entity_id');
+    $button_suffix = $entity_type && $entity_id ? '_' . $entity_type . '_' . $entity_id : '';
     if ($total_questions <= 1) {
       return;
     }
@@ -352,11 +448,11 @@ class SurveyForm extends FormBase {
       $form['navigation']['actions']['prev'] = [
         '#type' => 'submit',
         '#value' => $current_index == $total_questions ? $this->t('Back') : $this->t('Previous question'),
-        '#name' => 'prev_question',
+        '#name' => 'prev_question' . $button_suffix,
         '#submit' => ['::ajaxNavigateSubmit'],
         '#ajax' => [
           'callback' => '::ajaxSubmit',
-          'wrapper' => 'survey-form-wrapper',
+          'wrapper' => $wrapper_id,
           'progress' => [
             'type' => 'none',
           ]
@@ -372,11 +468,11 @@ class SurveyForm extends FormBase {
         $form['navigation']['actions']['next'] = [
           '#type' => 'submit',
           '#value' => $this->t('Next question'),
-          '#name' => 'next_question',
+          '#name' => 'next_question' . $button_suffix,
           '#submit' => ['::ajaxNavigateSubmit'],
           '#ajax' => [
             'callback' => '::ajaxSubmit',
-            'wrapper' => 'survey-form-wrapper',
+            'wrapper' => $wrapper_id,
             'progress' => [
               'type' => 'none',
             ]
@@ -390,11 +486,11 @@ class SurveyForm extends FormBase {
       $form['navigation']['actions']['next'] = [
         '#type' => 'submit',
         '#value' => $this->t('Complete survey'),
-        '#name' => 'next_question',
+        '#name' => 'next_question' . $button_suffix,
         '#submit' => ['::ajaxNavigateSubmit'],
         '#ajax' => [
           'callback' => '::ajaxSubmit',
-          'wrapper' => 'survey-form-wrapper',
+          'wrapper' => $wrapper_id,
           'progress' => [
             'type' => 'none',
           ]
@@ -407,8 +503,6 @@ class SurveyForm extends FormBase {
   }
 
   /**
-   * @param array $form
-   *   The form.
    * @param array $options
    *   The options.
    * @param $entity_id
@@ -419,14 +513,8 @@ class SurveyForm extends FormBase {
    * @return array
    *   The results build
    */
-  private function buildResults(array $form, array $options, $entity_id, $entity_type, $question_text, $totalVotes, $survey_paragraph, $total_questions = 1, $current_index = 0) {
-    // Keep anchor and question
-    $keys_to_keep = ['anchor', 'question'];
-    foreach (array_keys($form) as $key) {
-      if (!in_array($key, $keys_to_keep) && strpos($key, '#') !== 0) {
-        unset($form[$key]);
-      }
-    }
+  private function buildResults(array $options, $entity_id, $entity_type, $question_text, $totalVotes, $survey_paragraph, $total_questions = 1, $current_index = 0) {
+
 
     $vote_counts = [];
     $votes = $this->entityTypeManager->getStorage('vote')->loadByProperties([
@@ -470,23 +558,11 @@ class SurveyForm extends FormBase {
       ];
     }
     
-    $form['results']['results'] = [
+    return [
       '#theme' => 'parc_survey_results',
-      '#results' => $results
+      '#results' => $results,
+      '#id' => 'parc-survey-results-' . $entity_type . '-' . $entity_id,
     ];
-
-    $color = $survey_paragraph->get('field_background_color')->color;
-    $color_class = '';
-    if ($color) {
-      $color_class = 'override-color';
-    }
-    else {
-      $color = '#B0E5DF';
-    }
-    $form['#prefix'] = Markup::create("<div class=\"survey-form-wrapper $color_class\" style=\"--survey-color: $color\" id=\"survey-form-wrapper\"><div class=\"container survey-container\">");
-    $form['#suffix'] = '</div></div>';
-    
-    return $form;
   }
 
 }

@@ -9,7 +9,7 @@
     top: -60px;
   }
 
-  h3+p {
+  h3 + p {
     margin-bottom: 60px;
   }
 
@@ -25,7 +25,7 @@
     font-size: 40px;
   }
 
-  >p {
+  > p {
     font-size: 19px;
   }
 
@@ -47,7 +47,7 @@
       transform: translateX(-50%);
       width: 10px;
       height: 100%;
-      border-radius: 8px;
+      border-radius: 6px;
       background-color: #FFFFFF;
     }
 
@@ -75,7 +75,7 @@
           left: 0;
           width: 100%;
           height: 10px;
-          border-radius: 8px;
+          border-radius: 6px;
           background-color: #FFFFFF;
         }
       }
@@ -88,7 +88,7 @@
         left: 0;
         width: 100%;
         height: 10px;
-        border-radius: 8px;
+        border-radius: 6px;
         background-color: #FFFFFF;
       }
 
@@ -146,7 +146,7 @@
 
   .survey-content-grid {
     display: grid;
-    
+
     > div {
       grid-area: 1 / 1;
     }
@@ -186,7 +186,7 @@
         position: absolute;
         bottom: 10px;
         right: 0;
-        border-radius: 8px;
+        border-radius: 6px;
         background-color: color-mix(in srgb, var(--survey-color, #B0E5DF) 77%, #FFF);
         z-index: 1;
         max-height: 0;
@@ -419,11 +419,16 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-    font-size: 40px;
+  margin-top: -100px;
 
-    * {
+  &, * {
+    color: #000;
+    font-weight: 700;
     font-size: 40px;
-    }
+    line-height: 140%;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 .survey-main-content.is-completed {
