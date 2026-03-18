@@ -55,13 +55,14 @@
   }
 
   &, * {
-    font-size: max(3.125rem, min(11vw, 10.75rem));
+    font-size: max(3.125rem, min(11vw, 6.75rem));
     line-height: .8;
   }
 
   @media (--lg) {
     margin-left: 3%;
     margin-right: 3%;
+    word-break: auto-phrase;
   }
 
   @media (--downLg) {
