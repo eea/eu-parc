@@ -29,7 +29,7 @@ elements: |-
     which_type_of_training_do_you_plan_to_prepare:
       '#type': radios
       '#title': 'Which type of training do you plan to prepare?'
-      '#description': '<h5><strong>Which type of training do you plan to prepare?</strong></h5>'
+      '#description': '<h5><strong>1. Which type of training do you plan to prepare?</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options':
@@ -47,7 +47,7 @@ elements: |-
     1_do_you_confirm_that_this_will_be_a_remote_synchronous_event:
       '#type': radios
       '#title': 'Do you confirm that this will be a remote synchronous event?'
-      '#description': '<h4><strong>Webinar</strong><br>I. Event Details</h4><p>&nbsp;</p><h5><strong>Do you confirm that this will be a remote synchronous event?&nbsp;</strong><br><br>In a remote synchronous event, lecturer and the attendees engage with the event content and each other at the same time but from different locations.</h5>'
+      '#description': '<h4><strong>Webinar</strong><br>I. Event Details</h4><p>&nbsp;</p><h5><strong>1. Do you confirm that this will be a remote synchronous event?&nbsp;</strong><br><em>In a remote synchronous event, lecturer and the attendees engage with the event content and each other at the same time but from different locations.</em></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options': yes_no
@@ -58,7 +58,7 @@ elements: |-
     please_provide_some_additional_details_on_the_format:
       '#type': textarea
       '#title': 'Please provide some additional details on the format'
-      '#description': '<h5><strong>Please provide some additional details on the format</strong></h5>'
+      '#description': '<h5><strong>Please provide some additional details on the format.</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#states':
@@ -71,7 +71,7 @@ elements: |-
     indicate_title:
       '#type': textfield
       '#title': 'Indicate Title'
-      '#description': '<h5><strong>Indicate Title</strong></h5>'
+      '#description': '<h5><strong>2. Indicate Title.</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#required': true
@@ -81,7 +81,7 @@ elements: |-
     provide_a_short_description_learning_outcomes:
       '#type': textarea
       '#title': 'Provide a short description (learning outcomes).'
-      '#description': '<h5><strong>Provide a short description (learning outcomes)</strong></h5>'
+      '#description': '<h5><strong>2. Provide a short description (learning outcomes).</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#required': true
@@ -91,7 +91,7 @@ elements: |-
     indicate_the_level_of_expertise:
       '#type': checkboxes
       '#title': 'Indicate the level of expertise'
-      '#description': '<h5><strong>Indicate the level of expertise</strong></h5><h5><em>If you feel your response falls within an interval rather than a specific option, you may choose multiple answers to reflect this.</em></h5>'
+      '#description': '<h5><strong>4. Indicate the level of expertise</strong></h5><h5><em>If you feel your response falls within an interval rather than a specific option, you may choose multiple answers to reflect this.</em></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options':
@@ -105,7 +105,7 @@ elements: |-
     indicate_the_date_for_this_webinar:
       '#type': date
       '#title': 'Indicate the date for this webinar.'
-      '#description': '<h5><strong>Indicate the date for this webinar</strong></h5>'
+      '#description': '<h5><strong>5. Indicate the date for this webinar.</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#required': true
@@ -114,8 +114,8 @@ elements: |-
       '#markup': '<br>'
     indicate_the_duration_of_the_webinar_in_hours:
       '#type': number
-      '#title': 'Indicate the duration of the webinar (in hours)'
-      '#description': '<h5><strong>Indicate the duration of the webinar (in hours)</strong></h5>'
+      '#title': '6. Indicate the duration of the webinar (in hours)'
+      '#description': '<h5><strong>6. Indicate the duration of the webinar (in hours).</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#required': true
@@ -125,7 +125,7 @@ elements: |-
     who_is_the_audience_of_this_webinar:
       '#type': radios
       '#title': 'Who is the audience of this webinar?'
-      '#description': '<h5><strong>Who is the audience of this webinar?</strong></h5>'
+      '#description': '<h5><strong>7. Who is the audience of this webinar?</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options':
@@ -153,17 +153,23 @@ elements: |-
     who_is_the_scientific_coordinator_of_this_webinar_researcher_and:
       '#type': textfield
       '#title': 'Who is the Scientific Coordinator of this webinar (researcher and institution)?'
-      '#description': '<h5><strong>Who is the Scientific Coordinator of this webinar (researcher and institution)?</strong></h5>'
+      '#description': '<h5><strong>8. Who is the Scientific Coordinator of this webinar (researcher and institution)?</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_10:
+      '#type': webform_markup
+      '#markup': '<br>'
     please_provide_a_contact_for_future_communication_with_us_on_thi:
       '#type': textfield
       '#title': 'Please provide a contact for future communication with us on this matter'
-      '#description': '<h5><strong>Please provide a contact for future communication with us on this matter</strong></h5>'
+      '#description': '<h5><strong>9. Please provide a contact for future communication with us on this matter.</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_11:
+      '#type': webform_markup
+      '#markup': '<br>'
   webinar2:
     '#type': webform_wizard_page
     '#title': 'Webinar II'
@@ -174,21 +180,27 @@ elements: |-
     do_you_consent_to_the_dissemination_of_this_webinar_on_parc_webs:
       '#type': radios
       '#title': 'Do you consent to the dissemination of this webinar on PARC website? '
-      '#description': '<h4><strong>Webinar</strong><br>II. Dissemination</h4><p>&nbsp;</p><h5><strong>Do you consent to the dissemination of this webinar on PARC website?&nbsp;</strong></h5>'
+      '#description': '<h4><strong>Webinar</strong><br>II. Dissemination</h4><h5><strong>1. Do you consent to the dissemination of this webinar on PARC website?&nbsp;</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options': yes_no
       '#required': true
+    spacer_13:
+      '#type': webform_markup
+      '#markup': '<br>'
     do_you_plan_to_provide_a_link_at_dissemination_stage_or_is_regis:
       '#type': radios
       '#title': 'Do you plan to provide a link at dissemination stage, or is registration needed?'
-      '#description': '<h5><strong>Do you plan to provide a link at dissemination stage, or is registration needed?</strong></h5>'
+      '#description': '<h5><strong>2. Do you plan to provide a link at dissemination stage, or is registration needed?</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options':
         'Link at dissemination': 'Link at dissemination'
         'Link after registration': 'Link after registration'
       '#required': true
+    spacer_12:
+      '#type': webform_markup
+      '#markup': '<br>'
     message_1:
       '#type': webform_message
       '#states':
@@ -198,6 +210,9 @@ elements: |-
       '#display_on': both
       '#message_type': info
       '#message_message': '<h5><strong>Please note that T9.4 may help you prepare a registration form.</strong></h5>'
+    spacer_14:
+      '#type': webform_markup
+      '#markup': '<br>'
     if_the_link_is_already_available_please_provide_it_here_if_not_t:
       '#type': url
       '#title': 'If the link is already available, please provide it here. If not, T9.4 will contact you in the near future.'
@@ -218,12 +233,19 @@ elements: |-
     do_you_plan_to_record_the_webinar_and_make_it_available:
       '#type': radios
       '#title': 'Do you plan to record the webinar and make it available?'
-      '#description': '<h5><strong>Webinar</strong><br>III. Training Materials</h5><p>&nbsp;</p><h5><strong>Do you plan to record the webinar and make it available?</strong></h5>'
+      '#description': '<h4><strong>Webinar&nbsp;</strong><br>III. Training Materials</h4><p>&nbsp;</p><h5><strong>1. Do you plan to record the webinar and make it available?</strong></h5>'
       '#title_display': invisible
       '#description_display': before
       '#options': yes_no
       '#required': true
-    to_whom:
+    spacer_15:
+      '#type': webform_markup
+      '#markup': '<br>'
+      '#states':
+        visible:
+          ':input[name="do_you_plan_to_record_the_webinar_and_make_it_available"]':
+            value: 'Yes'
+    to_whom_0:
       '#type': radios
       '#title': 'To whom?'
       '#description': '<h5><strong>To whom?</strong></h5>'
@@ -238,6 +260,13 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_record_the_webinar_and_make_it_available"]':
             value: 'Yes'
+    spacer_16:
+      '#type': webform_markup
+      '#markup': '<br>'
+      '#states':
+        visible:
+          ':input[name="do_you_plan_to_record_the_webinar_and_make_it_available"]':
+            value: 'Yes'
     any_plans_on_where_specific_sharepoint_repository_video_sharing:
       '#type': textfield
       '#title': "\t Any plans on where (specific SharePoint/repository/video sharing platform)?"
@@ -249,6 +278,9 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_record_the_webinar_and_make_it_available"]':
             value: 'Yes'
+    spacer_17:
+      '#type': webform_markup
+      '#markup': '<br>'
     do_you_plan_to_make_available_any_other_materials_e_g_ppt_file:
       '#type': radios
       '#title': 'Do you plan to make available any other materials (e.g., PPT file)?'
@@ -257,6 +289,9 @@ elements: |-
       '#description_display': before
       '#options': yes_no
       '#required': true
+    spacer_18:
+      '#type': webform_markup
+      '#markup': '<br>'
     which_type_of_material_e_g_ppt_files_lecturer_s_notes_exercises:
       '#type': textfield
       '#title': "Which type of material (e.g., PPT files, lecturer's notes, exercises, etc.)?"
@@ -268,6 +303,9 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_make_available_any_other_materials_e_g_ppt_file"]':
             value: 'Yes'
+    spacer_19:
+      '#type': webform_markup
+      '#markup': '<br>'
     to_whom_2:
       '#type': radios
       '#title': 'To whom?'
@@ -283,6 +321,9 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_make_available_any_other_materials_e_g_ppt_file"]':
             value: 'Yes'
+    spacer_20:
+      '#type': webform_markup
+      '#markup': '<br>'
     any_plans_on_where_specific_sharepoint_repository_video_sharing_:
       '#type': textfield
       '#title': "\t Any plans on where (specific SharePoint/repository/video sharing platform)?"
@@ -332,6 +373,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_21:
+      '#type': webform_markup
+      '#markup': '<br>'
     provide_a_short_description_learning_outcomes_2:
       '#type': textarea
       '#title': 'Provide a short description (learning outcomes).'
@@ -339,6 +383,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_22:
+      '#type': webform_markup
+      '#markup': '<br>'
     indicate_the_level_of_expertise_2:
       '#type': checkboxes
       '#title': 'Indicate the level of expertise'
@@ -350,6 +397,9 @@ elements: |-
         Intermediate: Intermediate
         Advanced: Advanced
       '#required': true
+    spacer_23:
+      '#type': webform_markup
+      '#markup': '<br>'
     indicate_the_date_for_this_course:
       '#type': date
       '#title': 'Indicate the date for this course.'
@@ -357,6 +407,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_24:
+      '#type': webform_markup
+      '#markup': '<br>'
     indicate_the_duration_of_the_course_in_hours:
       '#type': number
       '#title': 'Indicate the duration of the course (in hours)'
@@ -364,6 +417,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_25:
+      '#type': webform_markup
+      '#markup': '<br>'
     who_is_the_audience_of_this_course:
       '#type': radios
       '#title': 'Who is the audience of this course?'
@@ -375,6 +431,9 @@ elements: |-
         'PARC Partners': 'PARC Partners'
         'PARC partners and beyond': 'PARC partners and beyond'
       '#required': true
+    spacer_26:
+      '#type': webform_markup
+      '#markup': '<br>'
     which_wp_or_task_in_particular__2:
       '#type': textfield
       '#title': 'Which WP or Task in particular?_2'
@@ -386,6 +445,9 @@ elements: |-
         visible-slide:
           ':input[name="who_is_the_audience_of_this_course"]':
             value: 'Specific WP/Task partners'
+    spacer_27:
+      '#type': webform_markup
+      '#markup': '<br>'
     who_is_the_scientific_coordinator_of_this_course_researcher_and:
       '#type': textfield
       '#title': 'Who is the Scientific Coordinator of this course (researcher and institution)?'
@@ -393,6 +455,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_28:
+      '#type': webform_markup
+      '#markup': '<br>'
     please_provide_a_contact_for_future_communication_with_us_on_2:
       '#type': textfield
       '#title': 'Please provide a contact for future communication with us on this matter'
@@ -415,6 +480,9 @@ elements: |-
       '#more': '<h4><strong>Course</strong><br>III. Dissemination</h4><p>If the course is organised under the Scientific Coordination of PARC and focused on a PARC topic, it would be relevant to add it to the PARC training plan. If you agree to this, you will be asked to provide some course details or a draft agenda, some practical information (possible transportation, accommodation, etc.), and to revise the application form template (all templates available <a href="https://agenceanses.sharepoint.com/:f:/r/sites/PARC-ANSES/Consortium/6-PARC%20templates/13-Trainings?csf=1&amp;web=1&amp;e=neQq4o">here</a>). With this information, Task 9.4 partners will prepare with you a news item for publication on the PARC website and an application form.</p><p>If this training is not coordinated by PARC, it can still be announced on PARC website if you provide us a few details <a href="https://www.eu-parc.eu/form/t9-4-mapping-available-training">here</a>.</p><p>&nbsp;</p><h5><strong>Please use the templates provided above to prepare the required documents. Once completed, kindly share them below via a link or send them by email to the T9.4 team </strong><a href="(carla.trindade@insa.min-saude.pt"><strong>(carla.trindade@insa.min-saude.pt</strong></a><br><strong>or </strong><a href="mailto:mariana.bessa@insa.min-saude.pt"><strong>mariana.bessa@insa.min-saude.pt</strong></a><strong>). &nbsp;</strong></h5><h5>&nbsp;</h5>'
       '#title_display': invisible
       '#description_display': before
+  spacer_29:
+    '#type': webform_markup
+    '#markup': '<br>'
   course_iv:
     '#type': webform_wizard_page
     '#title': 'Course IV'
@@ -432,6 +500,9 @@ elements: |-
       '#description_display': before
       '#options': yes_no
       '#required': true
+    spacer_30:
+      '#type': webform_markup
+      '#markup': '<br>'
     to_whom__2:
       '#type': radios
       '#title': 'To whom?_2'
@@ -447,6 +518,9 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_record_the_sessions_lectures_and_make_them_availa"]':
             value: 'Yes'
+    spacer_31:
+      '#type': webform_markup
+      '#markup': '<br>'
     any_plans_on_where_specific_sharepoint_repository_video_2:
       '#type': textfield
       '#title': 'Any plans on where (specific SharePoint/repository/video sharing platform)?_2'
@@ -458,6 +532,9 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_record_the_sessions_lectures_and_make_them_availa"]':
             value: 'Yes'
+    spacer_32:
+      '#type': webform_markup
+      '#markup': '<br>'
     do_you_plan_to_make_available_any_other_materials_e_g_ppt_2:
       '#type': radios
       '#title': 'Do you plan to make available any other materials (e.g., PPT file)?'
@@ -466,6 +543,9 @@ elements: |-
       '#description_display': before
       '#options': yes_no
       '#required': true
+    spacer_33:
+      '#type': webform_markup
+      '#markup': '<br>'
     which_type_of_material_e_g_ppt_files_lecturer_s_notes_exer_2:
       '#type': textfield
       '#title': "Which type of material (e.g., PPT files, lecturer's notes, exercises, etc.)?"
@@ -477,6 +557,9 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_make_available_any_other_materials_e_g_ppt_2"]':
             value: 'Yes'
+    spacer_34:
+      '#type': webform_markup
+      '#markup': '<br>'
     to_whom__4:
       '#type': radios
       '#title': 'To whom?_4'
@@ -492,6 +575,9 @@ elements: |-
         visible-slide:
           ':input[name="do_you_plan_to_make_available_any_other_materials_e_g_ppt_2"]':
             value: 'Yes'
+    spacer_35:
+      '#type': webform_markup
+      '#markup': '<br>'
     any_plans_on_where_specific_sharepoint_repository_video_share_2:
       '#type': textfield
       '#title': 'Any plans on where (specific SharePoint/repository/video sharing platform)?'
@@ -520,6 +606,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_36:
+      '#type': webform_markup
+      '#markup': '<br>'
     indicate_title_3:
       '#type': textfield
       '#title': 'Indicate title_3'
@@ -527,6 +616,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_37:
+      '#type': webform_markup
+      '#markup': '<br>'
     provide_a_short_description_learning_outcomes__3:
       '#type': textarea
       '#title': 'Provide a short description (learning outcomes)._3'
@@ -534,6 +626,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_38:
+      '#type': webform_markup
+      '#markup': '<br>'
     indicate_the_duration_in_hours:
       '#type': number
       '#title': 'Indicate the duration (in hours)'
@@ -541,6 +636,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_39:
+      '#type': webform_markup
+      '#markup': '<br>'
     indicate_the_level_of_expertise_3:
       '#type': checkboxes
       '#title': 'Indicate the level of expertise_3'
@@ -552,6 +650,9 @@ elements: |-
         Intermediate: Intermediate
         Advanced: Advanced
       '#required': true
+    spacer_40:
+      '#type': webform_markup
+      '#markup': '<br>'
     who_is_the_audience_of_this_material:
       '#type': radios
       '#title': 'Who is the audience of this material?'
@@ -563,6 +664,9 @@ elements: |-
         'PARC Partners': 'PARC Partners'
         'PARC partners and beyond': 'PARC partners and beyond'
       '#required': true
+    spacer_41:
+      '#type': webform_markup
+      '#markup': '<br>'
     which_wp_or_task_in_particular__3:
       '#type': textfield
       '#title': 'Which WP or Task in particular?_3'
@@ -574,6 +678,9 @@ elements: |-
         visible-slide:
           ':input[name="who_is_the_audience_of_this_material"]':
             value: 'Specific WP/Task partners'
+    spacer_42:
+      '#type': webform_markup
+      '#markup': '<br>'
     who_is_the_scientific_coordinator_of_this_material_researcher_an:
       '#type': textfield
       '#title': 'Who is the Scientific Coordinator of this material (researcher and institution)?'
@@ -581,6 +688,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_43:
+      '#type': webform_markup
+      '#markup': '<br>'
     please_provide_a_contact_for_future_communication_with_us_on_3:
       '#type': textfield
       '#title': 'Please provide a contact for future communication with us on this matter'
@@ -605,6 +715,9 @@ elements: |-
       '#title_display': invisible
       '#description_display': before
       '#required': true
+    spacer_44:
+      '#type': webform_markup
+      '#markup': '<br>'
     do_you_have_any_plans_on_how_to_make_these_materials_available_s:
       '#type': textfield
       '#title': 'Do you have any plans on how to make these materials available (specific SharePoint/repository/ video sharing platform)?'
