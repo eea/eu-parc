@@ -412,23 +412,62 @@ class SurveyForm extends FormBase {
     if ($total_questions <= 1) {
       return;
     }
-      
+
     $has_body = $survey_paragraph && $survey_paragraph->hasField('field_body') && !$survey_paragraph->get('field_body')->isEmpty();
-      
+
+    // First question, not yet answered: show no navigation at all.
+    if ($current_index === 0 && !$has_voted) {
+      return;
+    }
+
+    // First question, just voted for the first time: show thank you + "more?" button.
+    $just_voted = $form_state->get('voted') === TRUE;
+    if ($current_index === 0 && $has_voted && $just_voted) {
+      $form['navigation'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['survey-navigation', 'survey-navigation--first-vote']],
+      ];
+      $form['navigation']['thank_you'] = [
+        '#markup' => '<div class="survey-first-vote-thanks">' . $this->t('Thank you for contributing to our mini-survey.') . '</div>',
+      ];
+      $form['navigation']['actions'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['survey-nav-actions']],
+      ];
+      $form['navigation']['actions']['next'] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Would you like to answer more questions?'),
+        '#name' => 'next_question' . $button_suffix,
+        '#submit' => ['::ajaxNavigateSubmit'],
+        '#ajax' => [
+          'callback' => '::ajaxSubmit',
+          'wrapper' => $wrapper_id,
+          'progress' => [
+            'type' => 'none',
+          ]
+        ],
+        '#attributes' => ['class' => ['survey-btn', 'survey-btn-next', 'survey-btn-more']],
+        '#prefix' => '<span class="survey-btn-wrapper survey-btn-next-wrapper">',
+        '#suffix' => '</span>',
+      ];
+      return;
+    }
+
+    // Normal navigation for Q2+ or when navigating back to Q1.
     if ($current_index == $total_questions) {
       $answered_questions = $total_questions;
     } else {
       $answered_questions = $current_index + ($has_voted ? 1 : 0);
     }
-    
+
     $progress_percent = $total_questions > 0 ? floor(($answered_questions / $total_questions) * 100) : 0;
     if ($progress_percent > 100) $progress_percent = 100;
-      
+
     $form['navigation'] = [
       '#type' => 'container',
       '#attributes' => ['class' => ['survey-navigation']],
     ];
-    
+
     // Bottom left: Progress bar
     $form['navigation']['progress'] = [
       '#type' => 'inline_template',
@@ -437,7 +476,7 @@ class SurveyForm extends FormBase {
         'percent' => $progress_percent,
       ],
     ];
-    
+
     // Bottom right: Next/Prev buttons
     $form['navigation']['actions'] = [
       '#type' => 'container',
