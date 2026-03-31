@@ -396,7 +396,7 @@
           background: transparent;
           border-color: color-mix(in srgb, var(--survey-color, #b0e5df) 23%, #fff);
           color: color-mix(in srgb, var(--survey-color, #b0e5df) 23%, #fff);
-          width: 10)%;
+          width: 100%;
 
           &:hover {
             background: #FFF;
