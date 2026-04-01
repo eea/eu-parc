@@ -366,6 +366,10 @@
     }
   }
 
+  .survey-first-vote-thanks {
+    color: var(--primary-color) !important;
+  }
+
   .survey-form-wrapper {
     margin-top: 40px;
     background-color: var(--secondary-color);
@@ -396,6 +400,17 @@
 
         &:hover {
           color: var(--primary-color);
+        }
+
+        &.survey-btn-more {
+          border-color: var(--primary-color);
+          color: var(--primary-color);
+
+          &:hover {
+            background-color: #FFF;
+            border-color: #FFF;
+            color: var(--primary-color);
+          }
         }
       }
     }
