@@ -1893,3 +1893,195 @@ function parc_core_deploy_survey_multiple_questions() {
     $survey->save();
   }
 }
+
+/**
+ * Import labs.
+ */
+function parc_core_deploy_water_matrix() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  $terms = [
+    'substance_groups' => [
+      'alkylph' => 'Alkylphenols',
+      'pestorganoph' => 'Pesticides-organophosphorus',
+      'pestazol' => 'Pesticides-azoles',
+      'tribut' => 'Tributyltin compounds',
+      'pharm' => 'Pharmaceuticals',
+      'tirerubbadd' => 'Tire rubber additives',
+    ],
+    'sampling_types' => [
+      'surfacewater' => 'Surface water',
+      'groundwater' => 'Ground water',
+      'drinkingtapwater' => 'Drinking/Tap water',
+      'mineralspringwater' => 'Mineral/Spring water',
+      'leachate' => 'Leachate',
+      'untreatedsewage' => 'Untreated sewage/inlet',
+      'treatedsewage' => 'Treated sewage/outlet',
+      'industrialeffluentoutlet'=> 'Industrial effluent outlet',
+      'salinemarinewater' => 'Saline/Marine water',
+      'regeneratedwater' => 'Regenerated water',
+      'processwater' => 'Process water',
+      'recreationalwater' => 'Recreational water',
+      'healthcarewater' => 'Healthcare water',
+      'otherwatermatrices' => 'Other water',
+    ],
+  ];
+
+  foreach ($terms as $vid => $term_lists) {
+    foreach ($term_lists as $machine_name => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'machine_name' => $machine_name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
+      $term = $term_storage->create([
+        'vid' => $vid,
+        'name' => $name,
+        'machine_name' => $machine_name,
+      ]);
+      $term->save();
+    }
+  }
+
+  $map = [
+    'phtal' => 'phthalates',
+    'metal' => 'metals',
+    'flamret' => 'flame_retardants',
+    'bisph' => 'bisphenols',
+    'pestpyreth' => 'pest_pyrethroids',
+    'pestorganochl' => 'pest_organochlorines',
+    'pestglyph' => 'pest_glyphosate',
+    'pestneonicot' => 'pest_neonicotinoids',
+    'pestothers' => 'pest_others',
+    'vocs' => 'volatile_organic_compounds_vocs',
+    'otherchem' => 'other_chemicals',
+  ];
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_core');
+  $file_path = $module_path . '/data/water_labs.csv';
+
+  $file = fopen($file_path, 'r');
+  $headers = fgetcsv($file);
+
+  $lats = [];
+
+  $existing_nodes = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+    'field_lab_category' => 'water',
+  ]);
+  foreach ($existing_nodes as $node) {
+    $node->delete();
+  }
+
+  while (FALSE !== ($line = fgetcsv($file))) {
+    $row = array_combine($headers, $line);
+
+    $country = $row['country'];
+    $country_term = $term_storage->loadByProperties([
+      'vid' => 'countries',
+      'name' => $country,
+    ]);
+    if (empty($country_term)) {
+      continue;
+    }
+    $country_term = reset($country_term);
+
+    $institute = $row['inst_name'];
+    $title = $row['lab_name'];
+    $address = $row['lab_address'];
+    $city = $row['lab_city'];
+    $latitude = $row['latitude'];
+    if (in_array($latitude, $lats)) {
+      $latitude += 0.0006;
+    }
+    $lats[] = $latitude;
+
+    $longitude = $row['longitude'];
+    $external_id = $row['pid'];
+
+    $lab_type = $row['member_parc'] == 'Yes' ? 'PARC member' : 'External laboratory';
+    $lab_type_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $lab_type,
+    ]);
+    if (empty($lab_type_term)) {
+      continue;
+    }
+    $lab_type_term = reset($lab_type_term);
+
+    $contact_name = $row['contactperson_name'];
+    $contact_email = $row['contactperson_email'];
+
+    $matrix_entries = [];
+    foreach ($headers as $column) {
+      if (!str_contains($column, '__')) {
+        continue;
+      }
+
+      if (empty(trim($row[$column]))) {
+        continue;
+      }
+
+      [$substance_group, $sampling_type] = explode('__', $column);
+
+      $substance_group = trim($substance_group);
+      $substance_group = $map[$substance_group] ?? $substance_group;
+      $substance_group_term = $term_storage->loadByProperties([
+        'vid' => 'substance_groups',
+        'machine_name' => $substance_group,
+      ]);
+      if (empty($substance_group_term)) {
+        continue;
+      }
+      $substance_group_term = reset($substance_group_term);
+
+      $sampling_type = trim($sampling_type);
+      $sampling_type_term = $term_storage->loadByProperties([
+        'vid' => 'sampling_types',
+        'machine_name' => $sampling_type,
+      ]);
+      if (empty($sampling_type_term)) {
+        continue;
+      }
+      $sampling_type_term = reset($sampling_type_term);
+
+      /** @var \Drupal\paragraphs\ParagraphInterface $matrix_entry */
+      $matrix_entry = $paragraph_storage->create([
+        'type' => 'lab_matrix',
+        'field_sampling_type' => $sampling_type_term,
+        'field_substance_group' => $substance_group_term,
+      ]);
+      $matrix_entry->save();
+      $matrix_entries[] = [
+        'target_id' => $matrix_entry->id(),
+        'target_revision_id' => $matrix_entry->getRevisionId(),
+      ];
+    }
+
+    $lab = $node_storage->create([
+      'type' => 'laboratory',
+      'title' => $title,
+      'field_institute_name' => $institute,
+      'field_country' => $country_term,
+      'field_address_data' => $address,
+      'field_city' => $city,
+      'field_coordinates' => [
+        'lat' => $latitude,
+        'lng' => $longitude,
+      ],
+      'field_lab_type' => $lab_type_term,
+      'field_contact_name' => $contact_name,
+      'field_contact_email' => $contact_email,
+      'field_substances_matrix' => $matrix_entries,
+      'field_external_id' => $external_id,
+      'field_lab_category' => 'water',
+    ]);
+    $lab->save();
+  }
+}
