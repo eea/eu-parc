@@ -245,6 +245,9 @@
             },
             "vanderlee/syllable": {
                 "Fix warning when caching hyphenations": "patches/syllable/syllable-cache-warning.patch"
+            },
+            "drupal/eu_cookie_compliance": {
+                "Bypass Cookie Blocker": "patches/eu_cookie_compliance/bypassCookiesBlocker.patch"
             }
         },
         "drupal-lenient" : {
