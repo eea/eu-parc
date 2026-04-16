@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for policy briefs views exposed form.
+ */
+#}
+
+<div class="policy-briefs-filters">
+  <div class="d-flex filters-row justify-content-end">
+    <div class="col-auto w--sort-by">
+      {{ form.sort_bef_combine }}
+    </div>
+  </div>
+</div>
+
+{{ form|without('sort_bef_combine') }}
