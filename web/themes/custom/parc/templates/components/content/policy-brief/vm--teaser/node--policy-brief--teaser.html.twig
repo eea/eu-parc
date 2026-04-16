@@ -18,7 +18,11 @@
   {{ title_suffix }}
 
   <div class="node--head d-flex justify-content-between align-items-center mb-2 mb-md-3">
-    {{ content.field_d_date }}
+    {% if node.field_d_date.value %}
+      {{ content.field_d_date }}
+    {% else %}
+      <span class="coming-soon">{{ 'Coming soon'|t }}</span>
+    {% endif %}
   </div>
 
   <h5{{ title_attributes.addClass('flex-grow-1') }}>

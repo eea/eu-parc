@@ -21,9 +21,11 @@
     line-height: 1em;
   }
 
-  .field--name-field-d-date {
+  .field--name-field-d-date,
+  .coming-soon {
     font-size: var(--npbt-fs--date, 8px);
     margin-left: auto;
+    text-transform: uppercase;
   }
 
   .field--name-field-media {
