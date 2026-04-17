@@ -1,0 +1,16 @@
+uuid: f157c540-486e-4cd3-9a53-3d870a588eef
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.lab_domains
+id: taxonomy_term.lab_domains
+targetEntityType: taxonomy_term
+bundle: lab_domains
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: '<front>'
+  redirect_code: 301
+  redirect_fallback_action: access_denied

@@ -2085,3 +2085,237 @@ function parc_core_deploy_water_matrix() {
     $lab->save();
   }
 }
+
+/**
+ * Import labs.
+ */
+function parc_core_deploy_eco_matrix() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  $terms = [
+    'substance_groups' => [
+      'biocides' => 'Biocides',
+      'daily_use_of_products' => 'Chemicals from daily use products and materials',
+      'food_packaging' => 'Chemicals from food packaging',
+      'legacy' => 'Legacy organic contaminants',
+    ],
+    'sampling_types' => [
+      'biological_matrices' => 'Biological',
+      'complex_chem_products' => 'Complex chemical products',
+      'complex_daily_use_products' => 'Complex daily use products and materials',
+      'medicinal_products' => 'Complex medicinal products',
+      'micronano_plastics' => 'Microplastics/Nanoplastics',
+      'mixtures' => 'Complex environmental mixtures, toxicity drivers',
+      'nanomaterials' => 'Nanomaterials',
+    ],
+    'lab_approaches' => [
+      'biomarkers' => 'Biomarkers of effects, susceptibility',
+      'chemico' => 'In chemico',
+      'conceptual' => 'Conceptual, synthetic research',
+      'effect' => 'Effect assessment in observational studies',
+      'exvivo' => 'Ex vivo',
+      'integrative' => 'Integrative approaches',
+      'intervention' => 'Intervention studies of biological effects',
+      'multispec' => 'Multi-species studies',
+      'omics' => 'Omics',
+      'silico' => 'In silico',
+      'system' => 'Systems toxicology',
+      'vitro' => 'In vitro',
+      'vivo' => 'In vivo',
+    ],
+    'lab_domains' => [
+      'hh' => 'Human health',
+      'env' => 'Environmental effects',
+      'wild' => 'Veterinary toxicology',
+      'agri' => 'Agricultural plants',
+      'vet' => 'Wildlife toxicology',
+    ],
+  ];
+
+  foreach ($terms as $vid => $term_lists) {
+    foreach ($term_lists as $machine_name => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'machine_name' => $machine_name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
+      $term = $term_storage->create([
+        'vid' => $vid,
+        'name' => $name,
+        'machine_name' => $machine_name,
+      ]);
+      $term->save();
+    }
+  }
+
+  //  $map = [
+  //    'pharmaceuticals' => 'pharm',
+  //    'other_matrices' => 'othermatrix',
+  //  ];
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_core');
+  $file_path = $module_path . '/data/eco_labs.csv';
+
+  $file = fopen($file_path, 'r');
+  $headers = fgetcsv($file);
+
+  $lats = [];
+
+  $existing_nodes = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+    'field_lab_category' => 'ecotox',
+  ]);
+  foreach ($existing_nodes as $node) {
+    $node->delete();
+  }
+
+  while (FALSE !== ($line = fgetcsv($file))) {
+    $row = array_combine($headers, $line);
+
+    $country = $row['laboratory_country'];
+    $country_term = $term_storage->loadByProperties([
+      'vid' => 'countries',
+      'name' => $country,
+    ]);
+    $country_term = reset($country_term);
+
+    $institute = $row['department_division_laboratory'];
+    $title = $row['institution_full_name'] ?: $row['department_division_laboratory'];
+    $address = $row['lab_address'];
+    $city = $row['lab_city'];
+    $latitude = $row['Latitude'];
+    if (in_array($latitude, $lats)) {
+      $latitude += 0.0006;
+    }
+    $lats[] = $latitude;
+
+    $longitude = $row['Longitude'];
+    $external_id = $row['id_form'];
+
+    // @todo.
+    $lab_type = 'External laboratory';
+    $lab_type_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $lab_type,
+    ]);
+    if (empty($lab_type_term)) {
+      continue;
+    }
+    $lab_type_term = reset($lab_type_term);
+
+    $contact_name = $row['firstname'] . ' ' . $row['surname'];
+    $contact_email = $row['email'];
+
+    $matrix_entries = [];
+    $paragraphs_to_create = [];
+    foreach ($headers as $column) {
+      if (!str_contains($column, '__')) {
+        continue;
+      }
+
+      if (empty(trim($row[$column]))) {
+        continue;
+      }
+
+      [$domain, $info] = explode('__', $column);
+      $domain = trim($domain);
+
+      if (str_contains($info, 'chem.')) {
+        $info = str_replace('chem.', '', $info);
+        $paragraphs_to_create[$domain]['field_substance_group_multiple'][] = trim($info);
+      }
+      elseif (str_contains($info, 'envmatrx.')) {
+        $info = str_replace('envmatrx.', '', $info);
+        $paragraphs_to_create[$domain]['field_sampling_type_multiple'][] = trim($info);
+      }
+      elseif (str_contains($info, 'stress_addinfo')) {
+        $paragraphs_to_create[$domain]['field_additional_information'] = $row[$column];
+      }
+      elseif (str_contains($info, 'appr.')) {
+        $info = str_replace('appr.', '', $info);
+        $paragraphs_to_create[$domain]['field_approaches'][] = trim($info);
+      }
+    }
+
+    foreach ($paragraphs_to_create as $domain => $info) {
+      $domain_term = $term_storage->loadByProperties([
+        'vid' => 'lab_domains',
+        'machine_name' => $domain,
+      ]);
+      $domain_term = reset($domain_term);
+
+      $substance_groups_terms = [];
+      foreach ($info['field_substance_group_multiple'] ?? [] as $id) {
+        $term = $term_storage->loadByProperties([
+          'vid' => 'substance_groups',
+          'machine_name' => $id,
+        ]);
+        $term = reset($term);
+        $substance_groups_terms[] = $term;
+      }
+
+      $sampling_types_terms = [];
+      foreach ($info['field_sampling_type_multiple'] ?? [] as $id) {
+        $term = $term_storage->loadByProperties([
+          'vid' => 'sampling_types',
+          'machine_name' => $id,
+        ]);
+        $term = reset($term);
+        $sampling_types_terms[] = $term;
+      }
+
+      $approaches_terms = [];
+      foreach ($info['field_approaches'] ?? [] as $id) {
+        $term = $term_storage->loadByProperties([
+          'vid' => 'lab_approaches',
+          'machine_name' => $id,
+        ]);
+        $term = reset($term);
+        $approaches_terms[] = $term;
+      }
+
+      $additional_information = $info['field_additional_information'] ?? NULL;
+
+      /** @var \Drupal\paragraphs\ParagraphInterface $matrix_entry */
+      $matrix_entry = $paragraph_storage->create([
+        'type' => 'ecotoxicology',
+        'field_domain' => $domain_term,
+        'field_approaches' => $approaches_terms,
+        'field_sampling_type_multiple' => $sampling_types_terms,
+        'field_substance_group_multiple' => $substance_groups_terms,
+        'field_additional_information' => $additional_information,
+      ]);
+      $matrix_entry->save();
+      $matrix_entries[] = [
+        'target_id' => $matrix_entry->id(),
+        'target_revision_id' => $matrix_entry->getRevisionId(),
+      ];
+    }
+
+    $lab = $node_storage->create([
+      'type' => 'laboratory',
+      'title' => $title,
+      'field_institute_name' => $institute,
+      'field_country' => $country_term,
+      'field_address_data' => $address,
+      'field_city' => $city,
+      'field_coordinates' => [
+        'lat' => $latitude,
+        'lng' => $longitude,
+      ],
+      'field_lab_type' => $lab_type_term,
+      'field_contact_name' => $contact_name,
+      'field_contact_email' => $contact_email,
+      'field_substances_matrix' => $matrix_entries,
+      'field_external_id' => $external_id,
+      'field_lab_category' => 'ecotox',
+    ]);
+    $lab->save();
+  }
+}

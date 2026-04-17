@@ -104,6 +104,61 @@
     display: inline-block;
   }
 
+  &--ecotoxicology {
+    min-width: 600px;
+    grid-template-columns: repeat(5, 1fr);
+
+    .table-cell--domain-header {
+      grid-row: 1 / span 2;
+      grid-column: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .table-cell--stressors-header {
+      grid-row: 1;
+      grid-column: 2 / span 3;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-bottom: 1px solid #fff !important;
+    }
+
+    .table-cell--approaches-header {
+      grid-row: 1 / span 2;
+      grid-column: 5;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .pseudo-cell {
+      padding: 5px 10px;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--node-color, #ccc);
+      }
+    }
+
+    .table-cell.has-pseudo-cells {
+      padding: 0;
+    }
+
+    .table-cell:not(.table-cell-header):not(.row-end) {
+      border-right: 1px solid var(--node-color, #ccc);
+    }
+
+    .table-cell-header {
+      border-right: 1px solid #fff;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .table-cell--approaches-header {
+      border-right: none;
+    }
+  }
+
   &__air {
     grid-template-columns: 1fr 1fr 1fr;
 
@@ -118,5 +173,12 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 40.001em) {
+  .results:has(.matrix-table--ecotoxicology) {
+    max-width: calc(100% - 10px);
+    width: 650px;
   }
 }

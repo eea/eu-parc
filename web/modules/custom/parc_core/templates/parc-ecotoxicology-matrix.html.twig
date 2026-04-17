@@ -1,0 +1,17 @@
+{{ attach_library('parc/lab_matrix') }}
+
+<div class="matrix-table matrix-table--ecotoxicology">
+  <div class="table-cell table-cell-header table-cell--domain-header">{{ "Toxicology domain" | t }}</div>
+  <div class="table-cell table-cell-header table-cell--stressors-header">{{ "Stressors" | t }}</div>
+  <div class="table-cell table-cell-header table-cell--approaches-header">{{ "Approaches" | t }}</div>
+  <div class="table-cell table-cell-header">{{ "Chemical groups" | t }}</div>
+  <div class="table-cell table-cell-header">{{ "Matrices" | t }}</div>
+  <div class="table-cell table-cell-header">{{ "Additional information" | t }}</div>
+  {% for row in rows %}
+    <div class="table-cell{% if loop.last %} last{% endif %}">{{ row.domain }}</div>
+    <div class="table-cell has-pseudo-cells{% if loop.last %} last{% endif %}">{% for value in row.substance_groups %}<div class="pseudo-cell">{{ value }}</div>{% endfor %}</div>
+    <div class="table-cell has-pseudo-cells{% if loop.last %} last{% endif %}">{% for value in row.sampling_types %}<div class="pseudo-cell">{{ value }}</div>{% endfor %}</div>
+    <div class="table-cell{% if loop.last %} last{% endif %}">{{ row.additional_information }}</div>
+    <div class="table-cell has-pseudo-cells row-end{% if loop.last %} last{% endif %}">{% for value in row.approaches %}<div class="pseudo-cell">{{ value }}</div>{% endfor %}</div>
+  {% endfor %}
+</div>
