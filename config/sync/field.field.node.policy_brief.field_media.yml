@@ -1,0 +1,29 @@
+uuid: 4e04f47f-f2b4-409b-ae51-e3ed6e2a8a65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media
+    - media.type.document
+    - node.type.policy_brief
+id: node.policy_brief.field_media
+field_name: field_media
+entity_type: node
+bundle: policy_brief
+label: Media
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      document: document
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: document
+field_type: entity_reference

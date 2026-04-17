@@ -1,0 +1,18 @@
+uuid: 600369e8-80f1-467d-b4d4-83ce25c1410e
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:menu_link_content:186a7743-6ff2-44a2-a727-a893d1db2a78'
+name: 'Policy brief'
+type: policy_brief
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false
