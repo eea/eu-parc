@@ -11,7 +11,12 @@
     <div class="table-cell{% if loop.last %} last{% endif %}">{{ row.domain }}</div>
     <div class="table-cell has-pseudo-cells{% if loop.last %} last{% endif %}">{% for value in row.substance_groups %}<div class="pseudo-cell">{{ value }}</div>{% endfor %}</div>
     <div class="table-cell has-pseudo-cells{% if loop.last %} last{% endif %}">{% for value in row.sampling_types %}<div class="pseudo-cell">{{ value }}</div>{% endfor %}</div>
-    <div class="table-cell{% if loop.last %} last{% endif %}">{{ row.additional_information }}</div>
+    <div class="table-cell{% if loop.last %} last{% endif %}">
+      <div class="additional-info-text">{{ row.additional_information }}</div>
+      {% if row.additional_information|length > 100 %}
+        <a class="additional-info-read-more" href="#">{{ "Read more" | t }}</a>
+      {% endif %}
+    </div>
     <div class="table-cell has-pseudo-cells row-end{% if loop.last %} last{% endif %}">{% for value in row.approaches %}<div class="pseudo-cell">{{ value }}</div>{% endfor %}</div>
   {% endfor %}
 </div>

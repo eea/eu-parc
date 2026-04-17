@@ -105,7 +105,7 @@
   }
 
   &--ecotoxicology {
-    min-width: 600px;
+    min-width: 850px;
     grid-template-columns: repeat(5, 1fr);
 
     .table-cell--domain-header {
@@ -157,6 +157,29 @@
     .table-cell--approaches-header {
       border-right: none;
     }
+
+    .additional-info-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .additional-info-text.measuring {
+      display: block !important;
+      overflow: visible !important;
+    }
+
+    .table-cell.expanded .additional-info-text {
+      display: block;
+      overflow: visible;
+    }
+
+    .additional-info-read-more {
+      margin-top: 5px;
+      color: var(--node-color, #000);
+      text-decoration: none;
+    }
   }
 
   &__air {
@@ -177,8 +200,8 @@
 }
 
 @media screen and (min-width: 40.001em) {
-  .results:has(.matrix-table--ecotoxicology) {
+  .results:has(.matrix-table--ecotoxicology):has(.to-expand:not(.hidden)) {
     max-width: calc(100% - 10px);
-    width: 650px;
+    width: 900px;
   }
 }
