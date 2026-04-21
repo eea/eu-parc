@@ -1,0 +1,6 @@
+services:
+  parc_zenodo_api.commands:
+    class: Drupal\parc_zenodo_api\Commands\ZenodoApiCommands
+    arguments: ['@parc_zenodo_api.helper', '@entity_type.manager']
+    tags:
+      - { name: drush.command }

@@ -126,6 +126,7 @@
         "enshrined/svg-sanitize": "dev-master as 0.16.0",
         "jackmoore/colorbox": "^1.6",
         "mglaman/composer-drupal-lenient": "^1.0",
+        "ottosmops/pdftotext": "^2.0",
         "slick/slick": "^1.9",
         "symfony/css-selector": "^5.4",
         "vanderlee/syllable": "^1.9"

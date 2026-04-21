@@ -9,13 +9,16 @@ dependencies:
     - field.field.node.publications.field_cover
     - field.field.node.publications.field_doi_link
     - field.field.node.publications.field_download_link
+    - field.field.node.publications.field_full_text
     - field.field.node.publications.field_issue
     - field.field.node.publications.field_journal
     - field.field.node.publications.field_key_messages
     - field.field.node.publications.field_key_words
     - field.field.node.publications.field_pages
     - field.field.node.publications.field_publication_date
+    - field.field.node.publications.field_record_id
     - field.field.node.publications.field_regulatory_message
+    - field.field.node.publications.field_related_dois
     - field.field.node.publications.field_seo_keyword
     - field.field.node.publications.field_text_color
     - field.field.node.publications.field_topics
@@ -83,7 +86,8 @@ content:
     type: color_field_widget_html5
     weight: 25
     region: content
-    settings: {  }
+    settings:
+      show_extra: false
     third_party_settings: {  }
   field_cover:
     type: media_library_widget
@@ -107,6 +111,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_full_text:
+    type: string_textarea
+    weight: 27
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
   field_issue:
     type: string_textfield
@@ -156,6 +168,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_record_id:
+    type: string_textfield
+    weight: 29
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_regulatory_message:
     type: text_textarea
     weight: 26
@@ -164,9 +184,17 @@ content:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
+  field_related_dois:
+    type: string_textfield
+    weight: 30
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_seo_keyword:
     type: entity_reference_autocomplete
-    weight: 28
+    weight: 24
     region: content
     settings:
       match_operator: CONTAINS
@@ -178,7 +206,8 @@ content:
     type: color_field_widget_html5
     weight: 24
     region: content
-    settings: {  }
+    settings:
+      show_extra: false
     third_party_settings: {  }
   field_topics:
     type: entity_reference_autocomplete
@@ -266,5 +295,10 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 25
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

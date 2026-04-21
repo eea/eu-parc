@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1615186ad0af230033f61112bf3a1de",
+    "content-hash": "ad357fc189759fe1bcd1fd952dd78e42",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5352,6 +5352,10 @@
                 {
                     "name": "flocondetoile",
                     "homepage": "https://www.drupal.org/user/2006064"
+                },
+                {
+                    "name": "vitaliyb98",
+                    "homepage": "https://www.drupal.org/user/3514011"
                 }
             ],
             "description": "Provide a widget to Link field type for adding class to link.",
@@ -7106,6 +7110,10 @@
                 {
                     "name": "berdir",
                     "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "dieterholvoet",
+                    "homepage": "https://www.drupal.org/user/3567222"
                 },
                 {
                     "name": "gielfeldt",
@@ -9066,6 +9074,58 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.4.0"
             },
             "time": "2024-12-30T11:07:19+00:00"
+        },
+        {
+            "name": "ottosmops/pdftotext",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ottosmops/pdftotext.git",
+                "reference": "ab349a44a051673c40d3d690da1e4878afb03339"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ottosmops/pdftotext/zipball/ab349a44a051673c40d3d690da1e4878afb03339",
+                "reference": "ab349a44a051673c40d3d690da1e4878afb03339",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 7.2",
+                "symfony/process": ">=4.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=10"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ottosmops\\Pdftotext\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ak",
+                    "email": "kraenzle@k-r.ch",
+                    "homepage": "https://wwwk-r.ch"
+                }
+            ],
+            "description": "Extract text from PDF",
+            "homepage": "https://github.com/ottosmops/pdftotext",
+            "keywords": [
+                "anton",
+                "laravel",
+                "ottosmops",
+                "pdftotext"
+            ],
+            "support": {
+                "issues": "https://github.com/ottosmops/pdftotext/issues",
+                "source": "https://github.com/ottosmops/pdftotext/tree/2.0.1"
+            },
+            "time": "2025-08-31T14:22:12+00:00"
         },
         {
             "name": "pear/archive_tar",
@@ -14222,8 +14282,8 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.2"
     },
