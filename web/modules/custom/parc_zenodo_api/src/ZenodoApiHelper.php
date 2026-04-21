@@ -9,6 +9,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
+use Ottosmops\Pdftotext\Extract;
 
 /**
  * The Zenodo API Helper service.
@@ -51,6 +52,13 @@ class ZenodoApiHelper {
   protected $defaultCover;
 
   /**
+   * The PDF text extractor.
+   *
+   * @var \Ottosmops\Pdftotext\Extract
+   */
+  protected $pdfExtractor;
+
+  /**
    * Constructs a ZenodoApiHelper object.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
@@ -67,6 +75,7 @@ class ZenodoApiHelper {
     $this->entityTypeManager = $entity_type_manager;
     $this->config = $config_factory->get('parc_zenodo_api.adminsettings');
     $this->logger = $logger->get('parc_zenodo_api');
+    $this->pdfExtractor = new Extract();
   }
 
   /**
@@ -313,16 +322,9 @@ class ZenodoApiHelper {
       return '';
     }
 
-    $pdftotext = trim(shell_exec('which pdftotext') ?? '');
-    if (!$pdftotext) {
-      $this->logger->warning('pdftotext not found. Install poppler-utils: apt-get install poppler-utils');
-      return '';
-    }
-
     $url = 'https://zenodo.org/records/' . $recid . '/files/' . rawurlencode($file_name);
 
     $tmp_pdf = tempnam(sys_get_temp_dir(), 'parc_pdf_');
-    $tmp_txt = $tmp_pdf . '.txt';
     try {
       $this->httpClient->get($url, ['timeout' => 60, 'sink' => $tmp_pdf]);
     }
@@ -336,22 +338,14 @@ class ZenodoApiHelper {
     }
 
     try {
-      $cmd = escapeshellcmd($pdftotext) . ' ' . escapeshellarg($tmp_pdf) . ' ' . escapeshellarg($tmp_txt);
-      exec($cmd, $output, $exit_code);
-      if ($exit_code !== 0 || !file_exists($tmp_txt)) {
-        $this->logger->warning('pdftotext failed for recid @recid (exit @code)', [
-          '@recid' => $recid,
-          '@code' => $exit_code,
-        ]);
-        return '';
-      }
+      $text = $this->pdfExtractor->pdf($tmp_pdf)->text();
 
       $result = '';
-      $handle = fopen($tmp_txt, 'r');
-      while (!feof($handle)) {
-        $result .= $this->sanitizeText(fread($handle, 100000));
+      $offset = 0;
+      while ($offset < mb_strlen($text)) {
+        $result .= $this->sanitizeText(mb_substr($text, $offset, 100000));
+        $offset += 100000;
       }
-      fclose($handle);
       return $result;
     }
     catch (\Throwable $e) {
@@ -363,7 +357,6 @@ class ZenodoApiHelper {
     }
     finally {
       @unlink($tmp_pdf);
-      @unlink($tmp_txt);
     }
   }
 
