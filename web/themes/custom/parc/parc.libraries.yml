@@ -409,6 +409,12 @@ m--main:
   css:
     component:
       css/components/menu/main/style.css: {}
+  js:
+    templates/components/menu/main/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery
 
 m--sidebar-dropdown:
   css:

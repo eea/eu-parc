@@ -36,12 +36,6 @@
         margin-top: 24px;
       }
 
-      .mm-level-1-extended {
-        width: 145% !important;
-        left: -25% !important;
-        margint-top: 24px;
-      }
-
       .nav-link-level-0 {
         &:hover {
           .mm-collapse-0 {
@@ -75,7 +69,23 @@
         transform: translate(-100%);
         left: 100%;
 
-        &.extended {
+        &.nav-item-1 {
+          width: 120% !important;
+          transform: translate(0) !important;
+          left: -15% !important;
+          padding-left: 0;
+
+          .mm-level-1 {
+            column-gap: 20px;
+            justify-content: normal;
+          }
+
+          @media (min-width: 1390px) {
+            left: -5% !important;
+          }
+        }
+
+        &.nav-item-2 {
           width: 140% !important;
           transform: translate(0) !important;
           left: -32% !important;

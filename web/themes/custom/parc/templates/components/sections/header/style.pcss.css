@@ -342,7 +342,7 @@ header {
         display: block;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.35s ease;
+        transition: max-height 0.2s ease-in;
       }
     }
 
@@ -364,19 +364,25 @@ header {
       }
 
       @media (--xl) {
-        &:hover {
-          .mm-collapse-2 {
-            max-height: 600px;
-          }
+        .mm-collapse-2.show {
+          max-height: 600px;
+        }
 
-          .menu-toggle-btn {
-            background-color: #02635A;
+        .menu-toggle-btn:hover {
+          background-color: #02635A;
+
+          svg {
             color: var(--c-white);
+          }
+        }
 
-            svg {
-              transform: rotate(90deg);
-              color: white;
-            }
+        .menu-toggle-btn:not(.collapsed) {
+          background-color: #02635A;
+          color: var(--c-white);
+
+          svg {
+            transform: rotate(90deg);
+            color: white;
           }
         }
       }
