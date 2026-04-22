@@ -70,7 +70,7 @@
         box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
         clip-path: inset(0 -100vmax);
         padding-bottom: 2rem;
-        min-height: 400px;
+        min-height: 560px;
         width: 100%;
         transform: translate(-100%);
         left: 100%;
