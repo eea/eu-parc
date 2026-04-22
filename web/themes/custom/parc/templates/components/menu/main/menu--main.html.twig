@@ -80,13 +80,13 @@
               {% else %}
                 <span class="d-down-xl-none">{{ link(item.title, item.url, { 'class': classes_link }) }}</span>
               {% endif %}
-              <button class="btn d-none d-xl-block collapsed py-2 menu-toggle-btn {{ fakelink ? 'fakelink' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
+              <button class="btn d-none d-xl-block collapsed py-1 px-2 menu-toggle-btn {{ fakelink ? 'fakelink' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
                 {% if fakelink %}{{ item.title }}{% endif %}
                 <svg width="12" height="12" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke=" currentColor" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
               </button>
-              <button class="btn d-xl-none py-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
+              <button class="btn d-xl-none py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
                 {% if fakelink %}{{ item.title }}{% endif %}
                 <svg width="12" height="12" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
