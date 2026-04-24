@@ -40,6 +40,8 @@ module:
   embed_block: 0
   entity_print: 0
   entity_reference_revisions: 0
+  environment_indicator: 0
+  environment_indicator_toolbar: 0
   facets: 0
   facets_custom_order: 0
   field: 0
