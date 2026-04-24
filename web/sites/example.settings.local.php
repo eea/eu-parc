@@ -179,4 +179,3 @@ $config['google_analytics.settings']['account'] = 'YOUR_GAKEY';
 $config['environment_indicator.indicator']['name'] = 'Local';
 $config['environment_indicator.indicator']['bg_color'] = '#4ef113';
 $config['environment_indicator.indicator']['fg_color'] = '#000000';
-$config['environment_indicator.switcher.staging']['status'] = FALSE;
