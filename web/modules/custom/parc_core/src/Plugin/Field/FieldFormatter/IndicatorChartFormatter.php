@@ -76,13 +76,14 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       return [];
     }
 
-    $table_data = $this->getTableData($items);
-    $chart_data = $plugin->getChartData($table_data);
     $chart_type = $plugin->getChartType();
+    $table_data = $this->getTableData($items);
 
-    if (empty($table_data)) {
+    if ($chart_type !== 'images' && empty($table_data)) {
       return [];
     }
+
+    $chart_data = $plugin->getChartData($table_data);
 
     return [
       '#theme' => 'parc_indicator_chart',

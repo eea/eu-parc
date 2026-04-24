@@ -48,6 +48,7 @@
           classic_pie: buildClassicPieChart,
           trainings: buildTrainingsChart,
           synergies: buildSynergiesChart,
+          images: buildImagesChart,
         };
 
         const buildFunction = buildFunctions[chartType];
@@ -746,19 +747,19 @@
 
       function buildGroupPieChart(wrapperId, chartData) {
         const data = chartData.chart;
-        
+
         // Get container dimensions dynamically
         const containerElement = document.querySelector(
           `.indicator-chart__wrapper`
         );
         const containerWidth = containerElement ? containerElement.clientWidth : 1100;
-        
+
         // Calculate responsive dimensions with minimum width of 500px
         const svgWidth = Math.max(Math.min(containerWidth, 1000), 500);
         const svgHeight = svgWidth * 0.8; // Maintain 5:4 aspect ratio
         const width = svgWidth;
         const height = svgHeight;
-        
+
         // Responsive radius and inner radius
         const radius = Math.min(width, height) / 2 - (svgWidth < 600 ? 100 : 140);
         const innerRadius = svgWidth < 600 ? radius / 4 : radius / 3;
@@ -890,11 +891,11 @@
             // Add category label just outside the slice
             const baseOuterRadius = svgWidth < 600 ? radius * 1.08 : radius * 1.15; // Place label closer on smaller screens
             const labelAngle = (arc.startAngle + arc.endAngle) / 2; // Angle at the middle of the slice
-            
+
             // Push north and south labels (top and bottom) further away
             const isNorthOrSouth = Math.abs(Math.sin(labelAngle)) > 0.9; // Near top or bottom
             const outerRadius = isNorthOrSouth ? baseOuterRadius * 1.15 : baseOuterRadius;
-            
+
             let anchor =
               labelAngle <= Math.PI / 2 || labelAngle >= (3 * Math.PI) / 2
                 ? "start"
@@ -995,7 +996,7 @@
           `.indicator-chart__wrapper`
         );
         const containerWidth = containerElement ? containerElement.clientWidth : 1100;
-        
+
         // Dimensions and margins
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const svgWidth = Math.min(containerWidth, 650); // Max width of 800px
@@ -1020,7 +1021,7 @@
           .range(colorss);
 
         const translateHeight = height / 2 + margin.top - 100;
-        
+
         // Create SVG element with calculated dimensions
         const svg = d3
           .select(
@@ -1155,7 +1156,7 @@
                 .text(`${slice.data.value} projects`);
               const textWidth = tempText.node().getComputedTextLength();
               tempText.remove();
-              
+
               // Calculate if text would overflow
               const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
               const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
@@ -1169,12 +1170,12 @@
                   .attr("x", 0)
                   .attr("dy", 0)
                   .text(`${slice.data.value}`);
-                
+
                 label.append("tspan")
                   .attr("x", 0)
                   .attr("dy", "1.2em")
                   .text("projects");
-                
+
                 label.attr("y", "-0.6em"); // Center the two-line text
               } else {
                 // Keep on one line
@@ -1348,7 +1349,7 @@
                   .text(`${slice.data.value} projects`);
                 const textWidth = tempText.node().getComputedTextLength();
                 tempText.remove();
-                
+
                 // Calculate if text would overflow
                 const textAnchor = (angle > Math.PI / 2 && angle < (3 * Math.PI) / 2) ? "end" : "start";
                 const xPos = x + (svgWidth / 2); // Convert from center coordinates to absolute
@@ -1361,12 +1362,12 @@
                     .attr("x", 0)
                     .attr("dy", 0)
                     .text(`${slice.data.value}`);
-                  
+
                   label.append("tspan")
                     .attr("x", 0)
                     .attr("dy", "1.2em")
                     .text("projects");
-                  
+
                   label.attr("y", "-0.6em"); // Center the two-line text
                 } else {
                   const labelText = slice.data.value == 1 ? "project" : "projects";
@@ -1420,19 +1421,19 @@
           const lineHeightPx = 14.4; // 12px font * 1.2 line height
           const baseItemHeight = 20; // Base height for circle and padding
           const maxTextWidth = svgWidth / 1.3;
-          
+
           // Helper to calculate lines needed for text
           function calculateLineCount(text, width, fontSize = 12) {
             const tempText = svg.append("text")
               .attr("font-size", `${fontSize}px`)
               .text(text)
               .style("visibility", "hidden");
-            
+
             const words = text.split(/\s+/).reverse();
             let lineCount = 0;
             let line = [];
             let word;
-            
+
             while (word = words.pop()) {
               line.push(word);
               tempText.text(line.join(" "));
@@ -1443,18 +1444,18 @@
               }
             }
             if (line.length > 0) lineCount++;
-            
+
             tempText.remove();
             return lineCount;
           }
-          
+
           // Calculate heights and positions
           const dataEntries = Object.entries(data);
           const itemHeights = dataEntries.map(([key]) => {
             const lines = calculateLineCount(key, maxTextWidth);
             return Math.max(baseItemHeight, lines * lineHeightPx + 8);
           });
-          
+
           // Calculate cumulative Y positions
           const yPositions = [0];
           for (let i = 1; i < itemHeights.length; i++) {
@@ -1493,19 +1494,19 @@
         const lineHeightPx = 14.4; // 12px font * 1.2 line height
         const baseItemHeight = 20; // Base height for circle and padding
         const maxTextWidth = svgWidth / 1.3;
-        
+
         // Helper to calculate lines needed for text
         function calculateLineCount(text, width, fontSize = 12) {
           const tempText = svg.append("text")
             .attr("font-size", `${fontSize}px`)
             .text(text)
             .style("visibility", "hidden");
-          
+
           const words = text.split(/\s+/).reverse();
           let lineCount = 0;
           let line = [];
           let word;
-          
+
           while (word = words.pop()) {
             line.push(word);
             tempText.text(line.join(" "));
@@ -1516,18 +1517,18 @@
             }
           }
           if (line.length > 0) lineCount++;
-          
+
           tempText.remove();
           return lineCount;
         }
-        
+
         // Calculate heights and positions
         const dataEntries = Object.entries(data);
         const itemHeights = dataEntries.map(([key]) => {
           const lines = calculateLineCount(key, maxTextWidth);
           return Math.max(baseItemHeight, lines * lineHeightPx + 8);
         });
-        
+
         // Calculate cumulative Y positions
         const yPositions = [0];
         for (let i = 1; i < itemHeights.length; i++) {
@@ -1581,7 +1582,7 @@
           .append("span")
           .attr("class", (d) => "legend-text")
           .text((d) => d.year);
-        
+
         // Helper function to wrap legend text
         function wrapLegendText(text, width) {
           text.each(function() {
@@ -1595,7 +1596,7 @@
             const y = text.attr("y");
             const dy = 0;
             let tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
-            
+
             while (word = words.pop()) {
               line.push(word);
               tspan.text(line.join(" "));
@@ -2136,10 +2137,10 @@
           `.indicator-chart__wrapper`
         );
         const containerWidth = containerElement ? containerElement.clientWidth : 1100;
-        
+
         // Calculate responsive dimensions with minimum width of 600px
         const svgWidth = Math.max(Math.min(containerWidth, 1100), 600);
-        
+
         const margin = { top: 20, right: 30, bottom: 80, left: 200 },
           width = svgWidth - margin.left - margin.right,
           height = 200 + categories.length * 20 - margin.top - margin.bottom,
@@ -2280,7 +2281,7 @@
           .append("span")
           .attr("class", (d) => "legend-text year-" + d)
           .text((d) => d);
-        
+
         // Scroll container to the left on initial render
         setTimeout(() => {
           const scrollContainer = document.querySelector(`#${wrapperId} .indicator-scrollable-container`);
@@ -2462,7 +2463,7 @@
           .append("span")
           .attr("class", (d) => "legend-text year-" + d.year)
           .text((d) => d.year);
-        
+
         // Scroll container to the left on initial render
         setTimeout(() => {
           const scrollContainer = document.querySelector(`#${wrapperId} .indicator-scrollable-container`);
@@ -2795,7 +2796,7 @@
           (segmentLength + 20) * Math.max(0, maxData - 1) -
           margin.top -
           margin.bottom;
-        
+
         const transformHeight = height / 2 - 120;
 
         const svg = d3
@@ -3027,7 +3028,7 @@
             (segmentLength + 20) * Math.max(0, maxData - 1) -
             margin.top -
             margin.bottom;
-          
+
           const transformHeight = height / 2 - 120;
 
           d3.select(`#${wrapperId} svg`)
@@ -3109,7 +3110,7 @@
           const legendGroup = svg.append("g")
             .attr("class", "legend-container")
             .attr("transform", `translate(${width / 2 - margin.left - 220}, ${transformHeight + 100})`);
-  
+
           const gradientStart = adjustColor(colors[year], 60);
           const gradientEnd = adjustColor(colors[year], -60);
           let defs = svg.append("defs");
@@ -3119,14 +3120,14 @@
             .attr("x2", "100%")
             .attr("y1", "0%")
             .attr("y2", "0%");
-  
+
           gradient.append("stop")
             .attr("offset", "0%")
             .attr("stop-color", plus60Color);
           gradient.append("stop")
             .attr("offset", "100%")
             .attr("stop-color", minus60Color);
-  
+
           legendGroup.append("text")
             .attr("class", "legend-title")
             .text("Duration")
@@ -3134,17 +3135,17 @@
             .attr("y", 0)
             .attr("font-size", "17px")
             .attr("dy", "1em");
-  
+
           const strokeWidths = [2, 4, 6, 8];
           const strokeLength = 50;
-  
+
           legendGroup.append("rect")
             .attr("x", 0)
             .attr("y", 30)
             .attr("width", (strokeLength + 2) * strokeWidths.length)
             .attr("height", 10)
             .attr("fill", `url(#participants-gradient-${year})`);
-  
+
           legendGroup.append("text")
             .attr("class", "legend-title")
             .text("Number of participants")
@@ -3152,8 +3153,8 @@
             .attr("y", 60)
             .attr("font-size", "17px")
             .attr("dy", "1em");
-  
-  
+
+
           legendGroup.selectAll(".duration-bar")
             .data(strokeWidths)
             .enter()
@@ -3690,6 +3691,64 @@
               .delay(index * animationDelay)
               .style("opacity", "1");
           });
+        }
+      }
+
+      function buildImagesChart(wrapperId, chartData) {
+        const colors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
+
+        const container = d3.select(
+          `#${wrapperId} .indicator-scrollable-container .indicator-container`
+        );
+        const years = Object.keys(chartData.chart);
+        const latestYear = years[years.length - 1];
+
+        years.forEach((year) => {
+          container
+            .append("img")
+            .attr("class", `chart-image chart-image-${year}`)
+            .attr("src", chartData.chart[year])
+            .attr("alt", `Chart for ${year}`)
+            .style("display", year === latestYear ? "block" : "none")
+            .style("max-width", "100%")
+            .style("height", "auto");
+        });
+
+        if (years.length > 1) {
+          d3.select(`#${wrapperId}`).classed("has-year-switcher", true);
+
+          const legend = d3
+            .select(`#${wrapperId}`)
+            .append("div")
+            .attr("class", "legend")
+            .selectAll("div")
+            .data(years.map((year) => ({ year, color: colors[year] })))
+            .enter()
+            .append("div")
+            .on("click", function (event, d) {
+              container.selectAll(".chart-image").style("display", "none");
+              container
+                .select(`.chart-image-${d.year}`)
+                .style("display", "block");
+            });
+
+          legend
+            .append("span")
+            .attr("class", "legend-color")
+            .style("background-color", (d) => d.color);
+
+          legend
+            .append("span")
+            .attr("class", (d) => "legend-text year-" + d.year)
+            .text((d) => d.year);
         }
       }
 
