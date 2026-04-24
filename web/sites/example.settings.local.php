@@ -172,3 +172,10 @@ $config['stage_file_proxy.settings']['use_imagecache_root'] = FALSE;
 $config['parc_zenodo_api.adminsettings']['token'] = 'YOUR_ZENODO_API_TOKEN';
 
 $config['google_analytics.settings']['account'] = 'YOUR_GAKEY';
+
+/**
+ * Environment indicator settings.
+ */
+$config['environment_indicator.indicator']['name'] = 'Local';
+$config['environment_indicator.indicator']['bg_color'] = '#4ef113';
+$config['environment_indicator.indicator']['fg_color'] = '#000000';
