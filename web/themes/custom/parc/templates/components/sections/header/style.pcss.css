@@ -349,6 +349,10 @@ header {
     .nav-link-level-2 {
       .menu-toggle-btn {
         border-radius: 100%;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        padding: .5rem !important;
 
         svg {
           width: 100%;
