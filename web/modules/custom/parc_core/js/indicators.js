@@ -49,6 +49,8 @@
           trainings: buildTrainingsChart,
           synergies: buildSynergiesChart,
           images: buildImagesChart,
+          output_02: buildOutput02Chart,
+          output_11: buildOutput11Chart,
         };
 
         const buildFunction = buildFunctions[chartType];
@@ -781,6 +783,9 @@
           "#E1BAFF",
           "#E45C4D",
         ];
+        const achievedColors = categoryColors.map((c) =>
+          d3.color(c).darker(0.8).formatHex()
+        );
 
         // Colors for the years
         const colors = {
@@ -820,81 +825,139 @@
           // Clear existing arcs and labels
           svg.selectAll(".arc").remove();
           svg.selectAll("text").remove();
+          svg.selectAll(".arc-dot").remove();
+          svg.selectAll(".hover-arc").remove();
 
           const arcs = pie(categories.map((cat) => data[currentYear][cat]));
+
+          // Center label elements shown on hover
+          const centerLabelName = svg
+            .append("text")
+            .attr("fill", "#000")
+            .attr("text-anchor", "middle")
+            .attr("dy", "-0.3em")
+            .style("font-size", svgWidth < 600 ? "14px" : "18px")
+            .style("display", "none");
+
+          const centerLabelValue = svg
+            .append("text")
+            .attr("fill", "#000")
+            .attr("text-anchor", "middle")
+            .attr("dy", "1.2em")
+            .style("font-size", svgWidth < 600 ? "12px" : "16px")
+            .style("display", "none");
+
+          const ongoingLabelEl = svg
+            .append("text")
+            .attr("text-anchor", "middle")
+            .style("font-size", svgWidth < 600 ? "12px" : "16px")
+            .style("display", "none");
+
+          const achievedLabelEl = svg
+            .append("text")
+            .attr("text-anchor", "middle")
+            .style("font-size", svgWidth < 600 ? "12px" : "16px")
+            .style("display", "none");
 
           // Draw arcs for each category
           arcs.forEach((arc, index) => {
             const category = categories[index];
-            const linesToColor = data[currentYear][category];
+            const categoryData = data[currentYear][category];
             arc.startAngle -= Math.PI / 4;
             arc.endAngle -= Math.PI / 4;
 
-            // Draw the colored lines
-            const color = categoryColors[index];
-            const arcSelection = svg
-              .append("g")
-              .attr("class", "arc arc-" + category.split(" ").join("-"))
-              .selectAll(".line")
-              .data(d3.range(linesToColor))
-              .enter()
-              .append("line")
-              .attr("class", "line colored")
-              .attr("x1", (d, i) => {
-                const angle =
-                  arc.startAngle +
-                  ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
-                return innerRadius * Math.cos(angle);
-              })
-              .attr("y1", (d, i) => {
-                const angle =
-                  arc.startAngle +
-                  ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
-                return innerRadius * Math.sin(angle);
-              })
-              .attr("x2", (d, i) => {
-                const angle =
-                  arc.startAngle +
-                  ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
-                return innerRadius * Math.cos(angle);
-              })
-              .attr("y2", (d, i) => {
-                const angle =
-                  arc.startAngle +
-                  ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
-                return innerRadius * Math.sin(angle);
-              })
-              .attr("stroke", color)
-              .attr("stroke-linecap", "round")
-              .attr("stroke-width", svgWidth < 600 ? "3px" : "5px")
-              .style("opacity", 1)
-              .transition()
-              .duration(750)
-              .attr("x2", (d, i) => {
-                const angle =
-                  arc.startAngle +
-                  ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
-                return radius * Math.cos(angle);
-              })
-              .attr("y2", (d, i) => {
-                const angle =
-                  arc.startAngle +
-                  ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
-                    (2 * linesToColor);
-                return radius * Math.sin(angle);
-              });
-            // Add category label just outside the slice
-            const baseOuterRadius = svgWidth < 600 ? radius * 1.08 : radius * 1.15; // Place label closer on smaller screens
-            const labelAngle = (arc.startAngle + arc.endAngle) / 2; // Angle at the middle of the slice
+            // Extract ongoing/achieved/total from value
+            let ongoing, achieved, total;
+            if (typeof categoryData === "object" && categoryData !== null) {
+              ongoing = categoryData.ongoing || 0;
+              achieved = categoryData.achieved || 0;
+              total = ongoing + achieved;
+            } else {
+              total = typeof categoryData === "number" ? categoryData : 0;
+              ongoing = total;
+              achieved = 0;
+            }
 
-            // Push north and south labels (top and bottom) further away
-            const isNorthOrSouth = Math.abs(Math.sin(labelAngle)) > 0.9; // Near top or bottom
-            const outerRadius = isNorthOrSouth ? baseOuterRadius * 1.15 : baseOuterRadius;
+            const color = categoryColors[index];
+            const achievedColor = achievedColors[index];
+
+            if (total === 0) {
+              // Draw a dot at the arc midpoint when value is 0
+              const midAngle = (arc.startAngle + arc.endAngle) / 2;
+              const dotR = (innerRadius + radius) / 2;
+              svg
+                .append("circle")
+                .attr("class", "arc-dot")
+                .attr("cx", dotR * Math.cos(midAngle))
+                .attr("cy", dotR * Math.sin(midAngle))
+                .attr("r", 5)
+                .attr("fill", color);
+            } else {
+              // Draw lines: ongoing first (lighter), then achieved (darker)
+              svg
+                .append("g")
+                .attr("class", "arc arc-" + category.split(" ").join("-"))
+                .selectAll(".line")
+                .data(d3.range(total))
+                .enter()
+                .append("line")
+                .attr("class", "line colored")
+                .attr("x1", (d, i) => {
+                  const angle =
+                    arc.startAngle +
+                    ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                      (2 * total);
+                  return innerRadius * Math.cos(angle);
+                })
+                .attr("y1", (d, i) => {
+                  const angle =
+                    arc.startAngle +
+                    ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                      (2 * total);
+                  return innerRadius * Math.sin(angle);
+                })
+                .attr("x2", (d, i) => {
+                  const angle =
+                    arc.startAngle +
+                    ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                      (2 * total);
+                  return innerRadius * Math.cos(angle);
+                })
+                .attr("y2", (d, i) => {
+                  const angle =
+                    arc.startAngle +
+                    ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                      (2 * total);
+                  return innerRadius * Math.sin(angle);
+                })
+                .attr("stroke", (d, i) => (i < ongoing ? color : achievedColor))
+                .attr("stroke-linecap", "round")
+                .attr("stroke-width", svgWidth < 600 ? "3px" : "5px")
+                .style("opacity", 1)
+                .transition()
+                .duration(750)
+                .attr("x2", (d, i) => {
+                  const angle =
+                    arc.startAngle +
+                    ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                      (2 * total);
+                  return radius * Math.cos(angle);
+                })
+                .attr("y2", (d, i) => {
+                  const angle =
+                    arc.startAngle +
+                    ((arc.endAngle - arc.startAngle) * (2 * i + 1)) /
+                      (2 * total);
+                  return radius * Math.sin(angle);
+                });
+            }
+
+            // Add category label just outside the slice
+            const baseOuterRadius = svgWidth < 600 ? radius * 1.08 : radius * 1.15;
+            const labelAngle = (arc.startAngle + arc.endAngle) / 2;
+
+            const isNorthOrSouth = Math.abs(Math.sin(labelAngle)) > 0.9;
+            const outerLabelRadius = isNorthOrSouth ? baseOuterRadius * 1.15 : baseOuterRadius;
 
             let anchor =
               labelAngle <= Math.PI / 2 || labelAngle >= (3 * Math.PI) / 2
@@ -907,8 +970,8 @@
               anchor = "middle";
             }
 
-            let labelX = outerRadius * Math.cos(labelAngle);
-            let labelY = outerRadius * Math.sin(labelAngle);
+            let labelX = outerLabelRadius * Math.cos(labelAngle);
+            let labelY = outerLabelRadius * Math.sin(labelAngle);
 
             let textObj = svg
               .append("text")
@@ -918,7 +981,7 @@
               .attr("fill", color)
               .style("font-size", svgWidth < 600 ? "14px" : "20px")
               .attr("text-anchor", anchor)
-              .style("opacity", 1); // Show only the latest year by default
+              .style("opacity", 1);
 
             labelY += svgWidth < 600 ? 20 : 30;
             if (anchor == "start") {
@@ -930,23 +993,57 @@
               .append("text")
               .attr("class", `category-label-${category.split(" ").join("-")}`)
               .attr("transform", `translate(${labelX}, ${labelY})`)
-              .text(`${data[currentYear][category]}`)
+              .text(total)
               .attr("fill", color)
               .style("font-size", svgWidth < 600 ? "14px" : "20px")
               .attr("text-anchor", anchor)
-              .style("opacity", 1); // Show only the latest year by default
+              .style("opacity", 1);
+
+            // Transparent hover arc for mouse detection
+            const hoverArcGen = d3.arc().innerRadius(innerRadius).outerRadius(radius);
+            svg
+              .append("path")
+              .attr("class", "hover-arc")
+              .attr("d", hoverArcGen({ startAngle: arc.startAngle, endAngle: arc.endAngle }))
+              .attr("fill", "transparent")
+              .attr("cursor", "pointer")
+              .on("mouseover", function () {
+                centerLabelName.text(category).style("display", null);
+                centerLabelValue.text(total).style("display", null);
+                if (total > 0 && achieved > 0) {
+                  const hoverR = radius * 1.4;
+                  const ongoingMidAngle =
+                    arc.startAngle +
+                    (arc.endAngle - arc.startAngle) * (ongoing / (2 * total));
+                  const achievedMidAngle =
+                    arc.startAngle +
+                    (arc.endAngle - arc.startAngle) *
+                      ((2 * ongoing + achieved) / (2 * total));
+                  ongoingLabelEl
+                    .attr("x", hoverR * Math.cos(ongoingMidAngle))
+                    .attr("y", hoverR * Math.sin(ongoingMidAngle))
+                    .text(`Ongoing ${ongoing}`)
+                    .attr("fill", color)
+                    .style("display", null);
+                  achievedLabelEl
+                    .attr("x", hoverR * Math.cos(achievedMidAngle))
+                    .attr("y", hoverR * Math.sin(achievedMidAngle))
+                    .text(`Achieved ${achieved}`)
+                    .attr("fill", achievedColor)
+                    .style("display", null);
+                }
+              })
+              .on("mouseout", function () {
+                centerLabelName.style("display", "none");
+                centerLabelValue.style("display", "none");
+                ongoingLabelEl.style("display", "none");
+                achievedLabelEl.style("display", "none");
+              });
           });
         }
 
         // Initial draw for the latest year
         drawArcs(latestYear);
-
-        svg
-          .append("text")
-          .attr("class", "category-label")
-          .attr("fill", "black")
-          .style("font-size", "12px")
-          .attr("text-anchor", "middle");
 
         const legend = d3
           .select("#" + wrapperId)
@@ -3750,6 +3847,545 @@
             .attr("class", (d) => "legend-text year-" + d.year)
             .text((d) => d.year);
         }
+      }
+
+      // Output 02: table layout — labels in left column, one pill per cell (row=label,
+      // col=year), year labels at the bottom of each column. All years always visible.
+      // Height mapping: 1→3.5, 2→5, 3→7, 6→14, 9→18, 11→20 (piecewise-linear scale).
+      function buildOutput02Chart(wrapperId, chartData) {
+        const yearColors = {
+          2022: "#017365",
+          2023: "#E4798B",
+          2024: "#1879EB",
+          2025: "#2DC9B6",
+          2026: "#C0A456",
+          2027: "#7D2D9C",
+          2028: "#DB5749",
+        };
+
+        const data = chartData.chart;
+        const years = Object.keys(data);
+        const latestYear = years[years.length - 1];
+        const categories = Object.keys(data[latestYear]);
+
+        const containerElement = document.querySelector(".indicator-chart__wrapper");
+        const containerWidth = containerElement ? containerElement.clientWidth : 1000;
+        const svgWidth = Math.min(containerWidth * 0.9, 850);
+
+        const labelColW = Math.min(Math.max(svgWidth * 0.22, 120), 180);
+        const dataW = svgWidth - labelColW;
+        const yearColW = dataW / years.length;
+
+        const rowH = 90;
+        const yearRowH = 60;
+        const svgHeight = categories.length * rowH + yearRowH + 20;
+
+        const pillWidth = Math.min(yearColW * 0.82, 70);
+
+        const svg = d3
+          .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
+          .append("svg")
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
+          .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
+          .style("display", "block")
+          .style("margin", "0 auto")
+          .style("max-width", "100%")
+          .style("height", "auto");
+
+        svg.attr("preserveAspectRatio", "xMidYMid meet");
+
+        // Background
+        svg.append("rect")
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
+          .attr("fill", "white");
+
+        // Scale for pill thickness
+        const pillThicknessScale = d3
+          .scaleLinear()
+          .domain([0, 1, 3, 6, 9, 11])
+          .range([4, 6, 8, 12, 16, 20])
+          .clamp(true);
+
+        // FULL vertical grid lines
+        years.forEach((year, colIdx) => {
+          const centerX = labelColW + yearColW * colIdx + yearColW / 2;
+
+          svg.append("line")
+            .attr("x1", centerX)
+            .attr("y1", 0)
+            .attr("x2", centerX)
+            .attr("y2", categories.length * rowH)
+            .attr("stroke", "#ececec")
+            .attr("stroke-width", 1);
+        });
+
+        categories.forEach((cat, rowIdx) => {
+          const rowTop = rowIdx * rowH;
+          const centerY = rowTop + rowH / 2;
+
+          // Horizontal row line starts after labels
+          svg.append("line")
+            .attr("x1", labelColW)
+            .attr("y1", centerY)
+            .attr("x2", svgWidth)
+            .attr("y2", centerY)
+            .attr("stroke", "#efefef")
+            .attr("stroke-width", 1);
+
+          // Category label
+          svg.append("text")
+            .attr("x", labelColW - 16)
+            .attr("y", centerY)
+            .attr("text-anchor", "end")
+            .attr("dominant-baseline", "middle")
+            .style("font-size", svgWidth < 600 ? "11px" : "13px")
+            .style("fill", "#222")
+            .style("font-weight", "500")
+            .text(cat.toUpperCase());
+
+          // Pills per year
+          years.forEach((year, colIdx) => {
+            const raw = data[year] ? data[year][cat] : undefined;
+            const value = typeof raw === "number" ? raw : 0;
+
+            const centerX = labelColW + yearColW * colIdx + yearColW / 2;
+            const color = yearColors[year] || "#017365";
+
+            const dynamicPillHeight = pillThicknessScale(value);
+
+            // Baseline behind pill
+            svg.append("line")
+              .attr("x1", centerX - pillWidth / 2)
+              .attr("y1", centerY)
+              .attr("x2", centerX + pillWidth / 2)
+              .attr("y2", centerY)
+              .attr("stroke", "#e6e6e6")
+              .attr("stroke-width", 4)
+              .attr("stroke-linecap", "round");
+
+            if (value > 0) {
+              // Animated pill
+              svg.append("line")
+                .attr("x1", centerX)
+                .attr("y1", centerY)
+                .attr("x2", centerX)
+                .attr("y2", centerY)
+                .attr("stroke", color)
+                .attr("stroke-width", dynamicPillHeight)
+                .attr("stroke-linecap", "round")
+                .transition()
+                .duration(700)
+                .delay(rowIdx * 80)
+                .attr("x1", centerX - pillWidth / 2)
+                .attr("x2", centerX + pillWidth / 2);
+
+              // Value label
+              svg.append("text")
+                .attr("x", centerX)
+                .attr("y", centerY)
+                .attr("text-anchor", "middle")
+                .attr("dominant-baseline", "middle")
+                .style("font-size", svgWidth < 600 ? "11px" : "13px")
+                .style("fill", "#111")
+                .style("font-weight", "700")
+                .style("pointer-events", "none")
+                .style("opacity", 0)
+                .text(value)
+                .transition()
+                .delay(rowIdx * 80 + 500)
+                .duration(300)
+                .style("opacity", 1);
+            }
+          });
+        });
+
+        // Bottom separator line
+        const yearLineY = categories.length * rowH;
+
+        svg.append("line")
+          .attr("x1", labelColW)
+          .attr("y1", yearLineY)
+          .attr("x2", svgWidth)
+          .attr("y2", yearLineY)
+          .attr("stroke", "#cccccc")
+          .attr("stroke-width", 1);
+
+        // Year labels
+        years.forEach((year, colIdx) => {
+          const centerX = labelColW + yearColW * colIdx + yearColW / 2;
+
+          svg.append("text")
+            .attr("x", centerX)
+            .attr("y", yearLineY + 35)
+            .attr("text-anchor", "middle")
+            .style("font-size", "14px")
+            .style("fill", "#444")
+            .style("font-weight", "500")
+            .text(year);
+        });
+      }
+
+      function buildOutput11Chart(wrapperId, chartData) {
+        const categoryColors = [
+          "#F58296",
+          "#8631A7",
+          "#1C74FF",
+          "#E1C268",
+          "#008475",
+          "#E1BAFF",
+          "#E45C4D",
+        ];
+
+        // -------------------------------------
+        // Data from PHP (already flattened)
+        // -------------------------------------
+        const data = chartData.chart || {};
+        const categories = Object.keys(data).slice(0, 5);
+
+        const containerElement = document.querySelector(".indicator-chart__wrapper");
+        const containerWidth = containerElement
+          ? containerElement.clientWidth
+          : 1100;
+
+        const svgWidth = Math.min(containerWidth * 0.95, 1000);
+
+        const maxR = Math.min(svgWidth * 0.20, 130);
+        const minR = Math.max(maxR * 0.28, 25);
+
+        const innerFrac = 0.15;
+        const chartGap = 28;
+        const strokeNormal = 1.5;
+        const strokeThick = 4;
+
+        function getValues(v) {
+          if (typeof v === "object" && v !== null) {
+            return {
+              ongoing: v.ongoing || 0,
+              achieved: v.achieved || 0,
+            };
+          }
+
+          return {
+            ongoing: Number(v) || 0,
+            achieved: 0,
+          };
+        }
+
+        function wrapText(text, maxChars) {
+          if (maxChars < 4) return [text.slice(0, 4)];
+
+          const words = text.split(/\s+/);
+          const lines = [];
+          let line = "";
+
+          words.forEach((word) => {
+            const candidate = line ? `${line} ${word}` : word;
+
+            if (candidate.length <= maxChars) {
+              line = candidate;
+            } else {
+              if (line) lines.push(line);
+              line = word;
+            }
+          });
+
+          if (line) lines.push(line);
+
+          return lines.length ? lines : [text];
+        }
+
+        const totals = categories.map((cat) => {
+          const { ongoing, achieved } = getValues(data[cat]);
+
+          return {
+            cat,
+            ongoing,
+            achieved,
+            total: ongoing + achieved,
+          };
+        });
+
+        const maxTotal = Math.max(...totals.map((d) => d.total), 1);
+
+        const radiusScale = d3
+          .scaleSqrt()
+          .domain([0, maxTotal])
+          .range([minR, maxR])
+          .clamp(true);
+
+        const radii = totals.map((d) =>
+          d.total === 0 ? minR : radiusScale(d.total)
+        );
+
+        // -------------------------------------
+        // Build rows for wrapping
+        // -------------------------------------
+        const rows = [];
+        let currentRow = [];
+        let currentWidth = 0;
+        let currentMaxR = 0;
+
+        radii.forEach((r, idx) => {
+          const chartWidth = r * 2;
+
+          const proposedWidth =
+            currentRow.length === 0
+              ? chartWidth
+              : currentWidth + chartGap + chartWidth;
+
+          if (currentRow.length > 0 && proposedWidth > svgWidth) {
+            rows.push({
+              items: currentRow,
+              maxR: currentMaxR,
+            });
+
+            currentRow = [];
+            currentWidth = 0;
+            currentMaxR = 0;
+          }
+
+          currentRow.push(idx);
+
+          currentWidth =
+            currentRow.length === 1
+              ? chartWidth
+              : currentWidth + chartGap + chartWidth;
+
+          currentMaxR = Math.max(currentMaxR, r);
+        });
+
+        if (currentRow.length) {
+          rows.push({
+            items: currentRow,
+            maxR: currentMaxR,
+          });
+        }
+
+        // -------------------------------------
+        // Calculate positions
+        // -------------------------------------
+        const positions = new Array(radii.length);
+        let rowBaseY = 0;
+
+        rows.forEach((row) => {
+          const totalRowWidth =
+            row.items.reduce((sum, idx) => sum + radii[idx] * 2, 0) +
+            (row.items.length - 1) * chartGap;
+
+          let x = (svgWidth - totalRowWidth) / 2;
+
+          row.items.forEach((idx) => {
+            const r = radii[idx];
+
+            positions[idx] = {
+              x: x + r,
+              y: rowBaseY + row.maxR,
+            };
+
+            x += r * 2 + chartGap;
+          });
+
+          rowBaseY += row.maxR * 2 + chartGap;
+        });
+
+        const svgHeight = rowBaseY - chartGap + 20;
+
+        const container = d3.select(
+          `#${wrapperId} .indicator-scrollable-container .indicator-container`
+        );
+
+        // Remove old chart before rendering
+        container.select("svg").remove();
+
+        const svgEl = container
+          .append("svg")
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
+          .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
+          .attr("preserveAspectRatio", "xMidYMid meet")
+          .style("display", "block")
+          .style("margin", "0 auto")
+          .style("overflow", "visible");
+
+        totals.forEach(({ cat, ongoing, achieved, total }, idx) => {
+          const color = categoryColors[idx % categoryColors.length];
+          const achievedColor = d3.color(color).darker(0.8).formatHex();
+
+          const { x, y } = positions[idx];
+          const r = radii[idx];
+          const innerR = r * innerFrac;
+
+          const g = svgEl
+            .append("g")
+            .attr("transform", `translate(${x}, ${y})`);
+
+          const lineGroup = g.append("g");
+
+          // -------------------------------------
+          // Radial Lines
+          // -------------------------------------
+          if (total > 0) {
+            const angleStep = (2 * Math.PI) / total;
+
+            for (let i = 0; i < total; i++) {
+              const angle = -Math.PI / 2 + i * angleStep;
+
+              lineGroup
+                .append("line")
+                .attr("class", i < achieved ? "achieved-line" : "")
+                .attr("x1", Math.cos(angle) * innerR)
+                .attr("y1", Math.sin(angle) * innerR)
+                .attr("x2", Math.cos(angle) * innerR)
+                .attr("y2", Math.sin(angle) * innerR)
+                .attr("stroke", color)
+                .attr("stroke-width", strokeNormal)
+                .attr("stroke-linecap", "round")
+                .transition()
+                .duration(600)
+                .delay(Math.min(i * 8, 500))
+                .attr("x2", Math.cos(angle) * r)
+                .attr("y2", Math.sin(angle) * r);
+            }
+          }
+
+          // -------------------------------------
+          // Center Label
+          // -------------------------------------
+          const fontSize = Math.max(Math.min(innerR * 0.55, 13), 9);
+          const charWidth = fontSize * 0.6;
+          const maxChars = Math.max(
+            Math.floor((innerR * 1.8) / charWidth),
+            4
+          );
+
+          const lineHeight = fontSize + 2;
+          const labelLines = wrapText(cat, maxChars);
+
+          const labelGroup = g.append("g");
+
+          labelLines.forEach((line, li) => {
+            labelGroup
+              .append("text")
+              .attr("x", 0)
+              .attr(
+                "y",
+                (li - (labelLines.length - 1) / 2) * lineHeight
+              )
+              .attr("text-anchor", "middle")
+              .attr("dominant-baseline", "middle")
+              .style("font-size", `${fontSize}px`)
+              .style("fill", "#444")
+              .text(line);
+          });
+
+          // -------------------------------------
+          // Hover Content
+          // -------------------------------------
+          const hoverGroup = g
+            .append("g")
+            .style("opacity", 0)
+            .style("pointer-events", "none");
+
+          hoverGroup
+            .append("text")
+            .attr("text-anchor", "middle")
+            .style("font-size", `${fontSize}px`)
+            .style("font-weight", "bold")
+            .style("fill", "#222")
+            .attr("y", -8)
+            .text(cat);
+
+          hoverGroup
+            .append("text")
+            .attr("text-anchor", "middle")
+            .style("font-size", `${fontSize + 2}px`)
+            .style("font-weight", "bold")
+            .style("fill", "#222")
+            .attr("y", 12)
+            .text(total);
+
+          if (achieved > 0) {
+            const ongoingGroup = hoverGroup
+              .append("g")
+              .attr("transform", `translate(${-r - 10}, ${-r * 0.2})`);
+
+            ongoingGroup
+              .append("text")
+              .attr("text-anchor", "end")
+              .style("font-size", "12px")
+              .style("fill", color)
+              .text("Ongoing");
+
+            ongoingGroup
+              .append("text")
+              .attr("y", 16)
+              .attr("text-anchor", "end")
+              .style("font-size", "13px")
+              .style("font-weight", "bold")
+              .style("fill", color)
+              .text(ongoing);
+
+            const achievedGroup = hoverGroup
+              .append("g")
+              .attr("transform", `translate(${r * 0.25}, ${-r - 10})`);
+
+            achievedGroup
+              .append("text")
+              .attr("text-anchor", "start")
+              .style("font-size", "12px")
+              .style("fill", achievedColor)
+              .text("Achieved");
+
+            achievedGroup
+              .append("text")
+              .attr("y", 16)
+              .attr("text-anchor", "start")
+              .style("font-size", "13px")
+              .style("font-weight", "bold")
+              .style("fill", achievedColor)
+              .text(achieved);
+          }
+
+          // -------------------------------------
+          // Hover Interaction
+          // -------------------------------------
+          g.append("circle")
+            .attr("r", r)
+            .attr("fill", "transparent")
+            .attr("cursor", "pointer")
+            .on("mouseover", function () {
+              lineGroup
+                .selectAll(".achieved-line")
+                .transition()
+                .duration(150)
+                .attr("stroke-width", strokeThick)
+                .attr("stroke", achievedColor);
+
+              labelGroup.style("opacity", 0);
+
+              hoverGroup
+                .transition()
+                .duration(150)
+                .style("opacity", 1);
+            })
+            .on("mouseout", function () {
+              lineGroup
+                .selectAll(".achieved-line")
+                .transition()
+                .duration(150)
+                .attr("stroke-width", strokeNormal)
+                .attr("stroke", color);
+
+              labelGroup.style("opacity", 1);
+
+              hoverGroup
+                .transition()
+                .duration(150)
+                .style("opacity", 0);
+            });
+        });
       }
 
       function addPlayButtonToLegend(selector, wrapperId) {
