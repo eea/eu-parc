@@ -4090,7 +4090,7 @@
                 aOff: cfg.achievedLabelOffset || aOff,
               };
             });
-            svgHeight = Math.max(...positions.map((p) => p.y + p.r)) + 16;
+            svgHeight = Math.max(...positions.map((p) => p.y + p.r + (p.r * innerFrac < 20 ? 52 : 0))) + 16;
           } else {
             const radii = totals.map(({ total }) =>
               total === 0 ? minR : radiusScale(total)
@@ -4161,16 +4161,20 @@
               }
             }
 
-            // Category name in hollow center — fixed font size for all circles.
+            // Category name — inside the hollow center when it fits, otherwise below.
             const fontSize = 11;
-            const maxChars = Math.max(Math.floor((innerR * 1.8) / (fontSize * 0.6)), 4);
             const lineH = fontSize + 2;
+            const labelOutside = total === 0 || innerR < 20;
+            const maxChars = labelOutside
+              ? 100
+              : Math.max(Math.floor((innerR * 1.8) / (fontSize * 0.6)), 4);
             const labelLines = wrapText(cat, maxChars);
             const labelG = g.append("g");
+            const labelBaseY = total === 0 ? 30 : (labelOutside ? r + lineH : 0);
             labelLines.forEach((ln, li) => {
               labelG.append("text")
                 .attr("x", 0)
-                .attr("y", (li - (labelLines.length - 1) / 2) * lineH)
+                .attr("y", labelBaseY + (li - (labelLines.length - 1) / 2) * lineH)
                 .attr("text-anchor", "middle").attr("dominant-baseline", "middle")
                 .style("font-size", `${fontSize}px`).style("fill", "#444")
                 .style("pointer-events", "none").text(ln);
@@ -4179,7 +4183,7 @@
             // Hover overlay: total below label + Ongoing/Achieved floating labels.
             const hoverG = g.append("g").style("opacity", 0).style("pointer-events", "none");
 
-            const totalY = (labelLines.length / 2) * lineH + fontSize;
+            const totalY = labelBaseY + (labelLines.length / 2) * lineH + fontSize;
             hoverG.append("text")
               .attr("x", 0).attr("y", totalY)
               .attr("text-anchor", "middle").attr("dominant-baseline", "middle")
