@@ -4071,6 +4071,7 @@
             const { achieved, total, ongoing } = getValues(getValue(year, cat));
             return { cat, ongoing, achieved, total };
           });
+          totals.sort((a, b) => b.total - a.total);
 
           const maxTotal = Math.max(...totals.map((t) => t.total), 1);
           const radiusScale = d3.scaleSqrt()
