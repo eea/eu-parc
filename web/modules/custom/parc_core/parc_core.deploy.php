@@ -2198,8 +2198,7 @@ function parc_core_deploy_eco_matrix() {
     $longitude = $row['Longitude'];
     $external_id = $row['id_form'];
 
-    // @todo.
-    $lab_type = 'External laboratory';
+    $lab_type = $row['parc_member'] == 'yes' ? 'PARC member' : 'External laboratory';
     $lab_type_term = $term_storage->loadByProperties([
       'vid' => 'lab_types',
       'name' => $lab_type,
