@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.node.field_substances_matrix
     - node.type.laboratory
+    - paragraphs.paragraphs_type.ecotoxicology
     - paragraphs.paragraphs_type.lab_matrix
   module:
     - entity_reference_revisions
@@ -23,6 +24,7 @@ settings:
   handler_settings:
     target_bundles:
       lab_matrix: lab_matrix
+      ecotoxicology: ecotoxicology
     negate: 0
     target_bundles_drag_drop:
       accordion_item:
@@ -31,11 +33,35 @@ settings:
       card:
         weight: 12
         enabled: false
+      cards:
+        weight: 27
+        enabled: false
       carousel_item:
         weight: 13
         enabled: false
+      chapter_title:
+        weight: 29
+        enabled: false
+      chemical_health_effects:
+        weight: 31
+        enabled: false
+      chemicals_exposure_sources:
+        weight: 30
+        enabled: false
+      contact:
+        weight: 32
+        enabled: false
+      ecotoxicology:
+        weight: 33
+        enabled: true
+      faq:
+        weight: 34
+        enabled: false
       grid:
         weight: 14
+        enabled: false
+      icon_title:
+        weight: 36
         enabled: false
       lab_matrix:
         weight: 15
@@ -49,8 +75,26 @@ settings:
       newsletter:
         weight: 18
         enabled: false
+      partner:
+        weight: 41
+        enabled: false
+      sria_card:
+        weight: 42
+        enabled: false
+      survey:
+        weight: 43
+        enabled: false
+      survey_question:
+        weight: 44
+        enabled: false
       svg_text:
         weight: 19
+        enabled: false
+      text:
+        weight: 46
+        enabled: false
+      two_column:
+        weight: 47
         enabled: false
       what_we_do:
         weight: 20

@@ -1,0 +1,57 @@
+uuid: b56f36da-65dc-42ca-9b07-afa98113557a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ecotoxicology.field_additional_information
+    - field.field.paragraph.ecotoxicology.field_approaches
+    - field.field.paragraph.ecotoxicology.field_domain
+    - field.field.paragraph.ecotoxicology.field_sampling_type_multiple
+    - field.field.paragraph.ecotoxicology.field_substance_group_multiple
+    - paragraphs.paragraphs_type.ecotoxicology
+id: paragraph.ecotoxicology.default
+targetEntityType: paragraph
+bundle: ecotoxicology
+mode: default
+content:
+  field_additional_information:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_approaches:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_domain:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_sampling_type_multiple:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_substance_group_multiple:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

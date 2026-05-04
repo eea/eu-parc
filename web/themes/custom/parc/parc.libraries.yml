@@ -522,6 +522,12 @@ lab_matrix:
   css:
     component:
       css/components/parc/lab-matrix.css: { }
+  js:
+    js/lab-matrix.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
 
 svg_title:
   css:

@@ -5,11 +5,13 @@ dependencies:
   config:
     - field.field.node.laboratory.field_address_data
     - field.field.node.laboratory.field_air_environment
+    - field.field.node.laboratory.field_approaches
     - field.field.node.laboratory.field_city
     - field.field.node.laboratory.field_contact_email
     - field.field.node.laboratory.field_contact_name
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_domain
     - field.field.node.laboratory.field_external_id
     - field.field.node.laboratory.field_institute_name
     - field.field.node.laboratory.field_lab_category
@@ -48,6 +50,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 15
+    region: content
+  field_approaches:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 17
     region: content
   field_city:
     type: string
@@ -94,6 +104,14 @@ content:
       link: true
     third_party_settings: {  }
     weight: 1
+    region: content
+  field_domain:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 16
     region: content
   field_institute_name:
     type: string

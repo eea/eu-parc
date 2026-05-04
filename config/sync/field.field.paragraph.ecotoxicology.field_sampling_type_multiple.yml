@@ -1,0 +1,29 @@
+uuid: a26a2a6f-4e05-421d-8b04-7da84d99af39
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sampling_type_multiple
+    - paragraphs.paragraphs_type.ecotoxicology
+    - taxonomy.vocabulary.sampling_types
+id: paragraph.ecotoxicology.field_sampling_type_multiple
+field_name: field_sampling_type_multiple
+entity_type: paragraph
+bundle: ecotoxicology
+label: 'Sampling types'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sampling_types: sampling_types
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

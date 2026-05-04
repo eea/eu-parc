@@ -6,11 +6,13 @@ dependencies:
     - core.entity_view_mode.node.search_teaser
     - field.field.node.laboratory.field_address_data
     - field.field.node.laboratory.field_air_environment
+    - field.field.node.laboratory.field_approaches
     - field.field.node.laboratory.field_city
     - field.field.node.laboratory.field_contact_email
     - field.field.node.laboratory.field_contact_name
     - field.field.node.laboratory.field_coordinates
     - field.field.node.laboratory.field_country
+    - field.field.node.laboratory.field_domain
     - field.field.node.laboratory.field_external_id
     - field.field.node.laboratory.field_institute_name
     - field.field.node.laboratory.field_lab_category
@@ -97,9 +99,11 @@ content:
 hidden:
   addtoany: true
   field_air_environment: true
+  field_approaches: true
   field_contact_email: true
   field_contact_name: true
   field_coordinates: true
+  field_domain: true
   field_external_id: true
   field_institute_name: true
   field_lab_category: true
