@@ -64,8 +64,8 @@
 }
 
 #identifyParent .node {
-  max-height: 700px;
-  overflow: auto;
+  /*max-height: 700px;*/
+  /*overflow: auto;*/
   border: none !important;
 }
 
@@ -381,7 +381,8 @@
     background: #fcfafa;
     padding-top: 10px !important;
     width: 100vw;
-    max-height: calc(100 * var(--vh, 1vh) - 96px);
+    /*max-height: calc(100 * var(--vh, 1vh) - 96px);*/
+    max-height: 230px;
     overflow: auto;
   }
 }
