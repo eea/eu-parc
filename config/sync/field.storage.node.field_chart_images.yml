@@ -1,0 +1,21 @@
+uuid: c5d08036-60c8-41ae-b5d9-d47baf0fc785
+langcode: en
+status: true
+dependencies:
+  module:
+    - entity_reference_revisions
+    - node
+    - paragraphs
+id: node.field_chart_images
+field_name: field_chart_images
+entity_type: node
+type: entity_reference_revisions
+settings:
+  target_type: paragraph
+module: entity_reference_revisions
+locked: false
+cardinality: -1
+translatable: false
+indexes: {}
+persist_with_no_fields: false
+custom_storage: false

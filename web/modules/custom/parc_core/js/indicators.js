@@ -3771,6 +3771,33 @@
         }
       }
 
+      // Wraps SVG text into multiple tspan lines, centered vertically at the element's y.
+      function wrapSvgText(textEl, text, maxWidth, lineHeight) {
+        const words = text.split(/\s+/);
+        textEl.text(null);
+        const x = textEl.attr('x');
+        const y = textEl.attr('y');
+        let line = [];
+        let lineNumber = 0;
+        let tspan = textEl.append('tspan').attr('x', x).attr('y', y);
+        words.forEach(function(word) {
+          line.push(word);
+          tspan.text(line.join(' '));
+          if (tspan.node().getComputedTextLength() > maxWidth && line.length > 1) {
+            line.pop();
+            tspan.text(line.join(' '));
+            line = [word];
+            lineNumber++;
+            tspan = textEl.append('tspan').attr('x', x).attr('dy', lineHeight + 'em').text(word);
+          }
+        });
+        const totalLines = lineNumber + 1;
+        if (totalLines > 1) {
+          textEl.select('tspan:first-child')
+            .attr('dy', (-((totalLines - 1) * lineHeight) / 2) + 'em');
+        }
+      }
+
       // Output 02: table layout — labels in left column, one pill per cell (row=label,
       // col=year), year labels at the bottom of each column. All years always visible.
       // Height mapping: 1→3.5, 2→5, 3→7, 6→14, 9→18, 11→20 (piecewise-linear scale).
@@ -3786,7 +3813,7 @@
         const containerWidth = containerElement ? containerElement.clientWidth : 1000;
         const svgWidth = Math.min(containerWidth * 0.9, 850);
 
-        const labelColW = Math.min(Math.max(svgWidth * 0.22, 120), 180);
+        const labelColW = Math.min(Math.max(svgWidth * 0.26, 140), 200);
         const dataW = svgWidth - labelColW;
         const yearColW = dataW / years.length;
 
@@ -3848,16 +3875,16 @@
             .attr("stroke", "#efefef")
             .attr("stroke-width", 1);
 
-          // Category label
-          svg.append("text")
+          // Category label (multi-line wrapped)
+          const labelEl = svg.append("text")
             .attr("x", labelColW - 16)
             .attr("y", centerY)
             .attr("text-anchor", "end")
             .attr("dominant-baseline", "middle")
             .style("font-size", svgWidth < 600 ? "11px" : "13px")
             .style("fill", "#222")
-            .style("font-weight", "500")
-            .text(cat.toUpperCase());
+            .style("font-weight", "500");
+          wrapSvgText(labelEl, cat.toUpperCase(), labelColW - 20, 1.2);
 
           // Pills per year
           years.forEach((year, colIdx) => {
@@ -3901,7 +3928,7 @@
                 .attr("y", centerY)
                 .attr("text-anchor", "middle")
                 .attr("dominant-baseline", "middle")
-                .style("font-size", svgWidth < 600 ? "11px" : "13px")
+                .style("font-size", svgWidth < 600 ? "13px" : "16px")
                 .style("fill", "#111")
                 .style("font-weight", "700")
                 .style("pointer-events", "none")

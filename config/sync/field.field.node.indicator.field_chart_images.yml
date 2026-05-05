@@ -1,0 +1,32 @@
+uuid: 53dd3d77-0955-48f7-9c71-241a3a12e21d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_chart_images
+    - node.type.indicator
+    - paragraphs.paragraphs_type.chart_image
+  module:
+    - entity_reference_revisions
+    - paragraphs
+id: node.indicator.field_chart_images
+field_name: field_chart_images
+entity_type: node
+bundle: indicator
+label: 'Chart images'
+description: 'One entry per year: a year label and the chart image for that year.'
+required: false
+translatable: false
+default_value: {}
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      chart_image: chart_image
+    negate: 0
+    target_bundles_drag_drop:
+      chart_image:
+        enabled: true
+        weight: 0
+field_type: entity_reference_revisions

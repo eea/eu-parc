@@ -1,0 +1,21 @@
+uuid: fd27e429-3d3d-4a17-8a70-921d054ab96c
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_chart_year
+field_name: field_chart_year
+entity_type: paragraph
+type: string
+settings:
+  max_length: 10
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {}
+persist_with_no_fields: false
+custom_storage: false
