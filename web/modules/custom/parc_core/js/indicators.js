@@ -3828,11 +3828,13 @@
         const svg = d3
           .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
           .append("svg")
-          .attr("width", "100%")
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
           .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
           .attr("preserveAspectRatio", "xMidYMid meet")
           .style("display", "block")
-          .style("max-width", svgWidth + "px");
+          .style("max-width", "100%")
+          .style("height", "auto");
 
         // Background
         svg.append("rect")
