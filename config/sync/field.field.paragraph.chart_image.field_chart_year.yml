@@ -1,0 +1,20 @@
+uuid: 6f7bb5d0-88e2-433b-ac31-003b6c64143f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_chart_year
+    - paragraphs.paragraphs_type.chart_image
+id: paragraph.chart_image.field_chart_year
+field_name: field_chart_year
+entity_type: paragraph
+bundle: chart_image
+label: Year
+description: 'The year this chart image represents (e.g. 2024).'
+required: true
+translatable: false
+default_value: {}
+default_value_callback: ''
+settings:
+  max_length: 10
+field_type: string

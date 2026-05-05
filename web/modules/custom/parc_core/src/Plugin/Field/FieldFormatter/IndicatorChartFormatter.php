@@ -77,13 +77,20 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
     }
 
     $chart_type = $plugin->getChartType();
-    $table_data = $this->getTableData($items);
 
-    if ($chart_type !== 'images' && empty($table_data)) {
-      return [];
+    if ($indicator_type === 'static_images') {
+      $chart_data = $this->buildChartDataFromParagraphs($parent);
+      if (empty($chart_data)) {
+        return [];
+      }
     }
-
-    $chart_data = $plugin->getChartData($table_data);
+    else {
+      $table_data = $this->getTableData($items);
+      if ($chart_type !== 'images' && empty($table_data)) {
+        return [];
+      }
+      $chart_data = $plugin->getChartData($table_data);
+    }
 
     return [
       '#theme' => 'parc_indicator_chart',
@@ -100,6 +107,59 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
         ],
       ],
     ];
+  }
+
+  /**
+   * Build chart data from the node's field_chart_images paragraph field.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $node
+   *   The indicator node.
+   *
+   * @return array
+   *   Chart data in the format ['chart' => ['year' => 'url', ...]].
+   */
+  protected function buildChartDataFromParagraphs($node): array {
+    if (!$node->hasField('field_chart_images') || $node->get('field_chart_images')->isEmpty()) {
+      return [];
+    }
+
+    $chart = [];
+    foreach ($node->get('field_chart_images') as $item) {
+      /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+      $paragraph = $item->entity;
+      if (!$paragraph) {
+        continue;
+      }
+
+      $year = $paragraph->hasField('field_chart_year') && !$paragraph->get('field_chart_year')->isEmpty()
+        ? $paragraph->get('field_chart_year')->value
+        : NULL;
+
+      if (!$year) {
+        continue;
+      }
+
+      if (!$paragraph->hasField('field_chart_image') || $paragraph->get('field_chart_image')->isEmpty()) {
+        continue;
+      }
+
+      /** @var \Drupal\media\MediaInterface $media */
+      $media = $paragraph->get('field_chart_image')->entity;
+      if (!$media) {
+        continue;
+      }
+
+      $source_field = $media->getSource()->getConfiguration()['source_field'];
+      if ($media->hasField($source_field) && !$media->get($source_field)->isEmpty()) {
+        /** @var \Drupal\file\FileInterface $file */
+        $file = $media->get($source_field)->entity;
+        if ($file) {
+          $chart[$year] = $file->createFileUrl(FALSE);
+        }
+      }
+    }
+
+    return $chart ? ['chart' => $chart] : [];
   }
 
   /**

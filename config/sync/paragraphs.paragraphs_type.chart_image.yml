@@ -1,0 +1,10 @@
+uuid: 549838f5-d410-4608-93c1-1efb46e0e921
+langcode: en
+status: true
+dependencies: {}
+id: chart_image
+label: 'Chart image'
+icon_uuid: null
+icon_default: null
+description: 'A year and an image for a static chart.'
+behavior_plugins: {}

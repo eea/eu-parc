@@ -51,26 +51,14 @@ settings:
       value: trainings
       label: Trainings
     -
-      value: aligned_studies_adults
-      label: 'Aligned studies - adults'
-    -
-      value: aligned_studies_teenagers
-      label: 'Aligned studies - teenagers'
-    -
-      value: aligned_studies_children
-      label: 'Aligned studies - children'
-    -
-      value: aligned_studies_health_care
-      label: 'Aligned studies - health care'
-    -
-      value: aligned_studies_waste_management
-      label: 'Aligned studies - waste management'
-    -
       value: output_02
       label: 'Output 2'
     -
       value: output_11
       label: 'Output 11'
+    -
+      value: static_images
+      label: 'Static images'
   allowed_values_function: ''
 module: options
 locked: false
