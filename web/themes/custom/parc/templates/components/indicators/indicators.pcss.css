@@ -652,6 +652,14 @@ text.axis-label {
       padding-top: 50px;
     }
   }
+
+  &[data-chart-type="output_02"] {
+    .indicator-container {
+      min-width: unset;
+      width: 100%;
+      min-height: unset;
+    }
+  }
 }
 
 .vocabulary-indicator-topics {

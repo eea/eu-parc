@@ -3809,9 +3809,7 @@
         const latestYear = years[years.length - 1];
         const categories = Object.keys(data[latestYear]);
 
-        const containerElement = document.querySelector(".indicator-chart__wrapper");
-        const containerWidth = containerElement ? containerElement.clientWidth : 1000;
-        const svgWidth = Math.min(containerWidth * 0.9, 850);
+        const svgWidth = 850;
 
         const labelColW = Math.min(Math.max(svgWidth * 0.26, 140), 200);
         const dataW = svgWidth - labelColW;
@@ -3822,19 +3820,19 @@
         const svgHeight = categories.length * rowH + yearRowH + 20;
 
         const pillWidth = Math.min(yearColW * 0.82, 70);
+        // colSpacing = center-to-center distance between year pills.
+        // Decrease the gap by reducing this: gap = colSpacing - pillWidth.
+        const colSpacing = pillWidth + 50;
+        const colsStartX = labelColW + colSpacing - pillWidth / 2;
 
         const svg = d3
           .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
           .append("svg")
-          .attr("width", svgWidth)
-          .attr("height", svgHeight)
+          .attr("width", "100%")
           .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`)
+          .attr("preserveAspectRatio", "xMidYMid meet")
           .style("display", "block")
-          .style("margin", "0 auto")
-          .style("max-width", "100%")
-          .style("height", "auto");
-
-        svg.attr("preserveAspectRatio", "xMidYMid meet");
+          .style("max-width", svgWidth + "px");
 
         // Background
         svg.append("rect")
@@ -3851,7 +3849,7 @@
 
         // FULL vertical grid lines
         years.forEach((year, colIdx) => {
-          const centerX = labelColW + yearColW * colIdx + yearColW / 2;
+          const centerX = colsStartX + colSpacing * colIdx;
 
           svg.append("line")
             .attr("x1", centerX)
@@ -3891,7 +3889,7 @@
             const raw = data[year] ? data[year][cat] : undefined;
             const value = typeof raw === "number" ? raw : 0;
 
-            const centerX = labelColW + yearColW * colIdx + yearColW / 2;
+            const centerX = colsStartX + colSpacing * colIdx;
             const color = yearColors[year] || "#017365";
 
             const dynamicPillHeight = pillThicknessScale(value);
@@ -3928,7 +3926,7 @@
                 .attr("y", centerY)
                 .attr("text-anchor", "middle")
                 .attr("dominant-baseline", "middle")
-                .style("font-size", svgWidth < 600 ? "13px" : "16px")
+                .style("font-size", svgWidth < 600 ? "13px" : "20px")
                 .style("fill", "#111")
                 .style("font-weight", "700")
                 .style("pointer-events", "none")
@@ -3955,7 +3953,7 @@
 
         // Year labels
         years.forEach((year, colIdx) => {
-          const centerX = labelColW + yearColW * colIdx + yearColW / 2;
+          const centerX = colsStartX + colSpacing * colIdx;
 
           svg.append("text")
             .attr("x", centerX)
@@ -3999,9 +3997,7 @@
 
         const latestYear = years[years.length - 1];
 
-        const containerElement = document.querySelector(".indicator-chart__wrapper");
-        const containerWidth = containerElement ? containerElement.clientWidth : 1100;
-        const svgWidth = Math.min(containerWidth, 1000);
+        const svgWidth = 1000;
 
         const maxR = Math.min(svgWidth * 0.18, 120);
         const minR = Math.max(maxR * 0.28, 24);
