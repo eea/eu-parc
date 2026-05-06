@@ -151,7 +151,7 @@ header {
         text-decoration: none;
         padding: 14px 0 14px 0;
         color: var(--c-white);
-        width: 100%;
+        width: 100% !important;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -294,10 +294,6 @@ header {
         padding: 6px 0 !important;
         text-align: left;
 
-        &:not(.fakelink) {
-          width: auto !important;
-        }
-
         svg {
           flex-grow: 0;
           flex-shrink: 0;
@@ -338,11 +334,15 @@ header {
         min-width: 270px;
         padding-left: 20px;
         margin-left: 10px;
-        border-left: 2px solid black;
         display: block;
         max-height: 0;
         overflow: hidden;
         transition: none;
+      }
+
+      .mm-level-3::before {
+        background: black;
+        left: -20px;
       }
     }
 
@@ -353,6 +353,10 @@ header {
         justify-content: center;
         align-items: center;
         padding: .5rem !important;
+
+        @media (max-width: 1279px) {
+          display: none !important;
+        }
 
         svg {
           width: 100%;
@@ -652,12 +656,12 @@ header {
 
   &:before {
     content: '';
-    width: 3px;
+    width: 5px;
     height: calc(100% - 20px);
-    border-radius: 200px;
+    border-radius: 999px;
     background: #FFF;
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 3px;
   }
 }
