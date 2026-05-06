@@ -1,4 +1,8 @@
 footer {
+  .nav-link-level-1 {
+    font-size: 16px;
+  }
+
   .nav-link {
     --nav-link-color: var(--c-white);
     --nav-link-hover-color: var(--c-white);
@@ -199,7 +203,6 @@ footer {
   }
 
   .block__content {
-    position: relative;
     text-align: center;
 
     &::before,
@@ -220,38 +223,37 @@ footer {
     &::after {
       bottom: 0;
     }
-  }
 
-  a {
-    --nav-link-color: var(--c-white);
-    --link-h-color: var(--c-white);
+    a {
+      color: var(--c-white);
+      font-size: 20px;
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
 
-    color: var(--c-white);
-    font-size: 20px;
-    font-weight: 600;
-    text-decoration: none;
-    position: relative;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--c-white);
+        border-radius: 1px;
+        transition: width 0.3s ease;
+      }
 
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 2px;
-      background: var(--c-white);
-      border-radius: 1px;
-      transition: width 0.3s ease;
+      &:hover::after,
+      &:focus-visible::after {
+        width: 100%;
+      }
+
+      @media (--lg) {
+        font-size: 24px;
+      }
     }
-
-    @media (--lg) {
-      font-size: 24px;
-    }
-  }
-
-  .block:hover a::after {
-    width: 100%;
   }
 }
 
@@ -288,15 +290,9 @@ footer {
     column-gap: 32px;
     padding-bottom: 1rem;
 
-    @media (min-width: 768px) and (max-width: 1033px) {
-      margin-top: -5rem;
-    }
-
     @media (max-width: 768px) {
       margin-top: 0;
     }
-
-    gap: 32px;
 
     .nav-link {
       font-size: 12px;
