@@ -44,9 +44,20 @@ footer {
 
   /* Left-border accent on submenu children */
   .mm-level-1 {
-    border-left: 2px solid var(--c-white);
     padding-left: 16px !important;
     margin-top: 8px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 10px;
+      width: 3px;
+      background: var(--c-white);
+      border-radius: 999px;
+    }
   }
 }
 
