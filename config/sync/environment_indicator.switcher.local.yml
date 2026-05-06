@@ -1,0 +1,11 @@
+uuid: 4a7deeef-b7e4-48b4-bc28-1385555b7c51
+langcode: en
+status: true
+dependencies: {  }
+machine: local
+description: null
+name: Local
+weight: -10
+url: 'http://parc.localhost'
+fg_color: '#000000'
+bg_color: '#4ef113'

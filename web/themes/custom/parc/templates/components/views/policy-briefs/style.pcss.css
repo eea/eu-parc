@@ -1,0 +1,19 @@
+.grid--policy-briefs {
+  --grid-pb--gap: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(2, calc((100% - var(--grid-pb--gap)) / 2));
+  gap: var(--grid-pb--gap);
+
+  & > article {
+    align-self: stretch;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  @media (--md) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(286px, 1fr));
+    gap: var(--grid-pb--gap);
+  }
+}

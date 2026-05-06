@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Parc override to display policy briefs as an unformatted grid.
+ */
+#}
+
+<div class="grid--policy-briefs">
+  {% for row in rows %}
+    {{- row.content -}}
+  {% endfor %}
+</div>

@@ -295,6 +295,11 @@ n--deliverables--teaser:
     component:
       css/components/content/deliverables/vm--teaser/style.css: {}
 
+n--policy-brief--teaser:
+  css:
+    component:
+      css/components/content/policy-brief/vm--teaser/style.css: {}
+
 n--search-teaser:
   css:
     component:
@@ -444,6 +449,11 @@ v--deliverables:
     - core/drupal
     - core/jquery
     - core/once
+
+v--policy-briefs:
+  css:
+    component:
+      css/components/views/policy-briefs/style.css: {}
 
 v--publications:
   css:
