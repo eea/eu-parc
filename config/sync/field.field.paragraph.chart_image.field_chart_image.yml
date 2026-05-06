@@ -1,0 +1,31 @@
+uuid: 5b04a725-3dd4-4ae4-8ec4-5a9b73a12236
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_chart_image
+    - media.type.image
+    - media.type.vector
+    - paragraphs.paragraphs_type.chart_image
+id: paragraph.chart_image.field_chart_image
+field_name: field_chart_image
+entity_type: paragraph
+bundle: chart_image
+label: Image
+description: 'The chart image for this year. Accepts raster images (PNG/JPG) and SVG vectors up to 10 MB.'
+required: true
+translatable: false
+default_value: {}
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+      vector: vector
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: image
+field_type: entity_reference

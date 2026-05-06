@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.indicator.body
+    - field.field.node.indicator.field_chart_images
     - field.field.node.indicator.field_indicator_data
     - field.field.node.indicator.field_indicator_id
     - field.field.node.indicator.field_indicator_topic
@@ -62,4 +63,5 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_chart_images: true
   search_api_excerpt: true

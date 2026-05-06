@@ -1,0 +1,33 @@
+uuid: 7c1a21a3-b243-4f58-8295-fcb87edec0ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.chart_image.field_chart_image
+    - field.field.paragraph.chart_image.field_chart_year
+    - paragraphs.paragraphs_type.chart_image
+  module:
+    - media_library
+id: paragraph.chart_image.default
+targetEntityType: paragraph
+bundle: chart_image
+mode: default
+content:
+  field_chart_year:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 10
+      placeholder: 'e.g. 2024'
+    third_party_settings: {}
+  field_chart_image:
+    type: media_library_widget
+    weight: 1
+    region: content
+    settings:
+      media_types: {}
+    third_party_settings: {}
+hidden:
+  created: true
+  status: true

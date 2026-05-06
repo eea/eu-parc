@@ -1,0 +1,16 @@
+uuid: 901be3aa-aed3-4fdc-876e-844441be517e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.chart_image.field_chart_image
+    - field.field.paragraph.chart_image.field_chart_year
+    - paragraphs.paragraphs_type.chart_image
+id: paragraph.chart_image.default
+targetEntityType: paragraph
+bundle: chart_image
+mode: default
+content: {}
+hidden:
+  field_chart_image: true
+  field_chart_year: true
