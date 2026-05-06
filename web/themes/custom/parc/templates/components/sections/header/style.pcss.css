@@ -333,7 +333,7 @@ header {
         padding-bottom: 0;
         min-width: 270px;
         padding-left: 20px;
-        margin-left: 10px;
+        margin-left: 2px;
         display: block;
         max-height: 0;
         overflow: hidden;
@@ -656,7 +656,7 @@ header {
 
   &:before {
     content: '';
-    width: 5px;
+    width: 2px;
     height: calc(100% - 20px);
     border-radius: 999px;
     background: #FFF;
