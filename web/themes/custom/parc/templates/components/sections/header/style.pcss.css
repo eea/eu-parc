@@ -665,3 +665,11 @@ header {
     left: 3px;
   }
 }
+
+.is-active[data-drupal-link-system-path="<front>"] {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
