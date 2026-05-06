@@ -1,11 +1,48 @@
 footer {
-  & .nav-link {
+  .nav-link {
     --nav-link-color: var(--c-white);
     --nav-link-hover-color: var(--c-white);
     --link-h-color: var(--c-white);
 
     padding: 0;
     font-weight: 500;
+  }
+
+  /* Toggle button looks like a nav-link */
+  .footer-toggle {
+    background: none;
+    border: none;
+    color: var(--c-white);
+    font-size: 19px;
+    font-weight: 500;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    svg {
+      flex-shrink: 0;
+      transform: rotate(-90deg);
+      transition: transform 0.3s linear;
+    }
+
+    &:not(.collapsed) svg {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Give items with a submenu toggle enough room */
+  .nav-item:has(.footer-toggle) {
+    min-width: 160px;
+  }
+
+  /* Left-border accent on submenu children */
+  .mm-level-1 {
+    border-left: 2px solid var(--c-white);
+    padding-left: 16px !important;
+    margin-top: 8px;
   }
 }
 
@@ -14,7 +51,7 @@ footer {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   @media (min-width: 768px) {
     min-height: 25rem;
@@ -24,7 +61,7 @@ footer {
       position: absolute;
       left: 5px;
       right: 5px;
-      bottom: 0px;
+      bottom: 0;
       height: 0.625rem;
       background: var(--c-white);
       border-radius: 0.625rem;
@@ -33,24 +70,29 @@ footer {
 
   .region-footer {
     width: 100%;
+    padding-bottom: 1rem;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto 1fr minmax(29px, auto);
+    grid-template-rows: auto auto minmax(29px, auto);
     gap: 1px;
+
     grid-template-areas:
-    "rf-block-top rf-block-top"
-    "rf-block-left rf-block-right"
-    "rf-block-left rf-block-right-bottom";
+      "rf-block-top rf-block-top"
+      "rf-block-left rf-block-right"
+      "rf-block-left rf-block-right-bottom";
 
     @media (--md) {
       display: flex;
       gap: 30px;
       flex-wrap: wrap;
+
       grid-template-columns: 1fr 1fr 1fr;
+
       grid-template-areas:
-      "rf-block-top rf-block-top rf-block-top"
-      "rf-block-left rf-block-right ."
-      "rf-block-left rf-block-right-bottom .";
+        "rf-block-top rf-block-top rf-block-top"
+        "rf-block-left rf-block-right ."
+        "rf-block-left rf-block-right-bottom .";
     }
 
     .rf-block-top {
@@ -66,8 +108,8 @@ footer {
     }
 
     .rf-block-right-bottom {
-      align-self: center;
       grid-area: rf-block-right-bottom;
+      align-self: center;
     }
 
     .nav {
@@ -97,6 +139,7 @@ footer {
     --btn-hover-border-color: var(--btn-color);
     --link-h-color: #000000;
     --btn-hover-bg: var(--btn-color);
+
     font-size: 20px;
     font-weight: 600;
     text-decoration: none;
@@ -111,23 +154,27 @@ footer {
 }
 
 .region-footer-second {
+  display: flex;
+  flex-direction: column;
   height: 100%;
 
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     margin-top: 2rem;
   }
 
   .block {
     position: relative;
     border: none;
-    height: 100%;
+    flex: 1;
     width: 100%;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 2rem;
 
-    @media(--md) {
+    @media (--md) {
       min-height: 25rem;
     }
 
@@ -141,11 +188,18 @@ footer {
       background: var(--green-m);
       border-radius: 0.625rem;
     }
-    &::before { left: 0; }
-    &::after  { right: 0; }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
   }
 
   .block__content {
+    position: relative;
     text-align: center;
 
     &::before,
@@ -158,13 +212,20 @@ footer {
       background: var(--green-m);
       border-radius: 0.625rem;
     }
-    &::before { top: 0; }
-    &::after  { bottom: 0; }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
   }
 
   a {
     --nav-link-color: var(--c-white);
     --link-h-color: var(--c-white);
+
     color: var(--c-white);
     font-size: 20px;
     font-weight: 600;
@@ -197,7 +258,7 @@ footer {
 .footer-logos {
   padding-top: 10rem;
 
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     padding-top: 5rem;
   }
 
@@ -208,7 +269,7 @@ footer {
     justify-content: space-between;
     gap: 1.5rem;
 
-    @media(max-width: 1246px) {
+    @media (max-width: 1246px) {
       align-items: flex-start;
       flex-direction: column-reverse;
     }
@@ -216,6 +277,7 @@ footer {
 }
 
 .region-footer-s {
+  margin-top: auto;
 
   .block {
     width: 100%;
@@ -224,15 +286,17 @@ footer {
   .nav-term-privacy {
     row-gap: 8px;
     column-gap: 32px;
-    margin-top: -4rem;
+    padding-bottom: 1rem;
 
-    @media(min-width: 768px) and (max-width: 1033px) {
+    @media (min-width: 768px) and (max-width: 1033px) {
       margin-top: -5rem;
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       margin-top: 0;
     }
+
+    gap: 32px;
 
     .nav-link {
       font-size: 12px;
@@ -240,6 +304,4 @@ footer {
       letter-spacing: 0.8px;
     }
   }
-
-
 }

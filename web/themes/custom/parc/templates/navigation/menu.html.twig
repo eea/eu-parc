@@ -27,6 +27,7 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
+      {{ attach_library('edwt/collapse') }}
       {%
         set classes = [
           'navbar-nav',
@@ -37,22 +38,51 @@
 
       <ul{{attributes.addClass(classes)}}>
       {% else %}
-        <ul>
+        <ul class="second-level mm-level-{{ menu_level }} list-unstyled">
         {% endif %}
         {% for item in items %}
+          {% set linkID = item.title|clean_class %}
+
           {%
             set classes_link = [
-              'nav-link',
+              item.url|render == '' and menu_level > 0 ? 'text-muted text-uppercase' : 'nav-link',
+              'grow-1',
+              'nav-link-level-' ~ menu_level,
               item.is_expanded ? 'dropdown-toggle',
               item.is_collapsed ? 'dropdown-toggle',
               item.in_active_trail ? 'active',
-              item.url.getOptions()['attributes']['data-enable-ajax'] == 'true' ? 'ajax-link',
             ]
           %}
-          <li{{item.attributes.addClass('nav-item')}}>
-            {{ link(item.title, item.url, { 'class': classes_link }) }}
+          <li{{item.attributes.addClass('nav-item', 'nav-link-level-' ~ menu_level, item.in_active_trail ? 'li-active')}}>
+            {% if item.is_expanded and menu_level == 0 %}
+              <button class="btn footer-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFooter-{{ linkID }}" aria-expanded="false" aria-controls="collapseFooter-{{ linkID }}">
+                {{ item.title }}
+                <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            {% elseif item.is_expanded and menu_level > 0 %}
+              <div class="d-flex justify-content-between align-items-center">
+                {% set fakelink = ('fakelink' in item.url.getOptions()['attributes'].class[0]) %}
+                {% if not fakelink %}
+                  {{ link(item.title, item.url, { 'class': classes_link }) }}
+                {% else %}
+                  <span class="nav-link grow-1 nav-link-level-{{ menu_level }}">{{ item.title }}</span>
+                {% endif %}
+                <button class="btn footer-toggle collapsed {{ fakelink ? 'fakelink' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFooter-{{ linkID }}" aria-expanded="false" aria-controls="collapseFooter-{{ linkID }}">
+                  <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            {% else %}
+              {{ link(item.title, item.url, { 'class': classes_link }) }}
+            {% endif %}
+
             {% if item.below %}
-              {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
+              <div class="collapse mm-collapse-{{ menu_level }}" id="collapseFooter-{{ linkID }}">
+                {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
+              </div>
             {% endif %}
           </li>
         {% endfor %}
