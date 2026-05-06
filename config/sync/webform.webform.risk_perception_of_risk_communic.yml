@@ -1,0 +1,503 @@
+uuid: e3ec03e7-d6a6-43ce-9034-ea21d6dab7e3
+langcode: en
+status: closed
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 9
+template: false
+archive: false
+id: risk_perception_of_risk_communic
+title: 'Risk Perception of Risk Communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks.</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Consent and context'
+    description:
+      '#type': checkbox
+      '#title': 'I confirm that I have read and I accept the information stated above'
+      '#description': '<p><span><strong>About PARC:</strong> The European Partnership for the Assessment of Risks from Chemicals (PARC) is a joint effort of 30 countries and 3 European agencies (EEA, ECHA, EFSA), designed to address challenges associated with innovating chemical risk assessment. PARC´s objective is to inform policy making in Europe and at national level with sound scientific data on citizens’ exposure to chemical pollutants and their possible effects on health. In [name of your country], the survey is coordinated by [name of the implementing organization] on behalf of [name of national Programme Owner].</span></p><p><span><strong>Purpose of this survey:</strong> We are all exposed to a plethora of chemicals, some of which may be harmful to health. Communication of potential risk from these chemicals is vital. In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks.</span></p><p><span><strong>To whom the survey is addressed: </strong>The present questionnaire addresses mainly Risk Communication corresponding to everyday circumstances as opposed to Crisis Communication, which refers to handling communication in times when urgent decisions must be made. It will take you approximately 20 minutes to complete.</span></p><p><span><strong>What will happen with the information collected: </strong>The information collected will be anonymous and will be treated confidentially in accordance with the requirements of the General Data Protection Regulation (GDPR). Your name, affiliation and contact details (e.g., email address) will not be maintained past the completion of data collection, nor will it be provided to others. Your anonymized responses will be combined with other responses when analysed by the research partners of PARC. If the scientific conclusions of this survey are published or presented in a conference, the results will be aggregated and no personally identifiable information (PPI) will be included.</span></p><p><span><strong>Right to refuse or withdraw:</strong> Your participation is entirely voluntary. By completing and submitting this survey, you are indicating your consent to participate in this survey. You are free to withdraw from participation at any time or to choose not to participate at all without giving reasons and without any consequences.</span></p><p><span>Thank you for your time and cooperation!</span></p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': 'Section 1: Demographics and personal information'
+    county:
+      '#type': textfield
+      '#title': 'Country:'
+      '#size': 1
+    age:
+      '#type': number
+      '#title': 'Age:'
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': 'In which sector are you working_other?'
+      '#options':
+        'Governmental Bodies': 'Governmental Bodies'
+        ' Academia': ' Academia'
+        'Association of Professional Bodies': 'Association of Professional Bodies'
+        NGO: NGO
+      '#other__option_label': Other
+      '#other__title': 'Please, specify:'
+      '#other__size': '2'
+    is_your_current_position:
+      '#type': webform_checkboxes_other
+      '#title': 'Is your current position: '
+      '#options':
+        'Permanent ': 'Permanent '
+        'Fixed term/on contract ': 'Fixed term/on contract '
+      '#other__option_label': Other
+      '#other__title': 'Please, specify: '
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': 'The chemical hazards/risks that you are communicating are related to: (Choose all that apply)'
+      '#options':
+        'Food (Food Safety)': 'Food (Food Safety)'
+        'Environment (Soil, Air, water etc.)': 'Environment (Soil, Air, water etc.)'
+        ' Occupational Health': ' Occupational Health'
+        'Chemical Safety (general)': 'Chemical Safety (general)'
+      '#other__option_label': Other
+      '#other__title': 'Please, specify:'
+    how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': checkboxes
+      '#title': 'How many years of experience do you have in risk communication?'
+      '#options':
+        'Less than two years': 'Less than two years'
+        ' 2 to3 years': ' 2 to3 years'
+        ' 3 to 5 years': ' 3 to 5 years'
+        ' More than 5 years': ' More than 5 years'
+    how_often_do_you_practice_risk_communication:
+      '#type': checkboxes
+      '#title': 'How often do you practice risk communication? '
+      '#options':
+        'Daily ': 'Daily '
+        'Weekly ': 'Weekly '
+        Monthly: Monthly
+        'Every few months ': 'Every few months '
+        Yearly: Yearly
+        Rarely: Rarely
+    who_is_the_main_audience_that_you_address_your_communication_to:
+      '#type': webform_checkboxes_other
+      '#title': 'Who is the main audience that you address your communication to? '
+      '#options':
+        'General public': 'General public'
+      '#other__option_label': 'Targeted audiences'
+      '#other__title': 'Please, specify'
+    what_is_your_scientific_background:
+      '#type': textfield
+      '#title': 'What is your scientific background? '
+    how_often_do_you_receive_communication_training_e_g_training_by:
+      '#type': webform_likert
+      '#title': 'How often do you receive communication training (e.g., training by communication experts, visiting other communication departments, attending seminars/webinars/courses etc,)? '
+      '#questions':
+        'In house training ': 'In house training '
+        'Visiting other communication departments ': 'Visiting other communication departments '
+        'Attending seminars/webinars/courses ': 'Attending seminars/webinars/courses '
+      '#answers':
+        Never: Never
+        'Periodically (e.g. every 2-10 years)': 'Periodically (e.g. every 2-10 years)'
+        'Frequently (at least once a year)': 'Frequently (at least once a year)'
+    do_you_believe_that_communication_training_is_necessary_for_your:
+      '#type': checkboxes
+      '#title': 'If you answered NEVER in previous question, do you believe that such training is necessary for your current post?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'I do not know/I do not want to answer': 'I do not know/I do not want to answer'
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': 'Section 2: Experience in Risk Communication'
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': 'What difficulties do you experience during risk communication? (Choose all that apply)'
+      '#options':
+        'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)': 'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)'
+        'Lack of support from colleagues/ Few human resources devoted to risk communication': 'Lack of support from colleagues/ Few human resources devoted to risk communication'
+        'Difficulties when collaborating with experts in chemical risks': 'Difficulties when collaborating with experts in chemical risks'
+        'Unclear distribution of roles': 'Unclear distribution of roles'
+        'Unclear distribution of responsibilities': 'Unclear distribution of responsibilities'
+        'Lack of budget allocated for communication': 'Lack of budget allocated for communication'
+        'Interference by risk managers with respect to when and what will be communicated': 'Interference by risk managers with respect to when and what will be communicated'
+      '#other__option_label': Other
+      '#other__title': 'Please, specify:'
+    do_you_have_a_metric_system_that_shows_if_the_message_reaches_th:
+      '#type': checkboxes
+      '#title': 'Do you have a metric system that shows if the message reaches the final target audience?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+    do_you_evaluate_each_time_whether_the_chemical_hazard_risk_you_c:
+      '#type': checkboxes
+      '#title': 'Do you evaluate each time whether the chemical hazard/risk you communicate is influential/impactful or not? (Reaction from the public?)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+    how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': webform_likert
+      '#title': 'How much do you believe you influence the target audience?'
+      '#questions':
+        'How much do you believe you influence the target audience?': 'How much do you believe you influence the target audience?'
+      '#answers':
+        1: 'No influence at all'
+        2: 'Little influence'
+        3: 'Medium Influence'
+        4: 'Considerable Influence'
+        5: 'High influence'
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': 'In regard to the previous question, on what do you base your answer? (Choose all that apply)'
+      '#options':
+        'Reactions from the media (TV, radio, PRESS)': 'Reactions from the media (TV, radio, PRESS)'
+        'Publication / posts on internet sites, personal blogs, social media': 'Publication / posts on internet sites, personal blogs, social media'
+        'Monitoring with a Questionnaire-based consumer survey': 'Monitoring with a Questionnaire-based consumer survey'
+        ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)': ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)'
+      '#other__option_label': Other
+      '#other__title': 'Please, specify:'
+    when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': checkboxes
+      '#title': 'When communicating a chemical hazard/ risk, do you usually...'
+      '#options':
+        'Create your own message': 'Create your own message'
+        ' Transmit the message exactly as provided by the risk assessors': ' Transmit the message exactly as provided by the risk assessors'
+        'Adapt or reframe messages from other sources': 'Adapt or reframe messages from other sources'
+    have_you_ever_personally_experienced_a_health_effect_from_exposu:
+      '#type': checkboxes
+      '#title': 'Have you ever personally experienced a health effect from exposure to a chemical hazard (e.g., contaminated food, cleaning products, pesticides)?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'I do not know': 'I do not know'
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': 'If yes, did this experience affect the way you communicate or think about that hazard?'
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': 'Section 3: Developing Risk Communication'
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': 'When communicating with the target audience on risk, how important is it to include the following features? '
+      '#questions':
+        'Use of visual illustration of risk with graphs, diagrams, images and maps': 'Use of visual illustration of risk with graphs, diagrams, images and maps'
+        'Comparisons between different hazards according to probability ': 'Comparisons between different hazards according to probability '
+        'Description of all uncertainties connected to the risk': 'Description of all uncertainties connected to the risk'
+        'Numerical limit values (e.g., Tolerable Daily Intake for a specific chemical in numbers) ': 'Numerical limit values (e.g., Tolerable Daily Intake for a specific chemical in numbers) '
+        'Description of different risks for different groups of people. (e.g., difference in risk for different occupational groups) ': 'Description of different risks for different groups of people. (e.g., difference in risk for different occupational groups) '
+        'Information on difference between long term and short-term exposure to hazard ': 'Information on difference between long term and short-term exposure to hazard '
+        'Information on underestimation of risk by the public (e.g., When risk communicator has the information that the public does not ': 'Information on underestimation of risk by the public (e.g., When risk communicator has the information that the public does not '
+        'Information on overestimation of risk by the public   (e.g., When risk communicator has the information that the public perceive': 'Information on overestimation of risk by the public   (e.g., When risk communicator has the information that the public perceive'
+        'Description of strategies to avoid exposure to hazard ': 'Description of strategies to avoid exposure to hazard '
+      '#answers':
+        'Not at all important': 'Not at all important'
+        'Slightly important': 'Slightly important'
+        'Moderately important': 'Moderately important'
+        'Quite important': 'Quite important'
+        'Very important': 'Very important'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': 'When communicating risk, how important are the following aspects of trust for target audience’s risk perception in your view? '
+      '#questions':
+        'Audience trust in the expert that communicates risk ': 'Audience trust in the expert that communicates risk '
+        'Audience trust in the national /European institutions/ authorities ': 'Audience trust in the national /European institutions/ authorities '
+        'Audience trust in scientific data ': 'Audience trust in scientific data '
+      '#answers':
+        'Not at all important': 'Not at all important'
+        'Slightly important': 'Slightly important'
+        'Moderately important': 'Moderately important'
+        'Quite important': 'Quite important'
+        'Very important': 'Very important'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': 'Please rate statements on risk communication to which degree you agree or disagree with them.'
+      '#questions':
+        'When communicating risk, it is important to distinguish between hazard and risk. ': 'When communicating risk, it is important to distinguish between hazard and risk. '
+        "Risk communication shouldn't be influenced by the public's perceptions of risk. ": "Risk communication shouldn't be influenced by the public's perceptions of risk. "
+        'The principles (e.g., objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g.,': 'The principles (e.g., objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g.,'
+        'Describing all uncertainties, related to risk and hazard, confuses people. ': 'Describing all uncertainties, related to risk and hazard, confuses people. '
+        'Risk communication should be practiced/done in collaboration with the involved stakeholders. ': 'Risk communication should be practiced/done in collaboration with the involved stakeholders. '
+        'News media are more interested in crisis communication, where the presentation of risk is often exaggerated. ': 'News media are more interested in crisis communication, where the presentation of risk is often exaggerated. '
+      '#answers':
+        'Disagree fully': 'Disagree fully'
+        'Disagree partly': 'Disagree partly'
+        'Neither agree nor disagree': 'Neither agree nor disagree'
+        'Agree partly': 'Agree partly'
+        'Agree fully': 'Agree fully'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': 'Section 4: Role of Risk Communicator'
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': 'Please rate statements on risk perception to which degree you agree or disagree with them. '
+      '#questions':
+        'People’s risk perceptions include/depend on their beliefs and attitudes. ': 'People’s risk perceptions include/depend on their beliefs and attitudes. '
+        "Risk perceptions aren't influenced by people’s judgements and feelings (personal experience). ": "Risk perceptions aren't influenced by people’s judgements and feelings (personal experience). "
+        'Risk perceptions refl objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g.,': 'Risk perceptions refl objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g.,'
+        'Risk communication should be based on evidence from risk assessments but should also consider laypeople’s hazard consideration/i': 'Risk communication should be based on evidence from risk assessments but should also consider laypeople’s hazard consideration/i'
+        'People who have previously experienced an incident related to a hazard, tend to feel that there are more probabilities of facing': 'People who have previously experienced an incident related to a hazard, tend to feel that there are more probabilities of facing'
+        'When people learn about a hazard for the first time, they tend to feel that this new hazard is more likely to occur than other w': 'When people learn about a hazard for the first time, they tend to feel that this new hazard is more likely to occur than other w'
+        'The more specific knowledge people gain about a hazard, the less they rely on their intuition about risk related to this hazard.': 'The more specific knowledge people gain about a hazard, the less they rely on their intuition about risk related to this hazard.'
+        'Trust in the risk communicator is more important than the information. ': 'Trust in the risk communicator is more important than the information. '
+      '#answers':
+        'Disagree fully': 'Disagree fully'
+        'Disagree partly': 'Disagree partly'
+        'Neither agree nor disagree': 'Neither agree nor disagree'
+        'Agree partly': 'Agree partly'
+        'Agree fully': 'Agree fully'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': 'Section 5: Traditional and social media'
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': 'Which channel do you prefer to use when it comes to communication of risk? (list of priority 1: less important, 5: most important) '
+      '#options':
+        'Newsletter ': 'Newsletter '
+        'Articles in newspapers, magazines': 'Articles in newspapers, magazines'
+        Television: Television
+        Radio: Radio
+        'Social Media': 'Social Media'
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': 'Which channel would you prefer to use when it comes to communication of crisis? (list of priority 1: less important, 5: most important) '
+      '#options':
+        'Newsletter ': 'Newsletter '
+        'Articles in newspapers, magazines': 'Articles in newspapers, magazines'
+        Television: Television
+        Radio: Radio
+        'Social Media': 'Social Media'
+    do_you_use_social_media_channels_to_communicate_risk:
+      '#type': checkboxes
+      '#title': 'Do you use social media channels to communicate risk? '
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': 'Which social media channel do you prefer to communicate risk? (Choose all that apply) '
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp/Viber ': 'Whatsapp/Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#other__option_label': Other
+      '#other__title': 'Please, specify'
+    do_you_use_any_form_of_social_media_listening_software_that_allo:
+      '#type': checkboxes
+      '#title': 'Do you use any form of social media listening (Software that allows users to monitor, track, and analyse social media conversations)? '
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+    how_do_you_usually_handle_a_misinformation_rumour_in_social_medi:
+      '#type': webform_checkboxes_other
+      '#title': 'How do you usually handle a misinformation/rumour in social media about risk related to a specific hazard/risk in chemicals?  '
+      '#options':
+        'No reactions. If I let it go, things will calm down.': 'No reactions. If I let it go, things will calm down.'
+        'Issue a statement with the correct information and disseminate it. ': 'Issue a statement with the correct information and disseminate it. '
+        'Pursue legal action, if needed. ': 'Pursue legal action, if needed. '
+      '#other__option_label': Other
+      '#other__title': 'Please, specify'
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': 'Section 6 : Language'
+    let_s_assume_that_there_is_misinformation_rumour_in_social_media:
+      '#type': checkboxes
+      '#title': 'Let’s assume that there is misinformation/rumour in social media about risk related to smoking and cadmium. Which of the following statements would you prefer to use? '
+      '#options':
+        'A: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%. Smokers have about 1.5 μg/l blood cadmium concentrations, and kidney cortex cadmium concentrations about 20-30 μg/g wet weight. Non-smokers have 4-5 times lower blood cadmium concentrations and twice as low kidney cortex cadmium concentrations. Cadmium has been shown to cause lung cancer.  ': 'A: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%. Smokers have about 1.5 μg/l blood cadmium concentrations, and kidney cortex cadmium concentrations about 20-30 μg/g wet weight. Non-smokers have 4-5 times lower blood cadmium concentrations and twice as low kidney cortex cadmium concentrations. Cadmium has been shown to cause lung cancer.  '
+        'B: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%, while the absorption in the gastrointestinal tract is only a few percent. Smokers have about 4-5 times higher blood cadmium concentrations (about 1.5 μg/l), and twice as high kidney cortex cadmium concentrations (about 20-30 μg/g wet weight) as nonsmokers. Cadmium has been shown to cause lung cancer, but there is limited evidence that it is linked to kidney, liver and prostate cancer. ': 'B: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%, while the absorption in the gastrointestinal tract is only a few percent. Smokers have about 4-5 times higher blood cadmium concentrations (about 1.5 μg/l), and twice as high kidney cortex cadmium concentrations (about 20-30 μg/g wet weight) as nonsmokers. Cadmium has been shown to cause lung cancer, but there is limited evidence that it is linked to kidney, liver and prostate cancer. '
+        'C: With smoking cigarettes, the absorption of cadmium is extremely high in the lungs, while the absorption in the gastrointestinal tract is lower. Smokers have a significantly higher blood cadmium concentrations and kidney cortex cadmium concentrations. Cadmium is carcinogenic.  ': 'C: With smoking cigarettes, the absorption of cadmium is extremely high in the lungs, while the absorption in the gastrointestinal tract is lower. Smokers have a significantly higher blood cadmium concentrations and kidney cortex cadmium concentrations. Cadmium is carcinogenic.  '
+    the_following_scientific_statement_states_that_acrylamide_is_a_c:
+      '#type': checkboxes
+      '#title': 'The following scientific statement states that: “Acrylamide is a chemical which naturally forms in starchy food products, when they are cooked at high temperatures (above 120°C). When acrylamide is present in food, it can potentially increase the risk of consumers of all ages developing cancer. Fortunately, there are ways to reduce levels of acrylamide in food”. Which statement would you choose if you were to advice consumers on minimizing the levels of acrylamide in home cooking? '
+      '#options':
+        'Long cooking times and higher temperatures form more acrylamide which has the potential to cause cancer in humans, than short cooking times and lower temperatures. ': 'Long cooking times and higher temperatures form more acrylamide which has the potential to cause cancer in humans, than short cooking times and lower temperatures. '
+        'Aim for a golden yellow colour (or lighter) when frying, baking, toasting or roasting starchy foods and avoid over-heated foods for better health. ': 'Aim for a golden yellow colour (or lighter) when frying, baking, toasting or roasting starchy foods and avoid over-heated foods for better health. '
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: both
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
