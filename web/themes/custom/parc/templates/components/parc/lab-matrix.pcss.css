@@ -13,7 +13,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    hyphenate-limit-chars: 6 3 3;
 
     &:not(.last) {
       border-bottom: 1px solid var(--node-color, #CCC);
@@ -28,6 +30,10 @@
   .substance-qualified {
     display: flex;
     height: 100%;
+
+    &:not(:last-child) {
+      margin-bottom: 4px;
+    }
   }
 
   .qualified-in-parc-tooltip {
@@ -132,10 +138,18 @@
     }
 
     .pseudo-cell {
-      padding: 5px 10px;
+      padding: 0 10px;
+
+      &:first-child {
+        padding-top: 10px;
+      }
+
+      &:last-child {
+        padding-bottom: 10px;
+      }
 
       &:not(:last-child) {
-        border-bottom: 1px solid var(--node-color, #ccc);
+        margin-bottom: 4px;
       }
     }
 
@@ -189,10 +203,18 @@
       padding: 0;
 
       > * {
-        padding: 10px;
+        padding: 0 10px;
+
+        &:first-child {
+          padding-top: 10px;
+        }
+
+        &:last-child {
+          padding-bottom: 10px;
+        }
 
         &:not(:last-child) {
-          border-bottom: 1px solid var(--node-color, #ccc);
+          margin-bottom: 4px;
         }
       }
     }
@@ -203,5 +225,10 @@
   .results:has(.matrix-table--ecotoxicology):has(.to-expand:not(.hidden)) {
     max-width: calc(100% - 10px);
     width: 900px;
+  }
+
+  .results:has(.matrix-table__air):has(.to-expand:not(.hidden)) {
+    max-width: calc(100% - 10px);
+    width: 700px;
   }
 }
