@@ -53,7 +53,7 @@
             <div class="d-flex justify-content-between">
               {{ attach_library('parc/collapse') }}
               <span class="d-down-xl-none">{{ link(item.title, item.url, { 'class': classes_link }) }}</span>
-              <button class="btn d-xl-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
+              <button class="btn d-flex justify-content-betwen d-xl-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
                 {{ item.title }}
                 <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
@@ -64,7 +64,7 @@
             <div class="d-flex justify-content-between">
               {{ attach_library('parc/collapse') }}
               <span class="d-down-xl-none">{{ link(item.title, item.url, { 'class': classes_link }) }}</span>
-              <button class="btn d-xl-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
+              <button class="btn d-flex justify-content-betwen d-xl-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
                 {{ item.title }}
                 <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
@@ -72,7 +72,7 @@
               </button>
             </div>
           {% elseif item.is_expanded and menu_level > 1 %}
-            <div class="d-flex justify-content-xl-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center">
               {{ attach_library('parc/collapse') }}
               {% set fakelink = ('fakelink' in item.url.getOptions()['attributes'].class[0]) %}
               {% if not fakelink %}
@@ -86,7 +86,7 @@
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke=" currentColor" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
               </button>
-              <button class="btn d-xl-none py-1 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
+              <button class="btn d-xl-none py-1 collapsed justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
                 {% if fakelink %}{{ item.title }}{% endif %}
                 <svg width="12" height="12" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
