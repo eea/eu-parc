@@ -2949,7 +2949,7 @@
 
         const legendGroup = svg.append("g")
           .attr("class", "legend-container")
-          .attr("transform", `translate(${width / 2 - margin.left - 220}, ${transformHeight + 100})`);
+          .attr("transform", `translate(${minWidth / 2 - 240}, ${transformHeight + 100})`);
 
         const gradientStart = adjustColor(colors[latestYear], 60);
         const gradientEnd = adjustColor(colors[latestYear], -60);
@@ -3144,7 +3144,7 @@
           });
           const legendGroup = svg.append("g")
             .attr("class", "legend-container")
-            .attr("transform", `translate(${width / 2 - margin.left - 220}, ${transformHeight + 100})`);
+            .attr("transform", `translate(${minWidth / 2 - 240}, ${transformHeight + 100})`);
 
           const gradientStart = adjustColor(colors[year], 60);
           const gradientEnd = adjustColor(colors[year], -60);
