@@ -1,21 +1,15 @@
-uuid: 4afc3507-ac21-483b-827d-53e2922aafd7
+uuid: 00399d4d-c9ee-49d4-9d0a-1a15670fa9e1
 langcode: en
 status: true
 dependencies:
   config:
     - field.field.node.policy_brief.body
-    - field.field.node.policy_brief.field_categories
     - field.field.node.policy_brief.field_d_date
-    - field.field.node.policy_brief.field_deliverable_type
-    - field.field.node.policy_brief.field_display_label
     - field.field.node.policy_brief.field_media
-    - field.field.node.policy_brief.field_order
     - node.type.policy_brief
   module:
     - datetime
     - media_library
-    - path
-    - select2
 id: node.policy_brief.default
 targetEntityType: node
 bundle: policy_brief
@@ -23,87 +17,26 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_categories:
-    type: select2_entity_reference
-    weight: 1
-    region: content
-    settings:
-      width: 100%
-      autocomplete: false
-      match_operator: CONTAINS
-      match_limit: 10
-    third_party_settings: {  }
-  field_d_date:
-    type: datetime_default
-    weight: 10
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_deliverable_type:
-    type: options_select
-    weight: 14
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_display_label:
-    type: string_textfield
-    weight: 12
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_media:
-    type: media_library_widget
-    weight: 13
-    region: content
-    settings:
-      media_types: {  }
-    third_party_settings: {  }
-  field_order:
-    type: number
-    weight: 11
-    region: content
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    weight: 5
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  simple_sitemap:
     weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
-  simple_sitemap_index_now:
-    weight: 9
+  field_d_date:
+    type: datetime_default
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 8
+  field_media:
+    type: media_library_widget
+    weight: 2
     region: content
     settings:
-      display_label: true
+      media_types: {  }
     third_party_settings: {  }
-  sticky:
+  status:
     type: boolean_checkbox
-    weight: 6
+    weight: 5
     region: content
     settings:
       display_label: true
@@ -118,7 +51,7 @@ content:
     third_party_settings: {  }
   uid:
     type: entity_reference_autocomplete
-    weight: 2
+    weight: 3
     region: content
     settings:
       match_operator: CONTAINS
@@ -126,10 +59,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  url_redirects:
-    weight: 50
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
   body: true
+  path: true
+  promote: true
+  simple_sitemap: true
+  simple_sitemap_index_now: true
+  sticky: true
+  url_redirects: true

@@ -673,3 +673,9 @@ header {
     text-decoration: underline;
   }
 }
+
+.nav-link-level-0 {
+  &:has(.mm-collapse-cols-2) {
+    position: relative;
+  }
+}

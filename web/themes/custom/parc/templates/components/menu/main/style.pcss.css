@@ -86,9 +86,8 @@
         }
 
         &.mm-collapse-cols-2 {
-          transform: translateX(-75%);
-          width: 75% !important;
-          left: 75%;
+          transform: none;
+          left: 0;
 
           .mm-level-1 {
             column-gap: 20px;
