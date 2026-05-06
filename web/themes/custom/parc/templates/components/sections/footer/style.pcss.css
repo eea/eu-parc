@@ -45,7 +45,8 @@ footer {
   /* Left-border accent on submenu children */
   .mm-level-1 {
     padding-left: 16px !important;
-    margin-top: 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     position: relative;
 
     &::before {
