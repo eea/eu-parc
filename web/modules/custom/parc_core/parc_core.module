@@ -35,6 +35,11 @@ function parc_core_theme() {
         'lab_category' => 'hbm',
       ],
     ],
+    'parc_ecotoxicology_matrix' => [
+      'variables' => [
+        'rows' => [],
+      ],
+    ],
     'parc_projects' => [
       'variables' => [
         'projects' => [],
@@ -643,28 +648,41 @@ function parc_core_preprocess_node__events__full(&$variables) {
 function parc_core_node_presave(NodeInterface $node) {
   switch ($node->bundle()) {
     case 'laboratory':
+      $copied_fields = [
+        'field_substance_group' => 'field_substance_group',
+        'field_substance_group_multiple' => 'field_substance_group',
+        'field_sampling_type' => 'field_sampling_type',
+        'field_sampling_type_multiple' => 'field_sampling_type',
+        'field_air_environment' => 'field_air_environment',
+        'field_approaches' => 'field_approaches',
+        'field_domain' => 'field_domain',
+      ];
       if (!$node->get('field_substances_matrix')->isEmpty()) {
-        $substance_groups = [];
-        $sampling_types = [];
-        $air_environments = [];
+        $all_values = [];
 
         foreach ($node->get('field_substances_matrix')->referencedEntities() as $paragraph) {
-
           if (!$paragraph instanceof ParagraphInterface) {
             continue;
           }
 
-          $substance_groups[] = $paragraph->get('field_substance_group')->target_id;
-          $sampling_types[] = $paragraph->get('field_sampling_type')->target_id;
-          $air_environments[] = $paragraph->get('field_air_environment')->value;
+          foreach ($copied_fields as $paragraph_field => $node_field) {
+            if (!$paragraph->hasField($paragraph_field)) {
+              continue;
+            }
+
+            $structured_values = $paragraph->get($paragraph_field)->getValue();
+            $values = array_column($structured_values, 'value');
+            if (empty($values)) {
+              $values = array_column($structured_values, 'target_id');
+            }
+
+            $all_values[$node_field] = array_merge($values ?? [], $all_values[$node_field] ?? []);
+          }
         }
 
-        $substance_groups = array_unique($substance_groups);
-        $sampling_types = array_unique($sampling_types);
-
-        $node->set('field_substance_group', $substance_groups);
-        $node->set('field_sampling_type', $sampling_types);
-        $node->set('field_air_environment', $air_environments);
+        foreach ($copied_fields as $paragraph_field => $node_field) {
+          $node->set($node_field, $all_values[$node_field] ?? []);
+        }
       }
 
       break;
@@ -751,7 +769,7 @@ function template_preprocess_parc_indicator_groups(array &$variables) {
 function parc_core_preprocess_node(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  
+
   if ($variables['view_mode'] == 'full' || $node->bundle() == 'chemical') {
     if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
       $variables['#cache']['max-age'] = 0;

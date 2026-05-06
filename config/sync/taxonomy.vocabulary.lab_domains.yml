@@ -1,0 +1,9 @@
+uuid: e90764e4-8506-47c6-8f0e-c364b977143f
+langcode: en
+status: true
+dependencies: {  }
+name: '[Lab] Domains'
+vid: lab_domains
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,20 @@
+uuid: 1c27112b-d95b-4785-9e6b-099143ef54b5
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_sampling_type_multiple
+field_name: field_sampling_type_multiple
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

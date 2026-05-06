@@ -1,0 +1,29 @@
+uuid: bad2a61e-4608-49b8-ab21-7d00ba68ee47
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_domain
+    - node.type.laboratory
+    - taxonomy.vocabulary.lab_domains
+id: node.laboratory.field_domain
+field_name: field_domain
+entity_type: node
+bundle: laboratory
+label: Domain
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      lab_domains: lab_domains
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

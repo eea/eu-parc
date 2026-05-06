@@ -1,0 +1,9 @@
+uuid: 666ecf8e-c582-4010-bce1-233deebba887
+langcode: en
+status: true
+dependencies: {  }
+name: '[Lab] Approaches'
+vid: lab_approaches
+description: null
+weight: 0
+new_revision: false
