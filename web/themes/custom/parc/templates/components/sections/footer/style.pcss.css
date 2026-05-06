@@ -226,13 +226,17 @@ footer {
     column-gap: 32px;
     margin-top: -4rem;
 
-    @media(min-width: 768px) and (max-width: 1033px) {
+    @media (min-width: 768px) and (max-width: 1033px) {
       margin-top: -5rem;
     }
 
-    @media(max-width: 768px) {
+    @media (max-width: 768px) {
       margin-top: 0;
     }
+  }
+
+  .nav-term-privacy {
+  gap: 32px;
 
     .nav-link {
       font-size: 12px;
@@ -241,5 +245,43 @@ footer {
     }
   }
 
+}
 
+footer {
+  /* Toggle button looks like a nav-link */
+  .footer-toggle {
+    background: none;
+    border: none;
+    color: var(--c-white);
+    font-size: 19px;
+    font-weight: 500;
+    padding: 0;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    svg {
+      flex-shrink: 0;
+      transform: rotate(-90deg);
+      transition: transform 0.3s linear;
+    }
+
+    &:not(.collapsed) svg {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Give items with a submenu toggle enough room */
+  .nav-item:has(.footer-toggle) {
+    min-width: 160px;
+  }
+
+  /* Left-border accent on submenu children */
+  .mm-level-1 {
+    border-left: 2px solid var(--c-white);
+    padding-left: 16px !important;
+    margin-top: 8px;
+  }
 }

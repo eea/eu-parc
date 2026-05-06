@@ -6901,7 +6901,11 @@
                     "role": "Co-Maintainer"
                 },
                 {
-                    "name": "Sebastien M.",
+                    "name": "sdstyles",
+                    "homepage": "https://www.drupal.org/user/1420228"
+                },
+                {
+                    "name": "sebastien m.",
                     "homepage": "https://www.drupal.org/user/380104"
                 }
             ],
@@ -6980,6 +6984,10 @@
                 {
                     "name": "rwanth",
                     "homepage": "https://www.drupal.org/user/3564319"
+                },
+                {
+                    "name": "vladimiraus",
+                    "homepage": "https://www.drupal.org/user/673120"
                 }
             ],
             "description": "Creates menu items based on associations to taxonomy vocabularies",
