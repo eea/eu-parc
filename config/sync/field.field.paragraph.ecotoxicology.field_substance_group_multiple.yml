@@ -1,0 +1,29 @@
+uuid: 7c35d526-f763-47e8-812e-75001c6ac3c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_substance_group_multiple
+    - paragraphs.paragraphs_type.ecotoxicology
+    - taxonomy.vocabulary.substance_groups
+id: paragraph.ecotoxicology.field_substance_group_multiple
+field_name: field_substance_group_multiple
+entity_type: paragraph
+bundle: ecotoxicology
+label: 'Substance groups'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      substance_groups: substance_groups
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

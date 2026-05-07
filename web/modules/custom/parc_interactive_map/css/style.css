@@ -294,6 +294,13 @@
     border: none;
   }
 
+  .results.open {
+    height: 100%;
+    background: #FCFAFA;
+    overflow: auto;
+    max-height: calc(100% - 55px);
+  }
+
   .map-page .facets-widget-checkbox .facets-collapse,
   .map-page .facets-widget-parc_checkbox .facets-collapse {
     text-decoration: none;
@@ -364,6 +371,9 @@
     bottom: 70px;
     width: calc(100% - 20px);
     left: -10px;
+
+    max-height: calc(100vh - 420px);
+    overflow: auto;
   }
 
   .interactive-map .node:last-child {
@@ -381,7 +391,8 @@
     background: #fcfafa;
     padding-top: 10px !important;
     width: 100vw;
-    max-height: calc(100 * var(--vh, 1vh) - 96px);
+    /*max-height: calc(100 * var(--vh, 1vh) - 96px);*/
+    max-height: 230px;
     overflow: auto;
   }
 }

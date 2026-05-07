@@ -21,7 +21,7 @@ content:
     settings:
       timezone_override: ''
       format_type: medium
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 1
     region: content
   field_media:
@@ -30,7 +30,7 @@ content:
     settings:
       view_mode: download_link
       link: false
-    third_party_settings: {}
+    third_party_settings: {  }
     weight: 2
     region: content
 hidden:

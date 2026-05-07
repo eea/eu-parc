@@ -1,0 +1,29 @@
+uuid: 27b53af2-6c20-420f-9ec9-dcbc19f1a8aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_approaches
+    - node.type.laboratory
+    - taxonomy.vocabulary.lab_approaches
+id: node.laboratory.field_approaches
+field_name: field_approaches
+entity_type: node
+bundle: laboratory
+label: Approaches
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      lab_approaches: lab_approaches
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

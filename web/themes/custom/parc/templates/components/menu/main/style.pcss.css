@@ -3,12 +3,21 @@
     .nav-link {
       font-weight: var(--base-font-weight);
     }
+
+    .nav-link-level-1 span a,
+    a.nav-link-level-1,
+    .nav-link-level-1.nav-link-fakelink {
+      font-weight: 700 !important;
+      text-decoration: underline !important;
+    }
   }
 
   /* meniu styles placed in header */
   .region-nav-main & {
     .mm-level-1 {
       position: relative;
+      width: 100%;
+      justify-content: space-between;
       --nav-link-font-size: 18px;
 
       .nav-link {
@@ -16,27 +25,24 @@
         --nav-link-padding-y: 4px;
         /* min-width: 250px; */
         white-space: inherit;
-        max-width: 260px;
+        max-width: 224px;
         line-height: 30px;
       }
     }
 
-    @media (--lg) {
+    @media (--xl) {
       .mm-level-1 {
-        max-width: 270px;
         margin-top: 24px;
-      }
-
-      .mm-level-2 {
-        .nav-link {
-          min-width: 290px;
-        }
       }
 
       .nav-link-level-0 {
         &:hover {
           .mm-collapse-0 {
             display: block;
+          }
+
+          .nav-link.nav-link-level-0 {
+            text-decoration: underline;
           }
         }
       }
@@ -57,7 +63,42 @@
         box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
         clip-path: inset(0 -100vmax);
         padding-bottom: 2rem;
-        min-height: 400px;
+        min-height: 560px;
+        width: 100%;
+        transform: translate(-100%);
+        left: 100%;
+
+
+        &.nav-item-2 {
+          width: 140% !important;
+          transform: translate(0) !important;
+          left: -32% !important;
+          padding-left: 0;
+
+          .mm-level-1 {
+            column-gap: 20px;
+            justify-content: normal;
+          }
+
+          @media (min-width: 1390px) {
+            left: -15% !important;
+          }
+        }
+
+        &.mm-collapse-cols-2 {
+          transform: none;
+          left: 0;
+
+          .mm-level-1 {
+            column-gap: 20px;
+            justify-content: normal;
+          }
+        }
+
+        &.mm-collapse-cols-1 {
+          transform: none;
+          left: auto;
+        }
       }
     }
   }
@@ -90,6 +131,12 @@
     @media (--lg) {
       .mm-collapse-0 {
         display: block;
+      }
+
+      li.nav-link-level-0:has(.mm-collapse-0.show) {
+        a.nav-link-level-0 {
+          text-decoration: underline;
+        }
       }
     }
   }
