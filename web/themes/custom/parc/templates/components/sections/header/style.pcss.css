@@ -61,6 +61,12 @@ header {
   }
 }
 
+.menu--sidebar--multilevel {
+  .mm-level-1 {
+    flex-direction: column;
+  }
+}
+
 .menu--main {
   .text-muted:not(.nav-link-fakelink) {
     display: none;
@@ -663,5 +669,19 @@ header {
     position: absolute;
     top: 12px;
     left: 3px;
+  }
+}
+
+.is-active[data-drupal-link-system-path="<front>"] {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.nav-link-level-0 {
+  &:has(.mm-collapse-cols-2) {
+    position: relative;
   }
 }

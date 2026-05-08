@@ -449,7 +449,7 @@ display:
       menu:
         type: normal
         title: Deliverables
-        weight: -56
+        weight: -81
         enabled: true
         menu_name: main
         parent: 'menu_link_content:691b6db4-ca44-46f2-b847-4389577e9d04'
