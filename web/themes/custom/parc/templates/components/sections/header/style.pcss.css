@@ -61,6 +61,12 @@ header {
   }
 }
 
+.menu--sidebar--multilevel {
+  .mm-level-1 {
+    flex-direction: column;
+  }
+}
+
 .menu--main {
   .text-muted:not(.nav-link-fakelink) {
     display: none;
