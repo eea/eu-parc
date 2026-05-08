@@ -1,3 +1,16 @@
+.menu--sidebar--multilevel {
+  .mm-level-1 {
+    flex-direction: column;
+
+    .nav-link-level-1 span a,
+    a.nav-link-level-1,
+    .nav-link-level-1.nav-link-fakelink {
+      font-weight: normal !important;
+      text-decoration: none !important;
+    }
+  }
+}
+
 .nav-main {
   .mm-level-1 {
     .nav-link {
@@ -127,6 +140,23 @@
     .nav-link-level-1 {
       --nav-link-padding-y: 0.5rem;
       --nav-link-font-size: 18px;
+    }
+
+    .mm-level-1 {
+      .nav-link-level-1 span a,
+      a.nav-link-level-1,
+      .nav-link-level-1.nav-link-fakelink {
+        font-weight: 500 !important;
+        text-decoration: none !important;
+      }
+
+      a.nav-link-level-1 {
+        &:hover,
+        &.active,
+        &.is-active {
+          text-decoration: underline !important;
+        }
+      }
     }
 
     @media (--lg) {
