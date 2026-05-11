@@ -129,10 +129,6 @@
         font-weight: var(--fw-normal);
         line-height: 1.4em;
         padding-block: 8px;
-
-        &.nav-link-level-0 {
-          display: none;
-        }
       }
     }
   }

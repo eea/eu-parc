@@ -4,11 +4,10 @@
  * Parc override to display a menu.
  */
 #}
-
 {% import _self as menus %}
-{{ menus.menu_links(menu_name, items, attributes, 0) }}
+{{ menus.menu_links(menu_name, items, attributes, 0, initial_level - 1) }}
 
-{% macro menu_links(menu_name, items, attributes, menu_level) %}
+{% macro menu_links(menu_name, items, attributes, menu_level, level_offset) %}
   {% import _self as menus %}
   {% if items %}
     {% for item in items %}
@@ -35,7 +34,7 @@
       {% set extended = 'nav-item-' ~ loop.index %}
       {% if not (menu_level >= 1 and item.url|render == '' and not item.below) %}
 
-        {% set linkID = item.title|clean_class %}
+        {% set linkID = (item.title ~ '-' ~ level_offset)|clean_class %}
         {%
           set classes_link = [
             item.url|render == '' and menu_level > 0 ? 'text-muted text-uppercase' : 'nav-link',
@@ -49,7 +48,7 @@
         %}
 
         <li{{item.attributes.addClass('nav-item', 'nav-link-level-' ~ menu_level, item.in_active_trail ? 'li-active')}}>
-          {% if item.is_expanded and menu_level == 0 %}
+          {% if item.is_expanded and menu_level + level_offset == 0 %}
             <div class="d-flex justify-content-between">
               {{ attach_library('parc/collapse') }}
               <span class="d-down-xl-none">{{ link(item.title, item.url, { 'class': classes_link }) }}</span>
@@ -60,57 +59,40 @@
                 </svg>
               </button>
             </div>
-          {% elseif item.is_expanded and menu_level == 1 %}
+          {% elseif item.is_expanded and menu_level + level_offset == 1 %}
             <div class="d-flex justify-content-between">
               {{ attach_library('parc/collapse') }}
-              <span class="d-down-xl-none">{{ link(item.title, item.url, { 'class': classes_link }) }}</span>
+              {{ link(item.title, item.url, { 'class': classes_link }) }}
               <button class="btn d-flex justify-content-betwen d-xl-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
-                {{ item.title }}
                 <svg width="19" height="11" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
               </button>
             </div>
-          {% elseif item.is_expanded and menu_level > 1 %}
+          {% elseif item.is_expanded and menu_level + level_offset > 1 %}
             <div class="d-flex justify-content-between align-items-center">
               {{ attach_library('parc/collapse') }}
-              {% set fakelink = ('fakelink' in item.url.getOptions()['attributes'].class[0]) %}
-              {% if not fakelink %}
-                {{ link(item.title, item.url, { 'class': classes_link }) }}
-              {% else %}
-                <span class="d-down-xl-none">{{ link(item.title, item.url, { 'class': classes_link }) }}</span>
-              {% endif %}
-              <button class="btn d-none d-xl-block collapsed py-1 px-2 menu-toggle-btn {{ fakelink ? 'fakelink' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
-                {% if fakelink %}{{ item.title }}{% endif %}
+              {{ link(item.title, item.url, { 'class': classes_link }) }}
+              <button class="btn d-none d-xl-block collapsed py-1 px-2 menu-toggle-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
                 <svg width="12" height="12" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke=" currentColor" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
               </button>
               <button class="btn d-xl-none py-1 collapsed justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMainSecond-{{ linkID }}" aria-expanded="false" aria-controls="collapseMainSecond-{{ linkID }}">
-                {% if fakelink %}{{ item.title }}{% endif %}
                 <svg width="12" height="12" viewbox="0 0 19 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M17.6831 1.68311L9.94929 9.41692C9.55877 9.80744 8.92561 9.80744 8.53508 9.41692L0.80127 1.68311" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
               </button>
             </div>
           {% else %}
-            {% if 'fakelink' in item.url.getOptions()['attributes'].class[0] and false %}
-              <div class="mobile--show">
-                {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
-              </div>
-              <div class="mobile--hide">
-                {{ link(item.title, item.url, { 'class': classes_link }) }}
-              </div>
-            {% else %}
-              {{ link(item.title, item.url, { 'class': classes_link }) }}
-            {% endif %}
+            {{ link(item.title, item.url, { 'class': classes_link }) }}
           {% endif %}
 
           {% if item.below %}
             {% set below_count = item.below|length %}
             {% set collapse_count_class = menu_level == 0 ? 'mm-collapse-cols-' ~ below_count : '' %}
-            <div class="collapse mm-collapse-{{ menu_level }} {{ extended }} {{ collapse_count_class }}" id="collapseMainSecond-{{ linkID }}">
-              {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1) }}
+            <div class="collapse mm-collapse-{{ menu_level + level_offset }} {{ extended }} {{ collapse_count_class }}" id="collapseMainSecond-{{ linkID }}">
+              {{ menus.menu_links(menu_name, item.below, attributes, menu_level + 1, level_offset) }}
             </div>
           {% endif %}
         </li>

@@ -299,6 +299,9 @@ header {
         font-size: 18px !important;
         padding: 6px 0 !important;
         text-align: left;
+        justify-content: flex-end !important;
+        width: auto !important;
+        max-width: 14px !important;
 
         svg {
           flex-grow: 0;
@@ -352,7 +355,8 @@ header {
       }
     }
 
-    .nav-link-level-2 {
+    .nav-link-level-2,
+    .nav-link-level-1 {
       .menu-toggle-btn {
         border-radius: 100%;
         display: flex !important;

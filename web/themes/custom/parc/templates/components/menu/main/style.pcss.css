@@ -20,8 +20,10 @@
     .nav-link-level-1 span a,
     a.nav-link-level-1,
     .nav-link-level-1.nav-link-fakelink {
-      font-weight: 700 !important;
-      text-decoration: underline !important;
+      @media (--xl) {
+        font-weight: 700 !important;
+        text-decoration: underline !important;
+      }
     }
   }
 
@@ -38,8 +40,11 @@
         --nav-link-padding-y: 4px;
         /* min-width: 250px; */
         white-space: inherit;
-        max-width: 224px;
         line-height: 30px;
+
+        @media (--xl) {
+          max-width: 224px;
+        }
       }
     }
 
@@ -99,9 +104,9 @@
         }
 
         &.mm-collapse-cols-2 {
-          transform: translateX(-75%);
-          width: 75% !important;
-          left: 75%;
+          transform: none;
+          left: 0;
+          width: 100vw;
 
           .mm-level-1 {
             column-gap: 20px;
@@ -132,12 +137,47 @@
       display: none;
     }
 
+    .menu-toggle-btn {
+      &, &:hover, &:active, &:focus {
+        background: transparent !important;
+        outline: none !important;
+        border: none !important;
+      }
+    }
+
+    .btn {
+      gap: 10px;
+      outline: none !important;
+      border: none !important;
+      width: 14px;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    .nav-item > .justify-content-between {
+      justify-content: flex-start !important;
+      gap: 10px;
+    }
+
+    svg {
+      color: #000 !important;
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 14px;
+      min-width: 14px;
+
+      path {
+        stroke: #000 !important;
+      }
+    }
+
     li.nav-link-level-0 {
       &:not(.li-active) {
         display: none;
       }
     }
-    .nav-link-level-1 {
+    .nav-link-level-1,
+    .nav-link-level-2 {
       --nav-link-padding-y: 0.5rem;
       --nav-link-font-size: 18px;
     }
@@ -150,7 +190,9 @@
         text-decoration: none !important;
       }
 
-      a.nav-link-level-1 {
+      a.nav-link-level-1,
+      a.nav-link-level-2,
+      a.nav-link-level-3 {
         &:hover,
         &.active,
         &.is-active {
@@ -160,12 +202,12 @@
     }
 
     @media (--lg) {
-      .mm-collapse-0 {
+      .mm-collapse-1 {
         display: block;
       }
 
-      li.nav-link-level-0:has(.mm-collapse-0.show) {
-        a.nav-link-level-0 {
+      li.nav-link-level-0:has(.mm-collapse-1.show) {
+        a.nav-link-level-1 {
           text-decoration: underline;
         }
       }
