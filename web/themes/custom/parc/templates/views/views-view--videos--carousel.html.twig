@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for videos carousel view.
+ */
+#}
+
+{%
+  set classes = [
+    'view-' ~ id|clean_class,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% if more %}
+    <div class="videos-carousel__header d-flex align-center">
+      {{ more }}
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000" aria-hidden="true"><path d="m560-240-56-58 142-142H160v-80h486L504-662l56-58 240 240-240 240Z"/></svg>
+    </div>
+  {% endif %}
+
+  {% if rows -%}
+    {{ rows }}
+  {% elseif empty -%}
+    {{ empty }}
+  {% endif %}
+</div>

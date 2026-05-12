@@ -147,6 +147,31 @@ main {
   margin-top: 50px;
 }
 
+.view-more-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 10px;
+
+  .more-link {
+    margin-top: 0;
+    text-align: inherit;
+
+    a {
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: underline;
+      color: #111;
+    }
+  }
+
+  svg {
+    flex-shrink: 0;
+    display: block;
+  }
+}
+
 .container-content {
   isolation: isolate;
 }

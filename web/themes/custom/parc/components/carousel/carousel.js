@@ -5,6 +5,8 @@
         const next = el.parentElement.querySelector('.swiper-button-next');
         const prev = el.parentElement.querySelector('.swiper-button-prev');
 
+        const isVideos = el.dataset.type === 'videos';
+
         let options = {
           spaceBetween: 10,
           loop: true,
@@ -19,7 +21,17 @@
           dots: false,
           slidesPerView: 1,
           breakpointsBase: 'container',
-          breakpoints: {
+          breakpoints: isVideos ? {
+            600: {
+              slidesPerView: 2,
+            },
+            900: {
+              slidesPerView: 3,
+            },
+            1200: {
+              slidesPerView: 4,
+            },
+          } : {
             320: {
               slidesPerView: 2,
             },
@@ -29,7 +41,7 @@
             1200: {
               slidesPerView: 4,
             },
-          }
+          },
         };
 
         const swiper = new Swiper(el, options)
