@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for videos grid page.
+ */
+#}
+
+{{ attach_library('parc/svg_title') }}
+
+{%
+  set classes = [
+    'view-' ~ id|clean_class,
+    'view-display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% if title %}
+    <div class="svg-title">
+      <h1>{{ title }}</h1>
+    </div>
+  {% endif %}
+
+  {{ exposed }}
+  {{ attachment_before }}
+
+  {% if rows -%}
+    {{ rows }}
+  {% elseif empty -%}
+    <div class="views-empty mb-5">{{ empty }}</div>
+  {% endif %}
+  {{ pager }}
+
+  {{ attachment_after }}
+  {{ more }}
+</div>
