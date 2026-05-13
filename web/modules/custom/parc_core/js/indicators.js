@@ -4078,7 +4078,7 @@
               line = candidate;
             } else {
               if (line) lines.push(line);
-              line = w.length > maxChars ? w.slice(0, maxChars) : w;
+              line = w;
             }
           });
           if (line) lines.push(line);
