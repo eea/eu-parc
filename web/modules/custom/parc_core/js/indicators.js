@@ -4243,7 +4243,7 @@
                 .attr("r", r).attr("fill", "transparent").attr("cursor", "pointer")
                 .on("mouseover", function () {
                   lineGroup.selectAll(".achieved-line")
-                    .transition().duration(150)
+                    .transition("hover").duration(150)
                     .attr("stroke-width", strokeThick).attr("stroke", achievedColor);
                   labelG.selectAll("text").style("font-weight", "bold");
                   labelG.transition().duration(200).attr("transform", "translate(0, -7)");
@@ -4254,7 +4254,7 @@
                 })
                 .on("mouseout", function () {
                   lineGroup.selectAll(".achieved-line")
-                    .transition().duration(150)
+                    .transition("hover").duration(150)
                     .attr("stroke-width", strokeNormal).attr("stroke", color);
                   labelG.selectAll("text").style("font-weight", "normal");
                   labelG.transition().duration(200).attr("transform", "translate(0, 0)");
