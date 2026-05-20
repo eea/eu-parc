@@ -13,8 +13,7 @@ label: Year
 description: 'The year this chart image represents (e.g. 2024).'
 required: true
 translatable: false
-default_value: {}
+default_value: {  }
 default_value_callback: ''
-settings:
-  max_length: 10
+settings: {  }
 field_type: string

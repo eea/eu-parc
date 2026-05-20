@@ -17,7 +17,7 @@ label: 'Chart images'
 description: 'One entry per year: a year label and the chart image for that year.'
 required: false
 translatable: false
-default_value: {}
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:paragraph'
@@ -27,6 +27,6 @@ settings:
     negate: 0
     target_bundles_drag_drop:
       chart_image:
-        enabled: true
         weight: 0
+        enabled: true
 field_type: entity_reference_revisions

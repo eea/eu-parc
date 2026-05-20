@@ -103,7 +103,8 @@
           }
         }
 
-        &.mm-collapse-cols-2 {
+        &.mm-collapse-cols-2,
+        &.mm-collapse-cols-3 {
           transform: none;
           left: 0;
           width: 100vw;
@@ -111,6 +112,21 @@
           .mm-level-1 {
             column-gap: 20px;
             justify-content: normal;
+          }
+        }
+
+        &.mm-collapse-cols-5,
+        &.mm-collapse-cols-4 {
+          @media (--xl) {
+            width: calc(100% + 90px) !important;
+            padding: 0 50px !important;
+            left: calc(100% + 50px);
+          }
+
+          @media (min-width: 1540px) {
+            width: calc(100% + 180px) !important;
+            padding: 0 100px !important;
+            left: calc(100% + 100px);
           }
         }
 
