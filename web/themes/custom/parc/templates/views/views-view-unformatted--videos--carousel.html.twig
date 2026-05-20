@@ -1,0 +1,6 @@
+{% embed 'parc:carousel' with {
+  arrows: true,
+  type: 'videos',
+  slides: rows|map(row => row.content),
+} %}
+{% endembed %}
