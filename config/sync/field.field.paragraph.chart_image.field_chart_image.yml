@@ -15,7 +15,7 @@ label: Image
 description: 'The chart image for this year. Accepts raster images (PNG/JPG) and SVG vectors up to 10 MB.'
 required: true
 translatable: false
-default_value: {}
+default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:media'

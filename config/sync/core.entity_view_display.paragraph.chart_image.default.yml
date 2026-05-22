@@ -10,7 +10,8 @@ id: paragraph.chart_image.default
 targetEntityType: paragraph
 bundle: chart_image
 mode: default
-content: {}
+content: {  }
 hidden:
   field_chart_image: true
   field_chart_year: true
+  search_api_excerpt: true

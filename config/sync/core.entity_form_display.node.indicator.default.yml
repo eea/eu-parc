@@ -53,12 +53,13 @@ content:
       closed_mode_threshold: 0
       add_mode: button
       form_display_mode: default
-      default_paragraph_type: chart_image
+      default_paragraph_type: _none
       features:
-        duplicate: '0'
-        collapse_edit_all: collapse_edit_all
         add_above: '0'
-    third_party_settings: {}
+        collapse_edit_all: collapse_edit_all
+        convert: '0'
+        duplicate: '0'
+    third_party_settings: {  }
   field_indicator_data:
     type: tablefield
     weight: 12
@@ -138,5 +139,10 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }
