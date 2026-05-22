@@ -28,6 +28,9 @@
 
     popup.querySelector('.video-popup__overlay').addEventListener('click', closePopup);
     popup.querySelector('.video-popup__close').addEventListener('click', closePopup);
+    popup.querySelector('.video-popup__inner').addEventListener('click', (e) => {
+      if (!e.target.closest('.video-popup__body')) closePopup();
+    });
     popup.querySelector('.video-popup__prev').addEventListener('click', () => navigate(-1));
     popup.querySelector('.video-popup__next').addEventListener('click', () => navigate(1));
 
