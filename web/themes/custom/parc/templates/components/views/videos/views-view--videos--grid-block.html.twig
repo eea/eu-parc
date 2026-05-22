@@ -1,11 +1,9 @@
 {#
 /**
  * @file
- * Parc theme implementation for videos grid page.
+ * Parc theme implementation for videos grid block.
  */
 #}
-
-{{ attach_library('parc/svg_title') }}
 
 {%
   set classes = [
@@ -18,12 +16,6 @@
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {{ title_suffix }}
-
-  {% if title %}
-    <div class="svg-title">
-      <h1>{{ title }}</h1>
-    </div>
-  {% endif %}
 
   {{ exposed }}
   {{ attachment_before }}

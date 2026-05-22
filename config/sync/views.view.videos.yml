@@ -205,22 +205,24 @@ display:
     display_plugin: block
     position: 1
     display_options:
-      display_description: 'Video carousel for frontpage'
       pager:
         type: none
         options:
           offset: 0
           items_per_page: 0
-      use_more: true
-      use_more_always: true
-      use_more_text: 'View all'
-      link_url: ''
       defaults:
         pager: false
         use_more: false
         use_more_always: false
         use_more_text: false
+        link_display: false
         link_url: false
+      display_description: 'Video carousel for frontpage'
+      use_more: true
+      use_more_always: true
+      use_more_text: 'View all'
+      link_display: custom_url
+      link_url: /videos
       display_extenders:
         ajax_history: {  }
         simple_sitemap_display_extender: {  }
@@ -235,14 +237,12 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
-  grid:
-    id: grid
-    display_title: Grid
-    display_plugin: page
-    position: 2
+  grid_block:
+    id: grid_block
+    display_title: 'Grid Block'
+    display_plugin: block
+    position: 3
     display_options:
-      display_description: 'All videos grid page'
-      path: /videos
       pager:
         type: full
         options:
@@ -252,9 +252,9 @@ display:
           total_pages: null
           id: 0
           tags:
-            first: '« First'
-            previous: '‹ Previous'
             next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
             last: 'Last »'
           expose:
             items_per_page: false
@@ -266,6 +266,7 @@ display:
             offset_label: Offset
       defaults:
         pager: false
+      display_description: 'All videos grid block for embedding'
       display_extenders:
         ajax_history: {  }
         simple_sitemap_display_extender: {  }
@@ -277,6 +278,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url.query_args
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
