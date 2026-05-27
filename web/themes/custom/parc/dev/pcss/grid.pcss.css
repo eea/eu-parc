@@ -969,7 +969,8 @@
     );
   }
 
-  &.gaf--news {
+  &.gaf--news,
+  &.gaf--videos {
     grid-template-columns: 1fr;
 
     @media (--md) {
@@ -978,12 +979,24 @@
         minmax(min(var(--grid-auto-fill-minw), 100%), 1fr)
       );
     }
+  }
 
+  &.gaf--news {
     @media (--xl) {
       grid-template-columns: repeat(
         4,
         minmax(calc(var(--grid-auto-fill-minw) - 14px), 1fr)
       );
+    }
+  }
+
+  &.gaf--videos {
+    @media (--xl) {
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(calc(var(--grid-auto-fill-minw) - 14px), calc(25% - 0.75rem))
+      );
+      justify-content: center;
     }
   }
 
