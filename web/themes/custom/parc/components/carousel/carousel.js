@@ -4,12 +4,13 @@
       once("swiperCarousel", ".carousel.swiper", context).forEach((el) => {
         const next = el.parentElement.querySelector('.swiper-button-next');
         const prev = el.parentElement.querySelector('.swiper-button-prev');
+        const isVideos = el.dataset.type === 'videos';
 
         let options = {
-          spaceBetween: 10,
+          spaceBetween: isVideos ? 24 : 10,
           loop: true,
           speed: 500,
-          allowTouchMove: false,
+          allowTouchMove: isVideos,
           autoplay: false,
           observer: true,
           observeParents: true,
