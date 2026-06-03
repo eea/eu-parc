@@ -67,7 +67,11 @@
 %}
 
 {% if element['#return_value'] %}
-  {% set data_color = termColor(element['#return_value']) %}
+  {% if name starts with 'year[' %}
+    {% set data_color = yearColor(element['#return_value']) %}
+  {% else %}
+    {% set data_color = termColor(element['#return_value']) %}
+  {% endif %}
 {% endif %}
 
 <div{{attributes.addClass(classes)}} data-color={{ data_color }}>
