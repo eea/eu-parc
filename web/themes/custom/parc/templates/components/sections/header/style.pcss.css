@@ -333,6 +333,14 @@ header {
         min-width: 270px;
         display: block;
       }
+
+      .nav-item-4 .mm-collapse-1 {
+        inset-block: 0;
+        left: 100%;
+        padding-bottom: 0;
+        min-width: 150px !important;
+        display: block;
+      }
     }
 
     @media (--xl) {
