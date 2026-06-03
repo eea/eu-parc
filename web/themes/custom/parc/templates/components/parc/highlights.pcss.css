@@ -33,6 +33,7 @@
 
       &:after {
         content: '↗';
+        margin-right: 8px;
         font-size: 17px;
       }
     }
