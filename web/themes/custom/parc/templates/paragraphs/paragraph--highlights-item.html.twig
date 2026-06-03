@@ -1,0 +1,21 @@
+{% set title_color = paragraph.field_title_color.color|default('#000') %}
+{% set text_color = paragraph.field_bg_color.color|default('#000') %}
+{% set bg_color = paragraph.field_background_color.color|default('#696969') %}
+
+{% block paragraph %}
+  <div class="highlights-item" style="--title-color: {{ title_color }}; --text-color: {{ text_color }}; --bg-color: {{ bg_color }}">
+    {% if not paragraph.field_title.isEmpty %}
+      <div class="highlights-item__title highlight-item__title--text">
+        {{ content.field_title }}
+      </div>
+    {% else %}
+      <div class="highlights-item__title highlight-item__title--image">
+        {{ content.field_image }}
+      </div>
+    {% endif %}
+
+    <div class="highlights-item__text">
+      {{ content.field_body }}
+    </div>
+  </div>
+{% endblock %}

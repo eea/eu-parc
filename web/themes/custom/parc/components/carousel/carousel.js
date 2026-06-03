@@ -5,9 +5,10 @@
         const next = el.parentElement.querySelector('.swiper-button-next');
         const prev = el.parentElement.querySelector('.swiper-button-prev');
         const isVideos = el.dataset.type === 'videos';
+        const isHighlights = el.dataset.type === 'highlights';
 
         let options = {
-          spaceBetween: isVideos ? 24 : 10,
+          spaceBetween: isVideos || isHighlights ? 24 : 10,
           loop: true,
           speed: 500,
           allowTouchMove: isVideos,
@@ -34,6 +35,13 @@
             },
           }
         };
+
+        if (isHighlights) {
+          options.breakpoints[1800] = {slidesPerView: 3};
+          options.breakpoints[1200].slidesPerView = 2;
+          options.breakpoints[768].slidesPerView = 2;
+          options.breakpoints[480].slidesPerView = 1;
+        }
 
         const swiper = new Swiper(el, options)
       });
