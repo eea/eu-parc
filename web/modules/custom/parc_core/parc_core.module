@@ -510,6 +510,15 @@ function parc_core_preprocess_views_view__search(&$variables) {
  * Implements hook_views_pre_view().
  */
 function parc_core_views_pre_view(ViewExecutable $view) {
+  if ($view->id() == 'publications') {
+    $query = \Drupal::request()->query->all();
+    if (isset($query['year']) && !is_array($query['year'])) {
+      $years = array_filter(array_map('trim', explode(',', (string) $query['year'])), 'strlen');
+      $query['year'] = array_combine($years, $years);
+      $view->setExposedInput($query);
+    }
+  }
+
   if ($view->id() == 'search') {
     /** @var \Drupal\parc_core\ParcSearchManager $search_manager */
     $search_manager = \Drupal::service('parc_core.search_manager');
@@ -852,4 +861,16 @@ function parc_core_views_data_alter(array &$data) {
   // Use entity reference for the field 'field_chemicals'.
   $field_name = 'field_chemicals';
   $data['taxonomy_term__' . $field_name][$field_name . '_target_id']['filter']['id'] = 'entity_reference';
+
+  if (isset($data['node__field_publication_date'])) {
+    $data['node__field_publication_date']['field_publication_date_year'] = [
+      'title' => t('Publication date (year)'),
+      'group' => t('Content'),
+      'filter' => [
+        'id' => 'parc_publication_year',
+        'real field' => 'field_publication_date_value',
+        'allow empty' => TRUE,
+      ],
+    ];
+  }
 }
