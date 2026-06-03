@@ -1,0 +1,16 @@
+uuid: ead2045a-036b-48ce-8812-6fdce411cd92
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.video
+id: node.video
+targetEntityType: node
+bundle: video
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /videos
+  redirect_code: 301
+  redirect_fallback_action: access_denied

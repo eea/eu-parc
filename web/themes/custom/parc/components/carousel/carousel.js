@@ -1,16 +1,19 @@
 ((Drupal, once) => {
   Drupal.behaviors.swiperCarousel = {
     attach(context) {
-      once("swiperCarousel", ".carousel", context).forEach((el) => {
+      once("swiperCarousel", ".carousel.swiper", context).forEach((el) => {
         const next = el.parentElement.querySelector('.swiper-button-next');
         const prev = el.parentElement.querySelector('.swiper-button-prev');
+        const isVideos = el.dataset.type === 'videos';
 
         let options = {
-          spaceBetween: 10,
+          spaceBetween: isVideos ? 24 : 10,
           loop: true,
           speed: 500,
-          allowTouchMove: false,
+          allowTouchMove: isVideos,
           autoplay: false,
+          observer: true,
+          observeParents: true,
           navigation: {
             nextEl: next,
             prevEl: prev,
@@ -18,12 +21,12 @@
           arrows: true,
           dots: false,
           slidesPerView: 1,
-          breakpointsBase: 'container',
+          breakpointsBase: 'window',
           breakpoints: {
-            320: {
+            480: {
               slidesPerView: 2,
             },
-            700: {
+            768: {
               slidesPerView: 3,
             },
             1200: {
