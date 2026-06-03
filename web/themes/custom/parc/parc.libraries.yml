@@ -679,3 +679,8 @@ sria-animation:
   dependencies:
     - core/drupal
     - core/once
+
+highlights:
+  css:
+    component:
+      css/components/parc/highlights.css: {}
