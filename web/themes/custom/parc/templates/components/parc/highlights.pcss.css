@@ -11,7 +11,7 @@
   &__title {
     color: var(--title-color);
     font-family: PARC, sans-serif;
-    font-size: 80px;
+    font-size: clamp(40px, 5.7vw, 80px);
     line-height: 1;
     margin-top: 40px;
 
@@ -33,6 +33,7 @@
 
       &:after {
         content: '↗';
+        margin-right: 8px;
         font-size: 17px;
       }
     }
