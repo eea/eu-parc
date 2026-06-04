@@ -14,7 +14,7 @@
       <div class="highlights-item__title highlight-item__title--text">
         {{ content.field_title }}
       </div>
-    {% else %}
+    {% elseif not paragraph.field_image.isEmpty %}
       <div class="highlights-item__title highlight-item__title--image">
         {{ content.field_image }}
       </div>

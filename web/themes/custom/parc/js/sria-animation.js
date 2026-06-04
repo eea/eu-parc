@@ -7,8 +7,7 @@
                 const baseText = `STRATEGIC
 RESEARCH &
 INNOVATION
-AGENDA
-SYNERGIES`.trim();
+AGENDA`.trim();
 
                 // Scramble
                 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -22,12 +21,9 @@ SYNERGIES`.trim();
                     "#D3C0E9"
                 ];
 
-                const DURATION = 40000;
                 const FPS = 30;
                 const STEP = 800 / FPS;
                 const STEPS = 50;
-                const LAST_ROW_DURATION = 7000;
-                const LAST_ROW_STOP = LAST_ROW_DURATION / DURATION;
 
                 const trailLayer = el.querySelector("#trail-layer");
                 const scrambleLayer = el.querySelector("#scramble-layer");
@@ -36,12 +32,6 @@ SYNERGIES`.trim();
                 if (!trailLayer || !scrambleLayer || !finalLayer) {
                     console.warn('SRIA Animation: Missing layers', { trailLayer, scrambleLayer, finalLayer });
                     return;
-                }
-
-                const lastLineStart = baseText.lastIndexOf("\n") + 1;
-
-                function isLastRowIndex(i) {
-                    return i >= lastLineStart && baseText[i] !== "\n" && baseText[i] !== " ";
                 }
 
                 const locked = new Array(baseText.length).fill(false);
@@ -76,11 +66,6 @@ SYNERGIES`.trim();
                             continue;
                         }
 
-                        if (isLastRowIndex(i)) {
-                            html += `<span class="last-row">${t}</span>`;
-                            continue;
-                        }
-
                         html += `<span class="final-letter" data-idx="${i}">${t}</span>`;
                     }
 
@@ -106,17 +91,6 @@ SYNERGIES`.trim();
                         }
                         if (t === " ") {
                             html += " ";
-                            continue;
-                        }
-
-                        if (isLastRowIndex(i)) {
-                            if (progress > LAST_ROW_STOP) {
-                                html += " ";
-                            } else {
-                                const ch = randomChar();
-                                const color = randomColor();
-                                html += `<span style="color:${color}">${ch}</span>`;
-                            }
                             continue;
                         }
 
@@ -146,7 +120,7 @@ SYNERGIES`.trim();
                 function updateFinalVisibility() {
                     for (let i = 0; i < baseText.length; i++) {
                         const t = baseText[i];
-                        if (t === "\n" || t === " " || isLastRowIndex(i)) continue;
+                        if (t === "\n" || t === " ") continue;
 
                         const span = finalSpans[i];
                         if (!span) continue;
@@ -178,7 +152,7 @@ SYNERGIES`.trim();
                         } else {
                             for (let i = 0; i < baseText.length; i++) {
                                 const t = baseText[i];
-                                if (t === "\n" || t === " " || isLastRowIndex(i)) continue;
+                                if (t === "\n" || t === " ") continue;
                                 locked[i] = true;
                             }
                             updateFinalVisibility();
