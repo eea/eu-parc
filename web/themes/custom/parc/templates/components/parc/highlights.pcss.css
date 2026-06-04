@@ -92,6 +92,10 @@
       &, * {
         color: var(--text-color) !important;
       }
+
+      a {
+        color: var(--text-color) !important;
+      }
     }
   }
 
