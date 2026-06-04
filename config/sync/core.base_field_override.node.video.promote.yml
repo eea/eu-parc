@@ -1,3 +1,4 @@
+uuid: 95414e53-c472-44a5-8bfa-300a40de1aec
 langcode: en
 status: true
 dependencies:
@@ -15,5 +16,7 @@ default_value:
   -
     value: 0
 default_value_callback: ''
-settings: {  }
+settings:
+  on_label: 'On'
+  off_label: 'Off'
 field_type: boolean

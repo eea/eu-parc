@@ -37,8 +37,8 @@
         };
 
         if (isHighlights) {
-          options.breakpoints[1800] = {slidesPerView: 3};
-          options.breakpoints[1200].slidesPerView = 2;
+          options.breakpoints[1800] = {slidesPerView: 2.5};
+          options.breakpoints[1200].slidesPerView = 2.5;
           options.breakpoints[768].slidesPerView = 2;
           options.breakpoints[480].slidesPerView = 1;
         }

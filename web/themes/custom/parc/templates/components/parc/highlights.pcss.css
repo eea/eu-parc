@@ -7,6 +7,20 @@
   text-align: center;
   gap: 40px;
   height: 100%;
+  position: relative;
+
+  &__background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    * {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
   &__title {
     color: var(--title-color);
@@ -14,6 +28,7 @@
     font-size: clamp(40px, 5.7vw, 80px);
     line-height: 1;
     margin-top: 40px;
+    z-index: 1;
 
     img {
       max-width: 100%;
@@ -25,6 +40,7 @@
   &__text {
     padding: 0 40px;
     margin-top: auto;
+    z-index: 1;
 
     a {
       .external-link-mark {
@@ -32,7 +48,7 @@
       }
 
       &:after {
-        content: '↗';
+        content: ' ↗';
         margin-right: 8px;
         font-size: 17px;
       }
@@ -41,6 +57,10 @@
     &, * {
       color: var(--text-color) !important;
     }
+  }
+
+  .field-media {
+    aspect-ratio: unset;
   }
 }
 
