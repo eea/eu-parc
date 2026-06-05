@@ -68,10 +68,14 @@ main {
 }
 
 .block--video-block {
+  height: 100%;
+
   img,
   video {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 }
 
@@ -145,6 +149,31 @@ main {
 .more-link {
   text-align: center;
   margin-top: 50px;
+}
+
+.view-more-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 10px;
+
+  .more-link {
+    margin-top: 0;
+    text-align: inherit;
+
+    a {
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: underline;
+      color: #111;
+    }
+  }
+
+  svg {
+    flex-shrink: 0;
+    display: block;
+  }
 }
 
 .container-content {
