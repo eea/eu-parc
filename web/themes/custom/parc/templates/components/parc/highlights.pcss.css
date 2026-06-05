@@ -15,11 +15,6 @@
     top: 0;
     width: 100%;
     height: auto;
-
-    * {
-      width: 100%;
-      height: auto;
-    }
   }
 
   &__title {
