@@ -77,7 +77,7 @@
       }
 
       &:after {
-        content: ' ↗';
+        content: '\00a0↗';
         margin-right: 8px;
         font-size: 17px;
       }
