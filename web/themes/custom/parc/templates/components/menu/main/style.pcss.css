@@ -86,23 +86,6 @@
         transform: translate(-100%);
         left: 100%;
 
-
-        &.nav-item-2 {
-          width: 140% !important;
-          transform: translate(0) !important;
-          left: -32% !important;
-          padding-left: 0;
-
-          .mm-level-1 {
-            column-gap: 20px;
-            justify-content: normal;
-          }
-
-          @media (min-width: 1390px) {
-            left: -35% !important;
-          }
-        }
-
         &.nav-item-4 {
           width: 120% !important;
           transform: translate(0) !important;

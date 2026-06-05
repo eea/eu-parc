@@ -87,9 +87,6 @@
   .field--name-field-what-parc-does,
   .field--name-field-what-eu-does {
     p, ul, ol {
-      margin: 0 10% !important;
-      font-size: 16px;
-      font-weight: 700;
       line-height: 140%;
 
       @media (--downMd) {
