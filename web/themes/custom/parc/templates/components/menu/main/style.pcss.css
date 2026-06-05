@@ -86,39 +86,12 @@
         transform: translate(-100%);
         left: 100%;
 
-        &.nav-item-4 {
-          width: 120% !important;
-          transform: translate(0) !important;
-          left: -25% !important;
-          padding-left: 0;
-
-          .mm-level-1 {
-            column-gap: 20px;
-            justify-content: normal;
-          }
-
-          .nav-link-level-1 {
-            flex: 0 0 auto;
-          }
-
-          .nav-link {
-            max-width: none;
-
-            @media (--xl) {
-              max-width: none;
-            }
-          }
-
-          @media (min-width: 1390px) {
-            left: -20% !important;
-          }
-        }
-
         &.mm-collapse-cols-2,
         &.mm-collapse-cols-3 {
-          transform: none;
-          left: 0;
-          width: 100vw;
+          width: auto;
+          padding: 0 60px;
+          left: 50%;
+          transform: translateX(-50%);
 
           .mm-level-1 {
             column-gap: 20px;

@@ -330,15 +330,7 @@ header {
         inset-block: 0;
         left: 100%;
         padding-bottom: 0;
-        min-width: 270px;
-        display: block;
-      }
-
-      .nav-item-4 .mm-collapse-1 {
-        inset-block: 0;
-        left: 100%;
-        padding-bottom: 0;
-        min-width: 150px !important;
+        min-width: 200px;
         display: block;
       }
     }
@@ -348,7 +340,7 @@ header {
         top: 0;
         left: 100%;
         padding-bottom: 0;
-        min-width: 270px;
+        min-width: 200px;
         padding-left: 20px;
         margin-left: 2px;
         display: block;
