@@ -88,9 +88,10 @@
 
         &.mm-collapse-cols-2,
         &.mm-collapse-cols-3 {
-          transform: none;
-          left: 0;
-          width: 100vw;
+          width: auto;
+          padding: 0 60px;
+          left: 50%;
+          transform: translateX(-50%);
 
           .mm-level-1 {
             column-gap: 20px;
