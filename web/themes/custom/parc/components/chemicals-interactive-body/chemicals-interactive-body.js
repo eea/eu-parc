@@ -647,7 +647,7 @@
 
                             const pillsHtml = pillColors.map(p => {
                                 const formattedName = p.name.toLowerCase().replace(' ', '_');
-                                return `<span class="popup-pill" data-chemical-link="${formattedName}" style="background:${p.color}; cursor:pointer;">${p.name}</span>`;
+                                return `<span class="popup-pill" data-chemical-link="${formattedName}" style="background:${p.color}; cursor:pointer;">${chemicalDisplayNames[p.name] || p.name}</span>`;
                             }).join('');
 
                             popup.classList.remove('visible');
