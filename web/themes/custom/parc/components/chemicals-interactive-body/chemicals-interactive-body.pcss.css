@@ -258,9 +258,13 @@
       margin-right: 22px;
     }
 
+    #dropup-trigger span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     #dropup-trigger.overflowing span,
     #menu-items-trigger.overflowing span {
-      animation: marquee 3s ease-in-out infinite alternate;
     }
 
     #filter-reset-mobile,
