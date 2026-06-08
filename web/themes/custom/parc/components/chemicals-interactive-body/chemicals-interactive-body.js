@@ -41,7 +41,7 @@
 
                 const chemicalColors = {
                     "Arsenic": "#C064E4",
-                    "Pesticides": "#1E2094",
+                    "Pesticides": "#4446ce",
                     "Phthalates": "#6769FF",
                     "PFASs": "#E45C4D",
                     "Bisphenols": "#D7B040",

@@ -1263,6 +1263,7 @@ function parc_preprocess_paragraph__chemicals_exposure_sources(array &$variables
   }
 
   $variables['groups'] = $groups;
+  $variables['chemical_name'] = $parent->label();
 }
 
 /**
