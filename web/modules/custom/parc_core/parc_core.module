@@ -143,6 +143,7 @@ function parc_core_preprocess_menu(&$variables) {
     $variables['#cache']['tags'][] = 'node_list';
     $items = &$variables['items'];
     _parc_core_preprocess_menu_alter_category_links($items);
+    _parc_core_preprocess_menu_publication_year_links($items);
   }
 
   $items = $variables['items'];
@@ -168,6 +169,37 @@ function parc_core_preprocess_menu(&$variables) {
         ] + $options['attributes'];
         $item['url']->setOption('attributes', $attributes);
       }
+    }
+  }
+}
+
+/**
+ * Adds the year filter query to publications year menu links.
+ *
+ * @see parc_core_preprocess_menu().
+ */
+function _parc_core_preprocess_menu_publication_year_links(array &$items) {
+  foreach ($items as &$item) {
+    if (!empty($item['below'])) {
+      _parc_core_preprocess_menu_publication_year_links($item['below']);
+    }
+
+    /** @var \Drupal\Core\Url|null $url */
+    $url = $item['url'] ?? NULL;
+    if (!$url instanceof Url || !$url->isRouted()
+      || $url->getRouteName() !== 'view.publications.page_publications') {
+      continue;
+    }
+
+    $title = isset($item['title']) ? trim((string) $item['title']) : '';
+    if (!preg_match('/^\d{4}$/', $title)) {
+      continue;
+    }
+
+    $query = $url->getOption('query') ?: [];
+    if (empty($query['year'])) {
+      $query['year'] = $title;
+      $url->setOption('query', $query);
     }
   }
 }
@@ -511,11 +543,17 @@ function parc_core_preprocess_views_view__search(&$variables) {
  */
 function parc_core_views_pre_view(ViewExecutable $view) {
   if ($view->id() == 'publications') {
-    $query = \Drupal::request()->query->all();
+    $request = \Drupal::request();
+    $query = $request->query->all();
     if (isset($query['year']) && !is_array($query['year'])) {
-      $years = array_filter(array_map('trim', explode(',', (string) $query['year'])), 'strlen');
-      $query['year'] = array_combine($years, $years);
-      $view->setExposedInput($query);
+      if (\Drupal::routeMatch()->getRouteName() === 'views.ajax') {
+        $request->query->remove('year');
+      }
+      else {
+        $years = array_filter(array_map('trim', explode(',', (string) $query['year'])), 'strlen');
+        $query['year'] = array_combine($years, $years);
+        $view->setExposedInput($query);
+      }
     }
   }
 
