@@ -29,16 +29,16 @@
                     "PFASs",
                     "Bisphenols",
                     "Mercury",
-                    // "DINCH & Plasticisers", 
-                    // "Metals", 
-                    // "Microplastics", 
+                    // "DINCH & Plasticisers",
+                    // "Metals",
+                    // "Microplastics",
                     // "Nanoplastics"
                 ]
 
                 const chemicalColors = {
                     "Arsenic": "#C064E4",
-                    "Pesticides": "#5658E7",
-                    "Phthalates": "#9B9B9B",
+                    "Pesticides": "#1E2094",
+                    "Phthalates": "#6769FF",
                     "PFASs": "#E45C4D",
                     "Bisphenols": "#D7B040",
                     "Mercury": "#E21337",
@@ -263,7 +263,7 @@
                                 list.classList.remove("open");
                             }
                         });
-                    } else {
+                    } else if (filterMenu) {
                         const generateListElements = () => {
                             return chemicals.map(chem => {
                                 return `
@@ -422,10 +422,13 @@
 
                 // Dots
                 function getSVGPoint(layerSvg, evt) {
-                    const pt = layerSvg.createSVGPoint();
-                    pt.x = evt.clientX;
-                    pt.y = evt.clientY;
-                    return pt.matrixTransform(layerSvg.getScreenCTM().inverse());
+                    const rect = layerSvg.getBoundingClientRect();
+                    if (!rect.width || !rect.height) return { x: 0, y: 0 };
+                    const vb = layerSvg.viewBox.baseVal;
+                    return {
+                        x: (evt.clientX - rect.left) * (vb.width / rect.width),
+                        y: (evt.clientY - rect.top) * (vb.height / rect.height),
+                    };
                 }
 
                 function resetDotColors() {
@@ -1059,6 +1062,7 @@
 
                 // Event handlers
                 function handleMouseMove(evt) {
+                    if (!dotsSvgEl) return;
                     const p = getSVGPoint(dotsSvgEl, evt);
                     mouse.x = p.x;
                     mouse.y = p.y;
@@ -1069,9 +1073,17 @@
                 }
 
                 function handlePillClick(chemicalId) {
-                    /* your interaction code here */
+                    const targetAccordion = document.querySelector(`.chemical-accordion[data-chemical="${chemicalId.toLowerCase()}"]`);
+                    if (!targetAccordion) return;
 
-                    console.log(`clicked ${chemicalId}`)
+                    const toggle = targetAccordion.querySelector('.js-chemical-accordion-toggle');
+                    if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+                        toggle.click();
+                    }
+                    setTimeout(() => {
+                        const topOffset = targetAccordion.getBoundingClientRect().top + window.pageYOffset - 120;
+                        window.scrollTo({ top: topOffset, behavior: 'smooth' });
+                    }, 150);
                 }
 
 

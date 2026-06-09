@@ -628,6 +628,16 @@ n--press-clipping:
     component:
       css/components/content/press-clipping/press-clipping.css: { }
 
+n--video:
+  css:
+    component:
+      css/components/content/video/video.css: {}
+  js:
+    js/video-popup.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 aos:
   css:
     component:
@@ -663,3 +673,8 @@ sria-animation:
   dependencies:
     - core/drupal
     - core/once
+
+highlights:
+  css:
+    component:
+      css/components/parc/highlights.css: {}

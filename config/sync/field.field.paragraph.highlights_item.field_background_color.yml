@@ -1,0 +1,22 @@
+uuid: 31975b6b-ebe1-4029-be78-2909602c28c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_background_color
+    - paragraphs.paragraphs_type.highlights_item
+  module:
+    - color_field
+id: paragraph.highlights_item.field_background_color
+field_name: field_background_color
+entity_type: paragraph
+bundle: highlights_item
+label: 'Background color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

@@ -1,0 +1,38 @@
+.videos-page-banner {
+  background-color: var(--lichtblauw-l, #aed3ff);
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+
+  &__inner {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .col-content {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 0;
+    flex: 0 0 auto;
+  }
+
+  svg {
+    display: block;
+    max-width: 320px;
+    max-height: 320px;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (--lg) {
+    .col-content {
+      width: 75%;
+    }
+
+    svg {
+      margin-left: 8.3333%;
+    }
+  }
+}

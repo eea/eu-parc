@@ -1,0 +1,39 @@
+{{ attach_library('parc/n--video') }}
+
+{%
+  set classes = [
+    'node',
+    'node--type-video',
+    'node--video-teaser',
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }} data-nid="{{ node.id() }}">
+  <div class="video-teaser__popup-data" hidden>
+    <div class="video-teaser__popup-video">{{ content.field_video }}</div>
+    <div class="video-teaser__popup-type">{{ node.field_video_type.value }}</div>
+    <div class="video-teaser__popup-title">{{ node.label() }}</div>
+    <div class="video-teaser__popup-body">{{ content.body }}</div>
+  </div>
+
+  <div class="video-teaser__media">
+    {% if content.field_media_image|render is not empty %}
+      <div class="video-teaser__image">{{ content.field_media_image }}</div>
+    {% else %}
+      <div class="video-teaser__image video-teaser__image--placeholder"></div>
+    {% endif %}
+    <button class="video-teaser__play-btn" type="button" aria-label="{{ 'Play video'|t }}">
+      <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="22" cy="22" r="22" fill="rgba(255,255,255,0.92)"/>
+        <polygon points="17,13 34,22 17,31" fill="#1a1a2e"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="video-teaser__info">
+    {% if node.field_video_type.value %}
+      <div class="video-teaser__type">{{ node.field_video_type.value }}</div>
+    {% endif %}
+    <p class="video-teaser__title">{{ node.label() }}</p>
+  </div>
+</article>

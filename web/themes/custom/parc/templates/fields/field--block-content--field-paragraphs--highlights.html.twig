@@ -1,0 +1,9 @@
+{{ attach_library('parc/n--video') }}
+{{ attach_library('parc/highlights') }}
+
+{% embed 'parc:carousel' with {
+  arrows: true,
+  type: 'highlights',
+  slides: items|map(row => row.content),
+} %}
+{% endembed %}
