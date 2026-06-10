@@ -1,0 +1,29 @@
+uuid: 4c080e15-5d27-4a03-9abc-6eed2390e234
+langcode: en
+status: true
+dependencies:
+  module:
+    - book
+    - node
+  theme:
+    - parc
+id: parc_book_navigation
+theme: parc
+region: sidebar_first
+weight: 0
+provider: null
+plugin: book_navigation
+settings:
+  id: book_navigation
+  label: 'Documentation contents'
+  label_display: visible
+  provider: book
+  block_mode: 'all pages'
+visibility:
+  'entity_bundle:node':
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    bundles:
+      documentation: documentation

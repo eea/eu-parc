@@ -173,3 +173,36 @@ body:has(.tabs-header) header.sticky-top {
     }
   }
 }
+
+.chemical-exposure-sources__heading__how {
+  display: none;
+  position: absolute;
+  bottom: -65px;
+  z-index: 1;
+  background: var(--primary-color);
+  padding: 10px 0;
+  margin: 0 !important;
+  left: 0;
+  width: calc(100vw - 96px) !important;
+
+  @media (min-width: 1920px) {
+    width: 1840px !important;
+  }
+}
+
+@media (--md) {
+  .chemical-exposure-sources__items {
+    position: relative;
+    margin-bottom: 80px;
+
+    .chemical-exposure-sources__heading__how {
+      display: block;
+    }
+  }
+}
+
+.chemical-exposure-sources__group:not(:nth-child(1)) {
+  .chemical-exposure-sources__heading__how {
+    display: none !important;
+  }
+}

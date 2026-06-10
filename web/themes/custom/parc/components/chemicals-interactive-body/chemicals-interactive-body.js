@@ -35,9 +35,13 @@
                     // "Nanoplastics"
                 ]
 
+                const chemicalDisplayNames = {
+                    "Phthalates": "Phthalates & Substitutes",
+                }
+
                 const chemicalColors = {
                     "Arsenic": "#C064E4",
-                    "Pesticides": "#1E2094",
+                    "Pesticides": "#4446ce",
                     "Phthalates": "#6769FF",
                     "PFASs": "#E45C4D",
                     "Bisphenols": "#D7B040",
@@ -140,8 +144,12 @@
                         if (actualInput) actualInput.checked = true;
 
                         if (activeDiseaseId != null) {
-                            toggleBodyLayer(null);
-                            activeDiseaseId = null;
+                            if (mobile) {
+                                resetDiseaseMobile();
+                            } else {
+                                toggleBodyLayer(null);
+                                activeDiseaseId = null;
+                            }
                         }
                         activeChemicalId = chem;
                         toggleResetBtn(true);
@@ -214,7 +222,8 @@
 
                         list.innerHTML = chemicals.map(chem => {
                             const color = chemicalColors[chem] || '#000000';
-                            return `<li data-chem="${chem}" data-label="${chem}" style="color: ${color}">${chem}</li>`;
+                            const label = chemicalDisplayNames[chem] || chem;
+                            return `<li data-chem="${chem}" data-label="${label}" style="color: ${color}">${label}</li>`;
                         }).join('');
 
                         let marqueeActive = false;
@@ -246,7 +255,7 @@
                                     resetFilterMobile();
                                 });
                                 trigger.style.backgroundColor = color;
-                                trigger.style.color = '#000000';
+                                trigger.style.color = chem === 'Pesticides' ? '#ffffff' : '#000000';
                                 list.classList.remove("open");
                                 handleFilterChange({ target: { dataset: { chem } } });
 
@@ -269,7 +278,7 @@
                                 return `
                 <div class="js-form-item form-item js-form-type-checkbox">
                   <input type="checkbox" name="chem-filter" data-chem="${chem}" id="filter-${chem}" class="form-checkbox form-check-input">
-                  <label for="filter-${chem}" class="option">${chem}</label>
+                  <label for="filter-${chem}" class="option">${chemicalDisplayNames[chem] || chem}</label>
                 </div>`;
                             }).join('');
                         };
@@ -638,7 +647,7 @@
 
                             const pillsHtml = pillColors.map(p => {
                                 const formattedName = p.name.toLowerCase().replace(' ', '_');
-                                return `<span class="popup-pill" data-chemical-link="${formattedName}" style="background:${p.color}; cursor:pointer;">${p.name}</span>`;
+                                return `<span class="popup-pill" data-chemical-link="${formattedName}" style="background:${p.color}; cursor:pointer;">${chemicalDisplayNames[p.name] || p.name}</span>`;
                             }).join('');
 
                             popup.classList.remove('visible');

@@ -16,7 +16,7 @@
   aspect-ratio: 16 / 9;
   margin-bottom: 40px;
 
-  @media (--downMd) {
+  @media (--downLg) {
     aspect-ratio: 16 / 28;
 
     >* {
@@ -192,7 +192,7 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 991px) {
   #filter-menu {
     display: none !important;
   }
@@ -258,9 +258,13 @@
       margin-right: 22px;
     }
 
+    #dropup-trigger span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     #dropup-trigger.overflowing span,
     #menu-items-trigger.overflowing span {
-      animation: marquee 3s ease-in-out infinite alternate;
     }
 
     #filter-reset-mobile,
@@ -393,8 +397,11 @@
       pointer-events: none;
       opacity: 0;
       transition: opacity 0.3s ease;
-      transform: translateX(-50%);
       z-index: 20;
+
+      top: 50% !important;
+      left: 50% !important;
+      transform: translateX(-50%) translateY(-50%) !important;
     }
 
     #centroid-label-popup.visible {
@@ -428,6 +435,11 @@
       transform: translateY(8px);
       transition: opacity 0.3s ease, transform 0.3s ease;
       pointer-events: auto;
+
+
+      &[data-chemical-link="pesticides"] {
+        color: #FFF;
+      }
     }
 
     #centroid-label-popup.visible .popup-label,

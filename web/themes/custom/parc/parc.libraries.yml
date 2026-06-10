@@ -254,6 +254,11 @@ n--article-related:
     component:
       css/components/content/article/related/style.css: {}
 
+n--documentation-full:
+  css:
+    component:
+      css/components/content/documentation/full/style.css: {}
+
 n--basic-page-full:
   css:
     component:
