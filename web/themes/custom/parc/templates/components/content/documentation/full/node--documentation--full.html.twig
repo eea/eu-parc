@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Parc override to display a technical documentation page.
+ */
+#}
+
+{{ attach_library('parc/n--documentation-full') }}
+
+{%
+  set classes = [
+    'node',
+    'node--' ~ node.bundle|clean_class,
+    view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
+    not node.isPublished() ? 'node--unpublished',
+  ]
+%}
+
+<article{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {% if label %}
+    <h1 class="documentation__title">{{ label }}</h1>
+  {% endif %}
+  {{ title_suffix }}
+
+  <div class="documentation__body">
+    {{ content }}
+  </div>
+</article>

@@ -5,7 +5,9 @@
  * Contains hooks and custom functions for Parc Core module.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
@@ -852,4 +854,20 @@ function parc_core_views_data_alter(array &$data) {
   // Use entity reference for the field 'field_chemicals'.
   $field_name = 'field_chemicals';
   $data['taxonomy_term__' . $field_name][$field_name . '_target_id']['filter']['id'] = 'entity_reference';
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function parc_core_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  if ($node->bundle() !== 'documentation') {
+    return AccessResult::neutral();
+  }
+
+  if (in_array($op, ['view', 'update', 'delete'], TRUE)) {
+    return AccessResult::forbiddenIf(!$account->hasPermission('access technical documentation'))
+      ->cachePerPermissions();
+  }
+
+  return AccessResult::neutral();
 }
