@@ -57,6 +57,7 @@ dependencies:
     - layout_builder
     - media
     - node
+    - parc_core
     - path
     - publishcontent
     - quick_node_clone
@@ -81,6 +82,7 @@ permissions:
   - 'access help pages'
   - 'access media overview'
   - 'access taxonomy overview'
+  - 'access technical documentation'
   - 'access toolbar'
   - 'access tour'
   - 'addrow tablefield'
