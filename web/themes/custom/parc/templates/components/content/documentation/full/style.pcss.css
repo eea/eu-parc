@@ -15,7 +15,7 @@
 
   .documentation__body {
     color: var(--body-color);
-    font-size: 1.0625rem;
+    font-size: 20px;
     line-height: 1.65;
 
     h2, h3, h4 {
@@ -44,6 +44,7 @@
 
     p {
       margin-bottom: 18px;
+      font-size: 20px !important;
     }
 
     ul, ol {
@@ -126,6 +127,52 @@
 
       th {
         background: var(--c-gray-100);
+        font-weight: var(--fw-bold);
+      }
+    }
+  }
+
+  .documentation__tree {
+    margin-block: 24px 32px;
+    padding: 20px 24px;
+    background: var(--c-gray-100);
+    border: var(--border-width) solid var(--c-gray-300);
+    border-radius: var(--border-radius-lg);
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      ul {
+        margin-inline-start: 8px;
+        padding-inline-start: 12px;
+        border-inline-start: var(--border-width) solid var(--c-gray-300);
+      }
+    }
+
+    li {
+      margin: 2px 0;
+    }
+
+    a {
+      display: block;
+      padding: 7px 12px;
+      border-radius: var(--border-radius-sm);
+      text-decoration: none;
+      font-size: 20px;
+      line-height: 1.35;
+      color: var(--c-gray-800);
+      transition: var(--transition-base);
+
+      &:hover {
+        background: var(--c-white);
+        color: var(--c-primary);
+      }
+
+      &.is-active {
+        background: var(--c-primary);
+        color: var(--c-white);
         font-weight: var(--fw-bold);
       }
     }
