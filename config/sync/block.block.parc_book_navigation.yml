@@ -3,8 +3,10 @@ langcode: en
 status: true
 dependencies:
   module:
+    - block_class
     - book
     - node
+    - system
   theme:
     - parc
 id: parc_book_navigation
@@ -27,3 +29,7 @@ visibility:
       node: '@node.node_route_context:node'
     bundles:
       documentation: documentation
+  request_path:
+    id: request_path
+    negate: true
+    pages: /technical-documentation
