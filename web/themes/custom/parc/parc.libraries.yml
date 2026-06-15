@@ -470,12 +470,6 @@ v--publications:
   css:
     component:
       css/components/views/publications/style.css: {}
-  js:
-    templates/components/views/publications/script.js: { }
-  dependencies:
-    - core/drupal
-    - core/jquery
-    - core/once
 
 v--search:
   css:

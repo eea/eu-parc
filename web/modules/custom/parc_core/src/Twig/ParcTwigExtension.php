@@ -12,6 +12,23 @@ use Twig\TwigFunction;
 class ParcTwigExtension extends AbstractExtension {
 
   /**
+   * Color per year, keyed by year.
+   *
+   * Keep in sync with YEAR_COLORS in
+   * web/modules/custom/parc_core/js/indicators.js.
+   */
+  const YEAR_COLORS = [
+    2022 => '#017365',
+    2023 => '#E4798B',
+    2024 => '#1879EB',
+    2025 => '#2DC9B6',
+    2026 => '#C0A456',
+    2027 => '#7D2D9C',
+    2028 => '#DB5749',
+    2029 => '#cd0505',
+  ];
+
+  /**
    * The Entity Type Manager service.
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
@@ -45,6 +62,7 @@ class ParcTwigExtension extends AbstractExtension {
   public function getFunctions() {
     return [
       new TwigFunction('termColor', [$this, 'termColor']),
+      new TwigFunction('yearColor', [$this, 'yearColor']),
       new TwigFunction('termOverlay', [$this, 'termOverlay']),
       new TwigFunction('termOverlayTotal', [$this, 'termOverlayTotal']),
       new TwigFunction('cardFooterOverlay', [$this, 'cardFooterOverlay']),
@@ -71,6 +89,19 @@ class ParcTwigExtension extends AbstractExtension {
     }
 
     return $color[0]['color'] ?? '#6E009A';
+  }
+
+  /**
+   * Returns the hex color for a given publication year.
+   *
+   * @param string $year
+   *   A 4-digit year.
+   *
+   * @return string
+   *   Hexcode.
+   */
+  public function yearColor(string $year) {
+    return self::YEAR_COLORS[(int) $year] ?? '#6E009A';
   }
 
   /**
