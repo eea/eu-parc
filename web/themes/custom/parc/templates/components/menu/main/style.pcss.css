@@ -51,6 +51,8 @@
     @media (--xl) {
       .mm-level-1 {
         margin-top: 24px;
+        margin-bottom: 24px;
+        gap: 8px;
       }
 
       .nav-link-level-0 {
