@@ -1330,3 +1330,26 @@ function parc_preprocess_taxonomy_term__chemicals_exposure_sources__card(array &
     ];
   }
 }
+
+/**
+ * Implements hook_preprocess_node__documentation__full().
+ */
+function parc_preprocess_node__documentation__full(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  if (empty($node->book['bid'])) {
+    return;
+  }
+
+  $variables['#cache']['contexts'][] = 'route.book_navigation';
+
+  if ($node->book['nid'] == $node->book['bid']) {
+    /** @var \Drupal\book\BookManagerInterface $book_manager */
+    $book_manager = \Drupal::service('book.manager');
+    $tree = $book_manager->bookTreeAllData($node->book['bid'], $node->book);
+    $variables['book_tree'] = $book_manager->bookTreeOutput($tree);
+
+    unset($variables['content']['book_navigation']);
+  }
+}

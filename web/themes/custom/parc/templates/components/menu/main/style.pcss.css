@@ -213,4 +213,28 @@
       }
     }
   }
+
+  .link--arrow {
+    margin-top: 20px !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &:after {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-top: 1.5px solid #000000;
+      border-right: 1.5px solid #000000;
+      transform: rotate(45deg);
+      transition: transform 0.2s ease;
+      margin-left: 4px;
+    }
+
+    &:hover:after {
+      transform: translateX(2px) rotate(45deg);
+    }
+  }
+
 }

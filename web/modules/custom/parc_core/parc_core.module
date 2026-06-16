@@ -5,7 +5,9 @@
  * Contains hooks and custom functions for Parc Core module.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
@@ -143,6 +145,7 @@ function parc_core_preprocess_menu(&$variables) {
     $variables['#cache']['tags'][] = 'node_list';
     $items = &$variables['items'];
     _parc_core_preprocess_menu_alter_category_links($items);
+    _parc_core_preprocess_menu_publication_year_links($items);
   }
 
   $items = $variables['items'];
@@ -168,6 +171,37 @@ function parc_core_preprocess_menu(&$variables) {
         ] + $options['attributes'];
         $item['url']->setOption('attributes', $attributes);
       }
+    }
+  }
+}
+
+/**
+ * Adds the year filter query to publications year menu links.
+ *
+ * @see parc_core_preprocess_menu().
+ */
+function _parc_core_preprocess_menu_publication_year_links(array &$items) {
+  foreach ($items as &$item) {
+    if (!empty($item['below'])) {
+      _parc_core_preprocess_menu_publication_year_links($item['below']);
+    }
+
+    /** @var \Drupal\Core\Url|null $url */
+    $url = $item['url'] ?? NULL;
+    if (!$url instanceof Url || !$url->isRouted()
+      || $url->getRouteName() !== 'view.publications.page_publications') {
+      continue;
+    }
+
+    $title = isset($item['title']) ? trim((string) $item['title']) : '';
+    if (!preg_match('/^\d{4}$/', $title)) {
+      continue;
+    }
+
+    $query = $url->getOption('query') ?: [];
+    if (empty($query['year'])) {
+      $query['year'] = $title;
+      $url->setOption('query', $query);
     }
   }
 }
@@ -510,6 +544,21 @@ function parc_core_preprocess_views_view__search(&$variables) {
  * Implements hook_views_pre_view().
  */
 function parc_core_views_pre_view(ViewExecutable $view) {
+  if ($view->id() == 'publications') {
+    $request = \Drupal::request();
+    $query = $request->query->all();
+    if (isset($query['year']) && !is_array($query['year'])) {
+      if (\Drupal::routeMatch()->getRouteName() === 'views.ajax') {
+        $request->query->remove('year');
+      }
+      else {
+        $years = array_filter(array_map('trim', explode(',', (string) $query['year'])), 'strlen');
+        $query['year'] = array_combine($years, $years);
+        $view->setExposedInput($query);
+      }
+    }
+  }
+
   if ($view->id() == 'search') {
     /** @var \Drupal\parc_core\ParcSearchManager $search_manager */
     $search_manager = \Drupal::service('parc_core.search_manager');
@@ -852,4 +901,32 @@ function parc_core_views_data_alter(array &$data) {
   // Use entity reference for the field 'field_chemicals'.
   $field_name = 'field_chemicals';
   $data['taxonomy_term__' . $field_name][$field_name . '_target_id']['filter']['id'] = 'entity_reference';
+
+  if (isset($data['node__field_publication_date'])) {
+    $data['node__field_publication_date']['field_publication_date_year'] = [
+      'title' => t('Publication date (year)'),
+      'group' => t('Content'),
+      'filter' => [
+        'id' => 'parc_publication_year',
+        'real field' => 'field_publication_date_value',
+        'allow empty' => TRUE,
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function parc_core_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  if ($node->bundle() !== 'documentation') {
+    return AccessResult::neutral();
+  }
+
+  if (in_array($op, ['view', 'update', 'delete'], TRUE)) {
+    return AccessResult::forbiddenIf(!$account->hasPermission('access technical documentation'))
+      ->cachePerPermissions();
+  }
+
+  return AccessResult::neutral();
 }

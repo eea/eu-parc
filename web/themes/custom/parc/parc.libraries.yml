@@ -254,6 +254,11 @@ n--article-related:
     component:
       css/components/content/article/related/style.css: {}
 
+n--documentation-full:
+  css:
+    component:
+      css/components/content/documentation/full/style.css: {}
+
 n--basic-page-full:
   css:
     component:
@@ -465,12 +470,6 @@ v--publications:
   css:
     component:
       css/components/views/publications/style.css: {}
-  js:
-    templates/components/views/publications/script.js: { }
-  dependencies:
-    - core/drupal
-    - core/jquery
-    - core/once
 
 v--search:
   css:

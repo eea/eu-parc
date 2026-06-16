@@ -48,7 +48,7 @@
         "cweagans/composer-patches": "~1.0",
         "drupal/address": "^1.11",
         "drupal/addtoany": "^2.0",
-        "drupal/admin_toolbar": "^3.3",
+        "drupal/admin_toolbar": "^3.6",
         "drupal/allowed_formats": "^3.0",
         "drupal/better_exposed_filters": "^6.0",
         "drupal/block_class": "^3.0",
