@@ -262,6 +262,7 @@ function parc_preprocess_facets_item_list(&$variables) {
       continue;
     }
 
+    $variables['items'][$idx]['value']['#attributes']['rel'] = 'nofollow';
     $query = $url->getOption('query');
 
     if (empty($query) || empty($query['focus'])) {
