@@ -59,9 +59,9 @@
         "drupal/color_field": "^3.0",
         "drupal/colorbox": "^2.1",
         "drupal/conditional_fields": "^4.0@alpha",
-        "drupal/core-composer-scaffold": "10.6.9",
-        "drupal/core-project-message": "10.6.9",
-        "drupal/core-recommended": "10.6.9",
+        "drupal/core-composer-scaffold": "10.6.12",
+        "drupal/core-project-message": "10.6.12",
+        "drupal/core-recommended": "10.6.12",
         "drupal/ctools": "^4.0",
         "drupal/devel": "^5.2",
         "drupal/draggableviews": "^2.1",
@@ -79,7 +79,7 @@
         "drupal/focal_point": "^2.1",
         "drupal/geocoder": "^3.20 || ^4.0",
         "drupal/geofield": "^1.52",
-        "drupal/geolocation": "^3.12",
+        "drupal/geolocation": "^3.15",
         "drupal/google_analytics": "^4.0",
         "drupal/honeypot": "^2.2",
         "drupal/ics_link_field": "1.x-dev@dev",
@@ -92,7 +92,7 @@
         "drupal/menu_link_attributes": "^1.3",
         "drupal/menu_trail_by_path": "^2.0",
         "drupal/metatag": "^2.1",
-        "drupal/paragraphs": "^1.15",
+        "drupal/paragraphs": "^1.21",
         "drupal/pathauto": "^1.11",
         "drupal/protected_pages": "^1.9",
         "drupal/publishcontent": "^1.6",
@@ -258,7 +258,7 @@
         }
     },
     "require-dev": {
-        "drupal/stage_file_proxy": "^2.0"
+        "drupal/stage_file_proxy": "^3.1"
     },
     "scripts": {
         "post-install-cmd": [
