@@ -1,0 +1,23 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  workflow_dispatch:
+
+name: 'Dump TEST SQL database'
+jobs:
+  deploy:
+    name: 'Dump SQL database'
+    runs-on: ${{ vars.TEST_RUNNER || 'drupal-runner-v2' }}
+    steps:
+      - name: 'Dump SQL database'
+        uses: eaudeweb/drupal-sql-dump-action@2.x
+        with:
+          ssh_user:               ${{ secrets.TEST_SSH_USER }}
+          ssh_host:               ${{ secrets.TEST_SSH_HOST }}
+          ssh_key:                ${{ secrets.TEST_SSH_KEY }}
+          project_dir:            ${{ vars.TEST_PROJECT_DIR }}
+          sql_dump_file:          ${{ vars.TEST_DATABASE_DUMP_DIR }}/database.sql
+          nextcloud_path:         ${{ vars.TEST_NEXTCLOUD_PATH }}
+          nextcloud_user:         ${{ secrets.NEXTCLOUD_USER }}
+          nextcloud_app_password: ${{ secrets.NEXTCLOUD_APP_PASSWORD }}
+         

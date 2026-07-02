@@ -1,3 +1,5 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
 # GITLEAKS_LICENSE - Get a free license from https://gitleaks.io/
 name: Gitleaks scan
 
@@ -20,10 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}

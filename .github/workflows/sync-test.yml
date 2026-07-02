@@ -1,0 +1,70 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  workflow_dispatch:
+    inputs:
+      sync_prod_db:
+        description: 'Sync database from PROD to TEST'
+        type: boolean
+        required: true
+        default: true
+      dump_prod_db:
+        description: 'Dump PROD SQL database before sync'
+        type: boolean
+        required: true
+        default: true
+      sync_prod_files:
+        description: 'Sync public files from PROD to TEST'
+        type: boolean
+        required: true
+        default: true
+
+name: 'Sync PRODUCTION to TEST'
+jobs:
+  dump_prod:
+    name: 'Dump PROD SQL database'
+    if: ${{ inputs.dump_prod_db && inputs.sync_prod_db }}
+    runs-on: ${{ vars.PROD_RUNNER || 'drupal-runner-v2' }}
+    steps:
+      - name: 'Dump SQL database'
+        uses: eaudeweb/drupal-sql-dump-action@2.x
+        with:
+          ssh_user:               ${{ secrets.PROD_SSH_USER }}
+          ssh_host:               ${{ secrets.PROD_SSH_HOST }}
+          ssh_key:                ${{ secrets.PROD_SSH_KEY }}
+          project_dir:            ${{ vars.PROD_PROJECT_DIR }}
+          sql_dump_file:          ${{ vars.PROD_DATABASE_DUMP_DIR }}/database.sql
+          nextcloud_path:         ${{ vars.PROD_NEXTCLOUD_PATH }}
+          nextcloud_user:         ${{ secrets.NEXTCLOUD_USER }}
+          nextcloud_app_password: ${{ secrets.NEXTCLOUD_APP_PASSWORD }}
+  db:
+    name: 'Executing synchronization'
+    needs: dump_prod
+    if: ${{ always() && inputs.sync_prod_db }}
+    runs-on: ${{ vars.TEST_RUNNER || 'drupal-runner-v2' }}
+    steps:
+      - name: 'Running'
+        uses: eaudeweb/drupal-sync-action@2.x
+        with:
+          target_ssh_user:             ${{ secrets.TEST_SSH_USER }}
+          target_ssh_host:             ${{ secrets.TEST_SSH_HOST }}
+          target_ssh_key:              ${{ secrets.TEST_SSH_KEY }}
+          target_project_dir:          ${{ vars.TEST_PROJECT_DIR }}
+          nextcloud_path:              ${{ vars.PROD_NEXTCLOUD_PATH }}
+          nextcloud_user:              ${{ secrets.NEXTCLOUD_USER }}
+          nextcloud_app_password:      ${{ secrets.NEXTCLOUD_APP_PASSWORD }}
+  sync_files:
+    name: 'Sync public files'
+    if: ${{ always() && inputs.sync_prod_files }}
+    runs-on: ${{ vars.TEST_RUNNER || 'drupal-runner-v2' }}
+    steps:
+      - uses: eaudeweb/drupal-files-sync-action@1.x
+        with:
+          source_files_dir: ${{ vars.PROD_PUBLIC_FILES_DIR }}
+          target_files_dir: ${{ vars.TEST_PUBLIC_FILES_DIR }}
+          prod_ssh_key:     ${{ secrets.PROD_SSH_KEY }}
+          prod_ssh_host:    ${{ secrets.PROD_SSH_HOST }}
+          prod_ssh_user:    ${{ secrets.PROD_SSH_USER }}
+          test_ssh_key:     ${{ secrets.TEST_SSH_KEY }}
+          test_ssh_host:    ${{ secrets.TEST_SSH_HOST }}
+          test_ssh_user:    ${{ secrets.TEST_SSH_USER }}
