@@ -1,0 +1,18 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  workflow_dispatch:
+
+name: 'Check PROD config management'
+jobs:
+  deploy:
+    name: 'Show Drupal config status'
+    runs-on: ${{ vars.PROD_RUNNER || 'drupal-runner-v2' }}
+    steps:
+      - name: 'Check Drupal configuration'
+        uses: eaudeweb/drupal-config-status-action@1.x
+        with:
+          ssh_user:           ${{ secrets.PROD_SSH_USER }}
+          ssh_host:           ${{ secrets.PROD_SSH_HOST }}
+          ssh_key:            ${{ secrets.PROD_SSH_KEY }}
+          project_dir:        ${{ vars.PROD_PROJECT_DIR }}

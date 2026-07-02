@@ -1,0 +1,50 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+name: Sync workflows from template
+
+on:
+  # cronjob trigger
+  schedule:
+  - cron: "0 5 * * 1"  # Every Monday 5:00 AM UTC
+  # manual trigger
+  workflow_dispatch:
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/using-jobs/assigning-permissions-to-jobs
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Delete existing template-sync branches
+        run: |
+          gh api repos/${{ github.repository }}/git/matching-refs/heads/template-sync \
+            --jq '.[].ref' | sed 's|refs/heads/||' | \
+            xargs -I{} gh api repos/${{ github.repository }}/git/refs/heads/{} -X DELETE || true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.TEMPLATE_SYNC_TOKEN }}
+
+      - name: actions-template-sync
+        uses: AndreasAugustin/actions-template-sync@8ec19a5f2721ffb81ff809aa340ddf75e6a85ea6 # v2.5.2
+        with:
+          source_gh_token: ${{ secrets.TEMPLATE_SYNC_TOKEN }}
+          source_repo_path: eaudeweb/drupal-workflows-template
+          upstream_branch: main
+          pr_labels: |
+            template-sync
+            automated
+          pr_title: "[DevOps] Sync workflows from template"
+          pr_body: |
+            Automated sync from template repository.
+            Please review changes before merging.
+          pr_branch_name_prefix: "template-sync"
+          pr_commit_msg: "Sync workflows from template repository"
+          template_sync_ignore_file_path: ".github/workflows/.template-sync-ignore"
+          is_pr_cleanup: true

@@ -1,0 +1,95 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        required: false
+        default: 'drupal-runner-v2'
+      project_dir:
+        type: string
+        required: true
+      enable_maintenance_mode:
+        type: string
+        required: false
+        default: 'true'
+      cleanup_dir:
+        type: string
+        required: true
+      retain:
+        type: string
+        required: false
+        default: ''
+      notify_success:
+        type: boolean
+        required: false
+        default: false
+      deployment_url:
+        type: string
+        required: true
+      multisite:
+        type: boolean
+        required: false
+        default: false
+      enable_extra_modules:
+        type: string
+        required: false
+        default: ''
+    secrets:
+      ssh_user:
+        required: true
+      ssh_host:
+        required: true
+      ssh_host_app2:
+        required: false
+      ssh_key:
+        required: true
+      statuscake_api_key:
+        required: false
+      statuscake_test_id:
+        required: false
+      discord_webhook:
+        required: true
+
+jobs:
+  update_instance:
+    name: 'Update Drupal instance'
+    runs-on: ${{ inputs.runner || 'drupal-runner-v2' }}
+    steps:
+      - name: 'Update the Drupal instance'
+        id: release
+        uses: eaudeweb/drupal-update-action@1.x
+        with:
+          path:                    ${{ inputs.project_dir }}
+          enable_maintenance_mode: ${{ inputs.enable_maintenance_mode }}
+          enable_extra_modules:    ${{ inputs.enable_extra_modules }}
+          statuscake_api_key:      ${{ secrets.statuscake_api_key }}
+          statuscake_test_id:      ${{ secrets.statuscake_test_id }}
+
+      - name: 'Cleanup old releases'
+        uses: eaudeweb/drupal-cleanup-action@1.x
+        with:
+          ssh_user:    ${{ secrets.ssh_user }}
+          ssh_host:    ${{ secrets.ssh_host }}
+          ssh_key:     ${{ secrets.ssh_key }}
+          cleanup_dir: ${{ inputs.cleanup_dir }}
+          retain:      ${{ inputs.retain }}
+
+      - name: 'Cleanup old releases on app2'
+        if: inputs.multisite
+        uses: eaudeweb/drupal-cleanup-action@1.x
+        with:
+          ssh_user:    ${{ secrets.ssh_user }}
+          ssh_host:    ${{ secrets.ssh_host_app2 }}
+          ssh_key:     ${{ secrets.ssh_key }}
+          cleanup_dir: ${{ inputs.cleanup_dir }}
+          retain:      ${{ inputs.retain }}
+
+      - name: 'Discord notification'
+        if: inputs.notify_success
+        run: >
+          curl -X POST -F "content=:white_check_mark: ${{ github.repository }} release **${{ github.ref_name }}** was
+          successfully deployed on <${{ inputs.deployment_url }}>.
+          [view action run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          ${{ secrets.discord_webhook }}
