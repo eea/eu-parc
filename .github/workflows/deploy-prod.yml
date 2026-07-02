@@ -1,3 +1,5 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
 on:
   workflow_dispatch:
     inputs:
@@ -17,93 +19,66 @@ on:
         required: true
         default: true
 
-name: 'Deploy PRODUCTION instance'
+name: 'Deploy PROD instance'
 jobs:
   create_release_archive:
-    name: 'Create release archive'
-    runs-on:
-      labels: 'drupal-runner-v2'
-    outputs:
-      release_filename: ${{ steps.artifact.outputs.filename }}
-    steps:
-      - name: Fail if a branch was selected
-        if: github.event_name == 'workflow_dispatch' && !startsWith(github.ref, 'refs/tags/')
-        run: |
-          echo "This workflow should not be triggered with workflow_dispatch on a branch. Please choose a tag."
-          exit 1
-
-      - name: 'Checkout source code'
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: 'Setup nodejs'
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: 'web/themes/custom/parc/.nvmrc'
-
-      - name: 'Install dependencies'
-        uses: eaudeweb/drupal-install-action@1.x
-        with:
-          dev: false
-          php: /usr/bin/php8.2
-
-      - name: 'Create release archive'
-        id: artifact
-        uses: eaudeweb/drupal-artifact-action@1.x
+    uses: ./.github/workflows/lib.create-release-archive.yml
+    with:
+      runner:                ${{ vars.PROD_RUNNER }}
+      php_version:           ${{ vars.PROD_PHP_VERSION }}
+      checkout_ref:          ${{ github.event.release.tag_name }}
+      enable_nodejs:         ${{ vars.ENABLE_NODEJS }}
+      node_version_file:     ${{ vars.NODE_VERSION_FILE }}
+      compile_theme_script:  ${{ vars.COMPILE_THEME_SCRIPT }}
+      install_dev:           ${{ vars.PROD_INSTALL_DEV }}
+      use_ref_as_release_id: true
 
   deploy_release:
-    name: 'Deploy release on the server'
-    runs-on:
-      labels: 'drupal-runner-v2'
+    uses: ./.github/workflows/lib.deploy-release.yml
     needs: create_release_archive
-    steps:
-      - name: 'Deploy release on the server'
-        uses: eaudeweb/drupal-deploy-action@v2.1.2
-        with:
-          ssh_user:             ${{ secrets.PROD_SSH_USER }}
-          ssh_host:             ${{ secrets.PROD_SSH_HOST }}
-          ssh_key:              ${{ secrets.PROD_SSH_KEY }}
-          release_id:           'release-${{ github.ref_name }}'
-          release_filename:     ${{ needs.create_release_archive.outputs.release_filename }}
-          project_dir:          /var/www/html/eu-parc.eu
-          artifacts_dir:        /var/www/artifacts/eu-parc.eu
-          settings_file:        /var/www/config/eu-parc.eu/settings.local.php
-          public_files_dir:     /var/www/config/eu-parc.eu/files
-          robo_file:            /var/www/config/eu-parc.eu/robo.yml
-          database_dump_dir:    /var/www/config/eu-parc.eu/sync
-          artifacts_lifespan: 30
-          check_config:       ${{ inputs.check_config }}
-          sql_backup:         ${{ inputs.sql_backup }}
+    with:
+      runner:              ${{ vars.PROD_RUNNER }}
+      release_id:          ${{ needs.create_release_archive.outputs.release_id }}
+      release_filename:    ${{ needs.create_release_archive.outputs.release_filename }}
+      project_dir:         ${{ vars.PROD_PROJECT_DIR }}
+      artifacts_dir:       ${{ vars.PROD_ARTIFACTS_DIR }}
+      settings_file:       ${{ vars.PROD_SETTINGS_FILE }}
+      public_files_dir:    ${{ vars.PROD_PUBLIC_FILES_DIR }}
+      robo_file:           ${{ vars.PROD_ROBO_FILE }}
+      local_services_file: ${{ vars.PROD_LOCAL_SERVICES_FILE }}
+      check_config:        ${{ inputs.check_config }}
+      sql_backup:          ${{ inputs.sql_backup }}
+    secrets:
+      ssh_user: ${{ secrets.PROD_SSH_USER }}
+      ssh_host: ${{ secrets.PROD_SSH_HOST }}
+      ssh_key:  ${{ secrets.PROD_SSH_KEY }}
 
   update_instance:
-    name: 'Update Drupal instance'
-    runs-on:
-      labels: 'drupal-runner-v2'
+    uses: ./.github/workflows/lib.update-instance.yml
     needs: deploy_release
-    steps:
-      - name: 'Update the Drupal instance'
-        id: release
-        uses: eaudeweb/drupal-update-action@v1.2
-        with:
-          path: /var/www/html/eu-parc.eu
-          enable_maintenance_mode: ${{ inputs.enable_maintenance_mode }}
-
-      - name: 'Discord notification'
-        run: >
-          curl -X POST -F "content=:white_check_mark: **${{ github.repository }}** release **${{ github.ref_name }}**
-          has been deployed on PROD: <https://eu-parc.eu>." ${{ secrets.DISCORD_WEBHOOK }}
+    with:
+      runner:                  ${{ vars.PROD_RUNNER }}
+      project_dir:             ${{ vars.PROD_PROJECT_DIR }}
+      enable_maintenance_mode: ${{ inputs.enable_maintenance_mode }}
+      cleanup_dir:             ${{ vars.PROD_ARTIFACTS_DIR }}
+      retain:                  ${{ vars.RETAIN_RELEASES }}
+      deployment_url:          ${{ vars.PROD_URL }}
+      notify_success:          true
+      enable_extra_modules:    ${{ vars.PROD_ENABLE_EXTRA_MODULES }}
+    secrets:
+      ssh_user:           ${{ secrets.PROD_SSH_USER }}
+      ssh_host:           ${{ secrets.PROD_SSH_HOST }}
+      ssh_key:            ${{ secrets.PROD_SSH_KEY }}
+      statuscake_api_key: ${{ secrets.STATUSCAKE_API_KEY }}
+      statuscake_test_id: ${{ secrets.PROD_STATUSCAKE_ID }}
+      discord_webhook:    ${{ secrets.DISCORD_WEBHOOK }}
 
   notify_failure:
-    name: 'Notify on failure'
-    runs-on:
-      labels: 'drupal-runner-v2'
+    uses: ./.github/workflows/lib.notify-failure.yml
     needs: [create_release_archive, deploy_release, update_instance]
     if: failure()
-    steps:
-      - name: 'Discord notification on failed deploy'
-        run: >
-          curl -X POST -F
-          "content=:octagonal_sign: **${{ github.repository }}** failed to deploy release **${{ github.ref_name }}** on PROD: <https://eu-parc.eu>.
-          <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}>"
-          ${{ secrets.DISCORD_WEBHOOK }}
+    with:
+      runner:         ${{ vars.PROD_RUNNER }}
+      deployment_url: ${{ vars.PROD_URL }}
+    secrets:
+      discord_webhook: ${{ secrets.DISCORD_WEBHOOK }}

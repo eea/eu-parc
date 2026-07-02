@@ -1,0 +1,93 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        required: false
+        default: 'drupal-runner-v2'
+      php_version:
+        type: string
+        required: true
+      checkout_ref:
+        type: string
+        required: false
+        default: ''
+      use_ref_as_release_id:
+        type: boolean
+        required: false
+        default: false
+      enable_nodejs:
+        type: string
+        required: false
+        default: ''
+      node_version_file:
+        type: string
+        required: false
+        default: ''
+      compile_theme_script:
+        type: string
+        required: false
+        default: ''
+      install_dev:
+        type: string
+        required: false
+        default: 'false'
+    outputs:
+      release_filename:
+        value: ${{ jobs.create_release_archive.outputs.release_filename }}
+      release_id:
+        value: ${{ jobs.create_release_archive.outputs.release_id }}
+
+jobs:
+  create_release_archive:
+    name: 'Create release archive'
+    runs-on: ${{ inputs.runner || 'drupal-runner-v2' }}
+    outputs:
+      release_filename: ${{ steps.artifact.outputs.filename }}
+      release_id: ${{ steps.release_id.outputs.value }}
+    steps:
+      - name: 'Fail if a branch was selected'
+        if: |
+          github.event_name == 'workflow_dispatch' &&
+          !startsWith(github.ref, 'refs/tags/') &&
+          github.ref != 'refs/heads/test'
+        run: |
+          echo "This workflow should not be triggered with workflow_dispatch on a branch. Please choose a tag."
+          exit 1
+
+      - name: 'Checkout source code'
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+          ref: ${{ inputs.checkout_ref }}
+
+      - name: 'Setup nodejs'
+        if: inputs.enable_nodejs == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ${{ inputs.node_version_file }}
+
+      - name: 'Install dependencies'
+        uses: eaudeweb/drupal-install-action@1.x
+        with:
+          dev: ${{ inputs.install_dev || 'false' }}
+          php: /usr/bin/php${{ inputs.php_version }}
+
+      - name: 'Compile theme'
+        if: inputs.compile_theme_script != ''
+        run: ./${{ inputs.compile_theme_script }}
+
+      - name: 'Create release archive'
+        id: artifact
+        uses: eaudeweb/drupal-artifact-action@1.x
+
+      - name: 'Set release id'
+        id: release_id
+        run: |
+          if [[ "${{ inputs.use_ref_as_release_id }}" == "true" ]]; then
+            echo "value=release-${{ github.ref_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "value=${{ steps.artifact.outputs.base }}" >> $GITHUB_OUTPUT
+          fi

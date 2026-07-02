@@ -1,0 +1,63 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  push:
+    branches:
+      - 'test'
+
+name: 'Deploy TEST instance'
+jobs:
+  create_release_archive:
+    uses: ./.github/workflows/lib.create-release-archive.yml
+    with:
+      runner:                ${{ vars.TEST_RUNNER }}
+      php_version:           ${{ vars.TEST_PHP_VERSION }}
+      enable_nodejs:         ${{ vars.ENABLE_NODEJS }}
+      node_version_file:     ${{ vars.NODE_VERSION_FILE }}
+      compile_theme_script:  ${{ vars.COMPILE_THEME_SCRIPT }}
+      install_dev:           ${{ vars.TEST_INSTALL_DEV }}
+
+  deploy_release:
+    uses: ./.github/workflows/lib.deploy-release.yml
+    needs: create_release_archive
+    with:
+      runner:              ${{ vars.TEST_RUNNER }}
+      release_id:          ${{ needs.create_release_archive.outputs.release_id }}
+      release_filename:    ${{ needs.create_release_archive.outputs.release_filename }}
+      project_dir:         ${{ vars.TEST_PROJECT_DIR }}
+      artifacts_dir:       ${{ vars.TEST_ARTIFACTS_DIR }}
+      settings_file:       ${{ vars.TEST_SETTINGS_FILE }}
+      public_files_dir:    ${{ vars.TEST_PUBLIC_FILES_DIR }}
+      robo_file:           ${{ vars.TEST_ROBO_FILE }}
+      local_services_file: ${{ vars.TEST_LOCAL_SERVICES_FILE }}
+    secrets:
+      ssh_user: ${{ secrets.TEST_SSH_USER }}
+      ssh_host: ${{ secrets.TEST_SSH_HOST }}
+      ssh_key:  ${{ secrets.TEST_SSH_KEY }}
+
+  update_instance:
+    uses: ./.github/workflows/lib.update-instance.yml
+    needs: deploy_release
+    with:
+      runner:               ${{ vars.TEST_RUNNER }}
+      project_dir:          ${{ vars.TEST_PROJECT_DIR }}
+      cleanup_dir:          ${{ vars.TEST_ARTIFACTS_DIR }}
+      retain:               ${{ vars.RETAIN_RELEASES }}
+      deployment_url:       ${{ vars.TEST_URL }}
+      notify_success:       false
+      enable_extra_modules: ${{ vars.TEST_ENABLE_EXTRA_MODULES }}
+    secrets:
+      ssh_user:        ${{ secrets.TEST_SSH_USER }}
+      ssh_host:        ${{ secrets.TEST_SSH_HOST }}
+      ssh_key:         ${{ secrets.TEST_SSH_KEY }}
+      discord_webhook: ${{ secrets.DISCORD_WEBHOOK }}
+
+  notify_failure:
+    uses: ./.github/workflows/lib.notify-failure.yml
+    needs: [create_release_archive, deploy_release, update_instance]
+    if: failure()
+    with:
+      runner:         ${{ vars.TEST_RUNNER }}
+      deployment_url: ${{ vars.TEST_URL }}
+    secrets:
+      discord_webhook: ${{ secrets.DISCORD_WEBHOOK }}
