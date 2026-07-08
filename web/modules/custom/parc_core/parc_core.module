@@ -15,6 +15,7 @@ use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\parc_core\ParcCoreViews;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\Plugin\views\query\Sql;
 use Drupal\taxonomy_menu\Plugin\Menu\TaxonomyMenuMenuLink;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -456,6 +457,15 @@ function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $quer
   if ($view->id() == 'news_events') {
     $query->addField('', 'nid', '', ['function' => 'groupby']);
     $query->addGroupBy('nid');
+  }
+
+  // Always show policy briefs without a date first,
+  if ($view->id() == 'policy_briefs' && $query instanceof Sql) {
+    $alias = $query->addField(NULL, 'ISNULL(node__field_d_date.field_d_date_value)', 'field_d_date_isnull');
+    array_unshift($query->orderby, [
+      'field' => $alias,
+      'direction' => 'DESC',
+    ]);
   }
 }
 
