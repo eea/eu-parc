@@ -1,8 +1,10 @@
 _core:
   default_config_hash: i-_2TVi6FUEAqBgNRJkt6aaYmiw1k_LTrXzJS6wlZ4U
 allowed_types:
-  - documentation
-block:
-  navigation:
-    mode: 'all pages'
-child_type: documentation
+  -
+    content_type: documentation
+    child_type: documentation
+book_sort: weight
+truncate_label: true
+use_parent_selector: false
+use_alternative_form: false
