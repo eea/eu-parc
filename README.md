@@ -131,7 +131,7 @@ To prevent this you can add this code to specify the PHP version you want to use
 "config": {
     "sort-packages": true,
     "platform": {
-        "php": "7.3.19"
+        "php": "8.3.19"
     }
 },
 ```
