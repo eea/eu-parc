@@ -6,6 +6,7 @@ dependencies:
     - filter.format.basic_html
     - filter.format.webform_default
   module:
+    - book
     - comment
     - contact
     - eu_cookie_compliance
@@ -22,6 +23,7 @@ label: 'Authenticated user'
 weight: -9
 is_admin: false
 permissions:
+  - 'access book list'
   - 'access comments'
   - 'access content'
   - 'access protected page password screen'

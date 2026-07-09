@@ -1,4 +1,4 @@
-const sass = require('node-sass');
+const sass = require('sass');
 
 module.exports = function (grunt) {
   // Full list of files that must be included by RequireJS
@@ -11,14 +11,6 @@ module.exports = function (grunt) {
 
   fullIncludes = [
     'jquery',
-
-    'select2/compat/containerCss',
-    'select2/compat/dropdownCss',
-
-    'select2/compat/initSelection',
-    'select2/compat/inputData',
-    'select2/compat/matcher',
-    'select2/compat/query',
 
     'select2/dropdown/attachContainer',
     'select2/dropdown/stopPropagation',
@@ -139,24 +131,24 @@ module.exports = function (grunt) {
       dist: {
         options: {
           implementation: sass,
-          outputStyle: 'compressed'
+          style: 'compressed'
         },
         files: {
           'dist/css/select2.min.css': [
             'src/scss/core.scss',
-            'src/scss/theme/default/layout.css'
+            'src/scss/theme/default/layout.scss'
           ]
         }
       },
       dev: {
         options: {
           implementation: sass,
-          outputStyle: 'nested'
+          style: 'expanded'
         },
         files: {
           'dist/css/select2.css': [
             'src/scss/core.scss',
-            'src/scss/theme/default/layout.css'
+            'src/scss/theme/default/layout.scss'
           ]
         }
       }
@@ -216,28 +208,6 @@ module.exports = function (grunt) {
       }
     },
 
-    watch: {
-      js: {
-        files: [
-          'src/js/select2/**/*.js',
-          'tests/**/*.js'
-        ],
-        tasks: [
-          'compile',
-          'test',
-          'minify'
-        ]
-      },
-      css: {
-        files: [
-          'src/scss/**/*.scss'
-        ],
-        tasks: [
-          'compile',
-          'minify'
-        ]
-      }
-    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -246,8 +216,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-
   grunt.loadNpmTasks('grunt-sass');
 
   grunt.registerTask('default', ['compile', 'test', 'lint', 'minify']);

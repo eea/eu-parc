@@ -19,6 +19,7 @@ dependencies:
     - taxonomy.vocabulary.seo_keywords
     - taxonomy.vocabulary.tags
   module:
+    - book
     - comment
     - eu_cookie_compliance
     - filter
@@ -34,6 +35,7 @@ label: 'Scientific publications editor'
 weight: -7
 is_admin: null
 permissions:
+  - 'access book list'
   - 'access content'
   - 'access content overview'
   - 'access media overview'
