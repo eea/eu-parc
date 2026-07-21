@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_contacts
     - field.field.node.project.field_project_keywords
+    - field.field.node.project.field_project_partners
     - field.field.node.project.field_project_potential_impacts
     - field.field.node.project.field_project_topics
     - field.field.node.project.field_related_projects
@@ -58,13 +59,6 @@ content:
     third_party_settings: {  }
     weight: 11
     region: content
-  field_partners:
-    type: parc_partners
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 5
-    region: content
   field_project_abbreviation:
     type: string
     label: above
@@ -89,6 +83,13 @@ content:
       link: true
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_project_partners:
+    type: parc_partners
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
     region: content
   field_project_potential_impacts:
     type: string
@@ -152,5 +153,6 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_partners: true
   field_show_link: true
   search_api_excerpt: true

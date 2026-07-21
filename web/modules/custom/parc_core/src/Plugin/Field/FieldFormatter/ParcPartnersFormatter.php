@@ -58,7 +58,7 @@ class ParcPartnersFormatter extends EntityReferenceFormatterBase {
    * {@inheritdoc}
    */
   public static function isApplicable(FieldDefinitionInterface $field_definition) {
-    return $field_definition->getName() == 'field_partners';
+    return in_array($field_definition->getName(), ['field_partners', 'field_project_partners']);
   }
 
 }

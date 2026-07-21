@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_contacts
     - field.field.node.project.field_project_keywords
+    - field.field.node.project.field_project_partners
     - field.field.node.project.field_project_potential_impacts
     - field.field.node.project.field_project_topics
     - field.field.node.project.field_related_projects
@@ -69,7 +70,7 @@ third_party_settings:
       children:
         - field_date_range
         - field_project_potential_impacts
-        - field_partners
+        - field_project_partners
         - field_project_contacts
         - field_audio_file
       label: Sidebar
@@ -135,16 +136,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_partners:
-    type: entity_reference_autocomplete
-    weight: 18
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_project_abbreviation:
     type: string_textfield
     weight: 12
@@ -181,6 +172,16 @@ content:
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
+    third_party_settings: {  }
+  field_project_partners:
+    type: entity_reference_autocomplete
+    weight: 18
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_project_potential_impacts:
     type: string_textfield
@@ -315,4 +316,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_partners: true

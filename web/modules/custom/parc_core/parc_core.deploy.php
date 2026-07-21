@@ -2426,3 +2426,78 @@ function parc_core_deploy_water_contacts() {
     $result->save();
   }
 }
+
+/**
+ * Migrate field_project to field_project_partners.
+ */
+function parc_core_deploy_project_partners() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_core');
+
+  $abbreviation_overrides = [
+    'scientific and technical center for building' => 'CSTB',
+    'national research council - water research institute' => 'CNR-IRSA',
+    'national institute for occupational safety and health' => 'INSST',
+  ];
+  $source_abbreviation_aliases = ['irsn' => 'asnr'];
+
+  $edges = [];
+  foreach (json_decode(file_get_contents($module_path . '/data/key_messages_map_edges.json'), TRUE) as $edge) {
+    if ($edge['type'] === 'project_partner' && preg_match('/^project-(\d+)$/', $edge['source'], $m)) {
+      $edges[$m[1]][] = preg_replace('/^partner-/', '', $edge['target']);
+    }
+  }
+
+  $institutions_by_abbr = [];
+  $institution_nids = $node_storage->getQuery()->condition('type', 'institution')->accessCheck(FALSE)->execute();
+  foreach ($node_storage->loadMultiple($institution_nids) as $institution) {
+    $abbr = $institution->get('field_abbreviation')->value;
+    if (empty($abbr) && $override = $abbreviation_overrides[mb_strtolower(trim($institution->label()))] ?? NULL) {
+      $institution->set('field_abbreviation', $abbr = $override)->save();
+    }
+    if (!empty($abbr)) {
+      $institutions_by_abbr[mb_strtolower($abbr)][] = $institution->id();
+    }
+  }
+  foreach ($source_abbreviation_aliases as $old => $new) {
+    if (!empty($institutions_by_abbr[$new])) {
+      $institutions_by_abbr[$old] = $institutions_by_abbr[$new];
+    }
+  }
+
+  $unmatched_projects = [];
+  $unmatched_abbreviations = [];
+
+  foreach ($edges as $project_nid => $abbreviations) {
+    $project = $node_storage->load($project_nid);
+    if (empty($project) || $project->bundle() !== 'project') {
+      $unmatched_projects[] = $project_nid;
+      continue;
+    }
+
+    $target_ids = [];
+    foreach (array_unique($abbreviations) as $abbreviation) {
+      $nids = $institutions_by_abbr[mb_strtolower($abbreviation)] ?? [];
+      if (!$nids) {
+        $unmatched_abbreviations[$abbreviation][] = $project_nid;
+        continue;
+      }
+      $target_ids += array_combine($nids, $nids);
+    }
+
+    if ($target_ids) {
+      $project->set('field_project_partners', array_values($target_ids))->save();
+    }
+  }
+
+  if ($unmatched_projects) {
+    \Drupal::logger('parc_core')->warning('Project partners import: no project node found for ids: @ids', [
+      '@ids' => implode(', ', $unmatched_projects),
+    ]);
+  }
+  if ($unmatched_abbreviations) {
+    \Drupal::logger('parc_core')->warning('Project partners import: no institution found for abbreviations: @abbrs', [
+      '@abbrs' => implode(', ', array_keys($unmatched_abbreviations)),
+    ]);
+  }
+}
