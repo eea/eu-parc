@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_contacts
     - field.field.node.project.field_project_keywords
+    - field.field.node.project.field_project_partners
     - field.field.node.project.field_project_potential_impacts
     - field.field.node.project.field_project_topics
     - field.field.node.project.field_related_projects
@@ -49,13 +50,6 @@ content:
     third_party_settings: {  }
     weight: 8
     region: content
-  field_partners:
-    type: parc_partners
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
   field_project_abbreviation:
     type: string
     label: above
@@ -82,6 +76,13 @@ content:
     third_party_settings: {  }
     weight: 5
     region: content
+  field_project_partners:
+    type: parc_partners
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_project_potential_impacts:
     type: string
     label: above
@@ -107,6 +108,7 @@ content:
 hidden:
   addtoany: true
   field_audio_file: true
+  field_partners: true
   field_related_projects: true
   field_related_publications: true
   field_show_link: true
