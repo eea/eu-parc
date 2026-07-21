@@ -173,6 +173,14 @@ $config['parc_zenodo_api.adminsettings']['token'] = 'YOUR_ZENODO_API_TOKEN';
 
 $config['google_analytics.settings']['account'] = 'YOUR_GAKEY';
 
+# SMTP configuration
+$config['smtp.settings']['smtp_host'] = 'localhost';
+$config['smtp.settings']['smtp_port'] = 25;
+$config['smtp.settings']['smtp_protocol'] = 'standard';
+$config['smtp.settings']['smtp_from'] = 'no-reply@example.com';
+$config['smtp.settings']['smtp_username'] = 'no-reply@example.com';
+$config['smtp.settings']['smtp_password'] = '';
+
 /**
  * Environment indicator settings.
  */

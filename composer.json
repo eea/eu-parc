@@ -107,6 +107,7 @@
         "drupal/simple_sitemap": "^4.2",
         "drupal/smart_date": "^4.2",
         "drupal/smart_trim": "^2.1",
+        "drupal/smtp": "^1.4",
         "drupal/spamspan": "^3.2",
         "drupal/svg_image": "^3.0",
         "drupal/tablefield": "^3.0",
@@ -141,12 +142,13 @@
         },
         "allow-plugins": {
             "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "cweagans/composer-patches": true,
+            "mglaman/composer-drupal-lenient": true,
             "php-http/discovery": true,
-            "mglaman/composer-drupal-lenient": true
+            "symfony/runtime": true
         },
         "sort-packages": true,
         "platform-check": false
@@ -228,7 +230,8 @@
                 "#3368736 - 'no config schema' Error after update to Drupal 10.1.0": "https://www.drupal.org/files/issues/2023-08-07/error-after-drupal-10.1.0-3368736-19.patch"
             },
             "drupal/core": {
-                "#2769407 - Views UI should offer a 'Treat NULL values as FALSE' on boolean field filtering to expose the already existing code path for handling this": "https://www.drupal.org/files/issues/2024-06-26/2769407_views_ui_null_option-10.3.x-90.patch"
+                "#2769407 - Views UI should offer a 'Treat NULL values as FALSE' on boolean field filtering to expose the already existing code path for handling this": "https://www.drupal.org/files/issues/2024-06-26/2769407_views_ui_null_option-10.3.x-90.patch",
+                "#2842858 - Basic Auth module conflicts with server-level \"Site Lock\" implementations": "patches/core/basic_auth_route_check.patch"
             },
             "drupal/conditional_fields": {
                 "#3344587 - Support for field hidden by condition loosing its required status": "https://www.drupal.org/files/issues/2024-03-27/3344587-required-fields-that-59-with-fix.patch"
