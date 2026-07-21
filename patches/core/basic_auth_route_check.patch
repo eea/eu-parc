@@ -1,0 +1,90 @@
+diff --git a/core/modules/basic_auth/basic_auth.services.yml b/core/modules/basic_auth/basic_auth.services.yml
+index ef001aae..2edc30a5 100644
+--- a/core/modules/basic_auth/basic_auth.services.yml
++++ b/core/modules/basic_auth/basic_auth.services.yml
+@@ -1,7 +1,7 @@
+ services:
+   basic_auth.authentication.basic_auth:
+     class: Drupal\basic_auth\Authentication\Provider\BasicAuth
+-    arguments: ['@config.factory', '@user.auth', '@flood', '@entity_type.manager']
++    arguments: ['@config.factory', '@user.auth', '@flood', '@entity_type.manager', '@router.no_access_checks']
+     tags:
+       - { name: authentication_provider, provider_id: 'basic_auth', priority: 100 }
+   basic_auth.page_cache_request_policy.disallow_basic_auth_requests:
+diff --git a/core/modules/basic_auth/src/Authentication/Provider/BasicAuth.php b/core/modules/basic_auth/src/Authentication/Provider/BasicAuth.php
+index d67801cd..8024677a 100644
+--- a/core/modules/basic_auth/src/Authentication/Provider/BasicAuth.php
++++ b/core/modules/basic_auth/src/Authentication/Provider/BasicAuth.php
+@@ -10,10 +10,12 @@ use Drupal\Core\Config\ConfigFactoryInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\Core\Flood\FloodInterface;
+ use Drupal\Core\Http\Exception\CacheableUnauthorizedHttpException;
++use Drupal\Core\Routing\Router;
+ use Drupal\user\UserAuthenticationInterface;
+ use Drupal\user\UserAuthInterface;
+ use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
++use Symfony\Component\Routing\Route;
+
+ /**
+  * HTTP Basic authentication provider.
+@@ -48,6 +50,13 @@ class BasicAuth implements AuthenticationProviderInterface, AuthenticationProvid
+    */
+   protected $entityTypeManager;
+
++  /**
++   * The router service.
++   *
++   * @var \Drupal\Core\Routing\Router
++   */
++  protected $router;
++
+   /**
+    * Constructs a HTTP basic authentication provider object.
+    *
+@@ -59,8 +68,10 @@ class BasicAuth implements AuthenticationProviderInterface, AuthenticationProvid
+    *   The flood service.
+    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+    *   The entity type manager service.
++   * @param \Drupal\Core\Routing\Router $router
++   *   The router service.
+    */
+-  public function __construct(ConfigFactoryInterface $config_factory, UserAuthInterface|UserAuthenticationInterface $user_auth, FloodInterface $flood, EntityTypeManagerInterface $entity_type_manager) {
++  public function __construct(ConfigFactoryInterface $config_factory, UserAuthInterface|UserAuthenticationInterface $user_auth, FloodInterface $flood, EntityTypeManagerInterface $entity_type_manager, Router $router) {
+     $this->configFactory = $config_factory;
+     if (!$user_auth instanceof UserAuthenticationInterface) {
+       @trigger_error('The $user_auth parameter implementing UserAuthInterface is deprecated in drupal:10.3.0 and will be removed in drupal:12.0.0. Implement UserAuthenticationInterface instead. See https://www.drupal.org/node/3411040');
+@@ -68,6 +79,7 @@ class BasicAuth implements AuthenticationProviderInterface, AuthenticationProvid
+     $this->userAuth = $user_auth;
+     $this->flood = $flood;
+     $this->entityTypeManager = $entity_type_manager;
++    $this->router = $router;
+   }
+
+   /**
+@@ -76,7 +88,24 @@ class BasicAuth implements AuthenticationProviderInterface, AuthenticationProvid
+   public function applies(Request $request) {
+     $username = $request->headers->get('PHP_AUTH_USER');
+     $password = $request->headers->get('PHP_AUTH_PW');
+-    return isset($username) && isset($password);
++
++    if (isset($username) && isset($password)) {
++      try {
++        $parameters = $this->router->matchRequest($request);
++      } catch (\Exception $e) {
++        return FALSE;
++      }
++      if (empty($route = $parameters['_route_object']) || !$route instanceof Route) {
++        return FALSE;
++      }
++      /** @var \Symfony\Component\Routing\Route $route */
++      if (empty($route->getOption('_auth'))) {
++        return FALSE;
++      }
++      return (bool) in_array('basic_auth', $route->getOption('_auth'));
++    }
++
++    return FALSE;
+   }
+
+   /**
