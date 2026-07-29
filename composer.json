@@ -105,6 +105,7 @@
         "drupal/rabbit_hole": "^2.0@beta",
         "drupal/raven": "^6.0",
         "drupal/redirect": "^1.12",
+        "drupal/redis": "^1.11",
         "drupal/search_api": "^1.29",
         "drupal/search_api_autocomplete": "^1.12",
         "drupal/select2": "^2.0",
