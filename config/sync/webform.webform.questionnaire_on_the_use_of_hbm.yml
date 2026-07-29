@@ -10,33 +10,376 @@ template: false
 archive: false
 id: questionnaire_on_the_use_of_hbm
 title: 'Questionnaire on the use of HBM in policy'
-description: '<p><span lang="EN-US">The Environment and Health Partnerships (EHP) bring together Member States and stakeholders with a shared interest in specific thematic areas. The Partnership on Human Biomonitoring (HBM)&nbsp; brings together 20 Member States to extend the application of HBM as a scientific tool to inform decisions in regulatory hazardous chemicals and public health. Within this Partnership a Working Group on the use of HBM in a policy context is identifying this use.</span></p><p><span lang="EN-US">In order to compile an overview of the use of HBM in policy, a questionnaire was developed. The results of this questionnaire will be used to report on the use of HBM in a policy context; in addition, a webinar will be organised based on the results, during which the main findings will be explained and good practices will be showcased.</span></p><p><span lang="EN-US">We kindly request some essential personal and professional details in this application form. The anonym information will be only used for this survey data analysis. Data collected will be saved and stored for the duration of PARC<strong>.</strong>&nbsp;Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-GB">If you have any questions, please contact Maja Mampaey (</span><a href="mailto:maja.mampaey@vlaanderen.be"><span lang="EN-GB">maja.mampaey@vlaanderen.be</span></a><span lang="EN-GB">).</span></p>'
+description: ''
 categories:
   - HBM
 elements: |-
   context:
     '#type': webform_wizard_page
-    '#title': 'Context and Consent'
+    '#title': 'Data protection and Consent'
     i_confirm_that_i_have_read_and_i_accept_the_information_stated_a:
       '#type': checkbox
       '#title': 'I confirm that I have read and I accept the information stated above.'
-      '#description': '<h5><span lang="EN-US"><strong>Context and Consent</strong></span></h5><p><span lang="EN-US">The Environment and Health Partnerships (EHP) bring together Member States and stakeholders with a shared interest in specific thematic areas. The Partnership on Human Biomonitoring (HBM)&nbsp; brings together 20 Member States to extend the application of HBM as a scientific tool to inform decisions in regulatory hazardous chemicals and public health. Within this Partnership a Working Group on the use of HBM in a policy context is identifying this use.</span></p><p><span lang="EN-US">In order to compile an overview of the use of HBM in policy, a questionnaire was developed. The results of this questionnaire will be used to report on the use of HBM in a policy context; in addition, a webinar will be organised based on the results, during which the main findings will be explained and good practices will be showcased.</span></p><p><span lang="EN-US">We kindly request some essential personal and professional details in this application form. The anonym information will be only used for this survey data analysis. Data collected will be saved and stored for the duration of PARC<strong>.</strong>&nbsp;Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-GB">If you have any questions, please contact Maja Mampaey (</span><a href="mailto:maja.mampaey@vlaanderen.be"><span lang="EN-GB">maja.mampaey@vlaanderen.be</span></a><span lang="EN-GB">).</span></p>'
+      '#description': '<p><span style="color:#2E75B5;font-size:14.0pt;" lang="EN-US"><strong>Background</strong></span></p><p><span lang="EN-GB">The&nbsp;<strong>WHO Environment and Health Partnership on Human Biomonitoring (HBM)</strong>&nbsp;brings together 20 Member States to strengthen the application of human biomonitoring as a scientific tool for supporting regulatory decision-making on hazardous chemicals and protecting public health.</span></p><p><span lang="EN-GB">As part of the Partnership''s activities, and in collaboration with the&nbsp;<strong>Partnership for the Assessment of Risks from Chemicals (PARC)</strong>, particularly the work on sustainability and the long-term uptake of HBM, a survey has been developed to better understand how HBM data are currently used to support policy development, implementation and evaluation at national and international levels.</span></p><p><span lang="EN-GB">The survey aims to identify existing practices, challenges and opportunities related to the use of HBM in policymaking. The results will contribute to a report on the policy use of HBM and will also be used to organise a webinar presenting the main findings and showcasing examples of good practice.</span><br><span lang="EN-GB">The survey takes approximately 1015 minutes to complete.</span></p><p><span lang="EN-GB">Your experience and insights are highly valuable, and we greatly appreciate your participation.</span></p><p>&nbsp;</p><p><span style="color:#2E75B5;font-size:14.0pt;" lang="EN-GB"><strong>Data protection and consent</strong></span></p><p><span lang="EN-GB">Participation in this survey is voluntary.</span></p><p><span lang="EN-GB">The survey collects a limited amount of personal and professional information (e.g. organisation, country and professional role) solely for the purpose of analysing the responses and interpreting the survey results. Survey findings will be reported only in aggregated or anonymised form, and individual respondents will not be identified in any reports, publications or presentations without their explicit consent.</span></p><p><span lang="EN-GB">The data collected will be processed exclusively for the purposes of this survey and related activities within the WHO Environment and Health Partnership on Human Biomonitoring and PARC. Personal data will be handled in accordance with the&nbsp;<strong>General Data Protection Regulation (EU) 2016/679 (GDPR)&nbsp;</strong>and will be stored securely for the duration of the WHO Environment and Health Partnership on Human Biomonitoring (HBM), after which they will be deleted in accordance with applicable data retention policies.</span></p><p><span lang="EN-GB">By proceeding with the survey, you confirm that you have read and understood the information above and consent to the processing of your personal data for the purposes described.</span></p><p><span lang="EN-GB">If you have any questions about the survey or the processing of your data, please contact&nbsp;<strong>Maja Mampaey</strong>&nbsp;at&nbsp;<strong>maja.mampaey@vlaanderen.be</strong>.</span></p><p>&nbsp;</p>'
       '#description_display': before
+      '#required': true
   general_background_of_the_respondent:
     '#type': webform_wizard_page
     '#title': 'General background of the respondent'
+    11_in_which_country_or_region:
+      '#type': textfield
+      '#title': '1. In which country or region (within a country) are you involved in human biomonitoring (HBM) activities?'
+      '#description': '<h5><strong>1. In which country or region (within a country) are you involved in human biomonitoring (HBM) activities?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_1:
+      '#type': webform_markup
+      '#markup': '<br>'
+    2_what_was_the_driving_force_or_initiating_factor_for_starting_t:
+      '#type': webform_checkboxes_other
+      '#title': "2.\tWhat was the driving force or initiating factor for starting the HBM study or program? "
+      '#options':
+        'Scientific question': 'Scientific question'
+        'Policy need': 'Policy need'
+        Crisis: Crisis
+      '#other__option_label': Other
+      '#other__title': 'Please explain (Other)'
+      '#other__placeholder': ''
+      '#required': true
+    other:
+      '#type': textfield
+      '#title': 'Scientific question'
+      '#description': '<p>Please explain (Scientific question)</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="2_what_was_the_driving_force_or_initiating_factor_for_starting_t[checkboxes][Scientific question]"]':
+            checked: true
+    policy_need:
+      '#type': textfield
+      '#title': Policy_need
+      '#description': '<p>Please explain (Policy need)</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="2_what_was_the_driving_force_or_initiating_factor_for_starting_t[checkboxes][Policy need]"]':
+            checked: true
+    crisis:
+      '#type': textfield
+      '#title': Crisis
+      '#description': '<p>Please explain (Crisis)</p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="2_what_was_the_driving_force_or_initiating_factor_for_starting_t[checkboxes][Crisis]"]':
+            checked: true
+    spacer_2:
+      '#type': webform_markup
+      '#markup': '<br>'
+    3_what_is_your_role_or_function_in_relation_to_hbm:
+      '#type': webform_checkboxes_other
+      '#title': '3. What is your role or function in relation to HBM?'
+      '#multiple': 2
+      '#description': '<h5><strong>3. What is your role or function in relation to HBM?</strong></h5><p><em>(Up to two answers are possible)</em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#options':
+        Researcher: Researcher
+        'Policy maker': 'Policy maker'
+        'Employee of a health agency': 'Employee of a health agency'
+        'Data analyst': 'Data analyst'
+        Lobby: Lobby
+      '#other__option_label': Other
+      '#other__placeholder': 'Please explain'
+      '#required': true
   use_of_hbm_results_in_policymaking:
     '#type': webform_wizard_page
     '#title': 'Use of HBM results in policymaking'
+    1_hbm_in_policy_making_beneficial:
+      '#type': radios
+      '#title': '1. Do you see the use of HBM in policy making beneficial?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    spacer_3:
+      '#type': webform_markup
+      '#markup': '<br>'
+    2_why_do_you_see_or_don_t_see_the_use_of_hbm_in_policy_making_be:
+      '#type': textfield
+      '#title': "2.\tWhy do you see or don’t see the use of HBM in policy making beneficial?"
+      '#description': '<h5><strong>2. Why do you see or don’t see the use of HBM in policy making beneficial?</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_4:
+      '#type': webform_markup
+      '#markup': '<br>'
+    3_use_of_hbm_in_policy_making:
+      '#type': radios
+      '#title': "3.\tDo you have experience with the use of HBM in policy making within your organisation or network?"
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    case_yes:
+      '#type': textfield
+      '#title': 'Yes'
+      '#description': '<p><em><span lang="EN-GB">Can you give a concrete example? </span><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">For example: HBM data on lead in blood led to changes in renovation policy in old&nbsp;</span></em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="3_use_of_hbm_in_policy_making"]':
+            value: 'Yes'
+    in_case_no:
+      '#type': textfield
+      '#title': 'No'
+      '#description': '<p><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">What are the difficulties?&nbsp;</span></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="3_use_of_hbm_in_policy_making"]':
+            value: 'No'
+    spacer_5:
+      '#type': webform_markup
+      '#markup': '<br>'
+    4_purpose:
+      '#type': webform_checkboxes_other
+      '#title': '4. For what purposes is HBM used within your work context?'
+      '#options':
+        'Development of binding regulations or standards (hard policy)': 'Development of binding regulations or standards (hard policy)'
+        'Development of guidelines, recommendations or awareness campaigns (soft policy)': 'Development of guidelines, recommendations or awareness campaigns (soft policy)'
+        'Evaluation or adjustment of existing policy': 'Evaluation or adjustment of existing policy'
+        'Development of health indicators (e.g. burden of disease calculations, socio-economic analysis, risk assessment)': 'Development of health indicators (e.g. burden of disease calculations, socio-economic analysis, risk assessment)'
+        'Definition of national reference values': 'Definition of national reference values'
+        'Agenda setting': 'Agenda setting'
+        'Reaction to an incident': 'Reaction to an incident'
+        'Not applicable / no use': 'Not applicable / no use'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please explain'
+      '#required': true
+    spacer_6:
+      '#type': webform_markup
+      '#markup': '<br>'
+    5_hbm_work_context_to_create_soft_polici:
+      '#type': radios
+      '#title': '5. Has HBM been used within your work context to create soft policies (i.e. recommendations, guidelines or awareness campaigns)?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    'yes':
+      '#type': textfield
+      '#title': 'Yes'
+      '#description': '<p style="margin-left:54.0pt;text-align:left;" align="left"><span lang="EN-GB">Can you give a concrete example of a soft policy measure in which HBM results have played a role? </span><em><span lang="EN-GB">(e.g. guidelines for the use of pesticides in gardens).</span></em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_hbm_work_context_to_create_soft_polici"]':
+            value: 'Yes'
+    'no':
+      '#type': textfield
+      '#title': 'No'
+      '#description': '<p><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">Why?</span></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_hbm_work_context_to_create_soft_polici"]':
+            value: 'No'
+    spacer_7:
+      '#type': webform_markup
+      '#markup': '<br>'
+    6_hbm_been_used_within_your_work_context_to_draw_up_hard_pol:
+      '#type': radios
+      '#title': '6. Has HBM been used within your work context to draw up hard policy (i.e. binding regulations or standards)?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    yess:
+      '#type': textfield
+      '#title': 'Yes'
+      '#description': '<p style="margin-left:54.0pt;text-align:left;" align="left"><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">Can you give an example of a hard policy measure in which HBM results have played a role? </span><em><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">(e.g. legal limits for cadmium in food.)</span></em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="6_hbm_been_used_within_your_work_context_to_draw_up_hard_pol"]':
+            value: 'Yes'
+    noo:
+      '#type': textfield
+      '#title': 'No'
+      '#description': '<p class="pf0" style="margin-bottom:0cm;margin-left:54.0pt;margin-right:0cm;margin-top:0cm;"><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">Where would you envision or aspire HBM to make policy impact?</span></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="6_hbm_been_used_within_your_work_context_to_draw_up_hard_pol"]':
+            value: 'No'
+    spacer_8:
+      '#type': webform_markup
+      '#markup': '<br>'
+    7_at_which_policy_levels_hbm_has_been_used_for_policymaking:
+      '#type': checkboxes
+      '#title': '7. At which governance level(s) has HBM informed policymaking within your work context?'
+      '#options':
+        'International (e.g. WHO, EU)': 'International (e.g. WHO, EU)'
+        'National (federal government)': 'National (federal government)'
+        'Regional (state, province)': 'Regional (state, province)'
+        'Local (municipality, city)': 'Local (municipality, city)'
+        'Not sure / no information available': 'Not sure / no information available'
+        'Not applicable': 'Not applicable'
+      '#other__option_label': ''
+      '#other__placeholder': ''
+      '#required': true
+    spacer_9:
+      '#type': webform_markup
+      '#markup': '<br>'
+    8_which_communication_channels_are_you_using_to_inform_policy_ma:
+      '#type': webform_checkboxes_other
+      '#title': '8. Which communication channels are you using to inform policy makers? '
+      '#options':
+        'Policy brief': 'Policy brief'
+        Webinars: Webinars
+        'Personal presentation': 'Personal presentation'
+        'Scientific reports': 'Scientific reports'
+        'Advisory commitees/expert groups': 'Advisory commitees/expert groups'
+        'Not applicable': 'Not applicable'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please explain'
+      '#required': true
+    spacer_10:
+      '#type': webform_markup
+      '#markup': '<br>'
+    9_who_is_involved_in_translating_hbm_results_into_policy:
+      '#type': webform_checkboxes_other
+      '#title': '9. Who is involved in translating HBM findings into policy within your work context?'
+      '#options':
+        'Universities and research institutions': 'Universities and research institutions'
+        'Government administrations': 'Government administrations'
+        'Policymakers (e.g. ministries, parliamentarians)': 'Policymakers (e.g. ministries, parliamentarians)'
+        'Public health agencies': 'Public health agencies'
+        'Stakeholders (e.g. NGOs, industry, professional associations)': 'Stakeholders (e.g. NGOs, industry, professional associations)'
+        'Not applicable': 'Not applicable'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please explain'
+      '#required': true
   indirect_use_of_hbm:
     '#type': webform_wizard_page
     '#title': 'Indirect use of HBM'
+    1_hbm_been_used_as_input_for_development_of_broader_health_i:
+      '#type': radios
+      '#title': '1. Has HBM been used as input for development of broader health indicators within your work context?'
+      '#description': '<p style="margin-left:27.0pt;text-align:left;" align="left"><em><span lang="EN-GB">For example, burden of disease or socio-economic impact analyses; HBM as an argument for strategic environmental assessment?</span></em></p>'
+      '#description_display': before
+      '#options':
+        'Yes, regularly': 'Yes, regularly'
+        'Yes, occasionally': 'Yes, occasionally'
+        'No': 'No'
+        'Not sure': 'Not sure'
+      '#required': true
+    yesss:
+      '#type': textfield
+      '#title': Yesss
+      '#description': '<p style="margin-left:54.0pt;text-align:left;" align="left"><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">Can you give an example of such an application?</span></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          - ':input[name="1_hbm_been_used_as_input_for_development_of_broader_health_i"]':
+              value: 'Yes, regularly'
+          - or
+          - ':input[name="1_hbm_been_used_as_input_for_development_of_broader_health_i"]':
+              value: 'Yes, occasionally'
   policy_impact_and_evaluation:
     '#type': webform_wizard_page
     '#title': 'Policy impact and evaluation'
+    1_how_is_the_impact_of_hbm_based_policies_evaluated_within_your:
+      '#type': textfield
+      '#title': "1.\tHow is the impact of HBM-based policies evaluated within your organization or network?"
+      '#description': '<h5><strong>1. How is the impact of HBM-based policies evaluated within your organization or network?</strong></h5><p><em><span lang="EN-GB">(For example: follow-up via new HBM measurements, health indicators, stakeholder feedback.)</span></em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_11:
+      '#type': webform_markup
+      '#markup': '<br>'
+    2_what_barriers_do_you_see_for_the_use_of_hbm_results_in_policym:
+      '#type': textfield
+      '#title': "2.\tWhat barriers do you see for the use of HBM results in policymaking?"
+      '#description': '<h5><span lang="EN-GB"><strong>2.&nbsp;What barriers do you see for the use of HBM results in policymaking?</strong></span></h5><p><em><span lang="EN-GB">(for example: lack of representative, recent data, problems of interpretation, limited political interest)</span></em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_111:
+      '#type': webform_markup
+      '#markup': '<br>'
+    3_what_would_assist_encourage_you_in_utilise_hbm_results_in_poli:
+      '#type': textfield
+      '#title': "3.\tWhat would assist/encourage you in utilising HBM results in policy making in the future in your function?"
+      '#description': '<h5><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB"><strong>3.&nbsp;What would assist/encourage you in utilising HBM results in policy making in the future in your function?</strong></span></h5><p class="pf0" style="margin-bottom:0cm;margin-left:36.0pt;margin-right:0cm;margin-top:0cm;"><em><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">(for example: guidance documents, materials to encourage interest, stronger EU mandates)&nbsp;</span></em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
   final_question_reflection:
     '#type': webform_wizard_page
     '#title': 'Final question/reflection'
+    1_what_do_you_think_would_be_needed_to_strengthen_the_use_of_hbm:
+      '#type': textfield
+      '#title': "1.\tWhat do you think would be needed to strengthen the use of HBM results in policymaking?"
+      '#description': '<h5><span lang="EN-GB"><strong>1.&nbsp;What do you think would be needed to strengthen the use of HBM results in policymaking?</strong></span></h5><p style="margin-left:27.0pt;text-align:left;" align="left"><span lang="EN-GB">(</span><em><span lang="EN-GB">For example: better communication between researchers and policymakers, more funding for HBM.)</span></em></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+    spacer_12:
+      '#type': webform_markup
+      '#markup': '<br>'
+    2_willing_to_participate_in_a_testimonial_about_a_c:
+      '#type': radios
+      '#title': '2. Would you be willing to participate in a testimonial about a concrete case from your organization or network? '
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    yessss:
+      '#type': textfield
+      '#title': Yessss
+      '#description': '<p style="margin-left:54.0pt;text-align:left;" align="left"><span style="font-family:&quot;Calibri&quot;,sans-serif;font-size:11.0pt;" lang="EN-GB">Through which contact can we reach you for more information (email address)?&nbsp;</span></p>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="yessss"]':
+            checked: true
+    spacer_13:
+      '#type': webform_markup
+      '#markup': '<br>'
+    3_please_add_your_email_address_in_case_we_have_further_question:
+      '#type': textfield
+      '#title': "3.\tPlease add your email address in case we have further questions"
+      '#description': '<h5><strong>3.&nbsp;Please add your email address in case we have further questions</strong></h5>'
+      '#title_display': invisible
+      '#description_display': before
+      '#required': true
 css: ''
 javascript: ''
 settings:
@@ -51,7 +394,7 @@ settings:
   page_theme_name: parc
   form_title: source_entity_webform
   form_submit_once: false
-  form_open_message: '<p><span lang="EN-US">The Environment and Health Partnerships (EHP) bring together Member States and stakeholders with a shared interest in specific thematic areas. The Partnership on Human Biomonitoring (HBM)&nbsp; brings together 20 Member States to extend the application of HBM as a scientific tool to inform decisions in regulatory hazardous chemicals and public health. Within this Partnership a Working Group on the use of HBM in a policy context is identifying this use.</span></p><p><span lang="EN-US">In order to compile an overview of the use of HBM in policy, a questionnaire was developed. The results of this questionnaire will be used to report on the use of HBM in a policy context; in addition, a webinar will be organised based on the results, during which the main findings will be explained and good practices will be showcased.</span></p><p><span lang="EN-US">We kindly request some essential personal and professional details in this application form. The anonym information will be only used for this survey data analysis. Data collected will be saved and stored for the duration of PARC<strong>.</strong>&nbsp;Data management and handling will follow the General Data Protection Regulation (GDPR) of the EU (2016/679).</span></p><p><span lang="EN-GB">If you have any questions, please contact Maja Mampaey (</span><a href="mailto:maja.mampaey@vlaanderen.be"><span lang="EN-GB">maja.mampaey@vlaanderen.be</span></a><span lang="EN-GB">).</span></p>'
+  form_open_message: '<p style="text-align:left;" align="left"><span lang="EN-GB">The&nbsp;<strong>WHO Environment and Health Partnership on Human Biomonitoring (HBM)</strong>&nbsp;brings together 20 Member States to strengthen the application of human biomonitoring as a scientific tool for supporting regulatory decision-making on hazardous chemicals and protecting public health.</span></p><p style="text-align:left;" align="left"><span lang="EN-GB">&nbsp;As part of the Partnership''s activities, and in collaboration with the&nbsp;<strong>Partnership for the Assessment of Risks from Chemicals (PARC)</strong>, particularly the work on sustainability and the long-term uptake of HBM, a survey has been developed to better understand how HBM data are currently used to support policy development, implementation and evaluation at national and international levels.</span></p><p style="text-align:left;" align="left"><span lang="EN-GB">The survey aims to identify existing practices, challenges and opportunities related to the use of HBM in policymaking. The results will contribute to a report on the policy use of HBM and will also be used to organise a webinar presenting the main findings and showcasing examples of good practice.</span><br><br><span lang="EN-GB">The survey takes approximately 1015 minutes to complete.&nbsp;</span></p><p style="text-align:left;" align="left"><span lang="EN-GB">Your experience and insights are highly valuable, and we greatly appreciate your participation.</span></p>'
   form_close_message: ''
   form_exception_message: ''
   form_previous_submissions: true

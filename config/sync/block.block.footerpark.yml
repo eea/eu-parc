@@ -5,7 +5,6 @@ dependencies:
   config:
     - system.menu.footer-park
   module:
-    - block_class
     - system
   theme:
     - parc
@@ -21,6 +20,6 @@ settings:
   label_display: '0'
   provider: system
   level: 1
-  depth: 0
+  depth: null
   expand_all_items: true
 visibility: {  }
