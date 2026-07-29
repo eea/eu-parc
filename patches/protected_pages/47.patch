@@ -1,0 +1,83 @@
+From 1042c866819db66535840e3dde8a42bc4c893934 Mon Sep 17 00:00:00 2001
+From: Karl Shea <karl@karlshea.dev>
+Date: Wed, 1 Jul 2026 14:32:08 -0500
+Subject: [PATCH] Use interfaces instead of concrete classes
+
+---
+ .../ProtectedPagesSubscriber.php              | 20 +++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/src/EventSubscriber/ProtectedPagesSubscriber.php b/src/EventSubscriber/ProtectedPagesSubscriber.php
+index 28d9357..1c4d047 100644
+--- a/src/EventSubscriber/ProtectedPagesSubscriber.php
++++ b/src/EventSubscriber/ProtectedPagesSubscriber.php
+@@ -4,9 +4,9 @@ namespace Drupal\protected_pages\EventSubscriber;
+ 
+ use Drupal\Core\PageCache\ResponsePolicy\KillSwitch;
+ use Drupal\Core\Path\CurrentPathStack;
+-use Drupal\Core\Path\PathMatcher;
+-use Drupal\Core\Routing\RedirectDestination;
+-use Drupal\Core\Session\AccountProxy;
++use Drupal\Core\Path\PathMatcherInterface;
++use Drupal\Core\Routing\RedirectDestinationInterface;
++use Drupal\Core\Session\AccountProxyInterface;
+ use Drupal\Core\Url;
+ use Drupal\path_alias\AliasManagerInterface;
+ use Drupal\protected_pages\ProtectedPagesStorage;
+@@ -32,7 +32,7 @@ class ProtectedPagesSubscriber implements EventSubscriberInterface {
+   /**
+    * The account proxy service.
+    *
+-   * @var \Drupal\Core\Session\AccountProxy
++   * @var \Drupal\Core\Session\AccountProxyInterface
+    */
+   protected $currentUser;
+ 
+@@ -46,7 +46,7 @@ class ProtectedPagesSubscriber implements EventSubscriberInterface {
+   /**
+    * The redirect destination service.
+    *
+-   * @var \Drupal\Core\Routing\RedirectDestination
++   * @var \Drupal\Core\Routing\RedirectDestinationInterface
+    */
+   protected $destination;
+ 
+@@ -74,7 +74,7 @@ class ProtectedPagesSubscriber implements EventSubscriberInterface {
+   /**
+    * The Patch matcher service.
+    *
+-   * @var \Drupal\Core\Path\PathMatcher
++   * @var \Drupal\Core\Path\PathMatcherInterface
+    */
+   protected $pathMatcher;
+ 
+@@ -83,11 +83,11 @@ class ProtectedPagesSubscriber implements EventSubscriberInterface {
+    *
+    * @param \Drupal\path_alias\AliasManagerInterface $aliasManager
+    *   The path alias manager.
+-   * @param \Drupal\Core\Session\AccountProxy $currentUser
++   * @param \Drupal\Core\Session\AccountProxyInterface $currentUser
+    *   The account proxy service.
+    * @param \Drupal\Core\Path\CurrentPathStack $currentPathStack
+    *   The current path stack service.
+-   * @param \Drupal\Core\Routing\RedirectDestination $destination
++   * @param \Drupal\Core\Routing\RedirectDestinationInterface $destination
+    *   The redirect destination service.
+    * @param \Symfony\Component\HttpFoundation\RequestStack $requestStack
+    *   The request stack service.
+@@ -95,10 +95,10 @@ class ProtectedPagesSubscriber implements EventSubscriberInterface {
+    *   The request stack service.
+    * @param \Drupal\Core\PageCache\ResponsePolicy\KillSwitch $pageCacheKillSwitch
+    *   The cache kill switch service.
+-   * @param \Drupal\Core\Path\PathMatcher $pathMatcher
++   * @param \Drupal\Core\Path\PathMatcherInterface $pathMatcher
+    *   The path matcher service.
+    */
+-  public function __construct(AliasManagerInterface $aliasManager, AccountProxy $currentUser, CurrentPathStack $currentPathStack, RedirectDestination $destination, RequestStack $requestStack, ProtectedPagesStorage $protectedPagesStorage, KillSwitch $pageCacheKillSwitch, PathMatcher $pathMatcher) {
++  public function __construct(AliasManagerInterface $aliasManager, AccountProxyInterface $currentUser, CurrentPathStack $currentPathStack, RedirectDestinationInterface $destination, RequestStack $requestStack, ProtectedPagesStorage $protectedPagesStorage, KillSwitch $pageCacheKillSwitch, PathMatcherInterface $pathMatcher) {
+     $this->aliasManager = $aliasManager;
+     $this->currentUser = $currentUser;
+     $this->currentPath = $currentPathStack;
+-- 
+GitLab
+

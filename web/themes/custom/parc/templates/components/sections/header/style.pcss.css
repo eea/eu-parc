@@ -3,6 +3,7 @@ header {
 
   .navbar-brand {
     width: 220px;
+    flex-shrink: 0;
   }
 
   @media (--xl) {

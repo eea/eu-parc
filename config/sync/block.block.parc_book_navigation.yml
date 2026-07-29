@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - block_class
     - book
     - node
     - system
@@ -21,6 +20,12 @@ settings:
   label_display: visible
   provider: book
   block_mode: 'all pages'
+  show_top_item: false
+  use_top_level_title: false
+  starting_level: 1
+  max_depth: 0
+  book_select: 0
+  expanded: false
 visibility:
   'entity_bundle:node':
     id: 'entity_bundle:node'

@@ -65,7 +65,6 @@ dependencies:
     - tablefield
     - taxonomy
     - toolbar
-    - tour
     - view_unpublished
 _core:
   default_config_hash: Wur9kcEOwY1Jal81NssKnz3RhVJxAvBwyWQBGcA_1Go
@@ -84,7 +83,6 @@ permissions:
   - 'access taxonomy overview'
   - 'access technical documentation'
   - 'access toolbar'
-  - 'access tour'
   - 'addrow tablefield'
   - 'administer nodes'
   - 'administer url aliases'
@@ -322,6 +320,7 @@ permissions:
   - 'publish own node type opportunity'
   - 'publish own node type project'
   - 'publish own node type resource'
+  - 'rebuild node access permissions'
   - 'rebuild tablefield'
   - 'revert all revisions'
   - 'revert article revisions'
