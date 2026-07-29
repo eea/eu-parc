@@ -103,6 +103,7 @@ module:
   rabbit_hole: 0
   raven: 0
   redirect: 0
+  redis: 0
   rh_node: 0
   rh_taxonomy: 0
   search_api: 0
