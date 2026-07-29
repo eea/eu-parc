@@ -240,7 +240,7 @@
                 "#3368736 - 'no config schema' Error after update to Drupal 10.1.0": "https://www.drupal.org/files/issues/2023-08-07/error-after-drupal-10.1.0-3368736-19.patch"
             },
             "drupal/core": {
-                "#2769407 - Views UI should offer a 'Treat NULL values as FALSE' on boolean field filtering to expose the already existing code path for handling this": "https://www.drupal.org/files/issues/2024-06-26/2769407_views_ui_null_option-10.3.x-90.patch",
+                "#2769407 - Views UI should offer a 'Treat NULL values as FALSE' on boolean field filtering to expose the already existing code path for handling this": "https://www.drupal.org/files/issues/2026-01-19/2769407-D11.3.x-116.patch",
                 "#2842858 - Basic Auth module conflicts with server-level \"Site Lock\" implementations": "patches/core/basic_auth_route_check.patch"
             },
             "drupal/conditional_fields": {
