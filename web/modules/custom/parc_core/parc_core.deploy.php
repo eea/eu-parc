@@ -2426,3 +2426,21 @@ function parc_core_deploy_water_contacts() {
     $result->save();
   }
 }
+
+/**
+ * Create "Promoting the circular economy through safe materials" project topic.
+ */
+function parc_core_deploy_circular_economy_topic() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  if ($term_storage->load(1808)) {
+    return;
+  }
+
+  $term_storage->create([
+    'tid' => 1808,
+    'vid' => 'project_topics',
+    'name' => 'Promoting the circular economy through safe materials',
+    'weight' => 3,
+  ])->save();
+}
