@@ -69,6 +69,112 @@
     }
   }
 
+  [data-webform-key] {
+    > .form-item {
+      margin-bottom: 40px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      > label,
+      > legend {
+        display: block;
+        float: none;
+        width: auto;
+        margin-bottom: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+      }
+
+      .form-checkboxes,
+      .form-radios {
+        .js-form-type-checkbox,
+        .js-form-type-radio {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 6px;
+
+          input {
+            margin: 0;
+            flex: none;
+          }
+
+          label {
+            margin-bottom: 0;
+            font-weight: 400;
+          }
+        }
+      }
+
+      [class*='-other-input'] {
+        margin-top: 10px;
+      }
+    }
+
+    .webform-likert-table,
+    .webform-table-sort {
+      margin-bottom: 0;
+
+      th {
+        border: 1px solid var(--body-color);
+        padding: 6px 9px;
+        vertical-align: middle;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .js-form-type-webform-likert .webform-likert-table {
+        thead {
+          display: none;
+        }
+
+        tr {
+          display: block;
+        }
+
+        td {
+          display: block;
+          width: 100%;
+          padding: 0;
+          border: 0;
+          text-align: left;
+        }
+
+        td:first-child {
+          margin-bottom: 8px;
+          font-weight: 600;
+        }
+
+        td:last-child {
+          margin-bottom: 24px;
+        }
+
+        .js-form-type-radio {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          margin-bottom: 6px;
+        }
+      }
+    }
+
+    .webform-table-sort {
+      th:first-child {
+        font-size: 16px;
+        line-height: 24px;
+        text-align: left;
+        text-transform: none;
+      }
+    }
+
+    .tabledrag-toggle-weight-wrapper {
+      margin-bottom: 10px;
+    }
+  }
+
   .form-actions {
     margin-top: 30px;
     margin-bottom: 60px;
@@ -87,6 +193,12 @@
 
     @media (--md) {
       margin-left: 330px;
+    }
+  }
+
+  [data-webform-key] ~ .form-actions {
+    @media (--md) {
+      margin-left: 0;
     }
   }
 }
