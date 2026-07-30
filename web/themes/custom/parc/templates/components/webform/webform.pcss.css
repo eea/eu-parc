@@ -88,17 +88,38 @@
         line-height: 24px;
       }
 
+      &.js-form-type-checkbox,
+      &.js-form-type-radio {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        column-gap: 8px;
+
+        > .description {
+          flex: 0 0 100%;
+        }
+
+        > input {
+          flex: none;
+          margin: 6px 0 0;
+        }
+
+        > label {
+          margin-bottom: 0;
+        }
+      }
+
       .form-checkboxes,
       .form-radios {
         .js-form-type-checkbox,
         .js-form-type-radio {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           gap: 8px;
           margin-bottom: 6px;
 
           input {
-            margin: 0;
+            margin: 5px 0 0;
             flex: none;
           }
 
@@ -172,6 +193,17 @@
 
     .tabledrag-toggle-weight-wrapper {
       margin-bottom: 10px;
+    }
+
+    .tabledrag-handle {
+      height: auto;
+
+      .handle {
+        width: 30px;
+        height: 30px;
+        margin-top: -0.2em;
+        background-position: center;
+      }
     }
   }
 
