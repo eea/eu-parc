@@ -93,6 +93,7 @@ module:
   node: 0
   options: 0
   parc_core: 0
+  parc_mind_map: 0
   parc_zenodo_api: 0
   path: 0
   path_alias: 0
