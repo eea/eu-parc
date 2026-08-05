@@ -35,11 +35,12 @@ elements: |-
       '#title': 'Age:'
     in_which_sector_are_you_working_other:
       '#type': webform_checkboxes_other
-      '#title': 'In which sector are you working_other?'
+      '#title': 'In which sector are you working?'
+      '#multiple': 2
       '#options':
-        'Governmental Bodies': 'Governmental Bodies'
+        'Governmental bodies': 'Governmental bodies'
         ' Academia': ' Academia'
-        'Association of Professional Bodies': 'Association of Professional Bodies'
+        'Association of professional bodies': 'Association of professional bodies'
         NGO: NGO
       '#other__option_label': Other
       '#other__title': 'Please, specify:'
