@@ -12,7 +12,734 @@ id: second_survey_on_exit_strategy
 title: 'SECOND SURVEY ON EXIT STRATEGY '
 description: ''
 categories: {  }
-elements: null
+elements: |-
+  second_survey_on_exit_strategy:
+    '#type': webform_wizard_page
+    '#title': 'SECOND SURVEY ON EXIT STRATEGY'
+    description:
+      '#type': checkbox
+      '#title': 'I confirm that I have read and I accept the information stated above'
+      '#description': '<h5><strong>Second Survey on Exit Strategy</strong><br>&nbsp;</h5><p>This survey is carried out under Task 2.3 "Sustainability" as part of the development of the PARC exit strategy. It is addressed to all National Hub Contact Points (NHCPs) to assess progress towards ensuring the sustainability of PARC activities at national level beyond the lifetime of the Partnership.</p><p>The first exit strategy survey established a baseline by identifying priorities and possible frameworks to sustain PARC activities after the project. This second survey aims to monitor progress by identifying which activities have advanced since the first survey, assessing their current level of implementation and long-term sustainability, and evaluating the contribution of PARC to these developments.</p><p>In addition, the survey seeks to identify the main barriers that may hinder the sustainable implementation of PARC activities at national level. The information collected will provide evidence to support the further development and implementation of the PARC exit strategy, identify good practices and remaining challenges, and demonstrate the long-term impact of the Partnership.</p><p>We kindly ask each NHCP to coordinate the completion of this survey. Where appropriate, NHCPs are encouraged to consult with National Hub members. One consolidated response representing the national perspective is expected from each country.</p><p>The collected information will be treated confidentially in accordance with the requirements of the General Data Protection Regulation (GDPR). Data obtained from this survey will be stored by the National Center for Public Health and Pharmacy (NCPHP) during the implementation of the PARC project and for up to five years after its completion. The data will be processed by the Task 2.3 partners for the purposes described above.</p><p>The deadline for completing the survey is <strong>30 November 2026</strong>.</p><p>Thank you for taking the time to complete this survey.</p><p>If you have any questions, please contact us.</p><p>Task 2.3 Co-leaders</p><ul><li data-list-item-id="e434832c973813c6f088ef7bcadaf8b67">Tamás Szigeti (<a href="mailto:szigeti.tamas@nngyk.gov.hu">szigeti.tamas@nngyk.gov.hu</a>)</li><li data-list-item-id="e4310920c6200f06d200d7ede7e7f749e">Adrienne Pittman (<a href="mailto:adrienne.pittman@anses.fr">adrienne.pittman@anses.fr</a>) &nbsp;</li><li data-list-item-id="e8725b81bbd0ee718c8e6080cac24cc69">Robert Barouki (<a href="mailto:robert.barouki@parisdescartes.fr">robert.barouki@parisdescartes.fr</a>)</li></ul><p>&nbsp;</p>'
+      '#more_title': ' I confirm that I have read and I accept the information stated above'
+      '#title_display': inline
+      '#description_display': before
+      '#required': true
+  question_1:
+    '#type': webform_wizard_page
+    '#title': 'Question 1'
+    1_since_the_start_of_parc_which_activities_have_progressed_towar:
+      '#type': webform_checkboxes_other
+      '#title': '1. Since the start of PARC, which activities have progressed towards sustainability at national or regional level? '
+      '#options':
+        'Human biomonitoring (HBM) ': 'Human biomonitoring (HBM) '
+        'Environmental monitoring (including non-targeted screening (NTS) and areas not yet covered by regulatory frameworks)': 'Environmental monitoring (including non-targeted screening (NTS) and areas not yet covered by regulatory frameworks)'
+        'Early Warning System (EWS) for emerging risks (a system for identifying and communicating early signals of emerging chemical risks) ': 'Early Warning System (EWS) for emerging risks (a system for identifying and communicating early signals of emerging chemical risks) '
+        'Hazard assessment (including NAM development) ': 'Hazard assessment (including NAM development) '
+        'Integrated risk assessment and modelling (including Next-Generation Risk Assessment approaches) ': 'Integrated risk assessment and modelling (including Next-Generation Risk Assessment approaches) '
+        'Safe and Sustainable by Design (SSbD) (including tools and models supporting application) ': 'Safe and Sustainable by Design (SSbD) (including tools and models supporting application) '
+        'Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows) ': 'Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows) '
+        'Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes) ': 'Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes) '
+        'Training, capacity building, and knowledge transfer ': 'Training, capacity building, and knowledge transfer '
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
+  question_2:
+    '#type': webform_wizard_page
+    '#title': 'Question 2'
+    question_2_intro:
+      '#type': webform_markup
+      '#markup': |-
+        <p>2. Please indicate the current level of implementation for each of the following activities in your country or region.</p>
+        <p><strong>Definitions:</strong></p>
+        <ul>
+          <li><strong>Not started</strong><br>No activities, initiatives, or concrete plans are in place.</li>
+          <li><strong>Early development</strong><br>The activity is in the planning, design, or pilot phase (e.g. feasibility studies, initial discussions, small-scale testing).</li>
+          <li><strong>Partially implemented</strong><br>The activity is already in use, but not yet fully established, scaled up, or systematically implemented (e.g. limited coverage, fragmented implementation, or temporary arrangements).</li>
+          <li><strong>Fully implemented / operational</strong><br>The activity is fully functioning and regularly carried out, but long-term sustainability (e.g. stable funding, institutionalisation) may not yet be ensured.</li>
+        </ul>
+    2_1_human_biomonitoring_hbm_general_population:
+      '#type': radios
+      '#title': '2.1. Human biomonitoring (HBM) – general population'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_1_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_2_human_biomonitoring_hbm_occupational:
+      '#type': radios
+      '#title': '2.2. Human biomonitoring (HBM) – occupational'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_2_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_3_human_biomonitoring_hbm_targeted_hot_spot_studies:
+      '#type': radios
+      '#title': '2.3. Human biomonitoring (HBM) – targeted/hot spot studies'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_3_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_4_environmental_and_exposure_monitoring_indoor_air_quality:
+      '#type': radios
+      '#title': '2.4. Environmental and exposure monitoring (areas not yet covered by regulatory frameworks) – Indoor air quality'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_4_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_5_environmental_and_exposure_monitoring_water:
+      '#type': radios
+      '#title': '2.5. Environmental and exposure monitoring (areas not yet covered by regulatory frameworks) – Water'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_5_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_6_environmental_and_exposure_monitoring_soil_and_sediment:
+      '#type': radios
+      '#title': '2.6. Environmental and exposure monitoring (areas not yet covered by regulatory frameworks) – Soil and sediment'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_6_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_7_environmental_and_exposure_monitoring_biota:
+      '#type': radios
+      '#title': '2.7. Environmental and exposure monitoring (areas not yet covered by regulatory frameworks) – Biota'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_7_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_8_environmental_and_exposure_monitoring_consumer_articles:
+      '#type': radios
+      '#title': '2.8. Environmental and exposure monitoring (areas not yet covered by regulatory frameworks) – Consumer articles'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_8_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_9_environmental_and_exposure_monitoring_food_and_feed:
+      '#type': radios
+      '#title': '2.9. Environmental and exposure monitoring (areas not yet covered by regulatory frameworks) – Food and feed'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_9_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_10_environmental_and_exposure_monitoring_ecotoxicology:
+      '#type': radios
+      '#title': '2.10. Environmental and exposure monitoring (areas not yet covered by regulatory frameworks) – (Eco)toxicology'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_10_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_11_early_warning_system_for_emerging_risks:
+      '#type': radios
+      '#title': '2.11. Early Warning System for emerging risks'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_11_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_12_hazard_assessment_including_nam_development:
+      '#type': radios
+      '#title': '2.12. Hazard assessment (including NAM development)'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_12_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_13_integrated_risk_assessment_and_modelling_including_ngra:
+      '#type': radios
+      '#title': '2.13. Integrated risk assessment and modelling (including NGRA approaches)'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_13_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_14_safe_and_sustainable_by_design:
+      '#type': radios
+      '#title': '2.14. Safe and Sustainable by Design (including tools and models supporting application)'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_14_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_15_data_infrastructure_and_fair_data:
+      '#type': radios
+      '#title': '2.15. Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows)'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_15_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_16_coordination_mechanisms_and_networks:
+      '#type': radios
+      '#title': '2.16. Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes)'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_16_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_17_training_capacity_building_and_knowledge_transfer:
+      '#type': radios
+      '#title': '2.17. Training, capacity building, and knowledge transfer'
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+      '#required': true
+    2_17_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+    2_18_other_activity_title:
+      '#type': webform_markup
+      '#markup': '<p class="label">2.18. Other activity related to chemical risk assessment, if applicable</p><p>Please specify the activity or topic that is not covered by the previous questions.</p>'
+    2_18_name_of_the_activity:
+      '#type': textfield
+      '#title': 'Name of the activity:'
+    2_18_other_activity_related_to_chemical_risk_assessment:
+      '#type': radios
+      '#title': '2.18. Other activity related to chemical risk assessment, if applicable'
+      '#title_display': invisible
+      '#options':
+        'Not started': 'Not started'
+        'Early development': 'Early development'
+        'Partially implemented': 'Partially implemented'
+        'Fully implemented / operational': 'Fully implemented / operational'
+        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Already sustainable before PARC': 'Already sustainable before PARC'
+        'Do not know': 'Do not know'
+    2_18_describe_recent_changes_or_developments:
+      '#type': textarea
+      '#title': 'Describe recent changes or developments, if applicable.'
+  question_3:
+    '#type': webform_wizard_page
+    '#title': 'Question 3'
+    question_3_intro:
+      '#type': webform_markup
+      '#markup': '<p>3. Has PARC contributed to progress in the following activities at national level?</p>'
+    3_1_human_biomonitoring_hbm_general_population:
+      '#type': radios
+      '#title': '3.1. Human biomonitoring (HBM) – general population'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_1_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_1_human_biomonitoring_hbm_general_population"]':
+            value: 'Yes'
+    3_2_human_biomonitoring_hbm_occupational:
+      '#type': radios
+      '#title': '3.2. Human biomonitoring (HBM) – occupational'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_2_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_2_human_biomonitoring_hbm_occupational"]':
+            value: 'Yes'
+    3_3_human_biomonitoring_hbm_targeted_hot_spot_studies:
+      '#type': radios
+      '#title': '3.3. Human biomonitoring (HBM) – targeted/hot spot studies'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_3_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_3_human_biomonitoring_hbm_targeted_hot_spot_studies"]':
+            value: 'Yes'
+    3_4_environmental_monitoring:
+      '#type': radios
+      '#title': '3.4. Environmental monitoring (areas not yet covered by regulatory frameworks)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_4_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_4_environmental_monitoring"]':
+            value: 'Yes'
+    3_5_early_warning_system_for_emerging_risks:
+      '#type': radios
+      '#title': '3.5. Early Warning System for emerging risks'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_5_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_5_early_warning_system_for_emerging_risks"]':
+            value: 'Yes'
+    3_6_hazard_assessment_including_nam_development:
+      '#type': radios
+      '#title': '3.6. Hazard assessment (including NAM development)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_6_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_6_hazard_assessment_including_nam_development"]':
+            value: 'Yes'
+    3_7_integrated_risk_assessment_and_modelling_including_ngra:
+      '#type': radios
+      '#title': '3.7. Integrated risk assessment and modelling (including NGRA approaches)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_7_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_7_integrated_risk_assessment_and_modelling_including_ngra"]':
+            value: 'Yes'
+    3_8_safe_and_sustainable_by_design:
+      '#type': radios
+      '#title': '3.8. Safe and Sustainable by Design (including tools and models supporting application)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_8_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_8_safe_and_sustainable_by_design"]':
+            value: 'Yes'
+    3_9_data_infrastructure_and_fair_data:
+      '#type': radios
+      '#title': '3.9. Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_9_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_9_data_infrastructure_and_fair_data"]':
+            value: 'Yes'
+    3_10_coordination_mechanisms_and_networks:
+      '#type': radios
+      '#title': '3.10. Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_10_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_10_coordination_mechanisms_and_networks"]':
+            value: 'Yes'
+    3_11_training_capacity_building_and_knowledge_transfer:
+      '#type': radios
+      '#title': '3.11. Training, capacity building, and knowledge transfer'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+      '#required': true
+    3_11_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_11_training_capacity_building_and_knowledge_transfer"]':
+            value: 'Yes'
+    3_12_other_activity_title:
+      '#type': webform_markup
+      '#markup': '<p class="label">3.12. Other activity related to chemical risk assessment, if applicable</p><p>Please specify the activity or topic that is not covered by the previous questions.</p>'
+    3_12_name_of_the_activity:
+      '#type': textfield
+      '#title': 'Name of the activity:'
+    3_12_other_activity_related_to_chemical_risk_assessment:
+      '#type': radios
+      '#title': '3.12. Other activity related to chemical risk assessment, if applicable'
+      '#title_display': invisible
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'Do not know': 'Do not know'
+    3_12_describe_parc_contribution:
+      '#type': textarea
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#states':
+        visible:
+          ':input[name="3_12_other_activity_related_to_chemical_risk_assessment"]':
+            value: 'Yes'
+  question_4:
+    '#type': webform_wizard_page
+    '#title': 'Question 4'
+    question_4_intro:
+      '#type': webform_markup
+      '#markup': '<p>4. What are the main barriers to achieving sustainability at national level?</p>'
+    4_1_human_biomonitoring_hbm_general_population:
+      '#type': radios
+      '#title': '4.1. Human biomonitoring (HBM) – general population'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_1_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_1_human_biomonitoring_hbm_general_population"]':
+            value: 'Other (please specify)'
+    4_2_human_biomonitoring_hbm_occupational:
+      '#type': radios
+      '#title': '4.2. Human biomonitoring (HBM) – occupational'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_2_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_2_human_biomonitoring_hbm_occupational"]':
+            value: 'Other (please specify)'
+    4_3_human_biomonitoring_hbm_targeted_hot_spot_studies:
+      '#type': radios
+      '#title': '4.3. Human biomonitoring (HBM) – targeted/hot spot studies'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_3_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_3_human_biomonitoring_hbm_targeted_hot_spot_studies"]':
+            value: 'Other (please specify)'
+    4_4_environmental_monitoring:
+      '#type': radios
+      '#title': '4.4. Environmental monitoring (including areas not yet covered by regulatory frameworks)'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_4_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_4_environmental_monitoring"]':
+            value: 'Other (please specify)'
+    4_5_early_warning_system_for_emerging_risks:
+      '#type': radios
+      '#title': '4.5. Early Warning System for emerging risks'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_5_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_5_early_warning_system_for_emerging_risks"]':
+            value: 'Other (please specify)'
+    4_6_hazard_assessment_including_nam_development:
+      '#type': radios
+      '#title': '4.6. Hazard assessment (including NAM development)'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_6_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_6_hazard_assessment_including_nam_development"]':
+            value: 'Other (please specify)'
+    4_7_integrated_risk_assessment_and_modelling_including_ngra:
+      '#type': radios
+      '#title': '4.7. Integrated risk assessment and modelling (including NGRA approaches)'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_7_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_7_integrated_risk_assessment_and_modelling_including_ngra"]':
+            value: 'Other (please specify)'
+    4_8_safe_and_sustainable_by_design:
+      '#type': radios
+      '#title': '4.8. Safe and Sustainable by Design (including tools and models supporting application)'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_8_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_8_safe_and_sustainable_by_design"]':
+            value: 'Other (please specify)'
+    4_9_data_infrastructure_and_fair_data:
+      '#type': radios
+      '#title': '4.9. Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows)'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_9_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_9_data_infrastructure_and_fair_data"]':
+            value: 'Other (please specify)'
+    4_10_coordination_mechanisms_and_networks:
+      '#type': radios
+      '#title': '4.10. Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes)'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_10_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_10_coordination_mechanisms_and_networks"]':
+            value: 'Other (please specify)'
+    4_11_training_capacity_building_and_knowledge_transfer:
+      '#type': radios
+      '#title': '4.11. Training, capacity building, and knowledge transfer'
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_11_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_11_training_capacity_building_and_knowledge_transfer"]':
+            value: 'Other (please specify)'
+    4_12_other_activity_title:
+      '#type': webform_markup
+      '#markup': '<p class="label">4.12. Other activity related to chemical risk assessment, if applicable</p><p>Please specify the activity or topic that is not covered by the previous questions.</p>'
+    4_12_name_of_the_activity:
+      '#type': textfield
+      '#title': 'Name of the activity:'
+    4_12_other_activity_related_to_chemical_risk_assessment:
+      '#type': radios
+      '#title': '4.12. Other activity related to chemical risk assessment, if applicable'
+      '#title_display': invisible
+      '#options':
+        'Lack of funding': 'Lack of funding'
+        'Lack of political support': 'Lack of political support'
+        'Limited institutional capacity': 'Limited institutional capacity'
+        'Other (please specify)': 'Other (please specify)'
+        'Do not know': 'Do not know'
+    4_12_other_please_specify:
+      '#type': textarea
+      '#title': 'Other (please specify)'
+      '#states':
+        visible:
+          ':input[name="4_12_other_activity_related_to_chemical_risk_assessment"]':
+            value: 'Other (please specify)'
 css: ''
 javascript: ''
 settings:
@@ -54,6 +781,7 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_file_limit_message: ''
   form_attributes: {  }
   form_method: ''
   form_action: ''
