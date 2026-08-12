@@ -1,0 +1,17 @@
+parc_mind_map.data:
+  path: '/api/mind-map/data.json'
+  defaults:
+    _controller: '\Drupal\parc_mind_map\Controller\MindMapController::data'
+    _title: 'Mind map data'
+  methods: [GET]
+  requirements:
+    _permission: 'access content'
+
+parc_mind_map.edges:
+  path: '/api/mind-map/edges.json'
+  defaults:
+    _controller: '\Drupal\parc_mind_map\Controller\MindMapController::edges'
+    _title: 'Mind map edges'
+  methods: [GET]
+  requirements:
+    _permission: 'access content'
