@@ -326,6 +326,16 @@ b--icon-banner:
     component:
       css/components/block/icon-banner/style.css: {}
 
+b--hero-video:
+  css:
+    component:
+      css/components/block/hero-video/style.css: {}
+  js:
+    templates/components/block/hero-video/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 # Paragraph.
 p--svg-text:
   css:

@@ -1,0 +1,20 @@
+uuid: b4cbf681-02c9-4988-bc7f-746418be2fe9
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+    - media
+id: block_content.field_video_portrait
+field_name: field_video_portrait
+entity_type: block_content
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

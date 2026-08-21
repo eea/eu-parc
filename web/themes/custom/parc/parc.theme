@@ -12,6 +12,7 @@ use Drupal\parc\ParcThemeProcess;
 use Drupal\taxonomy\TermInterface;
 use Drupal\facets\FacetInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Markup;
 use Drupal\media\MediaInterface;
 use Drupal\Core\Url;
@@ -785,6 +786,78 @@ function parc_preprocess_block__block_content__carousel(array &$variables) {
   /** @var \Drupal\block_content\Entity\BlockContent $block */
   $block = $variables['content']['#block_content'];
   $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block__block_content__hero_video.
+ */
+function parc_preprocess_block__block_content__hero_video(array &$variables) {
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['content']['#block_content'] ?? NULL;
+  if (!$block) {
+    return;
+  }
+
+  // The fields are hidden in the view display: the template builds the <video>
+  // element itself, so all it needs from here is the file URLs.
+  $metadata = CacheableMetadata::createFromRenderArray($variables);
+
+  $landscape = parc_hero_video_source($block, 'field_video_landscape', $metadata);
+  $portrait = parc_hero_video_source($block, 'field_video_portrait', $metadata);
+
+  $metadata->applyTo($variables);
+
+  if (!$landscape) {
+    return;
+  }
+
+  $variables['hero_video'] = [
+    'landscape' => $landscape,
+    // Falling back to the landscape cut keeps the hero working when only one
+    // file has been supplied.
+    'portrait' => $portrait ?: $landscape,
+  ];
+}
+
+/**
+ * Resolves a media reference field to the URL of the video file behind it.
+ *
+ * @param \Drupal\block_content\BlockContentInterface $block
+ *   Block holding the reference.
+ * @param string $field_name
+ *   Name of the media reference field.
+ * @param \Drupal\Core\Cache\CacheableMetadata $metadata
+ *   Collects the media and file cache tags, so replacing the video in the
+ *   media library invalidates the rendered page.
+ *
+ * @return string|null
+ *   The file URL, or NULL when the field is empty or points at a media item
+ *   with no file.
+ */
+function parc_hero_video_source($block, $field_name, CacheableMetadata $metadata) {
+  if (!$block->hasField($field_name) || $block->get($field_name)->isEmpty()) {
+    return NULL;
+  }
+
+  $media = $block->get($field_name)->entity;
+  if (!$media instanceof MediaInterface) {
+    return NULL;
+  }
+  $metadata->addCacheableDependency($media);
+
+  $source_field = $media->getSource()
+    ->getConfiguration()['source_field'] ?? NULL;
+  if (!$source_field || !$media->hasField($source_field) || $media->get($source_field)->isEmpty()) {
+    return NULL;
+  }
+
+  $file = $media->get($source_field)->entity;
+  if (!$file) {
+    return NULL;
+  }
+  $metadata->addCacheableDependency($file);
+
+  return $file->createFileUrl();
 }
 
 /**

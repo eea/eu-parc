@@ -12,9 +12,12 @@
 
 {% set header_attribute = create_attribute() %}
 
+{# On the front page the header sits on top of the grey hero section, so it
+   carries the same background until it sticks. #}
 {% set header_classes = [
   'sticky-top',
-  'bg-white',
+  is_front ? 'bg-gray' : 'bg-white',
+  is_front ? 'header--over-hero',
 ] %}
 
 <header{{header_attribute.setAttribute('id','header').addClass(header_classes)}}>

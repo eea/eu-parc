@@ -36,6 +36,17 @@ header {
   }
 }
 
+/* Front page only: the header blends into the grey hero section while the page
+   sits at the top, then goes back to white once it detaches and starts
+   floating over the white content below. */
+.header--over-hero {
+  transition: 0.3s opacity linear, 0.3s background-color linear;
+
+  &.h-sticky {
+    background-color: var(--c-white) !important;
+  }
+}
+
 .h-sticky {
   margin-bottom: calc(96px - 68px);
 

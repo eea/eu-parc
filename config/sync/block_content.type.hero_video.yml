@@ -1,0 +1,8 @@
+uuid: 7a9635eb-206e-4c9f-ad2f-48ec7d1d615e
+langcode: en
+status: true
+dependencies: {  }
+id: hero_video
+label: 'Hero video'
+revision: false
+description: 'Full width video for the top of the front page. Supply a landscape and a portrait cut; the one matching the visitor''s screen is the only one downloaded.'
