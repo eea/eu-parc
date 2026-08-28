@@ -1,0 +1,29 @@
+uuid: f93dcda1-c48c-4b84-86b9-f4ed8479f858
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_video
+    - field.storage.block_content.field_video_portrait
+    - media.type.video
+id: block_content.hero_video.field_video_portrait
+field_name: field_video_portrait
+entity_type: block_content
+bundle: hero_video
+label: 'Portrait video'
+description: 'Shown on screens narrower than 768px. Use a 9:16 cut. Optional: without it the landscape cut is used everywhere.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

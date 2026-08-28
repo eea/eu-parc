@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Parc override to display the hero video block.
+ *
+ * The video fields are hidden in the view display; the URLs arrive as
+ * hero_video.landscape / hero_video.portrait instead.
+ *
+ * @see parc_preprocess_block__block_content__hero_video()
+ */
+#}
+
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {% if hero_video.landscape %}
+      {% include '@parc/components/block/hero-video/hero-video.html.twig' %}
+    {% endif %}
+  {% endblock %}
+</div>

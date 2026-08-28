@@ -1,0 +1,17 @@
+uuid: 7fee4aa1-b45e-4013-810a-73677aec3b95
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_video
+    - field.field.block_content.hero_video.field_video_landscape
+    - field.field.block_content.hero_video.field_video_portrait
+id: block_content.hero_video.default
+targetEntityType: block_content
+bundle: hero_video
+mode: default
+content: {  }
+hidden:
+  field_video_landscape: true
+  field_video_portrait: true
+  search_api_excerpt: true
