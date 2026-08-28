@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Parc Component - full width responsive video.
+ *
+ * The landscape and the portrait cut are picked client side, so only one of
+ * the two files is ever downloaded.
+ *
+ * Available variables:
+ * - responsive_video.landscape: URL of the landscape cut.
+ * - responsive_video.portrait: URL of the portrait cut.
+ * - responsive_video.poster: URL of the poster image (optional).
+ *
+ * @see parc_preprocess_block__block_content__responsive_video()
+ */
+#}
+
+{{ attach_library('parc/b--responsive-video') }}
+
+<div class="responsive-video">
+  <div class="responsive-video__inner">
+    <video
+      class="responsive-video__player"
+      data-responsive-video
+      data-src-landscape="{{ responsive_video.landscape }}"
+      data-src-portrait="{{ responsive_video.portrait }}"
+      {% if responsive_video.poster %}poster="{{ responsive_video.poster }}"{% endif %}
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      disablepictureinpicture
+      aria-label="{{ 'PARC trailer'|t }}"></video>
+
+    <noscript>
+      <video class="responsive-video__player" controls muted loop playsinline preload="metadata">
+        <source src="{{ responsive_video.landscape }}" type="video/mp4">
+      </video>
+    </noscript>
+
+    <button type="button" class="responsive-video__sound" data-responsive-video-sound aria-pressed="false">
+      <span class="responsive-video__sound-label visually-hidden" data-responsive-video-sound-label>{{ 'Turn sound on'|t }}</span>
+
+      <svg class="responsive-video__sound-icon responsive-video__sound-icon--off" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M11 5 6 9H2v6h4l5 4V5Z" fill="currentColor"/>
+        <path d="m16 9 5 6m0-6-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+
+      <svg class="responsive-video__sound-icon responsive-video__sound-icon--on" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M11 5 6 9H2v6h4l5 4V5Z" fill="currentColor"/>
+        <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</div>

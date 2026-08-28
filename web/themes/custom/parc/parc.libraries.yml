@@ -326,12 +326,12 @@ b--icon-banner:
     component:
       css/components/block/icon-banner/style.css: {}
 
-b--hero-video:
+b--responsive-video:
   css:
     component:
-      css/components/block/hero-video/style.css: {}
+      css/components/block/responsive-video/style.css: {}
   js:
-    templates/components/block/hero-video/script.js: {}
+    templates/components/block/responsive-video/script.js: {}
   dependencies:
     - core/drupal
     - core/once

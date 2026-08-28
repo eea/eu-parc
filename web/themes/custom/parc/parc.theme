@@ -789,9 +789,9 @@ function parc_preprocess_block__block_content__carousel(array &$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for block__block_content__hero_video.
+ * Implements hook_preprocess_HOOK() for block__block_content__responsive_video.
  */
-function parc_preprocess_block__block_content__hero_video(array &$variables) {
+function parc_preprocess_block__block_content__responsive_video(array &$variables) {
   /** @var \Drupal\block_content\Entity\BlockContent $block */
   $block = $variables['content']['#block_content'] ?? NULL;
   if (!$block) {
@@ -802,8 +802,8 @@ function parc_preprocess_block__block_content__hero_video(array &$variables) {
   // element itself, so all it needs from here is the file URLs.
   $metadata = CacheableMetadata::createFromRenderArray($variables);
 
-  $landscape = parc_hero_video_source($block, 'field_video_landscape', $metadata);
-  $portrait = parc_hero_video_source($block, 'field_video_portrait', $metadata);
+  $landscape = parc_responsive_video_source($block, 'field_video_landscape', $metadata);
+  $portrait = parc_responsive_video_source($block, 'field_video_portrait', $metadata);
 
   $metadata->applyTo($variables);
 
@@ -811,10 +811,8 @@ function parc_preprocess_block__block_content__hero_video(array &$variables) {
     return;
   }
 
-  $variables['hero_video'] = [
+  $variables['responsive_video'] = [
     'landscape' => $landscape,
-    // Falling back to the landscape cut keeps the hero working when only one
-    // file has been supplied.
     'portrait' => $portrait ?: $landscape,
   ];
 }
@@ -834,7 +832,7 @@ function parc_preprocess_block__block_content__hero_video(array &$variables) {
  *   The file URL, or NULL when the field is empty or points at a media item
  *   with no file.
  */
-function parc_hero_video_source($block, $field_name, CacheableMetadata $metadata) {
+function parc_responsive_video_source($block, $field_name, CacheableMetadata $metadata) {
   if (!$block->hasField($field_name) || $block->get($field_name)->isEmpty()) {
     return NULL;
   }
