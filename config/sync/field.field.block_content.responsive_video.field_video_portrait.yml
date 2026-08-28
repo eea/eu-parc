@@ -3,13 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.hero_video
+    - block_content.type.responsive_video
     - field.storage.block_content.field_video_portrait
     - media.type.video
-id: block_content.hero_video.field_video_portrait
+id: block_content.responsive_video.field_video_portrait
 field_name: field_video_portrait
 entity_type: block_content
-bundle: hero_video
+bundle: responsive_video
 label: 'Portrait video'
 description: 'Shown on screens narrower than 768px. Use a 9:16 cut. Optional: without it the landscape cut is used everywhere.'
 required: false

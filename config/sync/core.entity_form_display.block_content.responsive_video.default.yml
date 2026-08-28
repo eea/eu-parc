@@ -3,14 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.hero_video
-    - field.field.block_content.hero_video.field_video_landscape
-    - field.field.block_content.hero_video.field_video_portrait
+    - block_content.type.responsive_video
+    - field.field.block_content.responsive_video.field_video_landscape
+    - field.field.block_content.responsive_video.field_video_portrait
   module:
     - media_library
-id: block_content.hero_video.default
+id: block_content.responsive_video.default
 targetEntityType: block_content
-bundle: hero_video
+bundle: responsive_video
 mode: default
 content:
   field_video_landscape:
