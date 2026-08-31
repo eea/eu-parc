@@ -326,6 +326,16 @@ b--icon-banner:
     component:
       css/components/block/icon-banner/style.css: {}
 
+b--responsive-video:
+  css:
+    component:
+      css/components/block/responsive-video/style.css: {}
+  js:
+    templates/components/block/responsive-video/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 # Paragraph.
 p--svg-text:
   css:
