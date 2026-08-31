@@ -8,7 +8,7 @@ third_party_settings:
   menu_ui:
     available_menus:
       - main
-    parent: 'main:menu_link_content:cd834368-14f3-4383-b5d9-fd0f3f8d5986'
+    parent: 'main:'
 _core:
   default_config_hash: AeW1SEDgb1OTQACAWGhzvMknMYAJlcZu0jljfeU3oso
 name: News

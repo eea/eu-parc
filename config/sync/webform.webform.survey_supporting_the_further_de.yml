@@ -1,0 +1,635 @@
+uuid: 2910ca9d-b180-44d1-81b1-b8434e04c12a
+langcode: en
+status: closed
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 6
+template: false
+archive: false
+id: survey_supporting_the_further_de
+title: 'SURVEY SUPPORTING THE FURTHER DEVELOPMENT AND IMPLEMENTATION OF THE PARC PHASING-OUT STRATEGY AND ASSESSING PARTNERS’ READINESS FOR SUSTAINABILITY'
+description: ''
+categories: {  }
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Consent and context'
+    description:
+      '#type': checkbox
+      '#title': 'I confirm that I have read and I accept the information stated above'
+      '#description': '<h5><strong>SURVEY SUPPORTING THE FURTHER DEVELOPMENT AND IMPLEMENTATION OF THE PARC PHASING-OUT STRATEGY AND ASSESSING PARTNERS’ READINESS FOR SUSTAINABILITY</strong></h5><p>&nbsp;</p><p><span>This survey is carried out under Task 2.3 "Sustainability" as part of the development of the PARC exit strategy. It is addressed to all PARC institutional partners to support the further development and implementation of the PARC Phasing-out strategy and assess partners’ readiness for sustainability.</span></p><p><span>The survey has two sections:&nbsp;</span></p><ul><li data-list-item-id="e0ea69ac1cc4893386f29b506cf6a5717"><span>The first section focuses on the <strong>phasing-out strategy</strong> to assess the feasibility, level of ambition, and potential implementation pathways of PARC phasing-out scenarios at organisational level.&nbsp;</span></li></ul><p><span>As a reminder, in order to respond to the EC requirement for a phasing out strategy, three phasing out scenarios, reflecting different levels of ambition and integration (and budget), are proposed to be investigated: from (i) a comprehensive continuation and expansion model (scenario A) in which further work on what was already initiated in each field of activity of PARC depends on identified needs, varied funding streams and budgets available, to (ii) a middle scenario (scenario B) involving (adapted) continuation based primarily on public funding from the participating countries, and organisations to (iii) a model focused on solely preserving core achievements and ensuring the legacy of PARC (scenario C). This strategy does not engage the responsibility of GB members and does not constitute a formal commitment by national governments or their ministries. The strategy is a living document and will be reviewed and refined further, based on possible future developments regarding European and national commitments. The version dated 06/05/2026 endorsed by the GB is a first basis, given the uncertainties surrounding the future of European funding programmes as well as funding and priorities at national level. See this version </span><a href="https://www.eu-parc.eu/sites/default/files/2026-08/PARC phasing-out strategy_V1.0_forGBendorsement_June 2026_clean.pdf"><span>here</span></a><span>.</span></p><ul><li data-list-item-id="e50343eada2022930ee7f2669eb7eee81"><span>The second section investigates certain <strong>“One Substance, One Assessment (OSOA)”-related aspects</strong> to assess the readiness to support the implementation of the OSOA legislation.</span></li></ul><p style="margin-bottom:5px;"><span>''One substance – one assessment'' (OSOA) refers to a legislative framework of the European Union (EU) designed to enable more coordinated, efficient and transparent chemical safety assessments. The framework aims to facilitate shared access to reliable, high-quality data among relevant authorities, strengthen scientific cooperation on chemicals, improve the EU’s ability to anticipate and manage chemical risks. OSOA applies to a wide range of products regulated at EU level, including biocides, pesticides, food and toys. The legislative framework entered into force on 1 January 2026. The package consists of three legislative acts:&nbsp;</span></p><ul><li data-list-item-id="e2f4ae1e0f7fd931a3b500e0ac184575e"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502455"><span>A Regulation establishing a common data platform on chemicals and a monitoring and outlook framework for chemicals</span></a></li><li data-list-item-id="ea38d45db6a381d405bb413baf682413b"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502457"><span>A Regulation re-attributing technical tasks and improving cooperation among EU agencies</span></a></li><li data-list-item-id="e3720b09cabbf4749de07f98df14cdfda"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502456"><span>A Directive on the re-attribution of technical tasks to the European Chemicals Agency (ECHA)</span></a></li></ul><p><span>Although OSOA establishes a legal framework, its successful implementation will rely on effective sample collection, harmonised methodologies that are quality assured and controlled and operational experience, including through collaborative initiatives such as PARC.</span></p><p><span>The mapping of these results will feed into discussions with the Governing Board.&nbsp;</span></p><p><span>We kindly ask each PARC institutional partner to coordinate internally the completion of this survey. One consolidated response representing the partner''s perspective is expected from each organisation. <strong>The deadline for completing the survey is 30 November 2026.</strong></span></p><p><span>The collected information will be treated confidentially in accordance with the requirements of the General Data Protection Regulation (GDPR). Data obtained from this survey will be stored by the National Center for Public Health and Pharmacy (NCPHP) during the implementation of the PARC project and for up to five years after its completion.The data will be processed by the Task 2.3 partners for the purposes described above.</span></p><p><span>Thank you for taking the time to complete this survey.</span></p><p>If you have any questions, please contact us.</p><p>Task 2.3 Co-leaders</p><ul><li data-list-item-id="e0595e2a1cd3449c2b592d9928ddd70f8">Tamás Szigeti (<a href="mailto:szigeti.tamas@nngyk.gov.hu">szigeti.tamas@nngyk.gov.hu</a>)</li><li data-list-item-id="e31c282071057c9047fabc76c72b0e150">Adrienne Pittman (<a href="mailto:adrienne.pittman@anses.fr">adrienne.pittman@anses.fr</a>) &nbsp;</li><li data-list-item-id="ef2ce6d215eedc39907641a830fbefb3f">Robert Barouki (<a href="mailto:robert.barouki@parisdescartes.fr">robert.barouki@parisdescartes.fr</a>)</li></ul>'
+      '#description_display': before
+      '#required': true
+  general_information:
+    '#type': webform_wizard_page
+    '#title': 'General information'
+    county:
+      '#type': textfield
+      '#title': 'Your name:'
+      '#size': 1
+      '#required': true
+    name_of_your_institute:
+      '#type': textfield
+      '#title': 'Name of your institute:'
+      '#required': true
+    country:
+      '#type': select
+      '#title': 'Country:'
+      '#options':
+        Austria: Austria
+        Belgium: Belgium
+        Croatia: Croatia
+        Cyprus: Cyprus
+        'Czech Republic': 'Czech Republic'
+        Denmark: Denmark
+        Estonia: Estonia
+        Finland: Finland
+        France: France
+        Germany: Germany
+        Greece: Greece
+        Hungary: Hungary
+        Iceland: Iceland
+        Ireland: Ireland
+        Israel: Israel
+        Italy: Italy
+        Latvia: Latvia
+        Lithuania: Lithuania
+        Luxembourg: Luxembourg
+        Montenegro: Montenegro
+        Netherlands: Netherlands
+        Norway: Norway
+        Poland: Poland
+        Portugal: Portugal
+        Slovakia: Slovakia
+        Slovenia: Slovenia
+        Spain: Spain
+        Sweden: Sweden
+        Switzerland: Switzerland
+        'United Kingdom': 'United Kingdom'
+      '#required': true
+    your_e_mail_address:
+      '#type': textfield
+      '#title': 'Your e-mail address:'
+      '#required': true
+  section_1_organisational_feasibility_and_implementation_of_parc:
+    '#type': webform_wizard_page
+    '#title': 'Section 1: Organisational feasibility and implementation of PARC phasing-out scenarios'
+    question_1_intro:
+      '#type': webform_markup
+      '#markup': '<p><strong>1. For each of the following domains, please indicate which scenario (A, B, or C) you consider the most feasible for your organisation’s contribution after the end of PARC / EU framework programme funding.</strong></p><p style="margin-bottom:10px;">Scenarios:</p><ul><li data-list-item-id="efd8035e73be99e064ae40b40368b7a81">Scenario A: Expansion through multi-modal funding and involvement of a variety of actors</li><li data-list-item-id="e448b8899a22b5638b59c8b39c376a04d">Scenario B: Continuation through public funding from the partners and network of chemical risk assessors</li><li data-list-item-id="ec91ac3f99a824c968e778757f5723b12">Scenario C:<strong> </strong>Preserving core achievements and ensuring the legacy with limited public funding</li></ul><p>You may select "None of these" option if contributing to the preservation of core achievements and ensuring the legacy is not feasible for your organisation, or if your organisation is not involved in this PARC activity and no future contribution is planned.</p>'
+    1_1_human_biomonitoring_hbm:
+      '#type': radios
+      '#title': '1.1. Human biomonitoring (HBM)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_2_environmental_monitoring_areas_not_yet_covered_by_regulatory:
+      '#type': radios
+      '#title': '1.2. Environmental monitoring (areas not yet covered by regulatory frameworks)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_3_early_warning_system_for_emerging_risks_a_system_for_identif:
+      '#type': radios
+      '#title': '1.3. Early Warning System for emerging risks (a system for identifying and communicating early signals of emerging chemical risks)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_4_hazard_assessment_including_nam_development:
+      '#type': radios
+      '#title': '1.4. Hazard assessment (including NAM development)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_5_integrated_risk_assessment_and_modelling_including_ngra_appr:
+      '#type': radios
+      '#title': '1.5. Integrated risk assessment and modelling (including NGRA approaches)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_6_safe_and_sustainable_by_design_including_tools_and_models_su:
+      '#type': radios
+      '#title': '1.6. Safe and Sustainable by Design (including tools and models supporting application)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_7_data_infrastructure_and_fair_data_including_data_storage_acc:
+      '#type': radios
+      '#title': '1.7. Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_8_coordination_mechanisms_and_networks_e_g_national_hub_scienc:
+      '#type': radios
+      '#title': '1.8. Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes)'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    1_9_training_capacity_building_and_knowledge_transfer:
+      '#type': radios
+      '#title': '1.9. Training, capacity building, and knowledge transfer'
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#required': true
+    markup:
+      '#type': webform_markup
+      '#markup': '<p class="label">1.10. Other activity related to chemical risk assessment, if applicable</p><p>Please specify the activity or topic that is not covered above.</p>'
+    1_10_name_of_the_activity:
+      '#type': textfield
+      '#title': 'Name of the activity:'
+    1_10_other_activity_related_to_chemical_risk_assessment_if_appli:
+      '#type': radios
+      '#title': '1.10. Other activity related to chemical risk assessment, if applicable'
+      '#title_display': invisible
+      '#options':
+        'Scenario A': 'Scenario A'
+        'Scenario B': 'Scenario B'
+        'Scenario C': 'Scenario C'
+        'None of these': 'None of these'
+        'Do not know': 'Do not know'
+      '#states':
+        visible:
+          ':input[name="1_10_name_of_the_activity"]':
+            filled: true
+    question_2_intro:
+      '#type': webform_markup
+      '#markup': '<p><strong>2. Based on your current understanding, what kind of contribution could your organisation provide to support PARC-related activities after the end of the project/EU framework programme funding? </strong><em>(Select all that apply)</em></p>'
+    2_1_human_biomonitoring_hbm:
+      '#type': webform_checkboxes_other
+      '#title': '2.1. Human biomonitoring (HBM)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': 'Other '
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_2_environmental_monitoring_areas_not_yet_covered_by_regulatory:
+      '#type': webform_checkboxes_other
+      '#title': '2.2. Environmental monitoring (areas not yet covered by regulatory frameworks)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_3_early_warning_system_for_emerging_risks_a_system_for_identif:
+      '#type': webform_checkboxes_other
+      '#title': '2.3. Early Warning System for emerging risks (a system for identifying and communicating early signals of emerging chemical risks)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_4_hazard_assessment_including_nam_development:
+      '#type': webform_checkboxes_other
+      '#title': '2.4. Hazard assessment (including NAM development)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_5_integrated_risk_assessment_and_modelling_including_ngra_appr:
+      '#type': webform_checkboxes_other
+      '#title': '2.5. Integrated risk assessment and modelling (including NGRA approaches)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_6_safe_and_sustainable_by_design_including_tools_and_models_su:
+      '#type': webform_checkboxes_other
+      '#title': '2.6. Safe and Sustainable by Design (including tools and models supporting application)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_7_data_infrastructure_and_fair_data_including_data_storage_acc:
+      '#type': webform_checkboxes_other
+      '#title': '2.7. Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_8_coordination_mechanisms_and_networks_e_g_national_hub_scienc:
+      '#type': webform_checkboxes_other
+      '#title': '2.8. Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes)'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    2_9_training_capacity_building_and_knowledge_transfer:
+      '#type': webform_checkboxes_other
+      '#title': '2.9. Training, capacity building, and knowledge transfer'
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#required': true
+    markup_01:
+      '#type': webform_markup
+      '#markup': '<p class="label">2.10. Other activity related to chemical risk assessment, if applicable</p><p>Please specify the activity or topic that is not covered above.</p>'
+    2_10_name_of_the_activity:
+      '#type': textfield
+      '#title': 'Name of the activity:'
+    2_10_other_activity_related_to_chemical_risk_assessment_if_appli:
+      '#type': webform_checkboxes_other
+      '#title': '2.10. Other activity related to chemical risk assessment, if applicable'
+      '#title_display': invisible
+      '#options':
+        'No commitment': 'No commitment'
+        'In-kind contribution (e.g. staff time, expertise)': 'In-kind contribution (e.g. staff time, expertise)'
+        'Data provision (e.g. HBM, environmental monitoring, risk assessment data)': 'Data provision (e.g. HBM, environmental monitoring, risk assessment data)'
+        'Infrastructure and laboratory capacity': 'Infrastructure and laboratory capacity'
+        'Coordination role (e.g. leading or facilitating activities)': 'Coordination role (e.g. leading or facilitating activities)'
+        'Financial contribution': 'Financial contribution'
+        'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify and share any additional information or type of contribution'
+      '#states':
+        visible:
+          ':input[name="2_10_name_of_the_activity"]':
+            filled: true
+    question_3_intro:
+      '#type': webform_markup
+      '#markup': '<p><strong>3. In which of the following activities would your organisation be willing to maintain, further develop or expand core PARC achievements after the end of EU funding</strong></p><p>Please select one option for each applicable activity. Leave items blank if they are not applicable (e.g. if your organisation was not involved in that activity).</p><p>“Maintain” refers to continuing key outputs, capacities, or activities developed under PARC (e.g. use of tools and methods, operation of systems, data provision, or participation in networks), without significant additional resources or expansion. This may also include limited uptake of activities not previously implemented in your country, where feasible within existing or modest resources.</p><p>“Further develop or expand” refers to strengthening, broadening, or scaling up PARC-related activities, including the development of new capacities, wider implementation, increased coordination, or additional investments and resources.</p>'
+    3_1_human_biomonitoring_hbm_general_population:
+      '#type': select
+      '#title': '3.1. Human biomonitoring (HBM) – general population'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+    3_1_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': 'Section 2: Alignment with OSOA and readiness'
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': '12. What difficulties do you experience during risk communication? (Choose all that apply)'
+      '#options':
+        'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)': 'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)'
+        'Lack of support from colleagues / Few human resources devoted to risk communication': 'Lack of support from colleagues / Few human resources devoted to risk communication'
+        'Difficulties when collaborating with experts in chemical risks': 'Difficulties when collaborating with experts in chemical risks'
+        'Unclear distribution of roles': 'Unclear distribution of roles'
+        'Unclear distribution of responsibilities': 'Unclear distribution of responsibilities'
+        'Lack of budget allocated for communication': 'Lack of budget allocated for communication'
+        'Interference by risk managers with respect to when and what will be communicated': 'Interference by risk managers with respect to when and what will be communicated'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': '13. Do you have a metric system that shows if the message reaches the final target audience?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': '14. If you answered YES in previous question, which metric system do you use?'
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: 'Yes'
+      '#required': true
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': '15. Do you evaluate each time whether the chemical hazard/risk you communicate is influential/impactful or not? (Reaction from the public?)'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': '16. If you answered YES in previous question, how do you evaluate the impact?'
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: 'Yes'
+      '#required': true
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': '17. How much do you believe you influence the target audience?'
+      '#options':
+        'No influence at all': 'No influence at all'
+        'Little influence': 'Little influence'
+        'Medium Influence': 'Medium Influence'
+        'Considerable Influence': 'Considerable Influence'
+        'High influence': 'High influence'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': '18. In regard to the previous question, on what do you base your answer? (Choose all that apply)'
+      '#options':
+        'Reactions from the media (TV, radio, press)': 'Reactions from the media (TV, radio, press)'
+        'Publication / posts on internet sites, personal blogs, social media': 'Publication / posts on internet sites, personal blogs, social media'
+        'Monitoring with a questionnaire-based consumer survey': 'Monitoring with a questionnaire-based consumer survey'
+        ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)': ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': '19. When communicating a chemical hazard/ risk, do you usually...?'
+      '#options':
+        ' Create your own message': ' Create your own message'
+        'Transmit the message exactly as provided by the risk assessors': 'Transmit the message exactly as provided by the risk assessors'
+        ' Adapt or reframe messages from other sources': ' Adapt or reframe messages from other sources'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': '20. Have you ever personally experienced a health effect from exposure to a chemical hazard (e.g. contaminated food, cleaning products, pesticides)?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'I do not know': 'I do not know'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': '21. If yes, did this experience affect the way you communicate or think about that hazard?'
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: 'Yes'
+      '#required': true
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: ''
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

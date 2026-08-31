@@ -24,6 +24,58 @@ elements: |-
       '#title_display': inline
       '#description_display': before
       '#required': true
+  general_information:
+    '#type': webform_wizard_page
+    '#title': 'General information'
+    your_name:
+      '#type': textfield
+      '#title': 'Your name:'
+      '#required': true
+    name_of_your_institute:
+      '#type': textfield
+      '#title': 'Name of your institute:'
+      '#required': true
+    your_e_mail_address:
+      '#type': textfield
+      '#title': 'Your e-mail address:'
+      '#required': true
+    the_country_that_you_are_representing:
+      '#type': webform_select_other
+      '#title': 'The country that you are representing:'
+      '#options':
+        Austria: Austria
+        Belgium: Belgium
+        Croatia: Croatia
+        Cyprus: Cyprus
+        'Czech Republic': 'Czech Republic'
+        Denmark: Denmark
+        Estonia: Estonia
+        Finland: Finland
+        France: France
+        Germany: Germany
+        Greece: Greece
+        Hungary: Hungary
+        Iceland: Iceland
+        Ireland: Ireland
+        Israel: Israel
+        Italy: Italy
+        Latvia: Latvia
+        Lithuania: Lithuania
+        Luxembourg: Luxembourg
+        Montenegro: Montenegro
+        Netherlands: Netherlands
+        Norway: Norway
+        Poland: Poland
+        Portugal: Portugal
+        Slovakia: Slovakia
+        Slovenia: Slovenia
+        Spain: Spain
+        Sweden: Sweden
+        Switzerland: Switzerland
+        'United Kingdom': 'United Kingdom'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
+      '#required': true
   question_1:
     '#type': webform_wizard_page
     '#title': 'Question 1'
@@ -47,15 +99,7 @@ elements: |-
     '#title': 'Question 2'
     question_2_intro:
       '#type': webform_markup
-      '#markup': |-
-        <p>2. Please indicate the current level of implementation for each of the following activities in your country or region.</p>
-        <p><strong>Definitions:</strong></p>
-        <ul>
-          <li><strong>Not started</strong><br>No activities, initiatives, or concrete plans are in place.</li>
-          <li><strong>Early development</strong><br>The activity is in the planning, design, or pilot phase (e.g. feasibility studies, initial discussions, small-scale testing).</li>
-          <li><strong>Partially implemented</strong><br>The activity is already in use, but not yet fully established, scaled up, or systematically implemented (e.g. limited coverage, fragmented implementation, or temporary arrangements).</li>
-          <li><strong>Fully implemented / operational</strong><br>The activity is fully functioning and regularly carried out, but long-term sustainability (e.g. stable funding, institutionalisation) may not yet be ensured.</li>
-        </ul>
+      '#markup': '<p><strong>2. Please indicate the current level of implementation for each of the following activities in your country or region.</strong></p><p style="margin-bottom:10px;"><strong>Definitions:</strong></p><ul><li data-list-item-id="eb73acbe5aa77c6a6ea30dbceca2ead4a"><strong>Not started</strong><br>No activities, initiatives, or concrete plans are in place.</li><li data-list-item-id="e1c0cce4b9fbfb8fecaded871d17100db"><strong>Early development</strong><br>The activity is in the planning, design, or pilot phase (e.g. feasibility studies, initial discussions, small-scale testing).</li><li data-list-item-id="e072e5188b4fbba7e93af4c754314eb5c"><strong>Partially implemented</strong><br>The activity is already in use, but not yet fully established, scaled up, or systematically implemented (e.g. limited coverage, fragmented implementation, or temporary arrangements).</li><li data-list-item-id="e02c3f9fd5a4aad4eeda88ce128f87cea"><strong>Fully implemented / operational</strong><br>The activity is fully functioning and regularly carried out, but long-term sustainability (e.g. stable funding, institutionalisation) may not yet be ensured.</li></ul>'
     2_1_human_biomonitoring_hbm_general_population:
       '#type': radios
       '#title': '2.1. Human biomonitoring (HBM) – general population'
@@ -64,7 +108,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -79,7 +123,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -94,7 +138,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -109,7 +153,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -124,7 +168,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -139,7 +183,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -154,7 +198,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -169,7 +213,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -184,7 +228,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -199,7 +243,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -214,7 +258,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -229,7 +273,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -244,7 +288,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -259,7 +303,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -274,7 +318,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -289,7 +333,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -304,7 +348,7 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
       '#required': true
@@ -326,18 +370,26 @@ elements: |-
         'Early development': 'Early development'
         'Partially implemented': 'Partially implemented'
         'Fully implemented / operational': 'Fully implemented / operational'
-        'Sustainable (long-term system in place)': 'Sustainable (long-term system in place)'
+        'Sustainable (long-term system in place, achieved since the start of PARC in 2022)': 'Sustainable (long-term system in place, achieved since the start of PARC in 2022)'
         'Already sustainable before PARC': 'Already sustainable before PARC'
         'Do not know': 'Do not know'
+      '#states':
+        visible:
+          ':input[name="2_18_name_of_the_activity"]':
+            filled: true
     2_18_describe_recent_changes_or_developments:
       '#type': textarea
       '#title': 'Describe recent changes or developments, if applicable.'
+      '#states':
+        visible:
+          ':input[name="2_18_name_of_the_activity"]':
+            filled: true
   question_3:
     '#type': webform_wizard_page
     '#title': 'Question 3'
     question_3_intro:
       '#type': webform_markup
-      '#markup': '<p>3. Has PARC contributed to progress in the following activities at national level?</p>'
+      '#markup': '<p><strong>3. Has PARC contributed to progress in the following activities at national level?</strong></p>'
     3_1_human_biomonitoring_hbm_general_population:
       '#type': radios
       '#title': '3.1. Human biomonitoring (HBM) – general population'
@@ -363,7 +415,8 @@ elements: |-
       '#required': true
     3_2_describe_parc_contribution:
       '#type': textarea
-      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes.'
+      '#title': 'Please briefly describe how PARC has contributed to progress in your country, including key activities, types of support, and concrete outcomes. '
+      '#description': '<p><em>Please select all applicable options for each activity.</em></p>'
       '#states':
         visible:
           ':input[name="3_2_human_biomonitoring_hbm_occupational"]':
@@ -529,217 +582,161 @@ elements: |-
     '#title': 'Question 4'
     question_4_intro:
       '#type': webform_markup
-      '#markup': '<p>4. What are the main barriers to achieving sustainability at national level?</p>'
-    4_1_human_biomonitoring_hbm_general_population:
-      '#type': radios
+      '#markup': '<p><strong>4. What are the main barriers to achieving sustainability at national level?</strong></p><p>Please select all applicable options for each activity.</p>'
+    4_1_hbm_general_population:
+      '#type': webform_checkboxes_other
       '#title': '4.1. Human biomonitoring (HBM) – general population'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_1_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_1_human_biomonitoring_hbm_general_population"]':
-            value: 'Other (please specify)'
-    4_2_human_biomonitoring_hbm_occupational:
-      '#type': radios
+    4_2_human_biomonitoring_occupational:
+      '#type': webform_checkboxes_other
       '#title': '4.2. Human biomonitoring (HBM) – occupational'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_2_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_2_human_biomonitoring_hbm_occupational"]':
-            value: 'Other (please specify)'
     4_3_human_biomonitoring_hbm_targeted_hot_spot_studies:
-      '#type': radios
+      '#type': webform_checkboxes_other
       '#title': '4.3. Human biomonitoring (HBM) – targeted/hot spot studies'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_3_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_3_human_biomonitoring_hbm_targeted_hot_spot_studies"]':
-            value: 'Other (please specify)'
-    4_4_environmental_monitoring:
-      '#type': radios
+    4_4_environmental_monitoring_including_areas_not_yet_covered_by:
+      '#type': webform_checkboxes_other
       '#title': '4.4. Environmental monitoring (including areas not yet covered by regulatory frameworks)'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_4_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_4_environmental_monitoring"]':
-            value: 'Other (please specify)'
     4_5_early_warning_system_for_emerging_risks:
-      '#type': radios
+      '#type': webform_checkboxes_other
       '#title': '4.5. Early Warning System for emerging risks'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_5_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_5_early_warning_system_for_emerging_risks"]':
-            value: 'Other (please specify)'
     4_6_hazard_assessment_including_nam_development:
-      '#type': radios
+      '#type': webform_checkboxes_other
       '#title': '4.6. Hazard assessment (including NAM development)'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_6_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_6_hazard_assessment_including_nam_development"]':
-            value: 'Other (please specify)'
-    4_7_integrated_risk_assessment_and_modelling_including_ngra:
-      '#type': radios
+    4_7_integrated_risk_assessment_and_modelling_including_ngra_appr:
+      '#type': webform_checkboxes_other
       '#title': '4.7. Integrated risk assessment and modelling (including NGRA approaches)'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_7_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_7_integrated_risk_assessment_and_modelling_including_ngra"]':
-            value: 'Other (please specify)'
-    4_8_safe_and_sustainable_by_design:
-      '#type': radios
+    4_8_safe_and_sustainable_by_design_including_tools_and_models_su:
+      '#type': webform_checkboxes_other
       '#title': '4.8. Safe and Sustainable by Design (including tools and models supporting application)'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_8_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_8_safe_and_sustainable_by_design"]':
-            value: 'Other (please specify)'
-    4_9_data_infrastructure_and_fair_data:
-      '#type': radios
+    4_9_data_infrastructure_and_fair_data_including_data_storage_acc:
+      '#type': webform_checkboxes_other
       '#title': '4.9. Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows)'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_9_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_9_data_infrastructure_and_fair_data"]':
-            value: 'Other (please specify)'
-    4_10_coordination_mechanisms_and_networks:
-      '#type': radios
+    4_10_coordination_mechanisms_and_networks_e_g_national_hub_scien:
+      '#type': webform_checkboxes_other
       '#title': '4.10. Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes)'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_10_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_10_coordination_mechanisms_and_networks"]':
-            value: 'Other (please specify)'
     4_11_training_capacity_building_and_knowledge_transfer:
-      '#type': radios
+      '#type': webform_checkboxes_other
       '#title': '4.11. Training, capacity building, and knowledge transfer'
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#required': true
-    4_11_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
-      '#states':
-        visible:
-          ':input[name="4_11_training_capacity_building_and_knowledge_transfer"]':
-            value: 'Other (please specify)'
     4_12_other_activity_title:
       '#type': webform_markup
       '#markup': '<p class="label">4.12. Other activity related to chemical risk assessment, if applicable</p><p>Please specify the activity or topic that is not covered by the previous questions.</p>'
     4_12_name_of_the_activity:
       '#type': textfield
       '#title': 'Name of the activity:'
-    4_12_other_activity_related_to_chemical_risk_assessment:
-      '#type': radios
+    4_12_test:
+      '#type': webform_checkboxes_other
       '#title': '4.12. Other activity related to chemical risk assessment, if applicable'
       '#title_display': invisible
       '#options':
         'Lack of funding': 'Lack of funding'
         'Lack of political support': 'Lack of political support'
         'Limited institutional capacity': 'Limited institutional capacity'
-        'Other (please specify)': 'Other (please specify)'
+        'No major barriers (already sustainable)': 'No major barriers (already sustainable)'
         'Do not know': 'Do not know'
-    4_12_other_please_specify:
-      '#type': textarea
-      '#title': 'Other (please specify)'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
       '#states':
         visible:
-          ':input[name="4_12_other_activity_related_to_chemical_risk_assessment"]':
-            value: 'Other (please specify)'
+          ':input[name="4_12_name_of_the_activity"]':
+            filled: true
 css: ''
 javascript: ''
 settings:
