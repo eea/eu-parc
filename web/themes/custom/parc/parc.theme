@@ -344,6 +344,18 @@ function parc_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = $node->get('field_custom_classes')->value;
   }
 
+  if ($node instanceof NodeInterface && $node->bundle() === 'article' && $node->hasField('field_tags')) {
+    $term = $node->get('field_tags')->entity;
+    if ($term && $term->hasField('field_bg_color') && !$term->get('field_bg_color')->isEmpty()) {
+      $style = '--nn-c-bg:' . $term->get('field_bg_color')->color . ';';
+      if ($term->hasField('field_color') && !$term->get('field_color')->isEmpty()) {
+        $style .= '--nn-c-cat:' . $term->get('field_color')->color . ';';
+      }
+      $variables['attributes']['class'][] = 'has-category-bg';
+      $variables['attributes']['style'][] = $style;
+    }
+  }
+
   $full_screen = \Drupal::request()->query->get('full_screen');
   if ($full_screen) {
     $variables['attributes']['class'][] = 'full-screen';

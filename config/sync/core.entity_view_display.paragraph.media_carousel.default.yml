@@ -1,0 +1,24 @@
+uuid: 7e4551e5-3aa6-4406-a2eb-8be3cd6c0091
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.media_carousel.field_carousel_items
+    - paragraphs.paragraphs_type.media_carousel
+  module:
+    - parc_core
+id: paragraph.media_carousel.default
+targetEntityType: paragraph
+bundle: media_carousel
+mode: default
+content:
+  field_carousel_items:
+    type: parc_media_carousel
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  search_api_excerpt: true

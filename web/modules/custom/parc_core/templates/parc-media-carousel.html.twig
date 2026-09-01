@@ -1,0 +1,20 @@
+{{ attach_library('parc_core/media_carousel') }}
+
+<div class="parc-media-carousel">
+  <div class="parc-media-carousel__viewport">
+    <div class="slides">
+      {% for item in items %}
+        <div class="slideshow-item" data-caption="{{ item.caption }}">
+          {{ item.media }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="parc-media-carousel__footer">
+    <div class="caption-item"></div>
+    <div class="d-flex align-center">
+      <div class="parc-media-carousel__dots"></div>
+    </div>
+  </div>
+</div>
