@@ -9,6 +9,7 @@
 {{ attach_library('parc/n--article-full') }}
 
 {% set color = node.	field_tags.entity.field_color.value.0.color %}
+{% set bg_color = node.field_tags.entity.field_bg_color.color %}
 
 {%
   set classes = [
@@ -19,10 +20,11 @@
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
     'second-style',
+    bg_color ? 'node--article--has-bg-color',
   ]
 %}
 
-<article{{attributes.addClass(classes).setAttribute('style','--nn-c-cat:'~color~';')}}>
+<article{{attributes.addClass(classes).setAttribute('style','--nn-c-cat:'~color~';'~(bg_color ? '--nn-c-bg:'~bg_color~';' : ''))}}>
   {{ title_prefix }}
   {{ title_suffix }}
 

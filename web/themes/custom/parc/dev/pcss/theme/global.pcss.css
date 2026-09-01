@@ -37,6 +37,10 @@ main {
 .region-content-bottom {
   padding-block: 80px;
 
+  body.has-category-bg & {
+    background-color: var(--nn-c-bg) !important;
+  }
+
   /* Temp. */
   .block-views {
     h2 {
