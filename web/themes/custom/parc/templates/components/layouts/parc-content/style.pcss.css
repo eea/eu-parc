@@ -85,6 +85,10 @@
     .col-content {
       flex: 0 0 auto;
       width: 75%;
+
+      &:only-child {
+        width: 100%;
+      }
     }
 
     .content-container {

@@ -2519,3 +2519,109 @@ function parc_core_deploy_project_partners() {
     ]);
   }
 }
+
+/**
+ * Set field_bg_color + field_color pairs for news_category terms.
+ */
+function parc_core_deploy_news_category_colors() {
+  $colors = [
+    'Risk assessment' => [
+      'bg' => '#AED3FF',
+      'color' => '#1C85FF',
+    ],
+    'General' => [
+      'bg' => '#E0C7F5',
+      'color' => '#8631A7',
+    ],
+    'Building capacities' => [
+      'bg' => '#FBCDD5',
+      'color' => '#E45C4D',
+    ],
+    'Science to policy' => [
+      'bg' => '#FBEEC8',
+      'color' => '#008475',
+    ],
+    'What’s on' => [
+      'bg' => '#B0E5DF',
+      'color' => '#008475',
+    ],
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($colors as $name => $data) {
+    $terms = $term_storage->loadByProperties([
+      'vid' => 'news_category',
+      'name' => $name,
+    ]);
+    if (empty($terms)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($terms);
+    $term->set('field_bg_color', ['color' => $data['bg']]);
+    $term->set('field_color', ['color' => $data['color']]);
+    $term->save();
+  }
+}
+
+/**
+ * Migrate article items into field_paragraphs.
+ */
+function parc_core_deploy_migrate_article_paragraphs() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'article')
+    ->execute();
+
+  foreach ($nids as $nid) {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $node_storage->load($nid);
+    if (!$node) {
+      continue;
+    }
+
+    if (!$node->get('field_paragraphs')->isEmpty()) {
+      continue;
+    }
+
+    $paragraphs = [];
+
+    if (!$node->get('body')->isEmpty()) {
+      $body = $node->get('body')->first()->getValue();
+      $text_paragraph = $paragraph_storage->create([
+        'type' => 'text',
+        'field_body' => [
+          'value' => $body['value'],
+          'format' => $body['format'],
+        ],
+      ]);
+      $text_paragraph->save();
+      $paragraphs[] = $text_paragraph;
+    }
+
+    if (!$node->get('field_slideshow_items')->isEmpty()) {
+      $media_items = $node->get('field_slideshow_items')->getValue();
+      $carousel_paragraph = $paragraph_storage->create([
+        'type' => 'media_carousel',
+        'field_carousel_items' => $media_items,
+      ]);
+      $carousel_paragraph->save();
+      $paragraphs[] = $carousel_paragraph;
+    }
+
+    if (empty($paragraphs)) {
+      continue;
+    }
+
+    foreach ($paragraphs as $paragraph) {
+      $node->get('field_paragraphs')->appendItem($paragraph);
+    }
+
+    $node->setNewRevision(FALSE);
+    $node->save();
+  }
+}

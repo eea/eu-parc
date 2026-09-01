@@ -68,6 +68,11 @@ function parc_core_theme() {
         'items' => [],
       ],
     ],
+    'parc_media_carousel' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
     'parc_indicator_groups' => [
       'variables' => [
         'groups' => [],

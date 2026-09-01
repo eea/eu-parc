@@ -1,6 +1,17 @@
 header {
   transition: 0.3s opacity linear;
 
+  @media (--lg) {
+    &.sticky-top {
+      position: relative;
+      top: auto;
+    }
+  }
+
+  body.has-category-bg & {
+    background-color: var(--nn-c-bg);
+  }
+
   .navbar-brand {
     width: 220px;
     flex-shrink: 0;
