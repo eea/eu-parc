@@ -15,6 +15,7 @@ use Drupal\node\NodeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Markup;
 use Drupal\media\MediaInterface;
+use Drupal\block_content\BlockContentInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -180,6 +181,17 @@ function parc_preprocess_block(&$variables) {
   return \Drupal::service('class_resolver')
     ->getInstanceFromDefinition(ParcThemeProcess::class)
     ->preprocessBlock($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block__block_content__icon_banner.
+ */
+function parc_preprocess_block__block_content__icon_banner(array &$variables) {
+  $block = $variables['content']['#block_content'] ?? NULL;
+  if ($block instanceof BlockContentInterface && $block->hasField('field_color') && !$block->get('field_color')->isEmpty()) {
+    $color = &drupal_static('parc_icon_banner_color');
+    $color = $block->get('field_color')->color;
+  }
 }
 
 /**
@@ -359,6 +371,37 @@ function parc_preprocess_html(&$variables) {
   $full_screen = \Drupal::request()->query->get('full_screen');
   if ($full_screen) {
     $variables['attributes']['class'][] = 'full-screen';
+  }
+
+  $thematicAreaBg = NULL;
+  if ($node instanceof NodeInterface && $node->bundle() === 'thematic_areas') {
+    $term = $node->hasField('field_categories') ? $node->get('field_categories')->entity : NULL;
+    if ($term instanceof TermInterface && $term->hasField('field_bg_color') && !$term->get('field_bg_color')->isEmpty()) {
+      $thematicAreaBg = $term->get('field_bg_color')->color;
+    }
+  }
+  else {
+    $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+    if ($term instanceof TermInterface && $term->bundle() === 'thematic_areas' && $term->hasField('field_bg_color') && !$term->get('field_bg_color')->isEmpty()) {
+      $thematicAreaBg = $term->get('field_bg_color')->color;
+    }
+  }
+
+  $chemicals_tabs_color = '#B0E5DF';
+  if ($node instanceof NodeInterface && in_array((int) $node->id(), [2100], TRUE)) {
+    $thematicAreaBg = $chemicals_tabs_color;
+  }
+
+  if (empty($thematicAreaBg)) {
+    $iconBannerColor = drupal_static('parc_icon_banner_color');
+    if ($iconBannerColor) {
+      $thematicAreaBg = $iconBannerColor;
+    }
+  }
+
+  if ($thematicAreaBg) {
+    $variables['attributes']['style'][] = '--tta--bg: ' . $thematicAreaBg . ';';
+    $variables['attributes']['class'][] = 'has-tta-bg';
   }
 }
 

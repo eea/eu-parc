@@ -1,4 +1,11 @@
 .node--page--full {
+  .layout__region--content:has(.icon-banner),
+  .layout__region--content:has(.block-field-blocknodepagefield-banner) {
+    background-color: var(--tta--bg, #F5F5F5);
+    padding-top: 0;
+    padding-bottom: 40px;
+  }
+
   .block-field-blocknodepagefield-banner {
     height: 320px;
 
@@ -6,6 +13,15 @@
       object-fit: cover;
       width: 100%;
       height: 100%;
+    }
+
+    &:has(img[src$=".svg"]) {
+      height: auto;
+
+      img {
+        height: auto;
+        object-fit: contain;
+      }
     }
   }
 

@@ -1,0 +1,583 @@
+uuid: ceeff8b8-efe8-4f8f-a906-5d649cd2659d
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 9
+template: false
+archive: false
+id: norway_risk_perception_of_risk_c
+title: 'Norway_Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks.</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Samtykke og kontekst'
+    description:
+      '#type': checkbox
+      '#title': 'Jeg bekrefter at jeg har lest og godtar informasjonen ovenfor.'
+      '#description': '<p><strong>RISIKOOPPFATNING HOS PERSONER SOM INFORMERER OM RISIKO</strong></p><p><span>Din mening teller! Vi inviterer deg til å bidra i arbeidet for en tryggere kjemikaliehåndtering i Europa ved å delta i en kort spørreundersøkelse: «Risikooppfatning blant personer som informerer om risiko». Undersøkelsen gjennomføres innenfor rammen av PARC (https://www.eu-parc.eu/), som står for «Partnership for the Assessment of Risks from Chemicals».</span></p><p><strong>Om PARC:</strong> Det europeiske partnerskapet for vurdering av risiko fra kjemikalier (PARC) er et samarbeid mellom 30 land og tre europeiske byråer (EEA, ECHA og EFSA). Målet er å møte utfordringer knyttet til innovasjon i vurdering av kjemikalierisiko. PARC skal bidra til beslutningstaking på både europeisk og nasjonalt nivå gjennom pålitelige vitenskapelige data om befolkningens eksponering for kjemiske stoffer og deres mulige helseeffekter. I Norge koordineres undersøkelsen av Folkehelseinstituttet.</p><p><strong>Formålet med denne undersøkelsen:&nbsp;</strong><br>Alle mennesker utsettes for en rekke kjemikalier i hverdagen, og noen av disse kan være helseskadelige. Derfor er det viktig å kommunisere risiko på en tydelig og god måte.<br>Denne undersøkelsen har som mål å gi bedre innsikt i:<br>•&nbsp;&nbsp;&nbsp;&nbsp;hvilke metoder som brukes i risikokommunikasjon<br>•&nbsp;&nbsp;&nbsp;&nbsp;hvordan risiko oppfattes<br>•&nbsp;&nbsp;&nbsp;&nbsp;hvilke utfordringer og bekymringer som oppstår når man formidler informasjon om fare og risiko.</p><p><strong>Hvem undersøkelsen er rettet mot:&nbsp;</strong><br>Undersøkelsen retter seg mot personer som arbeider med risikokommunikasjon i hverdagslige situasjoner (ikke krisekommunikasjon). Det tar omtrent 20 minutter å besvare spørreskjemaet.</p><p><strong>Hva som skjer med den innsamlede informasjonen:&nbsp;</strong><br>Alle opplysninger behandles anonymt og konfidensielt i tråd med personvernforordningen (GDPR). Svarene vil bli analysert samlet av PARCs forskningspartnere, og eventuelle publikasjoner eller presentasjoner vil kun vise aggregerte resultater.</p><p><strong>Rett til å nekte å delta eller trekke seg:</strong>&nbsp;</p><p>Deltakelse i undersøkelsen er helt frivillig. Ved å svare gir du samtykke til å delta. Du står fritt til å trekke deg når som helst uten å oppgi grunn og uten konsekvenser.</p><p><strong>Takk for at du tar deg tid til å bidra.</strong></p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': '1. Avsnitt: Faglig bakgrunn'
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': '1.1. Hvilken sektor jobber du i?'
+      '#multiple': 2
+      '#options':
+        'Offentlige etat': 'Offentlige etat'
+        Akademia: Akademia
+        'Sammenslutning av bransjeorganer': 'Sammenslutning av bransjeorganer'
+        'Ikke-statlig organisasjon': 'Ikke-statlig organisasjon'
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': "1.2.\tDe kjemiske farene/risikoene du informerer om, er knyttet til: (Velg alle som passer)"
+      '#options':
+        'Mat (matsikkerhet)': 'Mat (matsikkerhet)'
+        'Miljø (jord, luft, vann m.m.)': 'Miljø (jord, luft, vann m.m.)'
+        Arbeidsmiljø: Arbeidsmiljø
+        'Kjemikaliesikkerhet (generelt)': 'Kjemikaliesikkerhet (generelt)'
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': "1.3.\tHvor mange års erfaring har du innen risikokommunikasjon?"
+      '#options':
+        'Mindre enn to år': 'Mindre enn to år'
+        '2–5 år': '2–5 år'
+        '6–10 år': '6–10 år'
+        '11–15 år': '11–15 år'
+        'Mer enn 15 år': 'Mer enn 15 år'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': '1.4. Hvor ofte øver du på risikokommunikasjon?'
+      '#options':
+        Daglig/ukentlig: Daglig/ukentlig
+        Månedlig: Månedlig
+        'Med noen måneders mellomrom': 'Med noen måneders mellomrom'
+        Årlig: Årlig
+        Aldri: Aldri
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': '1.5. Hvem er den viktigste målgruppen som du retter kommunikasjonen din mot?'
+      '#options':
+        Allmennheten: Allmennheten
+      '#other__option_label': 'En spesifikk målgruppe'
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': '1.6. Hva er ditt fagområde? (Velg alle som passer)'
+      '#multiple': 2
+      '#options':
+        Kjemiingeniør/kjemiker/toksikolog: Kjemiingeniør/kjemiker/toksikolog
+        Matforsker/teknolog/mikrobiolog: Matforsker/teknolog/mikrobiolog
+        Folkehelseekspert: Folkehelseekspert
+        Ernæringsekspert: Ernæringsekspert
+        Miljø-/landbruksforsker: Miljø-/landbruksforsker
+        Kommunikasjonsekspert/samfunnsviter: Kommunikasjonsekspert/samfunnsviter
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': '1.7. Hvor ofte får du kommunikasjonsopplæring (f.eks. opplæring av kommunikasjonseksperter, besøk hos andre kommunikasjonsavdelinger, deltakelse på seminarer/webinarer/kurs)?'
+      '#options':
+        Aldri: Aldri
+        'Med jevne mellomrom (f.eks. hvert 2.-5. år)': 'Med jevne mellomrom (f.eks. hvert 2.-5. år)'
+        'Ofte (minst én gang i året)': 'Ofte (minst én gang i året)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': '1.8. Hvor tilfreds var du med den kommunikasjonsopplæringen du fikk?'
+      '#options':
+        'Slett ikke tilfreds': 'Slett ikke tilfreds'
+        'Litt tilfreds': 'Litt tilfreds'
+        'Moderat tilfreds': 'Moderat tilfreds'
+        'Svært tilfreds': 'Svært tilfreds'
+        'Helt tilfreds': 'Helt tilfreds'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': Aldri
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': "1.9.\tMener du at kommunikasjonsopplæring er nødvendig for din nåværende stilling?"
+      '#options':
+        Ja: Ja
+        Nei: Nei
+        'Jeg vet ikke / Jeg ønsker ikke å svare': 'Jeg vet ikke / Jeg ønsker ikke å svare'
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': '2. Avsnitt: Erfaring med risikokommunikasjon'
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': "2.1.\tHvilke utfordringer opplever du i forbindelse med risikokommunikasjon? (Velg alle som passer)"
+      '#options':
+        'Mangel på tilstrekkelige vitenskapelige fakta (enten om en fare eller om sannsynligheten for at et bestemt stoff vil forårsake skade)': 'Mangel på tilstrekkelige vitenskapelige fakta (enten om en fare eller om sannsynligheten for at et bestemt stoff vil forårsake skade)'
+        'Mangel på støtte fra kollegaer / få menneskelige ressurser som jobber med risikokommunikasjon': 'Mangel på støtte fra kollegaer / få menneskelige ressurser som jobber med risikokommunikasjon'
+        'Utfordringer ved samarbeid med eksperter på kjemiske risikoer': 'Utfordringer ved samarbeid med eksperter på kjemiske risikoer'
+        'Uklar rollefordeling': 'Uklar rollefordeling'
+        'Uklar ansvarsfordeling': 'Uklar ansvarsfordeling'
+        'Manglende kommunikasjonsbudsjett': 'Manglende kommunikasjonsbudsjett'
+        'Interferens fra risikoforvaltere med hensyn til når og hva som vil bli kommunisert': 'Interferens fra risikoforvaltere med hensyn til når og hva som vil bli kommunisert'
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': '2.2. Har dere et målesystem som viser om meldingen når den endelige målgruppen?'
+      '#options':
+        Ja: Ja
+        Nei: Nei
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': '2.3. Hvis du svarte JA på forrige spørsmål, hvilket målesystem bruker du?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: Ja
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': "2.4.\tSjekker du alltid om kommunikasjonen din om kjemisk fare eller risiko faktisk har en effekt på publikum (publikums reaksjon)?"
+      '#options':
+        Ja: Ja
+        Nei: Nei
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': '2.5. Hvis du svarte JA på forrige spørsmål, hvordan vurderer du virkningen?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: Ja
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': '2.6. Hvor mye tror du at du påvirker målgruppen?'
+      '#options':
+        'Slett ingen innflytelse': 'Slett ingen innflytelse'
+        'Liten innflytelse ': 'Liten innflytelse '
+        'Middels innflytelse': 'Middels innflytelse'
+        'Betydelig innflytelse': 'Betydelig innflytelse'
+        'Stor innflytelse': 'Stor innflytelse'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': "2.7.\tNår det gjelder det forrige spørsmålet, hva baserer du svaret ditt på? (Velg alle som passer)"
+      '#options':
+        'Reaksjoner fra mediene (tv, radio, presse)': 'Reaksjoner fra mediene (tv, radio, presse)'
+        'Publiseringer/innlegg på nettsteder, personlige blogger og sosiale medier': 'Publiseringer/innlegg på nettsteder, personlige blogger og sosiale medier'
+        'Overvåking med en spørreskjemabasert forbrukerundersøkelse': 'Overvåking med en spørreskjemabasert forbrukerundersøkelse'
+        'Direkte tilbakemelding gjennom personlig kommunikasjon (f.eks. samtaler, telefonsamtaler, e-post eller meldinger)': 'Direkte tilbakemelding gjennom personlig kommunikasjon (f.eks. samtaler, telefonsamtaler, e-post eller meldinger)'
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': '2.8. Når du informerer om en kjemisk fare/risiko, pleier du da å'
+      '#options':
+        'skape ditt eget budskap?': 'skape ditt eget budskap?'
+        'formidle budskapet nøyaktig slik det er overbrakt av dem som har vurdert risikoen': 'formidle budskapet nøyaktig slik det er overbrakt av dem som har vurdert risikoen'
+        'tilpasse eller omformulere budskap fra andre kilder': 'tilpasse eller omformulere budskap fra andre kilder'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': '2.9. Har du noen gang selv opplevd helseplager som følge av eksponering for kjemiske farer (f.eks. forurenset mat, rengjøringsmidler, plantevernmidler)?'
+      '#options':
+        Ja: Ja
+        Nei: Nei
+        'Jeg vet ikke': 'Jeg vet ikke'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': '2.10. Hvis svaret er ja, påvirket denne opplevelsen hvordan du informerer eller tenker om denne faren?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: Ja
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': '3. Avsnitt: Utarbeiding av risikokommunikasjon'
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': '3.1. Når man kommuniserer med målgruppen om risiko, hvor viktig er det å ta med følgende elementer?'
+      '#required': true
+      '#questions':
+        'Bruk av visuelle illustrasjoner av risiko med grafer, diagrammer, bilder og kart': 'Bruk av visuelle illustrasjoner av risiko med grafer, diagrammer, bilder og kart'
+        'Sammenligninger mellom forskjellige farer i henhold til sannsynlighet': 'Sammenligninger mellom forskjellige farer i henhold til sannsynlighet'
+        'Beskrivelse av alle usikkerhetsmomenter knyttet til risikoen': 'Beskrivelse av alle usikkerhetsmomenter knyttet til risikoen'
+        'Grenseverdier angitt i tall (f.eks. tolerabelt daglig inntak for en bestemt kjemikalie i tall)': 'Grenseverdier angitt i tall (f.eks. tolerabelt daglig inntak for en bestemt kjemikalie i tall)'
+        'Beskrivelse av forskjellige risikoer for forskjellige grupper av mennesker. (f.eks. forskjeller i risiko mellom ulike yrkesgrupp': 'Beskrivelse av forskjellige risikoer for forskjellige grupper av mennesker. (f.eks. forskjeller i risiko mellom ulike yrkesgrupper)'
+        'Informasjon om forskjellen mellom langvarig og kortvarig eksponering for fare': 'Informasjon om forskjellen mellom langvarig og kortvarig eksponering for fare'
+        'Informasjon om at allmennheten undervurderer risikoen (f.eks. når den som informerer om risiko, har kunnskap om at allmennheten ': 'Informasjon om at allmennheten undervurderer risikoen (f.eks. når den som informerer om risiko, har kunnskap om at allmennheten ikke oppfatter visse kjemikalier som farlige som de burde)'
+        'Informasjon om at allmennheten overvurderer risikoen (f.eks. når den som informerer om risiko, har kunnskap om at allmennheten o': 'Informasjon om at allmennheten overvurderer risikoen (f.eks. når den som informerer om risiko, har kunnskap om at allmennheten oppfatter visse kjemikalier som farligere enn de egentlig er)'
+        'Beskrivelse av strategier for å unngå eksponering for fare': 'Beskrivelse av strategier for å unngå eksponering for fare'
+      '#answers':
+        'Slett ikke viktig': 'Slett ikke viktig'
+        'Litt viktig': 'Litt viktig'
+        'Moderat viktig': 'Moderat viktig'
+        'Ganske viktig': 'Ganske viktig'
+        ' Svært viktig': ' Svært viktig'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': '3.2. Når man informerer om risiko, hvor viktig er etter din mening følgende aspekter ved tillit for målgruppens risikooppfatning?'
+      '#required': true
+      '#questions':
+        'Målgruppens tillit til eksperten som informerer om risiko': 'Målgruppens tillit til eksperten som informerer om risiko'
+        'Målgruppens tillit til nasjonale/europeiske institusjoner/myndigheter': 'Målgruppens tillit til nasjonale/europeiske institusjoner/myndigheter'
+        'Målgruppens tillit til vitenskapelige data': 'Målgruppens tillit til vitenskapelige data'
+      '#answers':
+        'Slett ikke viktig': 'Slett ikke viktig'
+        ' Litt viktig': ' Litt viktig'
+        'Moderat viktig': 'Moderat viktig'
+        'Ganske viktig': 'Ganske viktig'
+        'Svært viktig': 'Svært viktig'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': '3.3. Vurder påstandene om risikokommunikasjon, og angi i hvilken grad du er enig eller uenig i dem.'
+      '#required': true
+      '#questions':
+        'Når man informerer om risiko, er det viktig å skille mellom fare og risiko.': 'Når man informerer om risiko, er det viktig å skille mellom fare og risiko.'
+        'Risikokommunikasjon bør ikke påvirkes av allmennhetens oppfatninger av risiko.': 'Risikokommunikasjon bør ikke påvirkes av allmennhetens oppfatninger av risiko.'
+        'De prinsippene (f.eks. objektivitet, upartiskhet) som risikokommunikasjon bygger på, er de samme for alle sektorer (f.eks. kjemi': 'De prinsippene (f.eks. objektivitet, upartiskhet) som risikokommunikasjon bygger på, er de samme for alle sektorer (f.eks. kjemiske farer, smittsomme sykdommer).'
+        'Å beskrive alle usikkerhetsmomenter knyttet til risiko og fare skaper forvirring.': 'Å beskrive alle usikkerhetsmomenter knyttet til risiko og fare skaper forvirring.'
+        'Man bør øve på / gjennomføre risikokommunikasjon i samarbeid med de berørte partene.': 'Man bør øve på / gjennomføre risikokommunikasjon i samarbeid med de berørte partene.'
+        'Nyhetsmediene er mer interessert i krisekommunikasjon, der risikoen ofte framstilles på en overdrevet måte.': 'Nyhetsmediene er mer interessert i krisekommunikasjon, der risikoen ofte framstilles på en overdrevet måte.'
+      '#answers':
+        'Helt uenig': 'Helt uenig'
+        'Delvis uenig': 'Delvis uenig'
+        'Verken enig eller uenig': 'Verken enig eller uenig'
+        'Delvis enig': 'Delvis enig'
+        'Helt enig': 'Helt enig'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': ' 4. Avsnitt: Rollen til den som informerer om risiko'
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': '4.1. Vurder påstandene om risikooppfatning, og angi i hvilken grad du er enig eller uenig i dem.'
+      '#required': true
+      '#questions':
+        'Folks oppfatninger av risiko omfatter / avhenger av deres overbevisninger og holdninger.': 'Folks oppfatninger av risiko omfatter / avhenger av deres overbevisninger og holdninger.'
+        'Risikooppfatninger påvirkes ikke av folks vurderinger og følelser (personlig erfaring).': 'Risikooppfatninger påvirkes ikke av folks vurderinger og følelser (personlig erfaring).'
+        'Risikooppfatninger gjenspeiler de generelle kulturelle og sosiale holdningene folk har til farer og fordelene ved dem.': 'The principles (e.g. objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g. chemical hazards, communicable diseases.'
+        'Risikokommunikasjon bør baseres på funn fra risikovurderinger, men bør også ta hensyn til hvordan vanlige folk oppfatter faren, ': 'Risikokommunikasjon bør baseres på funn fra risikovurderinger, men bør også ta hensyn til hvordan vanlige folk oppfatter faren, og hvor viktig de anser den å være.'
+        'Personer som tidligere har opplevd en hendelse knyttet til en fare, føler gjerne at sannsynligheten for å oppleve den igjen er s': 'Personer som tidligere har opplevd en hendelse knyttet til en fare, føler gjerne at sannsynligheten for å oppleve den igjen er større, sammenlignet med personer som aldri har opplevd den faren.'
+        'Når folk blir kjent med en fare for første gang, har de en tendens til å tro at denne nye faren har større sannsynlighet for å i': 'Når folk blir kjent med en fare for første gang, har de en tendens til å tro at denne nye faren har større sannsynlighet for å inntreffe enn andre velkjente farer.'
+        'Jo mer spesifikk kunnskap folk tilegner seg om en fare, desto mindre stoler de på sin egen intuisjon når det gjelder risikoen kn': 'Jo mer spesifikk kunnskap folk tilegner seg om en fare, desto mindre stoler de på sin egen intuisjon når det gjelder risikoen knyttet til denne faren.'
+        'Tillit til den som informerer om risiko, er viktigere enn selve informasjonen.': 'Tillit til den som informerer om risiko, er viktigere enn selve informasjonen.'
+      '#answers':
+        'Helt uenig': 'Helt uenig'
+        'Delvis uenig': 'Delvis uenig'
+        'Verken enig eller uenig': 'Verken enig eller uenig'
+        'Delvis enig': 'Delvis enig'
+        ' Helt enig': ' Helt enig'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': '5. Avsnitt: Tradisjonelle og sosiale medier'
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': '5.1. Hvilken kanal foretrekker du å bruke når det gjelder risikokommunikasjon? Vennligst ranger kanalene etter dine preferanser ved å dra dem i ønsket rekkefølge, med den mest foretrukne kanalen øverst og den minst foretrukne nederst.'
+      '#options':
+        Nyhetsbrev: Nyhetsbrev
+        'Artikler i aviser og tidsskrifter': 'Artikler i aviser og tidsskrifter'
+        Tv: Tv
+        Radio: Radio
+        'Sosiale medier': 'Sosiale medier'
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': '5.2. Hvilken kanal ville du foretrekke å bruke når det gjelder krisekommunikasjon? Vennligst ranger kanalene etter dine preferanser ved å dra dem i ønsket rekkefølge, med den mest foretrukne kanalen øverst og den minst foretrukne nederst.'
+      '#options':
+        Pressemelding: Pressemelding
+        'Artikler i aviser og tidsskrifter': 'Artikler i aviser og tidsskrifter'
+        Tv: Tv
+        Radio: Radio
+        'Sosiale medier': 'Sosiale medier'
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': '5.3. Bruker du sosiale medier til å informere om risiko?'
+      '#options':
+        Ja: Ja
+        Nei: Nei
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': '5.4. Hvilke sosiale medier foretrekker du å bruke for å informere om risiko? (Velg alle som passer)'
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_text': Ingen
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: Ja
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': "5.5.\tHvilke sosiale medier ville du brukt i forbindelse med krisekommunikasjon? (Velg alle som passer)"
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_text': Ingen
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': '5.6. Bruker du noen form for overvåking av sosiale medier (programvare som lar brukerne overvåke, spore og analysere samtaler på sosiale medier)?'
+      '#options':
+        Ja: Ja
+        Nei: Nei
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': '5.7. Hvis du svarte JA på forrige spørsmål, hvilke verktøy bruker du til å «lytte» på sosiale medier?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: Ja
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': '5.8. Hvordan håndterer du vanligvis feilinformasjon eller rykter i sosiale medier om risikoen knyttet til en bestemt fare eller risiko ved kjemikalier?'
+      '#options':
+        'Ingen reaksjoner. Hvis jeg lar det ligge, vil ting roe seg ned.': 'Ingen reaksjoner. Hvis jeg lar det ligge, vil ting roe seg ned.'
+        'Utarbeide en uttalelse med riktig informasjon og sende den ut.': 'Utarbeide en uttalelse med riktig informasjon og sende den ut.'
+        'Iverksette rettslige skritt om nødvendig.': 'Iverksette rettslige skritt om nødvendig.'
+      '#other__option_label': Annet
+      '#other__placeholder': 'Gi nærmere opplysninger:'
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': '6. Avsnitt: Språk'
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': '6.1. La oss anta at det sirkulerer feilinformasjon eller rykter i sosiale medier om risikoen ved røyking og kadmium. Hvilket av følgende påstander foretrekker du å bruke?'
+      '#options':
+        'A: Ved røyking av sigaretter er opptaket av kadmium i lungene 10–50 %. Røykere har kadmiumkonsentrasjoner i blodet på rundt 1,5 μg/l, og kadmiumkonsentrasjoner i nyrebarken på rundt 20–30 μg/g våtvekt. Ikke-røykere har 4–5 ganger lavere kadmiumkonsentrasjoner i blodet og dobbelt så lave kadmiumkonsentrasjoner i nyrebarken. Det er påvist at kadmium forårsaker lungekreft.': 'A: Ved røyking av sigaretter er opptaket av kadmium i lungene 10–50 %. Røykere har kadmiumkonsentrasjoner i blodet på rundt 1,5 μg/l, og kadmiumkonsentrasjoner i nyrebarken på rundt 20–30 μg/g våtvekt. Ikke-røykere har 4–5 ganger lavere kadmiumkonsentrasjoner i blodet og dobbelt så lave kadmiumkonsentrasjoner i nyrebarken. Det er påvist at kadmium forårsaker lungekreft.'
+        'B: Ved røyking av sigaretter er opptaket av kadmium i lungene 10–50 %, mens opptaket i mage-tarm-kanalen bare er noen få prosent. Røykere har omtrent 4–5 ganger høyere kadmiumkonsentrasjoner i blodet (ca. 1,5 μg/l) og dobbelt så høye kadmiumkonsentrasjoner i nyrebarken (ca. 20–30 μg/g våtvekt) som ikke-røykere. Det er påvist at kadmium kan forårsake lungekreft, men det foreligger begrenset dokumentasjon på at det har sammenheng med nyre-, lever- og prostatakreft.': 'B: Ved røyking av sigaretter er opptaket av kadmium i lungene 10–50 %, mens opptaket i mage-tarm-kanalen bare er noen få prosent. Røykere har omtrent 4–5 ganger høyere kadmiumkonsentrasjoner i blodet (ca. 1,5 μg/l) og dobbelt så høye kadmiumkonsentrasjoner i nyrebarken (ca. 20–30 μg/g våtvekt) som ikke-røykere. Det er påvist at kadmium kan forårsake lungekreft, men det foreligger begrenset dokumentasjon på at det har sammenheng med nyre-, lever- og prostatakreft.'
+        'C: Ved røyking av sigaretter er opptaket av kadmium ekstremt høyt i lungene, mens opptaket i mage-tarm-kanalen er lavere. Røykere har betydelig høyere kadmiumkonsentrasjoner i blodet og i nyrebarken. Kadmium er kreftfremkallende.': 'C: Ved røyking av sigaretter er opptaket av kadmium ekstremt høyt i lungene, mens opptaket i mage-tarm-kanalen er lavere. Røykere har betydelig høyere kadmiumkonsentrasjoner i blodet og i nyrebarken. Kadmium er kreftfremkallende.'
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': '6.2. Følgende vitenskapelige uttalelse sier at: «Akrylamid er en kjemikalie som dannes naturlig i stivelsesholdige matvarer når de tilberedes ved høye temperaturer (over 120 °C). Når det finnes akrylamid i mat, kan det mulig øke risikoen for at forbrukere i alle aldersgrupper utvikler kreft. Heldigvis finnes det måter å redusere akrylamidnivået i mat på». Hvilken påstand ville du valgt hvis du skulle gi forbrukerne råd om hvordan de kan redusere akrylamidnivået i hjemmelaget mat?'
+      '#options':
+        'Prøv å få en gyllengul farge (eller lysere) når du steker, baker, rister eller steker stivelsesholdige matvarer, og unngå overopphetet mat for å oppnå bedre helse.': 'Prøv å få en gyllengul farge (eller lysere) når du steker, baker, rister eller steker stivelsesholdige matvarer, og unngå overopphetet mat for å oppnå bedre helse.'
+        'Lang tilberedningstid og høyere temperaturer fører til dannelse av mer akrylamid – et stoff som kan være kreftfremkallende hos mennesker – enn kort tilberedningstid og lavere temperaturer.': 'Lang tilberedningstid og høyere temperaturer fører til dannelse av mer akrylamid – et stoff som kan være kreftfremkallende hos mennesker – enn kort tilberedningstid og lavere temperaturer.'
+      '#required': true
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: Fullfør
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: Forrige
+  wizard_next_button_label: Neste
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p>Takk. Svarene dine er sendt inn.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

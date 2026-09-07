@@ -1,3 +1,19 @@
+body.has-tta-bg header#header {
+  background-color: var(--tta--bg);
+}
+
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodebasic-pagefield-banner),
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-banner) {
+  position: absolute;
+  inset-inline: 0;
+  background-color: transparent;
+
+  &.h-sticky {
+    position: fixed;
+    background-color: var(--c-white);
+  }
+}
+
 header {
   transition: 0.3s opacity linear;
 
@@ -19,15 +35,7 @@ header {
 
   @media (--xl) {
     .region-nav-additional {
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: regionAditionalOut;
-      animation-duration: 0.3s;
-    }
-
-    .navbar {
-      transition: 0.35s linear min-height;
+      max-height: 29px;
     }
 
     &.vh {
@@ -60,11 +68,9 @@ header {
     }
 
     .region-nav-additional {
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: regionAditionalIn;
-      animation-duration: 0.3s;
+      max-height: 0;
+      opacity: 0;
+      display: none;
     }
   }
 
@@ -530,35 +536,6 @@ header {
       stroke-dashoffset: -5;
       stroke-dasharray: 4;
     }
-  }
-}
-
-@keyframes regionAditionalIn {
-  0% {
-    opacity: 1;
-    max-height: 29px;
-  }
-  99% {
-    display: block;
-  }
-  100% {
-    opacity: 0;
-    max-height: 0px;
-    display: none;
-  }
-}
-@keyframes regionAditionalOut {
-  0% {
-    opacity: 0;
-    max-height: 0px;
-  }
-  1% {
-    display: none;
-  }
-  100% {
-    opacity: 1;
-    max-height: 29px;
-    display: block;
   }
 }
 
