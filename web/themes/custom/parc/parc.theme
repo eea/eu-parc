@@ -374,16 +374,23 @@ function parc_preprocess_html(&$variables) {
   }
 
   $thematicAreaBg = NULL;
+  $thematicAreaHeading = NULL;
   if ($node instanceof NodeInterface && $node->bundle() === 'thematic_areas') {
     $term = $node->hasField('field_categories') ? $node->get('field_categories')->entity : NULL;
-    if ($term instanceof TermInterface && $term->hasField('field_bg_color') && !$term->get('field_bg_color')->isEmpty()) {
-      $thematicAreaBg = $term->get('field_bg_color')->color;
-    }
   }
   else {
     $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
-    if ($term instanceof TermInterface && $term->bundle() === 'thematic_areas' && $term->hasField('field_bg_color') && !$term->get('field_bg_color')->isEmpty()) {
+    if (!($term instanceof TermInterface && $term->bundle() === 'thematic_areas')) {
+      $term = NULL;
+    }
+  }
+
+  if ($term instanceof TermInterface) {
+    if ($term->hasField('field_bg_color') && !$term->get('field_bg_color')->isEmpty()) {
       $thematicAreaBg = $term->get('field_bg_color')->color;
+    }
+    if ($term->hasField('field_color') && !$term->get('field_color')->isEmpty()) {
+      $thematicAreaHeading = $term->get('field_color')->color;
     }
   }
 
@@ -402,6 +409,9 @@ function parc_preprocess_html(&$variables) {
   if ($thematicAreaBg) {
     $variables['attributes']['style'][] = '--tta--bg: ' . $thematicAreaBg . ';';
     $variables['attributes']['class'][] = 'has-tta-bg';
+  }
+  if ($thematicAreaHeading) {
+    $variables['attributes']['style'][] = '--tta--c-heading: ' . $thematicAreaHeading . ';';
   }
 }
 
@@ -422,6 +432,52 @@ function parc_preprocess_page(array &$variables) {
     $variables['page']['footer_second']['#access'] = FALSE;
     $variables['page']['footer_s']['#access'] = FALSE;
     $variables['#attached']['library'][] = 'parc/full_screen';
+  }
+
+  // Page title for the header's compact sticky bar shown past the banner.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $excluded_routes = [
+    'view.news_events.page_news',
+    'view.content_events.page_events',
+    'view.publications.page_publications',
+    'view.deliverables.page_deliverables',
+  ];
+  $excluded_node_ids = [1046, 1126];
+
+  // Term pages under those sections share a generic route, so use bundle.
+  $excluded_term_bundles = ['training_types', 'indicator_topics'];
+  $sticky_term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+
+  // Individual items under those sections don't have a hero title either.
+  $excluded_node_bundles = ['article', 'events', 'project'];
+  $is_news_or_front = \Drupal::service('path.matcher')->isFrontPage()
+    || in_array($route_name, $excluded_routes, TRUE)
+    || ($node instanceof NodeInterface && in_array($node->bundle(), $excluded_node_bundles, TRUE))
+    || ($node instanceof NodeInterface && in_array((int) $node->id(), $excluded_node_ids, TRUE))
+    || ($sticky_term instanceof TermInterface && in_array($sticky_term->bundle(), $excluded_term_bundles, TRUE));
+
+  if (!$is_news_or_front) {
+    $category_term = NULL;
+    if ($node instanceof NodeInterface && $node->bundle() === 'thematic_areas' && $node->hasField('field_categories')) {
+      $category_term = $node->get('field_categories')->entity;
+    }
+
+    if ($category_term instanceof TermInterface) {
+      $variables['sticky_page_title'] = $category_term->label();
+    }
+    else {
+      $route = \Drupal::routeMatch()->getRouteObject();
+      if ($route) {
+        $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $route);
+        if (is_array($title)) {
+          $title = \Drupal::service('renderer')->renderInIsolation($title);
+        }
+        if ($title) {
+          $variables['sticky_page_title'] = $title;
+        }
+      }
+    }
   }
 }
 
