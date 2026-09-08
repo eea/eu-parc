@@ -34,5 +34,11 @@
     </div>
   </nav>
 
+  {% if sticky_page_title %}
+    <div class="header-sticky-title">
+      <div class="svg-title">{{ sticky_page_title }}</div>
+    </div>
+  {% endif %}
+
   {{ page.header }}
 </header>

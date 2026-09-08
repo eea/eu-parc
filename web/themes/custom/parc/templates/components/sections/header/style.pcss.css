@@ -1,3 +1,24 @@
+body.has-tta-bg header#header {
+  background-color: var(--tta--bg);
+}
+
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodebasic-pagefield-banner),
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-banner) {
+  position: absolute;
+  inset-inline: 0;
+  background-color: transparent;
+
+  &.h-sticky {
+    position: fixed;
+    background-color: var(--c-white);
+  }
+}
+
+.region-highlighted {
+  position: relative;
+  z-index: 91;
+}
+
 header {
   transition: 0.3s opacity linear;
 
@@ -8,15 +29,7 @@ header {
 
   @media (--xl) {
     .region-nav-additional {
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: regionAditionalOut;
-      animation-duration: 0.3s;
-    }
-
-    .navbar {
-      transition: 0.35s linear min-height;
+      max-height: 29px;
     }
 
     &.vh {
@@ -36,6 +49,46 @@ header {
   }
 }
 
+
+.header-sticky-title {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  max-height: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--tta--bg, #F5F5F5);
+  transition: max-height 0.35s ease;
+
+  .svg-title {
+    margin: 0;
+    padding-block: 40px;
+    color: var(--tta--c-heading, inherit);
+  }
+
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+header.h-sticky.vh,
+header.title-passed.vh {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 768px) {
+  header.title-passed:has(.header-sticky-title) {
+    .navbar > .container-fluid {
+      display: none;
+    }
+
+    .header-sticky-title {
+      max-height: 250px;
+    }
+  }
+}
+
 .h-sticky {
   margin-bottom: calc(96px - 68px);
 
@@ -49,11 +102,9 @@ header {
     }
 
     .region-nav-additional {
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: regionAditionalIn;
-      animation-duration: 0.3s;
+      max-height: 0;
+      opacity: 0;
+      display: none;
     }
   }
 
@@ -519,35 +570,6 @@ header {
       stroke-dashoffset: -5;
       stroke-dasharray: 4;
     }
-  }
-}
-
-@keyframes regionAditionalIn {
-  0% {
-    opacity: 1;
-    max-height: 29px;
-  }
-  99% {
-    display: block;
-  }
-  100% {
-    opacity: 0;
-    max-height: 0px;
-    display: none;
-  }
-}
-@keyframes regionAditionalOut {
-  0% {
-    opacity: 0;
-    max-height: 0px;
-  }
-  1% {
-    display: none;
-  }
-  100% {
-    opacity: 1;
-    max-height: 29px;
-    display: block;
   }
 }
 
