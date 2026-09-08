@@ -14,6 +14,11 @@ body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-b
   }
 }
 
+.region-highlighted {
+  position: relative;
+  z-index: 91;
+}
+
 header {
   transition: 0.3s opacity linear;
 
@@ -40,6 +45,46 @@ header {
   @media (--xxl) {
     .menu--main {
       padding-right: 220px;
+    }
+  }
+}
+
+
+.header-sticky-title {
+  position: absolute;
+  top: 0;
+  inset-inline: 0;
+  max-height: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--tta--bg, #F5F5F5);
+  transition: max-height 0.35s ease;
+
+  .svg-title {
+    margin: 0;
+    padding-block: 40px;
+    color: var(--tta--c-heading, inherit);
+  }
+
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+header.h-sticky.vh,
+header.title-passed.vh {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 768px) {
+  header.title-passed:has(.header-sticky-title) {
+    .navbar > .container-fluid {
+      display: none;
+    }
+
+    .header-sticky-title {
+      max-height: 250px;
     }
   }
 }

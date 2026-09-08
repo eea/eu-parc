@@ -5,7 +5,7 @@
     background-color: #F5F5F5;
     padding-bottom: 0;
 
-    &:has(.block-field-blocknodebasic-pagefield-banner img[src$=".svg"]) {
+    &:has(.block-field-blocknodebasic-pagefield-banner img) {
       position: relative;
     }
   }
@@ -28,7 +28,7 @@
       }
     }
 
-    &:has(img[src$=".svg"]) + .block-field-blocknodebasic-pagetitle {
+    &:has(img) + .block-field-blocknodebasic-pagetitle {
       position: absolute;
       inset: 0;
       display: flex;

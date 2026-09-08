@@ -4,6 +4,10 @@
     background-color: var(--tta--bg, #F5F5F5);
     padding-top: 0;
     padding-bottom: 40px;
+
+    &:has(.block-field-blocknodepagefield-banner img) {
+      position: relative;
+    }
   }
 
   .block-field-blocknodepagefield-banner {
@@ -21,6 +25,20 @@
       img {
         height: auto;
         object-fit: contain;
+      }
+    }
+
+    &:has(img) + .block-field-blocknodepagetitle {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0;
+      text-align: center;
+
+      @media (min-width: 1400px) {
+        padding-bottom: 90px;
       }
     }
   }
