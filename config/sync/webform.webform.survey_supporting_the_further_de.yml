@@ -1,6 +1,6 @@
 uuid: 2910ca9d-b180-44d1-81b1-b8434e04c12a
 langcode: en
-status: closed
+status: open
 dependencies: {  }
 weight: 0
 open: null
@@ -19,7 +19,7 @@ elements: |-
     description:
       '#type': checkbox
       '#title': 'I confirm that I have read and I accept the information stated above'
-      '#description': '<h5><strong>SURVEY SUPPORTING THE FURTHER DEVELOPMENT AND IMPLEMENTATION OF THE PARC PHASING-OUT STRATEGY AND ASSESSING PARTNERS’ READINESS FOR SUSTAINABILITY</strong></h5><p>&nbsp;</p><p><span>This survey is carried out under Task 2.3 "Sustainability" as part of the development of the PARC exit strategy. It is addressed to all PARC institutional partners to support the further development and implementation of the PARC Phasing-out strategy and assess partners’ readiness for sustainability.</span></p><p><span>The survey has two sections:&nbsp;</span></p><ul><li data-list-item-id="e0ea69ac1cc4893386f29b506cf6a5717"><span>The first section focuses on the <strong>phasing-out strategy</strong> to assess the feasibility, level of ambition, and potential implementation pathways of PARC phasing-out scenarios at organisational level.&nbsp;</span></li></ul><p><span>As a reminder, in order to respond to the EC requirement for a phasing out strategy, three phasing out scenarios, reflecting different levels of ambition and integration (and budget), are proposed to be investigated: from (i) a comprehensive continuation and expansion model (scenario A) in which further work on what was already initiated in each field of activity of PARC depends on identified needs, varied funding streams and budgets available, to (ii) a middle scenario (scenario B) involving (adapted) continuation based primarily on public funding from the participating countries, and organisations to (iii) a model focused on solely preserving core achievements and ensuring the legacy of PARC (scenario C). This strategy does not engage the responsibility of GB members and does not constitute a formal commitment by national governments or their ministries. The strategy is a living document and will be reviewed and refined further, based on possible future developments regarding European and national commitments. The version dated 06/05/2026 endorsed by the GB is a first basis, given the uncertainties surrounding the future of European funding programmes as well as funding and priorities at national level. See this version </span><a href="https://www.eu-parc.eu/sites/default/files/2026-08/PARC phasing-out strategy_V1.0_forGBendorsement_June 2026_clean.pdf"><span>here</span></a><span>.</span></p><ul><li data-list-item-id="e50343eada2022930ee7f2669eb7eee81"><span>The second section investigates certain <strong>“One Substance, One Assessment (OSOA)”-related aspects</strong> to assess the readiness to support the implementation of the OSOA legislation.</span></li></ul><p style="margin-bottom:5px;"><span>''One substance – one assessment'' (OSOA) refers to a legislative framework of the European Union (EU) designed to enable more coordinated, efficient and transparent chemical safety assessments. The framework aims to facilitate shared access to reliable, high-quality data among relevant authorities, strengthen scientific cooperation on chemicals, improve the EU’s ability to anticipate and manage chemical risks. OSOA applies to a wide range of products regulated at EU level, including biocides, pesticides, food and toys. The legislative framework entered into force on 1 January 2026. The package consists of three legislative acts:&nbsp;</span></p><ul><li data-list-item-id="e2f4ae1e0f7fd931a3b500e0ac184575e"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502455"><span>A Regulation establishing a common data platform on chemicals and a monitoring and outlook framework for chemicals</span></a></li><li data-list-item-id="ea38d45db6a381d405bb413baf682413b"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502457"><span>A Regulation re-attributing technical tasks and improving cooperation among EU agencies</span></a></li><li data-list-item-id="e3720b09cabbf4749de07f98df14cdfda"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502456"><span>A Directive on the re-attribution of technical tasks to the European Chemicals Agency (ECHA)</span></a></li></ul><p><span>Although OSOA establishes a legal framework, its successful implementation will rely on effective sample collection, harmonised methodologies that are quality assured and controlled and operational experience, including through collaborative initiatives such as PARC.</span></p><p><span>The mapping of these results will feed into discussions with the Governing Board.&nbsp;</span></p><p><span>We kindly ask each PARC institutional partner to coordinate internally the completion of this survey. One consolidated response representing the partner''s perspective is expected from each organisation. <strong>The deadline for completing the survey is 30 November 2026.</strong></span></p><p><span>The collected information will be treated confidentially in accordance with the requirements of the General Data Protection Regulation (GDPR). Data obtained from this survey will be stored by the National Center for Public Health and Pharmacy (NCPHP) during the implementation of the PARC project and for up to five years after its completion.The data will be processed by the Task 2.3 partners for the purposes described above.</span></p><p><span>Thank you for taking the time to complete this survey.</span></p><p>If you have any questions, please contact us.</p><p>Task 2.3 Co-leaders</p><ul><li data-list-item-id="e0595e2a1cd3449c2b592d9928ddd70f8">Tamás Szigeti (<a href="mailto:szigeti.tamas@nngyk.gov.hu">szigeti.tamas@nngyk.gov.hu</a>)</li><li data-list-item-id="e31c282071057c9047fabc76c72b0e150">Adrienne Pittman (<a href="mailto:adrienne.pittman@anses.fr">adrienne.pittman@anses.fr</a>) &nbsp;</li><li data-list-item-id="ef2ce6d215eedc39907641a830fbefb3f">Robert Barouki (<a href="mailto:robert.barouki@parisdescartes.fr">robert.barouki@parisdescartes.fr</a>)</li></ul>'
+      '#description': '<h5><strong>SURVEY SUPPORTING THE FURTHER DEVELOPMENT AND IMPLEMENTATION OF THE PARC PHASING-OUT STRATEGY AND ASSESSING PARTNERS’ READINESS FOR SUSTAINABILITY</strong></h5><p>&nbsp;</p><p><span>This survey is carried out under Task 2.3 "Sustainability" as part of the development of the PARC exit strategy. It is addressed to all PARC institutional partners to support the further development and implementation of the PARC Phasing-out strategy and assess partners’ readiness for sustainability.</span></p><p><span>The survey has two sections:&nbsp;</span></p><ul><li data-list-item-id="e0ea69ac1cc4893386f29b506cf6a5717"><span>The first section focuses on the <strong>phasing-out strategy</strong> to assess the feasibility, level of ambition, and potential implementation pathways of PARC phasing-out scenarios at organisational level.&nbsp;</span></li></ul><p><span>As a reminder, in order to respond to the EC requirement for a phasing out strategy, three phasing out scenarios, reflecting different levels of ambition and integration (and budget), are proposed to be investigated: from (i) a comprehensive continuation and expansion model (scenario A) in which further work on what was already initiated in each field of activity of PARC depends on identified needs, varied funding streams and budgets available, to (ii) a middle scenario (scenario B) involving (adapted) continuation based primarily on public funding from the participating countries, and organisations to (iii) a model focused on solely preserving core achievements and ensuring the legacy of PARC (scenario C). This strategy does not engage the responsibility of GB members and does not constitute a formal commitment by national governments or their ministries. The strategy is a living document and will be reviewed and refined further, based on possible future developments regarding European and national commitments. The version dated 06/05/2026 endorsed by the GB is a first basis, given the uncertainties surrounding the future of European funding programmes as well as funding and priorities at national level. See this version </span><a href="https://www.eu-parc.eu/sites/default/files/2026-08/PARC phasing-out strategy_V1.0_forGBendorsement_June 2026_clean.pdf" target="_blank" rel="noopener noreferrer"><span>here</span></a><span>.</span></p><ul><li data-list-item-id="e50343eada2022930ee7f2669eb7eee81"><span>The second section investigates certain <strong>“One Substance, One Assessment (OSOA)”-related aspects</strong> to assess the readiness to support the implementation of the OSOA legislation.</span></li></ul><p style="margin-bottom:5px;"><span>''One substance  one assessment'' (OSOA) refers to a legislative framework of the European Union (EU) designed to enable more coordinated, efficient and transparent chemical safety assessments. The framework aims to facilitate shared access to reliable, high-quality data among relevant authorities, strengthen scientific cooperation on chemicals, improve the EU’s ability to anticipate and manage chemical risks. OSOA applies to a wide range of products regulated at EU level, including biocides, pesticides, food and toys. The legislative framework entered into force on 1 January 2026. The package consists of three legislative acts:&nbsp;</span></p><ul><li data-list-item-id="e2f4ae1e0f7fd931a3b500e0ac184575e"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502455"><span>A Regulation establishing a common data platform on chemicals and a monitoring and outlook framework for chemicals</span></a></li><li data-list-item-id="ea38d45db6a381d405bb413baf682413b"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502457"><span>A Regulation re-attributing technical tasks and improving cooperation among EU agencies</span></a></li><li data-list-item-id="e3720b09cabbf4749de07f98df14cdfda"><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202502456"><span>A Directive on the re-attribution of technical tasks to the European Chemicals Agency (ECHA)</span></a></li></ul><p><span>Although OSOA establishes a legal framework, its successful implementation will rely on effective sample collection, harmonised methodologies that are quality assured and controlled and operational experience, including through collaborative initiatives such as PARC.</span></p><p><span>The mapping of these results will feed into discussions with the Governing Board.&nbsp;</span></p><p><span>We kindly ask each PARC institutional partner to coordinate internally the completion of this survey. One consolidated response representing the partner''s perspective is expected from each organisation. <strong>The deadline for completing the survey is 31 December 2026.</strong></span></p><p><span>The collected information will be treated confidentially in accordance with the requirements of the General Data Protection Regulation (GDPR). Data obtained from this survey will be stored by the National Center for Public Health and Pharmacy (NCPHP) during the implementation of the PARC project and for up to five years after its completion.The data will be processed by the Task 2.3 partners for the purposes described above.</span></p><p><span>Thank you for taking the time to complete this survey.</span></p><p>If you have any questions, please contact us.</p><p>Task 2.3 Co-leaders</p><ul><li data-list-item-id="e0595e2a1cd3449c2b592d9928ddd70f8">Tamás Szigeti (<a href="mailto:szigeti.tamas@nngyk.gov.hu">szigeti.tamas@nngyk.gov.hu</a>)</li><li data-list-item-id="e31c282071057c9047fabc76c72b0e150">Adrienne Pittman (<a href="mailto:adrienne.pittman@anses.fr">adrienne.pittman@anses.fr</a>) &nbsp;</li><li data-list-item-id="ef2ce6d215eedc39907641a830fbefb3f">Robert Barouki (<a href="mailto:robert.barouki@parisdescartes.fr">robert.barouki@parisdescartes.fr</a>)</li></ul>'
       '#description_display': before
       '#required': true
   general_information:
@@ -344,109 +344,333 @@ elements: |-
             filled: true
     question_3_intro:
       '#type': webform_markup
-      '#markup': '<p><strong>3. In which of the following activities would your organisation be willing to maintain, further develop or expand core PARC achievements after the end of EU funding</strong></p><p>Please select one option for each applicable activity. Leave items blank if they are not applicable (e.g. if your organisation was not involved in that activity).</p><p>“Maintain” refers to continuing key outputs, capacities, or activities developed under PARC (e.g. use of tools and methods, operation of systems, data provision, or participation in networks), without significant additional resources or expansion. This may also include limited uptake of activities not previously implemented in your country, where feasible within existing or modest resources.</p><p>“Further develop or expand” refers to strengthening, broadening, or scaling up PARC-related activities, including the development of new capacities, wider implementation, increased coordination, or additional investments and resources.</p>'
+      '#markup': '<p><strong>3. In which of the following activities would your organisation be willing to maintain, further develop or expand core PARC achievements after the end of EU funding</strong></p><p>Please select one option for each applicable activity. Select “Not applicable” if your organisation was not involved in that activity.</p><p>“Maintain” refers to continuing key outputs, capacities, or activities developed under PARC (e.g. use of tools and methods, operation of systems, data provision, or participation in networks), without significant additional resources or expansion. This may also include limited uptake of activities not previously implemented in your country, where feasible within existing or modest resources.</p><p>“Further develop or expand” refers to strengthening, broadening, or scaling up PARC-related activities, including the development of new capacities, wider implementation, increased coordination, or additional investments and resources.</p>'
     3_1_human_biomonitoring_hbm_general_population:
-      '#type': select
-      '#title': '3.1. Human biomonitoring (HBM) – general population'
+      '#type': radios
+      '#title': '3.1. Human biomonitoring (HBM)  general population'
       '#options':
         Maintain: Maintain
         'Further develop or expand': 'Further develop or expand'
         'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
     3_1_please_share_any_additional_information:
       '#type': textarea
       '#title': 'Please share any additional information'
-  section_2_experience_in_risk_communication:
+    3_2_human_biomonitoring_hbm_occupational:
+      '#type': radios
+      '#title': '3.2. Human biomonitoring (HBM)  occupational'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_2_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_3_human_biomonitoring_hbm_targeted_hot_spot_studies:
+      '#type': radios
+      '#title': '3.3. Human biomonitoring (HBM)  targeted/hot spot studies'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_3_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_4_environmental_monitoring_areas_not_yet_covered_by_regulatory:
+      '#type': radios
+      '#title': '3.4. Environmental monitoring (areas not yet covered by regulatory frameworks)'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_4_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_5_early_warning_system_for_emerging_risks_a_system_for_identif:
+      '#type': radios
+      '#title': '3.5. Early Warning System for emerging risks (a system for identifying and communicating early signals of emerging chemical risks)'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_5_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_6_hazard_assessment_including_nam_development:
+      '#type': radios
+      '#title': '3.6. Hazard assessment (including NAM development)'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_6_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_7_integrated_risk_assessment_and_modelling_including_ngra_appr:
+      '#type': radios
+      '#title': '3.7. Integrated risk assessment and modelling (including NGRA approaches)'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_7_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_8_safe_and_sustainable_by_design_including_tools_and_models_su:
+      '#type': radios
+      '#title': '3.8. Safe and Sustainable by Design (including tools and models supporting application)'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_8_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_9_data_infrastructure_and_fair_data_including_data_storage_acc:
+      '#type': radios
+      '#title': '3.9. Data infrastructure and FAIR data (including data storage, access, and integration of chemical data flows)'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_9_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_10_coordination_mechanisms_and_networks_e_g_national_hub_scien:
+      '#type': radios
+      '#title': '3.10. Coordination mechanisms and networks (e.g. National Hub, science-policy interface, prioritisation processes)'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_10_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    3_11_training_capacity_building_and_knowledge_transfer:
+      '#type': radios
+      '#title': '3.11. Training, capacity building, and knowledge transfer'
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#required': true
+    3_11_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+    markup_02:
+      '#type': webform_markup
+      '#markup': '<p class="label">3.12. Other activity related to chemical risk assessment, if applicable</p><p>Please specify the activity or topic that is not covered above.</p>'
+    3_12_name_of_the_activity:
+      '#type': textfield
+      '#title': 'Name of the activity:'
+    3_12_other_activity:
+      '#type': radios
+      '#title': '3.12. other activity'
+      '#title_display': invisible
+      '#options':
+        Maintain: Maintain
+        'Further develop or expand': 'Further develop or expand'
+        'Do not know': 'Do not know'
+        'Not applicable': 'Not applicable'
+      '#states':
+        visible:
+          ':input[name="3_12_name_of_the_activity"]':
+            filled: true
+    3_12_please_share_any_additional_information:
+      '#type': textarea
+      '#title': 'Please share any additional information'
+      '#states':
+        visible:
+          ':input[name="3_12_name_of_the_activity"]':
+            filled: true
+  section_2_alignment_with_osoa_and_readiness:
     '#type': webform_wizard_page
     '#title': 'Section 2: Alignment with OSOA and readiness'
-    what_difficulties_do_you_experience_during_risk_communication_ch:
-      '#type': webform_checkboxes_other
-      '#title': '12. What difficulties do you experience during risk communication? (Choose all that apply)'
-      '#options':
-        'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)': 'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)'
-        'Lack of support from colleagues / Few human resources devoted to risk communication': 'Lack of support from colleagues / Few human resources devoted to risk communication'
-        'Difficulties when collaborating with experts in chemical risks': 'Difficulties when collaborating with experts in chemical risks'
-        'Unclear distribution of roles': 'Unclear distribution of roles'
-        'Unclear distribution of responsibilities': 'Unclear distribution of responsibilities'
-        'Lack of budget allocated for communication': 'Lack of budget allocated for communication'
-        'Interference by risk managers with respect to when and what will be communicated': 'Interference by risk managers with respect to when and what will be communicated'
-      '#other__option_label': Other
-      '#other__placeholder': 'Please specify'
-      '#required': true
-    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+    question_4_intro:
+      '#type': webform_markup
+      '#markup': '<p><strong>1. To what extent does your organisation have relevant datasets that could be shared voluntarily with ECHA’s Common Data Platform for Chemicals and the EEA’s HBM and indoor air quality platform under OSOA?</strong></p>'
+    4_1_human_biomonitoring_hbm_general_population:
       '#type': radios
-      '#title': '13. Do you have a metric system that shows if the message reaches the final target audience?'
+      '#title': '1.1. Human biomonitoring (HBM)  general population'
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
+        'No relevant datasets available': 'No relevant datasets available'
+        'Some relevant datasets available': 'Some relevant datasets available'
+        'Extensive datasets available and largely structured/ interoperable': 'Extensive datasets available and largely structured/ interoperable'
+        'Do not know': 'Do not know'
       '#required': true
-    if_you_answered_yes_in_previous_question_which_metric_system_do:
-      '#type': textfield
-      '#title': '14. If you answered YES in previous question, which metric system do you use?'
+    4_1_1_to_what_extent_does_your_organisation_have_sufficient_huma:
+      '#type': radios
+      '#title': '1.1.1. To what extent does your organisation have sufficient human and technical resources to contribute data?'
+      '#options':
+        'No relevant resources/capacities in place': 'No relevant resources/capacities in place'
+        'Limited resources/ capacities': 'Limited resources/ capacities'
+        'Adequate resources/ capacities in place': 'Adequate resources/ capacities in place'
+        'Do not know': 'Do not know'
+      '#required': true
       '#states':
         visible:
-          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
-      '#required': true
-    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+          ':input[name="4_1_human_biomonitoring_hbm_general_population"]':
+            '!value': 'No relevant datasets available'
+    4_2_human_biomonitoring_hbm_occupational:
       '#type': radios
-      '#title': '15. Do you evaluate each time whether the chemical hazard/risk you communicate is influential/impactful or not? (Reaction from the public?)'
+      '#title': '1.2. Human biomonitoring (HBM)  occupational'
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
+        'No relevant datasets available': 'No relevant datasets available'
+        'Some relevant datasets available': 'Some relevant datasets available'
+        'Extensive datasets available and largely structured/ interoperable': 'Extensive datasets available and largely structured/ interoperable'
+        'Do not know': 'Do not know'
       '#required': true
-    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
-      '#type': textfield
-      '#title': '16. If you answered YES in previous question, how do you evaluate the impact?'
+    4_2_1_to_what_extent_does_your_organisation_have_sufficient_huma:
+      '#type': radios
+      '#title': '1.2.1. To what extent does your organisation have sufficient human and technical resources to contribute data?'
+      '#options':
+        'No relevant resources/capacities in place': 'No relevant resources/capacities in place'
+        'Limited resources/ capacities': 'Limited resources/ capacities'
+        'Adequate resources/ capacities in place': 'Adequate resources/ capacities in place'
+        'Do not know': 'Do not know'
+      '#required': true
       '#states':
         visible:
-          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
-      '#required': true
-    15_how_much_do_you_believe_you_influence_the_target_audience:
+          ':input[name="4_2_human_biomonitoring_hbm_occupational"]':
+            '!value': 'No relevant datasets available'
+    4_3_human_biomonitoring_hbm_targeted_hot_spot_studies:
       '#type': radios
-      '#title': '17. How much do you believe you influence the target audience?'
+      '#title': '1.3. Human biomonitoring (HBM)  targeted/hot spot studies'
       '#options':
-        'No influence at all': 'No influence at all'
-        'Little influence': 'Little influence'
-        'Medium Influence': 'Medium Influence'
-        'Considerable Influence': 'Considerable Influence'
-        'High influence': 'High influence'
+        'No relevant datasets available': 'No relevant datasets available'
+        'Some relevant datasets available': 'Some relevant datasets available'
+        'Extensive datasets available and largely structured/ interoperable': 'Extensive datasets available and largely structured/ interoperable'
+        'Do not know': 'Do not know'
       '#required': true
-    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
-      '#type': webform_checkboxes_other
-      '#title': '18. In regard to the previous question, on what do you base your answer? (Choose all that apply)'
-      '#options':
-        'Reactions from the media (TV, radio, press)': 'Reactions from the media (TV, radio, press)'
-        'Publication / posts on internet sites, personal blogs, social media': 'Publication / posts on internet sites, personal blogs, social media'
-        'Monitoring with a questionnaire-based consumer survey': 'Monitoring with a questionnaire-based consumer survey'
-        ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)': ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)'
-      '#other__option_label': Other
-      '#other__placeholder': 'Please specify'
-      '#required': true
-    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+    4_3_1_to_what_extent_does_your_organisation_have_sufficient_huma:
       '#type': radios
-      '#title': '19. When communicating a chemical hazard/ risk, do you usually...?'
+      '#title': '1.3.1. To what extent does your organisation have sufficient human and technical resources to contribute data?'
       '#options':
-        ' Create your own message': ' Create your own message'
-        'Transmit the message exactly as provided by the risk assessors': 'Transmit the message exactly as provided by the risk assessors'
-        ' Adapt or reframe messages from other sources': ' Adapt or reframe messages from other sources'
+        'No relevant resources/capacities in place': 'No relevant resources/capacities in place'
+        'Limited resources/ capacities': 'Limited resources/ capacities'
+        'Adequate resources/ capacities in place': 'Adequate resources/ capacities in place'
+        'Do not know': 'Do not know'
       '#required': true
-    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
-      '#type': radios
-      '#title': '20. Have you ever personally experienced a health effect from exposure to a chemical hazard (e.g. contaminated food, cleaning products, pesticides)?'
-      '#options':
-        'Yes': 'Yes'
-        'No': 'No'
-        'I do not know': 'I do not know'
-      '#required': true
-    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
-      '#type': textfield
-      '#title': '21. If yes, did this experience affect the way you communicate or think about that hazard?'
       '#states':
         visible:
-          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
-            value: 'Yes'
+          ':input[name="4_3_human_biomonitoring_hbm_targeted_hot_spot_studies"]':
+            '!value': 'No relevant datasets available'
+    4_4_indoor_air_quality:
+      '#type': radios
+      '#title': '1.4. Indoor air quality'
+      '#options':
+        'No relevant datasets available': 'No relevant datasets available'
+        'Some relevant datasets available': 'Some relevant datasets available'
+        'Extensive datasets available and largely structured/ interoperable': 'Extensive datasets available and largely structured/ interoperable'
+        'Do not know': 'Do not know'
       '#required': true
+    4_4_1_to_what_extent_does_your_organisation_have_sufficient_huma:
+      '#type': radios
+      '#title': '1.4.1. To what extent does your organisation have sufficient human and technical resources to contribute data?'
+      '#options':
+        'No relevant resources/capacities in place': 'No relevant resources/capacities in place'
+        'Limited resources/ capacities': 'Limited resources/ capacities'
+        'Adequate resources/ capacities in place': 'Adequate resources/ capacities in place'
+        'Do not know': 'Do not know'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="4_4_indoor_air_quality"]':
+            '!value': 'No relevant datasets available'
+    4_5_data_on_chemicals_in_articles_or_products:
+      '#type': radios
+      '#title': '1.5. Data on chemicals in articles or products '
+      '#options':
+        'No relevant datasets available': 'No relevant datasets available'
+        'Some relevant datasets available': 'Some relevant datasets available'
+        'Extensive datasets available and largely structured/ interoperable': 'Extensive datasets available and largely structured/ interoperable'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_5_1_to_what_extent_does_your_organisation_have_sufficient_huma:
+      '#type': radios
+      '#title': '1.5.1. To what extent does your organisation have sufficient human and technical resources to contribute data?'
+      '#options':
+        'No relevant resources/capacities in place': 'No relevant resources/capacities in place'
+        'Limited resources/ capacities': 'Limited resources/ capacities'
+        'Adequate resources/ capacities in place': 'Adequate resources/ capacities in place'
+        'Do not know': 'Do not know'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="4_5_data_on_chemicals_in_articles_or_products"]':
+            '!value': 'No relevant datasets available'
+    4_6_data_on_alternatives_to_substances_of_concern:
+      '#type': radios
+      '#title': '1.6. Data on alternatives to substances of concern'
+      '#options':
+        'No relevant datasets available': 'No relevant datasets available'
+        'Some relevant datasets available': 'Some relevant datasets available'
+        'Extensive datasets available and largely structured/ interoperable': 'Extensive datasets available and largely structured/ interoperable'
+        'Do not know': 'Do not know'
+      '#required': true
+    4_6_1_to_what_extent_does_your_organisation_have_sufficient_huma:
+      '#type': radios
+      '#title': '1.6.1. To what extent does your organisation have sufficient human and technical resources to contribute data?'
+      '#options':
+        'No relevant resources/capacities in place': 'No relevant resources/capacities in place'
+        'Limited resources/ capacities': 'Limited resources/ capacities'
+        'Adequate resources/ capacities in place': 'Adequate resources/ capacities in place'
+        'Do not know': 'Do not know'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="4_6_data_on_alternatives_to_substances_of_concern"]':
+            '!value': 'No relevant datasets available'
+    markup_03:
+      '#type': webform_markup
+      '#markup': '<p class="label">1.7. Other relevant datasets, if applicable</p><p>Please specify the type of dataset not covered above.</p>'
+    4_7_type_of_dataset:
+      '#type': textfield
+      '#title': 'Type of dataset:'
+    4_7_other_dataset:
+      '#type': radios
+      '#title': '1.7. Other dataset'
+      '#options':
+        'No relevant datasets available': 'No relevant datasets available'
+        'Some relevant datasets available': 'Some relevant datasets available'
+        'Extensive datasets available and largely structured/ interoperable': 'Extensive datasets available and largely structured/ interoperable'
+        'Do not know': 'Do not know'
+      '#states':
+        visible:
+          ':input[name="4_7_type_of_dataset"]':
+            filled: true
+    4_7_1_to_what_extent_does_your_organisation_have_sufficient_huma:
+      '#type': radios
+      '#title': '1.7.1. To what extent does your organisation have sufficient human and technical resources to contribute data?'
+      '#options':
+        'No relevant resources/capacities in place': 'No relevant resources/capacities in place'
+        'Limited resources/ capacities': 'Limited resources/ capacities'
+        'Adequate resources/ capacities in place': 'Adequate resources/ capacities in place'
+        'Do not know': 'Do not know'
+      '#states':
+        visible:
+          ':input[name="4_7_other_dataset"]':
+            '!value': 'No relevant datasets available'
 css: ''
 javascript: ''
 settings:
@@ -456,7 +680,7 @@ settings:
   ajax_effect: ''
   ajax_speed: null
   page: true
-  page_submit_path: ''
+  page_submit_path: /form/survey-phasingout-OSOA
   page_confirm_path: ''
   page_theme_name: parc
   form_title: source_entity_webform
