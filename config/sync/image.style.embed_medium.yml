@@ -1,0 +1,15 @@
+uuid: 9070ef4d-4de5-40ab-9f31-bd16a154d51c
+langcode: en
+status: true
+dependencies: {  }
+name: embed_medium
+label: 'Embed Medium'
+effects:
+  41e6fa47-61d4-4d30-8d64-6c0f061f2100:
+    uuid: 41e6fa47-61d4-4d30-8d64-6c0f061f2100
+    id: image_scale
+    weight: 1
+    data:
+      width: 1400
+      height: null
+      upscale: true

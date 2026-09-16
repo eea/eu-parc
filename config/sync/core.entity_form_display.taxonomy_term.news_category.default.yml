@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.news_category.field_bg_color
     - field.field.taxonomy_term.news_category.field_color
     - field.field.taxonomy_term.news_category.field_overlay
     - taxonomy.vocabulary.news_category
@@ -23,6 +24,12 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_bg_color:
+    type: color_field_widget_html5
+    weight: 5
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_color:
     type: color_field_widget_html5

@@ -41,9 +41,20 @@
 
   .field--type-text-long,
   .field--type-text-with-summary {
+    > figure,
+    > div:has(img, video) {
+      display: block;
+      width: fit-content;
+      max-width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    img,
     video {
-      width: 100%;
-      aspect-ratio: 16 / 9;
+      display: block;
+      max-width: 100%;
       height: auto;
     }
 
@@ -85,6 +96,10 @@
     .col-content {
       flex: 0 0 auto;
       width: 75%;
+
+      &:only-child {
+        width: 100%;
+      }
     }
 
     .content-container {

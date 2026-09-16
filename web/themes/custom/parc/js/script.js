@@ -66,19 +66,6 @@
       $('.nav-link.is-active[data-drupal-link-system-path="<front>"]', context).on('click', function(){
         mainSidebar.collapse('hide');
       });
-
-      var lastScrollTop = 0;
-
-      document.addEventListener("scroll", function(){ // or window.addEventListener("scroll"....
-        var st = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (st > lastScrollTop && st > 120){
-          $('#header').addClass('vh');
-        } else {
-          $('#header').removeClass('vh');
-        }
-        lastScrollTop = st <= 0 ? 0 : st;
-      }, false);
     }
   };
 

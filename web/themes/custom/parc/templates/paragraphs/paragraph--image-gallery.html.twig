@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Parc override to display an image gallery paragraph (images side by side).
+ */
+#}
+
+{{ attach_library('parc/p--image-gallery') }}
+
+<div class="paragraph--image-gallery">
+  {% for delta, item in paragraph.field_gallery_images %}
+    <figure class="paragraph--image-gallery__item">
+      {{ content.field_gallery_images[delta] }}
+      {% if item.entity.field_caption.value %}
+        <figcaption class="paragraph--image-gallery__caption">{{ item.entity.field_caption.value }}</figcaption>
+      {% endif %}
+    </figure>
+  {% endfor %}
+</div>
