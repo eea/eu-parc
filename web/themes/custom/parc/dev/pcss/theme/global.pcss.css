@@ -2,7 +2,7 @@
   transition: var(--transition-base);
   top: var(--drupal-body-pt);
 
-  header:not(.vh) + main & {
+  header + main & {
     top: calc(var(--drupal-body-pt) + 96px);
   }
 }

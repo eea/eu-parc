@@ -82,10 +82,17 @@ class MediaCarouselFormatter extends EntityReferenceFormatterBase {
       ];
     }
 
+    $width = 'large';
+    $paragraph = $items->getEntity();
+    if ($paragraph->hasField('field_carousel_width') && !$paragraph->get('field_carousel_width')->isEmpty()) {
+      $width = $paragraph->get('field_carousel_width')->value;
+    }
+
     return [
       [
         '#theme' => 'parc_media_carousel',
         '#items' => $carousel_items,
+        '#width' => $width,
       ]
     ];
   }
