@@ -863,6 +863,7 @@ function parc_preprocess_field__block_content__field_paragraphs__carousel(array 
   $block = $variables['element']['#object'];
   $variables['carousel_id'] = 'carousel' . $block->id();
   $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
+  $variables['carousel_width'] = $block->get('field_carousel_width')->value ?: 'large';
 }
 
 /**
@@ -897,6 +898,7 @@ function parc_preprocess_block__block_content__carousel(array &$variables) {
   /** @var \Drupal\block_content\Entity\BlockContent $block */
   $block = $variables['content']['#block_content'];
   $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
+  $variables['carousel_width'] = $block->get('field_carousel_width')->value ?: 'large';
 }
 
 /**

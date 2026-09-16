@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.media_carousel.field_carousel_items
+    - field.field.paragraph.media_carousel.field_carousel_width
     - paragraphs.paragraphs_type.media_carousel
   module:
     - media_library
+    - options
 id: paragraph.media_carousel.default
 targetEntityType: paragraph
 bundle: media_carousel
@@ -18,6 +20,12 @@ content:
     region: content
     settings:
       media_types: {  }
+    third_party_settings: {  }
+  field_carousel_width:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true

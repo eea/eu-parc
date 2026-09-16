@@ -71,6 +71,7 @@ function parc_core_theme() {
     'parc_media_carousel' => [
       'variables' => [
         'items' => [],
+        'width' => 'large',
       ],
     ],
     'parc_indicator_groups' => [

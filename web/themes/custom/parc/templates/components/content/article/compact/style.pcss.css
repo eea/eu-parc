@@ -130,7 +130,16 @@
     }
 
     .paragraph-text {
-      max-width: 70%;
+      max-width: 100%;
+
+      .field--type-text-long,
+      .field--type-text-with-summary {
+        > *:not(img):not(video):not(figure):not(div:has(img, video)) {
+          max-width: 70%;
+          margin-inline: auto !important;
+          display: block;
+        }
+      }
     }
   }
 

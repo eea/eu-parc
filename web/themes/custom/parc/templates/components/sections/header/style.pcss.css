@@ -20,13 +20,20 @@ body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-b
 }
 
 header {
-  transition: 0.3s opacity linear;
+  &:has(.navbar-collapse.show),
+  &:has(.navbar-collapse.collapsing) {
+    z-index: 1040;
+  }
 
   @media (--lg) {
     &.sticky-top {
       position: relative;
       top: auto;
     }
+  }
+
+  &.sticky-top {
+    transition: none;
   }
 
   body.has-category-bg & {
@@ -39,15 +46,6 @@ header {
   }
 
   @media (--xl) {
-    .region-nav-additional {
-      max-height: 29px;
-    }
-
-    &.vh {
-      opacity: 0;
-      pointer-events: none;
-    }
-
     .nav-main {
       margin-inline: auto;
     }
@@ -101,26 +99,14 @@ header.title-passed.vh {
 }
 
 .h-sticky {
-  margin-bottom: calc(96px - 68px);
-
-  .navbar {
-    min-height: 68px;
-  }
-
   @media (--xl) {
     .site-logo {
       --sl-mw: 180px;
     }
 
     .region-nav-additional {
-      max-height: 0;
-      opacity: 0;
       display: none;
     }
-  }
-
-  .region-nav-main {
-    margin-bottom: 0;
   }
 }
 

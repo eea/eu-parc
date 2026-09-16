@@ -13,10 +13,9 @@ header.style.setProperty('--header-height', header.offsetHeight + 'px');
 
 window.addEventListener('scroll', function() {
   scrollpos = window.scrollY;
-
-  if (scrollpos >= 50) {
+  if (scrollpos >= 60) {
     header.classList.add(...["h-sticky", "shadow-sm"])
-  } else {
+  } else if (scrollpos <= 40) {
     header.classList.remove(...["h-sticky", "shadow-sm"])
   }
 
