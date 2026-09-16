@@ -16,7 +16,6 @@ body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-b
 
 .region-highlighted {
   position: relative;
-  z-index: 91;
 }
 
 header {
