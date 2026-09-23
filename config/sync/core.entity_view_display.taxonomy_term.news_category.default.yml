@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.news_category.field_bg_color
     - field.field.taxonomy_term.news_category.field_color
     - field.field.taxonomy_term.news_category.field_overlay
     - taxonomy.vocabulary.news_category
@@ -13,6 +14,7 @@ mode: default
 content: {  }
 hidden:
   description: true
+  field_bg_color: true
   field_color: true
   field_overlay: true
   search_api_excerpt: true

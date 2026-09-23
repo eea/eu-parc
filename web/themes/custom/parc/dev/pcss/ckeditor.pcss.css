@@ -66,3 +66,15 @@ mark {
 .text--indented {
   padding-left: 40px;
 }
+
+.ck-content .drupal-media[data-view-mode="embed_small"] {
+  max-width: 50%;
+}
+
+.ck-content .drupal-media[data-view-mode="embed_medium"] {
+  max-width: 75%;
+}
+
+.ck-content .drupal-media[data-view-mode="embed_large"] {
+  max-width: 100%;
+}

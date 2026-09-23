@@ -1,0 +1,30 @@
+uuid: b8e310ab-1ae6-4c0a-92aa-86b34d7ae8bb
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - block_content
+id: block_content.field_carousel_width
+field_name: field_carousel_width
+entity_type: block_content
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: large
+      label: 'Large (1880px)'
+    -
+      value: medium
+      label: 'Medium (1400px)'
+    -
+      value: small
+      label: 'Small (800px)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

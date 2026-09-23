@@ -1,0 +1,28 @@
+.paragraph--image-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: var(--spacer);
+  margin-top: var(--spacer);
+
+  @media (--md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  &__caption {
+    color: black;
+    font-size: 18px;
+    line-height: 160%;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+}

@@ -5,16 +5,30 @@
 
 let scrollpos = window.scrollY
 const header = document.getElementById("header")
+const navbar = header.querySelector(".navbar")
+let pageTitleEl = document.querySelector("main .svg-title")
+const titleSwapOffset = navbar ? navbar.offsetHeight : header.offsetHeight
 
 header.style.setProperty('--header-height', header.offsetHeight + 'px');
 
 window.addEventListener('scroll', function() {
   scrollpos = window.scrollY;
-
-  if (scrollpos >= 50) {
+  if (scrollpos >= 60) {
     header.classList.add(...["h-sticky", "shadow-sm"])
-  } else {
+  } else if (scrollpos <= 40) {
     header.classList.remove(...["h-sticky", "shadow-sm"])
+  }
+
+  if (pageTitleEl && !pageTitleEl.isConnected) {
+    pageTitleEl = document.querySelector("main .svg-title")
+  }
+
+  if (pageTitleEl) {
+    if (pageTitleEl.getBoundingClientRect().bottom <= titleSwapOffset) {
+      header.classList.add("title-passed")
+    } else {
+      header.classList.remove("title-passed")
+    }
   }
 });
 
