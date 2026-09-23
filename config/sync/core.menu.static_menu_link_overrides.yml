@@ -160,19 +160,19 @@ definitions:
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__89':
     menu_name: main
     parent: 'views_view:views.news_events.page_news'
-    weight: -66
+    weight: -63
     expanded: false
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__88':
     menu_name: main
     parent: 'views_view:views.news_events.page_news'
-    weight: -65
+    weight: -64
     expanded: false
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__87':
     menu_name: main
     parent: 'views_view:views.news_events.page_news'
-    weight: -63
+    weight: -62
     expanded: false
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__thematic_areas__99':
@@ -214,7 +214,7 @@ definitions:
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__1139':
     menu_name: main
     parent: 'views_view:views.news_events.page_news'
-    weight: -64
+    weight: -66
     expanded: false
     enabled: true
   'taxonomy_menu__menu_link:taxonomy_menu__menu_link__indicator_topics__1230':
@@ -277,3 +277,9 @@ definitions:
     weight: -92
     expanded: false
     enabled: false
+  'taxonomy_menu__menu_link:taxonomy_menu__menu_link__news__2002':
+    menu_name: main
+    parent: 'views_view:views.news_events.page_news'
+    weight: -65
+    expanded: false
+    enabled: true

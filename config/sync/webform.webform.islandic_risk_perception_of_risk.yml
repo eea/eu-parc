@@ -1,0 +1,600 @@
+uuid: bb6e49bd-cb8e-4d6b-abe4-02608cc9988f
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 637
+template: false
+archive: false
+id: islandic_risk_perception_of_risk
+title: 'Islandic Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in </span><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(34, 34, 34);display:inline !important;float:none;font-family:&quot;Segoe UI&quot;;font-size:13.3333px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Islandic language</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Samþykki og samhengi'
+    description:
+      '#type': checkbox
+      '#title': 'Ég staðfesti að ég hef lesið og samþykki upplýsingarnar sem koma fram hér að ofan'
+      '#description': '<h4><span style="font-family:Satoshi;" lang="IS">Áhættuskynjun áhættumiðlara</span></h4><p>Þín skoðun skiptir máli! Láttu álit þitt skipta máli fyrir öruggari meðferð efna í Evrópu með því að taka þátt í stuttri könnun um „áhættuskynjun áhættumiðlara“. <span lang="EN-US">Rannsóknin er gerð á vegum PARC (https://www.eu-parc.eu/) sem stendur fyrir „Partnership for the Assessment of Risks from Chemicals“.</span></p><p>Um PARC: Evrópska samstarfsverkefnið um mat á áhættu af völdum efna (PARC) er samstarfsverkefni 30 landa og 3 Evrópustofnana (EEA, ECHA, EFSA), sem ætlað er að takast á við áskoranir sem tengjast nýsköpun í áhættumati efna. Markmið PARC er að veita stefnumótun í Evrópu og á landsvísu með traustum vísindagögnum um útsetningu almennings fyrir efnamengun og möguleg áhrif hennar á heilsu. Í landinu [nafn lands þíns] er könnunin í umsjón [nafn framkvæmdastofnunar].</p><p>Tilgangur þessarar könnunar: Við erum öll útsett fyrir fjölda efna, sum þeirra geta verið skaðleg heilsunni. Það er mikilvægt að upplýsa um hugsanlega áhættu af þessum efnum. Í þessari könnun stefnum við að því að öðlast dýpri innsýn í algenga starfshætti sem áhættumiðlarar nota, skoðanir þeirra á áhættuskynjun, sem og áhyggjur þeirra og þær áskoranir sem þeir standa frammi fyrir þegar þeir miðla upplýsingum um hættur og áhættu.</p><p>Fyrir hverja er könnunin: Þessi spurningalisti fjallar aðallega um miðlun upplýsinga um áhættu við venjulegar aðstæður, öfugt við neyðarsamskipti sem vísa til samskipta í aðstæðum sem krefjast brýnna ákvarðana. Það tekur um það bil 20 mínútur að svara könnuninni.</p><p>Hvað verður um upplýsingarnar sem safnað er: Upplýsingarnar sem safnað er verða nafnlausar og meðhöndlaðar sem trúnaðarmál í samræmi við kröfur almennu persónuverndarreglugerðarinnar (GDPR). Svörin verða sameinuð svörum annarra þátttakenda þegar rannsóknaraðilar PARC greina gögnin. Ef vísindalegar niðurstöður þessarar könnunar verða birtar eða kynntar á ráðstefnu verða gögnin sýnd í heild sinni.</p><p>Réttur til að hafna þátttöku eða hætta: Þátttaka þín er alfarið sjálfviljug. Með því að fylla út og senda inn þessa könnun gefur þú til kynna samþykki þitt fyrir þátttöku í henni. Þú getur hætt þátttöku hvenær sem er eða ákveðið að taka ekki þátt yfirhöfuð, án þess að gefa upp ástæður og án nokkurra afleiðinga.</p><p>Þakka þér fyrir tíma þinn og samvinnu!</p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': "1.\tKafli: Faglegur bakgrunnur"
+    county:
+      '#type': textfield
+      '#title': 'Búsetuland þitt'
+      '#size': 1
+      '#required': true
+    age:
+      '#type': number
+      '#title': 'Núverandi aldur þinn:'
+      '#required': true
+      '#min': 16
+      '#max': 99
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': "1.1.\tÍ hvaða geira vinnur þú?"
+      '#multiple': 2
+      '#options':
+        'Opinberar stofnanir': 'Opinberar stofnanir'
+        ' Háskólasamfélagið': ' Háskólasamfélagið'
+        'Samtök fagstétta': 'Samtök fagstétta'
+        'Frjáls félagasamtök': 'Frjáls félagasamtök'
+      '#other__option_label': Annað
+      '#other__placeholder': 'vinsamlegast tilgreindu:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': "1.2.\tEfnafræðilega hættan/áhættan sem þú ert að miðla tengist: (Veldu allt sem á við)"
+      '#options':
+        'Matvælum (matvælaöryggi)': 'Matvælum (matvælaöryggi)'
+        'Umhverfi (jarðvegi, lofti, vatni o.s.frv.)': 'Umhverfi (jarðvegi, lofti, vatni o.s.frv.)'
+        Vinnuvernd: Vinnuvernd
+        'Efnaöryggi (almennt)': 'Efnaöryggi (almennt)'
+      '#other__option_label': Öðru
+      '#other__placeholder': 'vinsamlegast tilgreindu:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': "1.3.\tHversu margra ára reynslu hefur þú í áhættumiðlun?"
+      '#options':
+        'Minna en tvö ár': 'Minna en tvö ár'
+        '2 til 5 ár': '2 til 5 ár'
+        '6 til 10 ár': '6 til 10 ár'
+        '11 til 15 ára': '11 til 15 ára'
+        'Meira en 15 ár': 'Meira en 15 ár'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': "1.4.\tHversu oft stundar þú áhættumiðlun?"
+      '#options':
+        Daglega/vikulega: Daglega/vikulega
+        Mánaðarleg: Mánaðarleg
+        'Á nokkurra mánaða fresti': 'Á nokkurra mánaða fresti'
+        Árlega: Árlega
+        Aldrei: Aldrei
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': "1.5.\tHver er helsti markhópurinn sem þú beinir miðlun þinni að?"
+      '#options':
+        Almenningur: Almenningur
+      '#other__option_label': 'Afmarkaður markhópur'
+      '#other__placeholder': 'vinsamlegast tilgreindu:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': "1.6.\tHvert er þitt fræðasvið? (Veldu allt sem á við)"
+      '#multiple': 2
+      '#options':
+        'Efnaverkfræðingur / efnafræðingur / eiturefnafræðingur': 'Efnaverkfræðingur / efnafræðingur / eiturefnafræðingur'
+        'Matvælafræðingur / tæknifræðingur / örverufræðingur': 'Matvælafræðingur / tæknifræðingur / örverufræðingur'
+        'Sérfræðingur í lýðheilsu': 'Sérfræðingur í lýðheilsu'
+        Næringarsérfræðingur: Næringarsérfræðingur
+        'Umhverfis- og landbúnaðarvísindamaður': 'Umhverfis- og landbúnaðarvísindamaður'
+        'Samskiptasérfræðingur / félagsvísindamaður': 'Samskiptasérfræðingur / félagsvísindamaður'
+      '#other__option_label': Annað
+      '#other__placeholder': 'tilgreinið:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': "1.7.\tHversu oft færð þú þjálfun í áhættumiðlun (t.d. þjálfun frá sérfræðingum í miðlun, heimsóknir til annarra miðlunardeilda, þátttaka í námskeiðum / vefnámskeiðum / ráðstefnum o.s.frv.)?"
+      '#options':
+        Aldrei: Aldrei
+        'Reglulega (t.d. á 2–5 ára fresti)': 'Reglulega (t.d. á 2–5 ára fresti)'
+        'Oft (að minnsta kosti einu sinni á ári)': 'Oft (að minnsta kosti einu sinni á ári)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': "1.8.\tHvernig metur þú gæði þeirrar þjálfunar í áhættumiðlun sem þú fékkst?"
+      '#options':
+        'Mjög léleg': 'Mjög léleg'
+        'Frekar léleg': 'Frekar léleg'
+        'Hvorki góð né léleg': 'Hvorki góð né léleg'
+        'Frekar góð': 'Frekar góð'
+        'Mjög góð': 'Mjög góð'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': Never
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': "1.9.\tTelur þú að þjálfun í miðlun sé nauðsynleg fyrir starf þitt í dag?"
+      '#options':
+        Já: Já
+        Nei: Nei
+        'Ég veit ekki, ég vil ekki svara': 'Ég veit ekki, ég vil ekki svara'
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "2.\tKafli: Reynsla af áhættumiðlun "
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': "2.1.\tHvaða erfiðleika upplifir þú við áhættumiðlun? (Veldu allt sem á við)"
+      '#options':
+        'Skortur á nægjanlegum vísindalegum staðreyndum (annað hvort um hættu eða um líkur þess að tiltekið efni valdi skaða)': 'Skortur á nægjanlegum vísindalegum staðreyndum (annað hvort um hættu eða um líkur þess að tiltekið efni valdi skaða)'
+        'Skortur á stuðningi frá samstarfsfólki / Fáar mannauðsauðlindir sem fara í áhættumiðlun': 'Skortur á stuðningi frá samstarfsfólki / Fáar mannauðsauðlindir sem fara í áhættumiðlun'
+        'Erfiðleikar í samstarfi við sérfræðinga í efnaáhættu': 'Erfiðleikar í samstarfi við sérfræðinga í efnaáhættu'
+        'Óljós skipting hlutverka': 'Óljós skipting hlutverka'
+        'Óskýr verkaskipting': 'Óskýr verkaskipting'
+        'Skortur á fjármagni sem fer í miðlun': 'Skortur á fjármagni sem fer í miðlun'
+        'Íhlutun áhættustjórnenda varðandi hvað og hvenær er miðlað': 'Íhlutun áhættustjórnenda varðandi hvað og hvenær er miðlað'
+      '#other__option_label': Annað
+      '#other__placeholder': 'vinsamlegast tilgreindu:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': "2.2.\tEr til mælikvarði sem sýnir hvort skilaboðin berast til endanlegra markhópa?"
+      '#options':
+        Já: Já
+        Nei: Nei
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': "2.3.\tEf þú svaraðir JÁ í fyrri spurningu, hvaða mælikerfi notar þú?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: 'Yes'
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': "2.4.\tMetur þú í hvert sinn hvort þær upplýsingar um efnaáhættu sem þú miðlar séu áhrifamiklar eða ekki? (Viðbrögð almennings?)"
+      '#options':
+        Já: Já
+        Nei: Nei
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': "2.5.\tEf þú svaraðir JÁ í fyrri spurningu, hvernig metur þú áhrifin?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: 'Yes'
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': "2.6.\tHversu mikil áhrif telur þú þig hafa á markhópinn?"
+      '#options':
+        'Engin áhrif yfir höfuð': 'Engin áhrif yfir höfuð'
+        'Lítil áhrif ': 'Lítil áhrif '
+        'Miðlungs áhrif': 'Miðlungs áhrif'
+        'Töluverð áhrif': 'Töluverð áhrif'
+        'Mikil áhrif': 'Mikil áhrif'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': "2.7.\tVarðandi fyrri spurninguna, á hverju byggir þú svar þitt? (Veldu allt sem á við)"
+      '#options':
+        'Viðbrögð frá fjölmiðlum (sjónvarpi, útvarpi, prentmiðlum)': 'Viðbrögð frá fjölmiðlum (sjónvarpi, útvarpi, prentmiðlum)'
+        'Birting / færslur á vefsvæðum, persónulegum bloggum eða samfélagsmiðlum': 'Birting / færslur á vefsvæðum, persónulegum bloggum eða samfélagsmiðlum'
+        'Eftirlit með könnun sem byggir á spurningalista meðal neytenda': 'Eftirlit með könnun sem byggir á spurningalista meðal neytenda'
+        'Bein endurgjöf í gegnum persónuleg samskipti (t.d. samtöl, símtöl, tölvupóst eða skilaboð)': 'Bein endurgjöf í gegnum persónuleg samskipti (t.d. samtöl, símtöl, tölvupóst eða skilaboð)'
+      '#other__option_label': Annað
+      '#other__placeholder': 'vinsamlegast tilgreindu:'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': "2.8.\tÞegar þú miðlar upplýsingum um efnafræðilega hættu/áhættu, gerir þú þá yfirleitt eitthvað af eftirfarandi?"
+      '#options':
+        'Býrð til eigin skilaboð': 'Býrð til eigin skilaboð'
+        'Sendir skilaboðin óbreytt eins og þau koma frá áhættumatsaðilum': 'Sendir skilaboðin óbreytt eins og þau koma frá áhættumatsaðilum'
+        'Aðlagar eða endursemur skilaboð frá öðrum aðilum': 'Aðlagar eða endursemur skilaboð frá öðrum aðilum'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': "2.9.\tHefur þú persónulega orðið fyrir heilsufarslegum áhrifum vegna váhrifa af völdum efnafræðilegrar hættu (t.d. menguð matvæli, hreinsivörur, skordýraeitur)?"
+      '#options':
+        Já: Já
+        Nei: Nei
+        'Ég veit ekki': 'Ég veit ekki'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': "2.10.\tEf svo er, hafði þessi reynsla áhrif á hvernig þú tjáir þig eða hugsar um þá hættu?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: 'Yes'
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "3.\tKafli: Þróun áhættumiðlunar"
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': "3.1.\tÞegar áhætta er kynnt fyrir markhópnum, hversu mikilvægt er að hafa eftirfarandi þætti með?"
+      '#required': true
+      '#questions':
+        'Notkun sjónrænna framsetninga á áhættu með línuritum, myndritum, myndum og kortum': 'Notkun sjónrænna framsetninga á áhættu með línuritum, myndritum, myndum og kortum'
+        'Samanburður á mismunandi hættum eftir líkum': 'Samanburður á mismunandi hættum eftir líkum'
+        'Lýsing á allri óvissu sem tengist áhættunni': 'Lýsing á allri óvissu sem tengist áhættunni'
+        'Töluleg markgildi (t.d. þolanleg dagleg inntaka fyrir tiltekið efni gefin upp í tölum)': 'Töluleg markgildi (t.d. þolanleg dagleg inntaka fyrir tiltekið efni gefin upp í tölum)'
+        'Lýsing á mismunandi áhættu fyrir mismunandi hópa fólks. (t.d. mismunur á áhættu fyrir mismunandi starfshópa)': 'Lýsing á mismunandi áhættu fyrir mismunandi hópa fólks. (t.d. mismunur á áhættu fyrir mismunandi starfshópa)'
+        'Upplýsingar um muninn á langtíma- og skammtímaváhrifum af völdum hættu': 'Upplýsingar um muninn á langtíma- og skammtímaváhrifum af völdum hættu'
+        'Upplýsingar um vanmat almennings á áhættu (t.d. þegar áhættumiðlari hefur upplýsingar um að almenningur telji ákveðin efni ekki jafn hættuleg og hann ætti að gera)': 'Upplýsingar um vanmat almennings á áhættu (t.d. þegar áhættumiðlari hefur upplýsingar um að almenningur telji ákveðin efni ekki jafn hættuleg og hann ætti að gera)'
+        'Upplýsingar um ofmat á áhættu af hálfu almennings (t.d. þegar áhættumiðlari hefur upplýsingar um að almenningur telji ákveðin ef': 'Upplýsingar um ofmat á áhættu af hálfu almennings (t.d. þegar áhættumiðlari hefur upplýsingar um að almenningur telji ákveðin efni hættulegri en hann ætti að gera)'
+        'Lýsing á aðferðum til að forðast að verða fyrir hættu': 'Lýsing á aðferðum til að forðast að verða fyrir hættu'
+      '#answers':
+        'Alls ekki mikilvægt': 'Alls ekki mikilvægt'
+        'Lítið mikilvægt': 'Lítið mikilvægt'
+        'Nokkuð mikilvægt': 'Nokkuð mikilvægt'
+        'Talsvert mikilvægt': 'Talsvert mikilvægt'
+        'Mjög mikilvægt': 'Mjög mikilvægt'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': "3.2.\tHversu mikilvægir eru eftirfarandi þættir trausts fyrir áhættuskynjun markhópsins þegar þú miðlar áhættu?"
+      '#required': true
+      '#questions':
+        'Traust markhópsins á sérfræðingnum sem miðlar áhættunni': 'Traust markhópsins á sérfræðingnum sem miðlar áhættunni'
+        'Traust markhópsins á innlendum og/eða evrópskum stofnunum/yfirvöldum': 'Traust markhópsins á innlendum og/eða evrópskum stofnunum/yfirvöldum'
+        'Traust markhópsins á vísindagögnum': 'Traust markhópsins á vísindagögnum'
+      '#answers':
+        'Alls ekki mikilvægir': 'Alls ekki mikilvægir'
+        'Lítið mikilvægir': 'Lítið mikilvægir'
+        'Nokkuð mikilvægir': 'Nokkuð mikilvægir'
+        'Talsvert mikilvægir': 'Talsvert mikilvægir'
+        'Mjög mikilvægir': 'Mjög mikilvægir'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': "3.3.\tVinsamlegast gefðu til kynna hversu sammála eða ósammála þú ert eftirfarandi staðhæfingum um áhættumiðlun."
+      '#required': true
+      '#questions':
+        'Þegar áhætta er kynnt er mikilvægt að greina á milli hættu og áhættu.': 'Þegar áhætta er kynnt er mikilvægt að greina á milli hættu og áhættu.'
+        'Áhættumiðlun ætti ekki að mótast af upplifun almennings á áhættu.': 'Áhættumiðlun ætti ekki að mótast af upplifun almennings á áhættu.'
+        'Grundvallarreglur (t.d. hlutlægni og óhlutdrægni) sem áhættumiðlun byggist á eru þær sömu í öllum geirum (t.d. efnafræðilegum hættum og smitsjúkdómum).': 'Grundvallarreglur (t.d. hlutlægni og óhlutdrægni) sem áhættumiðlun byggist á eru þær sömu í öllum geirum (t.d. efnafræðilegum hættum og smitsjúkdómum).'
+        'Að lýsa öllum óvissuþáttum sem tengjast áhættu og hættu getur ruglað fólk.': 'Að lýsa öllum óvissuþáttum sem tengjast áhættu og hættu getur ruglað fólk.'
+        'Áhættumiðlun ætti að fara fram í samstarfi við viðeigandi hagsmunaaðila.': 'Áhættumiðlun ætti að fara fram í samstarfi við viðeigandi hagsmunaaðila.'
+        'Fréttamiðlar hafa meiri áhuga á krísumiðlun, þar sem áhætta er oft sett fram á ýktan hátt.': 'Fréttamiðlar hafa meiri áhuga á krísumiðlun, þar sem áhætta er oft sett fram á ýktan hátt.'
+      '#answers':
+        'Er algjörlega ósammála': 'Er algjörlega ósammála'
+        'Er að hluta ósammála': 'Er að hluta ósammála'
+        'Er hvorki sammála né ósammála': 'Er hvorki sammála né ósammála'
+        'Er að hluta sammála': 'Er að hluta sammála'
+        'Er algjörlega sammála': 'Er algjörlega sammála'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': "4.\tKafli: Hlutverk áhættumiðlara"
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': "4.1.\tVinsamlegast metið eftirfarandi staðhæfingar um áhættuskynjun eftir því hversu sammála eða ósammála þið eruð þeim."
+      '#required': true
+      '#questions':
+        'Áhættuskynjun fólks felur í sér og byggir á trú þeirra og viðhorfum.': 'Áhættuskynjun fólks felur í sér og byggir á trú þeirra og viðhorfum.'
+        'Áhættuskynjun mótast ekki af mati og tilfinningum fólks (persónulegri reynslu).': 'Áhættuskynjun mótast ekki af mati og tilfinningum fólks (persónulegri reynslu).'
+        'Áhættuskynjun endurspeglar víðari menningarlegar og félagslega afstöðu sem fólk tileinkar sér gagnvart hættum og mögulegum ávinn': 'Áhættuskynjun endurspeglar víðari menningarlegar og félagslega afstöðu sem fólk tileinkar sér gagnvart hættum og mögulegum ávinningi þeirra.'
+        'Áhættumiðlun ætti að byggjast á gögnum úr áhættumati en einnig taka tillit til þess hvernig almenningur metur hættu/mikilvægi.': 'Áhættumiðlun ætti að byggjast á gögnum úr áhættumati en einnig taka tillit til þess hvernig almenningur metur hættu/mikilvægi.'
+        'Fólk sem hefur áður upplifað atvik tengt ákveðinni hættu hefur tilhneigingu til að telja líklegra að það muni lenda í henni aftu': 'Fólk sem hefur áður upplifað atvik tengt ákveðinni hættu hefur tilhneigingu til að telja líklegra að það muni lenda í henni aftur, samanborið við fólk sem hefur aldrei upplifað slíka hættu.'
+        'Þegar fólk heyrir um hættu í fyrsta sinn hefur það tilhneigingu til að telja að þessi nýja hætta sé líklegri til að eiga sér sta': 'Þegar fólk heyrir um hættu í fyrsta sinn hefur það tilhneigingu til að telja að þessi nýja hætta sé líklegri til að eiga sér stað en aðrar vel þekktar hættur.'
+        'Því sértækari þekkingu sem fólk öðlast um tiltekna hættu, því minna reiðir það sig á innsæi sitt varðandi áhættuna sem henni ten': 'Því sértækari þekkingu sem fólk öðlast um tiltekna hættu, því minna reiðir það sig á innsæi sitt varðandi áhættuna sem henni tengist.'
+        'Traust á þeim sem miðlar áhættunni er mikilvægara en upplýsingarnar sjálfar.': 'Traust á þeim sem miðlar áhættunni er mikilvægara en upplýsingarnar sjálfar.'
+      '#answers':
+        'Mjög ósammála': 'Mjög ósammála'
+        'Frekar ósammála': 'Frekar ósammála'
+        'Hvorki sammála né ósammála': 'Hvorki sammála né ósammála'
+        'Frekar sammála': 'Frekar sammála'
+        'Algjörlega sammála': 'Algjörlega sammála'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': "5.\tKafli: Hefðbundnar leiðir og samfélagsmiðlar"
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': "5.1.\tHvaða miðlunarleiðir kýst þú að nota þegar kemur að miðlun áhættu? Vinsamlegast raðið samskiptaleiðunum eftir því hvaða leiðir þið kjósið helst með því að draga þær í rétta röð, þannig að sú leið sem er mest valin sé efst og sú sem er síst valin neðst."
+      '#options':
+        Fréttabréf: Fréttabréf
+        'Greinar í dagblöðum og tímaritum': 'Greinar í dagblöðum og tímaritum'
+        Sjónvarp: Sjónvarp
+        Útvarp: Útvarp
+        Samfélagsmiðlar: Samfélagsmiðlar
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': "5.2.\tHvaða miðlunarleiðir myndir þú helst vilja nota þegar kemur að krísumiðlun? Vinsamlegast raðið samskiptaleiðunum eftir því hvaða leiðir þið kjósið helst með því að draga þær í rétta röð, þannig að sú leið sem er mest valin sé efst og sú sem er síst valin neðst."
+      '#options':
+        Fréttatilkynning: Fréttatilkynning
+        'Greinar í dagblöðum og tímaritum': 'Greinar í dagblöðum og tímaritum'
+        Sjónvarp: Sjónvarp
+        Útvarp: Útvarp
+        Samfélagsmiðlar: Samfélagsmiðlar
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': "5.3.\tNotar þú samfélagsmiðla til að miðla upplýsingum um áhættu?"
+      '#options':
+        Já: Já
+        Nei: Nei
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': "5.4.\tHvaða samfélagsmiðil viltu helst nota til að miðla upplýsingum um áhættu? (Veldu allt sem á við)"
+      '#options':
+        Twitter: Twitter
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': Enginn
+      '#options_none_text': Enginn
+      '#other__option_label': Annað
+      '#other__placeholder': 'vinsamlegast tilgreindu:'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: 'Yes'
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': "5.5.\tHvaða samfélagsmiðla myndir þú helst nota í krísumiðlun? (Veldu allt sem á við)"
+      '#options':
+        Twitter: Twitter
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+        Enginn: Enginn
+      '#options_none': true
+      '#options_none_text': None
+      '#other__option_label': Αnnað
+      '#other__placeholder': 'tilgreinið:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': "5.6.\tNotar þú einhvers konar vöktun á samfélagsmiðlum (hugbúnað sem gerir kleift að fylgjast með, rekja og greina umræður á samfélagsmiðlum)?"
+      '#options':
+        Já: Já
+        Nei: Nei
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': "5.7.\tEf þú svaraðir JÁ í fyrri spurningu, hvaða verkfæri notar þú til að „vakta“ samfélagsmiðla?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: 'Yes'
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': "5.8.\tHvernig bregst þú venjulega við rangfærslum eða orðrómi á samfélagsmiðlum um áhættu sem tengist tiltekinni hættu/efnum?"
+      '#options':
+        'Engin viðbrögð. Læt það yfirleitt eiga sig og vona að það róist': 'Engin viðbrögð. Læt það yfirleitt eiga sig og vona að það róist'
+        'Gef út yfirlýsingu með réttum upplýsingum og miðla henni áfram': 'Gef út yfirlýsingu með réttum upplýsingum og miðla henni áfram'
+        'Gríp til lagalegra aðgerða, ef þörf krefur.': 'Gríp til lagalegra aðgerða, ef þörf krefur.'
+      '#other__option_label': Annað
+      '#other__placeholder': 'tilgreinið:'
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': "6.\tKafli: Tungumál"
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': "6.1.\tGefum okkur að rangar upplýsingar/orðrómur sé á samfélagsmiðlum um áhættu tengda reykingum og kadmíum. Hvaða af eftirfarandi yfirlýsingum viltu helst nota?"
+      '#options':
+        'A: Við reykingar á sígarettum er frásog kadmíums í lungum 10–50%. Reykingafólk hefur um 1,5 µg/L styrk kadmíums í blóði og um 20–30 µg/g blautvigt í nýrnaberki. Þeir sem reykja ekki eru með 4–5 sinnum lægri styrk kadmíums í blóði og helmingi lægri styrk kadmíums í nýrnaberki. Sýnt hefur verið fram á að kadmíum veldur lungnakrabbameini.': 'A: Við reykingar á sígarettum er frásog kadmíums í lungum 10–50%. Reykingafólk hefur um 1,5 µg/L styrk kadmíums í blóði og um 20–30 µg/g blautvigt í nýrnaberki. Þeir sem reykja ekki eru með 4–5 sinnum lægri styrk kadmíums í blóði og helmingi lægri styrk kadmíums í nýrnaberki. Sýnt hefur verið fram á að kadmíum veldur lungnakrabbameini.'
+        'B: Við sígarettureykingar er upptaka kadmíums í lungum 10–50% en upptaka í meltingarvegi er aðeins nokkur prósent. Reykingafólk hefur um 4–5 sinnum hærri styrk kadmíums í blóði (um 1,5 µg/l) og tvöfalt hærri styrk kadmíums í nýrnaberki (um 20–30 µg/g blautvigt) en þeir sem ekki reykja. Sýnt hefur verið fram á að kadmíum valdi lungnakrabbameini en takmarkaðar vísbendingar eru um að það tengist krabbameini í nýrum, lifur og blöðruhálskirtli.': 'B: Við sígarettureykingar er upptaka kadmíums í lungum 10–50% en upptaka í meltingarvegi er aðeins nokkur prósent. Reykingafólk hefur um 4–5 sinnum hærri styrk kadmíums í blóði (um 1,5 µg/l) og tvöfalt hærri styrk kadmíums í nýrnaberki (um 20–30 µg/g blautvigt) en þeir sem ekki reykja. Sýnt hefur verið fram á að kadmíum valdi lungnakrabbameini en takmarkaðar vísbendingar eru um að það tengist krabbameini í nýrum, lifur og blöðruhálskirtli.'
+        'C: Við sígarettureykingar er upptaka kadmíums afar mikil í lungunum en upptakan í meltingarveginum er minni. Reykingafólk hefur marktækt hærri styrk kadmíums í blóði og í nýrnaberki. Kadmíum er krabbameinsvaldandi.': 'C: Við sígarettureykingar er upptaka kadmíums afar mikil í lungunum en upptakan í meltingarveginum er minni. Reykingafólk hefur marktækt hærri styrk kadmíums í blóði og í nýrnaberki. Kadmíum er krabbameinsvaldandi.'
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': "6.2.\tEftirfarandi vísindalega fullyrðing segir að: „Akrylamíð er efni sem myndast náttúrulega í sterkjuríkum matvælum þegar þau eru elduð við háan hita (yfir 120°C). Þegar akrylamíð er til staðar í matvælum getur það hugsanlega aukið hættuna á að neytendur á öllum aldri fái krabbamein. Sem betur fer eru til leiðir til að draga úr magni akrýlamíðs í matvælum“. Hvaða yfirlýsingu myndir þú velja ef þú ættir að ráðleggja neytendum um að lágmarka magn akrýlamíðs við matreiðslu heima?"
+      '#options':
+        'Markmiðið er að ná fram gylltum lit (eða ljósari) þegar þú steikir, bakar, ristar eða grillar sterkjuríkan mat og forðastu ofeldaðan mat til að stuðla að betri heilsu.': 'Markmiðið er að ná fram gylltum lit (eða ljósari) þegar þú steikir, bakar, ristar eða grillar sterkjuríkan mat og forðastu ofeldaðan mat til að stuðla að betri heilsu.'
+        'Því lengur sem eldað er og því hærra sem hitastigið er, því meira akrýlamíð getur myndast. Minni eldunartími og lægra hitastig hjálpar til við að draga úr myndun akrýlamíðs.': 'Því lengur sem eldað er og því hærra sem hitastigið er, því meira akrýlamíð getur myndast. Minni eldunartími og lægra hitastig hjálpar til við að draga úr myndun akrýlamíðs.'
+      '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': 'Senda inn'
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: Lok
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: 'Fyrri síða'
+  wizard_next_button_label: 'Næsta síða'
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p>Takk fyrir, svörin þín hafa verið send inn.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

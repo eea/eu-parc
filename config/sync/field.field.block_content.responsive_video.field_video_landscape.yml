@@ -1,0 +1,29 @@
+uuid: 21788cf0-339e-48b8-8537-58c513fbb4a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.responsive_video
+    - field.storage.block_content.field_video_landscape
+    - media.type.video
+id: block_content.responsive_video.field_video_landscape
+field_name: field_video_landscape
+entity_type: block_content
+bundle: responsive_video
+label: 'Landscape video'
+description: 'Shown on screens 768px and wider. Use a 16:9 cut.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      video: video
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

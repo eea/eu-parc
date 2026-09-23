@@ -1,6 +1,6 @@
-uuid: e3ec03e7-d6a6-43ce-9034-ea21d6dab7e3
+uuid: 03c97adf-3a91-494b-9d9c-a14df7308155
 langcode: en
-status: closed
+status: open
 dependencies: {  }
 weight: 0
 open: null
@@ -8,9 +8,9 @@ close: null
 uid: 9
 template: false
 archive: false
-id: risk_perception_of_risk_communic
-title: 'Risk perception of risk communicators'
-description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks.</span></p>'
+id: czech_risk_perception_of_risk_co
+title: 'Czech_Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in Czech language. </span></p>'
 categories:
   - 'Risk Perception'
 elements: |-
@@ -135,20 +135,20 @@ elements: |-
       '#required': true
   section_2_experience_in_risk_communication:
     '#type': webform_wizard_page
-    '#title': 'Section 2: Experience in risk communication'
+    '#title': '2. oddíl: Zkušenosti s informováním o rizicích'
     what_difficulties_do_you_experience_during_risk_communication_ch:
       '#type': webform_checkboxes_other
-      '#title': '12. What difficulties do you experience during risk communication? (Choose all that apply)'
+      '#title': "2.1.\tS jakými problémy se setkáváte při informování o rizicích? (vyberte všechny správné odpovědi)"
       '#options':
-        'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)': 'Lack of adequate scientific facts (either for a hazard or for the likelihood that a particular substance will cause harm)'
-        'Lack of support from colleagues / Few human resources devoted to risk communication': 'Lack of support from colleagues / Few human resources devoted to risk communication'
+        'nedostatek adekvátních vědeckých důkazů (ať už ohledně nebezpečí, nebo ohledně pravděpodobnosti, že daná látka způsobí újmu)': 'nedostatek adekvátních vědeckých důkazů (ať už ohledně nebezpečí, nebo ohledně pravděpodobnosti, že daná látka způsobí újmu)'
+        'nedostatečná podpora ze strany kolegů / nedostatek pracovníků věnujících se informování o rizicích': 'nedostatečná podpora ze strany kolegů / nedostatek pracovníků věnujících se informování o rizicích'
         'Difficulties when collaborating with experts in chemical risks': 'Difficulties when collaborating with experts in chemical risks'
         'Unclear distribution of roles': 'Unclear distribution of roles'
         'Unclear distribution of responsibilities': 'Unclear distribution of responsibilities'
         'Lack of budget allocated for communication': 'Lack of budget allocated for communication'
         'Interference by risk managers with respect to when and what will be communicated': 'Interference by risk managers with respect to when and what will be communicated'
-      '#other__option_label': Other
-      '#other__placeholder': 'Please specify'
+      '#other__option_label': jiné
+      '#other__placeholder': 'upřesněte:'
       '#required': true
     13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
       '#type': radios

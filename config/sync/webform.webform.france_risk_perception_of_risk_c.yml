@@ -1,4 +1,4 @@
-uuid: e3ec03e7-d6a6-43ce-9034-ea21d6dab7e3
+uuid: 73d4f5a1-ee04-42ed-a138-65ca5c373454
 langcode: en
 status: closed
 dependencies: {  }
@@ -8,9 +8,9 @@ close: null
 uid: 9
 template: false
 archive: false
-id: risk_perception_of_risk_communic
-title: 'Risk perception of risk communicators'
-description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks.</span></p>'
+id: france_risk_perception_of_risk_c
+title: 'France_Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in French language. </span></p>'
 categories:
   - 'Risk Perception'
 elements: |-
@@ -405,6 +405,10 @@ elements: |-
         'Long cooking times and higher temperatures form more acrylamide which has the potential to cause cancer in humans, than short cooking times and lower temperatures. ': 'Long cooking times and higher temperatures form more acrylamide which has the potential to cause cancer in humans, than short cooking times and lower temperatures. '
         'Aim for a golden yellow colour (or lighter) when frying, baking, toasting or roasting starchy foods and avoid over-heated foods for better health. ': 'Aim for a golden yellow colour (or lighter) when frying, baking, toasting or roasting starchy foods and avoid over-heated foods for better health. '
       '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Envoyer
 css: ''
 javascript: ''
 settings:
@@ -488,8 +492,8 @@ settings:
   wizard_auto_forward_hide_next_button: false
   wizard_keyboard: true
   wizard_track: ''
-  wizard_prev_button_label: ''
-  wizard_next_button_label: ''
+  wizard_prev_button_label: 'Page précédente'
+  wizard_next_button_label: 'Page suivante'
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
@@ -512,8 +516,8 @@ settings:
   draft_pending_multiple_message: ''
   confirmation_type: page
   confirmation_url: ''
-  confirmation_title: ''
-  confirmation_message: ''
+  confirmation_title: 'Merci. Vos réponses ont été envoyées.'
+  confirmation_message: '<p>Merci. Vos réponses ont été envoyées.</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''

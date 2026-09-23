@@ -1,0 +1,600 @@
+uuid: b40af1f9-ac6a-4d95-895d-3a182fa1a3ad
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 637
+template: false
+archive: false
+id: latvian_risk_perception_of_risk
+title: 'Latvian Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in </span><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(34, 34, 34);display:inline !important;float:none;font-family:&quot;Segoe UI&quot;;font-size:13.3333px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Latvian language</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Piekrišana un konteksts'
+    description:
+      '#type': checkbox
+      '#title': 'Apstiprinu, ka esmu iepazinies/-usies ar iepriekš sniegto informāciju un tai piekrītu.'
+      '#description': '<h4><span style="font-family:Satoshi;" lang="LV">Riska komunikatoru riska uztvere</span></h4><p><span lang="LV">Jūsu viedoklim ir nozīme! Ietekmējiet drošāku ķīmisko vielu pārvaldību Eiropā, piedaloties īsā aptaujā par tēmu “Riska komunikatoru riska uztvere”. Pētījums tiek veikts PARC (https://www.eu-parc.eu/) ietvaros, kas ir saīsinājums no “Partnerība ķīmisko vieluradītā riska novērtēšanai”.</span></p><p><span lang="LV">Par PARC: Eiropas Partnerība ķīmisko vielu radītā riska novērtēšanai (PARC) ir 30 valstu un trīs Eiropas aģentūru (EEA, ECHA, EFSA) kopīga iniciatīva, kuras mērķis ir risināt problēmas, kas saistītas ar inovatīvu ķīmisko vielu radītā riska novērtēšanu. PARC mērķis ir informēt politikas veidotājus Eiropas un valstu līmenī, sniedzot pamatotus zinātniskus datus par iedzīvotāju pakļautību ķīmisko piesārņotāju iedarbībai un to iespējamo ietekmi uz veselību. [Jūsu valsts nosaukums] apsekojumu koordinē [īstenotājas organizācijas nosaukums].</span></p><p><span lang="LV">Šīs aptaujas mērķis: Mēs visi esam pakļauti daudzām ķīmiskajām vielām, no kurām dažas var kaitēt veselībai. Ir ļoti svarīgi informēt sabiedrību par šo ķīmisko vielu&nbsp; potenciāli&nbsp;radīto risku. Šīs aptaujas mērķis ir iegūt plašāku ieskatu riska komunikatoru izmantotajās vispārpieņemtajās metodēs, viņu uzskatos par riska uztveri, kā arī viņu bažās un problēmās, ar kurām viņi saskaras, informējot sabiedrību par apdraudējumiem un riskiem.</span></p><p><span lang="LV">Kam ir adresēts šis apsekojums: Šī anketa galvenokārt veltīta ikdienišķai riska komunikācijai, nevis komunikācijai krīzes apstākļos,&nbsp;kad nepieciešams pieņemt steidzamus lēmumus. Anketas aizpildīšana aizņems aptuveni 20 minūtes.</span></p><p><span lang="LV">Kas notiks ar savākto informāciju: Savāktā informācija būs anonīma, un tā tiks apstrādāta, ievērojot konfidencialitāti, saskaņā ar Vispārīgās datu aizsardzības regulas (GDPR) prasībām. Atbildes tiks apvienotas ar citām atbildēm, kad tās analizēs PARC pētniecības partneri. Ja šī pētījuma zinātniskie secinājumi tiks publicēti vai prezentēti konferencē, rezultāti tiks apkopoti.</span></p><p><span lang="LV">Atteikuma vai atsaukšanas tiesības: Jūsu dalība ir pilnībā brīvprātīga. Aizpildot un iesniedzot šo aptauju, Jūs norādāt, ka piekrītat piedalīties šajā aptaujā. Jums ir tiesības jebkurā brīdī atteikties no dalības vai vispār nepiedalīties, neminot iemeslus un nesaskaroties ar nekādām sekām.</span></p><p><span lang="LV"><strong>Pateicamies par ieguldīto laiku un sadarbību.</strong></span></p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': "1.\tdaļa: Profesionālā pieredze"
+    county:
+      '#type': textfield
+      '#title': 'Jūsu dzīvesvietas valsts:'
+      '#size': 1
+      '#required': true
+    age:
+      '#type': number
+      '#title': 'Jūsu pašreizējais vecums:'
+      '#required': true
+      '#min': 16
+      '#max': 99
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': "1.1.\tKurā nozarē strādājat?"
+      '#multiple': 2
+      '#options':
+        'Valsts pārvaldē': 'Valsts pārvaldē'
+        'Akadēmiskajā jomā': 'Akadēmiskajā jomā'
+        'Profesionālo organizāciju apvienībā': 'Profesionālo organizāciju apvienībā'
+        NVO: NVO
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': 'Ķīmiskie apdraudējumi/riski, par kuriem Jūs informējat, ir saistīti ar: (atzīmējiet visus atbilstošos variantus):'
+      '#options':
+        'Pārtika (pārtikas drošība)': 'Pārtika (pārtikas drošība)'
+        'Vide (augsne, gaiss, ūdens utt.)': 'Vide (augsne, gaiss, ūdens utt.)'
+        Arodveselība: Arodveselība
+        'Ķīmiskā drošība (vispārīga)': 'Ķīmiskā drošība (vispārīga)'
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': "1.2.\tCik gadu pieredze riska paziņošanas jomā Jums ir ?"
+      '#options':
+        'Mazāk nekā 2 gadi': 'Mazāk nekā 2 gadi'
+        '3–5 gadi': '3–5 gadi'
+        '6–10 gadi': '6–10 gadi'
+        '11–15 gadi': '11–15 gadi'
+        'Vairāk par 10 gadiem': 'Vairāk par 10 gadiem'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': "1.3.\tCik bieži Jūs nodarbojaties ar riska paziņošanu?"
+      '#options':
+        'Katru dienu/ nedēļu': 'Katru dienu/ nedēļu'
+        'Reizi mēnesī': 'Reizi mēnesī'
+        'Ik pēc pāris mēnešiem': 'Ik pēc pāris mēnešiem'
+        'Reizi gadā': 'Reizi gadā'
+        Nekad: Nekad
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': "1.4.\tKas ir galvenā auditorija, kurai adresēti Jūsu paziņojumi?"
+      '#options':
+        'Vispārējā sabiedrība': 'Vispārējā sabiedrība'
+      '#other__option_label': Mērķauditorija
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': "1.5.\tKāda ir jūsu zinātnes disciplīna? (atzīmējiet visus atbilstošos variantus):"
+      '#multiple': 2
+      '#options':
+        'Ķīmijas inženieris/ķīmiķis/toksikologs': 'Ķīmijas inženieris/ķīmiķis/toksikologs'
+        'Pārtikas zinātnieks/tehnoloģiju speciālists/mikrobiologs': 'Pārtikas zinātnieks/tehnoloģiju speciālists/mikrobiologs'
+        'Sabiedrības veselības eksperts': 'Sabiedrības veselības eksperts'
+        'Uztura speciālistsv': 'Uztura speciālistsv'
+        'Vides/lauksaimniecības zinātnieks': 'Vides/lauksaimniecības zinātnieks'
+        'Komunikācijas eksperts/sociālo zinātņu pētnieks': 'Komunikācijas eksperts/sociālo zinātņu pētnieks'
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': "1.6.\tCik bieži Jums tiek organizētas komunikācijas apmācības (piemēram, apmācības, ko vada komunikācijas eksperti, vizītes citās komunikācijas nodaļās, dalība semināros, tīmekļa semināros vai kursos utt.)?"
+      '#options':
+        Nekad: Nekad
+        'Periodiski (piemēram, ik pēc 2–5 gadiem)': 'Periodiski (piemēram, ik pēc 2–5 gadiem)'
+        'Bieži (vismaz reizi gadā)': 'Bieži (vismaz reizi gadā)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': "1.7.\tCik apmierināts Jūs esat ar saņemtajām komunikācijas prasmju apmācībām?"
+      '#options':
+        'Nemaz neesmu apmierināts': 'Nemaz neesmu apmierināts'
+        'Nedaudz apmierināts': 'Nedaudz apmierināts'
+        'Vidēji apmierināts': 'Vidēji apmierināts'
+        'Ļoti apmierināts': 'Ļoti apmierināts'
+        'Pilnībā apmierināts': 'Pilnībā apmierināts'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': Never
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': "1.8.\tVai uzskatāt, ka komunikācijas prasmju apmācība ir nepieciešama Jūsu pašreizējam amatam?"
+      '#options':
+        Jā: Jā
+        Nē: Nē
+        'Nezinu/nevēlos atbildēt': 'Nezinu/nevēlos atbildēt'
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "2.\tdaļa: Riska komunikācijaspieredze"
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': "1.9.\tAr kādām problēmām Jūs saskaraties riska komunikācijā? (atzīmējiet visus atbilstošos variantus):"
+      '#options':
+        'Trūkst atbilstošu zinātnisko datu (gan par bīstamību, gan par iespējamību, ka konkrēta viela radīs kaitējumu)': 'Trūkst atbilstošu zinātnisko datu (gan par bīstamību, gan par iespējamību, ka konkrēta viela radīs kaitējumu)'
+        'Kolēģu atbalsta trūkums/Neliels cilvēkresursu skaits, kas veltīts riska komunikācijai': 'Kolēģu atbalsta trūkums/Neliels cilvēkresursu skaits, kas veltīts riska komunikācijai'
+        'Grūtības sadarboties ar ķīmisko risku ekspertiem': 'Grūtības sadarboties ar ķīmisko risku ekspertiem'
+        'Neskaidrs lomu sadalījums': 'Neskaidrs lomu sadalījums'
+        'Neskaidrs pienākumu sadalījums': 'Neskaidrs pienākumu sadalījums'
+        'Nepietiekams komunikācijas budžets': 'Nepietiekams komunikācijas budžets'
+        'Riska pārvaldītāju iejaukšanās saistībā ar to, kad un kas tiks paziņots': 'Riska pārvaldītāju iejaukšanās saistībā ar to, kad un kas tiks paziņots'
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': "1.10.\tVai Jums ir novērtējuma sistēma, kas parāda, vai vēstījums sasniedz galīgo mērķauditoriju?"
+      '#options':
+        Jā: Jā
+        Nē: Nē
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': "1.11.\tJa uz iepriekšējo jautājumu atbildējāt “Jā”, kādu novērtējuma sistēmu izmantojat?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: 'Yes'
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': "1.12.\tVai Jūs vienmēr izvērtējat Jūsu paziņotās ķīmiskās bīstamības/riska informācijas ietekmi/nozīmīgumu? (Sabiedrības reakcija?):"
+      '#options':
+        Jā: Jā
+        Nē: Nē
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': "1.13.\tJa uz iepriekšējo jautājumu atbildējāt ar “Jā”, kā Jūs vērtējat tās ietekmi?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: 'Yes'
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': "1.14.\tCik lielā mērā, Jūsuprāt, Jūs ietekmējat mērķauditoriju?"
+      '#options':
+        'Nav nekādas ietekmes': 'Nav nekādas ietekmes'
+        'Vāja ietekme ': 'Vāja ietekme '
+        'Mērena ietekme': 'Mērena ietekme'
+        'Būtiska ietekme': 'Būtiska ietekme'
+        'Liela ietekme': 'Liela ietekme'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': "1.15.\tKas pamato Jūsu atbildi uz iepriekšējo jautājumu? (atzīmējiet visus atbilstošos variantus):"
+      '#options':
+        'Reakcijas plašsaziņas līdzekļos (televīzijā, radio, presē)': 'Reakcijas plašsaziņas līdzekļos (televīzijā, radio, presē)'
+        'Publikācijas/ieraksti interneta vietnēs, personīgajos blogos, sociālajos tīklos': 'Publikācijas/ieraksti interneta vietnēs, personīgajos blogos, sociālajos tīklos'
+        'Uzraudzība, izmantojot uz anketām balstītu patērētāju aptauju': 'Uzraudzība, izmantojot uz anketām balstītu patērētāju aptauju'
+        'Tieša atgriezeniskā saite, izmantojot personisku saziņu (piemēram, sarunas, tālruņa zvanus, e-pastu vai ziņojumus)': 'Tieša atgriezeniskā saite, izmantojot personisku saziņu (piemēram, sarunas, tālruņa zvanus, e-pastu vai ziņojumus)'
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': "1.16.\tKā Jūs parasti paziņojat par ar ķīmiskajām vielāmsaistītu apdraudējumu/risku?"
+      '#options':
+        'Izveidojat savu vēstījumu': 'Izveidojat savu vēstījumu'
+        'Nododiet vēstījumu tieši tā, kā to sniedz riska novērtētāji': 'Nododiet vēstījumu tieši tā, kā to sniedz riska novērtētāji'
+        'Pielāgojiet vai pārformulējiet vēstījumus no citiem avotiem': 'Pielāgojiet vai pārformulējiet vēstījumus no citiem avotiem'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': "2.1.\tVai esat kādreiz personīgi piedzīvojis ietekmi uz veselību, ko rada saskare ar ķīmisku apdraudējumu (piemēram, piesārņota pārtika, tīrīšanas līdzekļi, pesticīdi)?"
+      '#options':
+        Jā: Jā
+        Nē: Nē
+        Nezinu: Nezinu
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': "1.17.\tJa atbilde ir “Jā”, vai šī pieredze ir ietekmējusi to, kā Jūs komunicējat vai domājat par šo apdraudējumu?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: 'Yes'
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "3.\tdaļa: Riska komunikācijas izstrāde"
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': "3.1.\tKomunicējot ar mērķauditoriju par riskiem, cik svarīgi ir iekļaut šādus aspektus?"
+      '#required': true
+      '#questions':
+        'Vizuāla riska ilustrēšana, izmantojot grafikus, diagrammas, attēlus un kartes': 'Vizuāla riska ilustrēšana, izmantojot grafikus, diagrammas, attēlus un kartes'
+        'Dažādu apdraudējumu salīdzinājums pēc varbūtības': 'Dažādu apdraudējumu salīdzinājums pēc varbūtības'
+        'Visu ar risku saistīto neskaidrību apraksts': 'Visu ar risku saistīto neskaidrību apraksts'
+        'Skaitliskās robežvērtības (piemēram, konkrētai ķīmiskajai vielai noteiktā pieļaujamā dienas deva skaitļos)': 'Skaitliskās robežvērtības (piemēram, konkrētai ķīmiskajai vielai noteiktā pieļaujamā dienas deva skaitļos)'
+        'Dažādu risku apraksts dažādām cilvēku grupām (piemēram, dažādu profesiju grupu riska atšķirības)': 'Dažādu risku apraksts dažādām cilvēku grupām (piemēram, dažādu profesiju grupu riska atšķirības)'
+        'Informācija par atšķirībām starp ilgtermiņa un īstermiņa saskarsmi ar bīstamu vielu': 'Informācija par atšķirībām starp ilgtermiņa un īstermiņa saskarsmi ar bīstamu vielu'
+        'Informācija par to, ka sabiedrība risku novērtē par zemu (piemēram, ja riska komunikatora rīcībā ir informācija, ka sabiedrība k': 'Informācija par to, ka sabiedrība risku novērtē par zemu (piemēram, ja riska komunikatora rīcībā ir informācija, ka sabiedrība konkrētas ķīmiskās vielas neuztver kā bīstamas)'
+        'Informācija par to, ka sabiedrība pārāk augstu novērtē risku (piemēram, ja riska komunikatora rīcībā ir informācija, ka sabiedrī': 'Informācija par to, ka sabiedrība pārāk augstu novērtē risku (piemēram, ja riska komunikatora rīcībā ir informācija, ka sabiedrība uzskata noteiktas ķīmiskās vielas par bīstamākām, nekā tās patiesībā ir)'
+        'Tādu stratēģiju apraksts, kas paredzētas, lai izvairītos no apdraudējuma': 'Tādu stratēģiju apraksts, kas paredzētas, lai izvairītos no apdraudējuma'
+      '#answers':
+        'Nav svarīgi': 'Nav svarīgi'
+        Mazsvarīgi: Mazsvarīgi
+        'Mēreni svarīgi': 'Mēreni svarīgi'
+        'Diezgan svarīgi': 'Diezgan svarīgi'
+        'Ļoti svarīgi': 'Ļoti svarīgi'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': "1.18.\tKā, Jūsuprāt, riska paziņošanas procesā šādi uzticības aspekti ietekmē mērķauditorijas riska uztveri?"
+      '#required': true
+      '#questions':
+        'Sabiedrības uzticēšanās ekspertam, kurš informē par riskiem': 'Sabiedrības uzticēšanās ekspertam, kurš informē par riskiem'
+        'Sabiedrības uzticēšanās nacionālajām/Eiropas institūcijām/iestādēm': 'Sabiedrības uzticēšanās nacionālajām/Eiropas institūcijām/iestādēm'
+        'Sabiedrības uzticēšanās zinātniskajiem datiem': 'Sabiedrības uzticēšanās zinātniskajiem datiem'
+      '#answers':
+        'Nav svarīgi': 'Nav svarīgi'
+        Mazsvarīgi: Mazsvarīgi
+        'Mēreni svarīgi': 'Mēreni svarīgi'
+        'Diezgan svarīgi': 'Diezgan svarīgi'
+        'Ļoti svarīgi': 'Ļoti svarīgi'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': "1.19.\tLūdzu, novērtējiet apgalvojumus par riska komunikāciju, norādot, cik lielā mērā Jūs tiem piekrītat vai nepiekrītat:"
+      '#required': true
+      '#questions':
+        'Runājot par risku, ir svarīgi nošķirt apdraudējumu no riska': 'Runājot par risku, ir svarīgi nošķirt apdraudējumu no riska'
+        'Riska komunikāciju nevajadzētu ietekmēt tas, kā sabiedrība uztver risku': 'Riska komunikāciju nevajadzētu ietekmēt tas, kā sabiedrība uztver risku'
+        'Risk principles (e.g. objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g.,': 'Riska komunikācijaspamatā esošie principi (piemēram, objektivitāte, neitralitāte) ir konsekventi visās nozarēs (piemēram, ķīmiskie apdraudējumi, infekcijas slimības)'
+        'Aprakstot visas ar risku un apdraudējumu saistītās neskaidrības, cilvēki sajūk prātā': 'Aprakstot visas ar risku un apdraudējumu saistītās neskaidrības, cilvēki sajūk prātā'
+        'Riska paziņošana jāveic sadarbībā ar iesaistītajām ieinteresētajām personām': 'Riska paziņošana jāveic sadarbībā ar iesaistītajām ieinteresētajām personām'
+        'Ziņu mediji vairāk interesējas par krīžu komunikāciju, kurā riska attēlojums bieži vien tiek pārspīlēts.': 'Ziņu mediji vairāk interesējas par krīžu komunikāciju, kurā riska attēlojums bieži vien tiek pārspīlēts.'
+      '#answers':
+        'Pilnībā nepiekrītu': 'Pilnībā nepiekrītu'
+        'Daļēji nepiekrītu': 'Daļēji nepiekrītu'
+        'Ne piekrītu, ne nepiekrītu': 'Ne piekrītu, ne nepiekrītu'
+        'Daļēji piekrītu': 'Daļēji piekrītu'
+        'Pilnībā piekrītu': 'Pilnībā piekrītu'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': "4.\tdaļa: Riska paziņošanas speciālista loma"
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': "1.20.\tLūdzu, novērtējiet apgalvojumus par riska uztveri, norādot, cik lielā mērā Jūs tiem piekrītat vai nepiekrītat:"
+      '#required': true
+      '#questions':
+        'Cilvēku riska uztvere  ir atkarīga no viņu uzskatiem un attieksmes': 'Cilvēku riska uztvere  ir atkarīga no viņu uzskatiem un attieksmes'
+        'Riska uztveri neietekmē cilvēku spriedumi un izjūtas (personīgā pieredze)': 'Riska uztveri neietekmē cilvēku spriedumi un izjūtas (personīgā pieredze)'
+        'Riska uztvere atspoguļo plašākas kultūras un sociālās attieksmes - kā cilvēki redzapdraudējumu': 'Riska uztvere atspoguļo plašākas kultūras un sociālās attieksmes - kā cilvēki redzapdraudējumu'
+        'Riska komunikācijaijābalstās uz riska novērtējumos iegūtajiem datiem, taču tajā jāņem vērā arī sabiedrības uztvertais apdraudēju': 'Riska komunikācijaijābalstās uz riska novērtējumos iegūtajiem datiem, taču tajā jāņem vērā arī sabiedrības uztvertais apdraudējums un tā nozīmīgums'
+        'Cilvēki, kuri iepriekš ir saskārušies ar bīstamu situāciju, parasti uzskata, ka iespējamība saskarties ar to atkārtoti ir lielāk': 'Cilvēki, kuri iepriekš ir saskārušies ar bīstamu situāciju, parasti uzskata, ka iespējamība saskarties ar to atkārtoti ir lielāka nekā tiem, kuri nekad nav saskārušies ar šādu apdraudējumu'
+        'Kad cilvēki pirmo reizi uzzina par kādu apdraudējumu, viņiem parasti šķiet, ka šis jaunais apdraudējums varētu īstenoties biežāk': 'Kad cilvēki pirmo reizi uzzina par kādu apdraudējumu, viņiem parasti šķiet, ka šis jaunais apdraudējums varētu īstenoties biežāk nekā citi labi zināmi apdraudējumi'
+        'Jo konkrētākas zināšanas cilvēki iegūst par kādu apdraudējumu, jo mazāk viņi paļaujas uz savu intuīciju attiecībā uz  šo apdraud': 'Jo konkrētākas zināšanas cilvēki iegūst par kādu apdraudējumu, jo mazāk viņi paļaujas uz savu intuīciju attiecībā uz  šo apdraud'
+        'Uzticēšanās riska komunikatoram ir svarīgāka par pašu informāciju': 'Uzticēšanās riska komunikatoram ir svarīgāka par pašu informāciju'
+      '#answers':
+        'Pilnībā nepiekrītu': 'Pilnībā nepiekrītu'
+        'Daļēji nepiekrītu': 'Daļēji nepiekrītu'
+        'Ne piekrītu, ne nepiekrītu': 'Ne piekrītu, ne nepiekrītu'
+        'Daļēji piekrītu': 'Daļēji piekrītu'
+        'Pilnībā piekrītu': 'Pilnībā piekrītu'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': "5.\tdaļa: Tradicionālie un sociālie mediji"
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': "1.21.\tKādu kanālu Jūs izvēlaties izmantot, lai informētu par riskiem? Lūdzu, sarindojiet kanālus atbilstoši savām vēlmēm, velkot tos vēlamajā secībā, visvairāk vēlamo kanālu novietojot augšpusē, bet vismazāk vēlamo — apakšpusē."
+      '#options':
+        Skrejlapa: Skrejlapa
+        'Raksti laikrakstos, žurnālos': 'Raksti laikrakstos, žurnālos'
+        Televīzija: Televīzija
+        Radio: Radio
+        'Sociālie mediji': 'Sociālie mediji'
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': "1.22.\tKuru kanālu Jūs izvēlētos izmantot saziņai krīzes situācijā? Lūdzu, sarindojiet kanālus atbilstoši savām vēlmēm, velkot tos vēlamajā secībā, visvairāk vēlamo kanālu novietojot augšpusē, bet vismazāk vēlamo — apakšpusē."
+      '#options':
+        'Paziņojums presei': 'Paziņojums presei'
+        'Raksti laikrakstos, žurnālos': 'Raksti laikrakstos, žurnālos'
+        Televīzija: Televīzija
+        Radio: Radio
+        'Social mediji': 'Social mediji'
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': "1.23.\tVai Jūs izmantojat sociālos tīklus, lai informētu par riskiem?"
+      '#options':
+        Jā: Jā
+        Nē: Nē
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': "1.24.\tKuram sociālo mediju kanālam Jūs dodat priekšroku komunikācijai par risku? (atzīmējiet visus atbilstošos variantus)"
+      '#options':
+        'X (Twitter)': 'X (Twitter)'
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': Neviens
+      '#options_none_text': Neviens
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: 'Yes'
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': "1.25.\tKādu sociālo mediju platformu Jūs izmantotu krīzes saziņā? (atzīmējiet visus atbilstošos variantus)"
+      '#options':
+        'X (Twitter)': 'X (Twitter)'
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': Neviens
+      '#options_none_text': Neviens
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': "1.26.\tVai Jūs izmantojat kādu sociālo tīklu klausīšanās rīku (social media listening tools jeb programmatūra, kas ļauj lietotājiem uzraudzīt, izsekot un analizēt sarunas sociālajos tīklos)?"
+      '#options':
+        Jā: Jā
+        Nē: Nē
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': "1.27.\tJa uz iepriekšējo jautājumu atbildējāt “Jā“, kādus sociālo tīklu “klausīšanās“ rīkus Jūs izmantojat?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: 'Yes'
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': "1.28.\tKā Jūs parasti rīkojaties, ja sociālajos tīklos parādās nepatiesa informācija vai baumas par risku, kas saistīts ar konkrētu bīstamu vielu?"
+      '#options':
+        'Nereaģēju. Ja es to ignorēšu, situācija atrisināsies pati no sevis.': 'Nereaģēju. Ja es to ignorēšu, situācija atrisināsies pati no sevis.'
+        'Publicēju paziņojumu ar precīzu informāciju un izplatu to.': 'Publicēju paziņojumu ar precīzu informāciju un izplatu to.'
+        'Vajadzības gadījumā uzsāku tiesvedību.': 'Vajadzības gadījumā uzsāku tiesvedību.'
+      '#other__option_label': Cits
+      '#other__placeholder': 'Lūdzu, norādiet:'
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': "6.\tdaļa: Valoda"
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': "6.1.\tPieņemsim, ka sociālajos tīklos izplatās nepatiesa informācija vai baumas par smēķēšanas un kadmija radīto risku. Kurus no šiem apgalvojumiem Jūs vēlētos izmantot?"
+      '#options':
+        'A: Smēķējot cigaretes, kadmija absorbcija plaušās ir 10–50 %. Smēķētājiem kadmija koncentrācija asinīs ir aptuveni 1,5 μg/l, bet kadmija koncentrācija nierēs ir aptuveni 20–30 μg/g slapjā svara. Nesmēķētājiem kadmija koncentrācija asinīs ir 4-5 reizes zemāka, un kadmija koncentrācija nieru garozā ir divas reizes zemāka. Ir pierādīts, ka kadmijs izraisa plaušu vēzi.': 'A: Smēķējot cigaretes, kadmija absorbcija plaušās ir 10–50 %. Smēķētājiem kadmija koncentrācija asinīs ir aptuveni 1,5 μg/l, bet kadmija koncentrācija nierēs ir aptuveni 20–30 μg/g slapjā svara. Nesmēķētājiem kadmija koncentrācija asinīs ir 4-5 reizes zemāka, un kadmija koncentrācija nieru garozā ir divas reizes zemāka. Ir pierādīts, ka kadmijs izraisa plaušu vēzi.'
+        'B: Smēķējot cigaretes, kadmija absorbcija plaušās ir 10–50 %, savukārt absorbcija kuņģa un zarnu traktā ir tikai daži procenti. Smēķētājiem ir aptuveni 4–5 reizes augstāka kadmija koncentrācija asinīs (aptuveni 1,5 μg/l) un divreiz augstāka kadmija koncentrācija nieru garozā (aptuveni 20–30 μg/g slapjā svara) nekā nesmēķētājiem. Ir pierādīts, ka kadmijs izraisa plaušu vēzi, taču ir tikai ierobežoti pierādījumi par to, ka tas ir saistīts ar nieru, aknu un prostatas vēzi.': 'B: Smēķējot cigaretes, kadmija absorbcija plaušās ir 10–50 %, savukārt absorbcija kuņģa un zarnu traktā ir tikai daži procenti. Smēķētājiem ir aptuveni 4–5 reizes augstāka kadmija koncentrācija asinīs (aptuveni 1,5 μg/l) un divreiz augstāka kadmija koncentrācija nieru garozā (aptuveni 20–30 μg/g slapjā svara) nekā nesmēķētājiem. Ir pierādīts, ka kadmijs izraisa plaušu vēzi, taču ir tikai ierobežoti pierādījumi par to, ka tas ir saistīts ar nieru, aknu un prostatas vēzi.'
+        'C: Smēķējot cigaretes, kadmija absorbcija plaušās ir ārkārtīgi augsta, savukārt absorbcija kuņģa un zarnu traktā ir zemāka. Smēķētājiem asinīs un nieru garozā ir ievērojami augstāka kadmija koncentrācija. Kadmijs ir kancerogēns.': 'C: Smēķējot cigaretes, kadmija absorbcija plaušās ir ārkārtīgi augsta, savukārt absorbcija kuņģa un zarnu traktā ir zemāka. Smēķētājiem asinīs un nieru garozā ir ievērojami augstāka kadmija koncentrācija. Kadmijs ir kancerogēns.'
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': "1.29.\tŠajā zinātniskajā paziņojumā teikts, ka: “Akrilamīds ir ķīmiska viela, kas dabīgi veidojas cietes saturošos pārtikas produktos, tos termiski apstrādājot augstā temperatūrā (virs 120°C). Ja pārtikā ir akrilamīds, tas var potenciāli palielināt vēža attīstības risku patērētājiem jebkurā vecumā. “Par laimi, ir veidi, kā samazināt akrilamīda saturu pārtikā”. Kuru apgalvojumu Jūs izvēlētos, ja Jums būtu jāsniedz patērētājiem ieteikumi par to, kā samazināt akrilamīda saturu mājās gatavotos ēdienos?"
+      '#options':
+        'Centieties iegūt zeltaini dzeltenu krāsu (vai gaišāku), cepot, grauzdējot vai apgrauzdējot cieti saturošu pārtiku, un labākai veselībai izvairieties no pārceptaspārtikas.': 'Centieties iegūt zeltaini dzeltenu krāsu (vai gaišāku), cepot, grauzdējot vai apgrauzdējot cieti saturošu pārtiku, un labākai veselībai izvairieties no pārceptaspārtikas.'
+        'Ilgs vārīšanas laiks un augstāka temperatūra rada vairāk akrilamīda, kas cilvēkiem var izraisīt vēzi, nekā īss vārīšanas laiks un zemāka temperatūra.': 'Ilgs vārīšanas laiks un augstāka temperatūra rada vairāk akrilamīda, kas cilvēkiem var izraisīt vēzi, nekā īss vārīšanas laiks un zemāka temperatūra.'
+      '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Iesniegt
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: Beigas
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: 'Iepriekšējā lapa'
+  wizard_next_button_label: 'Nākamā lapa'
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p>Paldies, jūsu atbildes ir iesniegtas.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
