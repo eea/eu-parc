@@ -1,0 +1,600 @@
+uuid: 6f672a20-5c1a-467f-9c3f-d6b3fd1bcd14
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 637
+template: false
+archive: false
+id: finnish_risk_perception_of_risk
+title: 'Finnish Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in finnish language</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Suostumus ja taustatiedot'
+    description:
+      '#type': checkbox
+      '#title': 'Vahvistan, että olen lukenut ja hyväksyn yllä esitetyt tiedot.'
+      '#description': '<h4><span style="font-family:Satoshi;" lang="FI">Riskiviestijän riskikäsitys</span></h4><p>Mielipiteelläsi on väliä. Vaikuta kemikaalien parempaan hallintaan Euroopassa osallistumalla lyhyeen kyselyyn aiheesta ”Riskiviestijän riskikäsitys”. Tutkimus toteutetaan PARC-hankkeen (https://www.eu-parc.eu/) puitteissa. PARC on lyhenne sanoista ”Partnership for the Assessment of Risks from Chemicals” (kemikaalien riskinarvioinnin kumppanuusohjelma).</p><p>Tietoa PARC-hankkeesta: Eurooppalainen kemikaalien riskinarvioinnin kumppanuusohjelma (PARC) on 30 maan ja kolmen eurooppalaisen viraston (EEA, ECHA, EFSA) yhteinen hanke, jonka tarkoituksena on kehittää kemikaalien riskinarviointia n. Kumppanuuden tavoitteena on tarjota Euroopan ja kansallisen tason poliittista päätöksentekoa varten luotettavaa tieteellistä tietoa kansalaisten altistumisesta kemiallisille saasteille ja saasteiden mahdollisista terveysvaikutuksista. Suomessa kyselytutkimusta koordinoi Työterveyslaitos.</p><p>Kyselytutkimuksen tarkoitus: Altistumme jatkuvasti lukuisille kemikaaleille, joista jotkin voivat olla haitallisia terveydelle. On<span>&nbsp; </span>tärkeää tiedottaa haitallisiin kemikaaleihin liittyvistä riskeistä. Tällä kyselyllä pyrimme saamaan paremman käsityksen riskiviestijien yleisistä käytännöistä, heidän riskien havaitsemista koskevista käsityksistään sekä huolenaiheista ja haasteista, joita he kohtaavat tiedottaessaan vaaroista ja riskeistä.</p><p>Kyselyn kohderyhmä: Tässä kyselylomakkeessa käsitellään pääasiassa riskiviestintää arjessa, eikä kriisiviestintää, joka tarkoittaa viestintää kiireellisiä päätöksiä edellyttävissä tilanteissa. Kyselyyn vastaaminen kestää noin 20 minuuttia.</p><p>Mitä kerätyille tiedoille tapahtuu: Kerätyt tiedot ovat anonyymejä ja niitä käsitellään luottamuksellisesti yleisen tietosuoja-asetuksen vaatimusten mukaisesti. Vastaukset yhdistetään muihin vastauksiin, kun PARC:n tutkimuskumppanit analysoivat niitä. Mikäli tämän tutkimuksen tieteelliset johtopäätökset julkaistaan tai esitellään konferenssissa, tulokset esitetään kootusti.</p><p>Oikeus kieltäytyä tai peruuttaa osallistuminen: Kyselyyn osallistuminen on täysin vapaaehtoista. Täyttämällä ja lähettämällä tämän kyselyn osoitat suostumuksesi kyselyyn osallistumiseen. Voit milloin tahansa perua osallistumisesi tai päättää olla osallistumatta lainkaan ilman perusteluja ja ilman seuraamuksia. Lähetettyäsi kyselyn, osallistumista ei kuitenkaan voida enää peruuttaa.</p><p><strong>Kiitos osallistumisestasi!</strong></p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': "1.\tOsio: Työkokemus"
+    county:
+      '#type': textfield
+      '#title': 'Asuinmaasi:'
+      '#size': 1
+      '#required': true
+    age:
+      '#type': number
+      '#title': 'Nykyinen ikäsi:'
+      '#required': true
+      '#min': 16
+      '#max': 99
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': "1.1.\tMillä toimialalla työskentelet?"
+      '#multiple': 2
+      '#options':
+        Hallinto: Hallinto
+        'Tiede- ja tutkimus': 'Tiede- ja tutkimus'
+        Ammattialajärjestö: Ammattialajärjestö
+        Kansalaisjärjestö: Kansalaisjärjestö
+      '#other__option_label': Muu
+      '#other__placeholder': 'täsmennä:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': "1.2.\tTyössäni viestin kemiallisista vaaroista/riskeistä, jotka liittyvät seuraaviin (voit valita useita vaihtoehtoja):"
+      '#options':
+        'elintarvikkeet (elintarviketurvallisuus)': 'elintarvikkeet (elintarviketurvallisuus)'
+        'ympäristö (maaperä, ilma, vesi jne.)': 'ympäristö (maaperä, ilma, vesi jne.)'
+        työterveys: työterveys
+        'kemikaaliturvallisuus (yleisesti)': 'kemikaaliturvallisuus (yleisesti)'
+      '#other__option_label': muu
+      '#other__placeholder': 'täsmennä:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': "1.3.\tKuinka pitkä kokemus sinulla on riskiviestinnästä?"
+      '#options':
+        'Alle 2 vuotta': 'Alle 2 vuotta'
+        '2–5 vuotta': '2–5 vuotta'
+        '6–10 vuotta': '6–10 vuotta'
+        '11–15 vuotta': '11–15 vuotta'
+        'Yli 15 vuotta': 'Yli 15 vuotta'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': "1.4.\tKuinka usein tiedotat riskeistä?"
+      '#options':
+        Päivittäin/viikoittain: Päivittäin/viikoittain
+        Kuukausittain: Kuukausittain
+        'Muutaman kuukauden välein': 'Muutaman kuukauden välein'
+        Vuosittain: Vuosittain
+        'En koskaan': 'En koskaan'
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': "1.5.\tMikä on pääasiallinen yleisö, jolle viestintäsi on suunnattu?"
+      '#options':
+        'Suuri yleisö': 'Suuri yleisö'
+      '#other__option_label': 'Tietty kohderyhmä'
+      '#other__placeholder': 'täsmennä:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': "1.6.\tMikä on tieteenalasi? (voit valita useita vaihtoehtoja):"
+      '#multiple': 2
+      '#options':
+        'Kemian insinööri, kemisti tai toksikologi': 'Kemian insinööri, kemisti tai toksikologi'
+        'Elintarviketutkija, elintarviketeknologi tai mikrobiologi': 'Elintarviketutkija, elintarviketeknologi tai mikrobiologi'
+        'Kansanterveyden asiantuntija': 'Kansanterveyden asiantuntija'
+        Ravitsemusasiantuntija: Ravitsemusasiantuntija
+        'Ympäristö- tai maataloustutkija': 'Ympäristö- tai maataloustutkija'
+        'Viestinnän asiantuntija tai yhteiskuntatieteilijä': 'Viestinnän asiantuntija tai yhteiskuntatieteilijä'
+      '#other__option_label': Muu
+      '#other__placeholder': 'täsmennä:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': "1.7.\tKuinka usein saat viestintäkoulutusta (esim. viestintäasiantuntijoiden antama koulutus, vierailut muihin viestintäyksiköihin, osallistuminen seminaareihin, verkkoseminaareihin tai kursseille)?"
+      '#options':
+        'En koskaan': 'En koskaan'
+        'Ajoittain (esim. 2–5 vuoden välein)': 'Ajoittain (esim. 2–5 vuoden välein)'
+        'Usein (vähintään kerran vuodessa)': 'Usein (vähintään kerran vuodessa)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': "1.8.\tKuinka tyytyväinen olet saamaasi viestintäkoulutukseen?"
+      '#options':
+        'En lainkaan tyytyväinen': 'En lainkaan tyytyväinen'
+        'Jossakin määrin tyytyväinen': 'Jossakin määrin tyytyväinen'
+        'Melko tyytyväinen': 'Melko tyytyväinen'
+        'Erittäin tyytyväinen': 'Erittäin tyytyväinen'
+        'Täysin tyytyväinen': 'Täysin tyytyväinen'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': Never
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': "1.9.\tPidätkö viestintäkoulutusta välttämättömänä nykyisessä tehtävässäsi?"
+      '#options':
+        Kyllä: Kyllä
+        Ei: Ei
+        'En tiedä / en halua vastata': 'En tiedä / en halua vastata'
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "2.\tOsio: Kokemus riskiviestinnästä"
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': "2.1.\tMitä vaikeuksia olet kohdannut riskiviestinnässä? (voit valita useita vaihtoehtoja):"
+      '#options':
+        'Riittävien tieteellisten todisteiden puuttuminen (joko vaarasta tai sen todennäköisyydestä, että tietty aine aiheuttaa haittaa)': 'Riittävien tieteellisten todisteiden puuttuminen (joko vaarasta tai sen todennäköisyydestä, että tietty aine aiheuttaa haittaa)'
+        'Työtovereiden tuen puute / riskiviestintään osoitettujen henkilöresurssien vähäisyys': 'Työtovereiden tuen puute / riskiviestintään osoitettujen henkilöresurssien vähäisyys'
+        'Kemiallisten riskien asiantuntijoiden kanssa tehtävän yhteistyön haasteet': 'Kemiallisten riskien asiantuntijoiden kanssa tehtävän yhteistyön haasteet'
+        'Roolien epäselvä jakautuminen': 'Roolien epäselvä jakautuminen'
+        'Vastuiden epäselvä jakautuminen': 'Vastuiden epäselvä jakautuminen'
+        'Viestintään osoitettujen määrärahojen puute': 'Viestintään osoitettujen määrärahojen puute'
+        'Riskinhallinnasta vastaavien tahojen puuttuminen siihen, milloin ja mistä tiedotetaan': 'Riskinhallinnasta vastaavien tahojen puuttuminen siihen, milloin ja mistä tiedotetaan'
+      '#other__option_label': Muu
+      '#other__placeholder': 'täsmennä:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': "2.2.\tOnko käytössä mittausjärjestelmä, josta käy ilmi, saavuttaako viesti lopullisen kohdeyleisön?"
+      '#options':
+        Kyllä: Kyllä
+        Ei: Ei
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': "2.3.\tJos vastasit edellisessä kysymyksessä KYLLÄ, mitä mittausjärjestelmää käytät?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: 'Yes'
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': "2.4.\tArvioitko joka kerta, onko ilmoitettu kemiallinen vaara tai riski merkittävä vai ei? (Miten yleisö reagoi?)"
+      '#options':
+        Kyllä: Kyllä
+        Ei: Ei
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': "2.5.\tJos vastaus edelliseen kysymykseen on KYLLÄ, miten vaikutukset arvioidaan?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: 'Yes'
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': "2.6.\tKuinka paljon uskot voivasi vaikuttavaa kohdeyleisöön?"
+      '#options':
+        'En lainkaan': 'En lainkaan'
+        'Vähän ': 'Vähän '
+        Kohtalaisesti: Kohtalaisesti
+        Tuntuvasti: Tuntuvasti
+        'Erittäin paljon': 'Erittäin paljon'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': "2.7.\tMihin edelliseen kysymykseen antamasi vastaus perustuu? (voit valita useita vaihtoehtoja):"
+      '#options':
+        'Reaktiot tiedotusvälineissä (televisio, radio, lehdistö) from the media (TV, radio, press)': 'Reaktiot tiedotusvälineissä (televisio, radio, lehdistö) from the media (TV, radio, press)'
+        'Julkaisut verkkosivuilla, henkilökohtaisissa blogeissa, sosiaalisessa mediassa': 'Julkaisut verkkosivuilla, henkilökohtaisissa blogeissa, sosiaalisessa mediassa'
+        'Seuranta kyselylomakkeeseen perustuvan kuluttajatutkimuksen avulla': 'Seuranta kyselylomakkeeseen perustuvan kuluttajatutkimuksen avulla'
+        'Suora palaute henkilökohtaisen viestinnän kautta (esim. keskustelut, puhelut, sähköpostit tai viestit)': 'Suora palaute henkilökohtaisen viestinnän kautta (esim. keskustelut, puhelut, sähköpostit tai viestit)'
+      '#other__option_label': Muu
+      '#other__placeholder': 'täsmennä:'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': "2.8.\tToimitko yleensä seuraavasti tiedottaessasi kemikaalien vaaroista tai riskeistä?"
+      '#options':
+        'Laadin itse oman viestini': 'Laadin itse oman viestini'
+        'Välitän viestin täsmälleen siten kuin riskinarvioijat ovat sen toimittaneet': 'Välitän viestin täsmälleen siten kuin riskinarvioijat ovat sen toimittaneet'
+        'Mukautan tai muotoilen uudelleen muista lähteistä peräisin olevia viestejä': 'Mukautan tai muotoilen uudelleen muista lähteistä peräisin olevia viestejä'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': "2.9.\tOnko sinulle aiheutunut koskaan terveysvaikutuksia altistuttuasi kemiallisille vaaroille (esim. saastuneelle ruoalle, siivousaineille tai torjunta-aineille)?"
+      '#options':
+        Kyllä: Kyllä
+        Ei: Ei
+        'En tiedä': 'En tiedä'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': "2.10.\tJos vastasit kyllä, onko kokemus vaikuttanut tapaan, jolla viestit tästä vaarasta tai koet sen?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: 'Yes'
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "3.\tOsio: Riskiviestinnän kehittäminen"
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': "3.1.\tKuinka tärkeää on, että seuraavat asiat sisältyvät kohdeyleisölle suunnattuun riskiviestintään?"
+      '#required': true
+      '#questions':
+        'Riskien visuaalinen kuvaaminen kuvioiden, kaavioiden, kuvien ja karttojen avulla': 'Riskien visuaalinen kuvaaminen kuvioiden, kaavioiden, kuvien ja karttojen avulla'
+        'Eri vaaratekijöiden vertailu todennäköisyyksien perusteella': 'Eri vaaratekijöiden vertailu todennäköisyyksien perusteella'
+        'Kuvaus kaikista riskiin liittyvistä epävarmuustekijöistä': 'Kuvaus kaikista riskiin liittyvistä epävarmuustekijöistä'
+        'Numeeriset raja-arvot (esim. tietyn kemikaalin hyväksyttävä päivittäinen altistuminen numeroina)': 'Numeeriset raja-arvot (esim. tietyn kemikaalin hyväksyttävä päivittäinen altistuminen numeroina)'
+        'Kuvaus riskeistä eri ihmisryhmien välillä(esim. eri ammattiryhmien riskierot)': 'Kuvaus riskeistä eri ihmisryhmien välillä(esim. eri ammattiryhmien riskierot)'
+        'Tieto pitkäaikaisen ja lyhytaikaisen altistumisen välisestä erosta': 'Tieto pitkäaikaisen ja lyhytaikaisen altistumisen välisestä erosta'
+        'Tieto siitä, että yleisö aliarvioi riskejä (esim. kun riskiviestijä tietää, että yleisö ei pidä tiettyjä kemikaaleja niin vaaral': 'Tieto siitä, että yleisö aliarvioi riskejä (esim. kun riskiviestijä tietää, että yleisö ei pidä tiettyjä kemikaaleja niin vaarallisina kuin pitäisi)'
+        'Tieto siitä, että yleisö yliarvioi riskejä (esim. kun riskiviestijä tietää, että yleisö pitää tiettyjä kemikaaleja vaarallisempina kuin ne todellisuudessa ovat)': 'Tieto siitä, että yleisö yliarvioi riskejä (esim. kun riskiviestijä tietää, että yleisö pitää tiettyjä kemikaaleja vaarallisempina kuin ne todellisuudessa ovat)'
+        'Kuvaus strategioista, joilla voidaan välttää altistuminen vaaroille': 'Kuvaus strategioista, joilla voidaan välttää altistuminen vaaroille'
+      '#answers':
+        'Ei lainkaan tärkeää': 'Ei lainkaan tärkeää'
+        'Melko tärkeää': 'Melko tärkeää'
+        'Kohtalaisen tärkeää': 'Kohtalaisen tärkeää'
+        Tärkeää: Tärkeää
+        'Erittäin tärkeää': 'Erittäin tärkeää'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': "3.2.\tKuinka tärkeitä seuraavat luottamukseen liittyvät näkökohdat ovat mielestäsi riskiviestinnässä kohdeyleisön riskikäsityksen kannalta?"
+      '#required': true
+      '#questions':
+        'Yleisön luottamus riskeistä tiedottavaan asiantuntijaan': 'Yleisön luottamus riskeistä tiedottavaan asiantuntijaan'
+        'Yleisön luottamus kansallisiin ja eurooppalaisiin instituutioihin ja viranomaisiin': 'Yleisön luottamus kansallisiin ja eurooppalaisiin instituutioihin ja viranomaisiin'
+        'Yleisön luottamus tieteelliseen tietoon': 'Yleisön luottamus tieteelliseen tietoon'
+      '#answers':
+        'Ei lainkaan tärkeää': 'Ei lainkaan tärkeää'
+        'Melko tärkeää': 'Melko tärkeää'
+        'Kohtalaisen tärkeää': 'Kohtalaisen tärkeää'
+        Tärkeää: Tärkeää
+        'Erittäin tärkeää': 'Erittäin tärkeää'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': "3.3.\tArvioi seuraavia riskiviestintää koskevia väittämiä sen mukaan, missä määrin olet niiden kanssa samaa mieltä tai eri mieltä."
+      '#required': true
+      '#questions':
+        'Riskiviestinnässä on tärkeää erottaa toisistaan vaara ja riski.': 'Riskiviestinnässä on tärkeää erottaa toisistaan vaara ja riski.'
+        'Yleisön näkemykset riskeistä eivät saisi vaikuttaa riskiviestintään.': 'Yleisön näkemykset riskeistä eivät saisi vaikuttaa riskiviestintään.'
+        'Riskiviestinnän perustana olevat periaatteet (esim. objektiivisuus, puolueettomuus) ovat yhdenmukaisia kaikilla aloilla (esim. kemialliset vaarat, tartuntataudit).': 'Riskiviestinnän perustana olevat periaatteet (esim. objektiivisuus, puolueettomuus) ovat yhdenmukaisia kaikilla aloilla (esim. kemialliset vaarat, tartuntataudit).'
+        'Kaikki riskeihin ja vaaroihin liittyvä epävarmuustekijöiden kuvailu hämmentää ihmisiä.': 'Kaikki riskeihin ja vaaroihin liittyvä epävarmuustekijöiden kuvailu hämmentää ihmisiä.'
+        'Riskiviestintää tulisi tehdä yhteistyössä asianomaisten sidosryhmien kanssa.': 'Riskiviestintää tulisi tehdä yhteistyössä asianomaisten sidosryhmien kanssa.'
+        'Tiedotusvälineet ovat kiinnostuneempia kriisiviestinnästä, jossa riskit esitetään usein liioitellusti.': 'Tiedotusvälineet ovat kiinnostuneempia kriisiviestinnästä, jossa riskit esitetään usein liioitellusti.'
+      '#answers':
+        'Täysin eri mieltä': 'Täysin eri mieltä'
+        'Osittain eri mieltä': 'Osittain eri mieltä'
+        'Ei samaa eikä eri mieltä': 'Ei samaa eikä eri mieltä'
+        'Osittain samaa mieltä': 'Osittain samaa mieltä'
+        'Täysin samaa mieltä': 'Täysin samaa mieltä'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': "4.\tOsio: Riskiviestijän rooli"
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': "4.1.\tArvioi seuraavia riskikäsityksiä koskevia väittämiä sen mukaan, missä määrin olet niistä samaa tai eri mieltä."
+      '#required': true
+      '#questions':
+        'Ihmisten riskikäsityksiin vaikuttavat heidän uskomuksensa ja asenteensa.': 'Ihmisten riskikäsityksiin vaikuttavat heidän uskomuksensa ja asenteensa.'
+        'Ihmisten arviot ja tunteet (henkilökohtainen kokemus) eivät vaikuta riskikäsityksiin.': 'Ihmisten arviot ja tunteet (henkilökohtainen kokemus) eivät vaikuta riskikäsityksiin.'
+        'Riskikäsitykset heijastavat ihmisten yleisiä kulttuurisia ja yhteiskunnallisia asenteita vaaroja ja niiden tuomia hyötyjä kohtaa': 'Riskikäsitykset heijastavat ihmisten yleisiä kulttuurisia ja yhteiskunnallisia asenteita vaaroja ja niiden tuomia hyötyjä kohtaan.'
+        'Riskiviestinnän tulisi perustua riskinarviointien tuloksiin, mutta siinä tulisi ottaa huomioon myös maallikoiden näkemys vaaran ': 'Riskiviestinnän tulisi perustua riskinarviointien tuloksiin, mutta siinä tulisi ottaa huomioon myös maallikoiden näkemys vaaran luonteesta ja merkityksestä.'
+        'Ihmiset, jotka ovat aiemmin kokeneet vaaraan liittyvän ongelmatilanteen, pitävät yleensä todennäköisempänä joutumista samaan til': 'Ihmiset, jotka ovat aiemmin kokeneet vaaraan liittyvän ongelmatilanteen, pitävät yleensä todennäköisempänä joutumista samaan tilanteeseen uudelleen kuin ne, jotka eivät ole koskaan kohdanneet kyseistä vaaraa.'
+        'Kun ihmiset saavat tietää vaarasta ensimmäistä kertaa, heillä on taipumus pitää uutta vaaraa todennäköisempänä kuin muita tunnet': 'Kun ihmiset saavat tietää vaarasta ensimmäistä kertaa, heillä on taipumus pitää uutta vaaraa todennäköisempänä kuin muita tunnettuja vaaroja.'
+        'Mitä tarkempaa tietoa ihmiset saavat vaarasta, sitä vähemmän he luottavat intuitioonsa vaaran aiheuttamasta riskistä.': 'Mitä tarkempaa tietoa ihmiset saavat vaarasta, sitä vähemmän he luottavat intuitioonsa vaaran aiheuttamasta riskistä.'
+        'Luottamus riskiviestijään on tärkeämpää kuin tieto itse.': 'Luottamus riskiviestijään on tärkeämpää kuin tieto itse.'
+      '#answers':
+        'Täysin eri mieltä': 'Täysin eri mieltä'
+        'Osittain eri mieltä': ' Osittain eri mieltä'
+        'Ei samaa eikä eri mieltä': 'Ei samaa eikä eri mieltä'
+        'Osittain samaa mieltä': 'Osittain samaa mieltä'
+        'Täysin samaa mieltä': 'Täysin samaa mieltä'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': "5.\tOsio: Perinteiset ja sosiaaliset mediat"
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': "5.1.\tMitä viestintäkanavaa käytät mieluiten riskiviestinnässä? Järjestä kanavat mieltymystesi mukaan vetämällä ne haluamaasi järjestykseen siten, että mieluisin kanava on ylimpänä ja vähiten mieluisa alimpana."
+      '#options':
+        Uutiskirje: Uutiskirje
+        'Artikkelit sanomalehdissä ja aikakauslehdissä': 'Artikkelit sanomalehdissä ja aikakauslehdissä'
+        Televisio: Televisio
+        Radio: Radio
+        'Sosiaalinen media': 'Sosiaalinen media'
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': "5.2.\tMitä viestintäkanavaa käyttäisit mieluiten kriisitilanteessa? Järjestä kanavat mieltymystesi mukaan vetämällä ne haluamaasi järjestykseen siten, että mieluisin kanava on ylimpänä ja vähiten mieluisa alimpana."
+      '#options':
+        Lehdistötiedote: Lehdistötiedote
+        'Artikkelit sanomalehdissä ja aikakauslehdissä': 'Artikkelit sanomalehdissä ja aikakauslehdissä'
+        Televisio: Televisio
+        Radio: Radio
+        'Sosiaalinen media': 'Sosiaalinen media'
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': "5.3.\tKäytätkö sosiaalisen median kanavia riskiviestintään?"
+      '#options':
+        Kyllä: Kyllä
+        Ei: Ei
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': "5.4.\tMitä sosiaalisen median kanavaa käytät mieluiten riskiviestintään? (voit valita useita vaihtoehtoja):"
+      '#options':
+        Twitter/X: Twitter/X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': 'Ei mikään'
+      '#options_none_text': 'Ei mikään'
+      '#other__option_label': Muu
+      '#other__placeholder': täsmennä
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: 'Yes'
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': "5.5.\tMitä sosiaalisen median alustaa käyttäisit kriisiviestinnässä? (voit valita useita vaihtoehtoja):"
+      '#options':
+        Twitter/X: Twitter/X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': 'Ei mikään'
+      '#options_none_text': 'Ei mikään'
+      '#other__option_label': Muu
+      '#other__placeholder': 'täsmennä:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': "5.6.\tKäytätkö sosiaalisen median seurantatyökaluja (ohjelmistoa, jonka avulla käyttäjät voivat seurata, jäljittää ja analysoida sosiaalisen median keskusteluja)?"
+      '#options':
+        Kyllä: Kyllä
+        Ei: Ei
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': "5.7.\tJos vastasit edelliseen kysymykseen KYLLÄ, mitä sosiaalisen median seurantatyökaluja käytät?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: 'Yes'
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': "5.8.\tMiten yleensä suhtaudut sosiaalisen median väärään tietoon tai huhuihin, jotka koskevat kemikaalien tiettyjä vaaroja tai riskejä?"
+      '#options':
+        'En reagoi. Jos annan asian olla, tilanne rauhoittuu.': 'En reagoi. Jos annan asian olla, tilanne rauhoittuu.'
+        'Annan lausunnon, joka sisältää oikeaa tietoa, ja jaan sitä eteenpäin.': 'Annan lausunnon, joka sisältää oikeaa tietoa, ja jaan sitä eteenpäin.'
+        'Ryhdyn tarvittaessa oikeustoimiin.': 'Ryhdyn tarvittaessa oikeustoimiin.'
+      '#other__option_label': Muu
+      '#other__placeholder': 'täsmennä:'
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': "6.\tOsio: Kieli"
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': "6.1.\tOletetaan, että sosiaalisessa mediassa liikkuu väärää tietoa tai huhuja tupakoinnin ja kadmiumin aiheuttamista riskeistä. Mitä seuraavista lausunnoista haluaisit käyttää?"
+      '#options':
+        'A: Savukkeita poltettaessa kadmiumista imeytyy keuhkoihin 10–50 prosenttia. Tupakoitsijoiden veren kadmiumpitoisuus on noin 1,5 μg/l, ja munuaiskuoren kadmiumpitoisuus noin 20–30 μg/g märkäpainossa. Tupakoimattomien veren kadmiumpitoisuus on 4–5 kertaa pienempi ja munuaiskuoren puolet pienempi. Kadmiumin on osoitettu aiheuttavan keuhkosyöpää.': 'A: Savukkeita poltettaessa kadmiumista imeytyy keuhkoihin 10–50 prosenttia. Tupakoitsijoiden veren kadmiumpitoisuus on noin 1,5 μg/l, ja munuaiskuoren kadmiumpitoisuus noin 20–30 μg/g märkäpainossa. Tupakoimattomien veren kadmiumpitoisuus on 4–5 kertaa pienempi ja munuaiskuoren puolet pienempi. Kadmiumin on osoitettu aiheuttavan keuhkosyöpää.'
+        'B: Savukkeita poltettaessa kadmiumista imeytyy keuhkoihin 10–50 prosenttia. Ruoansuolatuskanavassa imeytyminen on vain muutamia prosentteja. Tupakoitsijoiden veren kadmiumpitoisuus on noin 4–5 kertaa suurempi (noin 1,5 μg/l) ja munuaiskuoren kadmiumpitoisuus kaksi kertaa suurempi (noin 20–30 μg/g märkäpainossa) kuin tupakoimattomien. Kadmiumin on osoitettu aiheuttavan keuhkosyöpää, mutta sen yhteydestä munuais-, maksa- ja eturauhassyöpään on vain vähän näyttöä.': 'B: Savukkeita poltettaessa kadmiumista imeytyy keuhkoihin 10–50 prosenttia. Ruoansuolatuskanavassa imeytyminen on vain muutamia prosentteja. Tupakoitsijoiden veren kadmiumpitoisuus on noin 4–5 kertaa suurempi (noin 1,5 μg/l) ja munuaiskuoren kadmiumpitoisuus kaksi kertaa suurempi (noin 20–30 μg/g märkäpainossa) kuin tupakoimattomien. Kadmiumin on osoitettu aiheuttavan keuhkosyöpää, mutta sen yhteydestä munuais-, maksa- ja eturauhassyöpään on vain vähän näyttöä.'
+        'C: Savukkeita poltettaessa kadmiumia imeytyy keuhkoihin erittäin paljon, kun taas ruoansulatuskanavassa se imeytyy huonommin. Veren ja munuaiskuoren kadmiumpitoisuus on tupakoitsijoilla huomattavasti korkeampi kuin muilla. Kadmium on syöpää aiheuttava aine.': 'C: Savukkeita poltettaessa kadmiumia imeytyy keuhkoihin erittäin paljon, kun taas ruoansulatuskanavassa se imeytyy huonommin. Veren ja munuaiskuoren kadmiumpitoisuus on tupakoitsijoilla huomattavasti korkeampi kuin muilla. Kadmium on syöpää aiheuttava aine.'
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': "6.2.\tSeuraavassa tieteellisessä lausunnossa todetaan: ”Akryyliamidi on kemikaali, jota muodostuu luonnollisesti tärkkelyspitoisissa elintarvikkeissa, kun niitä kypsennetään korkeissa lämpötiloissa (yli 120 °C). Kun elintarvikkeissa on akryyliamidia, se voi mahdollisesti lisätä kaiken ikäisten kuluttajien syöpäriskiä. Onneksi on olemassa keinoja vähentää akryyliamidien määrää elintarvikkeissa.” Kumman lausunnon valitsisit, jos haluaisit neuvoa kuluttajia minimoimaan akryyliamidipitoisuuden kotiruoanlaitossa?"
+      '#options':
+        'Terveyden kannalta parasta on pitää tavoitteena kullankeltaista väriä (tai vaaleampaa) paistettaessa, leivottaessa, paahtaessa tai paahdettaessa tärkkelyspitoisia elintarvikkeita ja välttää ylikuumennettuja elintarvikkeita.': 'Terveyden kannalta parasta on pitää tavoitteena kullankeltaista väriä (tai vaaleampaa) paistettaessa, leivottaessa, paahtaessa tai paahdettaessa tärkkelyspitoisia elintarvikkeita ja välttää ylikuumennettuja elintarvikkeita.'
+        'Pitkät kypsennysajat ja korkeammat lämpötilat muodostavat enemmän akryyliamidia, joka voi aiheuttaa syöpää, kuin lyhyet kypsennysajat ja matalammat lämpötilat.': 'Pitkät kypsennysajat ja korkeammat lämpötilat muodostavat enemmän akryyliamidia, joka voi aiheuttaa syöpää, kuin lyhyet kypsennysajat ja matalammat lämpötilat.'
+      '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Lähetä
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: Loppu
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: 'Edellinen sivu'
+  wizard_next_button_label: 'Seuraava sivu'
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p>Kiitos, vastauksesi on lähetetty.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

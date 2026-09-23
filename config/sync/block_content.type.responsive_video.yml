@@ -5,4 +5,4 @@ dependencies: {  }
 id: responsive_video
 label: 'Responsive video'
 revision: false
-description: 'Full width video for any section of a page. Supply a landscape and a portrait cut; the one matching the visitor''s screen is the only one downloaded.'
+description: "Full width video for any section of a page. Supply a landscape and a portrait cut; the one matching the visitor's screen is the only one downloaded."

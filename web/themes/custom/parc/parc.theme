@@ -1425,3 +1425,28 @@ function parc_preprocess_node__documentation__full(array &$variables) {
     unset($variables['content']['book_navigation']);
   }
 }
+
+/**
+ * Implements hook_preprocess_media_oembed_iframe().
+ *
+ * Trims the YouTube player via embed parameters. YouTube exposes no
+ * parameter to hide the title, author, share or watch later buttons.
+ */
+function parc_preprocess_media_oembed_iframe(array &$variables) {
+  $html = (string) $variables['media'];
+  if (!preg_match('/<iframe[^>]+src="([^"]*(?:youtube|youtube-nocookie)\.com\/embed\/[^"]*)"/i', $html, $matches)) {
+    return;
+  }
+
+  $src = Html::decodeEntities($matches[1]);
+  $separator = str_contains($src, '?') ? '&' : '?';
+  $src .= $separator . http_build_query([
+    'controls' => 0,
+    'modestbranding' => 1,
+    'rel' => 0,
+    'autoplay' => 1,
+    'loop' => 1,
+  ]);
+
+  $variables['media'] = Markup::create(str_replace($matches[1], Html::escape($src), $html));
+}
