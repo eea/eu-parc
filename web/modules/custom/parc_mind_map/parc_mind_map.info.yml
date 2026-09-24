@@ -1,0 +1,8 @@
+name: Parc Mind Map
+type: module
+description: 'Exposes the PARC entities and their relationships as a graph for the key messages mind map.'
+package: PARC Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
