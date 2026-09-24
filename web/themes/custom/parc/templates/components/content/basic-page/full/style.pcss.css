@@ -1,6 +1,15 @@
 .node--basic-page--full {
   isolation: isolate;
 
+  .layout__region--content:has(.block-field-blocknodebasic-pagefield-banner) {
+    background-color: #F5F5F5;
+    padding-bottom: 0;
+
+    &:has(.block-field-blocknodebasic-pagefield-banner img) {
+      position: relative;
+    }
+  }
+
   .block-field-blocknodebasic-pagefield-banner {
     height: 320px;
 
@@ -8,6 +17,29 @@
       object-fit: cover;
       width: 100%;
       height: 100%;
+    }
+
+    &:has(img[src$=".svg"]) {
+      height: auto;
+
+      img {
+        height: auto;
+        object-fit: contain;
+      }
+    }
+
+    &:has(img) + .block-field-blocknodebasic-pagetitle {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 0;
+      text-align: center;
+
+      @media(min-width: 1400px) {
+        padding-bottom: 90px;
+      }
     }
   }
 
