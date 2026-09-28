@@ -1,0 +1,21 @@
+uuid: 8c1e2d3f-4a5b-4c6d-8e7f-9a0b1c2d3e4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_carousel_width
+    - paragraphs.paragraphs_type.media_carousel
+id: paragraph.media_carousel.field_carousel_width
+field_name: field_carousel_width
+entity_type: paragraph
+bundle: media_carousel
+label: Width
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: large
+default_value_callback: ''
+settings: {  }
+field_type: list_string

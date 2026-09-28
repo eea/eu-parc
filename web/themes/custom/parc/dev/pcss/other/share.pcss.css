@@ -98,3 +98,19 @@
   transition-delay: 0.25s;
   transform: translateX(-280px);
 }
+
+body.page-node-type-article {
+  .btn_wrap {
+    --bw-w: 303px;
+    --bw-h: 55.88px;
+  }
+
+  .btn-share-label {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .btn_wrap:hover .btn-share-label {
+    transform: translateX(calc(-2 * var(--bw-w)));
+  }
+}

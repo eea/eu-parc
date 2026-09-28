@@ -80,8 +80,11 @@ filters:
     status: true
     weight: 100
     settings:
-      default_view_mode: default
-      allowed_view_modes: {  }
+      default_view_mode: embed_medium
+      allowed_view_modes:
+        embed_large: embed_large
+        embed_medium: embed_medium
+        embed_small: embed_small
       allowed_media_types:
         image: image
         remote_video: remote_video

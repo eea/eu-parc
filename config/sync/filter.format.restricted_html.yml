@@ -79,10 +79,15 @@ filters:
     status: true
     weight: 100
     settings:
-      default_view_mode: lightbox
+      default_view_mode: embed_medium
       allowed_view_modes:
         default: default
         lightbox: lightbox
+        embed_large: embed_large
+        embed_medium: embed_medium
+        embed_small: embed_small
       allowed_media_types:
         image: image
         vector: vector
+        video: video
+        remote_video: remote_video

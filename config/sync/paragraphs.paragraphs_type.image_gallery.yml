@@ -1,0 +1,10 @@
+uuid: dcf02250-a8f2-4031-b1b8-017a77851a16
+langcode: en
+status: true
+dependencies: {  }
+id: image_gallery
+label: 'Image gallery'
+icon_uuid: null
+icon_default: null
+description: 'Two (or more) images displayed side by side.'
+behavior_plugins: {  }

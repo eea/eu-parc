@@ -1,0 +1,10 @@
+uuid: 6f23fe1d-51d2-4a53-892f-869a82b9367b
+langcode: en
+status: true
+dependencies: {  }
+id: media_carousel
+label: 'Media carousel'
+icon_uuid: null
+icon_default: null
+description: 'A slideshow/carousel supporting media images and videos.'
+behavior_plugins: {  }
