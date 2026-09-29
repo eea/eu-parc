@@ -11,21 +11,10 @@
   }
 
   .block-field-blocknodepagefield-banner {
-    height: 320px;
-
     img {
       object-fit: cover;
       width: 100%;
-      height: 100%;
-    }
-
-    &:has(img[src$=".svg"]) {
       height: auto;
-
-      img {
-        height: auto;
-        object-fit: contain;
-      }
     }
 
     &:has(img) + .block-field-blocknodepagetitle {
@@ -37,8 +26,8 @@
       padding-bottom: 0;
       text-align: center;
 
-      @media (min-width: 1400px) {
-        padding-bottom: 90px;
+      @media (min-width: 768px) {
+        bottom: 20px;
       }
     }
   }
@@ -72,6 +61,11 @@
   & #events:not(:has(.block)) {
     display: none;
   }
+}
+
+body.page-node-type-page .block-field-blocknodepagefield-banner {
+  max-width: 1920px;
+  margin-inline: auto;
 }
 
 .visible-last-xl {
