@@ -23,7 +23,8 @@
     }
 
     @media (--lg) {
-      --svg-title-size: 88px;
+      --svg-title-size: 100px;
+      letter-spacing: -6%;
     }
   }
 }
