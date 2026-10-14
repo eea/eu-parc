@@ -18,6 +18,18 @@ body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-b
   position: relative;
 }
 
+/* Basic pages: header/main menu and the page title are no longer sticky. */
+body.page-node-type-basic-page,
+body.page-node-type-page {
+  header#header {
+    position: static !important;
+  }
+
+  .header-sticky-title {
+    display: none !important;
+  }
+}
+
 header {
   &:has(.navbar-collapse.show),
   &:has(.navbar-collapse.collapsing) {
