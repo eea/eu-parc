@@ -96,6 +96,7 @@
         "drupal/menu_link_attributes": "^1.10",
         "drupal/menu_trail_by_path": "^2.0",
         "drupal/metatag": "^2.1",
+        "drupal/monolog": "^3.1",
         "drupal/paragraphs": "^1.21",
         "drupal/pathauto": "^1.11",
         "drupal/protected_pages": "^3.0",
@@ -154,7 +155,6 @@
             "drupal/core-project-message": true,
             "mglaman/composer-drupal-lenient": true,
             "php-http/discovery": true,
-            "mglaman/composer-drupal-lenient": true,
             "symfony/runtime": true
         },
         "sort-packages": true,
