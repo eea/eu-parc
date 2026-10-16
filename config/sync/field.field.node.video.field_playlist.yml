@@ -1,0 +1,21 @@
+uuid: 898d94dd-c896-4756-9fcd-bdbc5de43165
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_playlist
+    - node.type.video
+  module:
+    - options
+id: node.video.field_playlist
+field_name: field_playlist
+entity_type: node
+bundle: video
+label: Playlist
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

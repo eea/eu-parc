@@ -4,6 +4,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\pathauto\PathautoState;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
@@ -2443,4 +2444,24 @@ function parc_core_deploy_circular_economy_topic() {
     'name' => 'Promoting the circular economy through safe materials',
     'weight' => 3,
   ])->save();
+}
+
+/**
+ * Assign existing videos to the "Interviews" playlist.
+ */
+function parc_core_deploy_video_playlist() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'video')
+    ->notExists('field_playlist')
+    ->execute();
+
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    $node->set('field_playlist', 'interviews');
+    // Videos were redirected to /videos before, so they have no alias and
+    // their pathauto state is "skip".
+    $node->path->pathauto = PathautoState::CREATE;
+    $node->save();
+  }
 }

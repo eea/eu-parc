@@ -216,6 +216,9 @@ function parc_theme($existing, $type, $theme, $path) {
     'views_exposed_form__press_clippings__featured' => [
       'render element' => 'form',
     ],
+    'views_exposed_form__videos__grid_block' => [
+      'render element' => 'form',
+    ],
   ];
 }
 
@@ -1424,4 +1427,81 @@ function parc_preprocess_node__documentation__full(array &$variables) {
 
     unset($variables['content']['book_navigation']);
   }
+}
+
+/**
+ * Implements hook_preprocess_node__video__full().
+ */
+function parc_preprocess_node__video__full(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $playlist = $node->get('field_playlist')->value;
+
+  // Prev/next links and the carousel depend on the other videos.
+  $variables['#cache']['tags'][] = 'node_list:video';
+
+  $playlists = options_allowed_values($node->get('field_playlist')->getFieldDefinition()->getFieldStorageDefinition(), $node);
+  $variables['playlist_label'] = $playlists[$playlist] ?? NULL;
+  $variables['playlists'] = [];
+  foreach ($playlists as $key => $label) {
+    $variables['playlists'][] = [
+      'label' => $label,
+      'url' => Url::fromUserInput('/videos', ['query' => ['playlist' => [$key => $key]]]),
+      'active' => $key == $playlist,
+    ];
+  }
+
+  $variables['summary'] = $node->get('body')->summary;
+
+  if (empty($playlist)) {
+    return;
+  }
+
+  $variables['playlist_url'] = Url::fromUserInput('/videos', ['query' => ['playlist' => [$playlist => $playlist]]]);
+
+  // Videos are listed newest first, so "next" is the older video.
+  $variables['prev_url'] = _parc_video_sibling_url($node, '>');
+  $variables['next_url'] = _parc_video_sibling_url($node, '<');
+
+  $variables['playlist_carousel'] = [
+    '#type' => 'view',
+    '#name' => 'videos',
+    '#display_id' => 'playlist_carousel',
+    '#arguments' => [$playlist, $node->id()],
+  ];
+}
+
+/**
+ * Finds the adjacent published video in the same playlist by created date.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The current video.
+ * @param string $operator
+ *   '>' for the newer video, '<' for the older one.
+ *
+ * @return \Drupal\Core\Url|null
+ *   The URL of the adjacent video, if any.
+ */
+function _parc_video_sibling_url(NodeInterface $node, string $operator) {
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+  $direction = $operator == '>' ? 'ASC' : 'DESC';
+  $query = $storage->getQuery()
+    ->accessCheck()
+    ->condition('type', 'video')
+    ->condition('status', NodeInterface::PUBLISHED)
+    ->condition('field_playlist', $node->get('field_playlist')->value)
+    ->sort('created', $direction)
+    ->sort('nid', $direction)
+    ->range(0, 1);
+
+  // Videos created at the same second are ordered by ID.
+  $created = $node->getCreatedTime();
+  $query->condition($query->orConditionGroup()
+    ->condition('created', $created, $operator)
+    ->condition($query->andConditionGroup()
+      ->condition('created', $created)
+      ->condition('nid', $node->id(), $operator)));
+
+  $nids = $query->execute();
+  return $nids ? $storage->load(reset($nids))->toUrl() : NULL;
 }
