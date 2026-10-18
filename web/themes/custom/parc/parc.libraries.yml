@@ -652,11 +652,6 @@ n--video:
   css:
     component:
       css/components/content/video/video.css: {}
-  js:
-    js/video-popup.js: {}
-  dependencies:
-    - core/drupal
-    - core/once
 
 aos:
   css:

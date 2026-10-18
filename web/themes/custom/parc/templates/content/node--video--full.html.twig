@@ -1,0 +1,101 @@
+{#
+/**
+ * @file
+ * Parc theme implementation for the video full page.
+ */
+#}
+
+{{ attach_library('parc/svg_title') }}
+{{ attach_library('parc/n--video') }}
+
+{%
+  set classes = [
+    'node',
+    'node--type-video',
+    'node--video--full',
+    not node.isPublished() ? 'node--unpublished',
+  ]
+%}
+
+{% set chevron %}
+  <svg width="15" height="24" viewBox="0 0 14.6323 23.6187" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M13.6323 1L1.36677 11.0354C0.877745 11.4355 0.877745 12.1832 1.36677 12.5833L13.6323 22.6187" stroke-width="2" stroke-linecap="round" stroke="#000"/>
+  </svg>
+{% endset %}
+
+<article{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  <div class="container">
+    <div class="video-full__header">
+      <details class="video-full__playlists">
+        <summary>
+          {{ 'Playlists'|t }}
+          <svg width="11" height="11" viewBox="0 0 10.9534 10.9534" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M1 1H7.95339C9.05796 1 9.95339 1.89543 9.95339 3V9.95339" stroke-width="2" stroke-linecap="round" stroke="#111"/>
+          </svg>
+        </summary>
+        <ul class="video-full__playlists-list">
+          {% for item in playlists %}
+            <li>
+              <a href="{{ item.url }}"{{ item.active ? ' aria-current="true"' }}>{{ item.label }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </details>
+
+      <div class="svg-title video-full__heading">
+        <h1>{{ 'Watch'|t }}</h1>
+      </div>
+    </div>
+
+    <div class="video-full__player-row">
+      {% if prev_url %}
+        <a class="video-full__nav video-full__nav--prev" href="{{ prev_url }}" aria-label="{{ 'Previous video'|t }}">{{ chevron }}</a>
+      {% else %}
+        <span class="video-full__nav video-full__nav--prev video-full__nav--disabled" aria-hidden="true">{{ chevron }}</span>
+      {% endif %}
+
+      <div class="video-full__player">
+        {{ content.field_video }}
+      </div>
+
+      {% if next_url %}
+        <a class="video-full__nav video-full__nav--next" href="{{ next_url }}" aria-label="{{ 'Next video'|t }}">{{ chevron }}</a>
+      {% else %}
+        <span class="video-full__nav video-full__nav--next video-full__nav--disabled" aria-hidden="true">{{ chevron }}</span>
+      {% endif %}
+    </div>
+
+    <div class="video-full__info">
+      {% if node.field_video_type.value %}
+        <div class="video-full__type">{{ node.field_video_type.value }}</div>
+      {% endif %}
+      {% if summary %}
+        <p class="video-full__summary">{{ summary }}</p>
+      {% endif %}
+      <h2 class="video-full__title">{{ label }}</h2>
+      {% if content.body|render is not empty %}
+        <div class="video-full__body">{{ content.body }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if playlist_carousel %}
+    <div class="video-full__related">
+      <div class="container">
+        <div class="svg-title video-full__related-heading">
+          <h2>{{ 'Watch next'|t }}</h2>
+        </div>
+        <div class="videos-carousel__header">
+          <div class="more-link"><a href="{{ playlist_url }}">{{ 'View all'|t }}</a></div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="15" viewBox="0 0 20.6992 14.7279" fill="none" aria-hidden="true">
+            <path d="M1 6.36396C0.447715 6.36396 0 6.81168 0 7.36396C0 7.91625 0.447715 8.36396 1 8.36396V7.36396V6.36396ZM1 7.36396V8.36396H19.6992V7.36396V6.36396H1V7.36396ZM20.4063 8.07107C20.7969 7.68054 20.7969 7.04738 20.4063 6.65685L14.0424 0.292893C13.6518 -0.097631 13.0187 -0.097631 12.6282 0.292893C12.2376 0.683418 12.2376 1.31658 12.6282 1.70711L18.285 7.36396L12.6282 13.0208C12.2376 13.4113 12.2376 14.0445 12.6282 14.435C13.0187 14.8256 13.6518 14.8256 14.0424 14.435L20.4063 8.07107Z" fill="#000"/>
+          </svg>
+        </div>
+        {{ playlist_carousel }}
+      </div>
+    </div>
+  {% endif %}
+</article>
