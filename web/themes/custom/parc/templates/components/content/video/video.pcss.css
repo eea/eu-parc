@@ -20,8 +20,9 @@
       transform: scale(1.04);
     }
 
-    .video-teaser__play-btn {
-      transform: translate(-50%, -50%) scale(1.12);
+    .video-teaser__play-bg,
+    .video-teaser__play-btn svg {
+      transform: scale(1.12);
     }
   }
 }
@@ -72,21 +73,35 @@
     }
   }
 
+  /* No transform or z-index here: it would isolate the blend of the disc. */
   &__play-btn {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 41px;
-    height: 41px;
-    z-index: 2;
-    transition: transform 0.2s ease;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+
+    > * {
+      grid-area: 1 / 1;
+      transition: transform 0.2s ease;
+    }
 
     svg {
       display: block;
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.3));
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__play-bg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #bfbfbf;
+    mix-blend-mode: multiply;
+
+    @supports (mix-blend-mode: plus-darker) {
+      mix-blend-mode: plus-darker;
     }
   }
 
