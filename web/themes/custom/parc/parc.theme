@@ -1550,13 +1550,24 @@ function parc_preprocess_node__video__full(array &$variables) {
   $node = $variables['node'];
   $playlist = $node->get('field_playlist')->value;
 
-  // Prev/next links and the carousel depend on the other videos.
+  // The playlist menu, prev/next links and the carousel depend on the other
+  // videos.
   $variables['#cache']['tags'][] = 'node_list:video';
 
   $playlists = options_allowed_values($node->get('field_playlist')->getFieldDefinition()->getFieldStorageDefinition(), $node);
   $variables['playlist_label'] = $playlists[$playlist] ?? NULL;
+
+  // Only list playlists that have published videos.
+  $used = \Drupal::entityQueryAggregate('node')
+    ->accessCheck()
+    ->condition('type', 'video')
+    ->condition('status', NodeInterface::PUBLISHED)
+    ->groupBy('field_playlist')
+    ->execute();
+  $used = array_column($used, 'field_playlist');
+
   $variables['playlists'] = [];
-  foreach ($playlists as $key => $label) {
+  foreach (array_intersect_key($playlists, array_flip($used)) as $key => $label) {
     $variables['playlists'][] = [
       'label' => $label,
       'url' => Url::fromUserInput('/videos', ['query' => ['playlist' => [$key => $key]]]),
