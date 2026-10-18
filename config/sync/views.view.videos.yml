@@ -297,6 +297,7 @@ display:
               advanced:
                 combine: true
                 combine_rewrite: "Date Asc|Date\r\nDate Desc|Date"
+                combine_param: sort_bef_combine
                 reset: false
                 reset_label: ''
                 collapsible: false
@@ -326,7 +327,7 @@ display:
                 soft_limit_label_more: 'Show more'
                 scrollable: false
                 scrollable_height: 300
-                options_show_only_used: false
+                options_show_only_used: true
                 options_show_only_used_filtered: false
                 options_hide_when_empty: false
                 options_show_items_count: 0
