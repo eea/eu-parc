@@ -2646,3 +2646,26 @@ function parc_core_deploy_video_playlist() {
     $node->save();
   }
 }
+
+/**
+ * Set video summaries from the first paragraph of the YouTube descriptions.
+ */
+function parc_core_deploy_video_summaries() {
+  $summaries = [
+    2446 => 'This video features Joana Lobo, recorded during the PARC Consortium Meeting in Dublin in June 2026, which brought together partners from across the Partnership for the Assessment of Risks from Chemicals (PARC).',
+    2447 => 'This video features Lutz Ahrens, recorded during the PARC Consortium Meeting in Dublin in June 2026, which brought together partners from across the Partnership for the Assessment of Risks from Chemicals (PARC).',
+    2448 => 'This video features Denis Sarigiannis, recorded during the PARC Consortium Meeting in Dublin in June 2026, which brought together partners from across the Partnership for the Assessment of Risks from Chemicals (PARC).',
+    2450 => 'This video features Maria João Silva, recorded during the PARC Consortium Meeting in Dublin in June 2026, which brought together partners from across the Partnership for the Assessment of Risks from Chemicals (PARC).',
+    2451 => 'This video features Sónia Namorado, recorded during the PARC Consortium Meeting in Dublin in June 2026, which brought together partners from across the Partnership for the Assessment of Risks from Chemicals (PARC).',
+    2452 => 'This video features Adrienne Pittman, recorded during the PARC Consortium Meeting in Dublin in June 2026, which brought together partners from across the Partnership for the Assessment of Risks from Chemicals (PARC).',
+  ];
+
+  $nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple(array_keys($summaries));
+  foreach ($nodes as $node) {
+    if ($node->bundle() != 'video') {
+      continue;
+    }
+    $node->get('body')->summary = $summaries[$node->id()];
+    $node->save();
+  }
+}
