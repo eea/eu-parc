@@ -1474,34 +1474,40 @@ function parc_preprocess_node__video__full(array &$variables) {
 /**
  * Finds the adjacent published video in the same playlist by created date.
  *
+ * Navigation wraps around: past the newest video comes the oldest one and
+ * the other way around.
+ *
  * @param \Drupal\node\NodeInterface $node
  *   The current video.
  * @param string $operator
  *   '>' for the newer video, '<' for the older one.
  *
  * @return \Drupal\Core\Url|null
- *   The URL of the adjacent video, if any.
+ *   The URL of the adjacent video, or NULL if the playlist has no other video.
  */
 function _parc_video_sibling_url(NodeInterface $node, string $operator) {
   $storage = \Drupal::entityTypeManager()->getStorage('node');
   $direction = $operator == '>' ? 'ASC' : 'DESC';
-  $query = $storage->getQuery()
+  $build_query = fn() => $storage->getQuery()
     ->accessCheck()
     ->condition('type', 'video')
     ->condition('status', NodeInterface::PUBLISHED)
     ->condition('field_playlist', $node->get('field_playlist')->value)
+    ->condition('nid', $node->id(), '<>')
     ->sort('created', $direction)
     ->sort('nid', $direction)
     ->range(0, 1);
 
   // Videos created at the same second are ordered by ID.
   $created = $node->getCreatedTime();
+  $query = $build_query();
   $query->condition($query->orConditionGroup()
     ->condition('created', $created, $operator)
     ->condition($query->andConditionGroup()
       ->condition('created', $created)
       ->condition('nid', $node->id(), $operator)));
 
-  $nids = $query->execute();
+  // Nothing further in this direction: wrap to the other end of the playlist.
+  $nids = $query->execute() ?: $build_query()->execute();
   return $nids ? $storage->load(reset($nids))->toUrl() : NULL;
 }
