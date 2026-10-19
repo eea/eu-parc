@@ -1898,10 +1898,14 @@
                 "shasum": "9dfd1088a96464237998c3606b63c2d71644a1bf"
             },
             "require": {
-                "drupal/core": "^9.5 || ^10 || ^11"
+                "drupal/core": "^9.5 || ^10 || ^11",
+                "drupal/toolbar": "*"
             },
             "conflict": {
                 "drupal/project_browser": "<2.1.0"
+            },
+            "require-dev": {
+                "drupal/toolbar": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -2314,6 +2318,10 @@
                 {
                     "name": "renatog",
                     "homepage": "https://www.drupal.org/user/3326031"
+                },
+                {
+                    "name": "dbielke1986",
+                    "homepage": "https://www.drupal.org/user/3426903"
                 }
             ],
             "description": "Allows to control the text and background color directly inside the CKEditor 5 interface.",
@@ -2745,10 +2753,6 @@
                 {
                     "name": "joelpittet",
                     "homepage": "https://www.drupal.org/user/160302"
-                },
-                {
-                    "name": "mparker17",
-                    "homepage": "https://www.drupal.org/user/536298"
                 },
                 {
                     "name": "OlgaRabodzei",
@@ -3627,6 +3631,14 @@
             ],
             "authors": [
                 {
+                    "name": "aavand",
+                    "homepage": "https://www.drupal.org/user/3850369"
+                },
+                {
+                    "name": "chirilovnarcis",
+                    "homepage": "https://www.drupal.org/user/3830124"
+                },
+                {
                     "name": "cristiroma",
                     "homepage": "https://www.drupal.org/user/2267390"
                 },
@@ -3641,6 +3653,10 @@
                 {
                     "name": "paula_iuga",
                     "homepage": "https://www.drupal.org/user/3724292"
+                },
+                {
+                    "name": "sosig132",
+                    "homepage": "https://www.drupal.org/user/3834715"
                 },
                 {
                     "name": "stefan.butura",
@@ -3689,8 +3705,12 @@
                     "role": "maintainer"
                 },
                 {
-                    "name": "idimopoulos",
+                    "name": "dimilias",
                     "homepage": "https://www.drupal.org/user/2578708"
+                },
+                {
+                    "name": "joseph.olstad",
+                    "homepage": "https://www.drupal.org/user/1321830"
                 },
                 {
                     "name": "pfrenssen",
@@ -3875,7 +3895,8 @@
             },
             "require-dev": {
                 "drupal/gin": "^4.0",
-                "drupal/gin_toolbar": "^2.0"
+                "drupal/gin_toolbar": "^2.0",
+                "drupal/toolbar": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -4120,6 +4141,10 @@
                 {
                     "name": "drunken monkey",
                     "homepage": "https://www.drupal.org/user/205582"
+                },
+                {
+                    "name": "joelpittet",
+                    "homepage": "https://www.drupal.org/user/160302"
                 },
                 {
                     "name": "mkalkbrenner",
@@ -4764,7 +4789,7 @@
             ],
             "authors": [
                 {
-                    "name": "Zekvyrin",
+                    "name": "zekvyrin",
                     "homepage": "https://www.drupal.org/user/2524908"
                 }
             ],
@@ -5003,7 +5028,7 @@
                     "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
-                    "name": "Wim Leers",
+                    "name": "wim leers",
                     "homepage": "https://www.drupal.org/user/99777"
                 },
                 {
@@ -5133,7 +5158,7 @@
                     "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
-                    "name": "Wim Leers",
+                    "name": "wim leers",
                     "homepage": "https://www.drupal.org/user/99777"
                 },
                 {
@@ -5410,7 +5435,7 @@
                     "homepage": "https://www.drupal.org/user/748208"
                 },
                 {
-                    "name": "Jeff Cardwell",
+                    "name": "jeff cardwell",
                     "homepage": "https://www.drupal.org/user/2913129"
                 },
                 {
@@ -6229,11 +6254,7 @@
                     "homepage": "https://www.drupal.org/user/3426249"
                 },
                 {
-                    "name": "mparker17",
-                    "homepage": "https://www.drupal.org/user/536298"
-                },
-                {
-                    "name": "Odd Hill",
+                    "name": "odd hill",
                     "homepage": "https://www.drupal.org/user/789934"
                 },
                 {
@@ -7113,7 +7134,7 @@
                     "homepage": "https://www.drupal.org/user/2228934"
                 },
                 {
-                    "name": "Kevin Hankens",
+                    "name": "kevin hankens",
                     "homepage": "https://www.drupal.org/user/78090"
                 },
                 {
@@ -7243,7 +7264,7 @@
             ],
             "authors": [
                 {
-                    "name": "andrey.troeglazov",
+                    "name": "andrtroe",
                     "homepage": "https://www.drupal.org/user/3145389"
                 },
                 {
@@ -7665,6 +7686,10 @@
                 {
                     "name": "nod_",
                     "homepage": "https://www.drupal.org/user/598310"
+                },
+                {
+                    "name": "scott_euser",
+                    "homepage": "https://www.drupal.org/user/3267594"
                 }
             ],
             "description": "Add bookmarking abilities to AJAX Views.",
@@ -7759,7 +7784,7 @@
                     "homepage": "https://www.drupal.org/user/3668491"
                 },
                 {
-                    "name": "Honza Pobořil",
+                    "name": "honza pobořil",
                     "homepage": "https://www.drupal.org/user/123612"
                 },
                 {
@@ -15095,8 +15120,8 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": {},
-    "platform-dev": {},
+    "platform": [],
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.3"
     },
