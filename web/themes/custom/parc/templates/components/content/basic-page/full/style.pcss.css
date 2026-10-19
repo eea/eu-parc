@@ -15,6 +15,10 @@
       object-fit: cover;
       width: 100%;
       height: auto;
+
+      .page--banner-overlay & {
+        min-height: var(--banner-min-height, 240px);
+      }
     }
 
     &:has(img) + .block-field-blocknodebasic-pagetitle {
@@ -28,6 +32,22 @@
 
       @media(min-width: 768px) {
         bottom: 15px;
+      }
+
+      .page--banner-overlay & {
+        bottom: 0;
+
+        .svg-title {
+          padding: 0 0 var(--banner-title-offset, 40px);
+
+          @media (max-width: 767px) {
+            --banner-title-offset: 16px;
+          }
+        }
+
+        h1 {
+          margin: 0;
+        }
       }
     }
   }

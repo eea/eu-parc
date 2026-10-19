@@ -25,6 +25,16 @@ body.page-node-type-page {
     position: static !important;
   }
 
+  &.page--banner-overlay header#header:has(+ main :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img) {
+    position: relative !important;
+    top: auto;
+    background-color: transparent;
+
+    & + main {
+      margin-top: calc(-1 * var(--banner-overlay-header-height, 96px));
+    }
+  }
+
   .header-sticky-title {
     display: none !important;
   }
