@@ -2,19 +2,26 @@
   background-color: var(--tta--bg);
   /* padding-block: 40px; */
 
+  .row:has(> .field-icon) {
+    justify-content: center;
+
+    > div:first-child {
+      flex: 0 0 0;
+      max-width: 0;
+      padding: 0;
+    }
+  }
+
   .media-field {
     max-width: 320px;
     max-height: 320px;
+    margin-inline: auto;
   }
 
   @media (--lg) {
     .col-content {
       flex: 0 0 auto;
-      width: 75%;
-    }
-
-    .media-field {
-      margin-left: 8.3333%;
+      width: auto;
     }
   }
 }
