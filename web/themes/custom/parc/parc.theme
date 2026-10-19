@@ -437,6 +437,11 @@ function parc_preprocess_page(array &$variables) {
     $variables['#attached']['library'][] = 'parc/full_screen';
   }
 
+  $page_node = \Drupal::routeMatch()->getParameter('node');
+  $variables['highlighted_above_header'] = $page_node instanceof NodeInterface
+    && $page_node->hasField('field_custom_classes')
+    && in_array('page--banner-overlay', explode(' ', (string) $page_node->get('field_custom_classes')->value), TRUE);
+
   // Page title for the header's compact sticky bar shown past the banner.
   $route_name = \Drupal::routeMatch()->getRouteName();
   $node = \Drupal::routeMatch()->getParameter('node');
