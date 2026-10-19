@@ -63,6 +63,7 @@
           images: buildImagesChart,
           output_02: buildOutput02Chart,
           output_11: buildOutput11Chart,
+          project_topics: buildProjectTopicsChart,
         };
 
         const buildFunction = buildFunctions[chartType];
@@ -3796,6 +3797,401 @@
           textEl.select('tspan:first-child')
             .attr('dy', (-((totalLines - 1) * lineHeight) / 2) + 'em');
         }
+      }
+
+      // Indicator 6.1: project topics (left) flowing into the topic combinations
+      // the projects of the selected year belong to (right).
+      function buildProjectTopicsChart(wrapperId, chartData) {
+        const topics = chartData.topics || [];
+        const data = chartData.chart || {};
+        const years = Object.keys(data);
+        if (!topics.length || !years.length) {
+          return;
+        }
+        const latestYear = years[years.length - 1];
+
+        const svgWidth = 1040;
+        const svgHeight = 580;
+        const padY = 24;
+        const innerH = svgHeight - padY * 2;
+        const labelW = 230;
+        const leftX = labelW + 16;
+        const rightX = 790;
+        const countX = rightX + 18;
+        const bracketX = rightX + 64;
+        const totalX = bracketX + 80;
+        const barW = 4;
+        const maxNodeGap = 40;
+        const fadeOpacity = 0.25;
+        const fadeTextOpacity = 0.35;
+
+        const orderedTopics = orderTopics();
+        const topicIndex = new Map(orderedTopics.map((t, i) => [t.id, i]));
+
+        const slotH = innerH / topics.length;
+        const unit = d3.min(years, (year) => {
+          const cats = data[year];
+          const total = d3.sum(cats, (c) => c.count);
+          const topicLoad = new Map();
+          cats.forEach((cat) => {
+            cat.topics.forEach((id) => {
+              topicLoad.set(id, (topicLoad.get(id) || 0) + cat.count / cat.topics.length);
+            });
+          });
+          return Math.min(
+            (innerH * 0.7) / total,
+            (slotH * 0.7) / d3.max([...topicLoad.values()])
+          );
+        });
+
+        const svg = d3
+          .select(`#${wrapperId} .indicator-scrollable-container .indicator-container`)
+          .append("svg")
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
+          .attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
+
+        svg.append("rect")
+          .attr("width", svgWidth)
+          .attr("height", svgHeight)
+          .attr("fill", "white");
+
+        const chart = svg.append("g");
+
+        const tooltip = d3
+          .select("body")
+          .append("div")
+          .attr("class", "tool")
+          .style("position", "absolute")
+          .style("visibility", "hidden")
+          .style("pointer-events", "none")
+          .style("max-width", "320px")
+          .style("background", "#fff")
+          .style("border", "1px solid #ccc")
+          .style("padding", "6px 10px")
+          .style("border-radius", "5px")
+          .style("font-size", "13px")
+          .style("line-height", "1.35");
+
+        function orderTopics() {
+          const pairWeight = new Map();
+          years.forEach((year) => {
+            data[year].forEach((cat) => {
+              cat.topics.forEach((a, i) => {
+                cat.topics.slice(i + 1).forEach((b) => {
+                  const key = `${a}|${b}`;
+                  pairWeight.set(key, (pairWeight.get(key) || 0) + cat.count);
+                });
+              });
+            });
+          });
+          if (topics.length > 8) {
+            return topics;
+          }
+          const cost = (order) => {
+            const pos = new Map(order.map((t, i) => [t.id, i]));
+            let total = 0;
+            pairWeight.forEach((weight, key) => {
+              const [a, b] = key.split("|").map(Number);
+              total += weight * Math.abs(pos.get(a) - pos.get(b));
+            });
+            return total;
+          };
+          let best = topics;
+          let bestCost = cost(topics);
+          const permute = (prefix, rest) => {
+            if (!rest.length) {
+              const c = cost(prefix);
+              if (c < bestCost) {
+                best = prefix;
+                bestCost = c;
+              }
+              return;
+            }
+            rest.forEach((t, i) => {
+              permute([...prefix, t], [...rest.slice(0, i), ...rest.slice(i + 1)]);
+            });
+          };
+          permute([], topics);
+          return best;
+        }
+
+        function topicColor(year, idx) {
+          const base = YEAR_COLORS[year] || "#017365";
+          const shades = [
+            d3.interpolateRgb(base, "#a8b4b2")(0.55),
+            base,
+            d3.interpolateRgb(base, "#ffffff")(0.15),
+            d3.interpolateRgb(base, "#000000")(0.4),
+            d3.interpolateRgb(base, "#ffffff")(0.5),
+            d3.interpolateRgb(base, "#a8b4b2")(0.25),
+            d3.interpolateRgb(base, "#000000")(0.2),
+          ];
+          return shades[idx % shades.length];
+        }
+
+        function topicNames(cat) {
+          return cat.topics
+            .slice()
+            .sort((a, b) => topicIndex.get(a) - topicIndex.get(b))
+            .map((id) => orderedTopics[topicIndex.get(id)].name);
+        }
+
+        function updateChart(year) {
+          chart.selectAll("*").interrupt().remove();
+          tooltip.style("visibility", "hidden");
+
+          const cats = data[year]
+            .map((cat) => {
+              const idx = cat.topics.map((id) => topicIndex.get(id));
+              return {
+                ...cat,
+                key: cat.topics.join("+"),
+                idx: idx.sort((a, b) => a - b),
+                center: d3.mean(idx),
+                h: cat.count * unit,
+              };
+            })
+            .sort((a, b) =>
+              a.center - b.center || a.idx[0] - b.idx[0] || a.idx.length - b.idx.length
+            );
+
+          const catsH = d3.sum(cats, (c) => c.h);
+          const nodeGap = cats.length > 1
+            ? Math.min(maxNodeGap, (innerH - catsH) / (cats.length - 1))
+            : 0;
+          let y = padY + (innerH - catsH - nodeGap * (cats.length - 1)) / 2;
+          cats.forEach((cat) => {
+            cat.y = y;
+            y += cat.h + nodeGap;
+          });
+
+          const bands = [];
+          cats.forEach((cat, catPos) => {
+            const w = cat.h / cat.topics.length;
+            cat.idx.forEach((ti, i) => {
+              bands.push({
+                cat,
+                catPos,
+                topic: orderedTopics[ti],
+                ti,
+                w,
+                y1: cat.y + w * i + w / 2,
+              });
+            });
+          });
+
+          const leftNodes = orderedTopics.map((topic, ti) => {
+            const topicBands = bands
+              .filter((b) => b.ti === ti)
+              .sort((a, b) => a.catPos - b.catPos);
+            const h = d3.sum(topicBands, (b) => b.w);
+            let by = padY + slotH * ti + (slotH - h) / 2;
+            topicBands.forEach((b) => {
+              b.y0 = by + b.w / 2;
+              by += b.w;
+            });
+            const count = d3.sum(
+              cats.filter((c) => c.topics.includes(topic.id)),
+              (c) => c.count
+            );
+            return { topic, ti, h, count, center: padY + slotH * ti + slotH / 2 };
+          });
+
+          const x0 = leftX + barW + 2;
+          const x1 = rightX - 2;
+          const xm = (x0 + x1) / 2;
+
+          const bandPaths = chart.append("g")
+            .attr("fill", "none")
+            .selectAll("path")
+            .data(bands)
+            .join("path")
+            .attr("d", (b) => `M${x0},${b.y0} C${xm},${b.y0} ${xm},${b.y1} ${x1},${b.y1}`)
+            .attr("stroke", (b) => topicColor(year, b.ti))
+            .attr("stroke-width", (b) => Math.max(1, b.w))
+            .style("cursor", "pointer");
+
+          bandPaths.each(function () {
+            const length = this.getTotalLength();
+            d3.select(this)
+              .attr("stroke-dasharray", `${length} ${length}`)
+              .attr("stroke-dashoffset", length)
+              .transition()
+              .duration(900)
+              .delay((b) => b.ti * 80)
+              .attr("stroke-dashoffset", 0)
+              .on("end", function () {
+                d3.select(this).attr("stroke-dasharray", null);
+              });
+          });
+
+          const leftGroups = chart.append("g")
+            .selectAll("g")
+            .data(leftNodes)
+            .join("g")
+            .style("cursor", "pointer");
+
+          leftGroups.append("rect")
+            .attr("x", leftX)
+            .attr("y", (n) => n.center - Math.max(n.h, 16) / 2 - 4)
+            .attr("width", barW)
+            .attr("height", (n) => Math.max(n.h, 16) + 8)
+            .attr("rx", barW / 2)
+            .attr("fill", "#d0d4d8");
+
+          leftGroups.append("text")
+            .attr("x", labelW)
+            .attr("y", (n) => n.center)
+            .attr("text-anchor", "end")
+            .attr("dominant-baseline", "middle")
+            .style("font-size", "11px")
+            .style("letter-spacing", "0.5px")
+            .style("fill", "#222")
+            .each(function (n) {
+              wrapSvgText(d3.select(this), n.topic.name.toUpperCase(), labelW - 10, 1.3);
+            });
+
+          const rightGroups = chart.append("g")
+            .selectAll("g")
+            .data(cats)
+            .join("g")
+            .style("cursor", "pointer");
+
+          rightGroups.append("rect")
+            .attr("x", rightX)
+            .attr("y", (c) => c.y + c.h / 2 - Math.max(c.h, 10) / 2)
+            .attr("width", barW)
+            .attr("height", (c) => Math.max(c.h, 10))
+            .attr("rx", barW / 2)
+            .attr("fill", "#d0d4d8");
+
+          rightGroups.append("text")
+            .attr("x", countX)
+            .attr("y", (c) => c.y + c.h / 2)
+            .attr("dominant-baseline", "middle")
+            .style("font-size", "16px")
+            .style("font-weight", "500")
+            .style("fill", "#111")
+            .style("opacity", 0)
+            .text((c) => c.count)
+            .transition()
+            .delay(700)
+            .duration(300)
+            .style("opacity", 1);
+
+          const total = d3.sum(cats, (c) => c.count);
+          const bracketTop = cats[0].y - 4;
+          const bracketBottom = cats[cats.length - 1].y + cats[cats.length - 1].h + 4;
+          const bracketMid = (bracketTop + bracketBottom) / 2;
+
+          chart.append("rect")
+            .attr("x", bracketX)
+            .attr("y", bracketTop)
+            .attr("width", 3)
+            .attr("height", bracketBottom - bracketTop)
+            .attr("fill", "#d0d4d8");
+
+          const totalText = chart.append("text")
+            .attr("x", totalX)
+            .attr("y", bracketMid - 10)
+            .attr("text-anchor", "middle")
+            .style("fill", "#111");
+          totalText.append("tspan")
+            .attr("x", totalX)
+            .style("font-size", "22px")
+            .style("font-weight", "500")
+            .text(total);
+          totalText.append("tspan")
+            .attr("x", totalX)
+            .attr("dy", "1.7em")
+            .style("font-size", "10px")
+            .style("letter-spacing", "0.5px")
+            .text(Drupal.t("TOTAL NUMBER OF"));
+          totalText.append("tspan")
+            .attr("x", totalX)
+            .attr("dy", "1.3em")
+            .style("font-size", "10px")
+            .style("letter-spacing", "0.5px")
+            .text(Drupal.t("PROJECTS IN @year", { "@year": year }));
+
+          function focus(isTopicActive, isCatActive) {
+            bandPaths.interrupt()
+              .attr("stroke-dasharray", null)
+              .style("opacity", (b) => (isTopicActive(b.ti) && isCatActive(b.cat) ? 1 : fadeOpacity));
+            leftGroups.style("opacity", (n) => (isTopicActive(n.ti) ? 1 : fadeTextOpacity));
+            rightGroups.style("opacity", (c) => (isCatActive(c) ? 1 : fadeTextOpacity));
+          }
+
+          function reset() {
+            bandPaths.style("opacity", 1);
+            leftGroups.style("opacity", 1);
+            rightGroups.style("opacity", 1);
+            tooltip.style("visibility", "hidden");
+          }
+
+          function focusTopic(ti) {
+            focus(
+              (i) => i === ti,
+              (c) => c.idx.includes(ti)
+            );
+          }
+
+          function focusCategory(cat) {
+            focus(
+              (i) => cat.idx.includes(i),
+              (c) => c === cat
+            );
+          }
+
+          function showTooltip(event, cat) {
+            const label = cat.count === 1 ? Drupal.t("project") : Drupal.t("projects");
+            tooltip
+              .html("")
+              .style("visibility", "visible")
+              .style("top", event.pageY - 10 + "px")
+              .style("left", event.pageX + 12 + "px");
+            tooltip.append("strong").text(`${cat.count} ${label}`);
+            topicNames(cat).forEach((name) => tooltip.append("div").text(name));
+          }
+
+          leftGroups
+            .on("mouseenter", (event, n) => focusTopic(n.ti))
+            .on("mouseleave", reset);
+
+          rightGroups
+            .on("mouseenter", (event, c) => focusCategory(c))
+            .on("mousemove", (event, c) => showTooltip(event, c))
+            .on("mouseleave", reset);
+
+          bandPaths
+            .on("mouseenter", (event, b) => focusTopic(b.ti))
+            .on("mousemove", (event, b) => showTooltip(event, b.cat))
+            .on("mouseleave", reset);
+        }
+
+        updateChart(latestYear);
+
+        const legend = d3
+          .select("#" + wrapperId)
+          .append("div")
+          .attr("class", "legend")
+          .selectAll("div")
+          .data(years.map((year) => ({ year, color: YEAR_COLORS[year] })))
+          .enter()
+          .append("div")
+          .style("cursor", "pointer")
+          .on("click", (event, d) => updateChart(d.year));
+
+        legend
+          .append("span")
+          .attr("class", "legend-color")
+          .style("background-color", (d) => d.color);
+
+        legend
+          .append("span")
+          .attr("class", (d) => "legend-text year-" + d.year)
+          .text((d) => d.year);
       }
 
       // Output 02: table layout — labels in left column, one pill per cell (row=label,
