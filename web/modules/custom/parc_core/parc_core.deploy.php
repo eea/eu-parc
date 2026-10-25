@@ -2706,39 +2706,3 @@ function parc_core_deploy_reimport_air_water_ecotox_labs() {
     $lab->save();
   }
 }
-
-/**
- * Re-import air, water and ecotox labs from the 2026-10-13 CSV exports.
- */
-function parc_core_deploy_reimport_air_water_ecotox_labs() {
-  parc_core_deploy_update_hbm_labs_import();
-  parc_core_deploy_water_matrix();
-  parc_core_deploy_eco_matrix();
-
-  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
-
-  $labs = $node_storage->loadByProperties([
-    'type' => 'laboratory',
-    'field_lab_category' => ['air', 'water', 'ecotox'],
-  ]);
-  foreach ($labs as $lab) {
-    $contact_names = $lab->get('field_contact_name')->value;
-    if (empty($contact_names)) {
-      continue;
-    }
-
-    $contact_names = explode(';', $contact_names);
-    $contact_emails = explode(';', $lab->get('field_contact_email')->value ?? '');
-    foreach ($contact_names as $delta => $contact_name) {
-      $paragraph = $paragraph_storage->create([
-        'type' => 'contact',
-        'field_name' => trim($contact_name),
-        'field_email' => trim($contact_emails[$delta] ?? ''),
-      ]);
-      $paragraph->save();
-      $lab->get('field_lab_contacts')->appendItem($paragraph);
-    }
-    $lab->save();
-  }
-}
