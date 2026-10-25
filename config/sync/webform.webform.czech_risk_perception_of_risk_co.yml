@@ -16,324 +16,324 @@ categories:
 elements: |-
   consent:
     '#type': webform_wizard_page
-    '#title': 'Consent and context'
+    '#title': 'Souhlas a kontext'
     description:
       '#type': checkbox
-      '#title': 'I confirm that I have read and I accept the information stated above'
-      '#description': '<p><strong>SURVEY ON RISK PERCEPTION OF RISK COMMUNICATORS</strong></p><p><span><strong>About PARC:</strong> The European Partnership for the Assessment of Risks from Chemicals (PARC) is a joint effort of 30 countries and 3 European agencies (EEA, ECHA, EFSA), designed to address challenges associated with innovating chemical risk assessment. PARC´s objective is to inform policy making in Europe and at national level with sound scientific data on citizens’ exposure to chemical pollutants and their possible effects on health. In [name of your country], the survey is coordinated by [name of the implementing organization].</span></p><p><span><strong>Purpose of this survey:</strong> We are all exposed to a plethora of chemicals, some of which may be harmful to health. Communication of potential risk from these chemicals is vital. In this survey we aim to gain greater insights into the common practices employed by risk communicators, their beliefs about risk perception, as well as their concerns and the challenges they face when they communicate hazards and risks.</span></p><p><span><strong>To whom the survey is addressed: </strong>This questionnaire mainly addresses risk communication in everyday circumstances, as opposed to crisis communication, which refers to communication in situations requiring urgent decisions. It will take you approximately 20 minutes to complete.</span></p><p><span><strong>What will happen with the information collected: </strong>The information collected will be anonymous and will be treated confidentially in accordance with the requirements of the General Data Protection Regulation (GDPR). The responses will be combined with other responses when analysed by the research partners of PARC. If the scientific conclusions of this survey are published or presented in a conference, the results will be aggregated.</span></p><p><span><strong>Right to refuse or withdraw:</strong> Your participation is entirely voluntary. By completing and submitting this survey, you are indicating your consent to participate in this survey. You are free to withdraw from participation at any time or to choose not to participate at all without giving reasons and without any consequences.</span></p><p><span>Thank you for your time and cooperation!</span></p><p>&nbsp;</p>'
+      '#title': 'Potvrzuji, že jsem si přečetl(a) výše uvedené informace a souhlasím s nimi.'
+      '#description': '<h4><span style="font-family:Satoshi;" lang="CS"><strong>Vnímání rizik ze strany osob, které o&nbsp;nich informují</strong></span></h4><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="CS"><strong>O&nbsp;partnerství PARC:&nbsp;</strong></span><span style="font-size:14.0pt;line-height:115%;" lang="CS">Evropské partnerství pro posuzování rizik chemických látek (PARC) je výsledkem společného úsilí 30&nbsp;zemí a&nbsp;3 evropských agentur (agentury EEA, agentury ECHA a&nbsp;úřadu EFSA). Bylo zřízeno za účelem řešení výzev v&nbsp;souvislosti se zaváděním inovací v&nbsp;posuzování chemických rizik. Cílem partnerství PARC je poskytovat podklady pro evropské a&nbsp;vnitrostátní politiky, konkrétně spolehlivá vědecká data o&nbsp;expozici občanů chemickým znečišťujícím látkám a&nbsp;o&nbsp;možných účincích na zdraví. Průzkum v&nbsp; ČR &nbsp;koordinuje RECETOX, Masarykova univerzita.&nbsp;</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="CS"><strong>Účel průzkumu:</strong>&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="CS">Všichni jsme vystaveni velkému množství chemických látek, z&nbsp;nichž některé mohou být zdraví škodlivé. Informování o&nbsp;potenciálních rizicích spojených s&nbsp;těmito chemickými látkami je velmi důležité. Cílem tohoto průzkumu je získat lepší přehled o&nbsp;běžných postupech používaných osobami, které o&nbsp;rizicích informují, o&nbsp;jejich názorech na vnímání rizik, jakožto i&nbsp;o&nbsp;jejich obavách a&nbsp;výzvách, jimž čelí při informování o&nbsp;nebezpečích a&nbsp;rizicích.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="CS"><strong>Komu je průzkum určen:</strong></span><span style="font-size:14.0pt;line-height:115%;" lang="CS"> Tento dotazník se týká především informování o&nbsp;rizicích v každodenním životě, nikoli poskytování informací v&nbsp;krizové situaci, kdy je zapotřebí přijímat naléhavá rozhodnutí. Jeho vyplnění vám zabere přibližně 20&nbsp;minut.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="CS"><strong>Co se stane se shromážděnými daty:&nbsp;</strong></span><span style="font-size:14.0pt;line-height:115%;" lang="CS">Shromážděná data budou anonymní a&nbsp;v&nbsp;souladu s&nbsp;požadavky obecného nařízení o&nbsp;ochraně osobních údajů (nařízení GDPR) s&nbsp;nimi bude zacházeno jako s&nbsp;důvěrnými. Poskytnuté odpovědi budou analyzovány společně s&nbsp;dalšími odpověďmi výzkumnými partnery PARC. Pokud budou vědecké závěry tohoto průzkumu zveřejněny nebo prezentovány na konferenci, budou získané výsledky sloučeny.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="CS"><strong>Právo odmítnout účast nebo z&nbsp;průzkumu odstoupit:</strong>&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="CS">Vaše účast je zcela dobrovolná. Vyplněním a&nbsp;odesláním tohoto dotazníku vyjadřujete souhlas s&nbsp;účastí v&nbsp;průzkumu. Účast si můžete kdykoli rozmyslet. Můžete se také rozhodnout, že se průzkumu nezúčastníte vůbec, a&nbsp;to bez udání důvodu a&nbsp;jakýchkoli následků.</span></p><p style="margin-left:54.0pt;"><br><br><br><span style="font-family:Satoshi;font-size:14.0pt;line-height:110%;" lang="CS"><strong>Děkujeme za váš čas a&nbsp;spolupráci.</strong></span></p><p>&nbsp;</p>'
       '#description_display': before
       '#required': true
   section_1_demographics_and_personal_information:
     '#type': webform_wizard_page
-    '#title': 'Section 1: Demographics and personal information'
+    '#title': '1. oddíl: Profesní zázemí'
     county:
       '#type': textfield
-      '#title': '1. Your country of residence:'
+      '#title': '1.1 Země vašeho bydliště:'
       '#size': 1
       '#required': true
     age:
       '#type': number
-      '#title': '2. Your current age:'
+      '#title': '1.2 Váš současný věk:'
       '#required': true
       '#min': 16
       '#max': 99
     in_which_sector_are_you_working_other:
       '#type': webform_checkboxes_other
-      '#title': '3. In which sector are you working?'
+      '#title': "1.3\tV jakém typu subjektu pracujete?"
       '#multiple': 2
       '#options':
-        'Governmental bodies': 'Governmental bodies'
-        ' Academia': ' Academia'
-        'Association of professional bodies': 'Association of professional bodies'
-        NGO: NGO
-      '#other__option_label': Other
-      '#other__placeholder': 'Please specify'
+        'vládní subjekt': 'vládní subjekt'
+        'akademická instituce': 'akademická instituce'
+        'profesní sdružení': 'profesní sdružení'
+        'nevládní organizace': 'nevládní organizace'
+      '#other__option_label': jiný
+      '#other__placeholder': 'upřesněte:'
       '#other__size': '2'
       '#required': true
     the_chemical_hazards_risks_that_you_are_communicating_are_relate:
       '#type': webform_checkboxes_other
-      '#title': '4. The chemical hazards/risks that you are communicating are related to: (Choose all that apply)'
+      '#title': '1.4 Chemická nebezpečí/rizika, o kterých informujete, se týkají těchto oblastí (vyberte všechny správné odpovědi):'
       '#options':
-        'Food (food safety)': 'Food (food safety)'
-        'Environment (soil, air, water etc.)': 'Environment (soil, air, water etc.)'
-        ' Occupational health': ' Occupational health'
-        'Chemical safety (general)': 'Chemical safety (general)'
-      '#other__option_label': Other
-      '#other__placeholder': 'Please specify'
+        'potraviny (bezpečnost potravin)': 'potraviny (bezpečnost potravin)'
+        'životní prostředí (půda, ovzduší, voda atd.)': 'životní prostředí (půda, ovzduší, voda atd.)'
+        'ochrana zdraví při práci': 'ochrana zdraví při práci'
+        'chemická bezpečnost (obecně)': 'chemická bezpečnost (obecně)'
+      '#other__option_label': 'jiná oblast'
+      '#other__placeholder': 'upřesněte:'
       '#required': true
     6_how_many_years_of_experience_do_you_have_in_risk_communication:
       '#type': radios
-      '#title': '5. How many years of experience do you have in risk communication?'
+      '#title': "1.5\tKolik let praxe máte v oblasti informování o rizicích?"
       '#options':
-        'Less than two years': 'Less than two years'
-        '2 to 5 years': '2 to 5 years'
-        '6 to 10 years': '6 to 10 years'
-        '11 to 15 years ': '11 to 15 years '
-        'More than 15 years': 'More than 15 years'
+        'méně než 2 roky': 'méně než 2 roky'
+        '2–5 let': '2–5 let'
+        '6–10 let': '6–10 let'
+        '11–15 let': '11–15 let'
+        'více než 15 let': 'více než 15 let'
       '#required': true
     7_how_often_do_you_practice_risk_communication:
       '#type': radios
-      '#title': '6. How often do you practice risk communication?'
+      '#title': "1.6\tJak často informujete o rizicích?"
       '#options':
-        'Daily / weekly': 'Daily / weekly'
-        Monthly: Monthly
-        'Every few months': 'Every few months'
-        Yearly: Yearly
-        Never: Never
+        'jednou za den/týden': 'jednou za den/týden'
+        'jednou za měsíc': 'jednou za měsíc'
+        "2.\tjednou za několik měsíců": "2.\tjednou za několik měsíců"
+        'jednou ročně': 'jednou ročně'
+        nikdy: nikdy
       '#required': true
     8_who_is_the_main_audience_that_you_address_your_communication_t:
       '#type': webform_radios_other
-      '#title': '7. Who is the main audience that you address your communication to? '
+      '#title': '1.7 Komu jsou vaše informace především určeny?'
       '#options':
-        'General public': 'General public'
-      '#other__option_label': 'Targeted audiences'
-      '#other__placeholder': 'Please, specify'
+        'široké veřejnosti': 'široké veřejnosti'
+      '#other__option_label': 'cílové skupině'
+      '#other__placeholder': 'upřesněte:'
       '#required': true
     9_what_is_your_scientific_discipline_choose_all_that_apply:
       '#type': webform_checkboxes_other
-      '#title': '8. What is your scientific discipline? (Choose all that apply)'
+      '#title': "1.8\tJaká je vaše odborná specializace? (vyberte všechny správné odpovědi)"
       '#multiple': 2
       '#options':
-        'Chemical engineer / chemist / toxicologist': 'Chemical engineer / chemist / toxicologist'
-        'Food scientist / technologist / microbiologist': 'Food scientist / technologist / microbiologist'
-        'Public health expert': 'Public health expert'
-        'Nutrition expert': 'Nutrition expert'
-        'Environmental / agricultural scientist': 'Environmental / agricultural scientist'
-        'Communication expert / social scientist': 'Communication expert / social scientist'
-      '#other__option_label': Other
-      '#other__placeholder': 'Please specify'
+        'chemický inženýr / chemik / toxikolog': 'chemický inženýr / chemik / toxikolog'
+        'vědecký pracovník v oblasti potravin / technolog / mikrobiolog': 'vědecký pracovník v oblasti potravin / technolog / mikrobiolog'
+        'odborník na veřejné zdraví': 'odborník na veřejné zdraví'
+        'odborník na výživu': 'odborník na výživu'
+        'vědecký pracovník v oblasti životního prostředí / zemědělství': 'vědecký pracovník v oblasti životního prostředí / zemědělství'
+        'odborník na komunikaci / sociolog': 'odborník na komunikaci / sociolog'
+      '#other__option_label': jiná
+      '#other__placeholder': 'upřesněte:'
       '#required': true
     9_how_often_do_you_receive_communication_training_e_g_training_b:
       '#type': radios
-      '#title': '9. How often do you receive communication training (e.g. training by communication experts, visits to other communication departments, attending seminars/webinars/courses etc.)? '
+      '#title': "1.9\tJak často se účastníte odborné přípravy v oblasti komunikace (např. školení vedených odborníky na komunikaci, seminářů, webinářů, kurzů atd. či návštěv jiných komunikačních oddělení)?"
       '#options':
-        Never: Never
-        'Periodically (e.g. every 2 - 5 years)': 'Periodically (e.g. every 2 - 5 years)'
-        'Frequently (at least once a year)': 'Frequently (at least once a year)'
+        nikdy: nikdy
+        'pravidelně (např. jednou za 2–5 let)': 'pravidelně (např. jednou za 2–5 let)'
+        'často (nejméně jednou za rok)': 'často (nejméně jednou za rok)'
       '#required': true
     11_how_satisfied_were_you_with_the_communication_training_provid:
       '#type': radios
-      '#title': '10. How satisfied were you with the communication training provided to you?'
+      '#title': "1.10\tJak jste spokojeni s odbornou přípravou v oblasti komunikace, která vám byla poskytnuta?"
       '#options':
-        'Not at all satisfied': 'Not at all satisfied'
-        'Slightly satisfied': 'Slightly satisfied'
-        'Moderately satisfied': 'Moderately satisfied'
-        'Very satisfied': 'Very satisfied'
-        'Completely satisfied': 'Completely satisfied'
+        vůbec: vůbec
+        'velmi málo': 'velmi málo'
+        středně: středně
+        velmi: velmi
+        naprosto: naprosto
       '#required': true
       '#states':
         visible:
           ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
-            '!value': Never
+            '!value': nikdy
     12_do_you_believe_that_communication_training_is_necessary_for_y:
       '#type': radios
-      '#title': '11. Do you believe that communication training is necessary for your current post?'
+      '#title': "1.11\tDomníváte se, že je pro vaši současnou pozici nezbytná odborná příprava v oblasti komunikace?"
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
-        'I do not know / I do not want to answer': 'I do not know / I do not want to answer'
+        ano: ano
+        ne: ne
+        'nevím / nechci odpovědět': 'nevím / nechci odpovědět'
       '#required': true
   section_2_experience_in_risk_communication:
     '#type': webform_wizard_page
     '#title': '2. oddíl: Zkušenosti s informováním o rizicích'
     what_difficulties_do_you_experience_during_risk_communication_ch:
       '#type': webform_checkboxes_other
-      '#title': "2.1.\tS jakými problémy se setkáváte při informování o rizicích? (vyberte všechny správné odpovědi)"
+      '#title': "2.1\tS jakými problémy se setkáváte při informování o rizicích? (vyberte všechny správné odpovědi)"
       '#options':
         'nedostatek adekvátních vědeckých důkazů (ať už ohledně nebezpečí, nebo ohledně pravděpodobnosti, že daná látka způsobí újmu)': 'nedostatek adekvátních vědeckých důkazů (ať už ohledně nebezpečí, nebo ohledně pravděpodobnosti, že daná látka způsobí újmu)'
         'nedostatečná podpora ze strany kolegů / nedostatek pracovníků věnujících se informování o rizicích': 'nedostatečná podpora ze strany kolegů / nedostatek pracovníků věnujících se informování o rizicích'
-        'Difficulties when collaborating with experts in chemical risks': 'Difficulties when collaborating with experts in chemical risks'
-        'Unclear distribution of roles': 'Unclear distribution of roles'
-        'Unclear distribution of responsibilities': 'Unclear distribution of responsibilities'
-        'Lack of budget allocated for communication': 'Lack of budget allocated for communication'
-        'Interference by risk managers with respect to when and what will be communicated': 'Interference by risk managers with respect to when and what will be communicated'
+        'problémy při spolupráci s odborníky na chemická rizika': 'problémy při spolupráci s odborníky na chemická rizika'
+        'nejasné rozdělení úloh': 'nejasné rozdělení úloh'
+        'nejasné rozdělení povinností': 'nejasné rozdělení povinností'
+        'nedostatek rozpočtových prostředků vyčleněných na komunikaci': 'nedostatek rozpočtových prostředků vyčleněných na komunikaci'
+        'vměšování se osob, které mají na starosti řízení rizik, do toho, kdy a o čem se bude informovat': 'vměšování se osob, které mají na starosti řízení rizik, do toho, kdy a o čem se bude informovat'
       '#other__option_label': jiné
       '#other__placeholder': 'upřesněte:'
       '#required': true
     13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
       '#type': radios
-      '#title': '13. Do you have a metric system that shows if the message reaches the final target audience?'
+      '#title': "2.2\tPoužíváte nějaký systém k určení, zda se dané sdělení dostalo k cílové skupině?"
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
+        ano: ano
+        ne: ne
       '#required': true
     if_you_answered_yes_in_previous_question_which_metric_system_do:
       '#type': textfield
-      '#title': '14. If you answered YES in previous question, which metric system do you use?'
+      '#title': '2.3 Pokud jste na předchozí otázku odpověděli ANO, jaký systém používáte?'
+      '#required': true
       '#states':
         visible:
           ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
-      '#required': true
+            value: ano
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
-      '#title': '15. Do you evaluate each time whether the chemical hazard/risk you communicate is influential/impactful or not? (Reaction from the public?)'
+      '#title': "2.4\tZvažujete pokaždé, zda je chemické nebezpečí/riziko, o kterém informujete, důležité nebo má určitý dopad? (Reagovala nějak veřejnost?)"
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
+        ano: ano
+        ne: ne
       '#required': true
     14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
       '#type': textfield
-      '#title': '16. If you answered YES in previous question, how do you evaluate the impact?'
+      '#title': '2.5 Pokud jste na předchozí otázku odpověděli ANO, jak hodnotíte dopad informování?'
+      '#required': true
       '#states':
         visible:
           ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
-      '#required': true
+            value: ano
     15_how_much_do_you_believe_you_influence_the_target_audience:
       '#type': radios
-      '#title': '17. How much do you believe you influence the target audience?'
+      '#title': '2.6 Do jaké míry jste podle vašeho názoru ovlivnili cílovou skupinu?'
       '#options':
-        'No influence at all': 'No influence at all'
-        'Little influence': 'Little influence'
-        'Medium Influence': 'Medium Influence'
-        'Considerable Influence': 'Considerable Influence'
-        'High influence': 'High influence'
+        vůbec: vůbec
+        'málo ': 'málo '
+        středně: středně
+        významně: významně
+        zásadně: zásadně
       '#required': true
     in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
       '#type': webform_checkboxes_other
-      '#title': '18. In regard to the previous question, on what do you base your answer? (Choose all that apply)'
+      '#title': '2.7 Na čem se zakládá vaše odpověď na předchozí otázku? (vyberte všechny správné odpovědi)'
       '#options':
-        'Reactions from the media (TV, radio, press)': 'Reactions from the media (TV, radio, press)'
-        'Publication / posts on internet sites, personal blogs, social media': 'Publication / posts on internet sites, personal blogs, social media'
-        'Monitoring with a questionnaire-based consumer survey': 'Monitoring with a questionnaire-based consumer survey'
-        ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)': ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)'
-      '#other__option_label': Other
-      '#other__placeholder': 'Please specify'
+        'reakce sdělovacích prostředků (televize, rozhlasu, tisku)': 'reakce sdělovacích prostředků (televize, rozhlasu, tisku)'
+        'zveřejnění/příspěvky na internetových stránkách, osobních blozích, sociálních sítích': 'zveřejnění/příspěvky na internetových stránkách, osobních blozích, sociálních sítích'
+        'monitorování prostřednictvím dotazníkového průzkumu mezi spotřebiteli': 'monitorování prostřednictvím dotazníkového průzkumu mezi spotřebiteli'
+        'přímá zpětná vazba v rámci osobní komunikace (např. konverzace, telefonní hovory, e-maily nebo zprávy)': 'přímá zpětná vazba v rámci osobní komunikace (např. konverzace, telefonní hovory, e-maily nebo zprávy)'
+      '#other__option_label': jiné
+      '#other__placeholder': 'upřesněte:'
       '#required': true
     17_when_communicating_a_chemical_hazard_risk_do_you_usually:
       '#type': radios
-      '#title': '19. When communicating a chemical hazard/ risk, do you usually...?'
+      '#title': '2.8 Jak obvykle postupujete, když informujete o chemickém nebezpečí/riziku?'
       '#options':
-        ' Create your own message': ' Create your own message'
-        'Transmit the message exactly as provided by the risk assessors': 'Transmit the message exactly as provided by the risk assessors'
-        ' Adapt or reframe messages from other sources': ' Adapt or reframe messages from other sources'
+        'vytvoříte vlastní sdělení': 'vytvoříte vlastní sdělení'
+        'zprostředkujete sdělení přesně tak, jak vám jej předložili posuzovatelé rizik': 'zprostředkujete sdělení přesně tak, jak vám jej předložili posuzovatelé rizik'
+        'přizpůsobíte nebo přeformulujete sdělení z jiných zdrojů': 'přizpůsobíte nebo přeformulujete sdělení z jiných zdrojů'
       '#required': true
     18_have_you_ever_personally_experienced_a_health_effect_from_exp:
       '#type': radios
-      '#title': '20. Have you ever personally experienced a health effect from exposure to a chemical hazard (e.g. contaminated food, cleaning products, pesticides)?'
+      '#title': '2.9 Pocítili jste někdy sami účinky expozice chemickému nebezpečí (jako jsou kontaminované potraviny, čisticí prostředky, pesticidy) na zdraví?'
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
-        'I do not know': 'I do not know'
+        ano: ano
+        ne: ne
+        'nejsem si vědom(a)': 'nejsem si vědom(a)'
       '#required': true
     if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
       '#type': textfield
-      '#title': '21. If yes, did this experience affect the way you communicate or think about that hazard?'
+      '#title': "2.10\tPokud ano, ovlivnila tato zkušenost způsob, jakým o tomto nebezpečí informujete nebo jak o něm uvažujete?"
+      '#required': true
       '#states':
         visible:
           ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
-            value: 'Yes'
-      '#required': true
+            value: ano
   section_3_developing_risk_communication:
     '#type': webform_wizard_page
-    '#title': 'Section 3: Developing risk communication'
+    '#title': '3. oddíl: Vypracování informací o rizicích'
     when_communicating_with_the_target_audience_on_risk_how_importan:
       '#type': webform_likert
-      '#title': '22. When communicating with the target audience on risk, how important is it to include the following features? '
+      '#title': '3.1 Jak důležité je použít následující prvky při informování cílové skupiny o riziku?'
       '#required': true
       '#questions':
-        'Use of visual illustration of risk with graphs, diagrams, images and maps': 'Use of visual illustration of risk with graphs, diagrams, images and maps'
-        'Comparisons between different hazards according to probability ': 'Comparisons between different hazards according to probability '
-        'Description of all uncertainties connected to the risk': 'Description of all uncertainties connected to the risk'
-        'Numerical limit values (e.g., Tolerable Daily Intake for a specific chemical in numbers) ': 'Numerical limit values (e.g., Tolerable Daily Intake for a specific chemical in numbers) '
-        'Description of different risks for different groups of people. (e.g., difference in risk for different occupational groups) ': 'Description of different risks for different groups of people (e.g., difference in risk for different occupational groups) '
-        'Information on difference between long term and short-term exposure to hazard ': 'Information on difference between long term and short-term exposure to hazard '
-        'Information on underestimation of risk by the public (e.g., When risk communicator has the information that the public does not ': 'Information on underestimation of risk by the public (e.g. when risk communicator has the information that the public does not perceive certain chemicals as hazardous as they should)'
-        'Information on overestimation of risk by the public (e.g. When risk communicator has the information that the public perceive': 'Information on overestimation of risk by the public   (e.g., When risk communicator has the information that the public perceives certain chemicals more hazardous than they should)'
-        'Description of strategies to avoid exposure to hazard ': 'Description of strategies to avoid exposure to hazard '
+        'Vizuální znázornění rizika pomocí grafů, diagramů, obrázků a map': 'Vizuální znázornění rizika pomocí grafů, diagramů, obrázků a map'
+        'Porovnání různých nebezpečí podle pravděpodobnosti': 'Porovnání různých nebezpečí podle pravděpodobnosti'
+        'Popis všech nejistot spojených s daným rizikem': 'Popis všech nejistot spojených s daným rizikem'
+        'Číselné mezní hodnoty (např. kvantitativně vyjádřený tolerovatelný denní příjem určité chemické látky)': 'Číselné mezní hodnoty (např. kvantitativně vyjádřený tolerovatelný denní příjem určité chemické látky)'
+        'Popis různých rizik pro různé skupiny osob (např. rozdíl v riziku pro různé profese)': 'Popis různých rizik pro různé skupiny osob (např. rozdíl v riziku pro různé profese)'
+        'Informace o rozdílu mezi dlouhodobou a krátkodobou expozici nebezpečí': 'Informace o rozdílu mezi dlouhodobou a krátkodobou expozici nebezpečí'
+        'Informace o podceňování rizika veřejností (např. pokud má osoba informující o rizicích k dispozici informace, že veřejnost nevní': 'Informace o podceňování rizika veřejností (např. pokud má osoba informující o rizicích k dispozici informace, že veřejnost nevnímá určité chemické látky jako tak nebezpečné, jak by měla)'
+        'Informace o přeceňování rizika veřejností (např. pokud má osoba informující o rizicích k dispozici informace, že veřejnost vnímá': 'Informace o přeceňování rizika veřejností (např. pokud má osoba informující o rizicích k dispozici informace, že veřejnost vnímá určité chemické látky jako nebezpečnější, než by měla)'
+        'Popis opatření k zamezení expozice nebezpečí': 'Popis opatření k zamezení expozice nebezpečí'
       '#answers':
-        'Not at all important': 'Not at all important'
-        'Slightly important': 'Slightly important'
-        'Moderately important': 'Moderately important'
-        'Quite important': 'Quite important'
-        'Very important': 'Very important'
+        'Nedůležité ': 'Nedůležité '
+        'Málo důležité': 'Málo důležité'
+        'Středně důležité': 'Středně důležité'
+        'Docela důležité': 'Docela důležité'
+        'Velmi důležité': 'Velmi důležité'
     when_communicating_risk_how_important_are_the_following_aspects:
       '#type': webform_likert
-      '#title': '23. When communicating risk, how important are the following aspects of trust for target audience’s risk perception in your view? '
+      '#title': '3.2 Jak důležité jsou podle vás při informování o rizicích následující aspekty důvěry pro vnímání rizik cílovou skupinou?'
       '#required': true
       '#questions':
-        'Audience trust in the expert that communicates risk ': 'Audience trust in the expert that communicates risk '
-        'Audience trust in national / European institutions / authorities ': 'Audience trust in national / European institutions / authorities '
-        'Audience trust in scientific data ': 'Audience trust in scientific data '
+        'Důvěra cílové skupiny v odborníka informujícího o riziku': 'Důvěra cílové skupiny v odborníka informujícího o riziku'
+        'Důvěra cílové skupiny ve vnitrostátní/evropské instituce/orgány': 'Důvěra cílové skupiny ve vnitrostátní/evropské instituce/orgány'
+        'Důvěra cílové skupiny ve vědecká data': 'Důvěra cílové skupiny ve vědecká data'
       '#answers':
-        'Not at all important': 'Not at all important'
-        'Slightly important': 'Slightly important'
-        'Moderately important': 'Moderately important'
-        'Quite important': 'Quite important'
-        'Very important': 'Very important'
+        'Nedůležité ': 'Nedůležité '
+        'Málo důležité': 'Málo důležité'
+        'Středně důležité': 'Středně důležité'
+        'Docela důležité': 'Docela důležité'
+        ' Velmi důležité': ' Velmi důležité'
     please_rate_statements_on_risk_communication_to_which_degree_you:
       '#type': webform_likert
-      '#title': '24. Please rate statements on risk communication to which degree you agree or disagree with them.'
+      '#title': '3.3 Ohodnoťte následující tvrzení týkající se informování o rizicích. Uveďte, do jaké míry s nimi souhlasíte nebo nesouhlasíte.'
       '#required': true
       '#questions':
-        'When communicating risk, it is important to distinguish between hazard and risk. ': 'When communicating risk, it is important to distinguish between hazard and risk. '
-        "Risk communication shouldn't be influenced by the public's perceptions of risk. ": "Risk communication shouldn't be influenced by the public's perceptions of risk. "
-        'The principles (e.g. objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g.,': 'The principles (e.g. objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g., chemical hazards, communicable diseases).'
-        'Describing all uncertainties, related to risk and hazard, confuses people. ': 'Describing all uncertainties related to risk and hazard confuses people. '
-        'Risk communication should be practiced/done in collaboration with the involved stakeholders. ': 'Risk communication should be practiced/done in collaboration with the involved stakeholders. '
-        'News media are more interested in crisis communication, where the presentation of risk is often exaggerated. ': 'News media are more interested in crisis communication, where the presentation of risk is often exaggerated. '
+        'Při informování o rizicích je důležité rozlišovat mezi nebezpečím a rizikem.': 'Při informování o rizicích je důležité rozlišovat mezi nebezpečím a rizikem.'
+        'Informování o riziku by nemělo být ovlivněno tím, jak jej veřejnost vnímá.': 'Informování o riziku by nemělo být ovlivněno tím, jak jej veřejnost vnímá.'
+        'Zásady (např. objektivita, nestrannost), na nichž je informování o rizicích založeno, se vztahují na všechny oblasti stejně (nap': 'Zásady (např. objektivita, nestrannost), na nichž je informování o rizicích založeno, se vztahují na všechny oblasti stejně (např. na chemická nebezpečí, přenosné nemoci).'
+        'Popis všech nejistot týkajících se určitého rizika či nebezpečí je matoucí.': 'Popis všech nejistot týkajících se určitého rizika či nebezpečí je matoucí.'
+        'Informování o rizicích by mělo být prováděno ve spolupráci se zúčastněnými stranami.': 'Informování o rizicích by mělo být prováděno ve spolupráci se zúčastněnými stranami.'
+        'Sdělovací prostředky se zajímají více o informace v krizové situaci, kdy se riziko často přehání.': 'Sdělovací prostředky se zajímají více o informace v krizové situaci, kdy se riziko často přehání.'
       '#answers':
-        'Disagree fully': 'Disagree fully'
-        'Disagree partly': 'Disagree partly'
-        'Neither agree nor disagree': 'Neither agree nor disagree'
-        'Agree partly': 'Agree partly'
-        'Agree fully': 'Agree fully'
+        'Naprosto nesouhlasím': 'Naprosto nesouhlasím'
+        'Částečně nesouhlasím': 'Částečně nesouhlasím'
+        'Nemám vyhraněný názor': 'Nemám vyhraněný názor'
+        'Částečně souhlasím': 'Částečně souhlasím'
+        'Naprosto souhlasím': 'Naprosto souhlasím'
   section_4_role_of_risk_communicator:
     '#type': webform_wizard_page
-    '#title': 'Section 4: Role of risk communicator'
+    '#title': '4. oddíl: Úloha osoby informující o rizicích'
     please_rate_statements_on_risk_perception_to_which_degree_you_ag:
       '#type': webform_likert
-      '#title': '25. Please rate statements on risk perception to which degree you agree or disagree with them. '
+      '#title': '4.1 Ohodnoťte následující tvrzení týkající se vnímání rizik. Uveďte, do jaké míry s nimi souhlasíte nebo nesouhlasíte.'
       '#required': true
       '#questions':
-        'People’s risk perceptions include/depend on their beliefs and attitudes. ': 'People’s risk perceptions include/depend on their beliefs and attitudes. '
-        "Risk perceptions aren't influenced by people’s judgements and feelings (personal experience). ": "Risk perceptions aren't influenced by people’s judgements and feelings (personal experience). "
-        'Risk perceptions refl objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g.,': 'The principles (e.g. objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g. chemical hazards, communicable diseases.'
-        'Risk communication should be based on evidence from risk assessments but should also consider laypeople’s hazard consideration/i': 'Risk communication should be based on evidence from risk assessments but should also consider laypeople’s hazard consideration/importance. '
-        'People who have previously experienced an incident related to a hazard, tend to feel that there are more probabilities of facing': 'People who have previously experienced an incident related to a hazard, tend to feel that there are more probabilities of facing it again, compared to people who have never experienced that hazard. '
-        'When people learn about a hazard for the first time, they tend to feel that this new hazard is more likely to occur than other w': 'When people learn about a hazard for the first time, they tend to feel that this new hazard is more likely to occur than other well-known hazards. '
-        'The more specific knowledge people gain about a hazard, the less they rely on their intuition about risk related to this hazard.': 'The more specific knowledge people gain about a hazard, the less they rely on their intuition about risk related to this hazard.'
-        'Trust in the risk communicator is more important than the information. ': 'Trust in the risk communicator is more important than the information. '
+        'Vnímání rizik je založeno také na přesvědčení a postojích lidí nebo na nich závisí.': 'Vnímání rizik je založeno také na přesvědčení a postojích lidí nebo na nich závisí.'
+        'Vnímání rizik není ovlivněno úsudky a pocity lidí (osobními zkušenostmi).': 'Vnímání rizik není ovlivněno úsudky a pocity lidí (osobními zkušenostmi).'
+        'Vnímání rizik odráží obecnější kulturní a sociální postoje, které lidé zaujímají vůči nebezpečím a jejich přínosům.': 'Vnímání rizik odráží obecnější kulturní a sociální postoje, které lidé zaujímají vůči nebezpečím a jejich přínosům.'
+        'Informování o rizicích by mělo vycházet z výsledků posouzení rizik, mělo by však zohledňovat i to, jak laická veřejnost vnímá da': 'Informování o rizicích by mělo vycházet z výsledků posouzení rizik, mělo by však zohledňovat i to, jak laická veřejnost vnímá dané nebezpečí a jakou mu přikládá důležitost.'
+        'Lidé, kteří v minulosti zažili incident související s určitým nebezpečím, považují obvykle za pravděpodobnější, že se s daným ne': 'Lidé, kteří v minulosti zažili incident související s určitým nebezpečím, považují obvykle za pravděpodobnější, že se s daným nebezpečím setkají znovu než lidé, kteří nic takového nikdy nezažili.'
+        'Když se lidé poprvé dozvědí o nějakém nebezpečí, obvykle se domnívají, že je pravděpodobnější, že k němu dojde než v případě jin': 'Když se lidé poprvé dozvědí o nějakém nebezpečí, obvykle se domnívají, že je pravděpodobnější, že k němu dojde než v případě jiných, dobře známých nebezpečí.'
+        'Čím konkrétnější znalosti o určitém nebezpečí lidé získají, tím méně spoléhají na intuici, pokud jde o riziko s ním spojené.': 'Čím konkrétnější znalosti o určitém nebezpečí lidé získají, tím méně spoléhají na intuici, pokud jde o riziko s ním spojené.'
+        'Důvěra v osobu informující o rizicích je důležitější než samotné informace.': 'Důvěra v osobu informující o rizicích je důležitější než samotné informace.'
       '#answers':
-        'Disagree fully': 'Disagree fully'
-        'Disagree partly': 'Disagree partly'
-        'Neither agree nor disagree': 'Neither agree nor disagree'
-        'Agree partly': 'Agree partly'
-        'Agree fully': 'Agree fully'
+        'Naprosto nesouhlasím': 'Naprosto nesouhlasím'
+        'Částečně nesouhlasím': 'Částečně nesouhlasím'
+        'Nemám vyhraněný názor': 'Nemám vyhraněný názor'
+        'Částečně souhlasím': 'Částečně souhlasím'
+        'Naprosto souhlasím': 'Naprosto souhlasím'
   section_5_traditional_and_social_media:
     '#type': webform_wizard_page
-    '#title': 'Section 5: Traditional and social media'
+    '#title': '5. oddíl: Tradiční sdělovací prostředky a sociální sítě'
     which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
       '#type': webform_table_sort
-      '#title': '26. Which channel do you prefer to use when it comes to communication of risk? Please rank the channels according to your preference by dragging them into order, with the most preferred channel at the top and the least preferred at the bottom.'
+      '#title': '5.1 Který komunikační kanál upřednostňujete při komunikaci rizik? Seřaďte prosím jednotlivé kanály podle svých preferencí přetažením do požadovaného pořadí, přičemž nejvíce preferovaný kanál umístěte nahoru a nejméně preferovaný dolů.'
       '#options':
-        'Newsletter ': 'Newsletter '
-        'Articles in newspapers, magazines': 'Articles in newspapers, magazines'
-        Television: Television
-        Radio: Radio
-        'Social media': 'Social media'
+        'vlastní zpravodaj (“newsletter”)': 'vlastní zpravodaj (“newsletter”)'
+        'články v novinách a časopisech': 'články v novinách a časopisech'
+        televize: televize
+        rozhlas: rozhlas
+        ' sociální sítě': ' sociální sítě'
       '#required': true
     which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
       '#type': webform_table_sort
-      '#title': '27. Which channel would you prefer to use when it comes to communication of crisis? Please rank the channels according to your preference by dragging them into order, with the most preferred channel at the top and the least preferred at the bottom.'
+      '#title': '5.2 Který komunikační kanál byste upřednostnili při krizové komunikaci? Seřaďte prosím jednotlivé kanály podle svých preferencí přetažením do požadovaného pořadí, přičemž nejvíce preferovaný kanál umístěte nahoru a nejméně preferovaný dolů.'
       '#options':
-        'Newsletter ': 'Newsletter '
-        'Articles in newspapers, magazines': 'Articles in newspapers, magazines'
-        Television: Television
-        Radio: Radio
-        'Social media': 'Social media'
+        'tisková zpráva': 'tisková zpráva'
+        'články v novinách a časopisech': 'články v novinách a časopisech'
+        televize: televize
+        rozhlas: rozhlas
+        'sociální sítě': 'sociální sítě'
       '#required': true
     27_5_3_do_you_use_social_media_channels_to_communicate_risk:
       '#type': radios
-      '#title': '28. Do you use social media channels to communicate risk?'
+      '#title': '5.3 Používáte k informování o rizicích sociální sítě?'
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
+        ano: ano
+        ne: ne
       '#required': true
     which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
       '#type': webform_checkboxes_other
-      '#title': '29. Which social media channel do you prefer to communicate risk? (Choose all that apply) '
+      '#title': '5.4 Které sociální sítě upřednostňujete při informování o rizicích? (vyberte všechny správné odpovědi)'
       '#options':
         X: X
         LinkedIn: LinkedIn
@@ -341,17 +341,18 @@ elements: |-
         'Whatsapp / Viber ': 'Whatsapp / Viber '
         Instagram: Instagram
       '#options_none': true
-      '#options_none_text': None
-      '#other__option_label': Other
-      '#other__placeholder': 'Please, specify'
+      '#options_none_value': žádné
+      '#options_none_text': žádné
+      '#other__option_label': jiné
+      '#other__placeholder': 'upřesněte:'
       '#required': true
       '#states':
         visible:
           ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
-            value: 'Yes'
+            value: ano
     30_which_social_media_channel_do_you_prefer_to_communicate_risk:
       '#type': webform_checkboxes_other
-      '#title': '30. Which social media channel do you prefer to communicate risk? (Choose all that apply) '
+      '#title': '5.5 Které sociální sítě byste použili při poskytování informací v krizové situaci? (vyberte všechny správné odpovědi)'
       '#options':
         X: X
         LinkedIn: LinkedIn
@@ -359,52 +360,57 @@ elements: |-
         'Whatsapp / Viber ': 'Whatsapp / Viber '
         Instagram: Instagram
       '#options_none': true
-      '#options_none_text': None
-      '#other__option_label': Other
-      '#other__placeholder': 'Please, specify'
+      '#options_none_value': žádné
+      '#options_none_text': žádné
+      '#other__option_label': jiné
+      '#other__placeholder': 'upřesněte:'
       '#required': true
     5_6_do_you_use_any_form_of_social_media_listening_software_that:
       '#type': radios
-      '#title': '31. Do you use any form of social media listening (Software that allows users to monitor, track, and analyse social media conversations)?'
+      '#title': '5.6 Využíváte nějakou formu monitorování sociálních sítí (software, který umožňuje monitorovat, sledovat či analyzovat konverzace na sociálních sítích)?'
       '#options':
-        'Yes': 'Yes'
-        'No': 'No'
+        ano: ano
+        ne: ne
       '#required': true
     32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
       '#type': textfield
-      '#title': '32. If you answered YES in previous question, what tools for social media “listening” do you use?'
+      '#title': '5.7 Pokud jste na předchozí otázku odpověděli ANO, jaké nástroje pro „monitorování“ sociálních sítí používáte?'
       '#required': true
       '#states':
         visible:
           ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
-            value: 'Yes'
+            value: ano
     30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
       '#type': webform_radios_other
-      '#title': '33. How do you usually handle a misinformation/rumour in social media about risk related to a specific hazard/risk in chemicals? '
+      '#title': '5.8 Jak obvykle reagujete na dezinformace či fámy na sociálních sítích o určitém nebezpečí/riziku spojeném s chemickými látkami?'
       '#options':
-        'No reactions. If I let it go, things will calm down.': 'No reactions. If I let it go, things will calm down.'
-        'Issue a statement with the correct information and disseminate it.': 'Issue a statement with the correct information and disseminate it.'
-        'Pursue legal action if needed.': 'Pursue legal action if needed.'
-      '#other__placeholder': 'Please specify'
+        'Nereaguji. Nechám to být, ono se to uklidní.': 'Nereaguji. Nechám to být, ono se to uklidní.'
+        'Vydám prohlášení s pravdivými informacemi a rozšířím ho.': 'Vydám prohlášení s pravdivými informacemi a rozšířím ho.'
+        'V případě potřeby podniknu právní kroky.': 'V případě potřeby podniknu právní kroky.'
+      '#other__option_label': Jinak
+      '#other__placeholder': 'upřesněte:'
       '#required': true
   section_6_language:
     '#type': webform_wizard_page
-    '#title': 'Section 6 : Language'
+    '#title': '6. oddíl: Styl'
     31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
       '#type': radios
-      '#title': '34. Let’s assume that there is misinformation/rumour in social media about risk related to smoking and cadmium. Which of the following statements would you prefer to use?'
+      '#title': '6.1 Předpokládejme, že se na sociálních sítích šíří dezinformace či fámy o riziku spojeném s kouřením a kadmiem. Které z následujících tvrzení byste použili?'
       '#options':
-        'A: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%. Smokers have about 1.5 μg/l blood cadmium concentrations, and kidney cortex cadmium concentrations about 20-30 μg/g wet weight. Non-smokers have 4-5 times lower blood cadmium concentrations and twice as low kidney cortex cadmium concentrations. Cadmium has been shown to cause lung cancer. ': 'A: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%. Smokers have about 1.5 μg/l blood cadmium concentrations, and kidney cortex cadmium concentrations about 20-30 μg/g wet weight. Non-smokers have 4-5 times lower blood cadmium concentrations and twice as low kidney cortex cadmium concentrations. Cadmium has been shown to cause lung cancer. '
-        'B: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%, while the absorption in the gastrointestinal tract is only a few percent. Smokers have about 4-5 times higher blood cadmium concentrations (about 1.5 μg/l), and twice as high kidney cortex cadmium concentrations (about 20-30 μg/g wet weight) as nonsmokers. Cadmium has been shown to cause lung cancer, but there is limited evidence that it is linked to kidney, liver and prostate cancer. ': 'B: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%, while the absorption in the gastrointestinal tract is only a few percent. Smokers have about 4-5 times higher blood cadmium concentrations (about 1.5 μg/l), and twice as high kidney cortex cadmium concentrations (about 20-30 μg/g wet weight) as nonsmokers. Cadmium has been shown to cause lung cancer, but there is limited evidence that it is linked to kidney, liver and prostate cancer. '
-        'C: With smoking cigarettes, the absorption of cadmium is extremely high in the lungs, while the absorption in the gastrointestinal tract is lower. Smokers have a significantly higher blood cadmium concentrations and kidney cortex cadmium concentrations. Cadmium is carcinogenic. ': 'C: With smoking cigarettes, the absorption of cadmium is extremely high in the lungs, while the absorption in the gastrointestinal tract is lower. Smokers have significantly higher blood cadmium concentrations and kidney cortex cadmium concentrations. Cadmium is carcinogenic. '
+        'A: Při kouření cigaret se v plicích absorbuje 10–50 % kadmia. U kuřáků je koncentrace kadmia v krvi přibližně 1,5 μg/l a v kůře ledvin přibližně 20–30 μg/g čerstvé hmotnosti. Nekuřáci vykazují 4–5krát nižší koncentrace kadmia v krvi a 2krát nižší koncentrace kadmia v kůře ledvin. Bylo prokázáno, že kadmium způsobuje rakovinu plic.': 'A: Při kouření cigaret se v plicích absorbuje 10–50 % kadmia. U kuřáků je koncentrace kadmia v krvi přibližně 1,5 μg/l a v kůře ledvin přibližně 20–30 μg/g čerstvé hmotnosti. Nekuřáci vykazují 4–5krát nižší koncentrace kadmia v krvi a 2krát nižší koncentrace kadmia v kůře ledvin. Bylo prokázáno, že kadmium způsobuje rakovinu plic.'
+        'B: Při kouření cigaret se v plicích absorbuje 10–50 % kadmia, zatímco v zažívacím traktu jen několik málo % kadmia. V porovnání s nekuřáky vykazují kuřáci přibližně 4–5krát vyšší koncentrace kadmia v krvi (přibližně 1,5 μg/l) a 2krát vyšší koncentrace kadmia v kůře ledvin (přibližně 20–30 μg/g čerstvé hmotnosti). Bylo prokázáno, že kadmium způsobuje rakovinu plic, o jeho spojitosti s rakovinou ledvin, jater a prostaty však existují pouze omezené důkazy.': 'B: Při kouření cigaret se v plicích absorbuje 10–50 % kadmia, zatímco v zažívacím traktu jen několik málo % kadmia. V porovnání s nekuřáky vykazují kuřáci přibližně 4–5krát vyšší koncentrace kadmia v krvi (přibližně 1,5 μg/l) a 2krát vyšší koncentrace kadmia v kůře ledvin (přibližně 20–30 μg/g čerstvé hmotnosti). Bylo prokázáno, že kadmium způsobuje rakovinu plic, o jeho spojitosti s rakovinou ledvin, jater a prostaty však existují pouze omezené důkazy.'
+        'C: Při kouření cigaret je absorpce kadmia v plicích mimořádně vysoká, zatímco v zažívacím traktu je nižší. Kuřáci vykazují výrazně vyšší koncentrace kadmia v krvi i v kůře ledvin. Kadmium je karcinogenní.': 'C: Při kouření cigaret je absorpce kadmia v plicích mimořádně vysoká, zatímco v zažívacím traktu je nižší. Kuřáci vykazují výrazně vyšší koncentrace kadmia v krvi i v kůře ledvin. Kadmium je karcinogenní.'
       '#required': true
     32_the_following_scientific_statement_states_that_acrylamide_is:
       '#type': radios
-      '#title': '35. The following scientific statement states that: “Acrylamide is a chemical which naturally forms in starchy food products, when they are cooked at high temperatures (above 120°C). When acrylamide is present in food, it can potentially increase the risk of consumers of all ages developing cancer. Fortunately, there are ways to reduce levels of acrylamide in food”. Which statement would you choose if you were to advise consumers on minimizing the levels of acrylamide in home cooking? '
+      '#title': '6.2 V tomto vědeckém vyjádření se uvádí, že: „akrylamid je chemická látka, která se přirozeně vytváří v potravinách obsahujících škrob při jejich přípravě při vysokých teplotách (nad 120 °C). Přítomnost akrylamidu v potravinách může potenciálně zvýšit riziko vzniku rakoviny u spotřebitelů v kterémkoli věku. Naštěstí existují možnosti, jak obsah akrylamidu ve stravě snížit.“ Které tvrzení byste zvolili, kdybyste měli spotřebitelům poradit, jak při vaření doma snížit obsah akrylamidu?'
       '#options':
-        'Long cooking times and higher temperatures form more acrylamide which has the potential to cause cancer in humans, than short cooking times and lower temperatures. ': 'Long cooking times and higher temperatures form more acrylamide which has the potential to cause cancer in humans, than short cooking times and lower temperatures. '
-        'Aim for a golden yellow colour (or lighter) when frying, baking, toasting or roasting starchy foods and avoid over-heated foods for better health. ': 'Aim for a golden yellow colour (or lighter) when frying, baking, toasting or roasting starchy foods and avoid over-heated foods for better health. '
+        'Při smažení, pečení, toastování nebo opékání potravin obsahujících škrob se snažte dosáhnout zlatožluté (nebo světlejší) barvy a v zájmu zdraví se vyhýbejte potravinám připravovaným při příliš vysokých teplotách.': 'Při smažení, pečení, toastování nebo opékání potravin obsahujících škrob se snažte dosáhnout zlatožluté (nebo světlejší) barvy a v zájmu zdraví se vyhýbejte potravinám připravovaným při příliš vysokých teplotách.'
+        'Při dlouhé době vaření a vyšších teplotách se vytváří více akrylamidu, který může u lidí způsobit rakovinu, než při kratší době vaření a nižších teplotách.': 'Při dlouhé době vaření a vyšších teplotách se vytváří více akrylamidu, který může u lidí způsobit rakovinu, než při kratší době vaření a nižších teplotách.'
       '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
 css: ''
 javascript: ''
 settings:
@@ -455,7 +461,7 @@ settings:
   share_theme_name: ''
   share_title: true
   share_page_body_attributes: {  }
-  submission_label: ''
+  submission_label: Odeslat
   submission_exception_message: ''
   submission_locked_message: ''
   submission_log: false
@@ -480,16 +486,16 @@ settings:
   wizard_progress_percentage: false
   wizard_progress_link: false
   wizard_progress_states: false
-  wizard_start_label: ''
+  wizard_start_label: Začít
   wizard_preview_link: false
   wizard_confirmation: true
-  wizard_confirmation_label: ''
+  wizard_confirmation_label: Ukončit
   wizard_auto_forward: true
   wizard_auto_forward_hide_next_button: false
   wizard_keyboard: true
   wizard_track: ''
-  wizard_prev_button_label: ''
-  wizard_next_button_label: ''
+  wizard_prev_button_label: 'Předchozí stránka'
+  wizard_next_button_label: 'Další stránka'
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
@@ -513,7 +519,7 @@ settings:
   confirmation_type: page
   confirmation_url: ''
   confirmation_title: ''
-  confirmation_message: ''
+  confirmation_message: '<p>Děkujeme. Vaše odpovědi byly odeslány.</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''

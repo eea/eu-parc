@@ -125,7 +125,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
-            '!value': Never
+            '!value': 'Mitte kunagi'
     12_do_you_believe_that_communication_training_is_necessary_for_y:
       '#type': radios
       '#title': '1.8. Kas teie arvates on kommunikatsioonikoolitus teie praegusel ametikohal vajalik?'
@@ -165,7 +165,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
+            value: Jah
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
       '#title': '2.4. Kas hindate iga kord, milline mõju oli kemikaaliga seotud ohust või riskist teavitamisel? (Kuidas reageeris avalikkus?)'
@@ -180,7 +180,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
+            value: Jah
     15_how_much_do_you_believe_you_influence_the_target_audience:
       '#type': radios
       '#title': '17. How much do you believe you influence the target audience?'
@@ -221,11 +221,11 @@ elements: |-
     if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
       '#type': textfield
       '#title': '21. If yes, did this experience affect the way you communicate or think about that hazard?'
+      '#required': true
       '#states':
         visible:
           ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
             value: 'Yes'
-      '#required': true
   section_3_developing_risk_communication:
     '#type': webform_wizard_page
     '#title': "3.\tosa: Riskikommunikatsiooni arendamine"
@@ -350,7 +350,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
-            value: 'Yes'
+            value: Jah
     30_which_social_media_channel_do_you_prefer_to_communicate_risk:
       '#type': webform_checkboxes_other
       '#title': "5.5.\tMis sotsiaalmeediaplatvormi kasutaksite kriisikommunikatsiooniks? (Valige kõik sobivad variandid)"
@@ -380,7 +380,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
-            value: 'Yes'
+            value: Jah
     30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
       '#type': webform_radios_other
       '#title': "5.8.\tKuidas reageerite tavaliselt sotsiaalmeedias levivale valeteabele või kuulujuttudele, mis puudutavad konkreetseid kemikaalidega seotud ohte?"

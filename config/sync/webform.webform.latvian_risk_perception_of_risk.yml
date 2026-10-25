@@ -124,7 +124,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
-            '!value': Never
+            '!value': Nekad
     12_do_you_believe_that_communication_training_is_necessary_for_y:
       '#type': radios
       '#title': "1.8.\tVai uzskatāt, ka komunikācijas prasmju apmācība ir nepieciešama Jūsu pašreizējam amatam?"
@@ -164,7 +164,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
+            value: Jā
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
       '#title': "1.12.\tVai Jūs vienmēr izvērtējat Jūsu paziņotās ķīmiskās bīstamības/riska informācijas ietekmi/nozīmīgumu? (Sabiedrības reakcija?):"
@@ -179,7 +179,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
+            value: Jā
     15_how_much_do_you_believe_you_influence_the_target_audience:
       '#type': radios
       '#title': "1.14.\tCik lielā mērā, Jūsuprāt, Jūs ietekmējat mērķauditoriju?"
@@ -224,7 +224,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
-            value: 'Yes'
+            value: Jā
   section_3_developing_risk_communication:
     '#type': webform_wizard_page
     '#title': "3.\tdaļa: Riska komunikācijas izstrāde"
@@ -349,7 +349,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
-            value: 'Yes'
+            value: Jā
     30_which_social_media_channel_do_you_prefer_to_communicate_risk:
       '#type': webform_checkboxes_other
       '#title': "1.25.\tKādu sociālo mediju platformu Jūs izmantotu krīzes saziņā? (atzīmējiet visus atbilstošos variantus)"
@@ -379,7 +379,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
-            value: 'Yes'
+            value: Jā
     30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
       '#type': webform_radios_other
       '#title': "1.28.\tKā Jūs parasti rīkojaties, ja sociālajos tīklos parādās nepatiesa informācija vai baumas par risku, kas saistīts ar konkrētu bīstamu vielu?"

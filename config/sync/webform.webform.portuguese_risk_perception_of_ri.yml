@@ -124,7 +124,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
-            '!value': Never
+            '!value': Nunca
     12_do_you_believe_that_communication_training_is_necessary_for_y:
       '#type': radios
       '#title': "1.9.\tConsidera que a formação em comunicação é necessária para o seu cargo atual?"
@@ -164,7 +164,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
+            value: Sim
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
       '#title': "2.4.\tAvalia sempre se o perigo ou risco químico que comunica é relevante ou tem impacto? (qual foi a reação do público?)"
@@ -179,7 +179,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
+            value: Sim
     15_how_much_do_you_believe_you_influence_the_target_audience:
       '#type': radios
       '#title': "2.6.\tEm que medida considera que influencia o público-alvo?"
@@ -224,7 +224,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
-            value: 'Yes'
+            value: Sim
   section_3_developing_risk_communication:
     '#type': webform_wizard_page
     '#title': "3.\tSecção: Desenvolvimento da comunicação de riscos"
@@ -349,7 +349,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
-            value: 'Yes'
+            value: Sim
     30_which_social_media_channel_do_you_prefer_to_communicate_risk:
       '#type': webform_checkboxes_other
       '#title': "5.5.\tQue plataforma de redes sociais utilizaria em caso de comunicação em situação de crise? (assinale todas as opções aplicáveis)"
@@ -379,7 +379,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
-            value: 'Yes'
+            value: Sim
     30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
       '#type': webform_radios_other
       '#title': "5.8.\tComo costuma lidar com a desinformação ou os rumores nas redes sociais sobre os riscos associados a um perigo ou risco específico relacionado com produtos químicos?"

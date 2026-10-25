@@ -124,7 +124,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
-            '!value': Never
+            '!value': Mai
     12_do_you_believe_that_communication_training_is_necessary_for_y:
       '#type': radios
       '#title': "1.9.\tRitieni che una formazione in materia di comunicazione sia necessaria per il tuo attuale incarico?"
@@ -164,7 +164,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
+            value: Sì
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
       '#title': "2.4.\tValuti ogni volta se la tua comunicazione su un pericolo/rischio chimico abbia o meno un’influenza o un impatto? (Qual è stata la reazione del pubblico?)"
@@ -179,7 +179,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
+            value: Sì
     15_how_much_do_you_believe_you_influence_the_target_audience:
       '#type': radios
       '#title': "2.6.\tIn che misura ritieni di influenzare il pubblico destinatario?"
@@ -224,7 +224,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
-            value: 'Yes'
+            value: Sì
   section_3_developing_risk_communication:
     '#type': webform_wizard_page
     '#title': "3.\tSezione: sviluppare la comunicazione dei rischi"
@@ -349,7 +349,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
-            value: 'Yes'
+            value: Sì
     30_which_social_media_channel_do_you_prefer_to_communicate_risk:
       '#type': webform_checkboxes_other
       '#title': "5.5.\tQuale piattaforma social useresti se dovessi comunicare una crisi? (scegli tutte le risposte pertinenti)"
@@ -379,7 +379,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
-            value: 'Yes'
+            value: Sì
     30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
       '#type': webform_radios_other
       '#title': "5.8.\tCome gestisci di solito le informazioni errate o le voci che circolano sui social media riguardo a uno specifico pericolo/rischio legato a una sostanza chimica?"
@@ -397,9 +397,9 @@ elements: |-
       '#type': radios
       '#title': "6.1.\tSupponiamo che sui social media circolino informazioni errate o voci sui rischi legati al fumo e al cadmio. Quale delle seguenti affermazioni preferiresti usare?"
       '#options':
-        'A: Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è pari al 10-50 %. I fumatori presentano concentrazioni di cadmio nel sangue pari a circa 1,5 μg/l e concentrazioni di cadmio nella corteccia renale pari a circa 20-30 μg/g di peso umido. I non fumatori presentano concentrazioni di cadmio nel sangue 4-5 volte più basse e concentrazioni di cadmio nella corteccia renale due volte più basse. È stato dimostrato che il cadmio provoca il cancro ai polmoni.': 'A: Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è pari al 10-50 %. I fumatori presentano concentrazioni di cadmio nel sangue pari a circa 1,5 μg/l e concentrazioni di cadmio nella corteccia renale pari a circa 20-30 μg/g di peso umido. I non fumatori presentano concentrazioni di cadmio nel sangue 4-5 volte più basse e concentrazioni di cadmio nella corteccia renale due volte più basse. È stato dimostrato che il cadmio provoca il cancro ai polmoni.'
-        'B: Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è pari al 10-50 %, mentre l’assorbimento nel tratto gastrointestinale è solo di pochi punti percentuali. I fumatori presentano concentrazioni di cadmio nel sangue circa 4-5 volte superiori (circa 1,5 μg/l) e concentrazioni di cadmio nella corteccia renale due volte superiori (circa 20-30 μg/g di peso umido) rispetto ai non fumatori. È stato dimostrato che il cadmio provoca il cancro ai polmoni, ma le prove sul nesso con il cancro ai reni': 'B: Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è pari al 10-50 %, mentre l’assorbimento nel tratto gastrointestinale è solo di pochi punti percentuali. I fumatori presentano concentrazioni di cadmio nel sangue circa 4-5 volte superiori (circa 1,5 μg/l) e concentrazioni di cadmio nella corteccia renale due volte superiori (circa 20-30 μg/g di peso umido) rispetto ai non fumatori. È stato dimostrato che il cadmio provoca il cancro ai polmoni, ma le prove sul nesso con il cancro ai reni'
-        'C: Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è estremamente elevato, mentre l’assorbimento nel tratto gastrointestinale è inferiore. I fumatori presentano concentrazioni di cadmio nel sangue e concentrazioni di cadmio nella corteccia renale notevolmente più elevate. Il cadmio è cancerogeno.': 'C: Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è estremamente elevato, mentre l’assorbimento nel tratto gastrointestinale è inferiore. I fumatori presentano concentrazioni di cadmio nel sangue e concentrazioni di cadmio nella corteccia renale notevolmente più elevate. Il cadmio è cancerogeno.'
+        A: 'A -- Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è pari al 10-50 %. I fumatori presentano concentrazioni di cadmio nel sangue pari a circa 1,5 μg/l e concentrazioni di cadmio nella corteccia renale pari a circa 20-30 μg/g di peso umido. I non fumatori presentano concentrazioni di cadmio nel sangue 4-5 volte più basse e concentrazioni di cadmio nella corteccia renale due volte più basse. È stato dimostrato che il cadmio provoca il cancro ai polmoni.'
+        B: 'B -- Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è pari al 10-50 %, mentre l’assorbimento nel tratto gastrointestinale è solo di pochi punti percentuali. I fumatori presentano concentrazioni di cadmio nel sangue circa 4-5 volte superiori (circa 1,5 μg/l) e concentrazioni di cadmio nella corteccia renale due volte superiori (circa 20-30 μg/g di peso umido) rispetto ai non fumatori. È stato dimostrato che il cadmio provoca il cancro ai polmoni, ma le prove sul nesso con il cancro ai reni, al fegato e alla prostata sono limitate.'
+        C: 'C -- Quando si fumano sigarette, l’assorbimento del cadmio nei polmoni è estremamente elevato, mentre l’assorbimento nel tratto gastrointestinale è inferiore. I fumatori presentano concentrazioni di cadmio nel sangue e concentrazioni di cadmio nella corteccia renale notevolmente più elevate. Il cadmio è cancerogeno.'
       '#required': true
     32_the_following_scientific_statement_states_that_acrylamide_is:
       '#type': radios

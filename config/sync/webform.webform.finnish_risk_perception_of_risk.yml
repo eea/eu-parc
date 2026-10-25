@@ -124,7 +124,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
-            '!value': Never
+            '!value': 'En koskaan'
     12_do_you_believe_that_communication_training_is_necessary_for_y:
       '#type': radios
       '#title': "1.9.\tPidätkö viestintäkoulutusta välttämättömänä nykyisessä tehtävässäsi?"
@@ -164,7 +164,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
+            value: Kyllä
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
       '#title': "2.4.\tArvioitko joka kerta, onko ilmoitettu kemiallinen vaara tai riski merkittävä vai ei? (Miten yleisö reagoi?)"
@@ -179,7 +179,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
+            value: Kyllä
     15_how_much_do_you_believe_you_influence_the_target_audience:
       '#type': radios
       '#title': "2.6.\tKuinka paljon uskot voivasi vaikuttavaa kohdeyleisöön?"
@@ -349,7 +349,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
-            value: 'Yes'
+            value: Kyllä
     30_which_social_media_channel_do_you_prefer_to_communicate_risk:
       '#type': webform_checkboxes_other
       '#title': "5.5.\tMitä sosiaalisen median alustaa käyttäisit kriisiviestinnässä? (voit valita useita vaihtoehtoja):"
@@ -379,7 +379,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
-            value: 'Yes'
+            value: Kyllä
     30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
       '#type': webform_radios_other
       '#title': "5.8.\tMiten yleensä suhtaudut sosiaalisen median väärään tietoon tai huhuihin, jotka koskevat kemikaalien tiettyjä vaaroja tai riskejä?"
