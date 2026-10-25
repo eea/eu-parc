@@ -124,7 +124,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
-            '!value': Never
+            '!value': Nooit
     12_do_you_believe_that_communication_training_is_necessary_for_y:
       '#type': radios
       '#title': "1.9.\tBent u van mening dat communicatieopleiding noodzakelijk is voor uw huidige functie?"
@@ -164,7 +164,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
-            value: 'Yes'
+            value: Ja
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
       '#title': "2.4.\tBeoordeelt u telkens of het chemische gevaar/risico waarover u communiceert, invloed/effect heeft of niet? (Reactie van het publiek?)"
@@ -179,7 +179,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
-            value: 'Yes'
+            value: Ja
     15_how_much_do_you_believe_you_influence_the_target_audience:
       '#type': radios
       '#title': "2.6.\tIn hoeverre denkt u dat u invloed hebt op de doelgroep?"
@@ -224,7 +224,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
-            value: 'Yes'
+            value: Ja
   section_3_developing_risk_communication:
     '#type': webform_wizard_page
     '#title': "3.\tSegment: ontwikkeling van risicocommunicatie"
@@ -349,7 +349,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
-            value: 'Yes'
+            value: Ja
     30_which_social_media_channel_do_you_prefer_to_communicate_risk:
       '#type': webform_checkboxes_other
       '#title': "5.5.\tWelk socialemediaplatform zou u gebruiken in het geval van crisiscommunicatie? (kies alle antwoorden die van toepassing zijn)"
@@ -379,7 +379,7 @@ elements: |-
       '#states':
         visible:
           ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
-            value: 'Yes'
+            value: Ja
     30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
       '#type': webform_radios_other
       '#title': "5.8.\tHoe gaat u doorgaans om met misinformatie/geruchten op sociale media over risico in verband met een specifiek gevaar/risico van een chemische stof?"
@@ -397,9 +397,9 @@ elements: |-
       '#type': radios
       '#title': "6.1.\tBeeld u in dat er op sociale media misinformatie/geruchten de ronde doen over risico’s in verband met roken en cadmium. Welke van de volgende verklaringen zou u dan het liefst gebruiken?"
       '#options':
-        'A: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen. Rokers hebben een cadmiumconcentratie in het bloed van ongeveer 1,5 μg/l en een cadmiumconcentratie in de niercortex van ongeveer 20-30 μg/g nat gewicht. Niet-rokers hebben vier tot vijf keer lagere cadmiumconcentraties in het bloed en twee keer zo lage cadmiumconcentraties in de niercortex. Er is aangetoond dat cadmium longkanker veroorzaakt.': 'A: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen. Rokers hebben een cadmiumconcentratie in het bloed van ongeveer 1,5 μg/l en een cadmiumconcentratie in de niercortex van ongeveer 20-30 μg/g nat gewicht. Niet-rokers hebben vier tot vijf keer lagere cadmiumconcentraties in het bloed en twee keer zo lage cadmiumconcentraties in de niercortex. Er is aangetoond dat cadmium longkanker veroorzaakt.'
-        'B: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen, terwijl slechts een paar procent in het maag-darmkanaal terechtkomt. Bij rokers is de cadmiumconcentratie in het bloed vier tot vijf keer zo hoog (ongeveer 1,5 μg/l) en de cadmiumconcentratie in de niercortex twee keer zo hoog (ongeveer 20-30 μg/g nat gewicht) als bij niet-rokers. Er is aangetoond dat cadmium longkanker veroorzaakt, maar er zijn weinig aanwijzingen dat het in verband kan worden gebracht met ni': 'B: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen, terwijl slechts een paar procent in het maag-darmkanaal terechtkomt. Bij rokers is de cadmiumconcentratie in het bloed vier tot vijf keer zo hoog (ongeveer 1,5 μg/l) en de cadmiumconcentratie in de niercortex twee keer zo hoog (ongeveer 20-30 μg/g nat gewicht) als bij niet-rokers. Er is aangetoond dat cadmium longkanker veroorzaakt, maar er zijn weinig aanwijzingen dat het in verband kan worden gebracht met ni'
-        'C: Bij het roken van sigaretten komt heel veel cadmium in de longen terecht, terwijl de opname in het maag-darmkanaal lager is. Rokers hebben aanzienlijk hogere cadmiumconcentraties in het bloed en in de niercortex. Cadmium is kankerverwekkend.': 'C: Bij het roken van sigaretten komt heel veel cadmium in de longen terecht, terwijl de opname in het maag-darmkanaal lager is. Rokers hebben aanzienlijk hogere cadmiumconcentraties in het bloed en in de niercortex. Cadmium is kankerverwekkend.'
+        'A: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen. Rokers hebben een cadmiumconcentratie in het bloed van ongeveer 1,5 μg/l en een cadmiumconcentratie in de niercortex van ongeveer 20-30 μg/g nat gewicht. Niet-rokers hebben vier tot vijf keer lagere cadmiumconcentraties in het bloed en twee keer zo lage cadmiumconcentraties in de niercortex. Er is aangetoond dat cadmium longkanker veroorzaakt.': ' -- A: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen. Rokers hebben een cadmiumconcentratie in het bloed van ongeveer 1,5 μg/l en een cadmiumconcentratie in de niercortex van ongeveer 20-30 μg/g nat gewicht. Niet-rokers hebben vier tot vijf keer lagere cadmiumconcentraties in het bloed en twee keer zo lage cadmiumconcentraties in de niercortex. Er is aangetoond dat cadmium longkanker veroorzaakt.'
+        'B: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen, terwijl slechts een paar procent in het maag-darmkanaal terechtkomt. Bij rokers is de cadmiumconcentratie in het bloed vier tot vijf keer zo hoog (ongeveer 1,5 μg/l) en de cadmiumconcentratie in de niercortex twee keer zo hoog (ongeveer 20-30 μg/g nat gewicht) als bij niet-rokers. Er is aangetoond dat cadmium longkanker veroorzaakt, maar er zijn weinig aanwijzingen dat het in verband kan worden gebracht met ni': ' -- B: Bij het roken van sigaretten wordt 10 tot 50 % van het cadmiumgehalte opgenomen in de longen, terwijl slechts een paar procent in het maag-darmkanaal terechtkomt. Bij rokers is de cadmiumconcentratie in het bloed vier tot vijf keer zo hoog (ongeveer 1,5 μg/l) en de cadmiumconcentratie in de niercortex twee keer zo hoog (ongeveer 20-30 μg/g nat gewicht) als bij niet-rokers. Er is aangetoond dat cadmium longkanker veroorzaakt, maar er zijn weinig aanwijzingen dat het in verband kan worden gebracht met nier-, lever- en prostaatkanker.'
+        'C: Bij het roken van sigaretten komt heel veel cadmium in de longen terecht, terwijl de opname in het maag-darmkanaal lager is. Rokers hebben aanzienlijk hogere cadmiumconcentraties in het bloed en in de niercortex. Cadmium is kankerverwekkend.': ' -- C: Bij het roken van sigaretten komt heel veel cadmium in de longen terecht, terwijl de opname in het maag-darmkanaal lager is. Rokers hebben aanzienlijk hogere cadmiumconcentraties in het bloed en in de niercortex. Cadmium is kankerverwekkend.'
       '#required': true
     32_the_following_scientific_statement_states_that_acrylamide_is:
       '#type': radios
