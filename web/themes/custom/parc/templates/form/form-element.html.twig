@@ -69,6 +69,8 @@
 {% if element['#return_value'] %}
   {% if name starts with 'year[' %}
     {% set data_color = yearColor(element['#return_value']) %}
+  {% elseif name starts with 'playlist[' %}
+    {% set data_color = '#1C85FF' %}
   {% else %}
     {% set data_color = termColor(element['#return_value']) %}
   {% endif %}

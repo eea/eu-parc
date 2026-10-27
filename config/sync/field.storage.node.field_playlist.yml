@@ -1,0 +1,33 @@
+uuid: 94467e47-dc8f-42e4-9659-fc8028ccc8c4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_playlist
+field_name: field_playlist
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: interviews
+      label: Interviews
+    -
+      value: research_videos
+      label: 'Research videos'
+    -
+      value: exhibitions
+      label: Exhibitions
+    -
+      value: round_table_discussions
+      label: 'Round table discussions'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
