@@ -1,0 +1,601 @@
+uuid: 6e96b6b0-8d96-402c-aa40-7ee30d8692af
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 637
+template: false
+archive: false
+id: estonian_risk_perception_of_risk
+title: 'Estonian Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in </span><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(34, 34, 34);display:inline !important;float:none;font-family:Arial, Helvetica, sans-serif;font-size:small;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Estonian language</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Nõusolek ja taust'
+    description:
+      '#type': checkbox
+      '#title': 'Kinnitan, et olen ülaltoodud teabe läbi lugenud ja nõustun sellega.'
+      '#description': '<h4><strong>Riskidest teavitajate riskitaju</strong></h4><p class="p1">Teie arvamus loeb! Aidake kaasa kemikaalide ohutumale juhtimisele Euroopas, osaledes lühiküsitluses teemal „Riskidest teavitajate riskitaju“. Uuring viiakse läbi PARCi raames (Partnership for the Assessment of Risks from Chemicals ehkkemikaalide riskihindamise partnerlus, https://www.eu-parc.eu/).</p><p class="p1">PARCist: Euroopa kemikaalidest riskihindamise partnerlus (PARC) on 30 riigi ja kolme Euroopa ameti (EEA, ECHA, EFSA) ühisalgatus, mille eesmärk on arendada ja ajakohastada kemikaaliriskide hindamist. PARCi eesmärk on toetada poliitika kujundamist Euroopa ja riiklikul tasandil usaldusväärsete teadusandmetega, mis kajastavad kodanike kokkupuudet keemiliste saasteainetega ja nende võimalikku tervisemõju. Eestis koordineerib küsitlust Terviseamet.</p><p class="p1">Uuringu eesmärk: Me kõik puutume kokku paljude kemikaalidega, millest mõni võib olla tervisele kahjulik. Nendest kemikaalidest tulenevast võimalikest riskidest teavitamine on äärmiselt oluline. Selle uuringu eesmärk on saada põhjalikum ülevaade riskidest teavitajate tavapärastest tööviisidest, arusaamadest riskitaju kohta ning muredest ja probleemidest, millega nad ohtudest ja riskidest eavitamisel/riskikommukatsioonil kokku puutuvad.</p><p class="p1">Kellele uuring on suunatud: Küsimustikus käsitletakse peamiselt riskidest kommunikatsiooni igapäevaolukordades, mitte kriisikommunikatsooni, mis viitab teabevahetusele kiireloomulisi otsuseid nõudvates olukordades. Vastamiseks kulub umbes 20 minutit.</p><p class="p1">Mis saab kogutud teabest? Kogutud teave on anonüümne ja neid käsitletakse konfidentsiaalselt kooskõlas isikuandmete kaitse üldmääruse nõuetega (Deneral Data Protection Regulation, GDPR).</p><p class="p1">PARCi teaduspartnerid analüüsivad teie vastuseid koos muude vastustega. Kui uuringu teaduslikud järeldused avaldatakse või kui neid esitletakse konverentsil, siis tulemused koondatakse.</p><p class="p1">Õigus keelduda või tagasi võtta: Teie osalemine on täiesti vabatahtlik. Küsitlusele vastamise ja vastuste esitamisega annate oma nõusoleku küsitluses osalemiseks. Teil on õigus igal ajal osalemisest loobuda või otsustada üldse mitte osaleda, ilma et peaksite seda põhjendama ja tagajärgedeta.</p><p class="p1">Täname teid aja ja koostöö eest!</p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': '1. osa: ametialane taust'
+    county:
+      '#type': textfield
+      '#title': 'Teie elukohariik:'
+      '#size': 1
+      '#required': true
+    age:
+      '#type': number
+      '#title': 'Teie praegune vanus:'
+      '#required': true
+      '#min': 16
+      '#max': 99
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': '1.1. Mis sektoris töötate?'
+      '#multiple': 2
+      '#options':
+        Valitsusasutused: Valitsusasutused
+        'Akadeemiline sektor': 'Akadeemiline sektor'
+        'Kutseorganisatsioon või erialaliit': 'Kutseorganisatsioon või erialaliit'
+        'Mittetulundusühing (MTÜ)': 'Mittetulundusühing (MTÜ)'
+      '#other__option_label': Muu
+      '#other__placeholder': 'palun täpsustage:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': 'Kemikaalidest tulenevad ohud/riskid, millest teavitate, on seotud järgmisega: (valige kõik sobivad variandid)'
+      '#options':
+        'Toit (toiduohutus)': 'Toit (toiduohutus)'
+        'Keskkond (pinnas, õhk, vesi jne)': 'Keskkond (pinnas, õhk, vesi jne)'
+        Töötervishoid: Töötervishoid
+        'Kemikaaliohutus (üldiselt)': 'Kemikaaliohutus (üldiselt)'
+      '#other__option_label': Muu
+      '#other__placeholder': 'palun täpsustage:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': '1.2. Mitu aastat on teil riskidest teavitamise kogemust?'
+      '#options':
+        'Alla kahe aasta': 'Alla kahe aasta'
+        "2–5\_aastat": "2–5\_aastat"
+        "6–10\_aastat": "6–10\_aastat"
+        "11–15\_aastat": "11–15\_aastat"
+        'Üle 15 aasta': 'Üle 15 aasta'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': '1.3. Kui tihti tegelete riskikommunikatsiooniga?'
+      '#options':
+        'Iga päev': 'Iga päev'
+        'Iga nädal': 'Iga nädal'
+        'Iga kuu': 'Iga kuu'
+        'Iga paari kuu tagant': 'Iga paari kuu tagant'
+        'Iga aasta': 'Iga aasta'
+        'Mitte kunagi': 'Mitte kunagi'
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': '1.4. Kes on peamine sihtrühm, kellele oma teavituse suunate?'
+      '#options':
+        Üldsus: Üldsus
+      '#other__option_label': Sihtrühm
+      '#other__placeholder': 'palun täpsustage:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': '1.5. Milline on teie erialane taust või valdkond? (Valige kõik sobivad variandid)'
+      '#multiple': 2
+      '#options':
+        Keemiainsener/keemik/toksikoloog: Keemiainsener/keemik/toksikoloog
+        Toiduteadlane/tehnoloog/mikrobioloog: Toiduteadlane/tehnoloog/mikrobioloog
+        'Rahvatervise spetsialist': 'Rahvatervise spetsialist'
+        Toitumisspetsialist: Toitumisspetsialist
+        'Keskkonna- ja põllumajandusteadlane': 'Keskkonna- ja põllumajandusteadlane'
+        Kommunikatsiooniekspert/sotsiaalteadlane: Kommunikatsiooniekspert/sotsiaalteadlane
+      '#other__option_label': Muu
+      '#other__placeholder': 'palun täpsustage:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': '1.6. Kui tihti osalete kommunikatsioonikoolitustel (nt koolitus kommunikatsiooniekspertidelt, külaskäigud muudesse teabetalitustesse, seminaridel/veebiseminaridel/kursustel osalemine jne)?'
+      '#options':
+        'Mitte kunagi': 'Mitte kunagi'
+        'Perioodiliselt (nt iga 2–5 aasta tagant)': 'Perioodiliselt (nt iga 2–5 aasta tagant)'
+        'Sageli (vähemalt kord aastas)': 'Sageli (vähemalt kord aastas)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': '1.7. Kui rahul olite teile pakutud kommunikatsioonikoolitusega?'
+      '#options':
+        'Ei olnud üldse rahul': 'Ei olnud üldse rahul'
+        'Pigem rahul': 'Pigem rahul'
+        'Olin üsna rahul': 'Olin üsna rahul'
+        'Väga rahul': 'Väga rahul'
+        'Täiesti rahul': 'Täiesti rahul'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': 'Mitte kunagi'
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': '1.8. Kas teie arvates on kommunikatsioonikoolitus teie praegusel ametikohal vajalik?'
+      '#options':
+        Jah: Jah
+        Ei: Ei
+        "Ei tea\_/\_ei soovi vastata": "Ei tea\_/\_ei soovi vastata"
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': '2. osa: riskikommunikatsiooni kogemus'
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': '2.1. Milliseid raskusi kogete riskidest teavitamise käigus? (Valige kõik sobivad variandid)'
+      '#options':
+        'Piisavate teadusandmete puudumine (kas ohu või konkreetse aine tekitatava kahju tõenäosuse kohta)': 'Piisavate teadusandmete puudumine (kas ohu või konkreetse aine tekitatava kahju tõenäosuse kohta)'
+        'Kolleegide toetuse puudumine / ebapiisavad inimressursid riskikommunikatsiooniks': 'Kolleegide toetuse puudumine / ebapiisavad inimressursid riskikommunikatsiooniks'
+        'Raskused koostöös kemikaaliohutuse või riskihindamise ekspertidega': 'Raskused koostöös kemikaaliohutuse või riskihindamise ekspertidega'
+        'Ebaselge rollide jaotus': 'Ebaselge rollide jaotus'
+        'Ebaselge kohustuste jaotus': 'Ebaselge kohustuste jaotus'
+        'Riskikommunikatsiooniks eraldatud eelarve puudumine': 'Riskikommunikatsiooniks eraldatud eelarve puudumine'
+        'Riskijuhtide sekkumine seoses sellega, millal ja millest teatatakse': 'Riskijuhtide sekkumine seoses sellega, millal ja millest teatatakse'
+      '#other__option_label': Muu
+      '#other__placeholder': 'palun täpsustage:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': '2.2 Kas teil on kasutusel mõõdikuid, mis näitavad sõnumi jõudmist sihtrühmani?'
+      '#options':
+        Jah: Jah
+        Ei: Ei
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': '2.3. Kui vastasite eelmisele küsimusele „Jah“, siis mis mõõdikuuid kasutate?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: Jah
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': '2.4. Kas hindate iga kord, milline mõju oli kemikaaliga seotud ohust või riskist teavitamisel? (Kuidas reageeris avalikkus?)'
+      '#options':
+        Jah: Jah
+        Ei: Ei
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': '2.5.Kui vastasite eelmisele küsimusele „Jah“, siis kuidas mõju hindate sihtrühmale?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: Jah
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': '17. How much do you believe you influence the target audience?'
+      '#options':
+        'No influence at all': 'No influence at all'
+        'Little influence': 'Little influence'
+        'Medium Influence': 'Medium Influence'
+        'Considerable Influence': 'Considerable Influence'
+        'High influence': 'High influence'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': '18. In regard to the previous question, on what do you base your answer? (Choose all that apply)'
+      '#options':
+        'Reactions from the media (TV, radio, press)': 'Reactions from the media (TV, radio, press)'
+        'Publication / posts on internet sites, personal blogs, social media': 'Publication / posts on internet sites, personal blogs, social media'
+        'Monitoring with a questionnaire-based consumer survey': 'Monitoring with a questionnaire-based consumer survey'
+        ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)': ' Direct feedback through personal communication (e.g., conversations, phone calls, emails, or messages)'
+      '#other__option_label': Other
+      '#other__placeholder': 'Please specify'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': '19. When communicating a chemical hazard/ risk, do you usually...?'
+      '#options':
+        ' Create your own message': ' Create your own message'
+        'Transmit the message exactly as provided by the risk assessors': 'Transmit the message exactly as provided by the risk assessors'
+        ' Adapt or reframe messages from other sources': ' Adapt or reframe messages from other sources'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': '20. Have you ever personally experienced a health effect from exposure to a chemical hazard (e.g. contaminated food, cleaning products, pesticides)?'
+      '#options':
+        'Yes': 'Yes'
+        'No': 'No'
+        'I do not know': 'I do not know'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': '21. If yes, did this experience affect the way you communicate or think about that hazard?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: 'Yes'
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "3.\tosa: Riskikommunikatsiooni arendamine"
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': "3.1.\tKui oluline on sihtrühmadele riskidest rääkimisel järgmiste aspektide rõhutamine?"
+      '#required': true
+      '#questions':
+        'Riski visuaalne illustreerimine graafikute, diagrammide, piltide ja kaartide abil': 'Riski visuaalne illustreerimine graafikute, diagrammide, piltide ja kaartide abil'
+        'Eri ohtude võrdlemine tõenäosuse järgi': 'Eri ohtude võrdlemine tõenäosuse järgi'
+        'Kõigi riskiga seotud määramatuste kirjeldus': 'Kõigi riskiga seotud määramatuste kirjeldus'
+        'Arvulised piirväärtused (nt konkreetse kemikaali aktsepteeritav  päevadoos arvudes)': 'Arvulised piirväärtused (nt konkreetse kemikaali aktsepteeritav  päevadoos arvudes)'
+        'Erinevatele inimrühmadele avalduvate  riskide kirjeldus (nt riski erinevus erinevatele ametirühmades)': 'Erinevatele inimrühmadele avalduvate  riskide kirjeldus (nt riski erinevus erinevatele ametirühmades)'
+        'Teave pikaajalise ja lühiajalise kokkupuute erinevuste kohta': 'Teave pikaajalise ja lühiajalise kokkupuute erinevuste kohta'
+        'Riski alahindamine kohta üldsuse poolt (nt kui riskidest teavitajal on teada, et üldsus ei pea teatavaid kemikaale nii ohtlikuks': 'Riski alahindamine kohta üldsuse poolt (nt kui riskidest teavitajal on teada, et üldsus ei pea teatavaid kemikaale nii ohtlikuks, kui nad tegelikult on)'
+        'Riski ülehindamise üldsuse poolt (nt kui riskidest teavitajal on teada, et üldsus peab teatavaid kemikaale ohtlikumaks, kui nad ': 'Riski ülehindamise üldsuse poolt (nt kui riskidest teavitajal on teada, et üldsus peab teatavaid kemikaale ohtlikumaks, kui nad tegelikult on)'
+        'Ohtu põhjustava kemikaalidega kokkupuute vältimise strateegiate kirjeldus': 'Ohtu põhjustava kemikaalidega kokkupuute vältimise strateegiate kirjeldus'
+      '#answers':
+        'Pole üldse oluline': 'Pole üldse oluline'
+        'Võrdlemisi oluline': 'Võrdlemisi oluline'
+        'Mõõdukalt oluline': 'Mõõdukalt oluline'
+        'Üsna oluline': 'Üsna oluline'
+        'Väga oluline': 'Väga oluline'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': "3.2\tKui olulised on teie arvates riskikommunikatsiooni järgmised usaldusaspektid sihtrühma riskitaju seisukohast?"
+      '#required': true
+      '#questions':
+        'Sihtrühma usaldus riskist teavitava eksperdi vastu': 'Sihtrühma usaldus riskist teavitava eksperdi vastu'
+        'Sihtrühma usaldus riiklike ja Euroopa institutsioonide ning ametiasutuste vastu': 'Sihtrühma usaldus riiklike ja Euroopa institutsioonide ning ametiasutuste vastu'
+        'Sihtrühma usaldus teadusandmete vastu': 'Sihtrühma usaldus teadusandmete vastu'
+      '#answers':
+        'Pole üldse olulised': 'Pole üldse olulised'
+        'Võrdlemisi olulised': 'Võrdlemisi olulised'
+        'Mõõdukalt olulised': 'Mõõdukalt olulised'
+        'Üsna olulised': 'Üsna olulised'
+        'Väga olulised': 'Väga olulised'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': "3.3.\tHinnake palun järgmisi riskikommunikatsiooni väiteid, märkides, mil määral nendega nõustute või ei nõustu"
+      '#required': true
+      '#questions':
+        'Riskikommunikatsioonil on oluline eristada ohtu ja riski.': 'Riskikommunikatsioonil on oluline eristada ohtu ja riski.'
+        'Riskikommunikatsiooni ei tohiks mõjutada üldsuse riskitaju.': 'Riskikommunikatsiooni ei tohiks mõjutada üldsuse riskitaju.'
+        'Riskikommunikatsiooni aluspõhimõtted (nt objektiivsus, erapooletus) on sidusad kõigis sektorites (nt keemilised ohud, nakkushaig': 'Riskikommunikatsiooni aluspõhimõtted (nt objektiivsus, erapooletus) on sidusad kõigis sektorites (nt keemilised ohud, nakkushaigused).'
+        'Kõigi riskide ja ohtudega seotud määramatuste kirjeldamine tekitab inimestes segadust.': 'Kõigi riskide ja ohtudega seotud määramatuste kirjeldamine tekitab inimestes segadust.'
+        'Riskikommunikatsioon peaks toimuma koostöös asjaomaste sidusrühmadega.': 'Riskikommunikatsioon peaks toimuma koostöös asjaomaste sidusrühmadega.'
+        'Uudistekanalid on rohkem huvitatud kriisikommunikatsioonist, kus riski esitlemine on sageli liialdatud.': 'Uudistekanalid on rohkem huvitatud kriisikommunikatsioonist, kus riski esitlemine on sageli liialdatud.'
+      '#answers':
+        'Ei nõustu üldse': 'Ei nõustu üldse'
+        'Ei nõustu osaliselt': 'Ei nõustu osaliselt'
+        'Seisukoht puudub': 'Seisukoht puudub'
+        'Nõustun osaliselt': 'Nõustun osaliselt'
+        'Nõustun täielikult': 'Nõustun täielikult'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': "4.\tosa: riskidest teavitaja roll"
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': "4.1.\tHinnake palun järgmisi väiteid riskitaju kohta, märkides, mil määral nendega nõustute või ei nõustu."
+      '#required': true
+      '#questions':
+        'Inimeste riskitaju hõlmab nende uskumusi ja hoiakuid ning sõltub neist.': 'Inimeste riskitaju hõlmab nende uskumusi ja hoiakuid ning sõltub neist.'
+        'Riskitaju ei ole mõjutatud inimeste hinnangutest ja tunnetest (isiklik kogemus).': 'Riskitaju ei ole mõjutatud inimeste hinnangutest ja tunnetest (isiklik kogemus).'
+        'Riskitaju peegeldab inimeste laiemat kultuurilist ja sotsiaalset suhtumist ohtudesse ja nendega  kaasnevatesse hüvedesse .': 'Riskitaju peegeldab inimeste laiemat kultuurilist ja sotsiaalset suhtumist ohtudesse ja nendega  kaasnevatesse hüvedesse .'
+        'Riskikommunikatsioon peaks põhinema riskihindamiste tulemustel, kuid arvestada tuleks ka tavainimeste arusaama ohust ja selle tä': 'Riskikommunikatsioon peaks põhinema riskihindamiste tulemustel, kuid arvestada tuleks ka tavainimeste arusaama ohust ja selle tähtsusest.'
+        'Inimesed, kes on varem kogenud ohuintsidenti, kalduvad arvama, et sellise olukorraga uuesti kokku puutuda on tõenäolisem, võrrel': 'Inimesed, kes on varem kogenud ohuintsidenti, kalduvad arvama, et sellise olukorraga uuesti kokku puutuda on tõenäolisem, võrreldes inimestega, kes pole seda ohtu kunagi kogenud.'
+        'Kui inimesed kuulevad mingist ohust esimest korda, on neil tavaliselt tunne, et uus oht on tõenäolisem kui muud hästi tuntud ohu': 'Kui inimesed kuulevad mingist ohust esimest korda, on neil tavaliselt tunne, et uus oht on tõenäolisem kui muud hästi tuntud ohud.'
+        'Mida täpsemaid teadmisi inimesed ohu kohta omandavad, seda vähem tuginevad nad selle ohuga seotud riski suhtes intuitsioonile.': 'Mida täpsemaid teadmisi inimesed ohu kohta omandavad, seda vähem tuginevad nad selle ohuga seotud riski suhtes intuitsioonile.'
+        'Usaldus riskidest teavitaja vastu on olulisem kui teave ise.': 'Usaldus riskidest teavitaja vastu on olulisem kui teave ise.'
+      '#answers':
+        'Ei nõustu üldse': 'Ei nõustu üldse'
+        'Ei nõustu osaliselt': 'Ei nõustu osaliselt'
+        'Seisukoht puudub': 'Seisukoht puudub'
+        'Nõustun osaliselt': 'Nõustun osaliselt'
+        'Nõustun täielikult': 'Nõustun täielikult'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': "5.\tosa: traditsiooniline meedia ja sotsiaalmeedia"
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': '5.1. Millist kanalit riskikommunikatsiooniks eelistate? Palun järjestage kanalid vastavalt oma eelistustele, lohistades need soovitud järjekorda nii, et kõige eelistatum kanal oleks üleval ja kõige vähem eelistatum all.'
+      '#options':
+        Uudiskiri: Uudiskiri
+        'Artiklid ajalehtedes ja ajakirjades': 'Artiklid ajalehtedes ja ajakirjades'
+        Televisioon: Televisioon
+        Raadio: Raadio
+        Sotsiaalmeedia: Sotsiaalmeedia
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': '5.2. Millist kanalit eelistaksite kasutada kriisikommunikatsiooniks? Palun järjestage kanalid vastavalt oma eelistustele, lohistades need soovitud järjekorda nii, et kõige eelistatum kanal oleks üleval ja kõige vähem eelistatum all.'
+      '#options':
+        Pressiteade: Pressiteade
+        'Artiklid ajalehtedes ja ajakirjades': 'Artiklid ajalehtedes ja ajakirjades'
+        Televisioon: Televisioon
+        Raadio: Raadio
+        Sotsiaalmeedia: Sotsiaalmeedia
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': "5.3\tKas kasutate sotsiaalmeediat riskikommunikatsiooniks?"
+      '#options':
+        Jah: Jah
+        Ei: Ei
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': '5.4. Millist sotsiaalmeediakanalit eelistate riskikommunikatsioonikss? (Valige kõik sobivad variandid)'
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': 'Mitte ükski'
+      '#options_none_text': 'Mitte ükski'
+      '#other__option_label': Muu
+      '#other__placeholder': 'palun täpsustage:'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: Jah
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': "5.5.\tMis sotsiaalmeediaplatvormi kasutaksite kriisikommunikatsiooniks? (Valige kõik sobivad variandid)"
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': 'Mitte ükski'
+      '#options_none_text': 'Mitte ükski'
+      '#other__option_label': Muu
+      '#other__placeholder': 'palun täpsustage:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': "5.6.\tKas kasutate mingit sotsiaalmeedia kuulamise tööriista (tarkvara, mis võimaldab kasutajatel jälgida ja analüüsida vestlusi sotsiaalmeedias)?"
+      '#options':
+        Jah: Jah
+        Ei: Ei
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': "5.7.\tKui vastasite eelmisele küsimusele „Jah“, siis täpsustage millist tööriista kasutate s?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: Jah
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': "5.8.\tKuidas reageerite tavaliselt sotsiaalmeedias levivale valeteabele või kuulujuttudele, mis puudutavad konkreetseid kemikaalidega seotud ohte?"
+      '#options':
+        'Ei reageeri. Kui ma sellele tähelepanu ei pööra, laheneb olukord ise.': 'Ei reageeri. Kui ma sellele tähelepanu ei pööra, laheneb olukord ise.'
+        'Avaldan korrektse teabe ja levitan seda.': 'Avaldan korrektse teabe ja levitan seda.'
+        'Vajadusel võtan õiguslikke meetmeid.': 'Vajadusel võtan õiguslikke meetmeid.'
+      '#other__option_label': Muu
+      '#other__placeholder': 'palun täpsustage:'
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': "6.\tosa: Keelekasutus"
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': "6.1.\tOletame, et sotsiaalmeedias levib valeteave või kuulujutt suitsetamise ja kaadmiumiga seotud ohtude kohta. Millist järgmistest väidetest eelistaksite kasutada?"
+      '#options':
+        'A: Sigarettide suitsetamisel on kaadmiumi imendumine kopsudes 10–50%. Suitsetajatel on vere kaadmiumikontsentratsioon u 1,5 μg/l ja neerukoore kaadmikontsentratsioon u 20–30 μg/g märgkaalu kohta. Mittesuitsetajatel on kaadmiumisisaldus veres 4–5 korda väiksem ja kaadmiumisisaldus neerukoores kaks korda väiksem. On tõestatud, et kaadmium põhjustab kopsuvähki.': 'A: Sigarettide suitsetamisel on kaadmiumi imendumine kopsudes 10–50%. Suitsetajatel on vere kaadmiumikontsentratsioon u 1,5 μg/l ja neerukoore kaadmikontsentratsioon u 20–30 μg/g märgkaalu kohta. Mittesuitsetajatel on kaadmiumisisaldus veres 4–5 korda väiksem ja kaadmiumisisaldus neerukoores kaks korda väiksem. On tõestatud, et kaadmium põhjustab kopsuvähki.'
+        'B: Sigarettide suitsetamisel on kaadmiumi imendumine kopsudes 10–50%, samas kui seedetraktis imendumine on vaid mõni protsent. Suitsetajatel on mittesuitsetajatest u 4–5 korda kõrgem kaadmiumikontsentratsioon veres (u 1,5 μg/l) ja kaks korda suurem kaadmiumisisaldus neerukoores (u 20-30 μg/g märgkaalu kohta). On tõestatud, et kaadmium põhjustab kopsuvähki, kuid on vähe tõendeid, et see põhjustab neeru-, maksa- ja eesnäärmevähki.': 'B: Sigarettide suitsetamisel on kaadmiumi imendumine kopsudes 10–50%, samas kui seedetraktis imendumine on vaid mõni protsent. Suitsetajatel on mittesuitsetajatest u 4–5 korda kõrgem kaadmiumikontsentratsioon veres (u 1,5 μg/l) ja kaks korda suurem kaadmiumisisaldus neerukoores (u 20-30 μg/g märgkaalu kohta). On tõestatud, et kaadmium põhjustab kopsuvähki, kuid on vähe tõendeid, et see põhjustab neeru-, maksa- ja eesnäärmevähki.'
+        'C: Sigarettide suitsetamisel on kaadmiumi imendumine kopsudes äärmiselt suur, samas kui seedetraktis imendumine on väiksem. Suitsetajatel on oluliselt kõrgem kaadmiumisisaldus veres ja neerukoores. Kaadmium on kantserogeenne.': 'C: Sigarettide suitsetamisel on kaadmiumi imendumine kopsudes äärmiselt suur, samas kui seedetraktis imendumine on väiksem. Suitsetajatel on oluliselt kõrgem kaadmiumisisaldus veres ja neerukoores. Kaadmium on kantserogeenne.'
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': "1.22.\tJärgmises teadusväites märgitakse: „Akrüülamiid on kemikaal, mis tekib looduslikult tärkliserikastes toiduainetes, kui neid kuumutatakse kõrgel temperatuuril (üle 120 °C). Kui toidus esineb akrüülamiidi, võib see suurendada igas vanuses tarbijate vähki haigestumise riski. Õnneks on olemas viise, kuidas vähendada akrüülamiidi sisaldust toidus“. Millise väite valiksite, kui peaksite tarbijatele andma nõu akrüülamiidi sisalduse vähendamiseks kodus toiduvalmistamisel?"
+      '#options':
+        'Tärkliserikaste toitude praadimisel, küpsetamisel, röstimisel või grillimisel püüdke saavutada kuldkollane (või heledam) värvus ning tervise huvides vältige toidu liigset kuumutamist.': 'Tärkliserikaste toitude praadimisel, küpsetamisel, röstimisel või grillimisel püüdke saavutada kuldkollane (või heledam) värvus ning tervise huvides vältige toidu liigset kuumutamist.'
+        'Pikemal küpsetamisel ja kõrgemal temperatuuril tekib rohkem akrüülamiidi, mis võib inimestel suurendada vähiriski, kui lühema küpsetusaja ja madalama temperatuuri korral.': 'Pikemal küpsetamisel ja kõrgemal temperatuuril tekib rohkem akrüülamiidi, mis võib inimestel suurendada vähiriski, kui lühema küpsetusaja ja madalama temperatuuri korral.'
+      '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Esita
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: Lõpp
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: 'Eelmine leht'
+  wizard_next_button_label: 'Järgmine leht'
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p>Täname, teie vastused on esitatud.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
