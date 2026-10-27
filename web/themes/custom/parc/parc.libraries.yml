@@ -647,6 +647,11 @@ n--video:
   css:
     component:
       css/components/content/video/video.css: {}
+  js:
+    templates/components/content/video/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 
 aos:
   css:

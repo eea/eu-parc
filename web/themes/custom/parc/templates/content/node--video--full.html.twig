@@ -58,7 +58,16 @@
       {% endif %}
 
       <div class="video-full__player">
-        {{ content.field_video }}
+        {% if embed_url %}
+          <button type="button" class="video-full__cover" data-src="{{ embed_url }}" aria-label="{{ 'Play video: @title'|t({'@title': label|render|striptags|trim}) }}">
+            {{ cover }}
+            <span class="video-full__play" aria-hidden="true">
+              <svg width="30" height="34" viewBox="0 0 30 34"><path d="M0 0v34l30-17z" fill="#fff"/></svg>
+            </span>
+          </button>
+        {% else %}
+          {{ content.field_video }}
+        {% endif %}
       </div>
 
       {% if next_url %}
@@ -71,9 +80,6 @@
     <div class="video-full__info">
       {% if node.field_video_type.value %}
         <div class="video-full__type">{{ node.field_video_type.value }}</div>
-      {% endif %}
-      {% if summary %}
-        <p class="video-full__summary">{{ summary }}</p>
       {% endif %}
       <h2 class="video-full__title">{{ label }}</h2>
       {% if content.body|render is not empty %}

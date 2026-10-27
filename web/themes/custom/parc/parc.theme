@@ -1462,7 +1462,20 @@ function parc_preprocess_node__video__full(array &$variables) {
     ];
   }
 
-  $variables['summary'] = $node->get('body')->summary;
+  // Show a cover with a play button and load the player once it is clicked.
+  $variables['embed_url'] = _parc_video_embed_url($node);
+  if ($variables['embed_url']) {
+    $cover_field = $node->get('field_media_image')->isEmpty() ? 'field_video' : 'field_media_image';
+    $variables['cover'] = $node->get($cover_field)->view([
+      'type' => 'media_thumbnail',
+      'label' => 'hidden',
+      'settings' => [
+        'image_style' => 'thumbnail_16_9',
+        'image_link' => '',
+        'image_loading' => ['attribute' => 'eager'],
+      ],
+    ]);
+  }
 
   if (empty($playlist)) {
     return;
@@ -1480,6 +1493,30 @@ function parc_preprocess_node__video__full(array &$variables) {
     '#display_id' => 'playlist_carousel',
     '#arguments' => [$playlist, $node->id()],
   ];
+}
+
+/**
+ * Gets the provider's player URL of a remote video, set to autoplay.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The video.
+ *
+ * @return string|null
+ *   The player URL, or NULL if the video is not a remote video.
+ */
+function _parc_video_embed_url(NodeInterface $node) {
+  $media = $node->get('field_video')->entity;
+  if (!$media instanceof MediaInterface || $media->bundle() != 'remote_video') {
+    return NULL;
+  }
+
+  $html = $media->getSource()->getMetadata($media, 'html');
+  if (!$html || !preg_match('/<iframe[^>]+src="([^"]+)"/', $html, $matches)) {
+    return NULL;
+  }
+
+  $url = Html::decodeEntities($matches[1]);
+  return $url . (str_contains($url, '?') ? '&' : '?') . 'autoplay=1';
 }
 
 /**
