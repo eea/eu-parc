@@ -11,6 +11,7 @@ use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Render\HtmlResponse;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\parc_core\IndicatorChartPluginManager;
 use Drupal\parc_core\ParcEventsManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -72,7 +73,8 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
       $container->get('parc_core.events_manager'),
       $container->get('request_stack'),
       $container->get('entity_type.manager'),
-      $container->get('renderer')
+      $container->get('renderer'),
+      $container->get('plugin.manager.indicator_chart')
     );
   }
 
@@ -82,6 +84,13 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    * @var \Drupal\Core\Render\RendererInterface
    */
   protected $renderer;
+
+  /**
+   * The indicator chart plugin manager.
+   *
+   * @var \Drupal\parc_core\IndicatorChartPluginManager
+   */
+  protected $chartPluginManager;
 
   /**
    * Constructs a ParcController object.
@@ -96,13 +105,16 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
    *   The entity type manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer service.
+   * @param \Drupal\parc_core\IndicatorChartPluginManager $chart_plugin_manager
+   *   The indicator chart plugin manager.
    */
-  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager, RequestStack $request_stack, EntityTypeManagerInterface $entity_type_manager, \Drupal\Core\Render\RendererInterface $renderer) {
+  public function __construct(ThemeExtensionList $theme_extension_list, ParcEventsManager $events_manager, RequestStack $request_stack, EntityTypeManagerInterface $entity_type_manager, \Drupal\Core\Render\RendererInterface $renderer, IndicatorChartPluginManager $chart_plugin_manager) {
     $this->themeExtensionList = $theme_extension_list;
     $this->eventsManager = $events_manager;
     $this->request = $request_stack->getCurrentRequest();
     $this->entityTypeManager = $entity_type_manager;
     $this->renderer = $renderer;
+    $this->chartPluginManager = $chart_plugin_manager;
   }
 
 
@@ -200,7 +212,13 @@ class ParcController extends ControllerBase implements ContainerInjectionInterfa
     $node_id = intval($node_id);
     if($node_id != 0){
       $node = Node::load($node_id);
-      $node_data = $node->get('field_indicator_data')->getValue();
+      $plugin = $node->hasField('field_indicator_id') && $this->chartPluginManager->hasDefinition($node->get('field_indicator_id')->value)
+        ? $this->chartPluginManager->createInstance($node->get('field_indicator_id')->value)
+        : NULL;
+      // Plugins that compute their chart from content export that content.
+      $node_data = $plugin && method_exists($plugin, 'getExportData')
+        ? [['value' => $plugin->getExportData()]]
+        : $node->get('field_indicator_data')->getValue();
     }
     else{
       $query = $this->entityTypeManager()->getStorage('node')->getQuery()
