@@ -114,7 +114,7 @@
   }
 
   &__title,
-  &__summary {
+  &__body {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -128,7 +128,7 @@
     font-size: 18px;
   }
 
-  &__summary {
+  &__body {
     font-size: 14px;
     margin-top: 19px;
   }
@@ -295,6 +295,92 @@
     }
   }
 
+  &__cover {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: #0a0a0a;
+    cursor: pointer;
+
+    > * {
+      grid-area: 1 / 1;
+    }
+
+    .field,
+    .field__item,
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      object-fit: cover;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.5));
+      transition: opacity 0.25s;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: -4px;
+    }
+
+    &:hover,
+    &:focus-visible {
+      &::before {
+        opacity: 0.55;
+      }
+
+      .video-full__play {
+        transform: scale(1.06);
+        background: rgba(10, 10, 10, 0.78);
+      }
+    }
+  }
+
+  &__play {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.55);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, background 0.2s;
+
+    svg {
+      margin-left: 5px;
+    }
+
+    @media (--downMd) {
+      width: 64px;
+      height: 64px;
+
+      svg {
+        width: 22px;
+        height: 25px;
+      }
+    }
+  }
+
   &__nav {
     display: flex;
     justify-content: center;
@@ -336,13 +422,8 @@
     margin-bottom: 8px;
   }
 
-  &__summary {
-    margin: 0;
-    font-weight: 700;
-  }
-
   &__title {
-    margin: 1lh 0;
+    margin: 20px 0;
     font-size: 26px;
     font-weight: var(--fw-medium);
     line-height: normal;

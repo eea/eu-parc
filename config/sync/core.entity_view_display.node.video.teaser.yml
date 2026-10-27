@@ -14,12 +14,37 @@ dependencies:
     - node.type.video
   module:
     - media
+    - smart_trim
     - user
 id: node.video.teaser
 targetEntityType: node
 bundle: video
 mode: teaser
 content:
+  body:
+    type: smart_trim
+    label: hidden
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: '...'
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_media_image:
     type: media_thumbnail
     label: hidden
@@ -46,7 +71,6 @@ content:
     region: content
 hidden:
   addtoany: true
-  body: true
   field_playlist: true
   field_video: true
   links: true

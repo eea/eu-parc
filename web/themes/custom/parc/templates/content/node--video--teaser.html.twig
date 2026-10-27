@@ -29,8 +29,8 @@
         <div class="video-teaser__type">{{ node.field_video_type.value }}</div>
       {% endif %}
       <p class="video-teaser__title">{{ label }}</p>
-      {% if node.body.summary %}
-        <p class="video-teaser__summary">{{ node.body.summary }}</p>
+      {% if content.body|render is not empty %}
+        <div class="video-teaser__body">{{ content.body }}</div>
       {% endif %}
     </div>
   </a>
