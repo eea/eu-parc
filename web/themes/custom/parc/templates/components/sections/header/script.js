@@ -9,15 +9,29 @@ const navbar = header.querySelector(".navbar")
 let pageTitleEl = document.querySelector("main .svg-title")
 const titleSwapOffset = navbar ? navbar.offsetHeight : header.offsetHeight
 
-header.style.setProperty('--header-height', header.offsetHeight + 'px');
+let headerHeight = header.offsetHeight
+header.style.setProperty('--header-height', headerHeight + 'px');
+
+window.addEventListener('resize', function() {
+  if (!header.classList.contains("h-sticky")) {
+    headerHeight = header.offsetHeight
+  }
+});
 
 window.addEventListener('scroll', function() {
   scrollpos = window.scrollY;
 
-  if (scrollpos >= 50) {
-    header.classList.add(...["h-sticky", "shadow-sm"])
-  } else {
-    header.classList.remove(...["h-sticky", "shadow-sm"])
+  document.documentElement.style.overflowAnchor = scrollpos < 300 ? 'none' : ''
+
+  const isSticky = header.classList.contains("h-sticky")
+  if (scrollpos >= 50 !== isSticky) {
+    if (isSticky) {
+      header.classList.remove(...["h-sticky", "shadow-sm"])
+      header.style.marginBottom = ''
+    } else {
+      header.classList.add(...["h-sticky", "shadow-sm"])
+      header.style.marginBottom = Math.max(0, headerHeight - header.offsetHeight) + 'px'
+    }
   }
 
   if (pageTitleEl && !pageTitleEl.isConnected) {

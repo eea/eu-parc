@@ -443,7 +443,7 @@ function parc_preprocess_page(array &$variables) {
   $sticky_term = \Drupal::routeMatch()->getParameter('taxonomy_term');
 
   // Individual items under those sections don't have a hero title either.
-  $excluded_node_bundles = ['article', 'events', 'project'];
+  $excluded_node_bundles = ['article', 'events', 'project', 'basic_page', 'page'];
   $is_news_or_front = \Drupal::service('path.matcher')->isFrontPage()
     || in_array($route_name, $excluded_routes, TRUE)
     || ($node instanceof NodeInterface && in_array($node->bundle(), $excluded_node_bundles, TRUE))

@@ -18,25 +18,77 @@ body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-b
   position: relative;
 }
 
-/* Basic pages: header/main menu and the page title are no longer sticky. */
 body.page-node-type-basic-page,
 body.page-node-type-page {
   header#header {
-    position: static !important;
+    position: sticky !important;
+    top: var(--drupal-displace-offset-top, 0px);
   }
 
   &.page--banner-overlay header#header:has(+ main :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img) {
-    position: relative !important;
-    top: auto;
-    background-color: transparent;
+    background-color: var(--banner-overlay-bg);
 
-    & + main {
-      margin-top: calc(-1 * var(--banner-overlay-header-height, 96px));
+    @media (--md) {
+      background-color: transparent;
+
+      & + main {
+        margin-top: calc(-1 * var(--banner-overlay-header-height, 96px));
+      }
+    }
+
+    &.h-sticky {
+      background-color: var(--c-white);
+    }
+  }
+}
+
+:root {
+  --banner-overlay-bg: #F9F9F9;
+}
+
+body.page--banner-overlay {
+  .layout__region--content:has(> :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img) {
+    background-color: var(--banner-overlay-bg);
+    padding-bottom: 0;
+  }
+
+  :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+
+    @media (--md) {
+      min-height: var(--banner-min-height, 240px);
     }
   }
 
-  .header-sticky-title {
-    display: none !important;
+  :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner):has(img) + :is(.block-field-blocknodebasic-pagetitle, .block-field-blocknodepagetitle) {
+    position: static;
+    display: block;
+    padding: 16px 0 24px;
+    text-align: center;
+
+    h1 {
+      margin: 0;
+    }
+
+    @media (--md) {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+
+      .svg-title {
+        padding: 0 0 min(5vw, 70px);
+
+        &, > * {
+          --svg-title-size: min(5.2vw, 100px);
+        }
+      }
+    }
   }
 }
 
@@ -115,17 +167,15 @@ header.title-passed.vh {
 
   .navbar {
     min-height: 68px;
+
+    .container-fluid {
+      padding-bottom: 15px;
+    }
   }
 
   @media (--xl) {
     .site-logo {
       --sl-mw: 180px;
-    }
-
-    .region-nav-additional {
-      max-height: 0;
-      opacity: 0;
-      display: none;
     }
   }
 
