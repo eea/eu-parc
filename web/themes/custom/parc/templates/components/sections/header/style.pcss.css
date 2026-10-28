@@ -84,6 +84,10 @@ body.page--banner-overlay {
       .svg-title {
         padding: 0 0 min(5vw, 70px);
 
+        @media (--lg) {
+          padding-bottom: 120px;
+        }
+
         &, > * {
           --svg-title-size: min(5.2vw, 100px);
         }
