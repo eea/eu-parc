@@ -96,10 +96,11 @@ body.page--banner-overlay {
 
       .svg-title {
         margin-top: 0;
-        padding-bottom: calc(var(--banner-title-offset) - var(--svg-title-size) / 2);
+        /* 50px / 100px at full width (1920px), scaled down proportionally. */
+        padding-bottom: min(2.6042vw, 50px);
 
         &, > * {
-          --svg-title-size: min(5.2vw, 100px);
+          --svg-title-size: min(5.2083vw, 100px);
         }
       }
     }
