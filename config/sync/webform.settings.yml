@@ -29,7 +29,7 @@ settings:
   default_form_submit_back: false
   default_form_details_toggle: true
   default_form_file_limit: ''
-  default_form_file_limit_message: "This form's file upload quota of %quota has been exceeded. Please remove some files."
+  default_form_file_limit_message: "<p>This form's file upload quota of %quota has been exceeded. Please remove some files.</p>"
   default_wizard_prev_button_label: '< Previous'
   default_wizard_next_button_label: 'Next >'
   default_wizard_start_label: Start
@@ -169,7 +169,7 @@ html_editor:
 file:
   file_public: false
   file_private_redirect: true
-  file_private_redirect_message: 'Please login to access the uploaded file.'
+  file_private_redirect_message: '<p>Please login to access the uploaded file.</p>'
   default_max_filesize: ''
   default_managed_file_extensions: 'gif jpg jpeg png bmp eps tif pict psd txt rtf html odf pdf doc docx ppt pptx xls xlsx xml avi mov mp3 mp4 ogg wav bz2 dmg gz jar rar sit svg tar zip'
   default_image_file_extensions: 'gif jpg jpeg png'

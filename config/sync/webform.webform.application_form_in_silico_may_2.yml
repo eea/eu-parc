@@ -1,6 +1,6 @@
 uuid: 9784bf19-19c4-4fd1-b6dc-30120525506c
 langcode: en
-status: closed
+status: open
 dependencies: {  }
 weight: 0
 open: null
@@ -431,6 +431,7 @@ settings:
   form_access_denied_message: ''
   form_access_denied_attributes: {  }
   form_file_limit: ''
+  form_file_limit_message: ''
   form_attributes: {  }
   form_method: ''
   form_action: ''
@@ -573,5 +574,43 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
-handlers: {  }
+handlers:
+  email:
+    id: email
+    handler_id: email
+    label: 'Email: Submission confirmation'
+    notes: ''
+    status: true
+    conditions: {  }
+    weight: 0
+    settings:
+      states:
+        - completed
+      to_mail: '[webform_submission:values:e_mail_address:raw]'
+      to_options: {  }
+      bcc_mail: ''
+      bcc_options: {  }
+      cc_mail: mariana.bessa@insa.min-saude.pt
+      cc_options: {  }
+      from_mail: parc.training@insa.min-saude.pt
+      from_options: {  }
+      from_name: ''
+      reply_to: ''
+      return_path: ''
+      sender_mail: parc.training@insa.min-saude.pt
+      sender_name: ''
+      subject: 'PARC | Science to Policy: Submission confirmation'
+      body: '<p>Thank you for applying to the PARC training course on Science to Policy: EU Chemicals Legislation, International Conventions and Regulatory Science. Your application has been successfully received.</p><p>Please do not reply to this automated email. For any enquiries, please contact mariana.bessa@insa.min-saude.pt.&nbsp;</p>'
+      excluded_elements: {  }
+      ignore_access: false
+      exclude_empty: true
+      exclude_empty_checkbox: false
+      exclude_attachments: false
+      html: true
+      attachments: false
+      twig: false
+      theme_name: ''
+      langcode: ''
+      parameters: {  }
+      debug: false
 variants: {  }
