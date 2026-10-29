@@ -2,7 +2,7 @@
   isolation: isolate;
 
   .layout__region--content:has(.block-field-blocknodebasic-pagefield-banner) {
-    background-color: #F9F9F9;
+    background-color: #FAFAFA;
     padding-bottom: 0;
 
     &:has(.block-field-blocknodebasic-pagefield-banner img) {
