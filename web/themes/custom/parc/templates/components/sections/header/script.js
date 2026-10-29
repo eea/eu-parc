@@ -69,7 +69,7 @@ window.addEventListener('scroll', function() {
   updateHeaderOffsets()
 });
 
-updateHeaderOffsets()
+updateHeaderOffsets();
 
 (function ($, Drupal, once) {
   Drupal.behaviors.searchReveal = {
