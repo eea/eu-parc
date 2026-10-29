@@ -22,7 +22,7 @@
       {% if content.first or content.menu %}
         <div class='col-12 col-lg col-menu d-flex flex-column'>
           <div{{region_attributes.menu.addClass('col-menu-sticky','flex-grow-1')}}>
-            <div class="sticky-top">
+            <div class="col-menu-sticky-inner">
               {{ content.menu }}
             </div>
           </div>

@@ -4,19 +4,72 @@
 */
 
 let scrollpos = window.scrollY
+let lastScrollTop = scrollpos
 const header = document.getElementById("header")
+const navbar = header.querySelector(".navbar")
+const stickyTitle = header.querySelector(".header-sticky-title")
+let pageTitleEl = document.querySelector("main .svg-title")
+const titleSwapOffset = navbar ? navbar.offsetHeight : header.offsetHeight
 
-header.style.setProperty('--header-height', header.offsetHeight + 'px');
+function updateHeaderOffsets() {
+  const navbarHeight = navbar ? navbar.offsetHeight : header.offsetHeight
+  const titleVisible = stickyTitle && header.classList.contains("title-passed") && stickyTitle.offsetParent !== null
+  const visible = (header.classList.contains("vh") ? 0 : navbarHeight) + (titleVisible ? stickyTitle.scrollHeight : 0)
+
+  header.style.setProperty('--navbar-height', navbarHeight + 'px')
+  document.documentElement.style.setProperty('--header-visible-height', visible + 'px')
+}
+
+let headerHeight = header.offsetHeight
+header.style.setProperty('--header-height', headerHeight + 'px');
+
+window.addEventListener('resize', function() {
+  if (!header.classList.contains("h-sticky")) {
+    headerHeight = header.offsetHeight
+  }
+  updateHeaderOffsets()
+});
 
 window.addEventListener('scroll', function() {
   scrollpos = window.scrollY;
 
-  if (scrollpos >= 50) {
-    header.classList.add(...["h-sticky", "shadow-sm"])
-  } else {
-    header.classList.remove(...["h-sticky", "shadow-sm"])
+  document.documentElement.style.overflowAnchor = scrollpos < 300 ? 'none' : ''
+
+  const isSticky = header.classList.contains("h-sticky")
+  if (scrollpos >= 50 !== isSticky) {
+    if (isSticky) {
+      header.classList.remove(...["h-sticky", "shadow-sm"])
+      header.style.marginBottom = ''
+    } else {
+      header.classList.add(...["h-sticky", "shadow-sm"])
+      header.style.marginBottom = Math.max(0, headerHeight - header.offsetHeight) + 'px'
+    }
   }
+
+  if (pageTitleEl && !pageTitleEl.isConnected) {
+    pageTitleEl = document.querySelector("main .svg-title")
+  }
+
+  if (pageTitleEl) {
+    if (pageTitleEl.getBoundingClientRect().bottom <= titleSwapOffset) {
+      header.classList.add("title-passed")
+    } else {
+      header.classList.remove("title-passed")
+    }
+  }
+
+  const menuOpen = document.body.classList.contains("overlay-is-navbar-collapse")
+  if (scrollpos > lastScrollTop && scrollpos > 120 && !menuOpen) {
+    header.classList.add("vh")
+  } else if (scrollpos < lastScrollTop || scrollpos <= 120) {
+    header.classList.remove("vh")
+  }
+  lastScrollTop = Math.max(0, scrollpos)
+
+  updateHeaderOffsets()
 });
+
+updateHeaderOffsets();
 
 (function ($, Drupal, once) {
   Drupal.behaviors.searchReveal = {
