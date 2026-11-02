@@ -353,7 +353,11 @@ function parc_preprocess_html(&$variables) {
   // Add node id to the body class.
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof NodeInterface && $node->hasField('field_custom_classes')) {
-    $variables['attributes']['class'][] = $node->get('field_custom_classes')->value;
+    $custom_classes = explode(' ', (string) $node->get('field_custom_classes')->value);
+    if (\Drupal::routeMatch()->getRouteName() !== 'entity.node.canonical') {
+      $custom_classes = array_diff($custom_classes, ['page--banner-overlay']);
+    }
+    $variables['attributes']['class'][] = implode(' ', $custom_classes);
   }
 
   $full_screen = \Drupal::request()->query->get('full_screen');
@@ -424,6 +428,7 @@ function parc_preprocess_page(array &$variables) {
 
   $page_node = \Drupal::routeMatch()->getParameter('node');
   $variables['highlighted_above_header'] = $page_node instanceof NodeInterface
+    && \Drupal::routeMatch()->getRouteName() === 'entity.node.canonical'
     && $page_node->hasField('field_custom_classes')
     && in_array('page--banner-overlay', explode(' ', (string) $page_node->get('field_custom_classes')->value), TRUE);
 
