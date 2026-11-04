@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.publications.field_key_messages
     - field.field.node.publications.field_key_words
     - field.field.node.publications.field_pages
+    - field.field.node.publications.field_pdf_url
     - field.field.node.publications.field_publication_date
     - field.field.node.publications.field_regulatory_message
     - field.field.node.publications.field_seo_keyword
@@ -275,6 +276,7 @@ content:
     region: content
 hidden:
   field_download_link: true
+  field_pdf_url: true
   field_topics: true
   field_updated_date: true
   field_zenodo_id: true

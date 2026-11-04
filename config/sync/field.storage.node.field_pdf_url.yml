@@ -1,0 +1,19 @@
+uuid: f9c05a54-f534-4902-80c4-2c45914744a2
+langcode: en
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_pdf_url
+field_name: field_pdf_url
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

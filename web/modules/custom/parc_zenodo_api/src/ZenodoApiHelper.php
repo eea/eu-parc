@@ -9,6 +9,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
+use Ottosmops\Pdftotext\Extract;
 
 /**
  * The Zenodo API Helper service.
@@ -51,6 +52,13 @@ class ZenodoApiHelper {
   protected $defaultCover;
 
   /**
+   * The PDF text extractor.
+   *
+   * @var \Ottosmops\Pdftotext\Extract
+   */
+  protected $pdfExtractor;
+
+  /**
    * Constructs a ZenodoApiHelper object.
    *
    * @param \GuzzleHttp\ClientInterface $http_client
@@ -67,6 +75,9 @@ class ZenodoApiHelper {
     $this->entityTypeManager = $entity_type_manager;
     $this->config = $config_factory->get('parc_zenodo_api.adminsettings');
     $this->logger = $logger->get('parc_zenodo_api');
+    // PDF text extraction is disabled for now. Extract's constructor throws if
+    // the pdftotext binary is missing.
+    // $this->pdfExtractor = new Extract();
   }
 
   /**
@@ -118,6 +129,41 @@ class ZenodoApiHelper {
   }
 
   /**
+   * Retrieve a single record from Zenodo, waiting out any rate limiting.
+   *
+   * @param string $record_id
+   *   The Zenodo record ID.
+   *
+   * @return array|null
+   *   The record, or NULL if it could not be retrieved.
+   */
+  public function getRecord(string $record_id): ?array {
+    $max_attempts = 5;
+
+    for ($attempt = 1; $attempt <= $max_attempts; $attempt++) {
+      try {
+        $response = $this->httpClient->get('https://zenodo.org/api/records/' . rawurlencode($record_id), [
+          'headers' => ['Authorization' => 'Bearer ' . $this->config->get('token')],
+        ]);
+        return json_decode($response->getBody()->getContents(), TRUE);
+      }
+      catch (RequestException $e) {
+        $response = $e->getResponse();
+        if ($response?->getStatusCode() !== 429 || $attempt === $max_attempts) {
+          $this->logger->warning('Could not retrieve record @id: @message', [
+            '@id' => $record_id,
+            '@message' => $e->getMessage(),
+          ]);
+          return NULL;
+        }
+        sleep((int) $response->getHeaderLine('Retry-After') ?: 60);
+      }
+    }
+
+    return NULL;
+  }
+
+  /**
    * Process all the keywords from an array.
    *
    * @param array $keywords
@@ -152,7 +198,10 @@ class ZenodoApiHelper {
     $keyword_terms = [];
     foreach ($final_keywords as $keyword) {
       $keyword = ucfirst($keyword);
-      $keyword_terms[] = $this->getTermByName($keyword, 'publications');
+      $term = $this->getTermByName($keyword, 'publications');
+      if ($term !== NULL) {
+        $keyword_terms[] = $term;
+      }
     }
     return $keyword_terms;
   }
@@ -197,7 +246,17 @@ class ZenodoApiHelper {
       'name' => $name,
       'vid' => $vid,
     ]);
-    $term->save();
+    try {
+      $term->save();
+    }
+    catch (\Throwable $e) {
+      $this->logger->warning('Could not save taxonomy term "@name" in vocabulary "@vid": @message', [
+        '@name' => $name,
+        '@vid' => $vid,
+        '@message' => $e->getMessage(),
+      ]);
+      return NULL;
+    }
 
     return $term;
   }
@@ -211,13 +270,18 @@ class ZenodoApiHelper {
   public function createPublication(array $deposition) {
     $values = $this->getFieldValues($deposition);
     $values['type'] = 'publications';
+    $values['status'] = 0;
+    $values['field_cover'] = $this->getDefaultCoverImage();
     $node = Node::create($values);
     $node->body->format = 'full_html';
     $node->save();
   }
 
   /**
-   * Get field values from an array of data.
+   * Get the Zenodo-sourced field values from an array of data.
+   *
+   * Editorial values (published status, cover image) are not included, so that
+   * updating an existing publication doesn't overwrite them.
    *
    * @param array $deposition
    *   The data.
@@ -245,6 +309,14 @@ class ZenodoApiHelper {
     if (str_contains($deposition['updated'], '.')) {
       $altered_modified_date = explode('.', $deposition['updated'])[0];
     }
+
+    $recid = (string) ($deposition['recid'] ?? '');
+    $file_name = $deposition['files'][0]['key'] ?? '';
+
+    // PDF text extraction is disabled for now.
+    // $full_text = $this->extractPdfText($recid, $file_name);
+    // $related_dois = $this->extractDoisFromText($full_text);
+
     $values = [
       'title' => !empty($deposition['metadata']['title']) ? $deposition['metadata']['title'] : 'Untitled',
       'body' => [
@@ -264,10 +336,134 @@ class ZenodoApiHelper {
       'field_updated_date' => $deposition['updated'] ? $altered_modified_date : date('Y-m-d\TH:i:s', time()),
       'changed' => $deposition['updated'] ? strtotime($altered_modified_date) : time(),
       'field_zenodo_id' => $deposition['id'] ?: '',
-      'field_cover' => $this->getDefaultCoverImage(),
-      'status' => 0,
+      'field_record_id' => (string) ($deposition['id'] ?? ''),
+      // 'field_full_text' => $full_text,
+      // 'field_related_dois' => array_map(fn($doi) => ['value' => $doi], $related_dois),
+      'field_pdf_url' => $this->getPdfUrl($recid, $file_name),
     ];
     return $values;
+  }
+
+  /**
+   * Build the full URL of a Zenodo PDF file.
+   *
+   * @param string $recid
+   *   The Zenodo record ID.
+   * @param string $file_name
+   *   The file name (e.g. "paper.pdf").
+   *
+   * @return string
+   *   The URL, or empty string if the file is not a PDF.
+   */
+  public function getPdfUrl(string $recid, string $file_name): string {
+    if (!$recid || !$file_name) {
+      return '';
+    }
+
+    if (strtolower(pathinfo($file_name, PATHINFO_EXTENSION)) !== 'pdf') {
+      return '';
+    }
+
+    return 'https://zenodo.org/records/' . $recid . '/files/' . rawurlencode($file_name);
+  }
+
+  /**
+   * Download and extract plain text from a Zenodo PDF file.
+   *
+   * @param string $recid
+   *   The Zenodo record ID.
+   * @param string $file_name
+   *   The file name (e.g. "paper.pdf").
+   *
+   * @return string
+   *   Extracted text, or empty string on failure.
+   */
+  public function extractPdfText(string $recid, string $file_name): string {
+    $url = $this->getPdfUrl($recid, $file_name);
+    if (!$url) {
+      return '';
+    }
+
+    $tmp_pdf = tempnam(sys_get_temp_dir(), 'parc_pdf_');
+    try {
+      $this->httpClient->get($url, ['timeout' => 60, 'sink' => $tmp_pdf]);
+    }
+    catch (\Throwable $e) {
+      @unlink($tmp_pdf);
+      $this->logger->warning('Could not download PDF for recid @recid: @msg', [
+        '@recid' => $recid,
+        '@msg' => $e->getMessage(),
+      ]);
+      return '';
+    }
+
+    try {
+      $text = $this->pdfExtractor->pdf($tmp_pdf)->text();
+
+      $result = '';
+      $offset = 0;
+      while ($offset < mb_strlen($text)) {
+        $result .= $this->sanitizeText(mb_substr($text, $offset, 100000));
+        $offset += 100000;
+      }
+      return $result;
+    }
+    catch (\Throwable $e) {
+      $this->logger->warning('Could not extract text from PDF for recid @recid: @msg', [
+        '@recid' => $recid,
+        '@msg' => $e->getMessage(),
+      ]);
+      return '';
+    }
+    finally {
+      @unlink($tmp_pdf);
+    }
+  }
+
+  /**
+   * Sanitize text for safe MySQL utf8 storage.
+   *
+   * @param string $text
+   *   Raw text to sanitize.
+   *
+   * @return string
+   *   Clean text safe for utf8 database columns.
+   */
+  public function sanitizeText(string $text): string {
+    $text = mb_convert_encoding($text, 'UTF-8', 'UTF-8');
+    $text = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $text);
+    $text = str_replace("\0", '', $text);
+
+    return $text;
+  }
+
+  /**
+   * Extract unique DOI identifiers from a block of text.
+   *
+   * @param string $text
+   *   The text to search.
+   *
+   * @return string[]
+   *   Array of unique DOI strings, e.g. ["10.1038/jes.2016.45"].
+   */
+  public function extractDoisFromText(string $text): array {
+    if (!$text) {
+      return [];
+    }
+
+    $dois = [];
+
+    preg_match_all('#https?://doi\.org/(10\.\d{4,}(?:\.\d+)*/[^\s"\'<>,\]})]+)#i', $text, $url_matches);
+    foreach ($url_matches[1] as $doi) {
+      $dois[] = rtrim($doi, '.');
+    }
+
+    preg_match_all('#(?<!doi\.org/)(10\.\d{4,}(?:\.\d+)*/[^\s"\'<>,\]})]+)#', $text, $bare_matches);
+    foreach ($bare_matches[1] as $doi) {
+      $dois[] = rtrim($doi, '.');
+    }
+
+    return array_values(array_unique($dois));
   }
 
   /**
