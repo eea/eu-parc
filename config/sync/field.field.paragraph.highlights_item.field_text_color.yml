@@ -1,0 +1,22 @@
+uuid: 25214151-227d-43d4-a1ab-60d505c98152
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_color
+    - paragraphs.paragraphs_type.highlights_item
+  module:
+    - color_field
+id: paragraph.highlights_item.field_text_color
+field_name: field_text_color
+entity_type: paragraph
+bundle: highlights_item
+label: 'Text color'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 0
+field_type: color_field_type

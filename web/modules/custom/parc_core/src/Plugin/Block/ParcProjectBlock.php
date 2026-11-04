@@ -28,7 +28,7 @@ class ParcProjectBlock extends BlockBase implements ContainerFactoryPluginInterf
   /**
    * The project topic term IDs.
    */
-  const TOPICS = [1001, 1000, 1003, 1002];
+  const TOPICS = [1001, 1000, 1003, 1002, 1808];
 
   /**
    * The entity type manager.

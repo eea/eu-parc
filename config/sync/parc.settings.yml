@@ -65,7 +65,7 @@ sr__container_footer: none
 sr__container_position_footer: before
 sr__extra_class_footer: ''
 sr__clean_footer_second: 0
-sr__class_footer_second: 'col-lg-5 d-flex justify-content-lg-end mt-2 mt-lg-0'
+sr__class_footer_second: 'col-12 d-flex justify-content-lg-end mt-lg-0'
 sr__container_footer_second: none
 sr__container_position_footer_second: before
 sr__extra_class_footer_second: ''

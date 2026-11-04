@@ -34,12 +34,18 @@ class Trainings extends Indicator9Sub2 {
       if ($key === 0) {
         continue;
       }
-      $date = strtotime($row[0]);
+      $date = strtotime((string) $row[0]);
+      if ($date === FALSE) {
+        continue;
+      }
       $end_date = !empty($row[1]) ? $row[1] : $row[0];
       $year = date('Y', $date);
       $month = strtoupper(date('M', $date));
       $row[0] = date('d/m/Y', $date);
-      $end_date = strtotime($end_date);
+      $end_date = strtotime((string) $end_date);
+      if ($end_date === FALSE) {
+        $end_date = $date;
+      }
 
       $item = array_combine($keys, $row);
       $item['displayed_date'] = $this->formatInterval($date, $end_date);

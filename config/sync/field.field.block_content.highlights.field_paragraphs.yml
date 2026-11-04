@@ -1,0 +1,106 @@
+uuid: 7304f1dd-ea57-41cf-88cb-2731c5d578e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.highlights
+    - field.storage.block_content.field_paragraphs
+    - paragraphs.paragraphs_type.highlights_item
+  module:
+    - entity_reference_revisions
+id: block_content.highlights.field_paragraphs
+field_name: field_paragraphs
+entity_type: block_content
+bundle: highlights
+label: Items
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      highlights_item: highlights_item
+    negate: 0
+    target_bundles_drag_drop:
+      accordion_item:
+        weight: 27
+        enabled: false
+      card:
+        weight: 28
+        enabled: false
+      cards:
+        weight: 29
+        enabled: false
+      carousel_item:
+        weight: 30
+        enabled: false
+      chapter_title:
+        weight: 31
+        enabled: false
+      chart_image:
+        weight: 32
+        enabled: false
+      chemical_health_effects:
+        weight: 34
+        enabled: false
+      chemicals_exposure_sources:
+        weight: 33
+        enabled: false
+      contact:
+        weight: 35
+        enabled: false
+      ecotoxicology:
+        weight: 36
+        enabled: false
+      faq:
+        weight: 37
+        enabled: false
+      grid:
+        weight: 38
+        enabled: false
+      highlights_item:
+        weight: 39
+        enabled: true
+      icon_title:
+        weight: 40
+        enabled: false
+      lab_matrix:
+        weight: 41
+        enabled: false
+      links_list:
+        weight: 42
+        enabled: false
+      media:
+        weight: 43
+        enabled: false
+      newsletter:
+        weight: 44
+        enabled: false
+      partner:
+        weight: 45
+        enabled: false
+      sria_card:
+        weight: 46
+        enabled: false
+      survey:
+        weight: 47
+        enabled: false
+      survey_question:
+        weight: 48
+        enabled: false
+      svg_text:
+        weight: 49
+        enabled: false
+      text:
+        weight: 50
+        enabled: false
+      two_column:
+        weight: 51
+        enabled: false
+      what_we_do:
+        weight: 52
+        enabled: false
+field_type: entity_reference_revisions

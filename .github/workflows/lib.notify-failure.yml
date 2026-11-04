@@ -1,0 +1,28 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        required: false
+        default: 'drupal-runner-v2'
+      deployment_url:
+        type: string
+        required: true
+    secrets:
+      discord_webhook:
+        required: true
+
+jobs:
+  notify_failure:
+    name: 'Notify on failure'
+    runs-on: ${{ inputs.runner || 'drupal-runner-v2' }}
+    steps:
+      - name: 'Discord notification on failed deploy'
+        run: >
+          curl -X POST -F
+          "content=:octagonal_sign: **${{ github.repository }}** release **${{ github.ref_name }}** failed to deploy on
+          <${{ inputs.deployment_url }}>.
+          [view action run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          ${{ secrets.discord_webhook }}

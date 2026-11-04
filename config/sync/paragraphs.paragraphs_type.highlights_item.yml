@@ -1,0 +1,10 @@
+uuid: c548480d-af97-4bcd-9451-9e2feec4b337
+langcode: en
+status: true
+dependencies: {  }
+id: highlights_item
+label: 'Highlights item'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

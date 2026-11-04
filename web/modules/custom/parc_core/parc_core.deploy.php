@@ -4,6 +4,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\pathauto\PathautoState;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
@@ -2020,7 +2021,7 @@ function parc_core_deploy_water_matrix() {
 
     $matrix_entries = [];
     foreach ($headers as $column) {
-      if (!str_contains($column, '__')) {
+      if (!str_contains($column, '__') && !str_contains($column, '.')) {
         continue;
       }
 
@@ -2028,7 +2029,7 @@ function parc_core_deploy_water_matrix() {
         continue;
       }
 
-      [$substance_group, $sampling_type] = explode('__', $column);
+      [$substance_group, $sampling_type] = preg_split('/__|\./', $column);
 
       $substance_group = trim($substance_group);
       $substance_group = $map[$substance_group] ?? $substance_group;
@@ -2083,5 +2084,421 @@ function parc_core_deploy_water_matrix() {
       'field_lab_category' => 'water',
     ]);
     $lab->save();
+  }
+}
+
+/**
+ * Import labs.
+ */
+function parc_core_deploy_eco_matrix() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  $terms = [
+    'substance_groups' => [
+      'biocides' => 'Biocides',
+      'daily_use_of_products' => 'Chemicals from daily use products and materials',
+      'food_packaging' => 'Chemicals from food packaging',
+      'legacy' => 'Legacy organic contaminants',
+    ],
+    'sampling_types' => [
+      'biological_matrices' => 'Biological',
+      'complex_chem_products' => 'Complex chemical products',
+      'complex_daily_use_products' => 'Complex daily use products and materials',
+      'medicinal_products' => 'Complex medicinal products',
+      'micronano_plastics' => 'Microplastics/Nanoplastics',
+      'mixtures' => 'Complex environmental mixtures, toxicity drivers',
+      'nanomaterials' => 'Nanomaterials',
+    ],
+    'lab_approaches' => [
+      'biomarkers' => 'Biomarkers of effects, susceptibility',
+      'chemico' => 'In chemico',
+      'conceptual' => 'Conceptual, synthetic research',
+      'effect' => 'Effect assessment in observational studies',
+      'exvivo' => 'Ex vivo',
+      'integrative' => 'Integrative approaches',
+      'intervention' => 'Intervention studies of biological effects',
+      'multispec' => 'Multi-species studies',
+      'omics' => 'Omics',
+      'silico' => 'In silico',
+      'system' => 'Systems toxicology',
+      'vitro' => 'In vitro',
+      'vivo' => 'In vivo',
+    ],
+    'lab_domains' => [
+      'hh' => 'Human health',
+      'env' => 'Environmental effects',
+      'wild' => 'Veterinary toxicology',
+      'agri' => 'Agricultural plants',
+      'vet' => 'Wildlife toxicology',
+    ],
+  ];
+
+  foreach ($terms as $vid => $term_lists) {
+    foreach ($term_lists as $machine_name => $name) {
+      $existing_term = $term_storage->loadByProperties([
+        'vid' => $vid,
+        'machine_name' => $machine_name,
+      ]);
+      if (!empty($existing_term)) {
+        continue;
+      }
+
+      $term = $term_storage->create([
+        'vid' => $vid,
+        'name' => $name,
+        'machine_name' => $machine_name,
+      ]);
+      $term->save();
+    }
+  }
+
+  $map = [
+    'natural' => 'natural_toxins',
+    'pharmaceuticals' => 'pharm',
+    'other_matrices' => 'othermatrix',
+  ];
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $module_path = \Drupal::service('extension.list.module')->getPath('parc_core');
+  $file_path = $module_path . '/data/eco_labs.csv';
+
+  $file = fopen($file_path, 'r');
+  $headers = fgetcsv($file);
+
+  $lats = [];
+
+  $existing_nodes = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+    'field_lab_category' => 'ecotox',
+  ]);
+  foreach ($existing_nodes as $node) {
+    $node->delete();
+  }
+
+  while (FALSE !== ($line = fgetcsv($file))) {
+    $row = array_combine($headers, $line);
+
+    $country = $row['laboratory_country'];
+    $country_term = $term_storage->loadByProperties([
+      'vid' => 'countries',
+      'name' => $country,
+    ]);
+    $country_term = reset($country_term);
+
+    $institute = $row['department_division_laboratory'];
+    $title = $row['institution_full_name'] ?: $row['department_division_laboratory'];
+    $address = $row['lab_address'];
+    $city = $row['lab_city'];
+    $latitude = $row['Latitude'];
+    if (in_array($latitude, $lats)) {
+      $latitude += 0.0006;
+    }
+    $lats[] = $latitude;
+
+    $longitude = $row['Longitude'];
+    $external_id = $row['id_form'];
+
+    $lab_type = $row['parc_member'] == 'yes' ? 'PARC member' : 'External laboratory';
+    $lab_type_term = $term_storage->loadByProperties([
+      'vid' => 'lab_types',
+      'name' => $lab_type,
+    ]);
+    if (empty($lab_type_term)) {
+      continue;
+    }
+    $lab_type_term = reset($lab_type_term);
+
+    $contact_name = $row['firstname'] . ' ' . $row['surname'];
+    $contact_email = $row['email'];
+
+    $matrix_entries = [];
+    $paragraphs_to_create = [];
+    foreach ($headers as $column) {
+      if (!str_contains($column, '__')) {
+        continue;
+      }
+
+      if (empty(trim($row[$column]))) {
+        continue;
+      }
+
+      [$domain, $info] = explode('__', $column);
+      $domain = trim($domain);
+
+      if (str_contains($info, 'chem.')) {
+        $info = trim(str_replace('chem.', '', $info));
+        $paragraphs_to_create[$domain]['field_substance_group_multiple'][] = $map[$info] ?? $info;
+      }
+      elseif (str_contains($info, 'envmatrx.')) {
+        $info = trim(str_replace('envmatrx.', '', $info));
+        $paragraphs_to_create[$domain]['field_sampling_type_multiple'][] = $map[$info] ?? $info;
+      }
+      elseif (str_contains($info, 'stress_addinfo')) {
+        $paragraphs_to_create[$domain]['field_additional_information'] = $row[$column];
+      }
+      elseif (str_contains($info, 'appr.')) {
+        $info = str_replace('appr.', '', $info);
+        $paragraphs_to_create[$domain]['field_approaches'][] = trim($info);
+      }
+    }
+
+    foreach ($paragraphs_to_create as $domain => $info) {
+      $domain_term = $term_storage->loadByProperties([
+        'vid' => 'lab_domains',
+        'machine_name' => $domain,
+      ]);
+      $domain_term = reset($domain_term);
+
+      $substance_groups_terms = [];
+      foreach ($info['field_substance_group_multiple'] ?? [] as $id) {
+        $term = $term_storage->loadByProperties([
+          'vid' => 'substance_groups',
+          'machine_name' => $id,
+        ]);
+        $term = reset($term);
+        $substance_groups_terms[] = $term;
+      }
+
+      $sampling_types_terms = [];
+      foreach ($info['field_sampling_type_multiple'] ?? [] as $id) {
+        $term = $term_storage->loadByProperties([
+          'vid' => 'sampling_types',
+          'machine_name' => $id,
+        ]);
+        $term = reset($term);
+        $sampling_types_terms[] = $term;
+      }
+
+      $approaches_terms = [];
+      foreach ($info['field_approaches'] ?? [] as $id) {
+        $term = $term_storage->loadByProperties([
+          'vid' => 'lab_approaches',
+          'machine_name' => $id,
+        ]);
+        $term = reset($term);
+        $approaches_terms[] = $term;
+      }
+
+      $additional_information = $info['field_additional_information'] ?? NULL;
+
+      /** @var \Drupal\paragraphs\ParagraphInterface $matrix_entry */
+      $matrix_entry = $paragraph_storage->create([
+        'type' => 'ecotoxicology',
+        'field_domain' => $domain_term,
+        'field_approaches' => $approaches_terms,
+        'field_sampling_type_multiple' => $sampling_types_terms,
+        'field_substance_group_multiple' => $substance_groups_terms,
+        'field_additional_information' => $additional_information,
+      ]);
+      $matrix_entry->save();
+      $matrix_entries[] = [
+        'target_id' => $matrix_entry->id(),
+        'target_revision_id' => $matrix_entry->getRevisionId(),
+      ];
+    }
+
+    $lab = $node_storage->create([
+      'type' => 'laboratory',
+      'title' => $title,
+      'field_institute_name' => $institute,
+      'field_country' => $country_term,
+      'field_address_data' => $address,
+      'field_city' => $city,
+      'field_coordinates' => [
+        'lat' => $latitude,
+        'lng' => $longitude,
+      ],
+      'field_lab_type' => $lab_type_term,
+      'field_contact_name' => $contact_name,
+      'field_contact_email' => $contact_email,
+      'field_substances_matrix' => $matrix_entries,
+      'field_external_id' => $external_id,
+      'field_lab_category' => 'ecotox',
+    ]);
+    $lab->save();
+  }
+}
+
+/**
+ * Migrate lab contacts.
+ */
+function parc_core_deploy_ecotox_contacts() {
+  $node_storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()
+    ->getStorage('paragraph');
+
+  $results = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'laboratory')
+    ->condition('field_lab_category', 'ecotox')
+    ->execute();
+
+  foreach ($results as $result) {
+    $result = $node_storage->load($result);
+
+    // Skip nodes that already have the new field populated.
+    if (!$result->get('field_lab_contacts')->isEmpty()) {
+      continue;
+    }
+
+    $contact_names = $result->get('field_contact_name')->value;
+    $contact_emails = $result->get('field_contact_email')->value;
+
+    // If either field is empty, skip this node.
+    if (empty($contact_names) || empty($contact_emails)) {
+      continue;
+    }
+
+    // Create a new paragraph item.
+    $paragraph = $paragraph_storage->create([
+      'type' => 'contact',
+      'field_name' => [
+        'value' => $contact_names,
+      ],
+      'field_email' => [
+        'value' => $contact_emails,
+      ],
+    ]);
+
+    // Save the paragraph item.
+    $paragraph->save();
+
+    // Add the paragraph item to the node's field_contacts field.
+    $result->get('field_lab_contacts')->appendItem($paragraph);
+
+    // Save the node.
+    $result->save();
+  }
+}
+
+/**
+ * Migrate lab contacts.
+ */
+function parc_core_deploy_water_contacts() {
+  $node_storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()
+    ->getStorage('paragraph');
+
+  $results = $node_storage
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'laboratory')
+    ->condition('field_lab_category', 'water')
+    ->execute();
+
+  foreach ($results as $result) {
+    $result = $node_storage->load($result);
+
+    // Skip nodes that already have the new field populated.
+    if (!$result->get('field_lab_contacts')->isEmpty()) {
+      continue;
+    }
+
+    $contact_names = $result->get('field_contact_name')->value;
+    $contact_emails = $result->get('field_contact_email')->value;
+
+    // If either field is empty, skip this node.
+    if (empty($contact_names) || empty($contact_emails)) {
+      continue;
+    }
+
+    // Create a new paragraph item.
+    $paragraph = $paragraph_storage->create([
+      'type' => 'contact',
+      'field_name' => [
+        'value' => $contact_names,
+      ],
+      'field_email' => [
+        'value' => $contact_emails,
+      ],
+    ]);
+
+    // Save the paragraph item.
+    $paragraph->save();
+
+    // Add the paragraph item to the node's field_contacts field.
+    $result->get('field_lab_contacts')->appendItem($paragraph);
+
+    // Save the node.
+    $result->save();
+  }
+}
+
+/**
+ * Create "Promoting the circular economy through safe materials" project topic.
+ */
+function parc_core_deploy_circular_economy_topic() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  if ($term_storage->load(1808)) {
+    return;
+  }
+
+  $term_storage->create([
+    'tid' => 1808,
+    'vid' => 'project_topics',
+    'name' => 'Promoting the circular economy through safe materials',
+    'weight' => 3,
+  ])->save();
+}
+
+/**
+ * Re-import air, water and ecotox labs from the 2026-10-13 CSV exports.
+ */
+function parc_core_deploy_reimport_air_water_ecotox_labs() {
+  parc_core_deploy_update_hbm_labs_import();
+  parc_core_deploy_water_matrix();
+  parc_core_deploy_eco_matrix();
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $labs = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+    'field_lab_category' => ['air', 'water', 'ecotox'],
+  ]);
+  foreach ($labs as $lab) {
+    $contact_names = $lab->get('field_contact_name')->value;
+    if (empty($contact_names)) {
+      continue;
+    }
+
+    $contact_names = explode(';', $contact_names);
+    $contact_emails = explode(';', $lab->get('field_contact_email')->value ?? '');
+    foreach ($contact_names as $delta => $contact_name) {
+      $paragraph = $paragraph_storage->create([
+        'type' => 'contact',
+        'field_name' => trim($contact_name),
+        'field_email' => trim($contact_emails[$delta] ?? ''),
+      ]);
+      $paragraph->save();
+      $lab->get('field_lab_contacts')->appendItem($paragraph);
+    }
+    $lab->save();
+  }
+}
+
+/**
+ * Assign existing videos to the "Interviews" playlist.
+ */
+function parc_core_deploy_video_playlist() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'video')
+    ->notExists('field_playlist')
+    ->execute();
+
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    $node->set('field_playlist', 'interviews');
+    // Videos were redirected to /videos before, so they have no alias and
+    // their pathauto state is "skip".
+    $node->path->pathauto = PathautoState::CREATE;
+    $node->save();
   }
 }

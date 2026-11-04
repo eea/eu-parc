@@ -796,6 +796,9 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
+if (file_exists(DRUPAL_ROOT . '/sites/local.services.yml')) {
+    $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/local.services.yml';
+}
 /**
  * Load local development override configuration, if available.
  *
@@ -809,7 +812,6 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }
@@ -818,3 +820,9 @@ $settings['config_sync_directory'] = '../config/sync';
 
 // IndexNow verification key.
 $settings['simple_sitemap_engines.index_now.key'] = '2483bf80-3f5e-4066-9c07-efeebacbabd7';
+
+// Automatically generated include for settings managed by ddev.
+$ddev_settings = __DIR__ . '/settings.ddev.php';
+if (getenv('IS_DDEV_PROJECT') == 'true' && is_readable($ddev_settings)) {
+  require $ddev_settings;
+}

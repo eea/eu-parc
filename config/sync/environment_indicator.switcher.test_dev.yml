@@ -1,0 +1,11 @@
+uuid: be206428-771e-4011-b862-33cd6e3ac2ce
+langcode: en
+status: true
+dependencies: {  }
+machine: test_dev
+description: null
+name: 'Test / Dev'
+weight: -10
+url: 'https://devel.eu-parc.eu'
+fg_color: '#000000'
+bg_color: '#fff176'

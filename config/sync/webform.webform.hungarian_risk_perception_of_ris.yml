@@ -1,0 +1,600 @@
+uuid: 09a296a5-75e2-4270-a982-1b9b54adf3db
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 637
+template: false
+archive: false
+id: hungarian_risk_perception_of_ris
+title: 'Hungarian Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in </span><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(34, 34, 34);display:inline !important;float:none;font-family:&quot;Segoe UI&quot;;font-size:13.3333px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:normal;widows:2;word-spacing:0px;">Hungarian language.</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Hozzájárulás és háttérinformációk'
+    description:
+      '#type': checkbox
+      '#title': 'Megerősítem, hogy elolvastam és elfogadom a fentiekben közölt információkat.'
+      '#description': '<h4>Kockázati kommunikátorok kockázatérzékelése</h4><p class="p1">Véleménye fontos számunkra! Vegyen részt a „Kockázati kommunikátorok kockázatérzékelése” című rövid felmérésben, és járuljon hozzá a biztonságosabb vegyianyag-gazdálkodáshoz Európában! A tanulmány a PARC (https://www.eu-parc.eu/) keretében készül, amelynek neve a „Partnership for the Assessment of Risks from Chemicals” (Kémiai anyagok kockázatértékelésére irányuló partnerség) rövidítése.</p><p class="p2">A PARC-ről: A vegyi anyagok kockázatértékelésével foglalkozó európai partnerség (PARC) 30 ország és 3 európai ügynökség (EEA, ECHA, EFSA) közös kezdeményezése, amelynek célja a vegyi anyagok kockázatértékelésének innovációjával kapcsolatos kihívások kezelése. A PARC célja, hogy megbízható tudományos adatokkal tájékoztassa az európai és nemzeti szintű szakpolitikai döntéshozatalt a polgárok vegyi szennyező anyagoknak való kitettségéről és azoknak az egészségre gyakorolt lehetséges hatásairól. [Ország neve] területén a felmérést a [végrehajtó szervezet neve] koordinálja.</p><p class="p2">A felmérés célja: Mindannyian rengeteg vegyi anyagnak vagyunk kitéve, amelyek közül néhány káros lehet az egészségre. Az ilyen vegyi anyagok miatti potenciális kockázatokról való tájékoztatás elengedhetetlen. Ebben a felmérésben arra törekszünk, hogy jobban megismerjük a kockázati kommunikátorok által alkalmazott közös gyakorlatokat, a kockázatérzékeléssel kapcsolatos meggyőződéseiket, valamint aggodalmaikat és azokat a kihívásokat, amelyekkel a veszélyek és kockázatok kommunikálása során szembesülnek.</p><p class="p2">A felmérés címzettjei: Ez a kérdőív elsősorban a mindennapi körülmények közötti kockázati kommunikációval foglalkozik, szemben a válságkommunikációval, amely a sürgős döntéseket igénylő helyzetekben folytatott kommunikációra vonatkozik. A kitöltése körülbelül 20 percet vesz igénybe.</p><p class="p2">MI történik az összegyűjtött információkkal? Az összegyűjtött adatok anonimizáltak, és azokat az általános adatvédelmi rendelet (GDPR) előírásainak megfelelően bizalmasan kezeljük. A válaszokat a PARC kutatói partnerei az elemzés során más válaszokkal együtt fogják értékelni. Ha a felmérés tudományos következtetéseit közzéteszik vagy konferencián mutatják be, az eredményeket összesített módon kommunikálják.</p><p class="p2">A részvétel elutasításának vagy visszavonásának a joga: A részvétel teljes mértékben önkéntes. A felmérés kitöltésével és benyújtásával Ön kijelenti, hogy hozzájárul a felmérésben való részvételhez. Ön bármikor visszaléphet a részvételtől, vagy indokolás és következmények nélkül dönthet úgy, hogy egyáltalán nem vesz részt a felmérésben.<br><br><strong>Köszönjük, hogy segíti munkánkat!</strong></p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': "1.\tSzakasz: Szakmai háttér"
+    county:
+      '#type': textfield
+      '#title': 'Az Ön lakóhelye szerinti ország:'
+      '#size': 1
+      '#required': true
+    age:
+      '#type': number
+      '#title': 'Az Ön jelenlegi életkora:'
+      '#required': true
+      '#min': 16
+      '#max': 99
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': "1.1.\tMelyik ágazatban dolgozik?"
+      '#multiple': 2
+      '#options':
+        'Kormányzati szervek': 'Kormányzati szervek'
+        'Tudományos kutatás': 'Tudományos kutatás'
+        'Szakmai szervezeti szövetség': 'Szakmai szervezeti szövetség'
+        'Nem kormányzati szervezet': 'Nem kormányzati szervezet'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': "1.2.\tAz Ön által közölt kémiai veszélyek/kockázatok a következőkhöz kapcsolódnak: (Jelölje be az összes megfelelő választ!)"
+      '#options':
+        'Élelmiszerek (élelmiszer-biztonság)': 'Élelmiszerek (élelmiszer-biztonság)'
+        'Környezet (talaj, levegő, víz stb.)': 'Környezet (talaj, levegő, víz stb.)'
+        Foglalkozás-egészségügy: Foglalkozás-egészségügy
+        'Kémiai biztonság (általános)': 'Kémiai biztonság (általános)'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': "1.3.\tHány évnyi tapasztalattal rendelkezik a kockázati kommunikáció terén?"
+      '#options':
+        'Kevesebb mint két év': 'Kevesebb mint két év'
+        '2–5 év': '2–5 év'
+        '6–10 év': '6–10 év'
+        '11–15 év': '11–15 év'
+        'Több mint 15 év': 'Több mint 15 év'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': "1.4.\tMilyen gyakran folytat kockázati kommunikációt?"
+      '#options':
+        Naponta/hetente: Naponta/hetente
+        Havonta: Havonta
+        'Néhány havonta': 'Néhány havonta'
+        Évente: Évente
+        Soha: Soha
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': "1.5.\tKik azok a fő célcsoportok, akiknek az üzeneteit szánja?"
+      '#options':
+        'Széles nyilvánosság': 'Széles nyilvánosság'
+      '#other__option_label': Célközönség
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': "1.6.\tMelyik tudományághoz kapcsolódik az Ön tevékenysége? (Jelölje be az összes megfelelő választ!)"
+      '#multiple': 2
+      '#options':
+        'Vegyészmérnök / vegyész / toxikológus': 'Vegyészmérnök / vegyész / toxikológus'
+        'Élelmiszer-tudós/technológiai szakember/mikrobiológus': 'Élelmiszer-tudós/technológiai szakember/mikrobiológus'
+        'Közegészségügyi szakértő': 'Közegészségügyi szakértő'
+        'Táplálkozási szakértő': 'Táplálkozási szakértő'
+        'Környezetvédelmi / mezőgazdasági kutató': 'Környezetvédelmi / mezőgazdasági kutató'
+        'Kommunikációs szakértő / társadalomtudós': 'Kommunikációs szakértő / társadalomtudós'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': "1.7.\tMilyen gyakran vesz részt kommunikációs képzésen (pl. kommunikációs szakértők által tartott képzés, más kommunikációs osztályok látogatása, szemináriumokon/webináriumokon/tanfolyamokon való részvétel stb.)?"
+      '#options':
+        Soha: Soha
+        'Időnként (pl. 2–5 évente)': 'Időnként (pl. 2–5 évente)'
+        'Gyakran (évente legalább egyszer)': 'Gyakran (évente legalább egyszer)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': "1.8.\tMennyire volt elégedett az Önnek nyújtott kommunikációs képzéssel?"
+      '#options':
+        'Egyáltalán nem': 'Egyáltalán nem'
+        'Kissé elégedett': 'Kissé elégedett'
+        'Mérsékelten elégedett': 'Mérsékelten elégedett'
+        'Nagyon elégedett': 'Nagyon elégedett'
+        'Teljesen elégedett': 'Teljesen elégedett'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': Soha
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': "1.9.\tÖn szerint szükség van-e kommunikációs képzésre jelenlegi munkakörének betöltéséhez?"
+      '#options':
+        Igen: Igen
+        Nem: Nem
+        'Nem tudom/Nem akarok válaszolni': 'Nem tudom/Nem akarok válaszolni'
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "2.\tSzakasz: A kockázati kommunikáció terén szerzett tapasztalat"
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': "2.1.\tMilyen nehézségeket tapasztal a kockázati kommunikáció során? (Jelölje be az összes megfelelő választ!)"
+      '#options':
+        'Megfelelő tudományos adatok hiánya (akár a veszélyességre, akár arra vonatkozóan, hogy egy adott anyag káros hatást okozhat-e)': 'Megfelelő tudományos adatok hiánya (akár a veszélyességre, akár arra vonatkozóan, hogy egy adott anyag káros hatást okozhat-e)'
+        'A kollégák részéről hiányzó támogatás / A kockázatkommunikációra fordított erőforrások szűkössége': 'A kollégák részéről hiányzó támogatás / A kockázatkommunikációra fordított erőforrások szűkössége'
+        'Nehézségek a vegyi kockázatok terén jártas szakértőkkel való együttműködés során': 'Nehézségek a vegyi kockázatok terén jártas szakértőkkel való együttműködés során'
+        'A szerepkörök nem egyértelmű elosztása': 'A szerepkörök nem egyértelmű elosztása'
+        'A felelősségi körök nem egyértelmű elosztása': 'A felelősségi körök nem egyértelmű elosztása'
+        'A kommunikációra elkülönített költségvetés hiánya': 'A kommunikációra elkülönített költségvetés hiánya'
+        'A kockázatkezelők beavatkozása azzal kapcsolatban, hogy mikor és mit közölnek': 'A kockázatkezelők beavatkozása azzal kapcsolatban, hogy mikor és mit közölnek'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': "2.2.\tVan olyan mérőszámuk, amelyből kiderül, hogy az üzenet eljut-e a végső célközönséghez?"
+      '#options':
+        Igen: Igen
+        Nem: Nem
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': "2.3.\tHa az előző kérdésre IGEN választ adott, milyen mérőszámokból álló rendszert használ?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: Igen
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': "2.4.\tMinden alkalommal megvizsgálja, hogy az Ön által közölt kémiai veszély/kockázat jelent-e tényleges hatást vagy sem? (Hogyan reagál a nyilvánosság?)"
+      '#options':
+        Ιgen: Ιgen
+        Nem: Nem
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': "2.5.\tHa az előző kérdésre IGEN-nel válaszolt, hogyan értékelné a hatást?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: Ιgen
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': "2.6.\tMit gondol, milyen mértékkel van befolyással a célközönségre?"
+      '#options':
+        'Semmilyen befolyás': 'Semmilyen befolyás'
+        'Csekély befolyás ': 'Csekély befolyás '
+        'Közepes befolyás': 'Közepes befolyás'
+        'Jelentős befolyás': 'Jelentős befolyás'
+        'Erős befolyás': 'Erős befolyás'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': "2.7.\tAz előző kérdéssel kapcsolatban: mire alapozza a válaszát? (Jelölje be az összes megfelelő választ!)"
+      '#options':
+        'A média (televízió, rádió, sajtó) reakciói': 'A média (televízió, rádió, sajtó) reakciói'
+        'Közzétételek / bejegyzések internetes oldalakon, személyes blogokon, közösségi médiában': 'Közzétételek / bejegyzések internetes oldalakon, személyes blogokon, közösségi médiában'
+        'Kérdőíves fogyasztói felméréssel történő nyomon követés': 'Kérdőíves fogyasztói felméréssel történő nyomon követés'
+        'Közvetlen visszajelzés személyes kommunikáció révén (pl. beszélgetések, telefonhívások, e-mailek vagy üzenetek)': 'Közvetlen visszajelzés személyes kommunikáció révén (pl. beszélgetések, telefonhívások, e-mailek vagy üzenetek)'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': "2.8.\tA kémiai veszélyekről/kockázatokról való tájékoztatás során általában hogyan jár el?"
+      '#options':
+        'Saját üzenet létrehozása': 'Saját üzenet létrehozása'
+        'Az üzenet pontos továbbítása, ahogy azt a kockázatértékelők előírják': 'Az üzenet pontos továbbítása, ahogy azt a kockázatértékelők előírják'
+        'Más forrásokból származó üzenetek adaptálása vagy újraszövegezése': 'Más forrásokból származó üzenetek adaptálása vagy újraszövegezése'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': "2.9.\tTapasztalta-e már személyesen, hogy egy vegyi anyaggal való érintkezés (pl. szennyezett élelmiszer, tisztítószerek, növényvédő szerek) milyen egészségügyi hatással járt?"
+      '#options':
+        Igen: Igen
+        Nem: Nem
+        'Nem tudom': 'Nem tudom'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': "2.10.\tHa igen, ez a tapasztalat befolyásolta-e azt, ahogyan kommunikál vagy gondolkodik erről a veszélyről?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: Igen
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': "3.\tSzakasz: Kockázatkommunikáció kidolgozása"
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': "3.1.\tA célközönséggel a kockázatokról folytatott kommunikáció során mennyire fontos a következő szempontok figyelembevétele?"
+      '#required': true
+      '#questions':
+        'A kockázatok vizuális ábrázolása grafikonok, diagramok, képek és térképek segítségével': 'A kockázatok vizuális ábrázolása grafikonok, diagramok, képek és térképek segítségével'
+        'A különböző veszélyek valószínűség szerinti összehasonlítása': 'A különböző veszélyek valószínűség szerinti összehasonlítása'
+        'A kockázattal kapcsolatos összes bizonytalansági tényező leírása': 'A kockázattal kapcsolatos összes bizonytalansági tényező leírása'
+        'Számszerű határértékek (pl. egy adott vegyi anyag tolerálható napi bevitele számokban)': 'Számszerű határértékek (pl. egy adott vegyi anyag tolerálható napi bevitele számokban)'
+        'A személyek különböző csoportjait érintő különböző kockázatok leírása. (pl. a kockázatbeli különbségek a különböző foglalkozási ': 'A személyek különböző csoportjait érintő különböző kockázatok leírása. (pl. a kockázatbeli különbségek a különböző foglalkozási csoportok között)'
+        'A veszélynek való hosszú távú és rövid távú expozíció közötti különbségre vonatkozó információk': 'A veszélynek való hosszú távú és rövid távú expozíció közötti különbségre vonatkozó információk'
+        'Információk a kockázat nyilvánosság általi alábecsüléséről (pl. amikor a kockázati kommunikátor tudomására jut, hogy a nyilvános': 'Információk a kockázat nyilvánosság általi alábecsüléséről (pl. amikor a kockázati kommunikátor tudomására jut, hogy a nyilvánosság bizonyos vegyi anyagokat nem tartja olyan veszélyesnek, mint amennyire kellene)'
+        'A kockázat nyilvánosság általi túlbecslésére vonatkozó információk (pl. amikor a kockázati kommunikátor tudomására jut, hogy a l': 'A kockázat nyilvánosság általi túlbecslésére vonatkozó információk (pl. amikor a kockázati kommunikátor tudomására jut, hogy a lakosság bizonyos vegyi anyagokat veszélyesebbnek tart, mint amilyenek valójában)'
+        'A veszélynek való kitettség elkerülésére irányuló stratégiák leírása': 'A veszélynek való kitettség elkerülésére irányuló stratégiák leírása'
+      '#answers':
+        'Egyáltalán nem': 'Egyáltalán nem'
+        'Kis mértékben fontos': 'Kis mértékben fontos'
+        'Meglehetősen fontos': 'Meglehetősen fontos'
+        'Eléggé fontos': 'Eléggé fontos'
+        'Nagyon fontos': 'Nagyon fontos'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': "3.2.\tA kockázatok kommunikálásakor mennyire fontosak a bizalom alábbi szempontjai a célközönség kockázatérzékelése szempontjából az Ön véleménye szerint?"
+      '#required': true
+      '#questions':
+        'A közönségnek a kockázatot kommunikáló szakértőbe vetett bizalma': 'A közönségnek a kockázatot kommunikáló szakértőbe vetett bizalma'
+        'A közönség nemzeti/európai intézményekbe/hatóságokba vetett bizalma': 'A közönség nemzeti/európai intézményekbe/hatóságokba vetett bizalma'
+        'A közönség tudományos adatokba vetett bizalma': 'A közönség tudományos adatokba vetett bizalma'
+      '#answers':
+        'Egyáltalán nem': 'Egyáltalán nem'
+        'Kis mértékben fontos': 'Kis mértékben fontos'
+        'Meglehetősen fontos': 'Meglehetősen fontos'
+        'Eléggé fontos': 'Eléggé fontos'
+        'Nagyon fontos': 'Nagyon fontos'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': "3.3.\tKérjük, értékelje a kockázati kommunikációval kapcsolatos állításokat aszerint, hogy mennyire ért egyet vagy nem ért egyet velük."
+      '#required': true
+      '#questions':
+        'A kockázat kommunikálásakor fontos különbséget tenni a veszély és a kockázat között.': 'A kockázat kommunikálásakor fontos különbséget tenni a veszély és a kockázat között.'
+        'A kockázati kommunikációt nem szabad, hogy a közvélemény kockázatról alkotott képe befolyásolja.': 'A kockázati kommunikációt nem szabad, hogy a közvélemény kockázatról alkotott képe befolyásolja.'
+        'A kockázatkommunikáció alapjául szolgáló elvek (pl. objektivitás, pártatlanság) minden ágazatban (pl. vegyi veszélyek, fertőző b': 'A kockázatkommunikáció alapjául szolgáló elvek (pl. objektivitás, pártatlanság) minden ágazatban (pl. vegyi veszélyek, fertőző betegségek) azonosak.'
+        'A kockázatokkal és veszélyekkel kapcsolatos valamennyi bizonytalanság leírása összezavarja az embereket.': 'A kockázatokkal és veszélyekkel kapcsolatos valamennyi bizonytalanság leírása összezavarja az embereket.'
+        'A kockázatokkal kapcsolatos kommunikációt az érintett érdekelt felekkel együttműködve kell folytatni.': 'A kockázatokkal kapcsolatos kommunikációt az érintett érdekelt felekkel együttműködve kell folytatni.'
+        'A média inkább a válságkommunikáció iránt érdeklődik, amelyben a kockázatokat gyakran eltúlozzák.': 'A média inkább a válságkommunikáció iránt érdeklődik, amelyben a kockázatokat gyakran eltúlozzák.'
+      '#answers':
+        'Egyáltalán nem értek egyet': 'Egyáltalán nem értek egyet'
+        'Részben nem értek egyet': 'Részben nem értek egyet'
+        'Nincs határozott véleménye': 'Nincs határozott véleménye'
+        'Részben egyetértek': 'Részben egyetértek'
+        'Teljesen egyetértek': 'Teljesen egyetértek'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': "4.\tSzakasz: A kockázati kommunikátor szerepe"
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': "4.1.\tKérjük, értékelje a kockázatérzékeléssel kapcsolatos állításokat aszerint, hogy mennyire ért egyet vagy nem ért egyet velük."
+      '#required': true
+      '#questions':
+        'Az emberek kockázatérzékelése magában foglalja a meggyőződésüket és attitűdjüket, illetve függ attól.': 'Az emberek kockázatérzékelése magában foglalja a meggyőződésüket és attitűdjüket, illetve függ attól.'
+        'A kockázatérzékelést nem befolyásolják az emberek ítélőképességei és érzései (személyes tapasztalat).': 'A kockázatérzékelést nem befolyásolják az emberek ítélőképességei és érzései (személyes tapasztalat).'
+        'A kockázatok megítélése azt tükrözi, hogy az emberek tágabb értelemben milyen kulturális és társadalmi megoldásokat fogadnak el ': 'A kockázatok megítélése azt tükrözi, hogy az emberek tágabb értelemben milyen kulturális és társadalmi megoldásokat fogadnak el a veszélyekkel és azok előnyeivel kapcsolatban.'
+        'A kockázati kommunikációnak a kockázatértékelésekből származó bizonyítékokon kell alapulnia, ugyanakkor figyelembe kell vennie a': 'A kockázati kommunikációnak a kockázatértékelésekből származó bizonyítékokon kell alapulnia, ugyanakkor figyelembe kell vennie a laikusok által érzékelt veszélyt és annak fontosságát is.'
+        'Azok, akik már korábban átéltek egy veszélyhez kapcsolódó eseményt, hajlamosak úgy érezni, hogy nagyobb az esélye annak, hogy új': 'Azok, akik már korábban átéltek egy veszélyhez kapcsolódó eseményt, hajlamosak úgy érezni, hogy nagyobb az esélye annak, hogy újra szembesülnek vele, mint azoknak, akik még soha nem tapasztalták meg azt a veszélyt.'
+        'Amikor az emberek először hallanak egy veszélyről, hajlamosak azt gondolni, hogy ez az új veszély nagyobb valószínűséggel követk': 'Amikor az emberek először hallanak egy veszélyről, hajlamosak azt gondolni, hogy ez az új veszély nagyobb valószínűséggel következik be, mint más, már jól ismert veszélyek'
+        'Minél pontosabb ismereteket szereznek az emberek egy veszélyről, annál kevésbé támaszkodnak az ezzel a veszéllyel kapcsolatos ko': 'Minél pontosabb ismereteket szereznek az emberek egy veszélyről, annál kevésbé támaszkodnak az ezzel a veszéllyel kapcsolatos kockázatra vonatkozó intuíciójukra.'
+        'A kockázati kommunikátor iránti bizalom fontosabb, mint maga az információ.': 'A kockázati kommunikátor iránti bizalom fontosabb, mint maga az információ.'
+      '#answers':
+        'Egyáltalán nem értek egyet': 'Egyáltalán nem értek egyet'
+        'Részben nem értek egyet': 'Részben nem értek egyet'
+        'Nincs határozott véleménye': 'Nincs határozott véleménye'
+        'Részben egyetértek': 'Részben egyetértek'
+        'Teljesen egyetértek': 'Teljesen egyetértek'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': "5.\tSzakasz: Hagyományos és közösségi média"
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': "5.1.\tMelyik csatornát részesíti előnyben a kockázatokkal kapcsolatos kommunikáció során?Kérjük, rangsorolja a csatornákat preferenciái szerint úgy, hogy húzással a kívánt sorrendbe rendezi őket, a leginkább preferált csatornát felülre, a legkevésbé preferáltat pedig alulra helyezve."
+      '#options':
+        Hírlevél: Hírlevél
+        'Cikkek újságokban és folyóiratokban': 'Cikkek újságokban és folyóiratokban'
+        Televízió: Televízió
+        Rádió: Rádió
+        'Közösségi média': 'Közösségi média'
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': "5.2.\tMelyik csatornát részesítené előnyben a válsággal kapcsolatos kommunikáció során? Kérjük, rangsorolja a csatornákat preferenciái szerint úgy, hogy húzással a kívánt sorrendbe rendezi őket, a leginkább preferált csatornát felülre, a legkevésbé preferáltat pedig alulra helyezve."
+      '#options':
+        Sajtóközlemény: Sajtóközlemény
+        'Cikkek újságokban és folyóiratokban': 'Cikkek újságokban és folyóiratokban'
+        Televízió: Televízió
+        Rádió: Rádió
+        'Közösségi média': 'Közösségi média'
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': "5.3.\tHasználja a közösségi médiát a kockázatokról való tájékoztatásra?"
+      '#options':
+        Igen: Igen
+        Nem: Nem
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': "5.4.\tMelyik közösségi média csatornát részesíti előnyben a kockázatokról való tájékoztatáshoz? (Jelölje be az összes megfelelő választ!)"
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': 'Egyet sem'
+      '#options_none_text': 'Egyet sem'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: Igen
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': "5.5.\tMelyik közösségi média platformot használnád válságkommunikáció esetén? (Jelölje be az összes megfelelő választ!)"
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': 'Egyet sem'
+      '#options_none_text': 'Egyet sem'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': "5.6.\tHasznál valamilyen közösségi médiafigyelő eszközt (olyan szoftvert, amely lehetővé teszi a felhasználók számára a közösségi médiában zajló beszélgetések figyelemmel kísérését, nyomon követését és elemzését)?"
+      '#options':
+        Igen: Igen
+        Nem: Nem
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': "5.7.\tHa az előző kérdésre IGEN-nel válaszolt, milyen eszközöket használ a közösségi médiában való „figyeléshez”?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: Igen
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': "5.8.\tHogyan szokta kezelni a közösségi médiában megjelenő téves információkat vagy pletykákat, amelyek a vegyi anyagokkal kapcsolatos konkrét veszélyekkel vagy kockázatokkal kapcsolatosak?"
+      '#options':
+        'Nem reagálok. Ha hagyom, hogy a dolgok a maguk útján menjenek, minden megoldódik magától.': 'Nem reagálok. Ha hagyom, hogy a dolgok a maguk útján menjenek, minden megoldódik magától.'
+        'Közleményt készítek a helyes információkkal, és azt terjesztem.': 'Közleményt készítek a helyes információkkal, és azt terjesztem.'
+        'Szükség esetén jogi eljárást indítok.': 'Szükség esetén jogi eljárást indítok.'
+      '#other__option_label': Egyéb
+      '#other__placeholder': 'Kérjük, részletezze:'
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': "6.\tSzakasz: Nyelv"
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': "6.1.\tTegyük fel, hogy a közösségi médiában téves információk vagy pletykák keringenek a dohányzás és a kadmium kockázatairól. Az alábbi állítások közül melyiket részesítené előnyben?"
+      '#options':
+        'A: Cigarettázás esetén a kadmium felszívódása a tüdőben 10–50%. A dohányosok vérében körülbelül 1,5 μg/l a kadmiumkoncentráció, a veséjük kéregében pedig körülbelül 20–30 μg/g a nedves tömegre vonatkoztatott kadmiumkoncentráció. A nemdohányzók vérének kadmiumkoncentrációja 4–5-ször alacsonyabb, a veséjük kortex kadmiumkoncentrációja pedig kétszer alacsonyabb. Bebizonyosodott, hogy a kadmium tüdőrákot okoz.': 'A: Cigarettázás esetén a kadmium felszívódása a tüdőben 10–50%. A dohányosok vérében körülbelül 1,5 μg/l a kadmiumkoncentráció, a veséjük kéregében pedig körülbelül 20–30 μg/g a nedves tömegre vonatkoztatott kadmiumkoncentráció. A nemdohányzók vérének kadmiumkoncentrációja 4–5-ször alacsonyabb, a veséjük kortex kadmiumkoncentrációja pedig kétszer alacsonyabb. Bebizonyosodott, hogy a kadmium tüdőrákot okoz.'
+        'B: Cigarettázás esetén a kadmium felszívódása a tüdőben 10–50%, míg a gyomor-bélrendszerben csupán néhány százalék. A dohányosok vérében körülbelül 4–5-ször magasabb a kadmiumkoncentráció (kb. 1,5 μg/l), a vese kéregében pedig kétszer olyan magas (kb. 20–30 μg/g nedves tömeg), mint a nemdohányzóknál. Bebizonyosodott, hogy a kadmium tüdőrákot okoz, de csak korlátozott bizonyítékok utalnak arra, hogy összefüggésbe hozható a vese-, máj- és prosztatarákkal.': 'B: Cigarettázás esetén a kadmium felszívódása a tüdőben 10–50%, míg a gyomor-bélrendszerben csupán néhány százalék. A dohányosok vérében körülbelül 4–5-ször magasabb a kadmiumkoncentráció (kb. 1,5 μg/l), a vese kéregében pedig kétszer olyan magas (kb. 20–30 μg/g nedves tömeg), mint a nemdohányzóknál. Bebizonyosodott, hogy a kadmium tüdőrákot okoz, de csak korlátozott bizonyítékok utalnak arra, hogy összefüggésbe hozható a vese-, máj- és prosztatarákkal.'
+        'C: Cigarettázáss esetén a kadmium felszívódása a tüdőben rendkívül magas, míg a gyomor-bélrendszerben alacsonyabb. A dohányosok vérében és a vese kéregében jelentősen magasabb a kadmiumkoncentráció. A kadmium rákkeltő.': 'C: Cigarettázáss esetén a kadmium felszívódása a tüdőben rendkívül magas, míg a gyomor-bélrendszerben alacsonyabb. A dohányosok vérében és a vese kéregében jelentősen magasabb a kadmiumkoncentráció. A kadmium rákkeltő.'
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': "6.2.\tA következő tudományos nyilatkozat állításai: „Az akrilamid egy olyan vegyi anyag, amely természetes módon keletkezik a keményítőtartalmú élelmiszerekben, amikor azokat magas hőmérsékleten (120°C felett) főzik.” Ha az élelmiszerekben akrilamid található, az minden korosztályban növelheti a rák kialakulásának kockázatát. Szerencsére van mód az élelmiszerek akrilamidszintjének csökkentésére.” Melyik állítást választaná, ha azt tanácsolná a fogyasztóknak, hogy az otthoni főzés során minimalizálják a keletkező akrilamid szintjét?"
+      '#options':
+        'A keményítőtartalmú ételek olajban sütése, sütése, pirítása vagy pörkölése során törekedjen, hogy az étel színe ne legyen sötétebb az aranysárga színnél (vagy annál világosabb szín), és az egészség érdekében kerülje az ételek túlzott hőkezelését.': 'A keményítőtartalmú ételek olajban sütése, sütése, pirítása vagy pörkölése során törekedjen, hogy az étel színe ne legyen sötétebb az aranysárga színnél (vagy annál világosabb szín), és az egészség érdekében kerülje az ételek túlzott hőkezelését.'
+        'A hosszú főzési idő és a magasabb hőmérséklet több akrilamidot eredményez, ami rákot okozhat, mint amennyi a rövid főzési idő és az alacsonyabb hőmérséklet esetében keletkezik.': 'A hosszú főzési idő és a magasabb hőmérséklet több akrilamidot eredményez, ami rákot okozhat, mint amennyi a rövid főzési idő és az alacsonyabb hőmérséklet esetében keletkezik.'
+      '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Beküldés
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: Befejezés
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: 'Előző oldal'
+  wizard_next_button_label: 'Következő oldal'
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p>Köszönjük, válaszait sikeresen elküldtük.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

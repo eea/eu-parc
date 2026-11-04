@@ -52,7 +52,7 @@ class VideoThumbnailFormatter extends FileVideoFormatter implements ContainerFac
   /**
    * {@inheritdoc}
    */
-  public function viewElements(FieldItemListInterface $items, $langcode) {
+  public function viewElements(FieldItemListInterface $items, $langcode): array {
     $elements = parent::viewElements($items, $langcode);
     /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $adapter */
     $adapter = $items->getParent();

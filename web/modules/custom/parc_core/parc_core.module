@@ -5,7 +5,9 @@
  * Contains hooks and custom functions for Parc Core module.
  */
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\node\Entity\Node;
@@ -13,6 +15,7 @@ use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\parc_core\ParcCoreViews;
 use Drupal\views\ViewExecutable;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\Plugin\views\query\Sql;
 use Drupal\taxonomy_menu\Plugin\Menu\TaxonomyMenuMenuLink;
 use Drupal\node\NodeInterface;
 use Drupal\paragraphs\ParagraphInterface;
@@ -33,6 +36,11 @@ function parc_core_theme() {
         'substances' => [],
         'show_qualified_in_parc' => FALSE,
         'lab_category' => 'hbm',
+      ],
+    ],
+    'parc_ecotoxicology_matrix' => [
+      'variables' => [
+        'rows' => [],
       ],
     ],
     'parc_projects' => [
@@ -138,6 +146,7 @@ function parc_core_preprocess_menu(&$variables) {
     $variables['#cache']['tags'][] = 'node_list';
     $items = &$variables['items'];
     _parc_core_preprocess_menu_alter_category_links($items);
+    _parc_core_preprocess_menu_publication_year_links($items);
   }
 
   $items = $variables['items'];
@@ -163,6 +172,37 @@ function parc_core_preprocess_menu(&$variables) {
         ] + $options['attributes'];
         $item['url']->setOption('attributes', $attributes);
       }
+    }
+  }
+}
+
+/**
+ * Adds the year filter query to publications year menu links.
+ *
+ * @see parc_core_preprocess_menu().
+ */
+function _parc_core_preprocess_menu_publication_year_links(array &$items) {
+  foreach ($items as &$item) {
+    if (!empty($item['below'])) {
+      _parc_core_preprocess_menu_publication_year_links($item['below']);
+    }
+
+    /** @var \Drupal\Core\Url|null $url */
+    $url = $item['url'] ?? NULL;
+    if (!$url instanceof Url || !$url->isRouted()
+      || $url->getRouteName() !== 'view.publications.page_publications') {
+      continue;
+    }
+
+    $title = isset($item['title']) ? trim((string) $item['title']) : '';
+    if (!preg_match('/^\d{4}$/', $title)) {
+      continue;
+    }
+
+    $query = $url->getOption('query') ?: [];
+    if (empty($query['year'])) {
+      $query['year'] = $title;
+      $url->setOption('query', $query);
     }
   }
 }
@@ -418,6 +458,15 @@ function parc_core_views_query_alter(ViewExecutable $view, QueryPluginBase $quer
     $query->addField('', 'nid', '', ['function' => 'groupby']);
     $query->addGroupBy('nid');
   }
+
+  // Always show policy briefs without a date first,
+  if ($view->id() == 'policy_briefs' && $query instanceof Sql) {
+    $alias = $query->addField(NULL, 'ISNULL(node__field_d_date.field_d_date_value)', 'field_d_date_isnull');
+    array_unshift($query->orderby, [
+      'field' => $alias,
+      'direction' => 'DESC',
+    ]);
+  }
 }
 
 /**
@@ -505,6 +554,21 @@ function parc_core_preprocess_views_view__search(&$variables) {
  * Implements hook_views_pre_view().
  */
 function parc_core_views_pre_view(ViewExecutable $view) {
+  if ($view->id() == 'publications') {
+    $request = \Drupal::request();
+    $query = $request->query->all();
+    if (isset($query['year']) && !is_array($query['year'])) {
+      if (\Drupal::routeMatch()->getRouteName() === 'views.ajax') {
+        $request->query->remove('year');
+      }
+      else {
+        $years = array_filter(array_map('trim', explode(',', (string) $query['year'])), 'strlen');
+        $query['year'] = array_combine($years, $years);
+        $view->setExposedInput($query);
+      }
+    }
+  }
+
   if ($view->id() == 'search') {
     /** @var \Drupal\parc_core\ParcSearchManager $search_manager */
     $search_manager = \Drupal::service('parc_core.search_manager');
@@ -643,28 +707,41 @@ function parc_core_preprocess_node__events__full(&$variables) {
 function parc_core_node_presave(NodeInterface $node) {
   switch ($node->bundle()) {
     case 'laboratory':
+      $copied_fields = [
+        'field_substance_group' => 'field_substance_group',
+        'field_substance_group_multiple' => 'field_substance_group',
+        'field_sampling_type' => 'field_sampling_type',
+        'field_sampling_type_multiple' => 'field_sampling_type',
+        'field_air_environment' => 'field_air_environment',
+        'field_approaches' => 'field_approaches',
+        'field_domain' => 'field_domain',
+      ];
       if (!$node->get('field_substances_matrix')->isEmpty()) {
-        $substance_groups = [];
-        $sampling_types = [];
-        $air_environments = [];
+        $all_values = [];
 
         foreach ($node->get('field_substances_matrix')->referencedEntities() as $paragraph) {
-
           if (!$paragraph instanceof ParagraphInterface) {
             continue;
           }
 
-          $substance_groups[] = $paragraph->get('field_substance_group')->target_id;
-          $sampling_types[] = $paragraph->get('field_sampling_type')->target_id;
-          $air_environments[] = $paragraph->get('field_air_environment')->value;
+          foreach ($copied_fields as $paragraph_field => $node_field) {
+            if (!$paragraph->hasField($paragraph_field)) {
+              continue;
+            }
+
+            $structured_values = $paragraph->get($paragraph_field)->getValue();
+            $values = array_column($structured_values, 'value');
+            if (empty($values)) {
+              $values = array_column($structured_values, 'target_id');
+            }
+
+            $all_values[$node_field] = array_merge($values ?? [], $all_values[$node_field] ?? []);
+          }
         }
 
-        $substance_groups = array_unique($substance_groups);
-        $sampling_types = array_unique($sampling_types);
-
-        $node->set('field_substance_group', $substance_groups);
-        $node->set('field_sampling_type', $sampling_types);
-        $node->set('field_air_environment', $air_environments);
+        foreach ($copied_fields as $paragraph_field => $node_field) {
+          $node->set($node_field, $all_values[$node_field] ?? []);
+        }
       }
 
       break;
@@ -751,7 +828,7 @@ function template_preprocess_parc_indicator_groups(array &$variables) {
 function parc_core_preprocess_node(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  
+
   if ($variables['view_mode'] == 'full' || $node->bundle() == 'chemical') {
     if ($node->hasField('field_survey') && !$node->get('field_survey')->isEmpty()) {
       $variables['#cache']['max-age'] = 0;
@@ -834,4 +911,32 @@ function parc_core_views_data_alter(array &$data) {
   // Use entity reference for the field 'field_chemicals'.
   $field_name = 'field_chemicals';
   $data['taxonomy_term__' . $field_name][$field_name . '_target_id']['filter']['id'] = 'entity_reference';
+
+  if (isset($data['node__field_publication_date'])) {
+    $data['node__field_publication_date']['field_publication_date_year'] = [
+      'title' => t('Publication date (year)'),
+      'group' => t('Content'),
+      'filter' => [
+        'id' => 'parc_publication_year',
+        'real field' => 'field_publication_date_value',
+        'allow empty' => TRUE,
+      ],
+    ];
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function parc_core_node_access(NodeInterface $node, $op, AccountInterface $account) {
+  if ($node->bundle() !== 'documentation') {
+    return AccessResult::neutral();
+  }
+
+  if (in_array($op, ['view', 'update', 'delete'], TRUE)) {
+    return AccessResult::forbiddenIf(!$account->hasPermission('access technical documentation'))
+      ->cachePerPermissions();
+  }
+
+  return AccessResult::neutral();
 }

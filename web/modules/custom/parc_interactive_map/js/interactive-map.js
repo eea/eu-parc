@@ -438,9 +438,11 @@
                   const extent = ol.extent.boundingExtent(
                     features.map((r) => r.getGeometry().getCoordinates())
                   );
+                  const isMobile = window.innerWidth < 768;
+                  const fitPadding = isMobile ? 50 : 350;
                   map.getView().fit(extent, {
                     duration: 1000,
-                    padding: [350, 350, 350, 350],
+                    padding: [fitPadding, fitPadding, fitPadding, fitPadding],
                   });
                   document.getElementById("identifyParent").style.display =
                     "none";

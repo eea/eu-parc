@@ -29,16 +29,20 @@
                     "PFASs",
                     "Bisphenols",
                     "Mercury",
-                    // "DINCH & Plasticisers", 
-                    // "Metals", 
-                    // "Microplastics", 
+                    // "DINCH & Plasticisers",
+                    // "Metals",
+                    // "Microplastics",
                     // "Nanoplastics"
                 ]
 
+                const chemicalDisplayNames = {
+                    "Phthalates": "Phthalates & Substitutes",
+                }
+
                 const chemicalColors = {
                     "Arsenic": "#C064E4",
-                    "Pesticides": "#5658E7",
-                    "Phthalates": "#9B9B9B",
+                    "Pesticides": "#4446ce",
+                    "Phthalates": "#6769FF",
                     "PFASs": "#E45C4D",
                     "Bisphenols": "#D7B040",
                     "Mercury": "#E21337",
@@ -140,8 +144,12 @@
                         if (actualInput) actualInput.checked = true;
 
                         if (activeDiseaseId != null) {
-                            toggleBodyLayer(null);
-                            activeDiseaseId = null;
+                            if (mobile) {
+                                resetDiseaseMobile();
+                            } else {
+                                toggleBodyLayer(null);
+                                activeDiseaseId = null;
+                            }
                         }
                         activeChemicalId = chem;
                         toggleResetBtn(true);
@@ -214,7 +222,8 @@
 
                         list.innerHTML = chemicals.map(chem => {
                             const color = chemicalColors[chem] || '#000000';
-                            return `<li data-chem="${chem}" data-label="${chem}" style="color: ${color}">${chem}</li>`;
+                            const label = chemicalDisplayNames[chem] || chem;
+                            return `<li data-chem="${chem}" data-label="${label}" style="color: ${color}">${label}</li>`;
                         }).join('');
 
                         let marqueeActive = false;
@@ -246,7 +255,7 @@
                                     resetFilterMobile();
                                 });
                                 trigger.style.backgroundColor = color;
-                                trigger.style.color = '#000000';
+                                trigger.style.color = chem === 'Pesticides' ? '#ffffff' : '#000000';
                                 list.classList.remove("open");
                                 handleFilterChange({ target: { dataset: { chem } } });
 
@@ -263,13 +272,13 @@
                                 list.classList.remove("open");
                             }
                         });
-                    } else {
+                    } else if (filterMenu) {
                         const generateListElements = () => {
                             return chemicals.map(chem => {
                                 return `
                 <div class="js-form-item form-item js-form-type-checkbox">
                   <input type="checkbox" name="chem-filter" data-chem="${chem}" id="filter-${chem}" class="form-checkbox form-check-input">
-                  <label for="filter-${chem}" class="option">${chem}</label>
+                  <label for="filter-${chem}" class="option">${chemicalDisplayNames[chem] || chem}</label>
                 </div>`;
                             }).join('');
                         };
@@ -422,10 +431,13 @@
 
                 // Dots
                 function getSVGPoint(layerSvg, evt) {
-                    const pt = layerSvg.createSVGPoint();
-                    pt.x = evt.clientX;
-                    pt.y = evt.clientY;
-                    return pt.matrixTransform(layerSvg.getScreenCTM().inverse());
+                    const rect = layerSvg.getBoundingClientRect();
+                    if (!rect.width || !rect.height) return { x: 0, y: 0 };
+                    const vb = layerSvg.viewBox.baseVal;
+                    return {
+                        x: (evt.clientX - rect.left) * (vb.width / rect.width),
+                        y: (evt.clientY - rect.top) * (vb.height / rect.height),
+                    };
                 }
 
                 function resetDotColors() {
@@ -635,7 +647,7 @@
 
                             const pillsHtml = pillColors.map(p => {
                                 const formattedName = p.name.toLowerCase().replace(' ', '_');
-                                return `<span class="popup-pill" data-chemical-link="${formattedName}" style="background:${p.color}; cursor:pointer;">${p.name}</span>`;
+                                return `<span class="popup-pill" data-chemical-link="${formattedName}" style="background:${p.color}; cursor:pointer;">${chemicalDisplayNames[p.name] || p.name}</span>`;
                             }).join('');
 
                             popup.classList.remove('visible');
@@ -1059,6 +1071,7 @@
 
                 // Event handlers
                 function handleMouseMove(evt) {
+                    if (!dotsSvgEl) return;
                     const p = getSVGPoint(dotsSvgEl, evt);
                     mouse.x = p.x;
                     mouse.y = p.y;
@@ -1069,9 +1082,17 @@
                 }
 
                 function handlePillClick(chemicalId) {
-                    /* your interaction code here */
+                    const targetAccordion = document.querySelector(`.chemical-accordion[data-chemical="${chemicalId.toLowerCase()}"]`);
+                    if (!targetAccordion) return;
 
-                    console.log(`clicked ${chemicalId}`)
+                    const toggle = targetAccordion.querySelector('.js-chemical-accordion-toggle');
+                    if (toggle && toggle.getAttribute('aria-expanded') !== 'true') {
+                        toggle.click();
+                    }
+                    setTimeout(() => {
+                        const topOffset = targetAccordion.getBoundingClientRect().top + window.pageYOffset - 120;
+                        window.scrollTo({ top: topOffset, behavior: 'smooth' });
+                    }, 150);
                 }
 
 

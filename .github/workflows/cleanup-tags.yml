@@ -1,0 +1,27 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+name: Cleanup Git Tags
+
+on:
+  # cronjob trigger
+  schedule:
+  - cron: "0 6 * * 1"  # Every Monday 6:00 AM UTC
+  # manual trigger
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: eaudeweb/git-repo-clean@1.x
+        with:
+          keep: 50
+          months: 6
+          apply: true
+          

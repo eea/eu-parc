@@ -878,7 +878,8 @@ textarea.form-control.is-invalid {
   z-index: 4;
 }
 
-label.form-required::after {
+label.form-required::after,
+.fieldset-legend.form-required::after {
   display: inline-block;
   margin-right: 0.15em;
   margin-left: 0.15em;

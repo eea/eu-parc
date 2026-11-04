@@ -1,0 +1,16 @@
+uuid: 18cfa33f-30bd-4234-b3c7-d8472df9aefc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.policy_brief
+id: node.policy_brief
+targetEntityType: node
+bundle: policy_brief
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: /policy-corner
+  redirect_code: 301
+  redirect_fallback_action: access_denied

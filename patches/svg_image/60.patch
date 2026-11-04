@@ -1,0 +1,26 @@
+From c3b9851ac6ddd8e84e606533a5b505f68722bcba Mon Sep 17 00:00:00 2001
+From: Laura Johnson <24484-lollypic@users.noreply.drupalcode.org>
+Date: Tue, 16 Jun 2026 17:39:57 +0000
+Subject: [PATCH] fix: 3601394 seed the formatter's attribute object from the
+ parent's #attributes key
+
+---
+ src/Plugin/Field/FieldFormatter/SvgImageFormatterTrait.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Plugin/Field/FieldFormatter/SvgImageFormatterTrait.php b/src/Plugin/Field/FieldFormatter/SvgImageFormatterTrait.php
+index ec7a986..751dd69 100644
+--- a/src/Plugin/Field/FieldFormatter/SvgImageFormatterTrait.php
++++ b/src/Plugin/Field/FieldFormatter/SvgImageFormatterTrait.php
+@@ -127,7 +127,7 @@ trait SvgImageFormatterTrait {
+     // the image style.
+     $element['#theme'] = 'image_formatter';
+     $element['#image_style'] = NULL;
+-    $element['#item_attributes'] += $attributes;
++    $element['#attributes'] = ($element['#attributes'] ?? []) + $attributes;
+     if ($cacheTags) {
+       $element['#cache']['tags'] = Cache::mergeTags(
+         $element['#cache']['tags'],
+-- 
+GitLab
+

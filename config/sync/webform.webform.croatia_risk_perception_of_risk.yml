@@ -1,0 +1,594 @@
+uuid: 4cdd244d-0cd1-4034-9f44-9437b62ee539
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 9
+template: false
+archive: false
+id: croatia_risk_perception_of_risk
+title: 'Croatia_Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks.</span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Privola i kontekst'
+    description:
+      '#type': checkbox
+      '#title': 'Potvrđujem da sam pročitao/la i prihvaćam gore navedene informacije.'
+      '#description': '<h4><span style="font-family:Satoshi;" lang="HR">Percepcija rizika među osobama koje obavještavaju o riziku</span></h4><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="HR">O PARC-u:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="HR">Europsko partnerstvo za procjenu rizika od kemikalija (PARC) rezultat je zajedničkih napora 30 zemalja i triju europskih agencija (EEA, ECHA, EFSA), a osmišljeno je radi rješavanja izazova povezanih s inovacijama u procjeni rizika od kemikalija. Cilj &nbsp;PARC-a je pružati pouzdane znanstvene podatke o izloženosti građana kemijskim onečišćivačima i njihovim mogućim učincima na zdravlje te na taj način omogućiti donošenje utemeljenih političkih odluka na razini Europe i na nacionalnoj razini. U [naziv vaše zemlje] anketu koordinira [naziv provedbene organizacije].</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="HR">Svrha ove ankete:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="HR">Izloženi smo brojnim kemikalijama od kojih neke mogu biti štetne za zdravlje. Obavještavanje o potencijalnom riziku od tih kemikalija izuzetno je važno. Pomoću ove ankete želimo &nbsp;saznati više o uobičajenim praksama koje primjenjuju osobe zadužene za obavještavanje o rizicima, njihovom mišljenju o percepciji rizika kao i o pitanjima i izazovima s kojima se suočavaju pri obavještavanju o opasnostima i rizicima.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="HR">Kome je anketa namijenjena:</span><span style="font-size:14.0pt;line-height:115%;" lang="HR"> Upitnik se uglavnom odnosi na obavještavanje o rizicima u svakodnevnim okolnostima, za razliku od obavještavanja u kriznim situacijama u okolnostima kada je potrebno donijeti hitne odluke. Za ispunjavanje će vam biti potrebno otprilike 20&nbsp;minuta.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008474;font-size:14.0pt;line-height:115%;" lang="HR">Što će se dogoditi s prikupljenim informacijama:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="HR">Prikupljene će informacije biti &nbsp;anonimne i s njima će se postupati kao s povjerljivim podatcima u skladu sa zahtjevima Opće uredbe o zaštiti podataka (GDPR). Prilikom analize koju obavljaju istraživački partneri PARC-a odgovori će se kombinirati s drugim odgovorima. Ako znanstveni zaključci ove ankete budu objavljeni ili predstavljeni na nekoj konferenciji, rezultati će biti agregirani.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="HR">Pravo na odbijanje ili povlačenje iz ankete:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="HR">Vaše je sudjelovanje u potpunosti dobrovoljno. Ispunjavanjem i slanjem ove ankete dajete svoju privolu za sudjelovanje u anketi. U bilo kojem trenutku, bez navođenja razloga i bez ikakvih posljedica, možete se povući iz sudjelovanja ili odlučiti da uopće nećete sudjelovati.</span></p><p style="margin-left:54.0pt;"><br><br><br><span style="font-family:Satoshi;font-size:14.0pt;line-height:110%;" lang="HR"><strong>Hvala vam na suradnji i izdvojenom vremenu!</strong></span></p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': '1. odjeljak: Radno iskustvo'
+    county:
+      '#type': textfield
+      '#title': '1. Your country of residence:'
+      '#size': 1
+      '#required': true
+    age:
+      '#type': number
+      '#title': '1.2 Vaša trenutačna dob'
+      '#required': true
+      '#min': 16
+      '#max': 99
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': '1.3 U kojem sektoru radite?'
+      '#multiple': 2
+      '#options':
+        'vladina tijela': 'vladina tijela'
+        'akademska zajednica': 'akademska zajednica'
+        'strukovna udruženja': 'strukovna udruženja'
+        NVO: NVO
+      '#other__option_label': drugo
+      '#other__placeholder': 'navedite:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': '1.4 Opasnosti/rizici od kemikalija o kojima obavještavate povezani su s(a): (Odaberite sve primjenjive odgovore.)'
+      '#options':
+        'hranom (sigurnošću hrane)': 'hranom (sigurnošću hrane)'
+        'okolišem (tlom, zrakom, vodom itd.)': 'okolišem (tlom, zrakom, vodom itd.)'
+        'zaštitom zdravlja na radu': 'zaštitom zdravlja na radu'
+        'kemijskom sigurnošću (općom)': 'kemijskom sigurnošću (općom)'
+      '#other__option_label': drugo
+      '#other__placeholder': 'navedite:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': '1.5 Koliko godina iskustva imate u području obavještavanja o riziku?'
+      '#options':
+        'Manje od dvije godine': 'Manje od dvije godine'
+        'Od 2 do 5 godina': 'Od 2 do 5 godina'
+        'Od 6 do 10 godina': 'Od 6 do 10 godina'
+        'Od 11 do 15 godina': 'Od 11 do 15 godina'
+        'Više od 15 godina': 'Više od 15 godina'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': "1.6\tKoliko često obavještavate o riziku?"
+      '#options':
+        'Svakodnevno / jedanput tjedno': 'Svakodnevno / jedanput tjedno'
+        'Jedanput mjesečno': 'Jedanput mjesečno'
+        'Svakih nekoliko mjeseci': 'Svakih nekoliko mjeseci'
+        'Jednom godišnje': 'Jednom godišnje'
+        Nikad: Nikad
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': '1.7 Kome najčešće upućujete svoje obavijesti?'
+      '#options':
+        'općoj javnosti': 'općoj javnosti'
+      '#other__option_label': 'ciljanoj publici'
+      '#other__placeholder': 'navedite:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': "1.8\tŠto je vaša znanstvena disciplina? (Odaberite sve primjenjive odgovore.)"
+      '#multiple': 8
+      '#options':
+        'inženjer kemije / kemičar / toksikolog  ': 'inženjer kemije / kemičar / toksikolog  '
+        'prehrambeni tehnolog / mikrobiolog': 'prehrambeni tehnolog / mikrobiolog'
+        'stručnjak za javno zdravstvo': 'stručnjak za javno zdravstvo'
+        'stručnjak za prehranu': 'stručnjak za prehranu'
+        'znanstvenik za okoliš/poljoprivredu': 'znanstvenik za okoliš/poljoprivredu'
+        'stručnjak za komunikaciju / društvene znanosti': 'stručnjak za komunikaciju / društvene znanosti'
+      '#other__option_label': drugo
+      '#other__placeholder': 'navedite:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': "1.9\tKoliko često pohađate obuke u području komunikacije (npr. obuke koje provode komunikacijski stručnjaci, posjeti drugim odjelima za komunikaciju, sudjelovanje na seminarima / mrežnim seminarima / tečajevima itd.)?"
+      '#options':
+        nikad: nikad
+        'povremeno (npr. svakih 2 – 5 godina)': 'povremeno (npr. svakih 2 – 5 godina)'
+        'često (najmanje jednom godišnje)': 'često (najmanje jednom godišnje)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': '1.10 Koliko ste bili zadovoljni obukom u području komunikacije koju ste pohađali?'
+      '#options':
+        Nezadovoljan/nezadovoljna: Nezadovoljan/nezadovoljna
+        'Donekle zadovoljan/zadovoljna': 'Donekle zadovoljan/zadovoljna'
+        'Umjereno zadovoljan/zadovoljna': 'Umjereno zadovoljan/zadovoljna'
+        'Vrlo zadovoljan/zadovoljna': 'Vrlo zadovoljan/zadovoljna'
+        'Potpuno zadovoljan/zadovoljna': 'Potpuno zadovoljan/zadovoljna'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': nikad
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': "1.11\tSmatrate li da je za vaše trenutačno radno mjesto potrebno proći obuku u području komunikacije?"
+      '#options':
+        da: da
+        ne: ne
+        'ne znam / ne želim odgovoriti': 'ne znam / ne želim odgovoriti'
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': '2. odjeljak: Iskustvo u obavještavanju o riziku'
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': '2.1 S kojim se poteškoćama susrećete tijekom obavještavanja o riziku? (Odaberite sve primjenjive odgovore.)'
+      '#options':
+        'nedostatak odgovarajućih znanstvenih činjenica (o opasnosti ili vjerojatnosti da će određena tvar prouzročiti štetu)': 'nedostatak odgovarajućih znanstvenih činjenica (o opasnosti ili vjerojatnosti da će određena tvar prouzročiti štetu)'
+        'nedostatak podrške kolega / malo ljudskih resursa posvećeno obavještavanju o riziku': 'nedostatak podrške kolega / malo ljudskih resursa posvećeno obavještavanju o riziku'
+        'poteškoće u suradnji sa stručnjacima u području rizika od kemikalija': 'poteškoće u suradnji sa stručnjacima u području rizika od kemikalija'
+        'nejasna raspodjela uloga': 'nejasna raspodjela uloga'
+        'nejasna raspodjela odgovornosti': 'nejasna raspodjela odgovornosti'
+        'nedostatak proračunskih sredstava namijenjenih komunikaciji': 'nedostatak proračunskih sredstava namijenjenih komunikaciji'
+        'upletanje voditelja za upravljanje rizicima u pogledu vremena i sadržaja obavijesti': 'upletanje voditelja za upravljanje rizicima u pogledu vremena i sadržaja obavijesti'
+      '#other__option_label': drugo
+      '#other__placeholder': 'navedite:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': "2.2\tImate li mjerni sustav koji pokazuje je li poruka stigla do konačne ciljane publike?"
+      '#options':
+        da: da
+        ne: ne
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': '2.3 Ako ste na prethodno pitanje odgovorili DA, koji mjerni sustav upotrebljavate?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: da
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': '2.4 Procjenjujete li svaki put ima li opasnost/rizik od kemikalija o kojemu obavještavate znatan utjecaj/učinak ili ne? (Reakcija javnosti?)'
+      '#options':
+        da: da
+        ne: ne
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': '2.5 Ako ste na prethodno pitanje odgovorili DA, kako procjenjujete taj učinak?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: da
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': '2.6 Što mislite kakav je vaš utjecaj na ciljanu publiku?'
+      '#options':
+        Nikakav: Nikakav
+        'Slab ': 'Slab '
+        Srednji: Srednji
+        Znatan: Znatan
+        Snažan: Snažan
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': "2.7\tNa čemu temeljite svoj odgovor na prethodno pitanje? (Odaberite sve primjenjive odgovore.)"
+      '#options':
+        'na reakcijama medija (televizije, radija, tiska)': 'na reakcijama medija (televizije, radija, tiska)'
+        'na objavama/postovima na internetskim stranicama, osobnim blogovima, društvenim mrežama': 'na objavama/postovima na internetskim stranicama, osobnim blogovima, društvenim mrežama'
+        'na praćenju putem anketa među potrošačima': 'na praćenju putem anketa među potrošačima'
+        'na izravnim povratnim informacijama dobivenima osobno (npr. razgovorom, telefonski pozivom, e-poštom ili porukama)': 'na izravnim povratnim informacijama dobivenima osobno (npr. razgovorom, telefonski pozivom, e-poštom ili porukama)'
+      '#other__option_label': drugo
+      '#other__placeholder': 'navedite:'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': '2.8 Pri obavještavanju o opasnosti/riziku od kemikalija obično…'
+      '#options':
+        'formirate vlastitu poruku': 'formirate vlastitu poruku'
+        'prenosite poruku u onom obliku u kojem ste je primili od procjenitelja rizika': 'prenosite poruku u onom obliku u kojem ste je primili od procjenitelja rizika'
+        'prilagođavate ili preformulirate poruke iz drugih izvora': 'prilagođavate ili preformulirate poruke iz drugih izvora'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': '2.9 Jeste li ikad osobno imali zdravstvenih posljedica zbog izloženosti opasnim kemikalijama (npr. kontaminirana hrana, proizvodi za čišćenje, pesticidi)?'
+      '#options':
+        da: da
+        ne: ne
+        'ne znam': 'ne znam'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': '2. 10 Ako ste odgovorili potvrdno, je li to iskustvo utjecalo na način na koji obavještavate ili razmišljate o toj opasnosti?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: da
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': '3. odjeljak: Izrada obavijesti o riziku'
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': '3.1 Kad ciljanu publiku obavještavate o riziku, koliko je važno iskoristiti sljedeće mogućnosti?'
+      '#required': true
+      '#questions':
+        'Korištenje vizualnih ilustracija rizika pomoću grafikona, dijagrama, slika i karata': 'Korištenje vizualnih ilustracija rizika pomoću grafikona, dijagrama, slika i karata'
+        'Usporedbe različitih opasnosti prema vjerojatnosti': 'Usporedbe različitih opasnosti prema vjerojatnosti'
+        'Opis svih neizvjesnosti povezanih s rizikom': 'Opis svih neizvjesnosti povezanih s rizikom'
+        'Brojčane granične vrijednosti (npr. dopušteni dnevni unos za određenu kemikaliju izražen brojkama)': 'Brojčane granične vrijednosti (npr. dopušteni dnevni unos za određenu kemikaliju izražen brojkama)'
+        'Opis različitih rizika za različite skupine ljudi (npr. razlika u riziku za različite skupine zanimanja)': 'Opis različitih rizika za različite skupine ljudi (npr. razlika u riziku za različite skupine zanimanja)'
+        'Informacije o razlici između dugoročne i kratkoročne izloženosti opasnosti': 'Informacije o razlici između dugoročne i kratkoročne izloženosti opasnosti'
+        'Informacije koje pokazuju da javnost podcjenjuje rizik (npr. ako osoba koja obavještava o riziku ima informaciju da javnost odre': 'Informacije koje pokazuju da javnost podcjenjuje rizik (npr. ako osoba koja obavještava o riziku ima informaciju da javnost određene kemikalije ne smatra onoliko opasnima koliko jesu)'
+        'Informacije koje pokazuju da javnost precjenjuje rizik (npr. ako osoba koja obavještava o riziku ima informaciju da javnost odre': 'Informacije koje pokazuju da javnost precjenjuje rizik (npr. ako osoba koja obavještava o riziku ima informaciju da javnost određene kemikalije smatra opasnijima nego što jesu)'
+        'Opis strategija za izbjegavanje izloženosti opasnosti': 'Opis strategija za izbjegavanje izloženosti opasnosti'
+      '#answers':
+        'Uopće nije važno': 'Uopće nije važno'
+        'Nije jako važno': 'Nije jako važno'
+        'Donekle je važno': 'Donekle je važno'
+        'Prilično je važno': 'Prilično je važno'
+        'Vrlo je važno': 'Vrlo je važno'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': "3.2\tPri obavješćivanju o riziku koliko su, po vašem mišljenju, sljedeći aspekti povjerenja važni za percepciju rizika među ciljanom publikom?"
+      '#required': true
+      '#questions':
+        'Povjerenje publike u stručnjaka koji obavještava o riziku': 'Povjerenje publike u stručnjaka koji obavještava o riziku'
+        'Povjerenje publike u nacionalne/europske institucije/tijela': 'Povjerenje publike u nacionalne/europske institucije/tijela'
+        'Povjerenje publike u znanstvene podatke': 'Povjerenje publike u znanstvene podatke'
+      '#answers':
+        'Uopće nije važno': 'Uopće nije važno'
+        'Nije jako važno': 'Nije jako važno'
+        'Donekle je važno': 'Donekle je važno'
+        'Prilično je važno': 'Prilično je važno'
+        'Vrlo je važno': 'Vrlo je važno'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': '3.2 Ocijenite u kojoj se mjeri slažete s izjavama koje se odnose na obavještavanje o riziku.'
+      '#required': true
+      '#questions':
+        'Pri obavještavanje o riziku važno je razlikovati opasnost od rizika.': 'Pri obavještavanje o riziku važno je razlikovati opasnost od rizika.'
+        'Percepcija javnosti o riziku ne bi trebala utjecati na obavještavanje o riziku.': 'Percepcija javnosti o riziku ne bi trebala utjecati na obavještavanje o riziku.'
+        'Načela (npr. objektivnost, nepristranost) na kojima se temelji obavještavanje o riziku dosljedna su u svim sektorima (npr. kemij': 'Načela (npr. objektivnost, nepristranost) na kojima se temelji obavještavanje o riziku dosljedna su u svim sektorima (npr. kemijske opasnosti, zarazne bolesti).'
+        'Opisivanje svih neizvjesnosti povezanih s rizikom i opasnošću zbunjuje ljude.': 'Opisivanje svih neizvjesnosti povezanih s rizikom i opasnošću zbunjuje ljude.'
+        'Obavještavanje o riziku trebalo bi se provoditi u suradnji s uključenim dionicima.': 'Obavještavanje o riziku trebalo bi se provoditi u suradnji s uključenim dionicima.'
+        'Informativni mediji više su zainteresirani za obavještavanje u kriznim situacijama u kojima se rizik često preuveličava.': 'Informativni mediji više su zainteresirani za obavještavanje u kriznim situacijama u kojima se rizik često preuveličava.'
+      '#answers':
+        'Uopće se ne slažem': 'Uopće se ne slažem'
+        'Djelomično se ne slažem': 'Djelomično se ne slažem'
+        'Niti se slažem niti se ne slažem': 'Niti se slažem niti se ne slažem'
+        'Djelomično se slažem': 'Djelomično se slažem'
+        'U potpunosti se slažem': 'U potpunosti se slažem'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': '4. odjeljak: Uloga osoba koje obavještavaju o riziku'
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': ' 4.1 Ocijenite koliko se slažete s izjavama o percepciji rizika.'
+      '#required': true
+      '#questions':
+        'Percepcija rizika uključuje uvjerenja i stavove osoba ili o njima ovisi.': 'Percepcija rizika uključuje uvjerenja i stavove osoba ili o njima ovisi.'
+        'Na percepciju rizika ne utječu prosudbe i osjećaji pojedinaca (osobno iskustvo).': 'Na percepciju rizika ne utječu prosudbe i osjećaji pojedinaca (osobno iskustvo).'
+        'Percepcija rizika odražava šire kulturne i društvene stavove ljudi prema opasnostima i njihovim koristima.': 'The principles (e.g. objectivity, impartiality) upon which risk communication is based are consistent across all sectors (e.g. chemical hazards, communicable diseases.'
+        'Obavještavanje o riziku trebalo bi se temeljiti na dokazima dobivenima u sklopu procjena rizika, ali bi se pritom trebao uzeti u': 'Obavještavanje o riziku trebalo bi se temeljiti na dokazima dobivenima u sklopu procjena rizika, ali bi se pritom trebao uzeti u obzir i način na koji laici percipiraju opasnost i njezinu važnost.'
+        'Osobe koje su prethodno doživjele incident povezan s opasnošću obično smatraju da će se vjerojatno ponovno suočiti s njom za raz': 'Osobe koje su prethodno doživjele incident povezan s opasnošću obično smatraju da će se vjerojatno ponovno suočiti s njom za razliku od osoba koje tu opasnost nikada nisu doživjele.'
+        'Kada ljudi prvi put saznaju za neku opasnost, obično smatraju da je vjerojatnost od njezine pojave veća u odnosu na druge dobro ': 'Kada ljudi prvi put saznaju za neku opasnost, obično smatraju da je vjerojatnost od njezine pojave veća u odnosu na druge dobro poznate opasnosti.'
+        'Što više konkretnog znanja ljudi steknu o opasnosti, to se manje oslanjaju na svoju intuiciju o riziku koji je povezan s tom opa': 'Što više konkretnog znanja ljudi steknu o opasnosti, to se manje oslanjaju na svoju intuiciju o riziku koji je povezan s tom opasnošću.'
+        'Povjerenje u osobu koja obavještava o riziku važnije je od informacija.': 'Povjerenje u osobu koja obavještava o riziku važnije je od informacija.'
+      '#answers':
+        'Uopće se ne slažem': 'Uopće se ne slažem'
+        'Djelomično se ne slažem': 'Djelomično se ne slažem'
+        'Niti se slažem niti se ne slažem': 'Niti se slažem niti se ne slažem'
+        'Djelomično se slažem': 'Djelomično se slažem'
+        'U potpunosti se slažem': 'U potpunosti se slažem'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': '5. odjeljak: Tradicionalni mediji i društvene mreže'
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': '5.1 Koji kanal preferirate koristiti za komunikaciju o rizicima? Molimo poredajte kanale prema svojim preferencijama povlačenjem na odgovarajuće mjesto, tako da najpoželjniji kanal bude na vrhu, a najmanje poželjan na dnu.'
+      '#options':
+        bilten: bilten
+        'članke u novinama i časopisima': 'članke u novinama i časopisima'
+        televiziju: televiziju
+        radio: radio
+        'društvene mreže': 'društvene mreže'
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': '5.2 Koji biste kanal najradije koristili za komunikaciju u kriznim situacijama? Molimo poredajte kanale prema svojim preferencijama povlačenjem na odgovarajuće mjesto, tako da najpoželjniji kanal bude na vrhu, a najmanje poželjan na dnu.'
+      '#options':
+        'priopćenje za medije': 'priopćenje za medije'
+        'članke u novinama i časopisima': 'članke u novinama i časopisima'
+        televiziju: televiziju
+        radio: radio
+        'društvene mreže': 'društvene mreže'
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': '5.3 Koristite li se društvenim mrežama za obavještavanje o riziku?'
+      '#options':
+        da: da
+        ne: ne
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': '5.4 Koju društvenu mrežu preferirate za obavještavanje o riziku? (Odaberite sve primjenjive odgovore.)'
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_text': nijednu
+      '#other__option_label': srugo
+      '#other__placeholder': 'navedite:'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: da
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': '5.5 Koju biste platformu društvenih mreža upotrijebili za obavještavanje u kriznim situacijama? (Odaberite sve primjenjive odgovore.)'
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_text': nijednu
+      '#other__option_label': drugo
+      '#other__placeholder': 'navedite:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': '5.6 Upotrebljavate li ikakve alate za analizu društvenih mreža (softver koji korisnicima omogućuje nadzor, praćenje i analizu razgovora na društvenim mrežama)?'
+      '#options':
+        da: da
+        ne: ne
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': '5.7 Ako ste na prethodno pitanje odgovorili DA, koje alate za analizu društvenih mreža upotrebljavate?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: da
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': '5.8 Kako obično postupate kada na društvenim mrežama naiđete na netočne informacije / glasine o riziku povezanom s određenom opasnošću/rizikom od kemikalija?'
+      '#options':
+        'Ne reagiram. Ako ne učinim ništa, situacija će se smiriti.': 'Ne reagiram. Ako ne učinim ništa, situacija će se smiriti.'
+        'Objavljujem izjavu s točnim informacijama i distribuiram je.': 'Objavljujem izjavu s točnim informacijama i distribuiram je.'
+        'Po potrebi poduzimam pravne mjere.': 'Po potrebi poduzimam pravne mjere.'
+      '#other__option_label': drugo
+      '#other__placeholder': navedite
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': '6. odjeljak: Jezik'
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': '6.1 Pretpostavimo da na društvenim mrežama kruže netočne informacije / glasine o riziku povezanom s pušenjem i kadmijem. Koju biste od sljedećih tvrdnji objavili?'
+      '#options':
+        "•\tA: Prilikom pušenja cigareta apsorpcija kadmija u plućima iznosi 10 – 50 %. Koncentracija kadmija u krvi pušača iznosi oko 1,5 μg/l, a koncentracija kadmija u bubrežnoj kori oko 20 – 30 μg/g mokre mase. Koncentracija kadmija u krvi u nepušača manja je 4 – 5 puta, a koncentracija kadmija u bubrežnoj kori dvostruko je niža. Dokazano je da kadmij uzrokuje rak pluća.": "•\tA: Prilikom pušenja cigareta apsorpcija kadmija u plućima iznosi 10 – 50 %. Koncentracija kadmija u krvi pušača iznosi oko 1,5 μg/l, a koncentracija kadmija u bubrežnoj kori oko 20 – 30 μg/g mokre mase. Koncentracija kadmija u krvi u nepušača manja je 4 – 5 puta, a koncentracija kadmija u bubrežnoj kori dvostruko je niža. Dokazano je da kadmij uzrokuje rak pluća."
+        "•\tB: Prilikom pušenja cigareta apsorpcija kadmija u plućima iznosi 10 – 50 %, dok apsorpcija u probavnom traktu iznosi tek nekoliko posto. Pušači imaju otprilike 4 – 5 puta veće koncentracije kadmija u krvi (oko 1,5 μg/l) i dvostruko veće koncentracije kadmija u bubrežnoj kori (oko 20 – 30 μg/g mokre mase) od nepušača. Dokazano je da kadmij uzrokuje rak pluća, ali dokazi za njegovu povezanost s rakom bubrega, jetre i prostate su ograničeni.": "•\tB: Prilikom pušenja cigareta apsorpcija kadmija u plućima iznosi 10 – 50 %, dok apsorpcija u probavnom traktu iznosi tek nekoliko posto. Pušači imaju otprilike 4 – 5 puta veće koncentracije kadmija u krvi (oko 1,5 μg/l) i dvostruko veće koncentracije kadmija u bubrežnoj kori (oko 20 – 30 μg/g mokre mase) od nepušača. Dokazano je da kadmij uzrokuje rak pluća, ali dokazi za njegovu povezanost s rakom bubrega, jetre i prostate su ograničeni."
+        "•\tC: Prilikom pušenja cigareta apsorpcija kadmija u plućima izuzetno je visoka, dok je apsorpcija u probavnom traktu niža. Pušači imaju znatno veće koncentracije kadmija u krvi i koncentracije kadmija u bubrežnoj kori. Kadmij je kancerogen.": "•\tC: Prilikom pušenja cigareta apsorpcija kadmija u plućima izuzetno je visoka, dok je apsorpcija u probavnom traktu niža. Pušači imaju znatno veće koncentracije kadmija u krvi i koncentracije kadmija u bubrežnoj kori. Kadmij je kancerogen."
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': '6.2 U znanstvenoj tvrdnji u nastavku navodi se sljedeće: „Akrilamid je kemikalija koja prirodno nastaje u prehrambenim proizvodima bogatima škrobom kada se kuhaju na visokim temperaturama (iznad 120 °C). Prisutnost akrilamida u hrani može potencijalno povećati rizik od razvoja raka u potrošača svih dobnih skupina. Srećom, postoje načini za smanjenje razina akrilamida u hrani.” Koju biste izjavu odabrali kada biste potrošačima trebali dati savjet o smanjenju razine akrilamida u hrani koju kuhaju kod kuće?'
+      '#options':
+        'Radi zaštite zdravlja škrobnu hranu treba pržiti, peći ili tostirati dok ne poprimi zlatnožutu (ili svjetliju) boju, a pregrijanu hranu treba izbjegavati.': 'Radi zaštite zdravlja škrobnu hranu treba pržiti, peći ili tostirati dok ne poprimi zlatnožutu (ili svjetliju) boju, a pregrijanu hranu treba izbjegavati.'
+        'Dugotrajnim kuhanjem i na višim temperature stvara se veća količina akrilamida, koji u ljudi može uzrokovati rak, nego kada hranu kuhate kratko i na nižim temperaturama.': 'Dugotrajnim kuhanjem i na višim temperature stvara se veća količina akrilamida, koji u ljudi može uzrokovati rak, nego kada hranu kuhate kratko i na nižim temperaturama.'
+      '#required': true
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: Početak
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: Kraj
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: 'Prethodna stranica'
+  wizard_next_button_label: ''
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: ''
+  confirmation_message: '<p><span>Hvala. Vaši odgovori su poslani.</span></p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }

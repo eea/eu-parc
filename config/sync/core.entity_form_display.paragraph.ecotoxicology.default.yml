@@ -1,0 +1,69 @@
+uuid: 8ce62972-5696-4f31-8b3d-e981ed7fa81c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ecotoxicology.field_additional_information
+    - field.field.paragraph.ecotoxicology.field_approaches
+    - field.field.paragraph.ecotoxicology.field_domain
+    - field.field.paragraph.ecotoxicology.field_sampling_type_multiple
+    - field.field.paragraph.ecotoxicology.field_substance_group_multiple
+    - paragraphs.paragraphs_type.ecotoxicology
+  module:
+    - select2
+id: paragraph.ecotoxicology.default
+targetEntityType: paragraph
+bundle: ecotoxicology
+mode: default
+content:
+  field_additional_information:
+    type: string_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_approaches:
+    type: select2_entity_reference
+    weight: 4
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_domain:
+    type: select2_entity_reference
+    weight: 0
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_sampling_type_multiple:
+    type: select2_entity_reference
+    weight: 2
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+  field_substance_group_multiple:
+    type: select2_entity_reference
+    weight: 1
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

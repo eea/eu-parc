@@ -29,15 +29,21 @@
           year = new Date().getFullYear();
         }
         let wrapper = $(this).closest('.container').siblings('.indicator-chart__wrapper')
-        if(wrapper.find('.indicators-timeline').length>0){
-          html2canvas(wrapper.find('.indicators-timeline')[0], {logging: false}).then(canvas => {
+        let visibleChartImage = wrapper.find('.chart-image').filter(function() {
+          return $(this).css('display') !== 'none';
+        }).first();
+        if(visibleChartImage.length > 0){
+          download(visibleChartImage.attr('src'), filename + '-' + year);
+        }
+        else if(wrapper.find('.indicators-timeline').length>0){
+          html2canvas(wrapper.find('.indicators-timeline')[0], {logging: false, scale: 2}).then(canvas => {
             download(canvas.toDataURL('image/png'), filename + '-' + year);
             return;
           }).catch(err => {
             console.error(err);
           });
         }
-        else{
+        else {
           function downloadSVG(sleep=0) {
             setTimeout(function () {
               let svg = wrapper.find('.indicator-container > svg');
@@ -83,10 +89,12 @@
               let totalSVGs = svgArr.length;
               let columns = totalSVGs < 4 ? totalSVGs : 4;
               let rows = totalSVGs > 0 ? Math.ceil(totalSVGs / columns) : 0;
+              let scale = 2;
 
-              canvas.width = svgArr[0].clientWidth * columns;
-              canvas.height = svgArr[0].clientHeight * rows;
+              canvas.width = svgArr[0].clientWidth * columns * scale;
+              canvas.height = svgArr[0].clientHeight * rows * scale;
               let ctx = canvas.getContext('2d');
+              ctx.scale(scale, scale);
               ctx.fillStyle = 'white';
               ctx.fillRect(0, 0, canvas.width, canvas.height);
 

@@ -23,7 +23,9 @@
 
 {# Begin style #}
 {{ page.hero }}
-{{ page.highlighted }}
+{% if not highlighted_above_header %}
+  {{ page.highlighted }}
+{% endif %}
 {{ page.breadcrumb }}
 
 <div class="{{ global.container }}">

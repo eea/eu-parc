@@ -1,0 +1,13 @@
+uuid: ead2045a-036b-48ce-8812-6fdce411cd92
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.video
+id: node.video
+targetEntityType: node
+bundle: video
+action: display_page
+no_bypass: false
+bypass_message: false
+configuration: {  }

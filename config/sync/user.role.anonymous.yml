@@ -6,6 +6,7 @@ dependencies:
     - filter.format.restricted_html
     - search_api_autocomplete.search.search
   module:
+    - book
     - comment
     - contact
     - eu_cookie_compliance
@@ -21,6 +22,7 @@ label: 'Anonymous user'
 weight: -10
 is_admin: false
 permissions:
+  - 'access book list'
   - 'access comments'
   - 'access content'
   - 'access protected page password screen'

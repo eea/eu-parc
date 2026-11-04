@@ -1,0 +1,20 @@
+uuid: 0f0f47f4-3619-4f93-a4dd-f6727fd4ed17
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_approaches
+field_name: field_approaches
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

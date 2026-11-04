@@ -10,22 +10,24 @@
 {% set footer_attribute = create_attribute() %}
 
 <footer {{ footer_attribute.setAttribute('id', 'footer').addclass('p-0') }}>
-  <div class='bg-blue py-4'>
-    <div class="container-fluid container-content">
-      <div class="row row-top align-items-start">
-        {{- page.prefooter -}}
-      </div>
-    </div>
-  </div>
-
   <div class="bg-green py-4">
     <div class="container-fluid container-content pb-1">
-      <div class="row row-top align-items-start">
-        {{- page.footer -}}
-        {{- page.footer_second -}}
+      <div class="row row-top">
+        <div class="col-12 col-md-6 d-flex justify-content-between flex-column leftCol">
+          {{- page.footer -}}
+          {{- page.footer_s -}}
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column">
+          {{- page.footer_second -}}
+        </div>
       </div>
-
-      {{ page.footer_s }}
+    </div>
+    <div class="footer-logos">
+      <div class="container-fluid container-content">
+        <div class="row align-items-center">
+          {{- page.prefooter -}}
+        </div>
+      </div>
     </div>
   </div>
 </footer>

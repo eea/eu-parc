@@ -13,6 +13,7 @@ module:
   block: 0
   block_class: 0
   block_content: 0
+  book: 0
   breakpoint: 0
   ckeditor5: 0
   ckeditor5_plugin_pack: 0
@@ -39,6 +40,8 @@ module:
   edw_healthcheck: 0
   embed_block: 0
   entity_reference_revisions: 0
+  environment_indicator: 0
+  environment_indicator_toolbar: 0
   facets: 0
   facets_custom_order: 0
   field: 0
@@ -86,6 +89,7 @@ module:
   metatag_open_graph: 0
   metatag_twitter_cards: 0
   metatag_views: 0
+  monolog: 0
   mysql: 0
   node: 0
   options: 0
@@ -100,6 +104,7 @@ module:
   rabbit_hole: 0
   raven: 0
   redirect: 0
+  redis: 0
   rh_node: 0
   rh_taxonomy: 0
   search_api: 0
@@ -112,6 +117,7 @@ module:
   simple_sitemap_views: 0
   smart_date: 0
   smart_trim: 0
+  smtp: 0
   spamspan: 0
   svg_image: 0
   system: 0

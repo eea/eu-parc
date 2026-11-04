@@ -4,7 +4,9 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_air_environment
+    - field.storage.node.field_approaches
     - field.storage.node.field_country
+    - field.storage.node.field_domain
     - field.storage.node.field_lab_category
     - field.storage.node.field_lab_type
     - field.storage.node.field_sampling_type
@@ -25,6 +27,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_air_environment
+  field_approaches:
+    label: Approaches
+    datasource_id: 'entity:node'
+    property_path: field_approaches
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_approaches
   field_country:
     label: Country
     datasource_id: 'entity:node'
@@ -33,6 +43,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_country
+  field_domain:
+    label: Domain
+    datasource_id: 'entity:node'
+    property_path: field_domain
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_domain
   field_lab_category:
     label: 'Lab category'
     datasource_id: 'entity:node'

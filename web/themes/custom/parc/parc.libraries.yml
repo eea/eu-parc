@@ -254,6 +254,11 @@ n--article-related:
     component:
       css/components/content/article/related/style.css: {}
 
+n--documentation-full:
+  css:
+    component:
+      css/components/content/documentation/full/style.css: {}
+
 n--basic-page-full:
   css:
     component:
@@ -295,6 +300,11 @@ n--deliverables--teaser:
     component:
       css/components/content/deliverables/vm--teaser/style.css: {}
 
+n--policy-brief--teaser:
+  css:
+    component:
+      css/components/content/policy-brief/vm--teaser/style.css: {}
+
 n--search-teaser:
   css:
     component:
@@ -315,6 +325,16 @@ b--icon-banner:
   css:
     component:
       css/components/block/icon-banner/style.css: {}
+
+b--responsive-video:
+  css:
+    component:
+      css/components/block/responsive-video/style.css: {}
+  js:
+    templates/components/block/responsive-video/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 
 # Paragraph.
 p--svg-text:
@@ -404,6 +424,12 @@ m--main:
   css:
     component:
       css/components/menu/main/style.css: {}
+  js:
+    templates/components/menu/main/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/jquery
 
 m--sidebar-dropdown:
   css:
@@ -445,16 +471,15 @@ v--deliverables:
     - core/jquery
     - core/once
 
+v--policy-briefs:
+  css:
+    component:
+      css/components/views/policy-briefs/style.css: {}
+
 v--publications:
   css:
     component:
       css/components/views/publications/style.css: {}
-  js:
-    templates/components/views/publications/script.js: { }
-  dependencies:
-    - core/drupal
-    - core/jquery
-    - core/once
 
 v--search:
   css:
@@ -506,6 +531,12 @@ lab_matrix:
   css:
     component:
       css/components/parc/lab-matrix.css: { }
+  js:
+    js/lab-matrix.js: { }
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/once
 
 svg_title:
   css:
@@ -612,6 +643,16 @@ n--press-clipping:
     component:
       css/components/content/press-clipping/press-clipping.css: { }
 
+n--video:
+  css:
+    component:
+      css/components/content/video/video.css: {}
+  js:
+    templates/components/content/video/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 aos:
   css:
     component:
@@ -647,3 +688,8 @@ sria-animation:
   dependencies:
     - core/drupal
     - core/once
+
+highlights:
+  css:
+    component:
+      css/components/parc/highlights.css: {}

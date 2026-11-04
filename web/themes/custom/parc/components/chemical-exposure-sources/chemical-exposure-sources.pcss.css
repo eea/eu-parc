@@ -85,7 +85,7 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 16px;
-  margin: 40px 0;
+  margin: 60px 0;
   padding-bottom: 16px;
   flex-direction: column;
   @mixin rb-bottom;

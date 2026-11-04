@@ -1,0 +1,25 @@
+uuid: 84cb1868-332b-480a-a9ae-f706d488cc54
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.highlights
+    - field.field.block_content.highlights.field_paragraphs
+  module:
+    - entity_reference_revisions
+id: block_content.highlights.default
+targetEntityType: block_content
+bundle: highlights
+mode: default
+content:
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  search_api_excerpt: true

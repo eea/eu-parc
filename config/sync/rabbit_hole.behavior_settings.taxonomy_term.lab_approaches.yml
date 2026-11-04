@@ -1,0 +1,16 @@
+uuid: 134528af-7938-4e9f-bc1d-14e1e3c655dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.lab_approaches
+id: taxonomy_term.lab_approaches
+targetEntityType: taxonomy_term
+bundle: lab_approaches
+action: page_redirect
+no_bypass: false
+bypass_message: false
+configuration:
+  redirect: '<front>'
+  redirect_code: 301
+  redirect_fallback_action: access_denied

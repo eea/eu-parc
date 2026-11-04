@@ -50,6 +50,15 @@ settings:
     -
       value: trainings
       label: Trainings
+    -
+      value: output_02
+      label: 'Output 2'
+    -
+      value: output_11
+      label: 'Output 11'
+    -
+      value: static_images
+      label: 'Static images'
   allowed_values_function: ''
 module: options
 locked: false

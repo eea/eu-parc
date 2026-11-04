@@ -67,6 +67,8 @@ class ParcProjectsStyle extends StylePluginBase {
       [1003],
       [1003, 1002],
       [1002],
+      [1002, 1808],
+      [1808],
     ];
 
     usort($results, function ($a, $b) use ($topic_combinations) {

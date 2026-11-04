@@ -1,26 +1,127 @@
+body.has-tta-bg header#header {
+  background-color: var(--tta--bg);
+}
+
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodebasic-pagefield-banner),
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-banner) {
+  position: absolute;
+  inset-inline: 0;
+  background-color: transparent;
+
+  &.h-sticky {
+    position: fixed;
+    background-color: var(--c-white);
+  }
+}
+
+.region-highlighted {
+  position: relative;
+}
+
+body.page-node-type-basic-page,
+body.page-node-type-page {
+  header#header {
+    position: sticky !important;
+    top: var(--drupal-displace-offset-top, 0px);
+  }
+
+  &.page--banner-overlay header#header:has(+ main :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img) {
+    background-color: var(--banner-overlay-bg);
+
+    @media (--md) {
+      background-color: transparent;
+
+      & + main {
+        margin-top: calc(-1 * var(--banner-overlay-header-height, 96px));
+      }
+    }
+
+    &.h-sticky {
+      background-color: var(--c-white);
+    }
+  }
+}
+
+:root {
+  --banner-overlay-bg: #FAFAFA;
+}
+
+body.page--banner-overlay {
+  .layout__region--content:has(> :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img) {
+    background-color: var(--banner-overlay-bg);
+    padding-bottom: 0;
+  }
+
+  .node--basic-page--full .node--content-pb {
+    @media (max-width: 767px) {
+      padding-top: 40px;
+    }
+  }
+
+  :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+
+    @media (--md) {
+      min-height: var(--banner-min-height, 240px);
+    }
+  }
+
+  :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner):has(img) + :is(.block-field-blocknodebasic-pagetitle, .block-field-blocknodepagetitle) {
+    --banner-title-offset: calc(100vw * 0.069);
+
+    position: static;
+    display: block;
+    padding: 0 0 24px;
+    text-align: center;
+
+    h1 {
+      margin: 0;
+    }
+
+    .svg-title {
+      margin-top: calc(-1 * var(--banner-title-offset) - var(--svg-title-size) / 2);
+      padding: 0;
+    }
+
+    @media (--md) {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+
+      .svg-title {
+        margin-top: 0;
+        /* 50px / 100px at full width (1920px), scaled down proportionally. */
+        padding-bottom: min(2.6042vw, 50px);
+
+        &, > * {
+          --svg-title-size: min(5.2083vw, 100px);
+        }
+      }
+    }
+  }
+}
+
 header {
-  transition: 0.3s opacity linear;
+  transition: transform 0.3s ease;
 
   .navbar-brand {
     width: 220px;
+    flex-shrink: 0;
   }
 
-  @media (--lg) {
+  &.vh {
+    transform: translateY(calc(-1 * var(--navbar-height, 100%)));
+  }
+
+  @media (--xl) {
     .region-nav-additional {
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: regionAditionalOut;
-      animation-duration: 0.3s;
-    }
-
-    .navbar {
-      transition: 0.35s linear min-height;
-    }
-
-    &.vh {
-      opacity: 0;
-      pointer-events: none;
+      max-height: 29px;
     }
 
     .nav-main {
@@ -35,29 +136,59 @@ header {
   }
 }
 
+
+.header-sticky-title {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  max-height: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--tta--bg, #F5F5F5);
+  transition: max-height 0.35s ease;
+
+  .svg-title {
+    margin: 0;
+    padding-block: 40px;
+    color: var(--tta--c-heading, inherit);
+  }
+
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  header.title-passed .header-sticky-title {
+    max-height: 250px;
+  }
+}
+
 .h-sticky {
   margin-bottom: calc(96px - 68px);
 
   .navbar {
     min-height: 68px;
+
+    .container-fluid {
+      padding-bottom: 15px;
+    }
   }
 
-  @media (--lg) {
+  @media (--xl) {
     .site-logo {
       --sl-mw: 180px;
-    }
-
-    .region-nav-additional {
-      animation-iteration-count: 1;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      animation-name: regionAditionalIn;
-      animation-duration: 0.3s;
     }
   }
 
   .region-nav-main {
     margin-bottom: 0;
+  }
+}
+
+.menu--sidebar--multilevel {
+  .mm-level-1 {
+    flex-direction: column;
   }
 }
 
@@ -100,7 +231,7 @@ header {
   }
 }
 
-@media (--downLg) {
+@media (max-width: 1279px) {
   .menu--main {
     width: 100%;
   }
@@ -147,11 +278,11 @@ header {
         display: none;
       }
 
-      .d-lg-none {
+      .d-xl-none {
         text-decoration: none;
         padding: 14px 0 14px 0;
         color: var(--c-white);
-        width: 100%;
+        width: 100% !important;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -218,7 +349,7 @@ header {
   }
 }
 
-@media (--lg) {
+@media (--xl) {
   .region-nav-main {
     margin-bottom: 6px;
   }
@@ -249,7 +380,7 @@ header {
   box-shadow: 0 0 0 max(100vw, 100vh) var(--lichtblauw);
   transition: 0.35s linear box-shadow;
 
-  @media (--lg) {
+  @media (--xl) {
     display: none;
   }
 }
@@ -261,7 +392,7 @@ header {
     --nav-link-font-weight: 400;
     font-size: 13px;
 
-    @media (--lg) {
+    @media (--xl) {
       & .nav-link {
         --nav-link-color: var(--c-gray-600);
         --navbar-active-color: var(--c-black);
@@ -275,7 +406,7 @@ header {
     }
   }
 
-  @media (--downLg) {
+  @media (max-width: 1279px) {
     ul {
       padding-left: 20px !important;
     }
@@ -284,7 +415,7 @@ header {
   .second-level {
     padding-left: var(--second-level--pl);
 
-    @media (--downLg) {
+    @media (max-width: 1279px) {
       --second-level--pl: 32px;
 
       button {
@@ -293,10 +424,9 @@ header {
         font-size: 18px !important;
         padding: 6px 0 !important;
         text-align: left;
-
-        &:not(.fakelink) {
+        justify-content: flex-end !important;
         width: auto !important;
-        }
+        max-width: 14px !important;
 
         svg {
           flex-grow: 0;
@@ -320,45 +450,97 @@ header {
       --navbar-active-color: var(--c-dark);
     }
 
-    @media (--lg) {
+    @media (--xl) {
       .mm-collapse-1 {
-        position: absolute;
         inset-block: 0;
         left: 100%;
         padding-bottom: 0;
-        display: none;
-        min-width: 270px;
+        min-width: 200px;
+        display: block;
       }
     }
 
-    @media (--lg) {
+    @media (--xl) {
       .mm-collapse-2 {
-        position: absolute;
-        inset-block: 0;
+        top: 0;
         left: 100%;
         padding-bottom: 0;
-        display: none;
-        min-width: 270px;
+        min-width: 200px;
+        padding-left: 20px;
+        margin-left: 2px;
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        transition: none;
+      }
+
+      .mm-level-3::before {
+        background: black;
+        left: -20px;
+      }
+    }
+
+    .nav-link-level-2,
+    .nav-link-level-1 {
+      .menu-toggle-btn {
+        border-radius: 100%;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        padding: .5rem !important;
+
+        @media (max-width: 1279px) {
+          display: none !important;
+        }
+
+        svg {
+          width: 100%;
+          height: 100%;
+          rotate: -90deg;
+          transition: transform 0.3s ease;
+          color: white;
+
+          @media (--xl) {
+            color: black;
+          }
+        }
+      }
+
+      @media (--xl) {
+        .mm-collapse-2.show {
+          max-height: 600px;
+        }
+
+        .menu-toggle-btn:hover {
+          background-color: #02635A;
+
+          svg {
+            color: var(--c-white);
+          }
+        }
+
+        .menu-toggle-btn:not(.collapsed) {
+          background-color: #02635A;
+          color: var(--c-white);
+
+          svg {
+            transform: rotate(90deg);
+            color: white;
+          }
+        }
       }
     }
 
     .nav-link-level-1:hover {
       .mm-collapse-1 {
-        @media (--lg) {
+        @media (--xl) {
           display: block;
         }
       }
     }
 
-    .nav-link-level-2:hover {
-      .mm-collapse-2 {
-        @media (--lg) {
-          display: block;
-        }
-      }
-    }
 
-    @media (--lg) {
+    @media (--xl) {
       --second-level--pl: 0;
       --navbar-nav-link-padding-x: 20px;
       --nav-link-padding-y: 0.75rem;
@@ -383,7 +565,7 @@ header {
     height: auto;
   }
 
-  @media (--lg) {
+  @media (--xl) {
     --sl-mw: 220px;
   }
 
@@ -461,35 +643,6 @@ header {
       stroke-dashoffset: -5;
       stroke-dasharray: 4;
     }
-  }
-}
-
-@keyframes regionAditionalIn {
-  0% {
-    opacity: 1;
-    max-height: 29px;
-  }
-  99% {
-    display: block;
-  }
-  100% {
-    opacity: 0;
-    max-height: 0px;
-    display: none;
-  }
-}
-@keyframes regionAditionalOut {
-  0% {
-    opacity: 0;
-    max-height: 0px;
-  }
-  1% {
-    display: none;
-  }
-  100% {
-    opacity: 1;
-    max-height: 29px;
-    display: block;
   }
 }
 
@@ -578,7 +731,7 @@ header {
 }
 
 .mobile--show {
-  @media (--lg) {
+  @media (--xl) {
     display: none;
   }
 
@@ -590,13 +743,13 @@ header {
 .mobile--hide {
   display: none;
 
-  @media (--lg) {
+  @media (--xl) {
     display: block;
   }
 }
 
-.d-down-lg-none {
-  @media (--downLg) {
+.d-down-xl-none {
+  @media (max-width: 1279px) {
     display: none;
   }
 }
@@ -609,12 +762,27 @@ header {
 
   &:before {
     content: '';
-    width: 3px;
+    width: 2px;
     height: calc(100% - 20px);
-    border-radius: 200px;
+    border-radius: 999px;
     background: #FFF;
     position: absolute;
-    top: 10px;
+    top: 12px;
     left: 3px;
+  }
+}
+
+.is-active[data-drupal-link-system-path="<front>"] {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.nav-link-level-0 {
+  &:has(.mm-collapse-cols-2),
+  &:has(.mm-collapse-cols-3) {
+    position: relative;
   }
 }

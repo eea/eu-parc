@@ -1,0 +1,69 @@
+uuid: 00399d4d-c9ee-49d4-9d0a-1a15670fa9e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policy_brief.body
+    - field.field.node.policy_brief.field_d_date
+    - field.field.node.policy_brief.field_media
+    - node.type.policy_brief
+  module:
+    - datetime
+    - media_library
+id: node.policy_brief.default
+targetEntityType: node
+bundle: policy_brief
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_d_date:
+    type: datetime_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_media:
+    type: media_library_widget
+    weight: 2
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 3
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  path: true
+  promote: true
+  simple_sitemap: true
+  simple_sitemap_index_now: true
+  sticky: true
+  url_redirects: true

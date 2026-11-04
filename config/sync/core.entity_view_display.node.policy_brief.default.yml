@@ -1,0 +1,51 @@
+uuid: 33a23edd-485c-42af-8fa5-03b6d86446a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.policy_brief.body
+    - field.field.node.policy_brief.field_d_date
+    - field.field.node.policy_brief.field_media
+    - node.type.policy_brief
+  module:
+    - datetime
+    - text
+    - user
+id: node.policy_brief.default
+targetEntityType: node
+bundle: policy_brief
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_d_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_media:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  search_api_excerpt: true

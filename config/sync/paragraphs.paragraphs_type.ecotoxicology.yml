@@ -1,0 +1,10 @@
+uuid: a3428ae8-06b3-4e36-afcb-29dbdb230ef2
+langcode: en
+status: true
+dependencies: {  }
+id: ecotoxicology
+label: '(Eco)toxicology lab matrix'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

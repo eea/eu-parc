@@ -26,14 +26,10 @@
  * @see http://php.net/assert
  * @see https://www.drupal.org/node/2492225
  *
- * If you are using PHP 7.0 it is strongly recommended that you set
- * zend.assertions=1 in the PHP.ini file (It cannot be changed from .htaccess
- * or runtime) on development machines and to 0 in production.
- *
- * @see https://wiki.php.net/rfc/expectations
+ * It is strongly recommended that you set zend.assertions=1 in the PHP.ini file
+ * (It cannot be changed from .htaccess or runtime) on development machines and
+ * to 0 or -1 in production.
  */
-assert_options(ASSERT_ACTIVE, TRUE);
-assert_options(ASSERT_EXCEPTION, TRUE);
 
 /**
  * Enable local development services.
@@ -172,3 +168,18 @@ $config['stage_file_proxy.settings']['use_imagecache_root'] = FALSE;
 $config['parc_zenodo_api.adminsettings']['token'] = 'YOUR_ZENODO_API_TOKEN';
 
 $config['google_analytics.settings']['account'] = 'YOUR_GAKEY';
+
+# SMTP configuration
+$config['smtp.settings']['smtp_host'] = 'localhost';
+$config['smtp.settings']['smtp_port'] = 25;
+$config['smtp.settings']['smtp_protocol'] = 'standard';
+$config['smtp.settings']['smtp_from'] = 'no-reply@example.com';
+$config['smtp.settings']['smtp_username'] = 'no-reply@example.com';
+$config['smtp.settings']['smtp_password'] = '';
+
+/**
+ * Environment indicator settings.
+ */
+$config['environment_indicator.indicator']['name'] = 'Local';
+$config['environment_indicator.indicator']['bg_color'] = '#4ef113';
+$config['environment_indicator.indicator']['fg_color'] = '#000000';

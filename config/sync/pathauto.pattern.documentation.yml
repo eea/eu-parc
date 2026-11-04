@@ -1,0 +1,22 @@
+uuid: 2124b25f-4d2d-4eaf-a44b-9ca59affc14c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: documentation
+label: Documentation
+type: 'canonical_entities:node'
+pattern: '[node:book:parents:join-path]/[node:title]'
+selection_criteria:
+  6ea6405f-8a7b-4bc3-9f7f-9e35bf825385:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 6ea6405f-8a7b-4bc3-9f7f-9e35bf825385
+    context_mapping:
+      node: node
+    bundles:
+      documentation: documentation
+selection_logic: and
+weight: -10
+relationships: {  }

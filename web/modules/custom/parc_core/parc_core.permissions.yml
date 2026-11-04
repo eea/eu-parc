@@ -1,0 +1,4 @@
+access technical documentation:
+  title: 'Access technical documentation'
+  description: 'View the admin-only technical documentation book.'
+  restrict access: true

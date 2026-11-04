@@ -1,0 +1,127 @@
+From a0312d0247a6c21895d1a9437eca04c2e15ea361 Mon Sep 17 00:00:00 2001
+From: Karl Shea <karl@karlshea.dev>
+Date: Mon, 2 Mar 2026 18:07:04 -0600
+Subject: [PATCH 1/2] Fix saving under parent item
+
+---
+ src/Entity/TaxonomyMenu.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/Entity/TaxonomyMenu.php b/src/Entity/TaxonomyMenu.php
+index 3335365..0ccb7ba 100644
+--- a/src/Entity/TaxonomyMenu.php
++++ b/src/Entity/TaxonomyMenu.php
+@@ -270,7 +270,7 @@ class TaxonomyMenu extends ConfigEntityBase implements TaxonomyMenuInterface {
+ 
+     // Note:
+     // if menu_parent_id is NULL, it will not update the hierarchy properly.
+-    if (empty($menu_parent_id) && !$this->getMenuParent()) {
++    if (empty($menu_parent_id) && $this->getMenuParent()) {
+       $menu_parent_id = str_replace($this->getMenu() . ':', '', $this->getMenuParent());
+     }
+ 
+-- 
+GitLab
+
+
+From 30512e295da7ce36a52b7c41b9b5f795c8643bd4 Mon Sep 17 00:00:00 2001
+From: Karl Shea <karl@karlshea.dev>
+Date: Mon, 2 Mar 2026 18:16:56 -0600
+Subject: [PATCH 2/2] Add test
+
+---
+ src/Entity/TaxonomyMenu.php                   |  2 +-
+ .../Functional/TaxonomyMenuOperationsTest.php | 66 +++++++++++++++++++
+ 2 files changed, 67 insertions(+), 1 deletion(-)
+
+diff --git a/src/Entity/TaxonomyMenu.php b/src/Entity/TaxonomyMenu.php
+index 0ccb7ba..c05b471 100644
+--- a/src/Entity/TaxonomyMenu.php
++++ b/src/Entity/TaxonomyMenu.php
+@@ -96,7 +96,7 @@ class TaxonomyMenu extends ConfigEntityBase implements TaxonomyMenuInterface {
+   /**
+    * The menu parent.
+    *
+-   * @var string
++   * @var string|null
+    */
+   protected $menu_parent;
+ 
+diff --git a/tests/src/Functional/TaxonomyMenuOperationsTest.php b/tests/src/Functional/TaxonomyMenuOperationsTest.php
+index bb557a5..693f79d 100644
+--- a/tests/src/Functional/TaxonomyMenuOperationsTest.php
++++ b/tests/src/Functional/TaxonomyMenuOperationsTest.php
+@@ -238,4 +238,70 @@ class TaxonomyMenuOperationsTest extends BrowserTestBase {
+     $this->assertSession()->checkboxNotChecked('links[menu_plugin_id:taxonomy_menu.menu_link:taxonomy_menu.menu_link.test_tax_menu.3][enabled]');
+   }
+ 
++  /**
++   * Tests that top-level terms are placed under a configured menu parent item.
++   *
++   * Ensures that when menu_parent points to an existing menu link (not just the
++   * menu root), top-level taxonomy terms are created as children of that link,
++   * while child terms still follow the taxonomy hierarchy.
++   */
++  public function testMenuParentItemPlacement() {
++    // Create a "Products" menu link in the test menu.
++    $this->drupalGet('admin/structure/menu/manage/test-menu/add');
++    $edit = [
++      'title[0][value]' => 'Products',
++      'link[0][uri]' => '<front>',
++    ];
++    $this->submitForm($edit, 'Save');
++
++    // Get the menu link content entity to determine its plugin ID.
++    $menu_link_content_storage = \Drupal::entityTypeManager()
++      ->getStorage('menu_link_content');
++    $menu_links = $menu_link_content_storage->loadByProperties([
++      'title' => 'Products',
++      'menu_name' => 'test-menu',
++    ]);
++    $products_link = reset($menu_links);
++    $products_plugin_id = 'menu_link_content:' . $products_link->uuid();
++
++    // Delete the existing taxonomy menu (created in setUp with root parent).
++    $this->drupalGet('admin/structure/taxonomy_menu/test_tax_menu/delete');
++    $this->submitForm([], 'Delete');
++
++    // Create a new taxonomy menu with menu_parent set to the Products link.
++    $this->drupalGet('admin/structure/taxonomy_menu/add');
++    $edit = [
++      'id' => 'test_tax_menu_parent',
++      'label' => 'test tax menu with parent',
++      'vocabulary' => 'test_tax_vocab',
++      'menu' => 'test-menu',
++      'expanded' => 1,
++      'depth' => '1',
++      'menu_parent' => 'test-menu:' . $products_plugin_id,
++    ];
++    $this->submitForm($edit, 'Save');
++
++    // Verify top-level term 1 ("test term 1") has Products as its parent.
++    $this->drupalGet('admin/structure/menu/link/taxonomy_menu.menu_link:taxonomy_menu.menu_link.test_tax_menu_parent.1/edit');
++    $this->assertSession()->fieldValueEquals(
++      'menu_parent',
++      'test-menu:' . $products_plugin_id
++    );
++
++    // Verify top-level term 3 ("test term 2") has Products as its parent.
++    $this->drupalGet('admin/structure/menu/link/taxonomy_menu.menu_link:taxonomy_menu.menu_link.test_tax_menu_parent.3/edit');
++    $this->assertSession()->fieldValueEquals(
++      'menu_parent',
++      'test-menu:' . $products_plugin_id
++    );
++
++    // Verify child term 2 ("test term 1-A", child of term 1) still has term 1
++    // as its parent, not the configured menu_parent.
++    $this->drupalGet('admin/structure/menu/link/taxonomy_menu.menu_link:taxonomy_menu.menu_link.test_tax_menu_parent.2/edit');
++    $this->assertSession()->fieldValueEquals(
++      'menu_parent',
++      'test-menu:taxonomy_menu.menu_link:taxonomy_menu.menu_link.test_tax_menu_parent.1'
++    );
++  }
++
+ }
+-- 
+GitLab
+

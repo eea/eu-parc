@@ -1,0 +1,448 @@
+From eadbdc711a13a84539ccb55bec0de5b01d43ed71 Mon Sep 17 00:00:00 2001
+From: Project-Update-bot <updatebot@assosiation.drupal.org>
+Date: Sun, 17 Mar 2024 15:16:58 +0000
+Subject: [PATCH 1/6] Automated Project Update Bot fixes from run 11-121090.
+
+---
+ ics_link_field.info.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ics_link_field.info.yml b/ics_link_field.info.yml
+index 42b5edb..13cfd8f 100644
+--- a/ics_link_field.info.yml
++++ b/ics_link_field.info.yml
+@@ -1,7 +1,7 @@
+ name: 'ICS Link Field'
+ type: module
+ description: 'Adds a custom field which creates link for generating .ics files'
+-core_version_requirement: ^8 || ^9 || ^10
++core_version_requirement: ^8 || ^9 || ^10 || ^11
+ package: 'Web services'
+ dependencies:
+   - drupal:token
+-- 
+GitLab
+
+
+From e966f7bb9796089559deb9adf9bd5bb5c1ad97c1 Mon Sep 17 00:00:00 2001
+From: Jeroen Tubex <19699-JeroenT@users.noreply.drupalcode.org>
+Date: Tue, 26 Nov 2024 09:43:01 +0000
+Subject: [PATCH 2/6] Add new file
+
+---
+ .gitlab-ci.yml | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+ create mode 100644 .gitlab-ci.yml
+
+diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
+new file mode 100644
+index 0000000..c6cd69a
+--- /dev/null
++++ b/.gitlab-ci.yml
+@@ -0,0 +1,29 @@
++################
++# GitLabCI template for Drupal projects.
++#
++# This template is designed to give any Contrib maintainer everything they need to test, without requiring modification.
++# It is also designed to keep up to date with Core Development automatically through the use of include files that can be centrally maintained.
++# As long as you include the project, ref and three files below, any future updates added by the Drupal Association will be used in your
++# pipelines automatically. However, you can modify this template if you have additional needs for your project.
++# The full documentation is on https://project.pages.drupalcode.org/gitlab_templates/
++################
++
++# For information on alternative values for 'ref' see https://project.pages.drupalcode.org/gitlab_templates/info/templates-version/
++# To test a Drupal 7 project, change the first include filename from .main.yml to .main-d7.yml
++include:
++  - project: $_GITLAB_TEMPLATES_REPO
++    ref: $_GITLAB_TEMPLATES_REF
++    file:
++      - '/includes/include.drupalci.main.yml'
++      - '/includes/include.drupalci.variables.yml'
++      - '/includes/include.drupalci.workflows.yml'
++#
++################
++# Pipeline configuration variables are defined with default values and descriptions in the file
++# https://git.drupalcode.org/project/gitlab_templates/-/blob/main/includes/include.drupalci.variables.yml
++# Uncomment the lines below if you want to override any of the variables. The following is just an example.
++################
++# variables:
++#   SKIP_ESLINT: '1'
++#   OPT_IN_TEST_NEXT_MAJOR: '1'
++#   _CURL_TEMPLATES_REF: 'main'
+-- 
+GitLab
+
+
+From 5863940fac72c0cbd7067ad8d6fc3e18fe11359b Mon Sep 17 00:00:00 2001
+From: Jeroen Tubex <19699-JeroenT@users.noreply.drupalcode.org>
+Date: Wed, 27 Nov 2024 12:17:19 +0000
+Subject: [PATCH 3/6] Update composer.json
+
+---
+ composer.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/composer.json b/composer.json
+index bfff399..109f3bf 100644
+--- a/composer.json
++++ b/composer.json
+@@ -1,5 +1,5 @@
+ {
+-    "name": "ics_link_field",
++    "name": "drupal/ics_link_field",
+     "type": "drupal-module",
+     "description": "Adds a custom field which creates link for generating .ics files",
+     "keywords": [
+-- 
+GitLab
+
+
+From b6622e713be674cac67cf3a4e162fd5f2f2212a8 Mon Sep 17 00:00:00 2001
+From: Jeroen Tubex <19699-JeroenT@users.noreply.drupalcode.org>
+Date: Wed, 27 Nov 2024 12:20:49 +0000
+Subject: [PATCH 4/6] Update file .cspell-project-words.txt
+
+---
+ .cspell-project-words.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .cspell-project-words.txt
+
+diff --git a/.cspell-project-words.txt b/.cspell-project-words.txt
+new file mode 100644
+index 0000000..e86ed34
+--- /dev/null
++++ b/.cspell-project-words.txt
+@@ -0,0 +1 @@
++Eluceo
+\ No newline at end of file
+-- 
+GitLab
+
+
+From 9c5e95e94e699a6ff9fc68c4959d0b7853af0c13 Mon Sep 17 00:00:00 2001
+From: Jeroen Tubex <19699-JeroenT@users.noreply.drupalcode.org>
+Date: Wed, 27 Nov 2024 12:31:31 +0000
+Subject: [PATCH 5/6] Update 4 files
+
+- /src/Controller/ServiceController.php
+- /src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
+- /src/Plugin/Field/FieldType/IcsLinkFieldType.php
+- /src/Plugin/Field/FieldWidget/IcsLinkFieldWidget.php
+---
+ src/Controller/ServiceController.php          | 29 ++++++++++---------
+ .../FieldFormatter/IcsLinkFieldFormatter.php  | 17 +++++------
+ .../Field/FieldType/IcsLinkFieldType.php      | 29 +++++++++----------
+ .../Field/FieldWidget/IcsLinkFieldWidget.php  | 20 +++++--------
+ 4 files changed, 43 insertions(+), 52 deletions(-)
+
+diff --git a/src/Controller/ServiceController.php b/src/Controller/ServiceController.php
+index 0ce6ecf..c8c1358 100644
+--- a/src/Controller/ServiceController.php
++++ b/src/Controller/ServiceController.php
+@@ -2,13 +2,11 @@
+ 
+ namespace Drupal\ics_link_field\Controller;
+ 
+-use DateTime;
+ use Drupal\Component\Transliteration\TransliterationInterface;
+ use Drupal\Component\Utility\Html;
+ use Drupal\Core\Controller\ControllerBase;
+ use Drupal\Core\Entity\EntityInterface;
+ use Drupal\Core\Utility\Token;
+-use Drupal\field\Entity\FieldConfig;
+ use Eluceo\iCal\Component\Calendar;
+ use Eluceo\iCal\Component\Event;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+@@ -18,7 +16,7 @@ use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+ 
+ /**
+- * Class ServiceController.
++ * Controller that handles generating the ics file.
+  *
+  * @package Drupal\ics_link_field\Controller
+  */
+@@ -62,14 +60,14 @@ class ServiceController extends ControllerBase {
+ 
+     $field_config_name = implode(".", [$entity_type, $bundle, $field_name]);
+ 
+-    /** @var FieldConfig|null $field_config */
++    /** @var \Drupal\field\FieldConfigInterface|null $field_config */
+     $field_config = $this->entityTypeManager()
+       ->getStorage('field_config')
+       ->load($field_config_name);
+ 
+     $field_settings = $field_config?->getSettings() ?? [];
+ 
+-    // @TODO: allow more token types
++    // @todo allow more token types.
+     $data = [$entity_type => $entity];
+ 
+     foreach ($field_settings as &$setting_value) {
+@@ -77,7 +75,7 @@ class ServiceController extends ControllerBase {
+     }
+     unset($setting_value);
+ 
+-    // @TODO: validate inputs (HTML Date for "date" fields / HTML Time for "time" fields)
++    // @todo validate inputs (HTML Date for "date" fields / HTML Time for "time" fields).
+     if (empty($field_settings['start_date'])) {
+       throw new NotFoundHttpException();
+     }
+@@ -86,8 +84,8 @@ class ServiceController extends ControllerBase {
+       $field_settings['end_date'] = $field_settings['start_date'];
+     }
+ 
+-    $start_date = new DateTime($field_settings['start_date']);
+-    $end_date = new DateTime($field_settings['end_date']);
++    $start_date = new \DateTime($field_settings['start_date']);
++    $end_date = new \DateTime($field_settings['end_date']);
+ 
+     $host = $this->request->getCurrentRequest()?->getHost();
+     if ($host === NULL) {
+@@ -104,15 +102,14 @@ class ServiceController extends ControllerBase {
+       // Even if it's a single day event, at least one event will be created.
+       $end_date->modify("+1 day");
+       do {
+-        $daily_start = new DateTime($start_date->format('Y-m-d') . " " . $field_settings['start_time']);
+-        $daily_end = new DateTime($start_date->format('Y-m-d') . " " . $field_settings['end_time']);
++        $daily_start = new \DateTime($start_date->format('Y-m-d') . " " . $field_settings['start_time']);
++        $daily_end = new \DateTime($start_date->format('Y-m-d') . " " . $field_settings['end_time']);
+ 
+         $event = $this->createEvent($field_settings, $daily_start, $daily_end);
+         $vCalendar->addComponent($event);
+ 
+         $start_date->modify("+1 day");
+-      }
+-      while ($start_date < $end_date);
++      } while ($start_date < $end_date);
+     }
+ 
+     $langcode = $this->languageManager()->getCurrentLanguage()->getId();
+@@ -134,7 +131,7 @@ class ServiceController extends ControllerBase {
+     $response->headers->set('Content-Disposition', $disposition);
+     $response->headers->set('Content-Type', ['text/calendar', 'charset=utf-8']);
+ 
+-    // @TODO: add caching per entity
++    // @todo add caching per entity.
+     // Dispatch request.
+     return $response;
+   }
+@@ -143,14 +140,18 @@ class ServiceController extends ControllerBase {
+    * Generates an event object for the calendar.
+    *
+    * @param array $field_settings
++   *   The field settings.
+    * @param \DateTime $dtStart
++   *   The start date.
+    * @param \DateTime $dtEnd
++   *   The end date.
+    * @param bool $noTime
++   *   Boolean indicating whether this event is a full day event or not.
+    *
+    * @return \Eluceo\iCal\Component\Event
+    *   The generated Event.
+    */
+-  protected function createEvent(array $field_settings, DateTime $dtStart, DateTime $dtEnd, bool $noTime = FALSE): Event {
++  protected function createEvent(array $field_settings, \DateTime $dtStart, \DateTime $dtEnd, bool $noTime = FALSE): Event {
+     $event = new Event();
+     $event->setSummary($field_settings['title']);
+     $event->setDescription($field_settings['description']);
+diff --git a/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php b/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
+index 6f90af5..4a7c8dd 100644
+--- a/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
++++ b/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
+@@ -2,7 +2,6 @@
+ 
+ namespace Drupal\ics_link_field\Plugin\Field\FieldFormatter;
+ 
+-use Drupal\Core\Field\Annotation\FieldFormatter;
+ use Drupal\Core\Field\FieldItemListInterface;
+ use Drupal\Core\Field\FormatterBase;
+ use Drupal\Core\Form\FormStateInterface;
+@@ -26,8 +25,8 @@ class IcsLinkFieldFormatter extends FormatterBase {
+    */
+   public static function defaultSettings(): array {
+     return [
+-        'link_label' => 'Add to Calendar',
+-      ] + parent::defaultSettings();
++      'link_label' => 'Add to Calendar',
++    ] + parent::defaultSettings();
+   }
+ 
+   /**
+@@ -35,12 +34,12 @@ class IcsLinkFieldFormatter extends FormatterBase {
+    */
+   public function settingsForm(array $form, FormStateInterface $form_state): array {
+     return [
+-        'link_label' => [
+-          '#title' => $this->t('Link Label'),
+-          '#type' => 'textfield',
+-          '#default_value' => $this->getSetting('link_label'),
+-        ],
+-      ] + parent::settingsForm($form, $form_state);
++      'link_label' => [
++        '#title' => $this->t('Link Label'),
++        '#type' => 'textfield',
++        '#default_value' => $this->getSetting('link_label'),
++      ],
++    ] + parent::settingsForm($form, $form_state);
+   }
+ 
+   /**
+diff --git a/src/Plugin/Field/FieldType/IcsLinkFieldType.php b/src/Plugin/Field/FieldType/IcsLinkFieldType.php
+index 58c1f10..8101da5 100644
+--- a/src/Plugin/Field/FieldType/IcsLinkFieldType.php
++++ b/src/Plugin/Field/FieldType/IcsLinkFieldType.php
+@@ -2,14 +2,11 @@
+ 
+ namespace Drupal\ics_link_field\Plugin\Field\FieldType;
+ 
+-use Drupal;
+-use Drupal\Core\Field\Annotation\FieldType;
+ use Drupal\Core\Field\FieldItemBase;
+ use Drupal\Core\Field\FieldStorageDefinitionInterface;
+ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\Core\StringTranslation\TranslatableMarkup;
+ use Drupal\Core\TypedData\DataDefinition;
+-use Drupal\token\TokenEntityMapperInterface;
+ 
+ /**
+  * Plugin implementation of the 'ics_link_field_type' field type.
+@@ -42,7 +39,7 @@ final class IcsLinkFieldType extends FieldItemBase {
+    * {@inheritdoc}
+    */
+   public static function schema(FieldStorageDefinitionInterface $field_definition): array {
+-    // @TODO: Remove dummy schema & return empty array when drupal supports fields without storage
++    // @todo remove dummy schema & return empty array when drupal supports fields without storage
+     //
+     // According to Drupal\Core\Field\FieldItemInterface::schema
+     // "Computed fields having no schema should return an empty array."
+@@ -66,14 +63,14 @@ final class IcsLinkFieldType extends FieldItemBase {
+    */
+   public static function defaultFieldSettings(): array {
+     return [
+-        'title' => '',
+-        'location' => '',
+-        'description' => '',
+-        'start_date' => '',
+-        'end_date' => '',
+-        'start_time' => '',
+-        'end_time' => '',
+-      ] + parent::defaultFieldSettings();
++      'title' => '',
++      'location' => '',
++      'description' => '',
++      'start_date' => '',
++      'end_date' => '',
++      'start_time' => '',
++      'end_time' => '',
++    ] + parent::defaultFieldSettings();
+   }
+ 
+   /**
+@@ -149,12 +146,12 @@ final class IcsLinkFieldType extends FieldItemBase {
+ 
+     $entity_type = $this->getFieldDefinition()->getTargetEntityTypeId();
+ 
+-    // @TODO: Make it a dependency once this is committed https://www.drupal.org/node/2053415
+-    /** @var TokenEntityMapperInterface $mapper */
+-    $mapper = Drupal::service('token.entity_mapper');
++    // @todo make it a dependency once this is committed https://www.drupal.org/node/2053415
++    /** @var \Drupal\token\TokenEntityMapperInterface $mapper */
++    $mapper = D\rupal::service('token.entity_mapper');
+     $token_type = $mapper->getTokenTypeForEntityType($entity_type);
+ 
+-    // @TODO: allow more token types
++    // @todo allow more token types.
+     $settings_form['token_help'] = [
+       '#theme' => 'token_tree_link',
+       '#token_types' => [$token_type],
+diff --git a/src/Plugin/Field/FieldWidget/IcsLinkFieldWidget.php b/src/Plugin/Field/FieldWidget/IcsLinkFieldWidget.php
+index 793777e..97faf1e 100644
+--- a/src/Plugin/Field/FieldWidget/IcsLinkFieldWidget.php
++++ b/src/Plugin/Field/FieldWidget/IcsLinkFieldWidget.php
+@@ -2,7 +2,6 @@
+ 
+ namespace Drupal\ics_link_field\Plugin\Field\FieldWidget;
+ 
+-use Drupal\Core\Field\Annotation\FieldWidget;
+ use Drupal\Core\Field\FieldItemListInterface;
+ use Drupal\Core\Field\WidgetBase;
+ use Drupal\Core\Form\FormStateInterface;
+@@ -33,12 +32,7 @@ class IcsLinkFieldWidget extends WidgetBase {
+    */
+   public function settingsSummary(): array {
+     $summary = [];
+-    $summary[] = $this->t(
+-      'This field should be in the visible area if it was added to the ' .
+-      'field list after content has been created for this bundle. ' .
+-      'You can save all those contents to apply the computed value and then ' .
+-      'safely move this field to the disabled area.'
+-    );
++    $summary[] = $this->t('This field should be in the visible area if it was added to the field list after content has been created for this bundle. You can save all those contents to apply the computed value and then safely move this field to the disabled area.');
+     return $summary;
+   }
+ 
+@@ -53,12 +47,12 @@ class IcsLinkFieldWidget extends WidgetBase {
+     FormStateInterface $form_state,
+   ): array {
+     $element['value'] = $element + [
+-        '#title' => $this->fieldDefinition->getName(),
+-        '#type' => 'hidden',
+-        '#default_value' => '',
+-        '#disabled' => TRUE,
+-        '#description' => $this->t('Normally this field should not be shown!'),
+-      ];
++      '#title' => $this->fieldDefinition->getName(),
++      '#type' => 'hidden',
++      '#default_value' => '',
++      '#disabled' => TRUE,
++      '#description' => $this->t('Normally this field should not be shown!'),
++    ];
+     return $element;
+   }
+ 
+-- 
+GitLab
+
+
+From 9a5ced38f460ef2dae7f543d15cfbba1805f2210 Mon Sep 17 00:00:00 2001
+From: Jeroen Tubex <19699-JeroenT@users.noreply.drupalcode.org>
+Date: Wed, 27 Nov 2024 12:39:52 +0000
+Subject: [PATCH 6/6] Update 2 files
+
+- /src/Plugin/Field/FieldType/IcsLinkFieldType.php
+- /src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
+---
+ src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php | 1 +
+ src/Plugin/Field/FieldType/IcsLinkFieldType.php           | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php b/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
+index 4a7c8dd..8b029d9 100644
+--- a/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
++++ b/src/Plugin/Field/FieldFormatter/IcsLinkFieldFormatter.php
+@@ -66,6 +66,7 @@ class IcsLinkFieldFormatter extends FormatterBase {
+       }
+ 
+       $elements[$delta] = [
++        // phpcs:ignore
+         '#title' => $this->t($this->getSetting('link_label')),
+         '#type' => 'link',
+         '#url' => Url::fromRoute('ics_link_field.download', [
+diff --git a/src/Plugin/Field/FieldType/IcsLinkFieldType.php b/src/Plugin/Field/FieldType/IcsLinkFieldType.php
+index 8101da5..8540ace 100644
+--- a/src/Plugin/Field/FieldType/IcsLinkFieldType.php
++++ b/src/Plugin/Field/FieldType/IcsLinkFieldType.php
+@@ -148,7 +148,7 @@ final class IcsLinkFieldType extends FieldItemBase {
+ 
+     // @todo make it a dependency once this is committed https://www.drupal.org/node/2053415
+     /** @var \Drupal\token\TokenEntityMapperInterface $mapper */
+-    $mapper = D\rupal::service('token.entity_mapper');
++    $mapper = \Drupal::service('token.entity_mapper');
+     $token_type = $mapper->getTokenTypeForEntityType($entity_type);
+ 
+     // @todo allow more token types.
+-- 
+GitLab
+

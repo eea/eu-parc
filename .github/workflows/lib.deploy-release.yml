@@ -1,0 +1,81 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+on:
+  workflow_call:
+    inputs:
+      runner:
+        type: string
+        required: false
+        default: 'drupal-runner-v2'
+      release_id:
+        type: string
+        required: true
+      release_filename:
+        type: string
+        required: true
+      project_dir:
+        type: string
+        required: true
+      artifacts_dir:
+        type: string
+        required: true
+      settings_file:
+        type: string
+        required: true
+      public_files_dir:
+        type: string
+        required: true
+      robo_file:
+        type: string
+        required: true
+      local_services_file:
+        type: string
+        required: false
+        default: ''
+      check_config:
+        type: string
+        required: false
+        default: ''
+      sql_backup:
+        type: string
+        required: false
+        default: 'false'
+      artifacts_lifespan:
+        type: number
+        required: false
+        default: 30
+      delete_release_filename:
+        type: boolean
+        required: false
+        default: true
+    secrets:
+      ssh_user:
+        required: true
+      ssh_host:
+        required: true
+      ssh_key:
+        required: true
+
+jobs:
+  deploy_release:
+    name: 'Deploy release on the server'
+    runs-on: ${{ inputs.runner || 'drupal-runner-v2' }}
+    steps:
+      - name: 'Deploy release on the server'
+        uses: eaudeweb/drupal-deploy-action@2.x
+        with:
+          ssh_user:                ${{ secrets.ssh_user }}
+          ssh_host:                ${{ secrets.ssh_host }}
+          ssh_key:                 ${{ secrets.ssh_key }}
+          release_id:              ${{ inputs.release_id }}
+          release_filename:        ${{ inputs.release_filename }}
+          project_dir:             ${{ inputs.project_dir }}
+          artifacts_dir:           ${{ inputs.artifacts_dir }}
+          settings_file:           ${{ inputs.settings_file }}
+          public_files_dir:        ${{ inputs.public_files_dir }}
+          robo_file:               ${{ inputs.robo_file }}
+          local_services_file:     ${{ inputs.local_services_file }}
+          check_config:            ${{ inputs.check_config }}
+          sql_backup:              ${{ inputs.sql_backup }}
+          artifacts_lifespan:      ${{ inputs.artifacts_lifespan }}
+          delete_release_filename: ${{ inputs.delete_release_filename }}
