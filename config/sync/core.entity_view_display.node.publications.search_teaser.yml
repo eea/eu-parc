@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.publications.field_key_messages
     - field.field.node.publications.field_key_words
     - field.field.node.publications.field_pages
+    - field.field.node.publications.field_pdf_url
     - field.field.node.publications.field_publication_date
     - field.field.node.publications.field_regulatory_message
     - field.field.node.publications.field_seo_keyword
@@ -190,6 +191,7 @@ hidden:
   field_key_messages: true
   field_key_words: true
   field_pages: true
+  field_pdf_url: true
   field_publication_date: true
   field_regulatory_message: true
   field_seo_keyword: true

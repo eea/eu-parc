@@ -233,13 +233,18 @@ class ZenodoApiHelper {
   public function createPublication(array $deposition) {
     $values = $this->getFieldValues($deposition);
     $values['type'] = 'publications';
+    $values['status'] = 0;
+    $values['field_cover'] = $this->getDefaultCoverImage();
     $node = Node::create($values);
     $node->body->format = 'full_html';
     $node->save();
   }
 
   /**
-   * Get field values from an array of data.
+   * Get the Zenodo-sourced field values from an array of data.
+   *
+   * Editorial values (published status, cover image) are not included, so that
+   * updating an existing publication doesn't overwrite them.
    *
    * @param array $deposition
    *   The data.
@@ -293,13 +298,35 @@ class ZenodoApiHelper {
       'field_updated_date' => $deposition['updated'] ? $altered_modified_date : date('Y-m-d\TH:i:s', time()),
       'changed' => $deposition['updated'] ? strtotime($altered_modified_date) : time(),
       'field_zenodo_id' => $deposition['id'] ?: '',
-      'field_cover' => $this->getDefaultCoverImage(),
-      'status' => 0,
       'field_record_id' => (string) ($deposition['id'] ?? ''),
       'field_full_text' => $full_text,
       'field_related_dois' => array_map(fn($doi) => ['value' => $doi], $related_dois),
+      'field_pdf_url' => $this->getPdfUrl($recid, $file_name),
     ];
     return $values;
+  }
+
+  /**
+   * Build the full URL of a Zenodo PDF file.
+   *
+   * @param string $recid
+   *   The Zenodo record ID.
+   * @param string $file_name
+   *   The file name (e.g. "paper.pdf").
+   *
+   * @return string
+   *   The URL, or empty string if the file is not a PDF.
+   */
+  public function getPdfUrl(string $recid, string $file_name): string {
+    if (!$recid || !$file_name) {
+      return '';
+    }
+
+    if (strtolower(pathinfo($file_name, PATHINFO_EXTENSION)) !== 'pdf') {
+      return '';
+    }
+
+    return 'https://zenodo.org/records/' . $recid . '/files/' . rawurlencode($file_name);
   }
 
   /**
@@ -314,15 +341,10 @@ class ZenodoApiHelper {
    *   Extracted text, or empty string on failure.
    */
   public function extractPdfText(string $recid, string $file_name): string {
-    if (!$recid || !$file_name) {
+    $url = $this->getPdfUrl($recid, $file_name);
+    if (!$url) {
       return '';
     }
-
-    if (strtolower(pathinfo($file_name, PATHINFO_EXTENSION)) !== 'pdf') {
-      return '';
-    }
-
-    $url = 'https://zenodo.org/records/' . $recid . '/files/' . rawurlencode($file_name);
 
     $tmp_pdf = tempnam(sys_get_temp_dir(), 'parc_pdf_');
     try {

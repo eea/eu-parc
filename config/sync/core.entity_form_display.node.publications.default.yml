@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.publications.field_key_messages
     - field.field.node.publications.field_key_words
     - field.field.node.publications.field_pages
+    - field.field.node.publications.field_pdf_url
     - field.field.node.publications.field_publication_date
     - field.field.node.publications.field_record_id
     - field.field.node.publications.field_regulatory_message
@@ -161,6 +162,14 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_pdf_url:
+    type: link_default
+    weight: 31
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   field_publication_date:
     type: datetime_default
