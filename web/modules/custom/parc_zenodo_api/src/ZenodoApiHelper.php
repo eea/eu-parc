@@ -75,7 +75,9 @@ class ZenodoApiHelper {
     $this->entityTypeManager = $entity_type_manager;
     $this->config = $config_factory->get('parc_zenodo_api.adminsettings');
     $this->logger = $logger->get('parc_zenodo_api');
-    $this->pdfExtractor = new Extract();
+    // PDF text extraction is disabled for now. Extract's constructor throws if
+    // the pdftotext binary is missing.
+    // $this->pdfExtractor = new Extract();
   }
 
   /**
@@ -124,6 +126,41 @@ class ZenodoApiHelper {
       $this->logger->error($e->getMessage());
     }
     return $records;
+  }
+
+  /**
+   * Retrieve a single record from Zenodo, waiting out any rate limiting.
+   *
+   * @param string $record_id
+   *   The Zenodo record ID.
+   *
+   * @return array|null
+   *   The record, or NULL if it could not be retrieved.
+   */
+  public function getRecord(string $record_id): ?array {
+    $max_attempts = 5;
+
+    for ($attempt = 1; $attempt <= $max_attempts; $attempt++) {
+      try {
+        $response = $this->httpClient->get('https://zenodo.org/api/records/' . rawurlencode($record_id), [
+          'headers' => ['Authorization' => 'Bearer ' . $this->config->get('token')],
+        ]);
+        return json_decode($response->getBody()->getContents(), TRUE);
+      }
+      catch (RequestException $e) {
+        $response = $e->getResponse();
+        if ($response?->getStatusCode() !== 429 || $attempt === $max_attempts) {
+          $this->logger->warning('Could not retrieve record @id: @message', [
+            '@id' => $record_id,
+            '@message' => $e->getMessage(),
+          ]);
+          return NULL;
+        }
+        sleep((int) $response->getHeaderLine('Retry-After') ?: 60);
+      }
+    }
+
+    return NULL;
   }
 
   /**
@@ -276,8 +313,9 @@ class ZenodoApiHelper {
     $recid = (string) ($deposition['recid'] ?? '');
     $file_name = $deposition['files'][0]['key'] ?? '';
 
-    $full_text = $this->extractPdfText($recid, $file_name);
-    $related_dois = $this->extractDoisFromText($full_text);
+    // PDF text extraction is disabled for now.
+    // $full_text = $this->extractPdfText($recid, $file_name);
+    // $related_dois = $this->extractDoisFromText($full_text);
 
     $values = [
       'title' => !empty($deposition['metadata']['title']) ? $deposition['metadata']['title'] : 'Untitled',
@@ -299,8 +337,8 @@ class ZenodoApiHelper {
       'changed' => $deposition['updated'] ? strtotime($altered_modified_date) : time(),
       'field_zenodo_id' => $deposition['id'] ?: '',
       'field_record_id' => (string) ($deposition['id'] ?? ''),
-      'field_full_text' => $full_text,
-      'field_related_dois' => array_map(fn($doi) => ['value' => $doi], $related_dois),
+      // 'field_full_text' => $full_text,
+      // 'field_related_dois' => array_map(fn($doi) => ['value' => $doi], $related_dois),
       'field_pdf_url' => $this->getPdfUrl($recid, $file_name),
     ];
     return $values;

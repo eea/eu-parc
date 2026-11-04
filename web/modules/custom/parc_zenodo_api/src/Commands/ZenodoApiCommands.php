@@ -106,4 +106,78 @@ class ZenodoApiCommands extends DrushCommands {
     $this->output()->writeln("Done. Total: {$total} | Created: {$created} | Updated: {$updated} | Skipped: {$skipped}");
   }
 
+  /**
+   * Backfill the PDF URL on publications that don't have one.
+   *
+   * Only sets field_pdf_url: no other field is modified, the changed time is
+   * preserved, no PDF is downloaded and no node is created.
+   *
+   * @param array $options
+   *   An associative array of options.
+   *
+   * @option dry-run
+   *   Report what would change without saving anything.
+   *
+   * @command parc-zenodo:backfill-pdf-url
+   * @aliases pz-backfill-pdf-url
+   * @usage drush parc-zenodo:backfill-pdf-url --dry-run
+   *   Show which publications would get a PDF URL.
+   * @usage drush parc-zenodo:backfill-pdf-url
+   *   Set the PDF URL on all publications that don't have one.
+   */
+  public function backfillPdfUrl(array $options = ['dry-run' => FALSE]) {
+    $dry_run = $options['dry-run'];
+
+    $node_storage = $this->entityTypeManager->getStorage('node');
+    $nids = $node_storage->getQuery()
+      ->accessCheck(FALSE)
+      ->condition('type', 'publications')
+      ->notExists('field_pdf_url.uri')
+      ->execute();
+
+    $updated = 0;
+    $no_id = 0;
+    $no_pdf = 0;
+    $not_retrieved = 0;
+
+    foreach ($nids as $nid) {
+      /** @var \Drupal\node\NodeInterface $node */
+      $node = $node_storage->load($nid);
+      $zenodo_id = $node->get('field_zenodo_id')->value ?? '';
+
+      // Some IDs are stored as a record URL or DOI, which end in the record ID.
+      if (!preg_match('#(\d+)/?$#', $zenodo_id, $matches)) {
+        $no_id++;
+        $this->output()->writeln("No Zenodo ID: node {$nid} [{$zenodo_id}] " . $node->label());
+        continue;
+      }
+
+      $record = $this->zenodoApiHelper->getRecord($matches[1]);
+      if ($record === NULL) {
+        $not_retrieved++;
+        $this->output()->writeln("Could not retrieve: node {$nid} [{$zenodo_id}] " . $node->label());
+        continue;
+      }
+
+      $pdf_url = $this->zenodoApiHelper->getPdfUrl($matches[1], $record['files'][0]['key'] ?? '');
+      if (!$pdf_url) {
+        $no_pdf++;
+        $this->output()->writeln("No PDF: node {$nid} [{$zenodo_id}] " . $node->label());
+        continue;
+      }
+
+      $updated++;
+      $this->output()->writeln(($dry_run ? 'Would update' : 'Updated') . ": node {$nid} {$pdf_url}");
+
+      if (!$dry_run) {
+        $node->set('field_pdf_url', $pdf_url);
+        $node->setSyncing(TRUE);
+        $node->save();
+      }
+    }
+
+    $this->output()->writeln('');
+    $this->output()->writeln(($dry_run ? '[Dry run] ' : '') . 'Done. Without URL: ' . count($nids) . " | Updated: {$updated} | No PDF: {$no_pdf} | No Zenodo ID: {$no_id} | Could not retrieve: {$not_retrieved}");
+  }
+
 }
