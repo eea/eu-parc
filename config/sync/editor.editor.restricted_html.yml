@@ -238,6 +238,7 @@ settings:
         - '<h5 id>'
         - '<h6 id>'
         - '<p color>'
+        - '<iframe src width height title frameborder allow allowfullscreen referrerpolicy loading>'
     ckeditor5_style:
       styles:
         -

@@ -46,6 +46,8 @@
       display: block;
       width: fit-content;
       max-width: 100vw;
+      margin-inline: 0;
+      float: none;
       position: relative;
       left: 50%;
       transform: translateX(-50%);
@@ -56,6 +58,12 @@
       display: block;
       max-width: 100%;
       height: auto;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-inline: auto;
     }
 
     & > div:has(video) {
