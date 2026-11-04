@@ -43,6 +43,7 @@ mark {
 
 .svg-title {
   font-family: "PARC";
+  max-width: 1920px;
 }
 
 .link--download {

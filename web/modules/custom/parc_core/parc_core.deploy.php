@@ -2597,8 +2597,8 @@ function parc_core_deploy_migrate_article_paragraphs() {
       $text_paragraph = $paragraph_storage->create([
         'type' => 'text',
         'field_body' => [
-          'value' => $body['value'],
-          'format' => $body['format'],
+          'value' => _parc_core_article_body_to_restricted($body['value']),
+          'format' => 'restricted_html',
         ],
       ]);
       $text_paragraph->save();
@@ -2610,6 +2610,7 @@ function parc_core_deploy_migrate_article_paragraphs() {
       $carousel_paragraph = $paragraph_storage->create([
         'type' => 'media_carousel',
         'field_carousel_items' => $media_items,
+        'field_carousel_width' => 'medium',
       ]);
       $carousel_paragraph->save();
       $paragraphs[] = $carousel_paragraph;
@@ -2682,4 +2683,69 @@ function parc_core_deploy_reimport_air_water_ecotox_labs() {
     }
     $lab->save();
   }
+}
+
+/**
+ * Prepares migrated article HTML for the Restricted HTML text format.
+ */
+function _parc_core_article_body_to_restricted(string $html): string {
+  $html = preg_replace(
+    ['#<b(\s[^>]*)?>#i', '#</b>#i', '#<i(\s[^>]*)?>#i', '#</i>#i'],
+    ['<strong>', '</strong>', '<em>', '</em>'],
+    $html
+  );
+
+  return preg_replace_callback('#<drupal-media\b([^>]*)>#i', function (array $matches) {
+    $attributes = preg_replace('#\s+data-view-mode\s*=\s*(["\'])[^"\']*\1#i', '', $matches[1]);
+    return '<drupal-media' . $attributes . ' data-view-mode="embed_medium">';
+  }, $html);
+}
+
+/**
+ * Restricted HTML text format and medium-sized media.
+ */
+function parc_core_deploy_article_paragraphs_restricted_medium() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'article')
+    ->execute();
+
+  $updated = 0;
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    if (!$node->hasField('field_paragraphs')) {
+      continue;
+    }
+
+    /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+    foreach ($node->get('field_paragraphs')->referencedEntities() as $paragraph) {
+      $changed = FALSE;
+
+      if ($paragraph->bundle() === 'text' && !$paragraph->get('field_body')->isEmpty()) {
+        $body = $paragraph->get('field_body')->first()->getValue();
+        $value = _parc_core_article_body_to_restricted($body['value']);
+        if ($value !== $body['value'] || $body['format'] !== 'restricted_html') {
+          $paragraph->set('field_body', [
+            'value' => $value,
+            'format' => 'restricted_html',
+          ]);
+          $changed = TRUE;
+        }
+      }
+
+      if ($paragraph->bundle() === 'media_carousel' && $paragraph->get('field_carousel_width')->value !== 'medium') {
+        $paragraph->set('field_carousel_width', 'medium');
+        $changed = TRUE;
+      }
+
+      if ($changed) {
+        $paragraph->setNewRevision(FALSE);
+        $paragraph->save();
+        $updated++;
+      }
+    }
+  }
+
+  return t('Updated @count article paragraphs.', ['@count' => $updated]);
 }

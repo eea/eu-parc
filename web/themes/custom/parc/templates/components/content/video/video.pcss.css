@@ -126,6 +126,7 @@
 
   &__title {
     font-size: 18px;
+    min-height: 48px;
   }
 
   &__body {

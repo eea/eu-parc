@@ -77,7 +77,7 @@ elements: |-
       '#options':
         'jednou za den/týden': 'jednou za den/týden'
         'jednou za měsíc': 'jednou za měsíc'
-        "2.\tjednou za několik měsíců": "2.\tjednou za několik měsíců"
+        'jednou za několik měsíců': 'jednou za několik měsíců'
         'jednou ročně': 'jednou ročně'
         nikdy: nikdy
       '#required': true
@@ -167,7 +167,7 @@ elements: |-
             value: ano
     14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
       '#type': radios
-      '#title': "2.4\tZvažujete pokaždé, zda je chemické nebezpečí/riziko, o kterém informujete, důležité nebo má určitý dopad? (Reagovala nějak veřejnost?)"
+      '#title': "2.4\tOvěřujete vždy, zda má vaše komunikace o chemických rizicích/nebezpečích skutečný dopad na veřejnost – například tím, že vyhodnocujete, jak veřejnost reaguje?"
       '#options':
         ano: ano
         ne: ne
