@@ -8,32 +8,30 @@
   ]
 %}
 
-<article{{ attributes.addClass(classes) }} data-nid="{{ node.id() }}">
-  <div class="video-teaser__popup-data" hidden>
-    <div class="video-teaser__popup-video">{{ content.field_video }}</div>
-    <div class="video-teaser__popup-type">{{ node.field_video_type.value }}</div>
-    <div class="video-teaser__popup-title">{{ node.label() }}</div>
-    <div class="video-teaser__popup-body">{{ content.body }}</div>
-  </div>
+<article{{ attributes.addClass(classes) }}>
+  <a class="video-teaser__link" href="{{ url }}">
+    <div class="video-teaser__media">
+      {% if content.field_media_image|render is not empty %}
+        <div class="video-teaser__image">{{ content.field_media_image }}</div>
+      {% else %}
+        <div class="video-teaser__image video-teaser__image--placeholder"></div>
+      {% endif %}
+      <span class="video-teaser__play-btn" aria-hidden="true">
+        <span class="video-teaser__play-bg"></span>
+        <svg width="40" height="40" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path transform="translate(22 20.5) rotate(90) translate(-8.58 -7.26)" d="M6.88627 0.939871C7.66963 -0.313288 9.49474 -0.313291 10.2781 0.939868L16.8571 11.4644C17.6898 12.7965 16.7321 14.5245 15.1612 14.5245H2.0032C0.432261 14.5245 -0.525418 12.7965 0.307284 11.4644L6.88627 0.939871Z" fill="#fff" stroke="#ACABAB" stroke-width="0.5"/>
+        </svg>
+      </span>
+    </div>
 
-  <div class="video-teaser__media">
-    {% if content.field_media_image|render is not empty %}
-      <div class="video-teaser__image">{{ content.field_media_image }}</div>
-    {% else %}
-      <div class="video-teaser__image video-teaser__image--placeholder"></div>
-    {% endif %}
-    <button class="video-teaser__play-btn" type="button" aria-label="{{ 'Play video'|t }}">
-      <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="22" cy="22" r="22" fill="rgba(255,255,255,0.92)"/>
-        <polygon points="17,13 34,22 17,31" fill="#1a1a2e"/>
-      </svg>
-    </button>
-  </div>
-
-  <div class="video-teaser__info">
-    {% if node.field_video_type.value %}
-      <div class="video-teaser__type">{{ node.field_video_type.value }}</div>
-    {% endif %}
-    <p class="video-teaser__title">{{ node.label() }}</p>
-  </div>
+    <div class="video-teaser__info">
+      {% if node.field_video_type.value %}
+        <div class="video-teaser__type">{{ node.field_video_type.value }}</div>
+      {% endif %}
+      <p class="video-teaser__title">{{ label }}</p>
+      {% if content.body|render is not empty %}
+        <div class="video-teaser__body">{{ content.body }}</div>
+      {% endif %}
+    </div>
+  </a>
 </article>

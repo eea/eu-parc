@@ -78,6 +78,7 @@
 
       .mm-collapse-0 {
         position: absolute;
+        z-index: 1000;
         background-color: rgba(255, 255, 255, 0.95);
         padding-left: var(--navbar-nav-link-padding-x);
         box-shadow: 0 0 0 100vmax rgba(255, 255, 255, 0.95);
@@ -101,6 +102,7 @@
           }
         }
 
+        &.mm-collapse-cols-6,
         &.mm-collapse-cols-5,
         &.mm-collapse-cols-4 {
           @media (--xl) {
@@ -119,6 +121,20 @@
         &.mm-collapse-cols-1 {
           transform: none;
           left: auto;
+        }
+
+        &.mm-collapse-cols-6 {
+          @media (--xl) {
+            width: calc(100% + 210px) !important;
+            padding: 0 50px !important;
+            left: calc(100% + 50px);
+          }
+
+          @media (min-width: 1540px) {
+            width: calc(100% + 330px) !important;
+            padding: 0 100px !important;
+            left: calc(100% + 150px);
+          }
         }
       }
     }

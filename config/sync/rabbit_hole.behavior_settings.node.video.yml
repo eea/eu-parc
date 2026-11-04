@@ -7,10 +7,7 @@ dependencies:
 id: node.video
 targetEntityType: node
 bundle: video
-action: page_redirect
+action: display_page
 no_bypass: false
 bypass_message: false
-configuration:
-  redirect: /videos
-  redirect_code: 301
-  redirect_fallback_action: access_denied
+configuration: {  }

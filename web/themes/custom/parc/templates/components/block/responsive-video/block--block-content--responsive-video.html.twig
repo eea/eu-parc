@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Parc override to display the responsive video block.
+ *
+ * The video fields are hidden in the view display; the URLs arrive as
+ * responsive_video.landscape / responsive_video.portrait instead.
+ *
+ * @see parc_preprocess_block__block_content__responsive_video()
+ */
+#}
+
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+
+<div{{attributes.addClass(classes)}}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+
+  {% block content %}
+    {% if responsive_video.landscape %}
+      {% include '@parc/components/block/responsive-video/responsive-video.html.twig' %}
+    {% endif %}
+  {% endblock %}
+</div>

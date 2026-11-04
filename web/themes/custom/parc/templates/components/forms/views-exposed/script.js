@@ -14,6 +14,7 @@
         ",details[data-drupal-selector='edit-topics-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-keywords-collapsible'] .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-chemicals-collapsible'] .bef-checkboxes input" +
+        ",details[data-drupal-selector='edit-playlist-collapsible'] .bef-checkboxes input" +
         ",.chemicals-interactive-body__filter-menu .bef-checkboxes input" +
         ",details[data-drupal-selector='edit-training-topic-collapsible'] .bef-checkboxes input").each(function () {
         var label = $(this)['0'].labels['0'].innerHTML;

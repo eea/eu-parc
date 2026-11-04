@@ -44,6 +44,9 @@
 #}
 
 {% block wrap_header %}
+  {% if highlighted_above_header %}
+    {{ page.highlighted }}
+  {% endif %}
   {% block header %}
     {%- include '@parc/components/sections/header/header.html.twig' -%}
   {% endblock %}

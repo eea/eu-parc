@@ -12,8 +12,10 @@ use Drupal\parc\ParcThemeProcess;
 use Drupal\taxonomy\TermInterface;
 use Drupal\facets\FacetInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Markup;
 use Drupal\media\MediaInterface;
+use Drupal\block_content\BlockContentInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -182,6 +184,17 @@ function parc_preprocess_block(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for block__block_content__icon_banner.
+ */
+function parc_preprocess_block__block_content__icon_banner(array &$variables) {
+  $block = $variables['content']['#block_content'] ?? NULL;
+  if ($block instanceof BlockContentInterface && $block->hasField('field_color') && !$block->get('field_color')->isEmpty()) {
+    $color = &drupal_static('parc_icon_banner_color');
+    $color = $block->get('field_color')->color;
+  }
+}
+
+/**
  * Implements parc_preprocess_paragraph.
  */
 function parc_preprocess_paragraph(&$variables) {
@@ -213,6 +226,9 @@ function parc_theme($existing, $type, $theme, $path) {
       'render element' => 'form',
     ],
     'views_exposed_form__press_clippings__featured' => [
+      'render element' => 'form',
+    ],
+    'views_exposed_form__videos__grid_block' => [
       'render element' => 'form',
     ],
   ];
@@ -340,7 +356,11 @@ function parc_preprocess_html(&$variables) {
   // Add node id to the body class.
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node instanceof NodeInterface && $node->hasField('field_custom_classes')) {
-    $variables['attributes']['class'][] = $node->get('field_custom_classes')->value;
+    $custom_classes = explode(' ', (string) $node->get('field_custom_classes')->value);
+    if (\Drupal::routeMatch()->getRouteName() !== 'entity.node.canonical') {
+      $custom_classes = array_diff($custom_classes, ['page--banner-overlay']);
+    }
+    $variables['attributes']['class'][] = implode(' ', $custom_classes);
   }
 
   if ($node instanceof NodeInterface && $node->bundle() === 'article' && $node->hasField('field_tags')) {
@@ -358,6 +378,47 @@ function parc_preprocess_html(&$variables) {
   $full_screen = \Drupal::request()->query->get('full_screen');
   if ($full_screen) {
     $variables['attributes']['class'][] = 'full-screen';
+  }
+
+  $thematicAreaBg = NULL;
+  $thematicAreaHeading = NULL;
+  if ($node instanceof NodeInterface && $node->bundle() === 'thematic_areas') {
+    $term = $node->hasField('field_categories') ? $node->get('field_categories')->entity : NULL;
+  }
+  else {
+    $term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+    if (!($term instanceof TermInterface && $term->bundle() === 'thematic_areas')) {
+      $term = NULL;
+    }
+  }
+
+  if ($term instanceof TermInterface) {
+    if ($term->hasField('field_bg_color') && !$term->get('field_bg_color')->isEmpty()) {
+      $thematicAreaBg = $term->get('field_bg_color')->color;
+    }
+    if ($term->hasField('field_color') && !$term->get('field_color')->isEmpty()) {
+      $thematicAreaHeading = $term->get('field_color')->color;
+    }
+  }
+
+  $chemicals_tabs_color = '#B0E5DF';
+  if ($node instanceof NodeInterface && in_array((int) $node->id(), [2100], TRUE)) {
+    $thematicAreaBg = $chemicals_tabs_color;
+  }
+
+  if (empty($thematicAreaBg)) {
+    $iconBannerColor = drupal_static('parc_icon_banner_color');
+    if ($iconBannerColor) {
+      $thematicAreaBg = $iconBannerColor;
+    }
+  }
+
+  if ($thematicAreaBg) {
+    $variables['attributes']['style'][] = '--tta--bg: ' . $thematicAreaBg . ';';
+    $variables['attributes']['class'][] = 'has-tta-bg';
+  }
+  if ($thematicAreaHeading) {
+    $variables['attributes']['style'][] = '--tta--c-heading: ' . $thematicAreaHeading . ';';
   }
 }
 
@@ -378,6 +439,58 @@ function parc_preprocess_page(array &$variables) {
     $variables['page']['footer_second']['#access'] = FALSE;
     $variables['page']['footer_s']['#access'] = FALSE;
     $variables['#attached']['library'][] = 'parc/full_screen';
+  }
+
+  $page_node = \Drupal::routeMatch()->getParameter('node');
+  $variables['highlighted_above_header'] = $page_node instanceof NodeInterface
+    && \Drupal::routeMatch()->getRouteName() === 'entity.node.canonical'
+    && $page_node->hasField('field_custom_classes')
+    && in_array('page--banner-overlay', explode(' ', (string) $page_node->get('field_custom_classes')->value), TRUE);
+
+  // Page title for the header's compact sticky bar shown past the banner.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $excluded_routes = [
+    'view.news_events.page_news',
+    'view.content_events.page_events',
+    'view.publications.page_publications',
+    'view.deliverables.page_deliverables',
+  ];
+  $excluded_node_ids = [1046, 1126];
+
+  // Term pages under those sections share a generic route, so use bundle.
+  $excluded_term_bundles = ['training_types', 'indicator_topics'];
+  $sticky_term = \Drupal::routeMatch()->getParameter('taxonomy_term');
+
+  // Individual items under those sections don't have a hero title either.
+  $excluded_node_bundles = ['article', 'events', 'project', 'basic_page', 'page'];
+  $is_news_or_front = \Drupal::service('path.matcher')->isFrontPage()
+    || in_array($route_name, $excluded_routes, TRUE)
+    || ($node instanceof NodeInterface && in_array($node->bundle(), $excluded_node_bundles, TRUE))
+    || ($node instanceof NodeInterface && in_array((int) $node->id(), $excluded_node_ids, TRUE))
+    || ($sticky_term instanceof TermInterface && in_array($sticky_term->bundle(), $excluded_term_bundles, TRUE));
+
+  if (!$is_news_or_front) {
+    $category_term = NULL;
+    if ($node instanceof NodeInterface && $node->bundle() === 'thematic_areas' && $node->hasField('field_categories')) {
+      $category_term = $node->get('field_categories')->entity;
+    }
+
+    if ($category_term instanceof TermInterface) {
+      $variables['sticky_page_title'] = $category_term->label();
+    }
+    else {
+      $route = \Drupal::routeMatch()->getRouteObject();
+      if ($route) {
+        $title = \Drupal::service('title_resolver')->getTitle(\Drupal::request(), $route);
+        if (is_array($title)) {
+          $title = \Drupal::service('renderer')->renderInIsolation($title);
+        }
+        if ($title) {
+          $variables['sticky_page_title'] = $title;
+        }
+      }
+    }
   }
 }
 
@@ -799,6 +912,76 @@ function parc_preprocess_block__block_content__carousel(array &$variables) {
   $block = $variables['content']['#block_content'];
   $variables['hero_carousel'] = $block->get('field_hero_carousel')->value;
   $variables['carousel_width'] = $block->get('field_carousel_width')->value ?: 'large';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block__block_content__responsive_video.
+ */
+function parc_preprocess_block__block_content__responsive_video(array &$variables) {
+  /** @var \Drupal\block_content\Entity\BlockContent $block */
+  $block = $variables['content']['#block_content'] ?? NULL;
+  if (!$block) {
+    return;
+  }
+
+  // The fields are hidden in the view display: the template builds the <video>
+  // element itself, so all it needs from here is the file URLs.
+  $metadata = CacheableMetadata::createFromRenderArray($variables);
+
+  $landscape = parc_responsive_video_source($block, 'field_video_landscape', $metadata);
+  $portrait = parc_responsive_video_source($block, 'field_video_portrait', $metadata);
+
+  $metadata->applyTo($variables);
+
+  if (!$landscape) {
+    return;
+  }
+
+  $variables['responsive_video'] = [
+    'landscape' => $landscape,
+    'portrait' => $portrait ?: $landscape,
+  ];
+}
+
+/**
+ * Resolves a media reference field to the URL of the video file behind it.
+ *
+ * @param \Drupal\block_content\BlockContentInterface $block
+ *   Block holding the reference.
+ * @param string $field_name
+ *   Name of the media reference field.
+ * @param \Drupal\Core\Cache\CacheableMetadata $metadata
+ *   Collects the media and file cache tags, so replacing the video in the
+ *   media library invalidates the rendered page.
+ *
+ * @return string|null
+ *   The file URL, or NULL when the field is empty or points at a media item
+ *   with no file.
+ */
+function parc_responsive_video_source($block, $field_name, CacheableMetadata $metadata) {
+  if (!$block->hasField($field_name) || $block->get($field_name)->isEmpty()) {
+    return NULL;
+  }
+
+  $media = $block->get($field_name)->entity;
+  if (!$media instanceof MediaInterface) {
+    return NULL;
+  }
+  $metadata->addCacheableDependency($media);
+
+  $source_field = $media->getSource()
+    ->getConfiguration()['source_field'] ?? NULL;
+  if (!$source_field || !$media->hasField($source_field) || $media->get($source_field)->isEmpty()) {
+    return NULL;
+  }
+
+  $file = $media->get($source_field)->entity;
+  if (!$file) {
+    return NULL;
+  }
+  $metadata->addCacheableDependency($file);
+
+  return $file->createFileUrl();
 }
 
 /**
@@ -1367,4 +1550,135 @@ function parc_preprocess_node__documentation__full(array &$variables) {
 
     unset($variables['content']['book_navigation']);
   }
+}
+
+/**
+ * Implements hook_preprocess_node__video__full().
+ */
+function parc_preprocess_node__video__full(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $playlist = $node->get('field_playlist')->value;
+
+  // The playlist menu, prev/next links and the carousel depend on the other
+  // videos.
+  $variables['#cache']['tags'][] = 'node_list:video';
+
+  $playlists = options_allowed_values($node->get('field_playlist')->getFieldDefinition()->getFieldStorageDefinition(), $node);
+  $variables['playlist_label'] = $playlists[$playlist] ?? NULL;
+
+  // Only list playlists that have published videos.
+  $used = \Drupal::entityQueryAggregate('node')
+    ->accessCheck()
+    ->condition('type', 'video')
+    ->condition('status', NodeInterface::PUBLISHED)
+    ->groupBy('field_playlist')
+    ->execute();
+  $used = array_column($used, 'field_playlist');
+
+  $variables['playlists'] = [];
+  foreach (array_intersect_key($playlists, array_flip($used)) as $key => $label) {
+    $variables['playlists'][] = [
+      'label' => $label,
+      'url' => Url::fromUserInput('/videos', ['query' => ['playlist' => [$key => $key]]]),
+      'active' => $key == $playlist,
+    ];
+  }
+
+  // Show a cover with a play button and load the player once it is clicked.
+  $variables['embed_url'] = _parc_video_embed_url($node);
+  if ($variables['embed_url']) {
+    $cover_field = $node->get('field_media_image')->isEmpty() ? 'field_video' : 'field_media_image';
+    $variables['cover'] = $node->get($cover_field)->view([
+      'type' => 'media_thumbnail',
+      'label' => 'hidden',
+      'settings' => [
+        'image_style' => 'thumbnail_16_9',
+        'image_link' => '',
+        'image_loading' => ['attribute' => 'eager'],
+      ],
+    ]);
+  }
+
+  if (empty($playlist)) {
+    return;
+  }
+
+  $variables['playlist_url'] = Url::fromUserInput('/videos', ['query' => ['playlist' => [$playlist => $playlist]]]);
+
+  // Videos are listed newest first, so "next" is the older video.
+  $variables['prev_url'] = _parc_video_sibling_url($node, '>');
+  $variables['next_url'] = _parc_video_sibling_url($node, '<');
+
+  $variables['playlist_carousel'] = [
+    '#type' => 'view',
+    '#name' => 'videos',
+    '#display_id' => 'playlist_carousel',
+    '#arguments' => [$playlist, $node->id()],
+  ];
+}
+
+/**
+ * Gets the provider's player URL of a remote video, set to autoplay.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The video.
+ *
+ * @return string|null
+ *   The player URL, or NULL if the video is not a remote video.
+ */
+function _parc_video_embed_url(NodeInterface $node) {
+  $media = $node->get('field_video')->entity;
+  if (!$media instanceof MediaInterface || $media->bundle() != 'remote_video') {
+    return NULL;
+  }
+
+  $html = $media->getSource()->getMetadata($media, 'html');
+  if (!$html || !preg_match('/<iframe[^>]+src="([^"]+)"/', $html, $matches)) {
+    return NULL;
+  }
+
+  $url = Html::decodeEntities($matches[1]);
+  return $url . (str_contains($url, '?') ? '&' : '?') . 'autoplay=1';
+}
+
+/**
+ * Finds the adjacent published video in the same playlist by created date.
+ *
+ * Navigation wraps around: past the newest video comes the oldest one and
+ * the other way around.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The current video.
+ * @param string $operator
+ *   '>' for the newer video, '<' for the older one.
+ *
+ * @return \Drupal\Core\Url|null
+ *   The URL of the adjacent video, or NULL if the playlist has no other video.
+ */
+function _parc_video_sibling_url(NodeInterface $node, string $operator) {
+  $storage = \Drupal::entityTypeManager()->getStorage('node');
+  $direction = $operator == '>' ? 'ASC' : 'DESC';
+  $build_query = fn() => $storage->getQuery()
+    ->accessCheck()
+    ->condition('type', 'video')
+    ->condition('status', NodeInterface::PUBLISHED)
+    ->condition('field_playlist', $node->get('field_playlist')->value)
+    ->condition('nid', $node->id(), '<>')
+    ->sort('created', $direction)
+    ->sort('nid', $direction)
+    ->range(0, 1);
+
+  // Videos created at the same second are ordered by ID.
+  $created = $node->getCreatedTime();
+  $query = $build_query();
+  $query->condition($query->orConditionGroup()
+    ->condition('created', $created, $operator)
+    ->condition($query->andConditionGroup()
+      ->condition('created', $created)
+      ->condition('nid', $node->id(), $operator)));
+
+  // Nothing further in this direction: wrap to the other end of the playlist.
+  $nids = $query->execute() ?: $build_query()->execute();
+  return $nids ? $storage->load(reset($nids))->toUrl() : NULL;
 }

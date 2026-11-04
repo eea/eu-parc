@@ -13,7 +13,9 @@
 %}
 
 {{ page.hero }}
-{{ page.highlighted }}
+{% if not highlighted_above_header %}
+  {{ page.highlighted }}
+{% endif %}
 {{ page.breadcrumb }}
 
 <div{{main_content.addclass(main_content_classes)}}>

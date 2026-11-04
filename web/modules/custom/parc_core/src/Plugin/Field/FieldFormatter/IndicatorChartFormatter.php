@@ -85,14 +85,18 @@ class IndicatorChartFormatter extends FormatterBase implements ContainerFactoryP
       }
     }
     else {
-      $table_data = $this->getTableData($items);
-      if ($chart_type !== 'images' && empty($table_data)) {
+      $uses_table = !method_exists($plugin, 'usesTableData') || $plugin->usesTableData();
+      $table_data = $uses_table ? $this->getTableData($items) : [];
+      if ($uses_table && $chart_type !== 'images' && empty($table_data)) {
         return [];
       }
       $chart_data = $plugin->getChartData($table_data);
     }
 
     return [
+      '#cache' => [
+        'tags' => method_exists($plugin, 'getCacheTags') ? $plugin->getCacheTags() : [],
+      ],
       '#theme' => 'parc_indicator_chart',
       '#indicator_id' => $indicator_type,
       '#chart_type' => $chart_type,

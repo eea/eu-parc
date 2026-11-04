@@ -4,6 +4,7 @@ use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\pathauto\PathautoState;
 use Drupal\taxonomy\Entity\Vocabulary;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
@@ -2020,7 +2021,7 @@ function parc_core_deploy_water_matrix() {
 
     $matrix_entries = [];
     foreach ($headers as $column) {
-      if (!str_contains($column, '__')) {
+      if (!str_contains($column, '__') && !str_contains($column, '.')) {
         continue;
       }
 
@@ -2028,7 +2029,7 @@ function parc_core_deploy_water_matrix() {
         continue;
       }
 
-      [$substance_group, $sampling_type] = explode('__', $column);
+      [$substance_group, $sampling_type] = preg_split('/__|\./', $column);
 
       $substance_group = trim($substance_group);
       $substance_group = $map[$substance_group] ?? $substance_group;
@@ -2151,10 +2152,11 @@ function parc_core_deploy_eco_matrix() {
     }
   }
 
-  //  $map = [
-  //    'pharmaceuticals' => 'pharm',
-  //    'other_matrices' => 'othermatrix',
-  //  ];
+  $map = [
+    'natural' => 'natural_toxins',
+    'pharmaceuticals' => 'pharm',
+    'other_matrices' => 'othermatrix',
+  ];
 
   $node_storage = \Drupal::entityTypeManager()->getStorage('node');
   $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
@@ -2226,12 +2228,12 @@ function parc_core_deploy_eco_matrix() {
       $domain = trim($domain);
 
       if (str_contains($info, 'chem.')) {
-        $info = str_replace('chem.', '', $info);
-        $paragraphs_to_create[$domain]['field_substance_group_multiple'][] = trim($info);
+        $info = trim(str_replace('chem.', '', $info));
+        $paragraphs_to_create[$domain]['field_substance_group_multiple'][] = $map[$info] ?? $info;
       }
       elseif (str_contains($info, 'envmatrx.')) {
-        $info = str_replace('envmatrx.', '', $info);
-        $paragraphs_to_create[$domain]['field_sampling_type_multiple'][] = trim($info);
+        $info = trim(str_replace('envmatrx.', '', $info));
+        $paragraphs_to_create[$domain]['field_sampling_type_multiple'][] = $map[$info] ?? $info;
       }
       elseif (str_contains($info, 'stress_addinfo')) {
         $paragraphs_to_create[$domain]['field_additional_information'] = $row[$column];
@@ -2547,6 +2549,62 @@ function parc_core_deploy_migrate_article_paragraphs() {
     }
 
     $node->setNewRevision(FALSE);
+    $node->save();
+  }
+}
+
+/**
+ * Re-import air, water and ecotox labs from the 2026-10-13 CSV exports.
+ */
+function parc_core_deploy_reimport_air_water_ecotox_labs() {
+  parc_core_deploy_update_hbm_labs_import();
+  parc_core_deploy_water_matrix();
+  parc_core_deploy_eco_matrix();
+
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $labs = $node_storage->loadByProperties([
+    'type' => 'laboratory',
+    'field_lab_category' => ['air', 'water', 'ecotox'],
+  ]);
+  foreach ($labs as $lab) {
+    $contact_names = $lab->get('field_contact_name')->value;
+    if (empty($contact_names)) {
+      continue;
+    }
+
+    $contact_names = explode(';', $contact_names);
+    $contact_emails = explode(';', $lab->get('field_contact_email')->value ?? '');
+    foreach ($contact_names as $delta => $contact_name) {
+      $paragraph = $paragraph_storage->create([
+        'type' => 'contact',
+        'field_name' => trim($contact_name),
+        'field_email' => trim($contact_emails[$delta] ?? ''),
+      ]);
+      $paragraph->save();
+      $lab->get('field_lab_contacts')->appendItem($paragraph);
+    }
+    $lab->save();
+  }
+}
+
+/**
+ * Assign existing videos to the "Interviews" playlist.
+ */
+function parc_core_deploy_video_playlist() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'video')
+    ->notExists('field_playlist')
+    ->execute();
+
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    $node->set('field_playlist', 'interviews');
+    // Videos were redirected to /videos before, so they have no alias and
+    // their pathauto state is "skip".
+    $node->path->pathauto = PathautoState::CREATE;
     $node->save();
   }
 }

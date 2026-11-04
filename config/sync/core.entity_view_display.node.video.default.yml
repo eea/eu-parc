@@ -5,11 +5,13 @@ dependencies:
   config:
     - field.field.node.video.body
     - field.field.node.video.field_media_image
+    - field.field.node.video.field_playlist
     - field.field.node.video.field_video
     - field.field.node.video.field_video_type
+    - field.field.node.video.rabbit_hole__settings
     - node.type.video
   module:
-    - media
+    - options
     - text
     - user
 id: node.video.default
@@ -24,14 +26,12 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
-  field_media_image:
-    type: entity_reference_entity_view
+  field_playlist:
+    type: list_default
     label: hidden
-    settings:
-      view_mode: default
-      link: false
+    settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 4
     region: content
   field_video:
     type: entity_reference_entity_view
@@ -50,12 +50,9 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 10
-    region: content
 hidden:
   addtoany: true
+  field_media_image: true
+  links: true
   rabbit_hole__settings: true
   search_api_excerpt: true

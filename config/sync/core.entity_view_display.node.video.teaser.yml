@@ -6,13 +6,15 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.video.body
     - field.field.node.video.field_media_image
+    - field.field.node.video.field_playlist
     - field.field.node.video.field_video
     - field.field.node.video.field_video_type
+    - field.field.node.video.rabbit_hole__settings
     - image.style.thumbnail_16_9
     - node.type.video
   module:
     - media
-    - text
+    - smart_trim
     - user
 id: node.video.teaser
 targetEntityType: node
@@ -20,11 +22,28 @@ bundle: video
 mode: teaser
 content:
   body:
-    type: text_default
+    type: smart_trim
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: 50
+      trim_type: words
+      trim_suffix: '...'
+      wrap_output: false
+      wrap_class: trimmed
+      more:
+        display_link: false
+        target_blank: false
+        link_trim_only: false
+        class: more-link
+        text: More
+        aria_label: 'Read more about [node:title]'
+      summary_handler: full
+      trim_options:
+        text: true
+        trim_zero: false
+        replace_tokens: false
     third_party_settings: {  }
-    weight: 3
+    weight: 2
     region: content
   field_media_image:
     type: media_thumbnail
@@ -36,15 +55,6 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_video:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 2
     region: content
   field_video_type:
     type: string
@@ -61,6 +71,8 @@ content:
     region: content
 hidden:
   addtoany: true
+  field_playlist: true
+  field_video: true
   links: true
   rabbit_hole__settings: true
   search_api_excerpt: true

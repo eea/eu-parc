@@ -1,18 +1,118 @@
-header {
-  &:has(.navbar-collapse.show),
-  &:has(.navbar-collapse.collapsing) {
-    z-index: 1040;
+body.has-tta-bg header#header {
+  background-color: var(--tta--bg);
+}
+
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodebasic-pagefield-banner),
+body:not(.page--sria) header#header:has(+ main .block-field-blocknodepagefield-banner) {
+  position: absolute;
+  inset-inline: 0;
+  background-color: transparent;
+
+  &.h-sticky {
+    position: fixed;
+    background-color: var(--c-white);
+  }
+}
+
+.region-highlighted {
+  position: relative;
+}
+
+body.page-node-type-basic-page,
+body.page-node-type-page {
+  header#header {
+    position: sticky !important;
+    top: var(--drupal-displace-offset-top, 0px);
   }
 
-  @media (--lg) {
-    &.sticky-top {
-      position: relative;
-      top: auto;
+  &.page--banner-overlay header#header:has(+ main :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img) {
+    background-color: var(--banner-overlay-bg);
+
+    @media (--md) {
+      background-color: transparent;
+
+      & + main {
+        margin-top: calc(-1 * var(--banner-overlay-header-height, 96px));
+      }
+    }
+
+    &.h-sticky {
+      background-color: var(--c-white);
+    }
+  }
+}
+
+:root {
+  --banner-overlay-bg: #FAFAFA;
+}
+
+body.page--banner-overlay {
+  .layout__region--content:has(> :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img) {
+    background-color: var(--banner-overlay-bg);
+    padding-bottom: 0;
+  }
+
+  .node--basic-page--full .node--content-pb {
+    @media (max-width: 767px) {
+      padding-top: 40px;
     }
   }
 
-  &.sticky-top {
-    transition: none;
+  :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner) img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+
+    @media (--md) {
+      min-height: var(--banner-min-height, 240px);
+    }
+  }
+
+  :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner):has(img) + :is(.block-field-blocknodebasic-pagetitle, .block-field-blocknodepagetitle) {
+    --banner-title-offset: calc(100vw * 0.069);
+
+    position: static;
+    display: block;
+    padding: 0 0 24px;
+    text-align: center;
+
+    h1 {
+      margin: 0;
+    }
+
+    .svg-title {
+      margin-top: calc(-1 * var(--banner-title-offset) - var(--svg-title-size) / 2);
+      padding: 0;
+    }
+
+    @media (--md) {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 0;
+
+      .svg-title {
+        margin-top: 0;
+        /* 50px / 100px at full width (1920px), scaled down proportionally. */
+        padding-bottom: min(2.6042vw, 50px);
+
+        &, > * {
+          --svg-title-size: min(5.2083vw, 100px);
+        }
+      }
+    }
+  }
+}
+
+header {
+  transition: transform 0.3s ease;
+
+  &:has(.navbar-collapse.show),
+  &:has(.navbar-collapse.collapsing) {
+    z-index: 1040;
   }
 
   body.has-category-bg & {
@@ -24,7 +124,15 @@ header {
     flex-shrink: 0;
   }
 
+  &.vh {
+    transform: translateY(calc(-1 * var(--navbar-height, 100%)));
+  }
+
   @media (--xl) {
+    .region-nav-additional {
+      max-height: 29px;
+    }
+
     .nav-main {
       margin-inline: auto;
     }
@@ -37,14 +145,48 @@ header {
   }
 }
 
+
+.header-sticky-title {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  max-height: 0;
+  overflow: hidden;
+  text-align: center;
+  background-color: var(--tta--bg, #F5F5F5);
+  transition: max-height 0.35s ease;
+
+  .svg-title {
+    margin: 0;
+    padding-block: 40px;
+    color: var(--tta--c-heading, inherit);
+  }
+
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  header.title-passed .header-sticky-title {
+    max-height: 250px;
+  }
+}
+
 .h-sticky {
+  margin-bottom: calc(96px - 68px);
+
+  .navbar {
+    min-height: 68px;
+
+    .container-fluid {
+      padding-bottom: 15px;
+    }
+  }
+
   @media (--xl) {
     .site-logo {
       --sl-mw: 180px;
-    }
-
-    .region-nav-additional {
-      display: none;
     }
   }
 }

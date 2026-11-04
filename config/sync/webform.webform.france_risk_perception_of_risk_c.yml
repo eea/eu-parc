@@ -1,0 +1,600 @@
+uuid: 73d4f5a1-ee04-42ed-a138-65ca5c373454
+langcode: en
+status: open
+dependencies: {  }
+weight: 0
+open: null
+close: null
+uid: 9
+template: false
+archive: false
+id: france_risk_perception_of_risk_c
+title: 'France_Risk perception of risk communicators'
+description: '<p><span style="-webkit-text-stroke-width:0px;background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);display:inline !important;float:none;font-family:Calibri;font-size:14.6667px;font-style:normal;font-variant-caps:normal;font-variant-ligatures:normal;font-weight:400;letter-spacing:normal;orphans:2;text-align:start;text-decoration-color:initial;text-decoration-style:initial;text-decoration-thickness:initial;text-indent:0px;text-transform:none;white-space:pre-wrap;widows:2;word-spacing:0px;">In this survey we aim to gain greater insights into the common practices employed by Risk Communicators, their beliefs about Risk Perception, as well as their concerns and the challenges they face when they communicate hazards and risks. Applied in French language. </span></p>'
+categories:
+  - 'Risk Perception'
+elements: |-
+  consent:
+    '#type': webform_wizard_page
+    '#title': 'Consentement et contexte'
+    description:
+      '#type': checkbox
+      '#title': 'Je confirme avoir lu et accepté les informations ci-dessus.'
+      '#description': '<h4><span style="font-family:Satoshi;" lang="FR"><strong>Perception des risques par les personnes chargées de la communication des risques</strong></span></h4><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="FR">À propos du PARC:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="FR">Le Partenariat européen pour l’évaluation des risques liés aux substances chimiques est une initiative conjointe de 30&nbsp;pays et de 3&nbsp;agences européennes (l’AEE, l’ECHA et l’EFSA) qui vise à relever les défis liés aux innovations en matière d’évaluation des risques chimiques. L’objectif du PARC est de contribuer à l’élaboration des politiques en Europe et au niveau national grâce à des données scientifiques fiables sur l’exposition des citoyens aux polluants chimiques et sur leurs effets potentiels sur la santé. En/au [nom de votre pays], l’enquête est coordonnée par [nom de l’organisme chargé de la mise en œuvre].</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008474;font-size:14.0pt;line-height:115%;" lang="FR">Objet de la présente enquête:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="FR">Nous sommes tous&nbsp; exposés à une multitude de substances chimiques, dont certaines peuvent être nocives pour la santé. La communication sur les risques potentiels liés à ces substances est donc essentielle. Dans cette enquête, nous cherchons à mieux comprendre les pratiques communes des personnes chargées de la communication des risques, leurs avis sur la perception des risques, ainsi que leurs préoccupations et les défis auxquels ils sont confrontés lorsqu’ils communiquent sur les dangers et les risques.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="FR">Destinataires de l’enquête:</span><span style="font-size:14.0pt;line-height:115%;" lang="FR"> Ce questionnaire porte principalement sur la communication sur les risques dans des situations quotidiennes, par opposition à la communication de crise, qui désigne la communication dans des situations nécessitant des décisions urgentes. Il vous faudra environ 20&nbsp;minutes pour le compléter.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="FR">Traitement des données recueillies:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="FR">Les données recueillies seront anonymes et traitées de manière confidentielle, conformément aux exigences du règlement général sur la protection des données (RGPD). Les réponses seront regroupées avec d’autres réponses lors de leur analyse par les partenaires de recherche du PARC. Si les conclusions scientifiques de cette enquête sont publiées ou présentées lors d’une conférence, les résultats seront agrégés.</span></p><p style="line-height:115%;margin-left:54.0pt;text-align:justify;"><span style="color:#008475;font-size:14.0pt;line-height:115%;" lang="FR">Droit de refus ou de retrait:&nbsp;</span><span style="font-size:14.0pt;line-height:115%;" lang="FR">Votre participation est entièrement volontaire. En remplissant et en soumettant ce questionnaire, vous donnez votre consentement à participer à cette enquête. Vous êtes libre de retirer votre consentement à tout moment ou de décider de ne pas participer, sans avoir à fournir de justification et sans aucune conséquence.</span><br><br><span style="font-family:Satoshi;font-size:14.0pt;line-height:110%;" lang="FR"><strong>Nous vous remercions pour le temps que vous consacrerez à cette enquête et pour votre coopération.</strong></span></p><p>&nbsp;</p>'
+      '#description_display': before
+      '#required': true
+  section_1_demographics_and_personal_information:
+    '#type': webform_wizard_page
+    '#title': '1. Partie: Parcours professionnel'
+    county:
+      '#type': textfield
+      '#title': '1.1 Votre pays de résidence :'
+      '#size': 1
+      '#required': true
+    age:
+      '#type': number
+      '#title': '1.2 Votre âge actuel :'
+      '#required': true
+      '#min': 16
+      '#max': 99
+    in_which_sector_are_you_working_other:
+      '#type': webform_checkboxes_other
+      '#title': '1.3 Dans quel secteur travaillez-vous?'
+      '#multiple': 2
+      '#options':
+        'Organismes gouvernementaux': 'Organismes gouvernementaux'
+        'Monde universitaire': 'Monde universitaire'
+        'Association d’organismes professionnels': 'Association d’organismes professionnels'
+        'ONG (organisation non gouvernementale)': 'ONG (organisation non gouvernementale)'
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#other__size': '2'
+      '#required': true
+    the_chemical_hazards_risks_that_you_are_communicating_are_relate:
+      '#type': webform_checkboxes_other
+      '#title': '1.4 Les dangers ou les risques chimiques sur lesquels vous communiquez concernent: (Sélectionnez toutes les réponses qui s’appliquent.)'
+      '#options':
+        'Les denrées alimentaires (sécurité des aliments)': 'Les denrées alimentaires (sécurité des aliments)'
+        'L’environnement (sol, air, eau, etc.)': 'L’environnement (sol, air, eau, etc.)'
+        'La santé au travail': 'La santé au travail'
+        'La sécurité chimique (générale)': 'La sécurité chimique (générale)'
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+    6_how_many_years_of_experience_do_you_have_in_risk_communication:
+      '#type': radios
+      '#title': "1.5\tCombien d’années d’expérience avez-vous dans le domaine de la communication sur les risques?"
+      '#options':
+        'Moins de deux ans': 'Moins de deux ans'
+        'Entre 2 et 5 ans': 'Entre 2 et 5 ans'
+        'Entre 6 et 10 ans': 'Entre 6 et 10 ans'
+        'Entre 11 et 15 ans': 'Entre 11 et 15 ans'
+        'Plus de 15 ans': 'Plus de 15 ans'
+      '#required': true
+    7_how_often_do_you_practice_risk_communication:
+      '#type': radios
+      '#title': "1.6\tÀ quelle fréquence communiquez-vous sur les risques?"
+      '#options':
+        'Tous les jours/ toutes les semaines': 'Tous les jours/ toutes les semaines'
+        'Tous les mois': 'Tous les mois'
+        'Quelques fois par an': 'Quelques fois par an'
+        'Tous les ans': 'Tous les ans'
+        Jamais: Jamais
+      '#required': true
+    8_who_is_the_main_audience_that_you_address_your_communication_t:
+      '#type': webform_radios_other
+      '#title': "1.7\tÀ quel public cible s’adressent principalement vos communications?"
+      '#options':
+        'Grand public': 'Grand public'
+      '#other__option_label': 'Public cible spécifique'
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+    9_what_is_your_scientific_discipline_choose_all_that_apply:
+      '#type': webform_checkboxes_other
+      '#title': '1.8 Quelle est votre discipline scientifique? (Sélectionnez toutes les réponses qui s’appliquent.)'
+      '#multiple': 2
+      '#options':
+        'Ingénieur chimiste/chimiste/toxicologue': 'Ingénieur chimiste/chimiste/toxicologue'
+        'Scientifique/technologue/microbiologiste alimentaire': 'Scientifique/technologue/microbiologiste alimentaire'
+        'Expert en santé publique': 'Expert en santé publique'
+        'Expert en nutrition': 'Expert en nutrition'
+        'Chercheur en sciences de l’environnement/agronomie': 'Chercheur en sciences de l’environnement/agronomie'
+        'Expert en communication/chercheur en sciences sociales': 'Expert en communication/chercheur en sciences sociales'
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+    9_how_often_do_you_receive_communication_training_e_g_training_b:
+      '#type': radios
+      '#title': "1.9\tÀ quelle fréquence suivez-vous des formations en communication (par exemple, des formations dispensées par des experts en communication, des visites d’autres services de communication, la participation à des séminaires, webinaires ou  cours, etc.)?"
+      '#options':
+        Jamais: Jamais
+        'Régulièrement (par exemple, tous les 2 à 5 ans)': 'Régulièrement (par exemple, tous les 2 à 5 ans)'
+        'Fréquemment (au moins une fois par an)': 'Fréquemment (au moins une fois par an)'
+      '#required': true
+    11_how_satisfied_were_you_with_the_communication_training_provid:
+      '#type': radios
+      '#title': "1.10\tDans quelle mesure êtes-vous satisfait(e) de la formation en communication qui vous a été proposée?"
+      '#options':
+        'Pas du tout satisfait(e)': 'Pas du tout satisfait(e)'
+        'Peu satisfait(e)': 'Peu satisfait(e)'
+        'Assez satisfait(e)': 'Assez satisfait(e)'
+        'Très satisfait(e)': 'Très satisfait(e)'
+        'Entièrement satisfait(e)': 'Entièrement satisfait(e)'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="9_how_often_do_you_receive_communication_training_e_g_training_b"]':
+            '!value': Jamais
+    12_do_you_believe_that_communication_training_is_necessary_for_y:
+      '#type': radios
+      '#title': "1.11\tPensez-vous qu’une formation en communication est nécessaire pour votre poste actuel"
+      '#options':
+        Oui: Oui
+        Non: Non
+        'Je ne sais pas/je préfère ne pas répondre': 'Je ne sais pas/je préfère ne pas répondre'
+      '#required': true
+  section_2_experience_in_risk_communication:
+    '#type': webform_wizard_page
+    '#title': '2. Partie: Expérience en communication des risques'
+    what_difficulties_do_you_experience_during_risk_communication_ch:
+      '#type': webform_checkboxes_other
+      '#title': '2.1 Quelles difficultés rencontrez-vousdans le cadre de la communication des risques? (Sélectionnez toutes les réponses qui s’appliquent.)'
+      '#options':
+        'Manque de données scientifiques pertinentes (qu’il s’agisse d’un danger ou de la probabilité qu’une substance donnée soit nocive)': 'Manque de données scientifiques pertinentes (qu’il s’agisse d’un danger ou de la probabilité qu’une substance donnée soit nocive)'
+        'Manque de soutien de la part des collègues/manque de ressources humaines consacrées à la communication  des risques': 'Manque de soutien de la part des collègues/manque de ressources humaines consacrées à la communication  des risques'
+        'Difficultés rencontrées lors de la collaboration avec des experts en risques chimiques': 'Difficultés rencontrées lors de la collaboration avec des experts en risques chimiques'
+        'Répartition peu claire des rôles': 'Répartition peu claire des rôles'
+        'Répartition peu claire des responsabilités': 'Répartition peu claire des responsabilités'
+        'Budget insuffisant alloué à la communication': 'Budget insuffisant alloué à la communication'
+        'Intervention des gestionnaires des risques en ce qui concerne le moment et le contenu des communications': 'Intervention des gestionnaires des risques en ce qui concerne le moment et le contenu des communications'
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+    13_do_you_have_a_metric_system_that_shows_if_the_message_reaches:
+      '#type': radios
+      '#title': '2.2 Disposez-vous d’un système d’indicateurs  permettant de vérifier si le message atteint le public visé?'
+      '#options':
+        Oui: Oui
+        Non: Non
+      '#required': true
+    if_you_answered_yes_in_previous_question_which_metric_system_do:
+      '#type': textfield
+      '#title': '2.3 Si vous avez répondu OUI à la question précédente, quel système d’indicateurs utilisez-vous?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="13_do_you_have_a_metric_system_that_shows_if_the_message_reaches"]':
+            value: Oui
+    14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo:
+      '#type': radios
+      '#title': '2.4 Évaluez-vous systématiquement si votre communication sur un danger ou un risque chimique a une influence ou un impact significatif? (Quelle a été la réaction du public?)'
+      '#options':
+        Oui: Oui
+        Non: Non
+      '#required': true
+    14_1_if_you_answered_yes_in_previous_question_how_do_you_evaluat:
+      '#type': textfield
+      '#title': '2.5 Si vous avez répondu OUI à la question précédente, comment évaluez-vous cet impact?'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="14_do_you_evaluate_each_time_whether_the_chemical_hazard_risk_yo"]':
+            value: Oui
+    15_how_much_do_you_believe_you_influence_the_target_audience:
+      '#type': radios
+      '#title': '2.6 Selon vous, dans quelle mesure influencez-vous le public cible?'
+      '#options':
+        'Aucune influence': 'Aucune influence'
+        'Peu d’influence ': 'Peu d’influence '
+        'Influence modérée': 'Influence modérée'
+        'Influence considérable': 'Influence considérable'
+        'Forte influence': 'Forte influence'
+      '#required': true
+    in_regard_to_the_previous_question_on_what_do_you_base_your_answ:
+      '#type': webform_checkboxes_other
+      '#title': '2.7 Sur quels éléments fondez-vous votre réponse à la question précédente? (Sélectionnez toutes les réponses qui s’appliquent.)'
+      '#options':
+        'Réactions des médias (télévision, radio, presse)': 'Réactions des médias (télévision, radio, presse)'
+        'Publications/postssur des sites internet, des blogs personnels ou les réseaux sociaux': 'Publications/postssur des sites internet, des blogs personnels ou les réseaux sociaux'
+        'Suivi via des enquêtes auprès des consommateurs basée sur des questionnaires': 'Suivi via des enquêtes auprès des consommateurs basée sur des questionnaires'
+        'Retours d’information directs par le biais de communications personnelles (par exemple, des conversations, des appels téléphoniques, des courriers électroniques ou des messages)': 'Retours d’information directs par le biais de communications personnelles (par exemple, des conversations, des appels téléphoniques, des courriers électroniques ou des messages)'
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+    17_when_communicating_a_chemical_hazard_risk_do_you_usually:
+      '#type': radios
+      '#title': '2.8 Lorsque vous communiquez sur un danger ou un risque chimique, que faites-vous habituellement?'
+      '#options':
+        'Vous créez votre propre message.': 'Vous créez votre propre message.'
+        'Vous communiquez exactement le message tel que fourni par les évaluateurs des risques.': 'Vous communiquez exactement le message tel que fourni par les évaluateurs des risques.'
+        'Vous adaptez ou reformulez des messages provenantd’autres sources.': 'Vous adaptez ou reformulez des messages provenantd’autres sources.'
+      '#required': true
+    18_have_you_ever_personally_experienced_a_health_effect_from_exp:
+      '#type': radios
+      '#title': '2.9 Avez-vous déjà été personnellement exposé(e) à un danger chimique (par exemple, des aliments contaminés, des produits de nettoyage ou des pesticides) ayant eu un effet sur votre santé?'
+      '#options':
+        Oui: Oui
+        Non: Non
+        'Je ne sais pas': 'Je ne sais pas'
+      '#required': true
+    if_yes_did_this_experience_affect_the_way_you_communicate_or_thi:
+      '#type': textfield
+      '#title': "2.10\tDans l’affirmative, cette expérience a-t-elle influencé la façon dont vous communiquez sur ce danger ou le percevez"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="18_have_you_ever_personally_experienced_a_health_effect_from_exp"]':
+            value: Oui
+  section_3_developing_risk_communication:
+    '#type': webform_wizard_page
+    '#title': '3. Partie: Développer la communication sur les risques'
+    when_communicating_with_the_target_audience_on_risk_how_importan:
+      '#type': webform_likert
+      '#title': '3.1 Lorsque vous communiquez sur les risques auprès d’un public cible, dans quelle mesure est-il important d’inclure les éléments suivants?'
+      '#required': true
+      '#questions':
+        'Utilisation d’illustrations visuelles des risques à l’aide de graphiques, de schémas, d’images et de cartes': 'Utilisation d’illustrations visuelles des risques à l’aide de graphiques, de schémas, d’images et de cartes'
+        'Comparaisons entre différents dangers en fonction de leur probabilité': 'Comparaisons entre différents dangers en fonction de leur probabilité'
+        'Description de toutes les incertitudes liées au risque': 'Description de toutes les incertitudes liées au risque'
+        'Valeurs limites chiffrées (par exemple, dose journalière tolérable d’une substance chimique donnée, exprimée en chiffres)': 'Valeurs limites chiffrées (par exemple, dose journalière tolérable d’une substance chimique donnée, exprimée en chiffres)'
+        'Description des différents risques selon les groupes de population  (par exemple, différence des risques entre différentes catég': 'Description des différents risques selon les groupes de population  (par exemple, différence des risques entre différentes catégories professionnelles)'
+        'Informations sur la différence entre l’exposition à long terme et l’exposition à court terme à un danger': 'Informations sur la différence entre l’exposition à long terme et l’exposition à court terme à un danger'
+        'Informations sur la sous-estimation des risques par le public (par exemple, lorsque la personne chargée de la communication des ': 'Informations sur la sous-estimation des risques par le public (par exemple, lorsque la personne chargée de la communication des risques dispose d’informations indiquant que le public ne perçoit pas certaines substances chimiques comme étant aussi dangereuses qu’elles le sont réellement)'
+        'Information on overestimation of risk by the public (e.g. When risk communicator has the information that the public perceive': 'Informations sur la surestimation des risques par le public (par exemple, lorsque la personne chargée de la communication des risques dispose d’informations indiquant que le public perçoit certaines substances chimiques comme étant plus dangereuses qu’elles ne le sont réellement)'
+        'Description des stratégies visant à éviter  l’exposition au danger': 'Description des stratégies visant à éviter  l’exposition au danger'
+      '#answers':
+        'Pas du tout important': 'Pas du tout important'
+        'Peu important': 'Peu important'
+        'Moyennement important': 'Moyennement important'
+        'Assez important': 'Assez important'
+        'Très important': 'Très important'
+    when_communicating_risk_how_important_are_the_following_aspects:
+      '#type': webform_likert
+      '#title': '3.2 Lors de la communication des  risques, dans quelle mesure les aspects suivants liés à la confiance sont-ils imports  pour la perception des risques par le public cible, selon vous?'
+      '#required': true
+      '#questions':
+        'Confiance du public accordée à la personne chargée de la communication des risques ': 'Confiance du public accordée à la personne chargée de la communication des risques '
+        'Confiance du public dans les institutions et autorités nationales et européennes': 'Confiance du public dans les institutions et autorités nationales et européennes'
+        'Confiance du public dans les données scientifiques': 'Confiance du public dans les données scientifiques'
+      '#answers':
+        'Pas du tout important': 'Pas du tout important'
+        'Peu important': 'Peu important'
+        'Moyennement important': 'Moyennement important'
+        'Assez important': 'Assez important'
+        'Très important': 'Très important'
+    please_rate_statements_on_risk_communication_to_which_degree_you:
+      '#type': webform_likert
+      '#title': '3.3 Veuillez indiquer dans quelle mesure vous êtes d’accord ou non avec les affirmations suivantes concernant  la communication  des risques.'
+      '#required': true
+      '#questions':
+        'Il importe de faire la distinction entre le danger et le risque dans la communication  des risques.': 'Il importe de faire la distinction entre le danger et le risque dans la communication  des risques.'
+        'La communication  des risques ne devrait pas être influencée par la perception du public concernant ces risques.': 'La communication  des risques ne devrait pas être influencée par la perception du public concernant ces risques.'
+        'Les principes (tels que l’objectivité et l’impartialité) sur lesquels repose la communication des risques sont cohérents dans to': 'Les principes (tels que l’objectivité et l’impartialité) sur lesquels repose la communication des risques sont cohérents dans tous les domaines (par exemple, les dangers chimiques ou les maladies transmissibles).'
+        'Le fait de décrire toutes les incertitudes liées aux risques et aux dangers sème la confusion dans l’esprit du public.': 'Le fait de décrire toutes les incertitudes liées aux risques et aux dangers sème la confusion dans l’esprit du public.'
+        'La communication des risques devrait être menée en collaboration avec les parties prenantes concernées.': 'La communication des risques devrait être menée en collaboration avec les parties prenantes concernées.'
+        'Les médias d’information s’intéressent davantage à la communication de crise,  où la présentation des risques est souvent exagér': 'Les médias d’information s’intéressent davantage à la communication de crise,  où la présentation des risques est souvent exagérée.'
+      '#answers':
+        'Tout à fait en désaccord': 'Tout à fait en désaccord'
+        'Partiellement en désaccord': 'Partiellement en désaccord'
+        'Ni d’accord ni en désaccord': 'Ni d’accord ni en désaccord'
+        'Partiellement d’accord': 'Partiellement d’accord'
+        'Tout à fait d’accord': 'Tout à fait d’accord'
+  section_4_role_of_risk_communicator:
+    '#type': webform_wizard_page
+    '#title': '4. Partie: Rôle de la personne chargée de la communication des risques'
+    please_rate_statements_on_risk_perception_to_which_degree_you_ag:
+      '#type': webform_likert
+      '#title': "4.1.\tVeuillez indiquer dans quelle mesure vous êtes d’accord ou en désaccord avec les affirmations suivantes sur la perception des risques."
+      '#required': true
+      '#questions':
+        'La perception des risques par le public tient compte ou dépend de ses convictions et de ses attitudes.': 'La perception des risques par le public tient compte ou dépend de ses convictions et de ses attitudes.'
+        'La perception des risques n’est pas influencée par les jugements et les émotions des personnes (expérience personnelle).': 'La perception des risques n’est pas influencée par les jugements et les émotions des personnes (expérience personnelle).'
+        'La perception des risques reflète les dispositions culturelles et sociales plus larges que les personnes adoptent face aux des d': 'La perception des risques reflète les dispositions culturelles et sociales plus larges que les personnes adoptent face aux des dangers et à leurs bénéfices .'
+        'La communication des risques devrait s’appuyer sur les données probantes issues des évaluations des risques, mais également teni': 'La communication des risques devrait s’appuyer sur les données probantes issues des évaluations des risques, mais également tenir compte de la perception de ces dangers par les non-initiés et de l’importance qu’ils leur accordent.'
+        'Les personnes qui ont déjà été confrontées à un incident lié à un danger ont tendance à penser qu’elles ont plus de chances d’y ': 'Les personnes qui ont déjà été confrontées à un incident lié à un danger ont tendance à penser qu’elles ont plus de chances d’y être de nouveau confrontées que celles qui n’ont jamais été exposées à ce danger.'
+        'Lorsqu’une personne entend parler d’un danger pour la première fois, elle a tendance à penser que ce nouveau danger est plus sus': 'Lorsqu’une personne entend parler d’un danger pour la première fois, elle a tendance à penser que ce nouveau danger est plus susceptible de survenir que d’autres dangers déjà connus.'
+        'The more specific knowledge people gain about a hazard, the less they rely on their intuition about risk related to this hazard.': 'Plus une personne acquiert de connaissances spécifiques sur un danger, moins elle se fie à son intuition concernant le risque associé à ce danger.'
+        'La confiance accordée à la personne chargée de la communication des risques est plus importante que l’information elle-même.': 'La confiance accordée à la personne chargée de la communication des risques est plus importante que l’information elle-même.'
+      '#answers':
+        'Tout à fait en désaccord': 'Tout à fait en désaccord'
+        'Partiellement en désaccord': 'Partiellement en désaccord'
+        'Ni d’accord ni en désaccord': 'Ni d’accord ni en désaccord'
+        'Partiellement d’accord': 'Partiellement d’accord'
+        '. Tout à fait d’accord': '. Tout à fait d’accord'
+  section_5_traditional_and_social_media:
+    '#type': webform_wizard_page
+    '#title': '5. Partie: Médias traditionnels et réseaux sociaux'
+    which_channel_do_you_prefer_to_use_when_it_comes_to_communicatio:
+      '#type': webform_table_sort
+      '#title': '5.1 Quel canal préférez-vous utiliser pour la communication des risques ? Veuillez classer les canaux selon vos préférences en les faisant glisser dans l’ordre souhaité, du canal que vous préférez le plus en haut à celui que vous préférez le moins en bas.'
+      '#options':
+        'Lettres d’information': 'Lettres d’information'
+        'Articles de journaux, de magazines': 'Articles de journaux, de magazines'
+        Télévision: Télévision
+        Radio: Radio
+        'Réseaux sociaux': 'Réseaux sociaux'
+      '#required': true
+    which_channel_would_you_prefer_to_use_when_it_comes_to_communica:
+      '#type': webform_table_sort
+      '#title': '5.2 Quel canal préféreriez-vous utiliser pour la communication de crise ? Veuillez classer les canaux selon vos préférences en les faisant glisser dans l’ordre souhaité, du canal que vous préférez le plus en haut à celui que vous préférez le moins en bas.'
+      '#options':
+        'Communiqués de presse': 'Communiqués de presse'
+        'Articles de journaux, de magazines': 'Articles de journaux, de magazines'
+        Télévision: Télévision
+        Radio: Radio
+        'Réseaux sociaux': 'Réseaux sociaux'
+      '#required': true
+    27_5_3_do_you_use_social_media_channels_to_communicate_risk:
+      '#type': radios
+      '#title': "5.3\tUtilisez-vous les réseaux sociaux pour communiquer sur les risques?"
+      '#options':
+        Oui: Oui
+        Non: Non
+      '#required': true
+    which_social_media_channel_do_you_prefer_to_communicate_risk_cho:
+      '#type': webform_checkboxes_other
+      '#title': "5.3.\tQuel réseau social préférez-vous utiliser pour communiquer sur les risques? (Sélectionnez toutes les réponses qui s’appliquent.)"
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': Aucun
+      '#options_none_text': Aucun
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="27_5_3_do_you_use_social_media_channels_to_communicate_risk"]':
+            value: Oui
+    30_which_social_media_channel_do_you_prefer_to_communicate_risk:
+      '#type': webform_checkboxes_other
+      '#title': "5.4.\tQuelle plateforme de réseaux sociaux utiliseriez-vous en cas de communication de crise? (Sélectionnez toutes les réponses qui s’appliquent.)"
+      '#options':
+        X: X
+        LinkedIn: LinkedIn
+        Facebook: Facebook
+        'Whatsapp / Viber ': 'Whatsapp / Viber '
+        Instagram: Instagram
+      '#options_none': true
+      '#options_none_value': Aucune
+      '#options_none_text': Aucune
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+    5_6_do_you_use_any_form_of_social_media_listening_software_that:
+      '#type': radios
+      '#title': "5.5.\tAvez-vous recours à une forme d’écoute des réseaux sociaux (un logiciel permettant à l’utilisateur de surveiller, de suivre et d’analyser les conversations sur les réseaux sociaux)?"
+      '#options':
+        Oui: Oui
+        Non: Non
+      '#required': true
+    32_if_you_answered_yes_in_previous_question_what_tools_for_socia:
+      '#type': textfield
+      '#title': "5.6.\tSi vous avez répondu OUI à la question précédente, quels outils utilisez-vous pour «écouter» les réseaux sociaux?"
+      '#required': true
+      '#states':
+        visible:
+          ':input[name="5_6_do_you_use_any_form_of_social_media_listening_software_that"]':
+            value: Oui
+    30_how_do_you_usually_handle_a_misinformation_rumour_in_social_m:
+      '#type': webform_radios_other
+      '#title': "5.7.\tComment gérez-vous habituellement les fausses informations ou les rumeurs qui circulent sur les réseaux sociaux concernant les dangers ou risques spécifiques liés aux produits chimiques?"
+      '#options':
+        'Aucune réaction. Si je laisse faire, les choses se calmeront.': 'Aucune réaction. Si je laisse faire, les choses se calmeront.'
+        'Je rédige un communiqué contenant les informations correctes et je le diffuse.': 'Je rédige un communiqué contenant les informations correctes et je le diffuse.'
+        'J’intente une action en justice, si nécessaire.': 'J’intente une action en justice, si nécessaire.'
+      '#other__option_label': Autre
+      '#other__placeholder': 'veuillez préciser:'
+      '#required': true
+  section_6_language:
+    '#type': webform_wizard_page
+    '#title': '6. Partie: Langue'
+    31_let_s_assume_that_there_is_misinformation_rumour_in_social_me:
+      '#type': radios
+      '#title': '6.1 Supposons que de fausses informations ou des rumeurs circulent sur les réseaux sociaux concernant les risques liés au tabagisme et au cadmium. Parmi les affirmations suivantes, laquelle préféreriez-vous utiliser?'
+      '#options':
+        'A: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%. Smokers have about 1.5 μg/l blood cadmium concentrations, and kidney cortex cadmium concentrations about 20-30 μg/g wet weight. Non-smokers have 4-5 times lower blood cadmium concentrations and twice as low kidney cortex cadmium concentrations. Cadmium has been shown to cause lung cancer. ': "•\tA: Lorsque vous fumez, entre 10 % et 50 % du cadmium dans les cigarettes est absorbé par les poumons. Chez les fumeurs, la concentration en cadmium dans le sang est d’environ 1,5 μg/l, tandis que la concentration en cadmium dans le cortex rénal atteint 20 à 30 μg/g de poids humide. Chez les non-fumeurs, la concentration en cadmium dans le sang est quatre à cinq fois moins élevée et la concentration en cadmium dans le cortex rénal est deux fois moins élevée. Il a été démontré que le cadmium est cancérigène -- •\tA: Lorsque vous fumez, entre 10 % et 50 % du cadmium dans les cigarettes est absorbé par les poumons. Chez les fumeurs, la concentration en cadmium dans le sang est d’environ 1,5 μg/l, tandis que la concentration en cadmium dans le cortex rénal atteint 20 à 30 μg/g de poids humide. Chez les non-fumeurs, la concentration en cadmium dans le sang est quatre à cinq fois moins élevée et la concentration en cadmium dans le cortex rénal est deux fois moins élevée. Il a été démontré que le cadmium est cancérigène pour le poumon."
+        'B: With smoking cigarettes, the absorption of cadmium in the lungs is 10-50%, while the absorption in the gastrointestinal tract is only a few percent. Smokers have about 4-5 times higher blood cadmium concentrations (about 1.5 μg/l), and twice as high kidney cortex cadmium concentrations (about 20-30 μg/g wet weight) as nonsmokers. Cadmium has been shown to cause lung cancer, but there is limited evidence that it is linked to kidney, liver and prostate cancer. ': "•\tB: Lorsque vous fumez, entre 10 % et 50 % du cadmium dans les cigarettes est absorbé par les poumons, alors qu’un très faible pourcentage est absorbé par le tube digestif. Les fumeurs présentent des concentrations de cadmium dans le sang environ 4 à 5 fois plus élevées (environ 1,5 μg/l) et des concentrations de cadmium dans le cortex rénal deux fois plus élevées (environ 20 à 30 μg/g de poids humide) que les non-fumeurs. Il a été démontré que le cadmium est cancérigène pour le poumon, mais les preuves co -- •\tB: Lorsque vous fumez, entre 10 % et 50 % du cadmium dans les cigarettes est absorbé par les poumons, alors qu’un très faible pourcentage est absorbé par le tube digestif. Les fumeurs présentent des concentrations de cadmium dans le sang environ 4 à 5 fois plus élevées (environ 1,5 μg/l) et des concentrations de cadmium dans le cortex rénal deux fois plus élevées (environ 20 à 30 μg/g de poids humide) que les non-fumeurs. Il a été démontré que le cadmium est cancérigène pour le poumon, mais les preuves concernant son lien avec les cancers du rein, du foie et de la prostate sont limitées."
+        "•\tC: Lorsque vous fumez, vos poumons absorbent une très grande partie du cadmium contenu dans les cigarettes, tandis que le taux d’absorption est plus faible dans le tube digestif. Les fumeurs présentent des concentrations de cadmium dans le sang et dans le cortex rénal nettement plus élevées que les non-fumeurs. Le cadmium est cancérigène.": "•\tC: Lorsque vous fumez, vos poumons absorbent une très grande partie du cadmium contenu dans les cigarettes, tandis que le taux d’absorption est plus faible dans le tube digestif. Les fumeurs présentent des concentrations de cadmium dans le sang et dans le cortex rénal nettement plus élevées que les non-fumeurs. Le cadmium est cancérigène. -- •\tC: Lorsque vous fumez, vos poumons absorbent une très grande partie du cadmium contenu dans les cigarettes, tandis que le taux d’absorption est plus faible dans le tube digestif. Les fumeurs présentent des concentrations de cadmium dans le sang et dans le cortex rénal nettement plus élevées que les non-fumeurs. Le cadmium est cancérigène."
+      '#required': true
+    32_the_following_scientific_statement_states_that_acrylamide_is:
+      '#type': radios
+      '#title': "6.2.\tSelon la déclaration scientifique suivante, «l’acrylamide est une substance chimique qui se forme naturellement dans les aliments riches en amidon au cours des processus de cuisson à haute température (à plus de 120 °C). Lorsque l’acrylamide est présent dans les aliments, il augmente potentiellement le risque de cancer pour les consommateurs de tous âges. Heureusement, il existe des moyens de réduire les niveaux d’acrylamide dans les aliments». Quelle affirmation choisiriez-vous si vous deviez conseiller les consommateurs sur les façons de réduire au minimum les niveaux d’acrylamide lorsqu'ils cuisinent à la maison?"
+      '#options':
+        "•\tPour préserver votre santé, évitez la cuisson à haute température lorsque vous faites frire, cuire au four, griller ou rôtir des aliments riches en amidon. Évitez de faire brunir ces aliments et visez une couleur jaune doré.": "•\tPour préserver votre santé, évitez la cuisson à haute température lorsque vous faites frire, cuire au four, griller ou rôtir des aliments riches en amidon. Évitez de faire brunir ces aliments et visez une couleur jaune doré."
+        "•\tLa formation de l’acrylamide, une substance cancérigène chez l’homme, augmente davantage lors de cuissons longues et à haute température que lors de cuissons courtes et à des températures plus basses.": "•\tLa formation de l’acrylamide, une substance cancérigène chez l’homme, augmente davantage lors de cuissons longues et à haute température que lors de cuissons courtes et à des températures plus basses."
+      '#required': true
+  actions:
+    '#type': webform_actions
+    '#title': 'Submit button(s)'
+    '#submit__label': Envoyer
+css: ''
+javascript: ''
+settings:
+  ajax: false
+  ajax_scroll_top: form
+  ajax_progress_type: ''
+  ajax_effect: ''
+  ajax_speed: null
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  page_theme_name: parc
+  form_title: source_entity_webform
+  form_submit_once: false
+  form_open_message: ''
+  form_close_message: ''
+  form_exception_message: ''
+  form_previous_submissions: true
+  form_confidential: false
+  form_confidential_message: ''
+  form_disable_remote_addr: false
+  form_convert_anonymous: false
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_prepopulate_source_entity_required: false
+  form_prepopulate_source_entity_type: ''
+  form_unsaved: false
+  form_disable_back: false
+  form_submit_back: false
+  form_disable_autocomplete: false
+  form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
+  form_autofocus: false
+  form_details_toggle: false
+  form_reset: false
+  form_access_denied: default
+  form_access_denied_title: ''
+  form_access_denied_message: ''
+  form_access_denied_attributes: {  }
+  form_file_limit: ''
+  form_file_limit_message: ''
+  form_attributes: {  }
+  form_method: ''
+  form_action: ''
+  share: false
+  share_node: false
+  share_theme_name: ''
+  share_title: true
+  share_page_body_attributes: {  }
+  submission_label: ''
+  submission_exception_message: ''
+  submission_locked_message: ''
+  submission_log: false
+  submission_excluded_elements: {  }
+  submission_exclude_empty: false
+  submission_exclude_empty_checkbox: false
+  submission_views: {  }
+  submission_views_replace: {  }
+  submission_user_columns: {  }
+  submission_user_duplicate: false
+  submission_access_denied: default
+  submission_access_denied_title: ''
+  submission_access_denied_message: ''
+  submission_access_denied_attributes: {  }
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_progress_link: false
+  wizard_progress_states: false
+  wizard_start_label: ''
+  wizard_preview_link: false
+  wizard_confirmation: true
+  wizard_confirmation_label: ''
+  wizard_auto_forward: true
+  wizard_auto_forward_hide_next_button: false
+  wizard_keyboard: true
+  wizard_track: ''
+  wizard_prev_button_label: 'Page précédente'
+  wizard_next_button_label: 'Page suivante'
+  wizard_toggle: false
+  wizard_toggle_show_label: ''
+  wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
+  preview: 0
+  preview_label: ''
+  preview_title: ''
+  preview_message: ''
+  preview_attributes: {  }
+  preview_excluded_elements: {  }
+  preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
+  draft: none
+  draft_multiple: false
+  draft_auto_save: false
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  draft_pending_single_message: ''
+  draft_pending_multiple_message: ''
+  confirmation_type: page
+  confirmation_url: ''
+  confirmation_title: 'Merci. Vos réponses ont été envoyées.'
+  confirmation_message: '<p>Merci. Vos réponses ont été envoyées.</p>'
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
+  confirmation_update: false
+  limit_total: null
+  limit_total_interval: null
+  limit_total_message: ''
+  limit_total_unique: false
+  limit_user: null
+  limit_user_interval: null
+  limit_user_message: ''
+  limit_user_unique: false
+  entity_limit_total: null
+  entity_limit_total_interval: null
+  entity_limit_user: null
+  entity_limit_user_interval: null
+  purge: none
+  purge_days: null
+  results_disabled: false
+  results_disabled_ignore: false
+  results_customize: false
+  token_view: false
+  token_update: false
+  token_delete: false
+  serial_disabled: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+    permissions: {  }
+  view_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  purge_any:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  view_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  update_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  delete_own:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  configuration:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+handlers: {  }
+variants: {  }
