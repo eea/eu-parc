@@ -75,6 +75,12 @@
       }
     }
 
+    .col-menu-sticky-inner {
+      position: sticky;
+      top: calc(var(--drupal-displace-offset-top, 0px) + var(--header-visible-height, 0px) + 24px);
+      transition: top 0.3s ease;
+    }
+
     .col-menu {
       top: 116px;
       flex: 0 0 auto;
