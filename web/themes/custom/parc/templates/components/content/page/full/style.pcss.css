@@ -63,11 +63,6 @@
   }
 }
 
-body.page-node-type-page .block-field-blocknodepagefield-banner {
-  max-width: 1920px;
-  margin-inline: auto;
-}
-
 .visible-last-xl {
   & > div:last-child {
     @media (--lg) {

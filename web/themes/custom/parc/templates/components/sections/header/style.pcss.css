@@ -70,7 +70,7 @@ body.page--banner-overlay {
   }
 
   :is(.block-field-blocknodebasic-pagefield-banner, .block-field-blocknodepagefield-banner):has(img) + :is(.block-field-blocknodebasic-pagetitle, .block-field-blocknodepagetitle) {
-    --banner-title-offset: calc(min(100vw, 1920px) * 0.069);
+    --banner-title-offset: calc(100vw * 0.069);
 
     position: static;
     display: block;
