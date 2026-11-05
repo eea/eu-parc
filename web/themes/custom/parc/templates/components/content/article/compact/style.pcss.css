@@ -25,6 +25,10 @@
     }
   }
 
+  .field--name-field-paragraphs .embedded-media {
+    margin-block: var(--spacer);
+  }
+
   .image-field-caption {
     font-size: 14px;
     line-height: 145%;
@@ -145,6 +149,19 @@
 
   .field + .field--name-field-slideshow-items {
     margin-top: var(--spacer);
+  }
+
+  img,
+  iframe,
+  video,
+  .field--name-field-image .w-img {
+    border-radius: 4px;
+  }
+
+  /* The carousel wrappers clip their content, which would hide the media radius. */
+  .parc-media-carousel .slick-list,
+  .parc-media-carousel .slideshow-item {
+    border-radius: 0;
   }
 
   .field--type-text-long,
