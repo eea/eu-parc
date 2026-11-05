@@ -209,6 +209,15 @@ function parc_preprocess_paragraph(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for media.
+ */
+function parc_preprocess_media(array &$variables) {
+  if (!empty($variables['elements']['#embed'])) {
+    $variables['attributes']['class'][] = 'embedded-media';
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function parc_theme($existing, $type, $theme, $path) {

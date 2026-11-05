@@ -7,7 +7,7 @@
 
 {{ attach_library('parc/p--image-gallery') }}
 
-<div class="paragraph--image-gallery">
+<div class="paragraph--image-gallery{{ paragraph.field_gallery_images|length is divisible by(3) ? ' paragraph--image-gallery--three-columns' }}">
   {% for delta, item in paragraph.field_gallery_images %}
     <figure class="paragraph--image-gallery__item">
       {{ content.field_gallery_images[delta] }}
