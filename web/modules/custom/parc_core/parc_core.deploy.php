@@ -2448,6 +2448,113 @@ function parc_core_deploy_circular_economy_topic() {
 }
 
 /**
+ * Set field_bg_color + field_color pairs for news_category terms.
+ */
+function parc_core_deploy_news_category_colors() {
+  $colors = [
+    'Risk assessment' => [
+      'bg' => '#AED3FF',
+      'color' => '#1C85FF',
+    ],
+    'General' => [
+      'bg' => '#E0C7F5',
+      'color' => '#8631A7',
+    ],
+    'Building capacities' => [
+      'bg' => '#FBCDD5',
+      'color' => '#E45C4D',
+    ],
+    'Science to policy' => [
+      'bg' => '#FBEEC8',
+      'color' => '#008475',
+    ],
+    'What’s on' => [
+      'bg' => '#B0E5DF',
+      'color' => '#008475',
+    ],
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($colors as $name => $data) {
+    $terms = $term_storage->loadByProperties([
+      'vid' => 'news_category',
+      'name' => $name,
+    ]);
+    if (empty($terms)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($terms);
+    $term->set('field_bg_color', ['color' => $data['bg']]);
+    $term->set('field_color', ['color' => $data['color']]);
+    $term->save();
+  }
+}
+
+/**
+ * Migrate article items into field_paragraphs.
+ */
+function parc_core_deploy_migrate_article_paragraphs() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'article')
+    ->execute();
+
+  foreach ($nids as $nid) {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $node_storage->load($nid);
+    if (!$node) {
+      continue;
+    }
+
+    if (!$node->get('field_paragraphs')->isEmpty()) {
+      continue;
+    }
+
+    $paragraphs = [];
+
+    if (!$node->get('body')->isEmpty()) {
+      $body = $node->get('body')->first()->getValue();
+      $text_paragraph = $paragraph_storage->create([
+        'type' => 'text',
+        'field_body' => [
+          'value' => _parc_core_article_body_to_restricted($body['value']),
+          'format' => 'restricted_html',
+        ],
+      ]);
+      $text_paragraph->save();
+      $paragraphs[] = $text_paragraph;
+    }
+
+    if (!$node->get('field_slideshow_items')->isEmpty()) {
+      $media_items = $node->get('field_slideshow_items')->getValue();
+      $carousel_paragraph = $paragraph_storage->create([
+        'type' => 'media_carousel',
+        'field_carousel_items' => $media_items,
+        'field_carousel_width' => 'medium',
+      ]);
+      $carousel_paragraph->save();
+      $paragraphs[] = $carousel_paragraph;
+    }
+
+    if (empty($paragraphs)) {
+      continue;
+    }
+
+    foreach ($paragraphs as $paragraph) {
+      $node->get('field_paragraphs')->appendItem($paragraph);
+    }
+
+    $node->setNewRevision(FALSE);
+    $node->save();
+  }
+}
+
+/**
  * Re-import air, water and ecotox labs from the 2026-10-13 CSV exports.
  */
 function parc_core_deploy_reimport_air_water_ecotox_labs() {
@@ -2500,5 +2607,98 @@ function parc_core_deploy_video_playlist() {
     // their pathauto state is "skip".
     $node->path->pathauto = PathautoState::CREATE;
     $node->save();
+  }
+}
+
+/**
+ * Prepares migrated article HTML for the Restricted HTML text format.
+ */
+function _parc_core_article_body_to_restricted(string $html): string {
+  $html = preg_replace(
+    ['#<b(\s[^>]*)?>#i', '#</b>#i', '#<i(\s[^>]*)?>#i', '#</i>#i'],
+    ['<strong>', '</strong>', '<em>', '</em>'],
+    $html
+  );
+
+  return preg_replace_callback('#<drupal-media\b([^>]*)>#i', function (array $matches) {
+    $attributes = preg_replace('#\s+data-view-mode\s*=\s*(["\'])[^"\']*\1#i', '', $matches[1]);
+    return '<drupal-media' . $attributes . ' data-view-mode="embed_medium">';
+  }, $html);
+}
+
+/**
+ * Restricted HTML text format and medium-sized media.
+ */
+function parc_core_deploy_article_paragraphs_restricted_medium() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'article')
+    ->execute();
+
+  $updated = 0;
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    if (!$node->hasField('field_paragraphs')) {
+      continue;
+    }
+
+    /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+    foreach ($node->get('field_paragraphs')->referencedEntities() as $paragraph) {
+      $changed = FALSE;
+
+      if ($paragraph->bundle() === 'text' && !$paragraph->get('field_body')->isEmpty()) {
+        $body = $paragraph->get('field_body')->first()->getValue();
+        $value = _parc_core_article_body_to_restricted($body['value']);
+        if ($value !== $body['value'] || $body['format'] !== 'restricted_html') {
+          $paragraph->set('field_body', [
+            'value' => $value,
+            'format' => 'restricted_html',
+          ]);
+          $changed = TRUE;
+        }
+      }
+
+      if ($paragraph->bundle() === 'media_carousel' && $paragraph->get('field_carousel_width')->value !== 'medium') {
+        $paragraph->set('field_carousel_width', 'medium');
+        $changed = TRUE;
+      }
+
+      if ($changed) {
+        $paragraph->setNewRevision(FALSE);
+        $paragraph->save();
+        $updated++;
+      }
+    }
+  }
+
+  return t('Updated @count article paragraphs.', ['@count' => $updated]);
+}
+
+/**
+ * Set field_bg_color for the remaining news_category terms.
+ */
+function parc_core_deploy_news_category_bg_colors_remaining() {
+  $colors = [
+    'Tools and resources' => '#E0C7F5',
+    'Scientific publications' => '#FBEEC8',
+    'National hubs' => '#FBEEC8',
+    'Results' => '#FBEEC8',
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($colors as $name => $bg) {
+    $terms = $term_storage->loadByProperties([
+      'vid' => 'news_category',
+      'name' => $name,
+    ]);
+    if (empty($terms)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($terms);
+    $term->set('field_bg_color', ['color' => $bg]);
+    $term->save();
   }
 }

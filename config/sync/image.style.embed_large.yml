@@ -1,0 +1,15 @@
+uuid: 544c5c13-26da-4339-95cd-8c753ba31fca
+langcode: en
+status: true
+dependencies: {  }
+name: embed_large
+label: 'Embed Large'
+effects:
+  a1f33be5-6d1a-4b71-a1f7-43f08b823833:
+    uuid: a1f33be5-6d1a-4b71-a1f7-43f08b823833
+    id: image_scale
+    weight: 1
+    data:
+      width: 1880
+      height: null
+      upscale: true

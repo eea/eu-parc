@@ -1532,6 +1532,19 @@
       --min-height: 650px;
     }
 
+    &.carousel-width-medium,
+    &.carousel-width-small {
+      margin-inline: auto;
+    }
+
+    &.carousel-width-medium {
+      max-width: 1400px;
+    }
+
+    &.carousel-width-small {
+      max-width: 800px;
+    }
+
     .text-uppercase {
       font-size: 14px;
 

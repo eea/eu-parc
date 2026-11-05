@@ -2,7 +2,7 @@
   transition: var(--transition-base);
   top: var(--drupal-body-pt);
 
-  header:not(.vh) + main & {
+  header + main & {
     top: calc(var(--drupal-body-pt) + 96px);
   }
 }
@@ -36,6 +36,10 @@ main {
 /* Page layout. */
 .region-content-bottom {
   padding-block: 80px;
+
+  body.has-category-bg & {
+    background-color: var(--nn-c-bg) !important;
+  }
 
   /* Temp. */
   .block-views {

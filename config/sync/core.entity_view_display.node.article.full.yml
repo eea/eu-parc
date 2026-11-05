@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.article.comment
     - field.field.node.article.field_image
     - field.field.node.article.field_metatags
+    - field.field.node.article.field_paragraphs
     - field.field.node.article.field_seo_keyword
     - field.field.node.article.field_slideshow_items
     - field.field.node.article.field_survey
@@ -15,13 +16,11 @@ dependencies:
     - field.field.node.article.field_tags
     - field.field.node.article.rabbit_hole__settings
     - node.type.article
-    - system.menu.main
   module:
     - addtoany
     - ctools
     - image_field_caption
     - layout_builder
-    - menu_block
     - text
     - user
   theme:
@@ -90,26 +89,6 @@ third_party_settings:
                 entity: layout_builder.entity
             weight: 1
             additional: {  }
-          47c6e027-e1e2-4f41-9b22-3d73841a38d2:
-            uuid: 47c6e027-e1e2-4f41-9b22-3d73841a38d2
-            region: menu
-            configuration:
-              id: 'menu_block:main'
-              label: 'Main navigation'
-              label_display: '0'
-              provider: menu_block
-              context_mapping: {  }
-              follow: false
-              follow_parent: child
-              label_link: false
-              label_type: block
-              level: 3
-              depth: 0
-              expand_all_items: false
-              parent: 'main:'
-              suggestion: sidebar_dropdown
-            weight: 1
-            additional: {  }
         third_party_settings: {  }
 _core:
   default_config_hash: 7fb0j9HnIXfP9ndewzgPPzzeX_SV532wuYpkscrCMCk
@@ -118,10 +97,12 @@ targetEntityType: node
 bundle: article
 mode: full
 content:
-  body:
-    type: text_default
+  field_paragraphs:
+    type: entity_reference_revisions_entity_view
     label: hidden
-    settings: {  }
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
     weight: 1
     region: content
@@ -146,6 +127,7 @@ content:
     region: content
 hidden:
   addtoany: true
+  body: true
   comment: true
   field_metatags: true
   field_seo_keyword: true
