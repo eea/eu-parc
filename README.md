@@ -121,7 +121,6 @@ section of composer.json:
 }
 ```
 
-
 ### How do I specify a PHP version ?
 
 This project supports PHP 7.3 as minimum version (see [Environment requirements of Drupal 9](https://www.drupal.org/docs/understanding-drupal/how-drupal-9-was-made-and-what-is-included/environment-requirements-of)), however it's possible that a `composer update` will upgrade some package that will then require PHP 7.3+.
