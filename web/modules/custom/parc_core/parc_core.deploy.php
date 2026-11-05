@@ -2674,3 +2674,31 @@ function parc_core_deploy_article_paragraphs_restricted_medium() {
 
   return t('Updated @count article paragraphs.', ['@count' => $updated]);
 }
+
+/**
+ * Set field_bg_color for the remaining news_category terms.
+ */
+function parc_core_deploy_news_category_bg_colors_remaining() {
+  $colors = [
+    'Tools and resources' => '#E0C7F5',
+    'Scientific publications' => '#FBEEC8',
+    'National hubs' => '#FBEEC8',
+    'Results' => '#FBEEC8',
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($colors as $name => $bg) {
+    $terms = $term_storage->loadByProperties([
+      'vid' => 'news_category',
+      'name' => $name,
+    ]);
+    if (empty($terms)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($terms);
+    $term->set('field_bg_color', ['color' => $bg]);
+    $term->save();
+  }
+}
