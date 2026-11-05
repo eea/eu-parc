@@ -163,4 +163,19 @@
   .parc-media-carousel .slideshow-item {
     border-radius: 0;
   }
+
+  .field--type-text-long,
+  .field--type-text-with-summary {
+    > figure,
+    > div:has(img, video) {
+      margin-inline: 0 !important;
+      float: none;
+    }
+
+    iframe {
+      display: block;
+      max-width: 100%;
+      margin-inline: auto;
+    }
+  }
 }
