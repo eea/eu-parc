@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.taxonomy_term.project_topics.field_color
+    - field.field.taxonomy_term.project_topics.field_main_theme
     - field.field.taxonomy_term.project_topics.rabbit_hole__settings
     - taxonomy.vocabulary.project_topics
   module:
@@ -27,6 +28,12 @@ content:
   field_color:
     type: color_field_widget_html5
     weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_main_theme:
+    type: options_select
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
