@@ -1,0 +1,21 @@
+uuid: e1980008-3112-40ab-846a-bf975773f2b3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_main_theme
+    - node.type.institution
+  module:
+    - options
+id: node.institution.field_main_theme
+field_name: field_main_theme
+entity_type: node
+bundle: institution
+label: 'Main theme'
+description: 'The theme this item belongs to on the key messages map.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

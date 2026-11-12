@@ -1,0 +1,43 @@
+uuid: edbb9b6a-b3e1-43c6-bead-2dbed5ed8fe8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.finding.field_body
+    - field.field.paragraph.finding.field_health_effect
+    - field.field.paragraph.finding.field_publications
+    - paragraphs.paragraphs_type.finding
+  module:
+    - text
+id: paragraph.finding.default
+targetEntityType: paragraph
+bundle: finding
+mode: default
+content:
+  field_body:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_health_effect:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_publications:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,22 @@
+uuid: 7e99f3f7-3469-44ab-8fb2-e7b3af21430c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - paragraphs.paragraphs_type.finding
+  module:
+    - text
+id: paragraph.finding.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: finding
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

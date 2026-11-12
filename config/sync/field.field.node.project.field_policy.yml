@@ -1,0 +1,29 @@
+uuid: 58a83780-abcc-49d2-b5b7-418399336163
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_policy
+    - node.type.project
+    - taxonomy.vocabulary.policies
+id: node.project.field_policy
+field_name: field_policy
+entity_type: node
+bundle: project
+label: Policy
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      policies: policies
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

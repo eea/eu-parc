@@ -1,0 +1,29 @@
+uuid: b90cbff3-a4a5-410c-9b9d-a2a73467905e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_health_effect
+    - paragraphs.paragraphs_type.finding
+    - taxonomy.vocabulary.chemicals_health_effects
+id: paragraph.finding.field_health_effect
+field_name: field_health_effect
+entity_type: paragraph
+bundle: finding
+label: 'Health effect'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      chemicals_health_effects: chemicals_health_effects
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

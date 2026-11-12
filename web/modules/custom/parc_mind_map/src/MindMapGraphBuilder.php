@@ -24,6 +24,12 @@ use Symfony\Component\HttpFoundation\RequestStack;
  *   - publication -> project (node.project.field_related_publications)
  *   - publication -> keyword (node.publications.field_key_words)
  *   - publication -> author (node.publications.field_authors)
+ *   - policy -> project (node.project.field_policy)
+ *   - chemical -> finding (node.chemical.field_findings)
+ *   - finding -> health effect (paragraph.finding.field_health_effect)
+ *   - publication -> finding (paragraph.finding.field_publications)
+ *
+ * Every node carries its main theme (field_main_theme), when set.
  */
 class MindMapGraphBuilder {
 
@@ -36,6 +42,17 @@ class MindMapGraphBuilder {
    * Image style used for the publication covers.
    */
   const COVER_IMAGE_STYLE = 'large';
+
+  /**
+   * Labels of the field_main_theme values, as the map expects them.
+   */
+  const THEMES = [
+    'exposure' => 'Exposure',
+    'environment' => 'Environment',
+    'health' => 'Health',
+    'biomonitoring' => 'Biomonitoring',
+    'action_policy' => 'Action & Policy',
+  ];
 
   /**
    * The entity type manager.
@@ -142,14 +159,18 @@ class MindMapGraphBuilder {
         'node_list:project',
         'node_list:publications',
         'node_list:institution',
+        'node_list:chemical',
         'taxonomy_term_list:project_topics',
         'taxonomy_term_list:project_keywords',
         'taxonomy_term_list:publications',
+        'taxonomy_term_list:policies',
+        'taxonomy_term_list:chemicals_health_effects',
       ])
       ->setCacheContexts(['url.site']);
 
     $this->buildProjectGraph();
     $this->buildPublicationGraph();
+    $this->buildChemicalGraph();
 
     $this->cache->set($cid, [$this->graph, $this->cacheability], CacheBackendInterface::CACHE_PERMANENT, $this->cacheability->getCacheTags());
   }
@@ -164,6 +185,9 @@ class MindMapGraphBuilder {
     foreach ($this->loadTerms('project_keywords') as $term) {
       $this->addTermNode($term, 'project-keyword');
     }
+    foreach ($this->loadTerms('policies') as $term) {
+      $this->addTermNode($term, 'policy');
+    }
 
     foreach ($this->loadNodes('project') as $project) {
       $project_id = 'project-' . $project->id();
@@ -174,7 +198,12 @@ class MindMapGraphBuilder {
         'abbreviation' => $this->getFirstValue($project, 'field_project_abbreviation'),
         'url' => $this->getEntityUrl($project),
         'description' => $this->getDescription($project, 'body'),
+        'theme' => $this->getTheme($project),
       ]);
+
+      foreach ($this->getReferencedEntities($project, 'field_policy') as $term) {
+        $this->addEdge($this->addTermNode($term, 'policy'), $project_id, 'policy_project');
+      }
 
       foreach ($this->getReferencedEntities($project, 'field_project_topics') as $term) {
         $this->addEdge($this->addTermNode($term, 'project-topic'), $project_id, 'project-topic_project');
@@ -230,7 +259,52 @@ class MindMapGraphBuilder {
         'doi' => $this->getLinkUri($publication, 'field_doi_link'),
         'image' => $this->getCoverImageUrl($publication),
         'description' => $this->getDescription($publication, 'field_key_messages', 'body'),
+        'theme' => $this->getTheme($publication),
       ]);
+    }
+  }
+
+  /**
+   * Adds the chemicals, their findings and the health effects they report.
+   */
+  protected function buildChemicalGraph(): void {
+    foreach ($this->loadNodes('chemical') as $chemical) {
+      $chemical_id = 'chemical-' . $chemical->id();
+      $this->addNode([
+        'id' => $chemical_id,
+        'type' => 'chemical',
+        'name' => $chemical->label(),
+        'url' => $this->getEntityUrl($chemical),
+        'description' => $this->getDescription($chemical, 'body'),
+        'theme' => $this->getTheme($chemical),
+      ]);
+
+      foreach ($this->getReferencedEntities($chemical, 'field_findings') as $finding) {
+        $effects = $this->getReferencedEntities($finding, 'field_health_effect');
+        $effect = $effects ? reset($effects) : NULL;
+        $publications = array_filter(
+          $this->getReferencedEntities($finding, 'field_publications'),
+          fn (NodeInterface $publication) => $publication->isPublished()
+        );
+
+        $finding_id = 'finding-' . $finding->id();
+        $this->addNode([
+          'id' => $finding_id,
+          'type' => 'finding',
+          'name' => $chemical->label() . ($effect ? ' → ' . $effect->label() : ''),
+          'description' => $this->getDescription($finding, 'field_body'),
+          'theme' => $effect ? $this->getTheme($effect) : NULL,
+          'publications' => count($publications),
+        ]);
+        $this->addEdge($chemical_id, $finding_id, 'chemical_finding');
+
+        if ($effect) {
+          $this->addEdge($finding_id, $this->addTermNode($effect, 'health-effect'), 'finding_health-effect');
+        }
+        foreach ($publications as $publication) {
+          $this->addEdge('article-' . $publication->id(), $finding_id, 'article_finding');
+        }
+      }
     }
   }
 
@@ -244,6 +318,7 @@ class MindMapGraphBuilder {
       'type' => $type,
       'name' => $term->label(),
       'description' => $this->getDescription($term, 'description'),
+      'theme' => $this->getTheme($term),
     ]);
     return $id;
   }
@@ -274,6 +349,7 @@ class MindMapGraphBuilder {
       'roles' => array_values($roles),
       'url' => $this->getEntityUrl($partner),
       'description' => $this->getDescription($partner, 'body'),
+      'theme' => $this->getTheme($partner),
     ]);
     return $id;
   }
@@ -375,6 +451,14 @@ class MindMapGraphBuilder {
   protected function getFirstValue($entity, string $field_name): ?string {
     $values = $this->getValues($entity, $field_name);
     return $values ? trim((string) reset($values)) : NULL;
+  }
+
+  /**
+   * Returns the label of the entity's main theme.
+   */
+  protected function getTheme($entity): ?string {
+    $value = $this->getFirstValue($entity, 'field_main_theme');
+    return $value ? (static::THEMES[$value] ?? NULL) : NULL;
   }
 
   /**

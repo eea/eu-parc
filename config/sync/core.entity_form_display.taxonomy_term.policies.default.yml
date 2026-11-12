@@ -1,0 +1,49 @@
+uuid: 1c499e45-a157-43d9-a98d-2ba32cc65226
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.policies.field_main_theme
+    - taxonomy.vocabulary.policies
+  module:
+    - text
+id: taxonomy_term.policies.default
+targetEntityType: taxonomy_term
+bundle: policies
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_main_theme:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  path: true
+  rabbit_hole__settings: true
+  relations: true
+  simple_sitemap: true
+  simple_sitemap_index_now: true
