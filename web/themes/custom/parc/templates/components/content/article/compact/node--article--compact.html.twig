@@ -8,18 +8,16 @@
 {{ attach_library('parc/n--article-compact') }}
 
 {% set color = node.field_tags.entity.field_color.value.0.color %}
-{% set bg_color = node.field_tags.entity.field_bg_color.color %}
 
 {%
   set classes = [
     'node',
     'node--' ~ node.bundle|clean_class,
     view_mode ? 'node--' ~ node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
-    bg_color ? 'node--article--has-bg-color',
   ]
 %}
 
-<article{{attributes.addClass(classes).setAttribute('style','--nn-c-cat:'~color~';'~(bg_color ? '--nn-c-bg:'~bg_color~';' : ''))}}>
+<article{{attributes.addClass(classes).setAttribute('style','--nn-c-cat:'~color~';')}}>
   {{ title_prefix }}
   {{ title_suffix }}
 

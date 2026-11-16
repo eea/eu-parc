@@ -1,8 +1,4 @@
 .node--article--full {
-  &.node--article--has-bg-color {
-    background-color: var(--nn-c-bg);
-  }
-
   .page-title {
     margin-block: 24px;
     padding-inline: 20px;

@@ -1,10 +1,6 @@
 .node--article--compact {
   padding-bottom: 100px;
 
-  &.node--article--has-bg-color {
-    background-color: var(--nn-c-bg);
-  }
-
   .field--name-field-image {
     margin-bottom: 50px;
 
@@ -140,6 +136,14 @@
           display: block;
         }
       }
+    }
+  }
+
+  .paragraph-text {
+    p,
+    ul,
+    ol {
+      margin-bottom: 20px;
     }
   }
 

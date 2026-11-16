@@ -115,10 +115,6 @@ header {
     z-index: 1040;
   }
 
-  body.has-category-bg & {
-    background-color: var(--nn-c-bg);
-  }
-
   .navbar-brand {
     width: 220px;
     flex-shrink: 0;
