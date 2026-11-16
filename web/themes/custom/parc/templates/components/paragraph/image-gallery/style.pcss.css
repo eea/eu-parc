@@ -9,6 +9,12 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  &--three-columns {
+    @media (--md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
   &__item {
     margin: 0;
   }
