@@ -1,0 +1,55 @@
+# DO NOT EDIT - This file is managed by the template repository.
+# Source: https://github.com/eaudeweb/drupal-workflows-template
+# Project-specific settings are configured through repository variables (QA_*), see README.md.
+name: 'Quality assurance'
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa-code:
+    name: 'Check code quality'
+    runs-on: ${{ vars.QA_RUNNER || 'ubuntu-latest' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Setup PHP version
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ vars.PROD_PHP_VERSION }}
+
+      - name: Setup nodejs
+        if: vars.ENABLE_NODEJS == 'true'
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: ${{ vars.NODE_VERSION_FILE }}
+
+      - name: Install dependencies
+        uses: eaudeweb/drupal-install-action@1.x
+        with:
+          dev: true
+
+      - name: Check code quality
+        uses: eaudeweb/drupal-code-qa-action@2.x
+        with:
+          phplint: ${{ vars.QA_PHPLINT || 'true' }}
+          phpmd: ${{ vars.QA_PHPMD || 'true' }}
+          phpcs: ${{ vars.QA_PHPCS || 'true' }}
+          phpcs_standards: ${{ vars.QA_PHPCS_STANDARDS || 'Drupal,DrupalPractice' }}
+          phpstan: ${{ vars.QA_PHPSTAN || 'false' }}
+          phpstan_level: ${{ vars.QA_PHPSTAN_LEVEL || '5' }}
