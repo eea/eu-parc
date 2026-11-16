@@ -1,0 +1,11 @@
+uuid: f7ea8828-9dcc-4988-ba93-16684a734bc1
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.embed_small
+label: 'Embed Small'
+description: ''
+targetEntityType: media
+cache: true

@@ -52,6 +52,7 @@ slick:
     url: https://github.com/kenwheeler/slick/blob/master/LICENSE
     gpl-compatible: true
   js:
+    js/jquery-type-polyfill.js: { weight: -4 }
     /libraries/slick/slick/slick.min.js: { weight: -3, minified: true }
   css:
     base:
@@ -66,6 +67,15 @@ slideshow:
       css/slideshow.css: { }
   js:
     js/slideshow.js: { }
+  dependencies:
+    - parc_core/slick
+
+media_carousel:
+  css:
+    component:
+      css/media-carousel.css: { }
+  js:
+    js/media-carousel.js: { }
   dependencies:
     - parc_core/slick
 

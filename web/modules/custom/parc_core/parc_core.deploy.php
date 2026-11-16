@@ -2448,6 +2448,97 @@ function parc_core_deploy_circular_economy_topic() {
 }
 
 /**
+ * Set field_color for news_category terms.
+ */
+function parc_core_deploy_news_category_colors() {
+  $colors = [
+    'Risk assessment' => '#1C85FF',
+    'General' => '#8631A7',
+    'Building capacities' => '#E45C4D',
+    'Science to policy' => '#008475',
+    'What’s on' => '#008475',
+  ];
+
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  foreach ($colors as $name => $color) {
+    $terms = $term_storage->loadByProperties([
+      'vid' => 'news_category',
+      'name' => $name,
+    ]);
+    if (empty($terms)) {
+      continue;
+    }
+
+    /** @var \Drupal\taxonomy\TermInterface $term */
+    $term = reset($terms);
+    $term->set('field_color', ['color' => $color]);
+    $term->save();
+  }
+}
+
+/**
+ * Migrate article items into field_paragraphs.
+ */
+function parc_core_deploy_migrate_article_paragraphs() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'article')
+    ->execute();
+
+  foreach ($nids as $nid) {
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $node_storage->load($nid);
+    if (!$node) {
+      continue;
+    }
+
+    if (!$node->get('field_paragraphs')->isEmpty()) {
+      continue;
+    }
+
+    $paragraphs = [];
+
+    if (!$node->get('body')->isEmpty()) {
+      $body = $node->get('body')->first()->getValue();
+      $text_paragraph = $paragraph_storage->create([
+        'type' => 'text',
+        'field_body' => [
+          'value' => _parc_core_article_body_to_restricted($body['value']),
+          'format' => 'restricted_html',
+        ],
+      ]);
+      $text_paragraph->save();
+      $paragraphs[] = $text_paragraph;
+    }
+
+    if (!$node->get('field_slideshow_items')->isEmpty()) {
+      $media_items = $node->get('field_slideshow_items')->getValue();
+      $carousel_paragraph = $paragraph_storage->create([
+        'type' => 'media_carousel',
+        'field_carousel_items' => $media_items,
+        'field_carousel_width' => 'medium',
+      ]);
+      $carousel_paragraph->save();
+      $paragraphs[] = $carousel_paragraph;
+    }
+
+    if (empty($paragraphs)) {
+      continue;
+    }
+
+    foreach ($paragraphs as $paragraph) {
+      $node->get('field_paragraphs')->appendItem($paragraph);
+    }
+
+    $node->setNewRevision(FALSE);
+    $node->save();
+  }
+}
+
+/**
  * Re-import air, water and ecotox labs from the 2026-10-13 CSV exports.
  */
 function parc_core_deploy_reimport_air_water_ecotox_labs() {
@@ -2501,4 +2592,230 @@ function parc_core_deploy_video_playlist() {
     $node->path->pathauto = PathautoState::CREATE;
     $node->save();
   }
+}
+
+/**
+ * Prepares migrated article HTML for the Restricted HTML text format.
+ */
+function _parc_core_article_body_to_restricted(string $html): string {
+  $html = preg_replace(
+    ['#<b(\s[^>]*)?>#i', '#</b>#i', '#<i(\s[^>]*)?>#i', '#</i>#i'],
+    ['<strong>', '</strong>', '<em>', '</em>'],
+    $html
+  );
+
+  $html = preg_replace_callback('#<drupal-media\b([^>]*)>#i', function (array $matches) {
+    $attributes = preg_replace('#\s+data-view-mode\s*=\s*(["\'])[^"\']*\1#i', '', $matches[1]);
+    return '<drupal-media' . $attributes . ' data-view-mode="embed_medium">';
+  }, $html);
+
+  $html = _parc_core_article_img_to_media($html);
+
+  return _parc_core_article_inline_spacing_to_class($html);
+}
+
+/**
+ * Replaces raw <img> tags (stripped by Restricted HTML) with media embeds.
+ */
+function _parc_core_article_img_to_media(string $html): string {
+  return preg_replace_callback('#(?:<center>\s*)?<img\b([^>]*)>(?:\s*</center>)?#i', function (array $matches) {
+    if (!preg_match('#\ssrc\s*=\s*"([^"]*)"#i', $matches[1], $src)) {
+      return $matches[0];
+    }
+
+    $url = parse_url(html_entity_decode($src[1]));
+    $host = preg_replace('#^www\.#', '', $url['host'] ?? 'eu-parc.eu');
+    $prefix = '/sites/default/files/';
+    if ($host !== 'eu-parc.eu' || !str_starts_with($url['path'] ?? '', $prefix)) {
+      return $matches[0];
+    }
+
+    $uri = 'public://' . rawurldecode(substr($url['path'], strlen($prefix)));
+    if (!file_exists($uri)) {
+      return $matches[0];
+    }
+
+    $files = \Drupal::entityTypeManager()->getStorage('file')->loadByProperties(['uri' => $uri]);
+    $file = reset($files);
+    if (!$file) {
+      $file = File::create(['uri' => $uri, 'status' => 1, 'uid' => 1]);
+      $file->save();
+    }
+
+    $alt = preg_match('#\salt\s*=\s*"([^"]*)"#i', $matches[1], $alt_match) ? trim(html_entity_decode($alt_match[1])) : '';
+    if ($alt === '' || $alt === '...') {
+      $alt = pathinfo($uri, PATHINFO_FILENAME);
+    }
+
+    $media_storage = \Drupal::entityTypeManager()->getStorage('media');
+    $media = $media_storage->loadByProperties([
+      'bundle' => 'image',
+      'field_media_image.target_id' => $file->id(),
+    ]);
+    $media = reset($media);
+    if (!$media) {
+      $media = Media::create([
+        'bundle' => 'image',
+        'name' => pathinfo($uri, PATHINFO_FILENAME),
+        'uid' => 1,
+        'field_media_image' => [
+          'target_id' => $file->id(),
+          'alt' => $alt,
+        ],
+      ]);
+      $media->save();
+    }
+
+    return '<drupal-media data-entity-type="media" data-entity-uuid="' . $media->uuid() . '" data-align="center" data-view-mode="embed_medium"></drupal-media>';
+  }, $html);
+}
+
+/**
+ * Converts inline paragraph margins (stripped by Restricted HTML) to classes.
+ */
+function _parc_core_article_inline_spacing_to_class(string $html): string {
+  return preg_replace_callback('#<p\b([^>]*)>#i', function (array $matches) {
+    $attributes = $matches[1];
+    if (!preg_match('#\sstyle\s*=\s*"([^"]*)"#i', $attributes, $style)) {
+      return $matches[0];
+    }
+    $attributes = str_replace($style[0], '', $attributes);
+    if (!preg_match('#margin-bottom\s*:\s*(\d+)px#i', $style[1], $margin) || (int) $margin[1] > 10) {
+      return '<p' . $attributes . '>';
+    }
+    if (preg_match('#\sclass\s*=\s*"([^"]*)"#i', $attributes, $class)) {
+      return '<p' . str_replace($class[0], ' class="' . trim($class[1] . ' mb-10') . '"', $attributes) . '>';
+    }
+    return '<p class="mb-10"' . $attributes . '>';
+  }, $html);
+}
+
+/**
+ * Restricted HTML text format and medium-sized media.
+ */
+function parc_core_deploy_article_paragraphs_restricted_medium() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'article')
+    ->execute();
+
+  $updated = 0;
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    if (!$node->hasField('field_paragraphs')) {
+      continue;
+    }
+
+    /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+    foreach ($node->get('field_paragraphs')->referencedEntities() as $paragraph) {
+      $changed = FALSE;
+
+      if ($paragraph->bundle() === 'text' && !$paragraph->get('field_body')->isEmpty()) {
+        $body = $paragraph->get('field_body')->first()->getValue();
+        $value = _parc_core_article_body_to_restricted($body['value']);
+        if ($value !== $body['value'] || $body['format'] !== 'restricted_html') {
+          $paragraph->set('field_body', [
+            'value' => $value,
+            'format' => 'restricted_html',
+          ]);
+          $changed = TRUE;
+        }
+      }
+
+      if ($paragraph->bundle() === 'media_carousel' && $paragraph->get('field_carousel_width')->value !== 'medium') {
+        $paragraph->set('field_carousel_width', 'medium');
+        $changed = TRUE;
+      }
+
+      if ($changed) {
+        $paragraph->setNewRevision(FALSE);
+        $paragraph->save();
+        $updated++;
+      }
+    }
+  }
+
+  return t('Updated @count article paragraphs.', ['@count' => $updated]);
+}
+
+/**
+ * Restore article text spacing lost when inline styles were stripped.
+ */
+function parc_core_deploy_article_paragraphs_spacing() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+
+  $nids = $node_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'article')
+    ->execute();
+
+  $updated = 0;
+  foreach ($node_storage->loadMultiple($nids) as $node) {
+    if (!$node->hasField('field_paragraphs')) {
+      continue;
+    }
+
+    /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+    foreach ($node->get('field_paragraphs')->referencedEntities() as $paragraph) {
+      if ($paragraph->bundle() !== 'text' || $paragraph->get('field_body')->isEmpty()) {
+        continue;
+      }
+
+      $body = $paragraph->get('field_body')->first()->getValue();
+      $value = _parc_core_article_inline_spacing_to_class($body['value']);
+      if ($value === $body['value']) {
+        continue;
+      }
+
+      $paragraph->set('field_body', [
+        'value' => $value,
+        'format' => $body['format'],
+      ]);
+      $paragraph->setNewRevision(FALSE);
+      $paragraph->save();
+      $updated++;
+    }
+  }
+
+  return t('Updated @count article paragraphs.', ['@count' => $updated]);
+}
+
+/**
+ * Convert raw <img> tags in article text paragraphs to media embeds.
+ */
+function parc_core_deploy_article_paragraphs_images() {
+  $paragraph_storage = \Drupal::entityTypeManager()->getStorage('paragraph');
+
+  $ids = $paragraph_storage->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'text')
+    ->condition('parent_type', 'node')
+    ->condition('field_body.value', '<img', 'CONTAINS')
+    ->execute();
+
+  $updated = 0;
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  foreach ($paragraph_storage->loadMultiple($ids) as $paragraph) {
+    $parent = $paragraph->getParentEntity();
+    if (!$parent || $parent->bundle() !== 'article') {
+      continue;
+    }
+
+    $body = $paragraph->get('field_body')->first()->getValue();
+    $value = _parc_core_article_img_to_media($body['value']);
+    if ($value === $body['value']) {
+      continue;
+    }
+
+    $paragraph->set('field_body', [
+      'value' => $value,
+      'format' => $body['format'],
+    ]);
+    $paragraph->setNewRevision(FALSE);
+    $paragraph->save();
+    $updated++;
+  }
+
+  return t('Updated @count article paragraphs.', ['@count' => $updated]);
 }

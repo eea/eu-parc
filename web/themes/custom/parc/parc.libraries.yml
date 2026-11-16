@@ -367,6 +367,11 @@ p--two-column:
     component:
       css/components/paragraph/two-column/style.css: {}
 
+p--image-gallery:
+  css:
+    component:
+      css/components/paragraph/image-gallery/style.css: {}
+
 # Section.
 s--header:
   css:
