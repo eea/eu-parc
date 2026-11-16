@@ -3,8 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.embed_large
+    - core.entity_view_mode.media.embed_medium
+    - core.entity_view_mode.media.embed_small
     - core.entity_view_mode.media.lightbox
   module:
+    - filter_external_link_icon
     - media
     - spamspan
 _core:
@@ -31,6 +35,13 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  filter_external_link_icon:
+    id: filter_external_link_icon
+    provider: filter_external_link_icon
+    status: true
+    weight: 0
+    settings:
+      icon: ↗
   filter_html:
     id: filter_html
     provider: filter
