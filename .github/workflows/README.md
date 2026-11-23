@@ -23,6 +23,7 @@ This template includes the following workflows:
 - **SQL Dump** - database backup workflows for test/prod
 - **Database Sync** - database synchronization between environments
 - **Cleanup Git Tags** - cleanup old Git tags and branches based on a specified date/count retention policy
+- **Quality assurance** - code quality checks (PHPLint, PHPMD, PHPCS, PHPStan) on pull requests and pushes to `main`/`master`
 
 ## Project Configuration
 
@@ -75,6 +76,20 @@ Configure these in **Settings** → **Secrets and variables** → **Actions** �
 | `COMPILE_THEME_SCRIPT`     | (Optional) Disk path to the theme compilation script executed during the deployments - [see](https://github.com/eaudeweb/iucn.org/blob/main/.github/workflows/deploy-dev.yml#L31). If empty, the compile step is skipped. | `scripts/compile-theme.sh` |
 
 > **Important**: Same variables and secrets are needed for the test environment workflows, prefixed with `TEST_` instead of `PROD_`.
+
+#### Quality assurance variables
+
+The PHP version used for the checks is `PROD_PHP_VERSION`. The variables below are optional, configure them in **Settings** → **Secrets and variables** → **Actions** → **Variables** only when the default does not fit the project:
+
+| Variable Name        | Description                                                                 | Default |
+|----------------------|-----------------------------------------------------------------------------|---------|
+| `QA_RUNNER`          | Runner label for the code quality job                                       | `ubuntu-latest` |
+| `QA_PHPLINT`         | Run PHPLint                                                                 | `true` |
+| `QA_PHPMD`           | Run PHP Mess Detector (uses `phpmd.xml` from the project root, if present)  | `true` |
+| `QA_PHPCS`           | Run PHP Code Sniffer                                                        | `true` |
+| `QA_PHPCS_STANDARDS` | PHPCS standards, or path to a ruleset file (e.g. `phpcs.xml`)               | `Drupal,DrupalPractice` |
+| `QA_PHPSTAN`         | Run PHPStan (uses `phpstan.neon` from the project root, if present)         | `false` |
+| `QA_PHPSTAN_LEVEL`   | PHPStan level (1..9)                                                        | `5` |
 
 > **Note**: Each job supports the `RUNNER_LABEL` variable (`${{ vars.RUNNER_LABEL }}`) to override the default runner. If not set, the default runner label `drupal-runner-v2` is used.
 
