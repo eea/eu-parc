@@ -1,0 +1,21 @@
+uuid: 8a91469b-72c4-4719-9264-8a10daa9d022
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_main_theme
+    - node.type.chemical
+  module:
+    - options
+id: node.chemical.field_main_theme
+field_name: field_main_theme
+entity_type: node
+bundle: chemical
+label: 'Main theme'
+description: 'The theme this item belongs to on the key messages map.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

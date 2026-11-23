@@ -1,0 +1,21 @@
+uuid: 854d5758-3dda-46dd-a941-b77437670bb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_main_theme
+    - node.type.project
+  module:
+    - options
+id: node.project.field_main_theme
+field_name: field_main_theme
+entity_type: node
+bundle: project
+label: 'Main theme'
+description: 'The theme this item belongs to on the key messages map.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.institution.field_coordinates
     - field.field.node.institution.field_country
     - field.field.node.institution.field_institution_roles
+    - field.field.node.institution.field_main_theme
     - field.field.node.institution.field_media_image
     - field.field.node.institution.field_nhcp_email
     - field.field.node.institution.field_nhcp_name
@@ -90,6 +91,12 @@ content:
       autocomplete: false
       match_operator: CONTAINS
       match_limit: 10
+    third_party_settings: {  }
+  field_main_theme:
+    type: options_select
+    weight: 22
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_media_image:
     type: media_library_widget
@@ -192,5 +199,10 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

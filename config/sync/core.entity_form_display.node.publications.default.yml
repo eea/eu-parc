@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.publications.field_journal
     - field.field.node.publications.field_key_messages
     - field.field.node.publications.field_key_words
+    - field.field.node.publications.field_main_theme
     - field.field.node.publications.field_pages
     - field.field.node.publications.field_publication_date
     - field.field.node.publications.field_regulatory_message
@@ -141,6 +142,12 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_main_theme:
+    type: options_select
+    weight: 51
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_pages:
     type: string_textfield

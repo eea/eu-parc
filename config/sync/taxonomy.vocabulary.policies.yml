@@ -1,0 +1,9 @@
+uuid: 36760ff5-d5c3-45e6-a7a6-b2f9f1d92565
+langcode: en
+status: true
+dependencies: {  }
+name: Policies
+vid: policies
+description: 'Policy areas that PARC projects contribute to. Shown on the key messages map.'
+weight: 0
+new_revision: false

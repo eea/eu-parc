@@ -1,0 +1,10 @@
+uuid: fd201f7b-204a-41c4-a3ca-445697957043
+langcode: en
+status: true
+dependencies: {  }
+id: finding
+label: Finding
+icon_uuid: null
+icon_default: null
+description: 'A health effect of a chemical, as reported by one or more publications.'
+behavior_plugins: {  }

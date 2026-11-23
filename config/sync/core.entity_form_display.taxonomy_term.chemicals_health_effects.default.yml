@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.taxonomy_term.chemicals_health_effects.field_color
     - field.field.taxonomy_term.chemicals_health_effects.field_internal_id
+    - field.field.taxonomy_term.chemicals_health_effects.field_main_theme
     - field.field.taxonomy_term.chemicals_health_effects.field_related_questions
     - taxonomy.vocabulary.chemicals_health_effects
   module:
@@ -29,6 +30,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_main_theme:
+    type: options_select
+    weight: 5
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_related_questions:
     type: paragraphs

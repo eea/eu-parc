@@ -6,7 +6,9 @@ dependencies:
     - field.field.node.project.body
     - field.field.node.project.field_audio_file
     - field.field.node.project.field_date_range
+    - field.field.node.project.field_main_theme
     - field.field.node.project.field_partners
+    - field.field.node.project.field_policy
     - field.field.node.project.field_project_abbreviation
     - field.field.node.project.field_project_contacts
     - field.field.node.project.field_project_keywords
@@ -89,6 +91,8 @@ third_party_settings:
         - field_project_topics
         - field_project_keywords
         - field_project_abbreviation
+        - field_main_theme
+        - field_policy
       label: Metadata
       region: content
       parent_name: group_tabs
@@ -135,6 +139,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_main_theme:
+    type: options_select
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_partners:
     type: entity_reference_autocomplete
     weight: 18
@@ -144,6 +154,16 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_policy:
+    type: select2_entity_reference
+    weight: 14
+    region: content
+    settings:
+      width: 100%
+      autocomplete: false
+      match_operator: CONTAINS
+      match_limit: 10
     third_party_settings: {  }
   field_project_abbreviation:
     type: string_textfield
@@ -314,5 +334,10 @@ content:
       match_limit: 10
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

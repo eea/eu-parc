@@ -1,0 +1,21 @@
+uuid: c998423d-72c7-4700-b834-4750fc7fb6d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_main_theme
+    - taxonomy.vocabulary.policies
+  module:
+    - options
+id: taxonomy_term.policies.field_main_theme
+field_name: field_main_theme
+entity_type: taxonomy_term
+bundle: policies
+label: 'Main theme'
+description: 'The theme this item belongs to on the key messages map.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

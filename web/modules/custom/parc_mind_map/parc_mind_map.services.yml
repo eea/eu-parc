@@ -1,0 +1,9 @@
+services:
+  parc_mind_map.graph_builder:
+    class: Drupal\parc_mind_map\MindMapGraphBuilder
+    arguments:
+      - '@entity_type.manager'
+      - '@file_url_generator'
+      - '@transliteration'
+      - '@cache.default'
+      - '@request_stack'
