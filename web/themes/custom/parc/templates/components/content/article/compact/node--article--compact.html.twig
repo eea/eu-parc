@@ -21,23 +21,37 @@
   {{ title_prefix }}
   {{ title_suffix }}
 
-  {{ content.field_image }}
-
   <div class="container-head">
-    <div class="meta d-flex justify-content-between fw-bold">
-      {{- content.field_tags -}}
-
-      <div class="field-date">
-        {{- date -}}
-      </div>
+    <div class="head-menu">
+      {{ drupal_block('menu_block:main', {
+        label_display: false,
+        follow: false,
+        follow_parent: 'child',
+        label_link: false,
+        label_type: 'block',
+        level: 3,
+        depth: 0,
+        expand_all_items: false,
+        parent: 'main:',
+        suggestion: 'sidebar_dropdown',
+      }, false) }}
     </div>
 
-    <h1 class="node-title fw-bold">
-      {{- label -}}
-    </h1>
+    <div class="head-title">
+      {{- content.field_tags -}}
+
+      <h1 class="node-title fw-bold">
+        {{- label -}}
+      </h1>
+    </div>
+
+    <div class="field-date">
+      {{- date -}}
+    </div>
   </div>
 
+  {{ content.field_image }}
 
-  {{ content.body }}
-  {{ content|without('body', 'field_image', 'field_tags')}}
+  {{ content.field_paragraphs }}
+  {{ content|without('field_paragraphs', 'field_image', 'field_tags')}}
 </article>

@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.carousel
     - field.field.block_content.carousel.body
+    - field.field.block_content.carousel.field_carousel_width
     - field.field.block_content.carousel.field_hero_carousel
     - field.field.block_content.carousel.field_paragraphs
   module:
@@ -25,5 +26,6 @@ content:
     region: content
 hidden:
   body: true
+  field_carousel_width: true
   field_hero_carousel: true
   search_api_excerpt: true

@@ -68,6 +68,12 @@ function parc_core_theme() {
         'items' => [],
       ],
     ],
+    'parc_media_carousel' => [
+      'variables' => [
+        'items' => [],
+        'width' => 'large',
+      ],
+    ],
     'parc_indicator_groups' => [
       'variables' => [
         'groups' => [],
@@ -287,6 +293,45 @@ function parc_core_views_pre_render(ViewExecutable $view) {
   return \Drupal::service('class_resolver')
     ->getInstanceFromDefinition(ParcCoreViews::class)
     ->viewsPreRender($view);
+}
+
+/**
+ * Implements hook_editor_js_settings_alter().
+ *
+ * Limits the media embed view modes offered in CKEditor on article forms.
+ * Allowed view modes are set per text format, which is shared between content
+ * types, so the narrower list can't be expressed in the filter configuration.
+ */
+function parc_core_editor_js_settings_alter(array &$settings) {
+  $route_match = \Drupal::routeMatch();
+  $node = $route_match->getParameter('node');
+  $bundle = $node instanceof NodeInterface ? $node->bundle() : $route_match->getRawParameter('node_type');
+  if ($bundle !== 'article') {
+    return;
+  }
+
+  $allowed = ['embed_large', 'embed_medium', 'embed_small'];
+  $allowed_items = array_map(fn ($view_mode) => "drupalElementStyle:viewMode:$view_mode", $allowed);
+
+  foreach ($settings['editor']['formats'] as &$format) {
+    $config = &$format['editorSettings']['config'];
+    if (!isset($config['drupalElementStyles']['viewMode'])) {
+      unset($config);
+      continue;
+    }
+
+    $config['drupalElementStyles']['viewMode'] = array_values(array_filter(
+      $config['drupalElementStyles']['viewMode'],
+      fn ($style) => in_array($style['name'], $allowed),
+    ));
+
+    foreach ($config['drupalMedia']['toolbar'] as &$item) {
+      if (is_array($item) && $item['name'] === 'drupalMedia:viewMode') {
+        $item['items'] = array_values(array_intersect($item['items'], $allowed_items));
+      }
+    }
+    unset($item, $config);
+  }
 }
 
 /**
