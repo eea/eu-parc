@@ -147,6 +147,14 @@
     }
   }
 
+  .paragraph-text {
+    p,
+    ul,
+    ol {
+      margin-bottom: 20px;
+    }
+  }
+
   .field + .field--name-field-slideshow-items {
     margin-top: var(--spacer);
   }
