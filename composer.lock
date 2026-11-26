@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d02bd5813699ec7f44da08a0ebd39cf",
+    "content-hash": "414288a7a256a02fe2819daf2b3e4dda",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -8217,6 +8217,36 @@
             "time": "2024-11-18T10:48:30+00:00"
         },
         {
+            "name": "eaudeweb/raven_edw",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eaudeweb/raven_edw.git",
+                "reference": "472540842eb0ea940160f74a17c073d93e3de96b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eaudeweb/raven_edw/zipball/472540842eb0ea940160f74a17c073d93e3de96b",
+                "reference": "472540842eb0ea940160f74a17c073d93e3de96b",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core": "^10 || ^11 || ^12",
+                "drupal/raven": "^5 || ^6 || ^7",
+                "php": ">=8.1"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Sentry defaults for sites deployed in release directories.",
+            "support": {
+                "source": "https://github.com/eaudeweb/raven_edw/tree/1.0.0",
+                "issues": "https://github.com/eaudeweb/raven_edw/issues"
+            },
+            "time": "2026-11-27T14:58:21+00:00"
+        },
+        {
             "name": "eaudeweb/robo-curl",
             "version": "2.0.0-alpha-4",
             "source": {
@@ -14977,5 +15007,5 @@
     "platform-overrides": {
         "php": "8.3"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.11.0"
 }

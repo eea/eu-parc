@@ -18,6 +18,10 @@
             "url": "https://github.com/stefanbutura/svg-sanitizer.git"
         },
         {
+            "type": "vcs",
+            "url": "https://github.com/eaudeweb/raven_edw.git"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "slick/slick",
@@ -132,6 +136,7 @@
         "drupal/webform": "^6.3",
         "drush/drush": "^13.0",
         "eaudeweb/heavy-lifter": "^2.0",
+        "eaudeweb/raven_edw": "^1.0",
         "enshrined/svg-sanitize": "dev-master as 0.16.0",
         "jackmoore/colorbox": "^1.6",
         "mglaman/composer-drupal-lenient": "^1.0",
