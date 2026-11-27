@@ -2,13 +2,12 @@
 
 namespace Drupal\parc_zenodo_api;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use GuzzleHttp\ClientInterface;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\GuzzleException;
 use Ottosmops\Pdftotext\Extract;
 
 /**
@@ -29,13 +28,6 @@ class ZenodoApiHelper {
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
-
-  /**
-   * The module config.
-   *
-   * @var \Drupal\Core\Config\ImmutableConfig
-   */
-  protected $config;
 
   /**
    * The logger service.
@@ -65,37 +57,18 @@ class ZenodoApiHelper {
    *   The HTTP Client.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
    * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
    *   The logger service.
    */
-  public function __construct(ClientInterface $http_client, EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, LoggerChannelFactoryInterface $logger) {
+  public function __construct(
+    ClientInterface $http_client,
+    EntityTypeManagerInterface $entity_type_manager,
+    LoggerChannelFactoryInterface $logger,
+  ) {
     $this->httpClient = $http_client;
     $this->entityTypeManager = $entity_type_manager;
-    $this->config = $config_factory->get('parc_zenodo_api.adminsettings');
     $this->logger = $logger->get('parc_zenodo_api');
     $this->pdfExtractor = new Extract();
-  }
-
-  /**
-   * Get all Zenodo depositions.
-   *
-   * @return array
-   *   The depositions.
-   */
-  public function getAllDepositions() {
-    $token = $this->config->get('token');
-    $url = 'https://zenodo.org/api/deposit/depositions?access_token=' . $token;
-
-    try {
-      $response = $this->httpClient->get($url, []);
-      $response_data = json_decode($response->getBody()->getContents(), TRUE);
-    }
-    catch (RequestException $e) {
-      $this->logger->error($e->getMessage());
-    }
-    return $response_data;
   }
 
   /**
@@ -106,21 +79,27 @@ class ZenodoApiHelper {
    */
   public function getAllRecords() {
     $records = [];
-    $token = $this->config->get('token');
+    // Public records need no token. Anonymous clients get at most 25 results
+    // per page and 30 requests per minute.
+    $query = ['communities' => 'parc', 'size' => 25, 'page' => 1];
 
     try {
-      $i = 1;
       do {
-        $url = 'https://zenodo.org/api/records?access_token=' . $token . '&communities=parc&size=10&page=' . $i;
-        $response = $this->httpClient->get($url);
+        $response = $this->httpClient->get('https://zenodo.org/api/records', [
+          'query' => $query,
+        ]);
         $response_data = json_decode($response->getBody()->getContents(), TRUE);
-        $i++;
         if (!empty($response_data['hits']['hits'])) {
-          $records[$i - 1] = $response_data;
+          $records[$query['page']] = $response_data;
+        }
+        $query['page']++;
+        if ($response->getHeaderLine('X-RateLimit-Remaining') === '0') {
+          $reset = (int) $response->getHeaderLine('X-RateLimit-Reset');
+          sleep(min(60, max(1, $reset - time())));
         }
       } while (!empty($response_data['hits']['hits']));
     }
-    catch (RequestException $e) {
+    catch (GuzzleException $e) {
       $this->logger->error($e->getMessage());
     }
     return $records;

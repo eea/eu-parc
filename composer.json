@@ -18,6 +18,10 @@
             "url": "https://github.com/stefanbutura/svg-sanitizer.git"
         },
         {
+            "type": "vcs",
+            "url": "https://github.com/eaudeweb/raven_edw.git"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "slick/slick",
@@ -132,6 +136,7 @@
         "drupal/webform": "^6.3",
         "drush/drush": "^13.0",
         "eaudeweb/heavy-lifter": "^2.0",
+        "eaudeweb/raven_edw": "^1.0",
         "enshrined/svg-sanitize": "dev-master as 0.16.0",
         "jackmoore/colorbox": "^1.6",
         "mglaman/composer-drupal-lenient": "^1.0",
@@ -252,7 +257,8 @@
                 "#3430967 - Automated Drupal 11 compatibility fixes for ics_link_field": "patches/ics_link_field/4.diff"
             },
             "drupal/svg_image": {
-                "#3601394 - Unsupported operand types: null + array rendering SVG as <img> on Drupal 11.4": "patches/svg_image/60.patch"
+                "#3601394 - Unsupported operand types: null + array rendering SVG as <img> on Drupal 11.4": "patches/svg_image/60.patch",
+                "#3579756 - Could not apply image style to SVG warning": "patches/svg_image/3579756-57.patch"
             },
             "drupal/taxonomy_menu": {
                 "#3576655 - Items moved out of selected parent menu item on 3.8 version": "patches/taxonomy_menu/23.patch"

@@ -1,0 +1,243 @@
+diff --git a/svg_image.module b/svg_image.module
+index ae8dfbfa3726573dd4494ab8af5a2bb4297864f7..6122f3b66b58beab2cdf66dd5e378a188aa11721 100644
+--- a/svg_image.module
++++ b/svg_image.module
+@@ -6,10 +6,47 @@
+  */
+ 
+ use Drupal\file\Entity\File;
++use Drupal\image\Entity\ImageStyle;
+ use Drupal\svg_image\Plugin\Field\FieldFormatter\SvgImageFormatter;
+ use Drupal\svg_image\Plugin\Field\FieldFormatter\SvgImageUrlFormatter;
+ use Drupal\svg_image\Plugin\Field\FieldWidget\SvgImageWidget;
+ 
++/**
++ * Implements hook_theme_registry_alter().
++ */
++function svg_image_theme_registry_alter(&$theme_registry) {
++  if (empty($theme_registry['image_style'])) {
++    return;
++  }
++
++  $core_preprocess_callbacks = [
++    'template_preprocess_image_style',
++    'Drupal\\image\\Hook\\ImageThemeHooks:preprocessImageStyle',
++    'Drupal\\image\\Hook\\ImageThemeHooks::preprocessImageStyle',
++  ];
++
++  if (!empty($theme_registry['image_style']['initial preprocess']) && in_array($theme_registry['image_style']['initial preprocess'], $core_preprocess_callbacks, TRUE)) {
++    $theme_registry['image_style']['initial preprocess'] = 'svg_image_preprocess_image_style';
++  }
++
++  $preprocess = $theme_registry['image_style']['preprocess functions'] ?? [];
++  $preprocess = array_values(array_filter($preprocess, function ($callback) use ($core_preprocess_callbacks) {
++    if (is_string($callback)) {
++      return !in_array($callback, array_merge($core_preprocess_callbacks, ['svg_image_preprocess_image_style']), TRUE);
++    }
++    if (is_array($callback)) {
++      return !($callback[0] === 'Drupal\\image\\Hook\\ImageThemeHooks' && $callback[1] === 'preprocessImageStyle');
++    }
++    return TRUE;
++  }));
++
++  if (($theme_registry['image_style']['initial preprocess'] ?? NULL) !== 'svg_image_preprocess_image_style') {
++    $preprocess[] = 'svg_image_preprocess_image_style';
++  }
++
++  $theme_registry['image_style']['preprocess functions'] = $preprocess;
++}
++
+ /**
+  * Implements hook_config_schema_info_alter().
+  */
+@@ -59,18 +96,65 @@ function svg_image_field_formatter_info_alter(array &$info) {
+  * @see template_preprocess_image_style()
+  */
+ function svg_image_preprocess_image_style(array &$variables) {
+-  if (isset($variables['image']['#access']) && !$variables['image']['#access'] && !empty($variables['image']['#uri'])) {
++  $style = ImageStyle::load($variables['style_name']);
++  $is_svg = (mb_strtolower(pathinfo($variables['uri'], PATHINFO_EXTENSION)) === 'svg');
++
++  if (!$is_svg) {
+     $files = \Drupal::entityTypeManager()->getStorage('file')
+       ->loadByProperties(['uri' => $variables['uri']]);
+     if ($files) {
+       $imageFile = reset($files);
++      $is_svg = svg_image_is_file_svg($imageFile);
++    }
++  }
+ 
+-      if (svg_image_is_file_svg($imageFile)) {
+-        $variables['image']['#access'] = TRUE;
+-        $variables['image']['#attributes']['class'][] = 'no-image-style';
+-      }
++  // Determine the dimensions of the styled image.
++  $dimensions = [
++    'width' => $variables['width'],
++    'height' => $variables['height'],
++  ];
++
++  $style->transformDimensions($dimensions, $variables['uri']);
++
++  $variables['image'] = [
++    '#theme' => 'image',
++    '#width' => $dimensions['width'],
++    '#height' => $dimensions['height'],
++    '#attributes' => $variables['attributes'],
++    '#style_name' => $variables['style_name'],
++  ];
++
++  // If the current image toolkit supports this file type, prepare the URI for
++  // the derivative image. If not, just use the original image resized to the
++  // dimensions specified by the style.
++  if (!$is_svg && $style->supportsUri($variables['uri'])) {
++    $variables['image']['#uri'] = $style->buildUrl($variables['uri']);
++  }
++  else {
++    $variables['image']['#uri'] = $variables['uri'];
++    // Don't render the image by default, but allow other preprocess functions
++    // to override that if they need to.
++    $variables['image']['#access'] = FALSE;
++
++    if ($is_svg) {
++      $variables['image']['#access'] = TRUE;
++      $variables['image']['#attributes']['class'][] = 'no-image-style';
++    }
++    else {
++      // Inform the site builders why their image didn't work.
++      \Drupal::logger('image')->warning('Could not apply @style image style to @uri because the style does not support it.', [
++        '@style' => $style->label(),
++        '@uri' => $variables['uri'],
++      ]);
+     }
+   }
++
++  if (\array_key_exists('alt', $variables)) {
++    $variables['image']['#alt'] = $variables['alt'];
++  }
++  if (\array_key_exists('title', $variables)) {
++    $variables['image']['#title'] = $variables['title'];
++  }
+ }
+ 
+ /**
+diff --git a/tests/src/Kernel/SvgImageStyleThemeTest.php b/tests/src/Kernel/SvgImageStyleThemeTest.php
+new file mode 100644
+index 0000000000000000000000000000000000000000..c69c2f8446139efabe3a8124757ce37159ab571e
+--- /dev/null
++++ b/tests/src/Kernel/SvgImageStyleThemeTest.php
+@@ -0,0 +1,114 @@
++<?php
++
++declare(strict_types=1);
++
++namespace Drupal\Tests\svg_image\Kernel;
++
++use Drupal\Core\Database\Database;
++use Drupal\file\Entity\File;
++use Drupal\image\Entity\ImageStyle;
++use Drupal\KernelTests\KernelTestBase;
++use PHPUnit\Framework\Attributes\Group;
++
++/**
++ * Tests SVG handling in the image_style theme hook.
++ */
++#[Group('svg_image')]
++class SvgImageStyleThemeTest extends KernelTestBase {
++
++  /**
++   * {@inheritdoc}
++   */
++  protected static $modules = [
++    'dblog',
++    'file',
++    'image',
++    'svg_image',
++    'system',
++    'user',
++  ];
++
++  /**
++   * {@inheritdoc}
++   */
++  protected function setUp(): void {
++    parent::setUp();
++
++    $this->installEntitySchema('file');
++    $this->installEntitySchema('user');
++    $this->installSchema('dblog', ['watchdog']);
++    $this->installSchema('file', ['file_usage']);
++  }
++
++  /**
++   * Tests replacing core image_style preprocess callbacks across core versions.
++   */
++  public function testThemeRegistryAlterReplacesCorePreprocessCallbacks(): void {
++    $registry = [
++      'image_style' => [
++        'initial preprocess' => 'Drupal\\image\\Hook\\ImageThemeHooks:preprocessImageStyle',
++        'preprocess functions' => ['custom_preprocess'],
++      ],
++    ];
++    svg_image_theme_registry_alter($registry);
++    $this->assertSame('svg_image_preprocess_image_style', $registry['image_style']['initial preprocess']);
++    $this->assertSame(['custom_preprocess'], $registry['image_style']['preprocess functions']);
++
++    $registry = [
++      'image_style' => [
++        'preprocess functions' => [
++          'template_preprocess_image_style',
++          ['Drupal\\image\\Hook\\ImageThemeHooks', 'preprocessImageStyle'],
++          'custom_preprocess',
++        ],
++      ],
++    ];
++    svg_image_theme_registry_alter($registry);
++    $this->assertSame(['custom_preprocess', 'svg_image_preprocess_image_style'], $registry['image_style']['preprocess functions']);
++  }
++
++  /**
++   * Tests that SVG image_style preprocessing does not log a warning for SVGs.
++   */
++  public function testSvgImageStyleDoesNotLogUnsupportedStyleWarning(): void {
++    $svg = File::create([
++      'uri' => 'public://test-image.svg',
++      'filename' => 'test-image.svg',
++      'filemime' => 'image/svg+xml',
++    ]);
++    file_put_contents($svg->getFileUri(), <<<'SVG'
++<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"></svg>
++SVG);
++    $svg->save();
++
++    ImageStyle::create([
++      'name' => 'image_test',
++      'label' => 'Image test',
++    ])->save();
++
++    Database::getConnection()->truncate('watchdog')->execute();
++
++    $variables = [
++      'style_name' => 'image_test',
++      'uri' => $svg->getFileUri(),
++      'width' => 32,
++      'height' => 32,
++      'attributes' => [],
++    ];
++    svg_image_preprocess_image_style($variables);
++
++    $this->assertSame('image', $variables['image']['#theme']);
++    $this->assertSame($svg->getFileUri(), $variables['image']['#uri']);
++    $this->assertTrue($variables['image']['#access']);
++    $this->assertContains('no-image-style', $variables['image']['#attributes']['class']);
++
++    $warning_count = Database::getConnection()->select('watchdog', 'w')
++      ->condition('type', 'image')
++      ->condition('message', 'Could not apply @style image style to @uri because the style does not support it.')
++      ->countQuery()
++      ->execute()
++      ->fetchField();
++    $this->assertSame(0, (int) $warning_count);
++  }
++
++}

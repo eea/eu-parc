@@ -32,6 +32,8 @@ class ParcIcsLinkFieldFormatter extends IcsLinkFieldFormatter {
         'field_name' => $this->fieldDefinition->get('field_name'),
         'entity' => $items->getParent()->getEntity()->id(),
       ]);
+      // Crawlers parse the .ics as HTML and request the links in its description.
+      $elements[$delta]['#attributes']['rel'] = 'nofollow';
     }
 
     return $elements;
