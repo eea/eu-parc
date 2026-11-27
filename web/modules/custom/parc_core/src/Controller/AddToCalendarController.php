@@ -90,6 +90,7 @@ class AddToCalendarController extends ServiceController {
     // Set the content disposition.
     $response->headers->set('Content-Disposition', $disposition);
     $response->headers->set('Content-Type', ['text/calendar', 'charset=utf-8']);
+    $response->headers->set('X-Robots-Tag', 'noindex, nofollow');
 
     // @TODO: add caching per entity
     // Dispatch request.

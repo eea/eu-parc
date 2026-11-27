@@ -262,7 +262,8 @@ class InteractiveMap extends StylePluginBase {
       return $this->getDefaultCategory($node);
     }
 
-    $query = \Drupal::request()->query->all()['f'] ?? [];
+    // Facet filters come as f[]=..., ignore malformed values like f=string.
+    $query = array_filter((array) (\Drupal::request()->query->all()['f'] ?? []), 'is_string');
 
     // If there is no query, return the first role.
     if (empty($query)) {
