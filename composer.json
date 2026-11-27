@@ -256,7 +256,8 @@
                 "#3430967 - Automated Drupal 11 compatibility fixes for ics_link_field": "patches/ics_link_field/4.diff"
             },
             "drupal/svg_image": {
-                "#3601394 - Unsupported operand types: null + array rendering SVG as <img> on Drupal 11.4": "patches/svg_image/60.patch"
+                "#3601394 - Unsupported operand types: null + array rendering SVG as <img> on Drupal 11.4": "patches/svg_image/60.patch",
+                "#3579756 - Could not apply image style to SVG warning": "patches/svg_image/3579756-57.patch"
             },
             "drupal/taxonomy_menu": {
                 "#3576655 - Items moved out of selected parent menu item on 3.8 version": "patches/taxonomy_menu/23.patch"

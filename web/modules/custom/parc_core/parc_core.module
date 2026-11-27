@@ -5,6 +5,7 @@
  * Contains hooks and custom functions for Parc Core module.
  */
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -984,4 +985,27 @@ function parc_core_node_access(NodeInterface $node, $op, AccountInterface $accou
   }
 
   return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function parc_core_element_info_alter(array &$info) {
+  array_unshift($info['checkboxes']['#process'], 'parc_core_process_checkboxes_input');
+}
+
+/**
+ * Drops scalar input submitted for a checkboxes element.
+ *
+ * Checkboxes expect an array (?category[]=1). Scanners send ?category=1, which
+ * makes core throw "Cannot create key on non-array value" while it builds the
+ * child checkboxes. Treat such input as nothing selected.
+ */
+function parc_core_process_checkboxes_input(array $element, FormStateInterface $form_state) {
+  $input = &$form_state->getUserInput();
+  $value = NestedArray::getValue($input, $element['#parents'], $exists);
+  if ($exists && !is_array($value)) {
+    NestedArray::setValue($input, $element['#parents'], []);
+  }
+  return $element;
 }
