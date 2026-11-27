@@ -103,6 +103,7 @@ module:
   quick_node_clone: 0
   rabbit_hole: 0
   raven: 0
+  raven_edw: 0
   redirect: 0
   redis: 0
   rh_node: 0

@@ -30,7 +30,7 @@ ignored_messages:
   - 'The submitted value %choice in the %name element is not allowed.'
   - 'The submitted value type %type in the %name element is not allowed.'
 send_user_data: false
-rate_limit: 0
+rate_limit: 20
 send_request_body: false
 request_tracing: false
 traces_sample_rate: null
